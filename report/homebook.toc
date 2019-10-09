@@ -1,0 +1,6 @@
+\select@language {english}
+\contentsline {chapter}{\numberline {1}Adders}{1}
+\contentsline {section}{\numberline {1.1}Full Adder}{1}
+\contentsline {subsection}{\numberline {1.1.1}Area and power estimation}{2}
+\contentsline {section}{\numberline {1.2}Ripple Carry Adder}{3}
+\contentsline {chapter}{\numberline {A}Adder behavioural VHDL}{4}

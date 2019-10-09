@@ -1,0 +1,9 @@
+\select@language {english}
+\contentsline {chapter}{\numberline {1}FIR filter design}{1}
+\contentsline {section}{\numberline {1.1}Introduction and specification}{1}
+\contentsline {section}{\numberline {1.2}Design of the filter architecture}{2}
+\contentsline {section}{\numberline {1.3}Writing VHDL code}{3}
+\contentsline {section}{\numberline {1.4}Modelsim simulation}{3}
+\contentsline {section}{\numberline {1.5}Synthesis of the FIR}{4}
+\contentsline {section}{\numberline {1.6}Place and route of our FIR design}{8}
+\contentsline {chapter}{\numberline {A}}{11}

@@ -1,0 +1,496 @@
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9.6100 64-bit) (preloaded format=pdflatex 2017.1.27)  23 MAR 2017 15:33
+entering extended mode
+**./homebook.tex
+(homebook.tex
+LaTeX2e <2016/03/31> patch level 3
+Babel <3.9r> and hyphenation patterns for 75 language(s) loaded.
+(M:\Software\MikTex\tex\latex\base\book.cls
+Document Class: book 2014/09/29 v1.4h Standard LaTeX document class
+(M:\Software\MikTex\tex\latex\base\bk10.clo
+File: bk10.clo 2014/09/29 v1.4h Standard LaTeX file (size option)
+)
+\c@part=\count79
+\c@chapter=\count80
+\c@section=\count81
+\c@subsection=\count82
+\c@subsubsection=\count83
+\c@paragraph=\count84
+\c@subparagraph=\count85
+\c@figure=\count86
+\c@table=\count87
+\abovecaptionskip=\skip41
+\belowcaptionskip=\skip42
+\bibindent=\dimen102
+)
+(M:\Software\MikTex\tex\generic\babel\babel.sty
+Package: babel 2016/04/23 3.9r The Babel package
+
+*************************************
+* Local config file bblopts.cfg used
+*
+(M:\Software\MikTex\tex\latex\arabi\bblopts.cfg
+File: bblopts.cfg 2005/09/08 v0.1 add Arabic and Farsi to "declared" options of
+ babel
+)
+(M:\Software\MikTex\tex\latex\babel-english\english.ldf
+Language: english 2012/08/20 v3.3p English support from the babel system
+
+(M:\Software\MikTex\tex\generic\babel\babel.def
+File: babel.def 2016/04/23 3.9r Babel common definitions
+\babel@savecnt=\count88
+\U@D=\dimen103
+)
+\l@canadian = a dialect from \language\l@american 
+\l@australian = a dialect from \language\l@british 
+\l@newzealand = a dialect from \language\l@british 
+))
+(M:\Software\MikTex\tex\latex\fancyhdr\fancyhdr.sty
+Package: fancyhdr 2016/09/06 3.8 Extensive control of page headers and footers
+\fancy@headwidth=\skip43
+\f@ncyO@elh=\skip44
+\f@ncyO@erh=\skip45
+\f@ncyO@olh=\skip46
+\f@ncyO@orh=\skip47
+\f@ncyO@elf=\skip48
+\f@ncyO@erf=\skip49
+\f@ncyO@olf=\skip50
+\f@ncyO@orf=\skip51
+)
+(M:\Software\MikTex\tex\latex\base\makeidx.sty
+Package: makeidx 2014/09/29 v1.0m Standard LaTeX package
+)
+(M:\Software\MikTex\tex\latex\titlesec\titlesec.sty
+Package: titlesec 2016/03/21 v2.10.2 Sectioning titles
+\ttl@box=\box26
+\beforetitleunit=\skip52
+\aftertitleunit=\skip53
+\ttl@plus=\dimen104
+\ttl@minus=\dimen105
+\ttl@toksa=\toks14
+\titlewidth=\dimen106
+\titlewidthlast=\dimen107
+\titlewidthfirst=\dimen108
+)
+(M:\Software\MikTex\tex\latex\listings\listings.sty
+(M:\Software\MikTex\tex\latex\graphics\keyval.sty
+Package: keyval 2014/10/28 v1.15 key=value parser (DPC)
+\KV@toks@=\toks15
+)
+\lst@mode=\count89
+\lst@gtempboxa=\box27
+\lst@token=\toks16
+\lst@length=\count90
+\lst@currlwidth=\dimen109
+\lst@column=\count91
+\lst@pos=\count92
+\lst@lostspace=\dimen110
+\lst@width=\dimen111
+\lst@newlines=\count93
+\lst@lineno=\count94
+\lst@maxwidth=\dimen112
+
+(M:\Software\MikTex\tex\latex\listings\lstmisc.sty
+File: lstmisc.sty 2015/06/04 1.6 (Carsten Heinz)
+\c@lstnumber=\count95
+\lst@skipnumbers=\count96
+\lst@framebox=\box28
+)
+(M:\Software\MikTex\tex\latex\listings\listings.cfg
+File: listings.cfg 2015/06/04 1.6 listings configuration
+))
+Package: listings 2015/06/04 1.6 (Carsten Heinz)
+
+(M:\Software\MikTex\tex\latex\booktabs\booktabs.sty
+Package: booktabs 2005/04/14 v1.61803 publication quality tables
+\heavyrulewidth=\dimen113
+\lightrulewidth=\dimen114
+\cmidrulewidth=\dimen115
+\belowrulesep=\dimen116
+\belowbottomsep=\dimen117
+\aboverulesep=\dimen118
+\abovetopsep=\dimen119
+\cmidrulesep=\dimen120
+\cmidrulekern=\dimen121
+\defaultaddspace=\dimen122
+\@cmidla=\count97
+\@cmidlb=\count98
+\@aboverulesep=\dimen123
+\@belowrulesep=\dimen124
+\@thisruleclass=\count99
+\@lastruleclass=\count100
+\@thisrulewidth=\dimen125
+)
+(M:\Software\MikTex\tex\latex\graphics\graphicx.sty
+Package: graphicx 2014/10/28 v1.0g Enhanced LaTeX Graphics (DPC,SPQR)
+
+(M:\Software\MikTex\tex\latex\graphics\graphics.sty
+Package: graphics 2016/07/10 v1.0t Standard LaTeX Graphics (DPC,SPQR)
+
+(M:\Software\MikTex\tex\latex\graphics\trig.sty
+Package: trig 2016/01/03 v1.10 sin cos tan (DPC)
+)
+(M:\Software\MikTex\tex\latex\graphics-cfg\graphics.cfg
+File: graphics.cfg 2016/06/04 v1.11 sample graphics configuration
+)
+Package graphics Info: Driver file: pdftex.def on input line 99.
+
+(M:\Software\MikTex\tex\latex\graphics-def\pdftex.def
+File: pdftex.def 2016/07/10 v0.06j Graphics/color for pdfTeX
+
+(M:\Software\MikTex\tex\generic\oberdiek\infwarerr.sty
+Package: infwarerr 2016/05/16 v1.4 Providing info/warning/error messages (HO)
+)
+(M:\Software\MikTex\tex\generic\oberdiek\ltxcmds.sty
+Package: ltxcmds 2016/05/16 v1.23 LaTeX kernel commands for general use (HO)
+)
+\Gread@gobject=\count101
+))
+\Gin@req@height=\dimen126
+\Gin@req@width=\dimen127
+)
+(M:\Software\MikTex\tex\latex\amsmath\amsmath.sty
+Package: amsmath 2016/06/28 v2.15d AMS math features
+\@mathmargin=\skip54
+
+For additional information on amsmath, use the `?' option.
+(M:\Software\MikTex\tex\latex\amsmath\amstext.sty
+Package: amstext 2000/06/29 v2.01 AMS text
+
+(M:\Software\MikTex\tex\latex\amsmath\amsgen.sty
+File: amsgen.sty 1999/11/30 v2.0 generic functions
+\@emptytoks=\toks17
+\ex@=\dimen128
+))
+(M:\Software\MikTex\tex\latex\amsmath\amsbsy.sty
+Package: amsbsy 1999/11/29 v1.2d Bold Symbols
+\pmbraise@=\dimen129
+)
+(M:\Software\MikTex\tex\latex\amsmath\amsopn.sty
+Package: amsopn 2016/03/08 v2.02 operator names
+)
+\inf@bad=\count102
+LaTeX Info: Redefining \frac on input line 199.
+\uproot@=\count103
+\leftroot@=\count104
+LaTeX Info: Redefining \overline on input line 297.
+\classnum@=\count105
+\DOTSCASE@=\count106
+LaTeX Info: Redefining \ldots on input line 394.
+LaTeX Info: Redefining \dots on input line 397.
+LaTeX Info: Redefining \cdots on input line 518.
+\Mathstrutbox@=\box29
+\strutbox@=\box30
+\big@size=\dimen130
+LaTeX Font Info:    Redeclaring font encoding OML on input line 634.
+LaTeX Font Info:    Redeclaring font encoding OMS on input line 635.
+\macc@depth=\count107
+\c@MaxMatrixCols=\count108
+\dotsspace@=\muskip10
+\c@parentequation=\count109
+\dspbrk@lvl=\count110
+\tag@help=\toks18
+\row@=\count111
+\column@=\count112
+\maxfields@=\count113
+\andhelp@=\toks19
+\eqnshift@=\dimen131
+\alignsep@=\dimen132
+\tagshift@=\dimen133
+\tagwidth@=\dimen134
+\totwidth@=\dimen135
+\lineht@=\dimen136
+\@envbody=\toks20
+\multlinegap=\skip55
+\multlinetaggap=\skip56
+\mathdisplay@stack=\toks21
+LaTeX Info: Redefining \[ on input line 2739.
+LaTeX Info: Redefining \] on input line 2740.
+)
+(M:\Software\MikTex\tex\latex\amsfonts\amsfonts.sty
+Package: amsfonts 2013/01/14 v3.01 Basic AMSFonts support
+\symAMSa=\mathgroup4
+\symAMSb=\mathgroup5
+LaTeX Font Info:    Overwriting math alphabet `\mathfrak' in version `bold'
+(Font)                  U/euf/m/n --> U/euf/b/n on input line 106.
+)
+(M:\Software\MikTex\tex\latex\amscls\amsthm.sty
+Package: amsthm 2015/03/04 v2.20.2
+\thm@style=\toks22
+\thm@bodyfont=\toks23
+\thm@headfont=\toks24
+\thm@notefont=\toks25
+\thm@headpunct=\toks26
+\thm@preskip=\skip57
+\thm@postskip=\skip58
+\thm@headsep=\skip59
+\dth@everypar=\toks27
+)
+(M:\Software\MikTex\tex\latex\amsfonts\amssymb.sty
+Package: amssymb 2013/01/14 v3.01 AMS font symbols
+)
+(M:\Software\MikTex\tex\latex\caption\caption.sty
+Package: caption 2016/02/21 v3.3-144 Customizing captions (AR)
+
+(M:\Software\MikTex\tex\latex\caption\caption3.sty
+Package: caption3 2016/05/22 v1.7-166 caption3 kernel (AR)
+Package caption3 Info: TeX engine: e-TeX on input line 67.
+\captionmargin=\dimen137
+\captionmargin@=\dimen138
+\captionwidth=\dimen139
+\caption@tempdima=\dimen140
+\caption@indent=\dimen141
+\caption@parindent=\dimen142
+\caption@hangindent=\dimen143
+)
+\c@ContinuedFloat=\count114
+Package caption Info: listings package is loaded.
+)
+(M:\Software\MikTex\tex\latex\float\float.sty
+Package: float 2001/11/08 v1.3d Float enhancements (AL)
+\c@float@type=\count115
+\float@exts=\toks28
+\float@box=\box31
+\@float@everytoks=\toks29
+\@floatcapt=\box32
+)
+(M:\Software\MikTex\tex\latex\mathtools\empheq.sty
+Package: empheq 2014/07/16 v2.14 Emphasizing equations
+
+(M:\Software\MikTex\tex\latex\mathtools\mhsetup.sty
+Package: mhsetup 2010/01/21 v1.2a programming setup (MH)
+)
+(M:\Software\MikTex\tex\latex\mathtools\mathtools.sty
+Package: mathtools 2015/11/12 v1.18 mathematical typesetting tools
+
+(M:\Software\MikTex\tex\latex\tools\calc.sty
+Package: calc 2014/10/28 v4.3 Infix arithmetic (KKT,FJ)
+\calc@Acount=\count116
+\calc@Bcount=\count117
+\calc@Adimen=\dimen144
+\calc@Bdimen=\dimen145
+\calc@Askip=\skip60
+\calc@Bskip=\skip61
+LaTeX Info: Redefining \setlength on input line 80.
+LaTeX Info: Redefining \addtolength on input line 81.
+\calc@Ccount=\count118
+\calc@Cskip=\skip62
+)
+LaTeX Info: Thecontrolsequence`\('isalreadyrobust on input line 129.
+LaTeX Info: Thecontrolsequence`\)'isalreadyrobust on input line 129.
+LaTeX Info: Thecontrolsequence`\['isalreadyrobust on input line 129.
+LaTeX Info: Thecontrolsequence`\]'isalreadyrobust on input line 129.
+\g_MT_multlinerow_int=\count119
+\l_MT_multwidth_dim=\dimen146
+\origjot=\skip63
+\l_MT_shortvdotswithinadjustabove_dim=\dimen147
+\l_MT_shortvdotswithinadjustbelow_dim=\dimen148
+\l_MT_above_intertext_sep=\dimen149
+\l_MT_below_intertext_sep=\dimen150
+\l_MT_above_shortintertext_sep=\dimen151
+\l_MT_below_shortintertext_sep=\dimen152
+)
+\l_EQ_equationtype_int=\count120
+\l_EQ_alignmentmode_int=\count121
+\l_EQ_totalwidth_dim=\dimen153
+\l_EQ_displaywidth_dim=\dimen154
+\l_EQ_temp_linewidth_dim=\dimen155
+\EmphEqdelimitershortfall=\dimen156
+\EmphEqdelimiterfactor=\count122
+\g_EQ_toptag_height_dim=\dimen157
+\g_EQ_bottomtag_depth_dim=\dimen158
+\g_EQ_toprow_height_dim=\dimen159
+\g_EQ_bottomrow_depth_dim=\dimen160
+\g_EQ_widesttag_dim=\dimen161
+\EQ_mathdisplay_box=\box33
+\EQ_tag_box=\box34
+\g_EQ_temprow_int=\count123
+)
+(M:\Software\MikTex\tex\latex\tools\verbatim.sty
+Package: verbatim 2014/10/28 v1.5q LaTeX2e package for verbatim enhancements
+\every@verbatim=\toks30
+\verbatim@line=\toks31
+\verbatim@in@stream=\read1
+)
+(M:\Software\MikTex\tex\latex\fancyvrb\fancyvrb.sty
+Package: fancyvrb 2008/02/07
+
+Style option: `fancyvrb' v2.7a, with DG/SPQR fixes, and firstline=lastline fix 
+<2008/02/07> (tvz)
+\FV@CodeLineNo=\count124
+\FV@InFile=\read2
+\FV@TabBox=\box35
+\c@FancyVerbLine=\count125
+\FV@StepNumber=\count126
+\FV@OutFile=\write3
+)
+\@indexfile=\write4
+\openout4 = `homebook.idx'.
+
+
+Writing index file homebook.idx
+
+LaTeX Warning: Unused global option(s):
+    [makeidx].
+
+(homebook.aux)
+\openout1 = `homebook.aux'.
+
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 109.
+LaTeX Font Info:    ... okay on input line 109.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 109.
+LaTeX Font Info:    ... okay on input line 109.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 109.
+LaTeX Font Info:    ... okay on input line 109.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 109.
+LaTeX Font Info:    ... okay on input line 109.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 109.
+LaTeX Font Info:    ... okay on input line 109.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 109.
+LaTeX Font Info:    ... okay on input line 109.
+\c@lstlisting=\count127
+ (M:\Software\MikTex\tex\context\base\supp-pdf.mkii
+[Loading MPS to PDF converter (version 2006.09.02).]
+\scratchcounter=\count128
+\scratchdimen=\dimen162
+\scratchbox=\box36
+\nofMPsegments=\count129
+\nofMParguments=\count130
+\everyMPshowfont=\toks32
+\MPscratchCnt=\count131
+\MPscratchDim=\dimen163
+\MPnumerator=\count132
+\makeMPintoPDFobject=\count133
+\everyMPtoPDFconversion=\toks33
+) (M:\Software\MikTex\tex\generic\oberdiek\pdftexcmds.sty
+Package: pdftexcmds 2016/05/21 v0.22 Utility functions of pdfTeX for LuaTeX (HO
+)
+
+(M:\Software\MikTex\tex\generic\oberdiek\ifluatex.sty
+Package: ifluatex 2016/05/16 v1.4 Provides the ifluatex switch (HO)
+Package ifluatex Info: LuaTeX not detected.
+)
+(M:\Software\MikTex\tex\generic\oberdiek\ifpdf.sty
+Package: ifpdf 2016/05/14 v3.1 Provides the ifpdf switch
+)
+Package pdftexcmds Info: LuaTeX not detected.
+Package pdftexcmds Info: \pdf@primitive is available.
+Package pdftexcmds Info: \pdf@ifprimitive is available.
+Package pdftexcmds Info: \pdfdraftmode found.
+)
+(M:\Software\MikTex\tex\latex\oberdiek\epstopdf-base.sty
+Package: epstopdf-base 2016/05/15 v2.6 Base part for package epstopdf
+
+(M:\Software\MikTex\tex\latex\oberdiek\grfext.sty
+Package: grfext 2016/05/16 v1.2 Manage graphics extensions (HO)
+
+(M:\Software\MikTex\tex\generic\oberdiek\kvdefinekeys.sty
+Package: kvdefinekeys 2016/05/16 v1.4 Define keys (HO)
+))
+(M:\Software\MikTex\tex\latex\oberdiek\kvoptions.sty
+Package: kvoptions 2016/05/16 v3.12 Key value format for package options (HO)
+
+(M:\Software\MikTex\tex\generic\oberdiek\kvsetkeys.sty
+Package: kvsetkeys 2016/05/16 v1.17 Key value parser (HO)
+
+(M:\Software\MikTex\tex\generic\oberdiek\etexcmds.sty
+Package: etexcmds 2016/05/16 v1.6 Avoid name clashes with e-TeX commands (HO)
+Package etexcmds Info: Could not find \expanded.
+(etexcmds)             That can mean that you are not using pdfTeX 1.50 or
+(etexcmds)             that some package has redefined \expanded.
+(etexcmds)             In the latter case, load this package earlier.
+)))
+Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 4
+38.
+Package grfext Info: Graphics extension search list:
+(grfext)             [.png,.pdf,.jpg,.mps,.jpeg,.jbig2,.jb2,.PNG,.PDF,.JPG,.JPE
+G,.JBIG2,.JB2,.eps]
+(grfext)             \AppendGraphicsExtensions on input line 456.
+)
+Package caption Info: Begin \AtBeginDocument code.
+Package caption Info: float package is loaded.
+Package caption Info: End \AtBeginDocument code.
+\Hy@linkcounter=\count134
+
+<./logopoli.jpg, id=1, 573.8238pt x 565.1514pt>
+File: ./logopoli.jpg Graphic file (type jpg)
+ <use ./logopoli.jpg>
+Package pdftex.def Info: ./logopoli.jpg used on input line 115.
+(pdftex.def)             Requested size: 85.35826pt x 84.06192pt.
+ [1
+
+
+
+{C:/Users/GiT/AppData/Local/MiKTeX/2.9/pdftex/config/pdftex.map} <./logopoli.jp
+g>]
+(homebook.toc
+LaTeX Font Info:    Try loading font information for U+msa on input line 3.
+ (M:\Software\MikTex\tex\latex\amsfonts\umsa.fd
+File: umsa.fd 2013/01/14 v3.01 AMS symbols A
+)
+LaTeX Font Info:    Try loading font information for U+msb on input line 3.
+
+(M:\Software\MikTex\tex\latex\amsfonts\umsb.fd
+File: umsb.fd 2013/01/14 v3.01 AMS symbols B
+))
+\tf@toc=\write5
+\openout5 = `homebook.toc'.
+
+ [1
+
+] (chapters/chap1.tex
+Chapter 1.
+<chapters/figures/fa.pdf, id=14, 629.42104pt x 237.09378pt>
+File: chapters/figures/fa.pdf Graphic file (type pdf)
+
+<use chapters/figures/fa.pdf>
+Package pdftex.def Info: chapters/figures/fa.pdf used on input line 24.
+(pdftex.def)             Requested size: 441.01772pt x 166.1273pt.
+ [1
+
+
+ <./chapters/figures/fa.pdf>]
+File: chapters/files/planar_FA_area_power.txt  (verbatim)
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 89.
+
+(M:\Software\MikTex\tex\latex\base\omscmr.fd
+File: omscmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
+)
+LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10> not available
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 89.
+) [2] (appendices/appendix1.tex
+[3]
+Appendix A.
+(appendices/files/adder.vhd
+LaTeX Font Info:    Try loading font information for OML+cmr on input line 18.
+ (M:\Software\MikTex\tex\latex\base\omlcmr.fd
+File: omlcmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
+)
+LaTeX Font Info:    Font shape `OML/cmr/m/n' in size <10> not available
+(Font)              Font shape `OML/cmm/m/it' tried instead on input line 18.
+))
+[4
+
+] (homebook.aux) ) 
+Here is how much of TeX's memory you used:
+ 6934 strings out of 493333
+ 101245 string characters out of 3143105
+ 232891 words of memory out of 3000000
+ 10333 multiletter control sequences out of 15000+200000
+ 9147 words of font info for 35 fonts, out of 3000000 for 9000
+ 1141 hyphenation exceptions out of 8191
+ 40i,10n,43p,404b,1172s stack positions out of 5000i,500n,10000p,200000b,50000s
+<M:/Software/MikTex/fonts/type1/public/amsfonts/cm/cmbx10.pfb
+><M:/Software/MikTex/fonts/type1/public/amsfonts/cm/cmbx12.pfb><M:/Software/Mik
+Tex/fonts/type1/public/amsfonts/cm/cmmi10.pfb><M:/Software/MikTex/fonts/type1/p
+ublic/amsfonts/cm/cmmi7.pfb><M:/Software/MikTex/fonts/type1/public/amsfonts/cm/
+cmr10.pfb><M:/Software/MikTex/fonts/type1/public/amsfonts/cm/cmr12.pfb><M:/Soft
+ware/MikTex/fonts/type1/public/amsfonts/cm/cmr17.pfb><M:/Software/MikTex/fonts/
+type1/public/amsfonts/cm/cmr7.pfb><M:/Software/MikTex/fonts/type1/public/amsfon
+ts/cm/cmss17.pfb><M:/Software/MikTex/fonts/type1/public/amsfonts/cm/cmsy10.pfb>
+<M:/Software/MikTex/fonts/type1/public/amsfonts/cm/cmtt10.pfb>
+Output written on homebook.pdf (6 pages, 356994 bytes).
+PDF statistics:
+ 75 PDF objects out of 1000 (max. 8388607)
+ 0 named destinations out of 1000 (max. 500000)
+ 11 words of extra memory for PDF output out of 10000 (max. 10000000)
+

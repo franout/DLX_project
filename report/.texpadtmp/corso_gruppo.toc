@@ -1,0 +1,44 @@
+\select@language {english}
+\contentsline {chapter}{List of Figures}{iii}{chapter*.2}
+\contentsline {chapter}{Preface}{v}{chapter*.3}
+\contentsline {chapter}{\numberline {1}Introduction on MTJs}{1}{chapter.1}
+\contentsline {section}{\numberline {1.1}Physical structure}{1}{section.1.1}
+\contentsline {section}{\numberline {1.2}Reading and Writing of an MTJ}{3}{section.1.2}
+\contentsline {subsection}{\numberline {1.2.1}Reading}{3}{subsection.1.2.1}
+\contentsline {subsection}{\numberline {1.2.2}Writing}{4}{subsection.1.2.2}
+\contentsline {chapter}{\numberline {2}The model}{5}{chapter.2}
+\contentsline {section}{\numberline {2.1}Initial assumptions}{5}{section.2.1}
+\contentsline {subsection}{\numberline {2.1.1}Single-domain approximation}{5}{subsection.2.1.1}
+\contentsline {subsection}{\numberline {2.1.2}Relative position of the two magnetisation vectors}{5}{subsection.2.1.2}
+\contentsline {section}{\numberline {2.2}Functional units}{6}{section.2.2}
+\contentsline {subsection}{\numberline {2.2.1}STT-driven magnetisation dynamics}{6}{subsection.2.2.1}
+\contentsline {subsubsection}{Effective magnetic field $\mathaccentV {vec}17E{H}$}{6}{section*.8}
+\contentsline {subsection}{\numberline {2.2.2}Tunnelling resistance}{8}{subsection.2.2.2}
+\contentsline {subsection}{\numberline {2.2.3}Heat diffusion}{9}{subsection.2.2.3}
+\contentsline {section}{\numberline {2.3}Model parameters}{10}{section.2.3}
+\contentsline {chapter}{\numberline {3}MATLAB MTJ Model}{11}{chapter.3}
+\contentsline {section}{\numberline {3.1}Setting the simulation time}{11}{section.3.1}
+\contentsline {section}{\numberline {3.2}Basic operation of the program}{11}{section.3.2}
+\contentsline {subsection}{\numberline {3.2.1}Implemented functions}{12}{subsection.3.2.1}
+\contentsline {chapter}{\numberline {4}VHDL-AMS MTJ Model}{14}{chapter.4}
+\contentsline {section}{\numberline {4.1}Developed entities}{15}{section.4.1}
+\contentsline {section}{\numberline {4.2}Applied voltage}{19}{section.4.2}
+\contentsline {section}{\numberline {4.3}Dissipated power}{20}{section.4.3}
+\contentsline {section}{\numberline {4.4}Polarisation}{20}{section.4.4}
+\contentsline {section}{\numberline {4.5}The testbench entity \texttt {MTJ\_tb}}{20}{section.4.5}
+\contentsline {chapter}{\numberline {5}VHDL-AMS simulations}{21}{chapter.5}
+\contentsline {section}{\numberline {5.1}Dynamic behaviour}{21}{section.5.1}
+\contentsline {subsection}{\numberline {5.1.1}Damped oscillations}{22}{subsection.5.1.1}
+\contentsline {subsection}{\numberline {5.1.2}In-plane precession (IPP)}{23}{subsection.5.1.2}
+\contentsline {subsection}{\numberline {5.1.3}Switch}{24}{subsection.5.1.3}
+\contentsline {subsection}{\numberline {5.1.4}Out-plane precession}{24}{subsection.5.1.4}
+\contentsline {section}{\numberline {5.2}Resistance variations}{26}{section.5.2}
+\contentsline {section}{\numberline {5.3}Temperature effects}{26}{section.5.3}
+\contentsline {section}{\numberline {5.4}Variations in the switching time}{28}{section.5.4}
+\contentsline {section}{\numberline {5.5}Switching dynamics}{29}{section.5.5}
+\contentsline {subsection}{\numberline {5.5.1}Switch due to the STT effect}{29}{subsection.5.5.1}
+\contentsline {subsection}{\numberline {5.5.2}Switch only due to an external magnetic field}{31}{subsection.5.5.2}
+\contentsline {subsection}{\numberline {5.5.3}MTJ orientation according to a neighbouring device}{31}{subsection.5.5.3}
+\contentsline {chapter}{\numberline {6}Power analysis}{33}{chapter.6}
+\contentsline {chapter}{\numberline {7}Conclusions and remarks}{37}{chapter.7}
+\contentsline {chapter}{Bibliography}{38}{chapter*.39}

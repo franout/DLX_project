@@ -1,0 +1,41 @@
+\select@language {english}
+\addvspace {10\p@ }
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {1.1}{\ignorespaces MTJ\relax }}{1}{figure.caption.4}
+\contentsline {figure}{\numberline {1.2}{\ignorespaces TMR effect\relax }}{3}{figure.caption.5}
+\contentsline {figure}{\numberline {1.3}{\ignorespaces MTJ as a switch\relax }}{3}{figure.caption.6}
+\contentsline {figure}{\numberline {1.4}{\ignorespaces STT writing\relax }}{4}{figure.caption.7}
+\addvspace {10\p@ }
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {3.1}{\ignorespaces Definition of $\theta $ and $\phi $ angles\relax }}{12}{figure.caption.10}
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {4.1}{\ignorespaces Structure of the overall VHDL-AMS model\relax }}{15}{figure.caption.11}
+\contentsline {figure}{\numberline {4.2}{\ignorespaces \texttt {MTJ\_dev}\relax }}{16}{figure.caption.12}
+\contentsline {figure}{\numberline {4.3}{\ignorespaces \texttt {MTJ}\relax }}{16}{figure.caption.13}
+\contentsline {figure}{\numberline {4.4}{\ignorespaces \texttt {Cmatrix}\relax }}{17}{figure.caption.14}
+\contentsline {figure}{\numberline {4.5}{\ignorespaces \texttt {sumHexch}\relax }}{17}{figure.caption.15}
+\contentsline {figure}{\numberline {4.6}{\ignorespaces \texttt {resistance}\relax }}{18}{figure.caption.16}
+\contentsline {figure}{\numberline {4.7}{\ignorespaces \texttt {LLG}\relax }}{18}{figure.caption.17}
+\contentsline {figure}{\numberline {4.8}{\ignorespaces \texttt {temperature}\relax }}{19}{figure.caption.18}
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {5.1}{\ignorespaces Regions of different dynamic behaviour\relax }}{22}{figure.caption.20}
+\contentsline {figure}{\numberline {5.2}{\ignorespaces Damped oscillations\relax }}{23}{figure.caption.21}
+\contentsline {figure}{\numberline {5.3}{\ignorespaces IPP\relax }}{23}{figure.caption.22}
+\contentsline {figure}{\numberline {5.4}{\ignorespaces Switch\relax }}{24}{figure.caption.23}
+\contentsline {figure}{\numberline {5.5}{\ignorespaces OPP\relax }}{25}{figure.caption.24}
+\contentsline {figure}{\numberline {5.6}{\ignorespaces Resistance variations ($R$ vs applied voltage)\relax }}{26}{figure.caption.25}
+\contentsline {figure}{\numberline {5.7}{\ignorespaces Temperature behaviour\relax }}{27}{figure.caption.26}
+\contentsline {figure}{\numberline {5.8}{\ignorespaces Resistance behaviour\relax }}{27}{figure.caption.27}
+\contentsline {figure}{\numberline {5.9}{\ignorespaces Current behaviour\relax }}{28}{figure.caption.28}
+\contentsline {figure}{\numberline {5.10}{\ignorespaces Variations in the switching time\relax }}{29}{figure.caption.29}
+\contentsline {figure}{\numberline {5.11}{\ignorespaces Switch due to the STT effect\relax }}{30}{figure.caption.30}
+\contentsline {figure}{\numberline {5.12}{\ignorespaces MTJ orientation according to a neighbouring device (switch)\relax }}{32}{figure.caption.31}
+\contentsline {figure}{\numberline {5.13}{\ignorespaces MTJ orientation according to a neighbouring device (no switch)\relax }}{32}{figure.caption.32}
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {6.1}{\ignorespaces Power analysis: input MTJ positioned on left side of the MTJ under test, which is initialised to the parallel state\relax }}{34}{figure.caption.33}
+\contentsline {figure}{\numberline {6.2}{\ignorespaces Power analysis: input MTJ positioned on left side of the MTJ under test, which is initialised to the anti-parallel state\relax }}{34}{figure.caption.34}
+\contentsline {figure}{\numberline {6.3}{\ignorespaces Power analysis: input MTJ positioned on top of the MTJ under test, which is initialised to the parallel state\relax }}{35}{figure.caption.35}
+\contentsline {figure}{\numberline {6.4}{\ignorespaces Power analysis: input MTJ positioned on top of the MTJ under test, which is initialised to the anti-parallel state\relax }}{35}{figure.caption.36}
+\contentsline {figure}{\numberline {6.5}{\ignorespaces Simple majority voter\relax }}{35}{figure.caption.37}
+\contentsline {figure}{\numberline {6.6}{\ignorespaces Detail of the superposition of the power traces of the majority voter\relax }}{36}{figure.caption.38}
+\addvspace {10\p@ }

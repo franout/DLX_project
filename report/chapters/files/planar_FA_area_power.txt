@@ -1,0 +1,19 @@
+Reference layout = planar_full_adder.svg
+Number of layers = 1
+Total number of magnets = 150
+Clock zones = 5
+Width [nm] = 2080
+Number of vertical magnets =       11
+Height [nm] = 1300
+Area [nm2] = 2704000
+Area [um2] = 2.704000
+########### Cu wire case ############
+Wire 1 resistance [Ohm] = .26010000000000000000
+Wire 2 resistance [Ohm] = .32500000000000000000
+Power consumption for one layer [W] = .00000526590000000000
+Total power consumption [W] = .00001053180000000000
+########### Ta wire case ############
+Wire 1 resistance [Ohm] = 81.12642857142857142857
+Wire 2 resistance [Ohm] = 101.36904761904761904761
+Power consumption for one layer [W] = .00002919927619047619
+Total power consumption [W] = .00005839855238095238

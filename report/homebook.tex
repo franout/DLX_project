@@ -1,0 +1,175 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% This file defines the style for your report
+% You don't need to edit it any more, if not to change the authors name.
+%
+% Search below for the keyword:   GROUP
+% insert your group number
+%
+% Search below for the keyword:   AUTHORS
+% insert the name of the authors
+%
+% If you want to compile your document you have TWO ways
+% depending on the fact that 
+% 	1) you have inserted only postscript images in your .tex file 
+%		---> then go to MODE 1
+%	2) you have inserted other kind of images (jpg, pdf, ...) in your .tex file
+%		---> then go to MODE 2
+%
+% MODE 1 
+% Type:
+% 	latex homebook.tex
+%
+% If the compilation runs successfully and you want to see the results type:
+% 	xdvi homebook.dvi &
+% and use the menus to go through the document
+%
+% If you want to create a pdf type:
+% 	dvipdfm homebook.dvi
+%
+% a homebook.pdf file is created
+% you can see it using the command:
+% 	acroread homebook.pdf &
+%
+%
+% MODE 2
+% Type:
+%	pdflatex homebook.tex
+%
+% If the compilation runs successfully you directly have the pdf file
+% and you can see it using the command:
+%       acroread homebook.pdf &
+%
+% 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\documentclass[10pt,  english, makeidx, a4paper, titlepage, oneside]{book}
+\usepackage{babel}
+\usepackage{fancyhdr}
+\usepackage{makeidx}
+\usepackage{titlesec}
+\usepackage{listings}
+\usepackage{booktabs}
+
+\newenvironment{listato}{\footnotesize}{\normalsize }
+
+%\pagestyle{empty}
+
+\textwidth 15.5cm
+\textheight 23cm
+\topmargin -1cm
+\oddsidemargin -0.5cm
+\linespread{1.1}
+
+\pagestyle{fancy}
+\lhead{}
+\chead{Microelectronic Systems}
+\lfoot{}
+\cfoot{}
+\rfoot{}
+\rhead{\thepage}
+
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amsthm}
+\usepackage{amssymb}
+%\oddsidemargin -1.1cm
+\usepackage{graphicx}
+\usepackage{caption}
+\usepackage{float}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{amsthm}
+%\usepackage{subscript}
+\usepackage{empheq}
+\usepackage{verbatim}
+\usepackage{fancyvrb}
+
+\lstdefinelanguage{VHDL}{morekeywords={library,use,all,entity,generic, is,port,in,out,end,architecture,of,begin,and,if,then,else,elsif,process},morecomment=[l]--}
+
+\lstdefinestyle{vhdl}{language = VHDL, basicstyle = \ttfamily, keywordstyle = \color{keyword}\bfseries, commentstyle = \color{comment}}
+
+\titleformat{\chapter}[display]
+{\normalfont\Large\filcenter\sffamily}
+{\titlerule[0.5pt]%
+\vspace{1pt}
+\titlerule
+\vspace{1pc}
+\LARGE\MakeUppercase{\chaptertitlename} \thechapter
+}
+{1pc}
+{\titlerule
+\vspace{1pc}
+\Huge}
+
+\makeindex
+
+\begin{document}
+
+\frontmatter
+\begin{titlepage}
+\vspace{0cm}
+\centerline{
+\includegraphics[width=3cm]{./logopoli}} 
+\vspace{0.5cm}
+\centerline{\LARGE Politecnico di Torino}
+\vspace{2.5cm}
+\centerline{\huge\sf Microelectronic Systems}
+\vspace{1cm}
+\centerline{\Huge\sf DLX Microprocessor: Design \& Development}
+\bigskip
+\centerline{\huge\sf Final Project Report}
+\vspace{2cm}
+\centerline{\Large Master degree in Electronics Engineering}
+\bigskip
+\centerline{\Large Master degree in Computer Engineering}
+\vspace{4.5cm}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+\centerline{\large Referents: Prof. Mariagrazia Graziano, Giovanna Turvani}
+\bigskip
+\vspace{1cm}
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% GROUP
+% Change the name of your group below
+%
+\centerline{\large Authors: group\_name}
+\bigskip
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% AUTHORS
+% Change the name of the Group participants here
+%
+\centerline{\large name1, name2}
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\vspace{2cm}
+\centerline{\large \today}
+\end{titlepage}
+
+\tableofcontents
+
+\mainmatter
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%    
+% HERE IS WHERE YOU INCLUDE YOUR CHAPTERS
+%
+\input{./chapters/chap1}
+% \input{./chapters/chap_name}
+% and so on
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%    
+% HERE IS WHERE YOU INCLUDE YOUR APPENDICES (IF ANY)
+%
+\appendix
+\input{./appendices/appendix1}
+% \input{./appendices/appendix2}
+% and so on
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\end{document}
