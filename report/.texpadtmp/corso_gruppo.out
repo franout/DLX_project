@@ -1,0 +1,42 @@
+\BOOKMARK [0][-]{chapter*.2}{List of Figures}{}% 1
+\BOOKMARK [0][-]{chapter*.3}{Preface}{}% 2
+\BOOKMARK [0][-]{chapter.1}{Introduction on MTJs}{}% 3
+\BOOKMARK [1][-]{section.1.1}{Physical structure}{chapter.1}% 4
+\BOOKMARK [1][-]{section.1.2}{Reading and Writing of an MTJ}{chapter.1}% 5
+\BOOKMARK [2][-]{subsection.1.2.1}{Reading}{section.1.2}% 6
+\BOOKMARK [2][-]{subsection.1.2.2}{Writing}{section.1.2}% 7
+\BOOKMARK [0][-]{chapter.2}{The model}{}% 8
+\BOOKMARK [1][-]{section.2.1}{Initial assumptions}{chapter.2}% 9
+\BOOKMARK [2][-]{subsection.2.1.1}{Single-domain approximation}{section.2.1}% 10
+\BOOKMARK [2][-]{subsection.2.1.2}{Relative position of the two magnetisation vectors}{section.2.1}% 11
+\BOOKMARK [1][-]{section.2.2}{Functional units}{chapter.2}% 12
+\BOOKMARK [2][-]{subsection.2.2.1}{STT-driven magnetisation dynamics}{section.2.2}% 13
+\BOOKMARK [2][-]{subsection.2.2.2}{Tunnelling resistance}{section.2.2}% 14
+\BOOKMARK [2][-]{subsection.2.2.3}{Heat diffusion}{section.2.2}% 15
+\BOOKMARK [1][-]{section.2.3}{Model parameters}{chapter.2}% 16
+\BOOKMARK [0][-]{chapter.3}{MATLAB MTJ Model}{}% 17
+\BOOKMARK [1][-]{section.3.1}{Setting the simulation time}{chapter.3}% 18
+\BOOKMARK [1][-]{section.3.2}{Basic operation of the program}{chapter.3}% 19
+\BOOKMARK [2][-]{subsection.3.2.1}{Implemented functions}{section.3.2}% 20
+\BOOKMARK [0][-]{chapter.4}{VHDL-AMS MTJ Model}{}% 21
+\BOOKMARK [1][-]{section.4.1}{Developed entities}{chapter.4}% 22
+\BOOKMARK [1][-]{section.4.2}{Applied voltage}{chapter.4}% 23
+\BOOKMARK [1][-]{section.4.3}{Dissipated power}{chapter.4}% 24
+\BOOKMARK [1][-]{section.4.4}{Polarisation}{chapter.4}% 25
+\BOOKMARK [1][-]{section.4.5}{The testbench entity MTJ\137tb}{chapter.4}% 26
+\BOOKMARK [0][-]{chapter.5}{VHDL-AMS simulations}{}% 27
+\BOOKMARK [1][-]{section.5.1}{Dynamic behaviour}{chapter.5}% 28
+\BOOKMARK [2][-]{subsection.5.1.1}{Damped oscillations}{section.5.1}% 29
+\BOOKMARK [2][-]{subsection.5.1.2}{In-plane precession \(IPP\)}{section.5.1}% 30
+\BOOKMARK [2][-]{subsection.5.1.3}{Switch}{section.5.1}% 31
+\BOOKMARK [2][-]{subsection.5.1.4}{Out-plane precession}{section.5.1}% 32
+\BOOKMARK [1][-]{section.5.2}{Resistance variations}{chapter.5}% 33
+\BOOKMARK [1][-]{section.5.3}{Temperature effects}{chapter.5}% 34
+\BOOKMARK [1][-]{section.5.4}{Variations in the switching time}{chapter.5}% 35
+\BOOKMARK [1][-]{section.5.5}{Switching dynamics}{chapter.5}% 36
+\BOOKMARK [2][-]{subsection.5.5.1}{Switch due to the STT effect}{section.5.5}% 37
+\BOOKMARK [2][-]{subsection.5.5.2}{Switch only due to an external magnetic field}{section.5.5}% 38
+\BOOKMARK [2][-]{subsection.5.5.3}{MTJ orientation according to a neighbouring device}{section.5.5}% 39
+\BOOKMARK [0][-]{chapter.6}{Power analysis}{}% 40
+\BOOKMARK [0][-]{chapter.7}{Conclusions and remarks}{}% 41
+\BOOKMARK [0][-]{chapter*.39}{Bibliography}{}% 42

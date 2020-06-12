@@ -1,0 +1,43 @@
+\begin{thebibliography}{1}
+
+\bibitem{d2}
+J.-G.~J. Zhu and C.~Park, ``Magnetic tunnel junctions,'' {\em Materials today},
+  2006.
+
+\bibitem{d3}
+W.~Guo, G.~Prenat, V.~Javerliac, M.~E. Baraji, N.~de~Mestier, C.~Baraduc, and
+  B.~Dieny, ``Spice modelling of magnetic tunnel junctions written by
+  spin-transfer torque,'' {\em Journal of Physics D: Applied Physics}, vol.~43,
+  no.~21, 2010.
+
+\bibitem{d4updated}
+G.~D. Panagopoulos, C.~Augustine, and K.~Roy, ``Physics-based spice-compatible
+  compact model for simulating hybrid mtj/cmos circuits,'' {\em IEEE
+  transactions on electron devices}, vol.~60, no.~9, pp.~2808--2814, 2013.
+
+\bibitem{LLGS}
+J.~Slonczewski, ``Current-driven excitation of magnetic multilayers,'' {\em
+  Journal of Magnetism and Magnetic Materials}, vol.~159, pp.~L1--L7, June
+  1996.
+
+\bibitem{LLGnostro}
+S.~{Srinivasan}, V.~{Diep}, B.~{Behin-Aein}, A.~{Sarkar}, and S.~{Datta},
+  ``{Modeling Multi-Magnet Networks Interacting Via Spin Currents},'' {\em
+  ArXiv e-prints}, April 2013.
+
+\bibitem{tesiguo}
+W.~Guo, ``Compact modeling of magnetic tunnel junctions and design of hybrid
+  cmos/magnetic integrated circuits,'' 2010.
+\newblock Ph.D thesis, Institut Polytechnique de Grenoble.
+
+\bibitem{Cmatrix}
+G.~Csaba, W.~Porod, and A.~I. Csurgay, ``A computing architecture composed of
+  field-coupled single domain nanomagnets clocked by magnetic field,'' {\em
+  International Journal of Circuit Theory and Applications}, vol.~31, no.~1,
+  pp.~67--82, 2003.
+
+\bibitem{modelingmram}
+R.~W. Dorrance, ``Modeling and design of stt-mrams,'' 2011.
+\newblock MSc thesis, University of California, Los Angeles.
+
+\end{thebibliography}
