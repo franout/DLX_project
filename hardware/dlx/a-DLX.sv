@@ -60,8 +60,9 @@ module DLX
   // Data Ram Bus signals
 
 
-  //dlx
-
+  //////////////////////////////////////
+  ///////// component instantiation ////
+  //////////////////////////////////////
     // This is the input to program counter: currently zero 
     // so no uptade of PC happens
     // TO BE REMOVED AS SOON AS THE DATAPATH IS INSERTED!!!!!
@@ -75,10 +76,10 @@ module DLX
     // inputs : Clk, Rst, IRam_DOut, IR_LATCH_EN_i
     // outputs: IR_IN_i
     IR_P: process (Clk, Rst)
-    begin  -- process IR_P
-      if Rst = '0' then                 -- asynchronous reset (active low)
+    begin  // process IR_P
+      if Rst = '0' then                 // asynchronous reset (active low)
         IR <= (others => '0');
-      elsif Clk'event and Clk = '1' then  -- rising clock edge
+      elsif Clk'event and Clk = '1' then  // rising clock edge
         if (IR_LATCH_EN_i = '1') then
           IR <= IRam_DOut;
         end if;
@@ -91,10 +92,10 @@ module DLX
     // inputs : Clk, Rst, PC_BUS
     // outputs: IRam_Addr
     PC_P: process (Clk, Rst)
-    begin  -- process PC_P
-      if Rst = '0' then                 -- asynchronous reset (active low)
+    begin  // process PC_P
+      if Rst = '0' then                 // asynchronous reset (active low)
         PC <= (others => '0');
-      elsif Clk'event and Clk = '1' then  -- rising clock edge
+      elsif Clk'event and Clk = '1' then  // rising clock edge
         if (PC_LATCH_EN_i = '1') then
           PC <= PC_BUS;
         end if;
@@ -133,6 +134,5 @@ module DLX
 
     
     
-end dlx_rtl;
 
 endmodule : DLX

@@ -2,7 +2,7 @@
 echo "Starting physical design"
 setinnovus
 
-## check log command 
+## check log command  and cmd file 
 
 innovus
 
