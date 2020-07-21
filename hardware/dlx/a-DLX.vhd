@@ -1,17 +1,34 @@
-library ieee;
-use ieee.std_logic_1164.all;
-use work.myTypes.all;
+library IEEE;
+	use IEEE.std_logic_1164.all;
+
+	use work.myTypes.all;
+
+	use work.ROCACHE_PKG.all;
+	use work.RWCACHE_PKG.all;
+
 
 entity DLX is
-  generic (
-    IR_SIZE      : integer := 32;       -- Instruction Register Size
-    PC_SIZE      : integer := 32       -- Program Counter Size
-    );       -- ALU_OPC_SIZE if explicit ALU Op Code Word Size
-  port (
-    Clk : in std_logic;
-    Rst : in std_logic);                -- Active Low
-end DLX;
+	generic (
+    	IR_SIZE      : integer := 32;       -- Instruction Register Size
+    	PC_SIZE      : integer := 32       -- Program Counter Size
+    );
+	port (
+		-- Inputs
+		CLK						: in std_logic;		-- Clock
+		RST						: in std_logic;		-- Reset:Active-High
 
+		IRAM_ADDRESS			: out std_logic_vector(Instr_size - 1 downto 0);
+		IRAM_ISSUE				: out std_logic;
+		IRAM_READY				: in std_logic;
+		IRAM_DATA				: in std_logic_vector(2*Data_size-1 downto 0);
+
+		DRAM_ADDRESS			: out std_logic_vector(Instr_size-1 downto 0);
+		DRAM_ISSUE				: out std_logic;
+		DRAM_READNOTWRITE		: out std_logic;
+		DRAM_READY				: in std_logic;
+		DRAM_DATA				: inout std_logic_vector(2*Data_size-1 downto 0)
+	);
+end DLX;
 
 -- This architecture is currently not complete
 -- it just includes:
@@ -26,18 +43,18 @@ architecture dlx_rtl of DLX is
  -- Components Declaration
  --------------------------------------------------------------------
   
-  --Instruction Ram
-  component IRAM
---     generic (
---       RAM_DEPTH : integer;
---       I_SIZE    : integer);
-    port (
-      Rst  : in  std_logic;
-      Addr : in  std_logic_vector(PC_SIZE - 1 downto 0);
-      Dout : out std_logic_vector(IR_SIZE - 1 downto 0));
-  end component;
-
-  -- Data Ram (MISSING!You must include it in your final project!)
+  -- Instruction Ram And Data Ram are in the TestBench and you must connect it using
+  
+--  		IRAM_ADDRESS			: out std_logic_vector(Instr_size - 1 downto 0);
+--		IRAM_ISSUE				: out std_logic;
+--		IRAM_READY				: in std_logic;
+--		IRAM_DATA				: in std_logic_vector(2*Data_size-1 downto 0);
+--
+--		DRAM_ADDRESS			: out std_logic_vector(Instr_size-1 downto 0);
+--		DRAM_ISSUE				: out std_logic;
+--		DRAM_READNOTWRITE		: out std_logic;
+--		DRAM_READY				: in std_logic;
+--		DRAM_DATA				: inout std_logic_vector(2*Data_size-1 downto 0)
 
   -- Datapath (MISSING!You must include it in your final project!)
   
@@ -141,6 +158,8 @@ architecture dlx_rtl of DLX is
         end if;
       end if;
     end process IR_P;
+    
+    -- COMPLETE WITH CACHE TO CONNECT IRAM and DRAM in the testbench...
 
 
     -- purpose: Program Counter Process
@@ -180,13 +199,9 @@ architecture dlx_rtl of DLX is
           PC_LATCH_EN     => PC_LATCH_EN_i,
           WB_MUX_SEL      => WB_MUX_SEL_i,
           RF_WE           => RF_WE_i);
+          
+          -- IMPLEMENTS DATAPATH
 
-    -- Instruction Ram Instantiation
-    IRAM_I: IRAM
-      port map (
-          Rst  => Rst,
-          Addr => PC,
-          Dout => IRam_DOut);
 
     
     
