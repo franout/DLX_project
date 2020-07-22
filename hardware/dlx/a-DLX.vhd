@@ -6,7 +6,7 @@
 -- Author      : Francesco Angione <s262620@studenti.polito.it>
 -- Company     : Politecnico di Torino, Italy
 -- Created     : Wed Jul 22 20:32:48 2020
--- Last update : Wed Jul 22 20:52:03 2020
+-- Last update : Wed Jul 22 22:48:53 2020
 -- Platform    : Default Part Number
 -- Standard    : VHDL-2008 
 --------------------------------------------------------------------------------
@@ -30,12 +30,12 @@ entity DLX is
     -- Inputs
     CLK : in std_logic; -- Clock
     RST : in std_logic; -- Reset:Active-High
-                        -- Instruction memory interface
+    -- Instruction memory interface
     IRAM_ADDRESS : out std_logic_vector(Instr_size - 1 downto 0);
     IRAM_ISSUE   : out std_logic;
     IRAM_READY   : in  std_logic;
     IRAM_DATA    : in  std_logic_vector(2*Data_size-1 downto 0);
-    -- Data memory Interfaces 
+    -- Data memory Interface
     DRAM_ADDRESS      : out   std_logic_vector(Instr_size-1 downto 0);
     DRAM_ISSUE        : out   std_logic;
     DRAM_READNOTWRITE : out   std_logic;
