@@ -5,21 +5,35 @@
 // Copyright (c) 2014-2020 All rights reserved
 // -----------------------------------------------------------------------------
 // Author : Angione Francesco s262620@studenti.polito.it franout@Github.com
-// File   : implemented_instructions.svh
-// Create : 2020-07-22 20:15:37
-// Revise : 2020-07-22 20:15:37
+// File   : tb_memories.sv
+// Create : 2020-07-22 20:19:53
+// Revise : 2020-07-22 20:24:30
 // Editor : sublime text3, tab size (4)
-// Description:  List of current implemented instruction in the CU of the DLX 
+// Description: 
 // -----------------------------------------------------------------------------
-`ifndef implemented_instructions.svh
-`def implemented_instructions.svh
+
+
+module tb_memories ();
+	logic clk;
+	logic reset_n;
 
 
 
-enum byte {
-	
-} instructions;
+
+	initial begin 
+		$display("Starting testbench for memories",);
 
 
+		$finish()
+	end
 
-`endif // implemented_instructions.svh
+// dump wave
+	initial begin
+		if ( $test$plusargs("fsdb") ) begin
+			$fsdbDumpfile("tb_memories.fsdb");
+			$fsdbDumpvars(0, "tb_memories", "+mda", "+functions");
+		end
+	end
+
+
+endmodule
