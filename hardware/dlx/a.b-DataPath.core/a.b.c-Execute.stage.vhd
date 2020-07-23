@@ -6,7 +6,7 @@
 -- Author      : Francesco Angione <s262620@studenti.polito.it> franout@github.com
 -- Company     : Politecnico di Torino, Italy
 -- Created     : Wed Jul 22 23:00:04 2020
--- Last update : Wed Jul 22 23:00:09 2020
+-- Last update : Thu Jul 23 21:36:22 2020
 -- Platform    : Default Part Number
 -- Standard    : VHDL-2008 
 --------------------------------------------------------------------------------
@@ -25,8 +25,23 @@ entity execute_stage is
   ) ;
 end entity ; -- execute_stage
 
-architecture arch of execute_stage is
+architecture structural of execute_stage is
 
 begin
 
-end architecture ; -- arch
+-- branches
+
+
+
+-- muxes for alu operands
+
+-- arithmetic logical unit
+
+
+
+-- alu register output 
+
+
+-- delay register for b register (see decode stage)
+
+end architecture ; -- structural

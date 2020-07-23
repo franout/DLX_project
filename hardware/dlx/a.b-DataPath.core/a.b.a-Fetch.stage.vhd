@@ -1,12 +1,12 @@
 --------------------------------------------------------------------------------
--- Title       :Fetch stage of datapath
+-- Title       : Fetch stage of datapath
 -- Project     : DLX for Microelectronic Systems
 --------------------------------------------------------------------------------
 -- File        : a.b.a-Fetch.stage.vhd
 -- Author      : Francesco Angione <s262620@studenti.polito.it> franout@github.com
 -- Company     : Politecnico di Torino, Italy
 -- Created     : Wed Jul 22 22:59:30 2020
--- Last update : Thu Jul 23 17:33:42 2020
+-- Last update : Thu Jul 23 21:40:43 2020
 -- Platform    : Default Part Number
 -- Standard    : VHDL-2008 
 --------------------------------------------------------------------------------
@@ -26,8 +26,24 @@ entity fetch_stage is
   ) ;
 end entity ; -- fetch_stage
 
-architecture arch of fetch_stage is
+architecture structural of fetch_stage is
 
 begin
 
-end architecture ; -- arch
+-- Program counter
+
+
+
+-- logic for incremenentig the program counter 
+
+
+-- New Program counter
+
+
+
+-- Instruction register
+
+
+
+
+end architecture ; -- structural

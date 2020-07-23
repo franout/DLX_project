@@ -6,7 +6,7 @@
 -- Author      : Francesco Angione <s262620@studenti.polito.it> franout@github.com
 -- Company     : Politecnico di Torino, Italy
 -- Created     : Wed Jul 22 22:59:52 2020
--- Last update : Wed Jul 22 22:59:57 2020
+-- Last update : Thu Jul 23 21:37:45 2020
 -- Platform    : Default Part Number
 -- Standard    : VHDL-2008 
 --------------------------------------------------------------------------------
@@ -26,8 +26,30 @@ entity decode_stage is
   ) ;
 end entity ; -- decode_stage
 
-architecture arch of decode_stage is
+architecture structural of decode_stage is
 
 begin
 
-end architecture ; -- arch
+
+
+-- register file 
+
+
+
+-- register for first output value from register file
+
+
+
+-- register for second output value from register file 
+
+
+
+
+-- sign exted logic
+
+
+-- register for immediate value
+
+
+
+end architecture ; -- structural
