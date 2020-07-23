@@ -1,4 +1,4 @@
-!#/usr/bin/bash
+#!/usr/bin/bash
 echo "Starting synthesis setup"
 cd ..
 

@@ -1,4 +1,4 @@
-!#/usr/bin/bash
+#!/usr/bin/bash
 echo "Starting initialization of simulation environment"
 setmentor
 cd ..
