@@ -1,4 +1,10 @@
 #!/usr/bin/bash
+
+path_to_hex_test_program = $1
+if [ -z "$path_to_hex_test_program" ] ; then
+	echo "Input software file for IRAM not defined"
+	exit(-1)
+fi
 echo "Starting initialization of simulation environment"
 setmentor
 cd ..
@@ -6,7 +12,7 @@ if [ -d "./work" ] ;then
 	rm -rf work
 fi
 echo "Moving the hex files into the memories folders"
-cp ./software/*.txt ./test_bench/memories/
+cp "$path_to_hex_test_program" ./test_bench/memories/
 
 vlib ./work # it also creates the folder
 echo "Simulation ready to go!"
