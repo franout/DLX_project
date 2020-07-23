@@ -3,10 +3,10 @@
 -- Project     : DLX for Microelectronic Systems
 --------------------------------------------------------------------------------
 -- File        : a.b.e-Write_back.stage.vhd
--- Author      : Francesco Angione <s262620@studenti.polito.it>
+-- Author      : Francesco Angione <s262620@studenti.polito.it> franout@github.com
 -- Company     : Politecnico di Torino, Italy
--- Created     : Wed Jul 22 20:59:41 2020
--- Last update : Wed Jul 22 20:59:47 2020
+-- Created     : Wed Jul 22 23:00:39 2020
+-- Last update : Wed Jul 22 23:00:44 2020
 -- Platform    : Default Part Number
 -- Standard    : VHDL-2008 
 --------------------------------------------------------------------------------
@@ -14,6 +14,7 @@
 -------------------------------------------------------------------------------
 -- Description: 
 --------------------------------------------------------------------------------
+
 
 library ieee ;
 	use ieee.std_logic_1164.all ;

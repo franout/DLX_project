@@ -2,8 +2,8 @@ library ieee;
 use ieee.std_logic_1164.ALL;
 use work.constants.ALL;
 
-	entity  MUX21_nbit IS
-	Generic (N: integer:= NUMBIT;
+	entity  mux21_nbit IS
+	Generic (N: integer:= NUMBIT
 		-- DELAY_MUX: Time:= TP_MUX
 );
 	Port (	A:	In	std_logic_vector(N-1 downto 0) ;

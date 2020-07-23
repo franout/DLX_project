@@ -1,3 +1,20 @@
+--------------------------------------------------------------------------------
+-- Title       : datapath of dlx
+-- Project     : DLX for Microelectronic Systems
+--------------------------------------------------------------------------------
+-- File        : a.b-DataPath.vhd
+-- Author      : Francesco Angione <s262620@studenti.polito.it> franout@github.com
+-- Company     : Politecnico di Torino, Italy
+-- Created     : Wed Jul 22 22:58:34 2020
+-- Last update : Wed Jul 22 22:59:01 2020
+-- Platform    : Default Part Number
+-- Standard    : VHDL-2008 
+--------------------------------------------------------------------------------
+-- Copyright (c) 2020 Politecnico di Torino, Italy
+-------------------------------------------------------------------------------
+-- Description: structural architecture of datapath
+--------------------------------------------------------------------------------
+
 library ieee;
 use ieee.std_logic_1164.all;
 

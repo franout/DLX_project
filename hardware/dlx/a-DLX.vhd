@@ -1,12 +1,12 @@
 --------------------------------------------------------------------------------
--- Title       : DLX top 
+-- Title       : DLX top
 -- Project     : DLX for Microelectronic Systems
 --------------------------------------------------------------------------------
 -- File        : a-DLX.vhd
--- Author      : Francesco Angione <s262620@studenti.polito.it>
+-- Author      : Francesco Angione <s262620@studenti.polito.it> franout@github.com
 -- Company     : Politecnico di Torino, Italy
--- Created     : Wed Jul 22 20:32:48 2020
--- Last update : Wed Jul 22 22:48:53 2020
+-- Created     : Wed Jul 22 22:58:15 2020
+-- Last update : Thu Jul 23 17:39:42 2020
 -- Platform    : Default Part Number
 -- Standard    : VHDL-2008 
 --------------------------------------------------------------------------------
@@ -15,10 +15,11 @@
 -- Description: top level entity of dlx without memories 
 --------------------------------------------------------------------------------
 
+
 library IEEE;
 use IEEE.std_logic_1164.all;
 
-use work.myTypes.all;
+use work.globals.all;
 
 
 entity DLX is
@@ -29,47 +30,28 @@ entity DLX is
   port (
     -- Inputs
     CLK : in std_logic; -- Clock
-    RST : in std_logic; -- Reset:Active-High
+    RST : in std_logic; -- Reset:Active-low
     -- Instruction memory interface
-    IRAM_ADDRESS : out std_logic_vector(Instr_size - 1 downto 0);
-    IRAM_ISSUE   : out std_logic;
+    IRAM_ADDRESS : out std_logic_vector( iram_address_size- 1 downto 0);
+    IRAM_ENABLE   : out std_logic;
     IRAM_READY   : in  std_logic;
-    IRAM_DATA    : in  std_logic_vector(2*Data_size-1 downto 0);
+    IRAM_DATA    : in  std_logic_vector(instruction_size-1 downto 0);
     -- Data memory Interface
-    DRAM_ADDRESS      : out   std_logic_vector(Instr_size-1 downto 0);
-    DRAM_ISSUE        : out   std_logic;
+    DRAM_ADDRESS      : out   std_logic_vector(dram_address_size-1 downto 0);
+    DRAM_ENABLE        : out   std_logic;
     DRAM_READNOTWRITE : out   std_logic;
     DRAM_READY        : in    std_logic;
-    DRAM_DATA         : inout std_logic_vector(2*Data_size-1 downto 0)
+    DRAM_DATA         : inout std_logic_vector(data_size-1 downto 0)
     -- simulation debug signals
     --synthesis_translate off
     ,
-    STATE_CU: out std_logic_vector(3 downto 0)
+    STATE_CU: out std_logic_vector(f_log2(tot_state)-1 downto 0)
     --synthesis_translate on
   );
 end DLX;
 
 
 architecture dlx_rtl of DLX is
-
-  --------------------------------------------------------------------
-  -- Components Declaration
-  --------------------------------------------------------------------
-
-  -- Instruction Ram And Data Ram are in the TestBench and you must connect it using
-
-  --      IRAM_ADDRESS      : out std_logic_vector(Instr_size - 1 downto 0);
-  --    IRAM_ISSUE        : out std_logic;
-  --    IRAM_READY        : in std_logic;
-  --    IRAM_DATA       : in std_logic_vector(2*Data_size-1 downto 0);
-  --
-  --    DRAM_ADDRESS      : out std_logic_vector(Instr_size-1 downto 0);
-  --    DRAM_ISSUE        : out std_logic;
-  --    DRAM_READNOTWRITE   : out std_logic;
-  --    DRAM_READY        : in std_logic;
-  --    DRAM_DATA       : inout std_logic_vector(2*Data_size-1 downto 0)
-
-  -- Datapath (MISSING!You must include it in your final project!)
 
   -- Control Unit
   component dlx_cu
@@ -111,6 +93,14 @@ architecture dlx_rtl of DLX is
   end component;
   -- Datapath 
 
+component DATAPATH is
+generic (
+  
+);
+  port (
+    
+  );
+end component DATAPATH;
   ----------------------------------------------------------------
   -- Signals Declaration
   ----------------------------------------------------------------
@@ -213,7 +203,7 @@ begin -- DLX
       WB_MUX_SEL      => WB_MUX_SEL_i,
       RF_WE           => RF_WE_i);
 
-  -- IMPLEMENTS DATAPATH
+  --DATAPATH TODO
 
 
 
