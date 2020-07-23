@@ -32,5 +32,5 @@
 ;; test -->sw!
 ;; test -->xor!
 ;; test -->xori!
-
+halt
 
