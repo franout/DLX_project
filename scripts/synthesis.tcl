@@ -58,3 +58,34 @@ report_area > area_report_adder_struc_32b_opt.rpt
 write -hierarchy -format ddc -output adder_struc_32b_topt.ddc
 write -hierarchy -format vhdl -output adder_struc_32b_topt.vhdl
 write -hierarchy -format verilog -output adder_struc_32b_topt.v
+
+
+
+##########################################################
+################## DFT -> Scan Chain #####################
+##########################################################
+read_verilog b10.v
+current_design b10
+link
+check_design
+
+report_area
+
+set test_default_scan_style multiplexed_flip_flop
+
+create_test_protocol -infer_asynch -infer_clock
+
+dft_drc
+
+set_scan_configuration -chain_count 1
+preview_dft
+insert_dft
+dft_drc
+
+report_scan_path -view existing -chain all
+report_scan_path -view existing -cell all
+
+report_area
+
+write -hierarchy -format verilog -output b10_scan.v
+write_test_protocol -output b10_scan.spf
