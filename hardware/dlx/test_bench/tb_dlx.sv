@@ -7,25 +7,39 @@
 // Author : Angione Francesco s262620@studenti.polito.it franout@Github.com
 // File   : tb_dlx.sv
 // Create : 2020-07-21 19:00:18
-// Revise : 2020-07-22 20:48:21
+// Revise : 2020-07-24 19:29:13
 // Editor : sublime text3, tab size (4)
 // Description: 
 // -----------------------------------------------------------------------------
 
-`timescale  1ps/1ns
+`timescale  1ns/1ps
 `include "implemented_instructions.svh"
 
 module tb_dlx ();
-	logic rstb;
-	logic srst;
+	localparam clock_period= 10 ns;
+	logic rst_n;
 	logic clk;
 
-	// clock
+
 	initial begin
 		clk = '0;
-		forever #(0.5) clk = ~clk;
+		forever #(clock_period/2) clk = ~clk;
 	end
 
+  	// Specify the default clocking
+  	default clocking test_dlx @ (posedge clk);
+  	
+  	endclocking	// clock
+
+/*
+	-># time unit
+	-> The ## operator can be used to delay execution by a specified number 
+			of clocking events or clock cycles. This is same as what we
+			 have seen in assertion section.
+	
+*/
+
+	
 	// reset
 	initial begin
 		rstb <= '0;
@@ -287,3 +301,4 @@ endproperty
 // $ -> infinite number of cycles
 // [*3] sequence of 3 events must be true for 3 consecutive cc
 // [=3] sequence of 3 event which can be non consecutive [=3:5] min 3 max 4
+

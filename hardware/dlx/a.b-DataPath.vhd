@@ -6,7 +6,7 @@
 -- Author      : Francesco Angione <s262620@studenti.polito.it> franout@github.com
 -- Company     : Politecnico di Torino, Italy
 -- Created     : Wed Jul 22 22:58:34 2020
--- Last update : Wed Jul 22 22:59:01 2020
+-- Last update : Fri Jul 24 19:29:16 2020
 -- Platform    : Default Part Number
 -- Standard    : VHDL-2008 
 --------------------------------------------------------------------------------
@@ -33,8 +33,6 @@ end entity DATAPATH;
 
 
 architecture structural of DATAPATH is
-
-
 
 
 begin
