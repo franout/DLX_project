@@ -32,5 +32,7 @@
 ;; test -->sw!
 ;; test -->xor!
 ;; test -->xori!
-halt
+add r2,r3,r0
+nop
+halt 
 

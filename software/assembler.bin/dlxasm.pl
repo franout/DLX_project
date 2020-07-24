@@ -163,6 +163,8 @@ if ($srcfile =~ /^(.*)\.dlx$/) {
   "sgtui" => "i,0x3b",
   "sleui" => "i,0x3c",
   "sgeui" => "i,0x3d",
+  ## for stopping dlx to fetch from memory
+  "halt" => "n,0x3f"
 );
 %specialreg = ("pc" => 0,
 	       "ir31" => 2,
