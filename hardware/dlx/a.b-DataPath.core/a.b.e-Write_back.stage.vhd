@@ -6,7 +6,7 @@
 -- Author      : Francesco Angione <s262620@studenti.polito.it> franout@github.com
 -- Company     : Politecnico di Torino, Italy
 -- Created     : Wed Jul 22 23:00:39 2020
--- Last update : Thu Jul 23 21:31:12 2020
+-- Last update : Sat Jul 25 15:19:05 2020
 -- Platform    : Default Part Number
 -- Standard    : VHDL-2008 
 --------------------------------------------------------------------------------
@@ -18,7 +18,7 @@
 library ieee ;
 	use ieee.std_logic_1164.all ;
 	use ieee.numeric_std.all ;
-	use work.global_components.MUX_zbit_nbit;
+	use work.global_components.all;
 
 entity write_back_stage is
 generic (
@@ -35,9 +35,11 @@ generic (
 end entity ; -- write_back_stage
 
 architecture structural of write_back_stage is
-
+signal data_to_mux: std_logic_vector(N*2-1 downto 0);
 begin
 
+
+data_to_mux<=data_from_memory & data_from_alu;
 -- instatiate write back multiplexer
 -- definition of component is in the global_components package
 wb_mux: MUX_zbit_nbit generic map (
@@ -45,7 +47,7 @@ wb_mux: MUX_zbit_nbit generic map (
 	Z=>1 -- log2 of number of input signals
 )
 port map (
-	inputs=> data_from_memory & data_from_alu, --- sel =0 , sel =1 
+	inputs=> data_to_mux, --- sel =0 , sel =1 
 	sel=>select_wb,
 	y=>data_to_rf
 );

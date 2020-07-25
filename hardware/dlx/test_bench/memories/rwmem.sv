@@ -7,7 +7,7 @@
 // Author : Angione Francesco s262620@studenti.polito.it franout@Github.com
 // File   : rwmem.sv
 // Create : 2020-07-21 19:00:09
-// Revise : 2020-07-24 19:28:35
+// Revise : 2020-07-25 15:44:25
 // Editor : sublime text3, tab size (4)
 // Description: 
 // -----------------------------------------------------------------------------
@@ -23,12 +23,13 @@ interface rwmem_interface
  logic  DATA_READY;
  logic [WORD_SIZE-1:0] INOUT_DATA;
  // clocking block
+ // sampled after 1 time resoltuon see timescale
     clocking ram_interface @(posedge clk);
-       input   #1  ADDRESS,ENABLE,READNOTWRITE; // sampled after 1 time resoltuon see `timescale
+       input   #1  ADDRESS,ENABLE,READNOTWRITE; 
        inout   #1 INOUT_DATA;
        output  #1  DATA_READY;
     endclocking 
-modport tb (input ADDRESS, ENABLE, READNOTWRITE,rst, output DATA_READY, inout INOUT_DATA);
+modport tb (input ADDRESS, ENABLE, READNOTWRITE,rst,inout INOUT_DATA, output DATA_READY);
 endinterface
 
 

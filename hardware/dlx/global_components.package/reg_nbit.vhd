@@ -1,6 +1,6 @@
 library  ieee;
 use IeeE.std_logic_1164.ALL;
-use WORK.CONSTANTS.all;
+use WORK.globals.all;
 
 
 entity reg_nbit IS

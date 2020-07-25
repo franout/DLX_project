@@ -6,7 +6,7 @@
 -- Author      : Francesco Angione <s262620@studenti.polito.it> franout@github.com
 -- Company     : Politecnico di Torino, Italy
 -- Created     : Wed Jul 22 22:56:15 2020
--- Last update : Thu Jul 23 17:33:10 2020
+-- Last update : Sat Jul 25 15:26:08 2020
 -- Platform    : Default Part Number
 -- Standard    : VHDL-2008 
 --------------------------------------------------------------------------------
@@ -14,10 +14,13 @@
 -------------------------------------------------------------------------------
 -- Description: package which contains all basic components from the labs of MS
 -- 				the component files are in the folder ./global_components.package
+--				Suggestion: Open the folder of the dlx with Sublime Text v3 in order
+--						to see the declaration for each component when selected with the mouse
 --------------------------------------------------------------------------------
 
 library ieee;
 use ieee.std_logic_1164.all;
+use work.globals.all;
 
 package global_components is
 	-- dummy alu declaration

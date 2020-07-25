@@ -6,7 +6,7 @@
 -- Author      : Francesco Angione <s262620@studenti.polito.it> franout@github.com
 -- Company     : Politecnico di Torino, Italy
 -- Created     : Wed Jul 22 22:56:54 2020
--- Last update : Thu Jul 23 17:40:24 2020
+-- Last update : Sat Jul 25 15:17:13 2020
 -- Platform    : Default Part Number
 -- Standard    : VHDL-2008 
 --------------------------------------------------------------------------------
@@ -20,6 +20,14 @@ library ieee;
 use ieee.std_logic_1164.all;
 
 package globals is
+
+
+-- function for calculating the log2 of an integers
+function f_log2 ( x: integer ) return integer;
+
+
+-- for avoiding compiling errror with labs components
+constant numbit : integer := 32; 
 
 --------------------------------------------------------------------------------
 -- for debug purpuses
@@ -44,9 +52,9 @@ constant data_size : integer := 32;
 
 -- definition for memories size
 constant dram_size : integer := 128; 
-constant dram_address_size : integer := f_log2(dram_size); 
+--constant dram_address_size : integer := f_log2(dram_size); 
 constant iram_size : integer := 128; 
-constant iram_address_size : integer := f_log2(iram_size); 
+--constant iram_address_size : integer := f_log2(iram_size); 
 
 
 -- from lab 
@@ -54,11 +62,11 @@ constant iram_address_size : integer := f_log2(iram_size);
 
 
 	type aluOp is (
-		NOP, ADDS, LLS, LRS --- to be completed
+		 ADDS, LLS, LRS --- to be completed
 			);
 	-- see also implemented_instruction.svh in ./test_bench
 	type instruction is (
-
+        addition
 		);
 
 
@@ -104,9 +112,6 @@ constant iram_address_size : integer := f_log2(iram_size);
     constant ITYPE_L_MEM2 : std_logic_vector(OP_CODE_SIZE - 1 downto 0) :=  "001110";    -- L_MEM2 RS1,RD,INP1 reg[RS]<=mem[reg[RS]+INP2]
 
 
-
--- function for calculating the log2 of an integers
-function f_log2 ( x: integer ) return integer;
 
 end globals;
 

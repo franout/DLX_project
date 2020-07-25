@@ -7,7 +7,7 @@
 // Author : Angione Francesco s262620@studenti.polito.it franout@Github.com
 // File   : tb_dlx.sv
 // Create : 2020-07-21 19:00:18
-// Revise : 2020-07-24 19:29:13
+// Revise : 2020-07-25 15:30:02
 // Editor : sublime text3, tab size (4)
 // Description: 
 // -----------------------------------------------------------------------------
@@ -59,7 +59,7 @@ module tb_dlx ();
 
 	//DLX top level entity
 
-
+//TODO  a task or a monitor which understand the current operation that is going to be executed and compare with the implemented_instructions.svh
 
 
 	initial begin
