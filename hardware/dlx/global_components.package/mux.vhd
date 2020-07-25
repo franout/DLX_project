@@ -1,7 +1,7 @@
 library ieee;
 use ieee.std_logic_1164.ALL;
 use ieee.numeric_std.ALL;
-use work.globals.ALL;
+use work.constants.ALL;
 
 --- a multiplexer for selection among a generic number of signals glued together 
 	entity  MUX_zbit_nbit IS
