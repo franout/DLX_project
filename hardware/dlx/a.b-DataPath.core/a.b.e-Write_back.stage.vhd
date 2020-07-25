@@ -6,7 +6,7 @@
 -- Author      : Francesco Angione <s262620@studenti.polito.it> franout@github.com
 -- Company     : Politecnico di Torino, Italy
 -- Created     : Wed Jul 22 23:00:39 2020
--- Last update : Sat Jul 25 15:19:05 2020
+-- Last update : Sat Jul 25 17:04:58 2020
 -- Platform    : Default Part Number
 -- Standard    : VHDL-2008 
 --------------------------------------------------------------------------------
@@ -25,10 +25,10 @@ generic (
 	N: integer:=32
 );
   port (
-  	-- datapath
+  	-- datapath, from memory stage
 	data_from_memory: in std_logic_vector(N-1 downto 0);
 	data_from_alu: in std_logic_vector(N-1 downto 0);
-	data_to_rf: out std_logic_vector(N-1 downto 0);
+	data_to_rf: out std_logic_vector(N-1 downto 0); -- to decode stage
 	-- control signals from cu
 	select_wb: in std_logic_vector(0 downto 0)
   ) ;

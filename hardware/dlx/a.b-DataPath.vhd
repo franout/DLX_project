@@ -6,7 +6,7 @@
 -- Author      : Francesco Angione <s262620@studenti.polito.it> franout@github.com
 -- Company     : Politecnico di Torino, Italy
 -- Created     : Wed Jul 22 22:58:34 2020
--- Last update : Fri Jul 24 19:29:16 2020
+-- Last update : Sat Jul 25 17:02:12 2020
 -- Platform    : Default Part Number
 -- Standard    : VHDL-2008 
 --------------------------------------------------------------------------------
@@ -35,6 +35,29 @@ end entity DATAPATH;
 architecture structural of DATAPATH is
 
 
+
+
+
+
+
+
+
+
+
+
+
+	component write_back_stage is
+		generic (
+			N : integer:=32
+		);
+		port (
+			data_from_memory : in  std_logic_vector(N-1 downto 0);
+			data_from_alu    : in  std_logic_vector(N-1 downto 0);
+			data_to_rf       : out std_logic_vector(N-1 downto 0);
+			select_wb        : in  std_logic_vector(0 downto 0)
+		);
+	end component write_back_stage;		
+
 begin
 
 
@@ -52,6 +75,20 @@ begin
 
 
 -- write back stage
+
+
+	write_back_stage_dp :write_back_stage
+		generic map (
+			N => N
+		)
+		port map (
+			data_from_memory => data_from_memory,
+			data_from_alu    => data_from_alu,
+			data_to_rf       => data_to_rf,
+			select_wb        => select_wb
+		);
+
+
 
 	
 end architecture structural;

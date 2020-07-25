@@ -6,7 +6,7 @@
 -- Author      : Francesco Angione <s262620@studenti.polito.it> franout@github.com
 -- Company     : Politecnico di Torino, Italy
 -- Created     : Wed Jul 22 22:59:30 2020
--- Last update : Thu Jul 23 21:40:43 2020
+-- Last update : Sat Jul 25 17:37:00 2020
 -- Platform    : Default Part Number
 -- Standard    : VHDL-2008 
 --------------------------------------------------------------------------------
@@ -16,34 +16,83 @@
 --------------------------------------------------------------------------------
 
 library ieee ;
-	use ieee.std_logic_1164.all ;
-	use ieee.numeric_std.all ;
-	use work.global_components.componet name; -- for getting the needed components
+use ieee.std_logic_1164.all ;
+use ieee.numeric_std.all ;
+use work.global_components.all;
 
 entity fetch_stage is
-  port (
-	clock
-  ) ;
+	generic (
+		IR_SIZE : integer := 32; -- Instruction Register Size
+		PC_SIZE : integer := 32  -- Program Counter Size
+	);
+	port (
+		clk : in std_logic;
+		rst : in std_logic;
+		--from  memory stage
+		new_pc_value_mem_stage : in std_logic_vector(PC_SIZE-1 downto 0);
+		-- to decode stage
+		new_pc_value: out std_logic_vector(PC_SIZE-1 downto 0);
+		-- IRAM interface
+		IRAM_ADDRESS : out std_logic_vector( iram_address_size- 1 downto 0); -- the current PC value 
+		IRAM_ENABLE  : out std_logic; -- from control unit
+		IRAM_READY   : in  std_logic; -- to the control unit 
+		IRAM_DATA    : in  std_logic_vector(instruction_size-1 downto 0)
+	) ;
 end entity ; -- fetch_stage
 
 architecture structural of fetch_stage is
 
+-- internal signals declaration
+signal new_program_counter_val_i: std_logic_vector(PC_SIZE-1 downto 0);
+signal instruction_reg:std_logic_vector(IR_SIZE-1 downto 0);
+
 begin
 
--- Program counter
+	-- Program counter
+	program_counter : reg_nbit
+		generic map (
+			n => PC_SIZE
+		)
+		port map (
+			clk   => clk,
+			reset => rst,
+			d     => new_pc_value_mem_stage,
+			Q     => program_counter_val
+		);	
 
 
 
--- logic for incremenentig the program counter 
+	-- logic for incremenentig the program counter 
+	new_program_counter_val_i<= std_logic_vector(unsigned(program_counter_val)+4);
+
+	-- New Program counter
+	new_program_counter : reg_nbit
+		generic map (
+			n => PC_SIZE
+		)
+		port map (
+			clk   => clk,
+			reset => rst,
+			d     => new_program_counter_val_i,
+			Q     => new_pc_value
+		);	
 
 
--- New Program counter
+	-- Instruction register
+	instruction_reg : reg_nbit
+		generic map (
+			n => IR_SIZE
+		)
+		port map (
+			clk   => clk,
+			reset => rst,
+			d     => IRAM_DATA,
+			Q     => instruction_reg_val
+		);
 
 
-
--- Instruction register
-
-
-
+instruction_reg_val -- it has to go to the CU and part of it to the register file in the decode stage
+IRAM_ADDRESS<=program_counter_val when IRAM_ENABLE='1' else
+	(OTHERS=>'Z');
 
 end architecture ; -- structural

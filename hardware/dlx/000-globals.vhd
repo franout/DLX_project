@@ -6,7 +6,7 @@
 -- Author      : Francesco Angione <s262620@studenti.polito.it> franout@github.com
 -- Company     : Politecnico di Torino, Italy
 -- Created     : Wed Jul 22 22:56:54 2020
--- Last update : Sat Jul 25 15:17:13 2020
+-- Last update : Sat Jul 25 17:00:59 2020
 -- Platform    : Default Part Number
 -- Standard    : VHDL-2008 
 --------------------------------------------------------------------------------
@@ -24,10 +24,6 @@ package globals is
 
 -- function for calculating the log2 of an integers
 function f_log2 ( x: integer ) return integer;
-
-
--- for avoiding compiling errror with labs components
-constant numbit : integer := 32; 
 
 --------------------------------------------------------------------------------
 -- for debug purpuses
