@@ -23,7 +23,7 @@ package globals is
 
 
 -- function for calculating the log2 of an integers
-function f_log2 ( x: integer ) return integer;
+--function f_log2 ( x: integer ) return integer; it is in the constants package from the labs
 
 --------------------------------------------------------------------------------
 -- for debug purpuses
@@ -112,17 +112,6 @@ constant iram_size : integer := 128;
 end globals;
 
 package body globals is
-
-function f_log2 ( x: integer ) return integer is
-    variable i: integer;
-
-    begin
-        i:=0;
-        while ( 2**i < x ) loop
-            i:=i+1;
-        end loop;
-        return i;
-end function f_log2;
 
 
 end package body globals;

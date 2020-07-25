@@ -21,6 +21,7 @@
 library ieee;
 use ieee.std_logic_1164.all;
 use work.globals.all;
+use work.constants.all; -- for avoiding compilation error 
 
 package global_components is
 	-- dummy alu declaration
