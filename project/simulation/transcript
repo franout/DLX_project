@@ -1,0 +1,227 @@
+# //  Questa Sim-64
+# //  Version 10.7c linux_x86_64 Aug 17 2018
+# //
+# //  Copyright 1991-2018 Mentor Graphics Corporation
+# //  All Rights Reserved.
+# //
+# //  QuestaSim and its associated documentation contain trade
+# //  secrets and commercial or financial information that are the property of
+# //  Mentor Graphics Corporation and are privileged, confidential,
+# //  and exempt from disclosure under the Freedom of Information Act,
+# //  5 U.S.C. Section 552. Furthermore, this information
+# //  is prohibited from disclosure under the Trade Secrets Act,
+# //  18 U.S.C. Section 1905.
+# //
+# Project file /home/ms20.50/Desktop/DLX_project/scripts/simulation_project/dlx_project.mpf was not found.
+# Unable to open project.
+# Loading project dlx_project
+# Compile of 000-globals.vhd was successful.
+# Compile of 001-global_components.vhd was successful.
+# Compile of adder.vhd was successful.
+# Compile of alu.vhd failed with 6 errors.
+# Compile of boothmul.vhd failed with 3 errors.
+# Compile of complement2.vhd was successful.
+# Compile of csb.vhd failed with 4 errors.
+# Compile of encoder.vhd was successful.
+# Compile of fa.vhd was successful.
+# Compile of fd.vhd was successful.
+# Compile of gsb.vhd was successful.
+# Compile of mux.vhd was successful.
+# Compile of mux21_nbit.vhd failed with 3 errors.
+# Compile of p4_adder.vhd failed with 3 errors.
+# Compile of pg.vhd failed with 1 errors.
+# Compile of pgsb.vhd was successful.
+# Compile of rca.vhd was successful.
+# Compile of reg_nbit.vhd was successful.
+# Compile of registerfile.vhd was successful.
+# Compile of stcg.vhd failed with 6 errors.
+# Compile of sum_gen.vhd failed with 4 errors.
+# Compile of wrf.vhd failed with 3 errors.
+# Compile of tb_writeback_stage.sv was successful.
+# 23 compiles, 9 failed with 33 errors.
+vsim work.tb_writeback_stage -novopt
+# vsim work.tb_writeback_stage -novopt 
+# Start time: 18:05:01 on Jul 25,2020
+# ** Error (suppressible): (vsim-12110) All optimizations are disabled because the -novopt option is in effect. This will cause your simulation to run very slowly. If you are using this switch to preserve visibility for Debug or PLI features, please see the User's Manual section on Preserving Object Visibility with vopt. -novopt option is now deprecated and will be removed in future releases.
+# Error loading design
+# End time: 18:05:02 on Jul 25,2020, Elapsed time: 0:00:01
+# Errors: 1, Warnings: 0
+# A time value could not be extracted from the current line
+vsim -vopt work.tb_writeback_stage
+# vsim -vopt work.tb_writeback_stage 
+# Start time: 18:06:09 on Jul 25,2020
+# ** Note: (vsim-3812) Design is being optimized...
+# ** Error: /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/tb_writeback_stage.sv(38): Module 'write_back_stage' is not defined.
+# Optimization failed
+# Error loading design
+# End time: 18:06:10 on Jul 25,2020, Elapsed time: 0:00:01
+# Errors: 1, Warnings: 0
+# Compile of alu.vhd failed with 6 errors.
+# Compile of boothmul.vhd failed with 3 errors.
+# Compile of csb.vhd failed with 4 errors.
+# Compile of mux21_nbit.vhd failed with 3 errors.
+# Compile of p4_adder.vhd failed with 3 errors.
+# Compile of pg.vhd failed with 1 errors.
+# Compile of stcg.vhd failed with 6 errors.
+# Compile of sum_gen.vhd failed with 4 errors.
+# Compile of wrf.vhd failed with 3 errors.
+# Compile of a.b.e-Write_back.stage.vhd was successful.
+# 10 compiles, 9 failed with 33 errors.
+vsim -novopt work.tb_writeback_stage
+# vsim -novopt work.tb_writeback_stage 
+# Start time: 18:08:04 on Jul 25,2020
+# ** Error (suppressible): (vsim-12110) All optimizations are disabled because the -novopt option is in effect. This will cause your simulation to run very slowly. If you are using this switch to preserve visibility for Debug or PLI features, please see the User's Manual section on Preserving Object Visibility with vopt. -novopt option is now deprecated and will be removed in future releases.
+# Error loading design
+# End time: 18:08:04 on Jul 25,2020, Elapsed time: 0:00:00
+# Errors: 1, Warnings: 0
+# A time value could not be extracted from the current line
+vsim -vopt work.tb_writeback_stage
+# vsim -vopt work.tb_writeback_stage 
+# Start time: 18:08:41 on Jul 25,2020
+# ** Note: (vsim-3812) Design is being optimized...
+# Loading sv_std.std
+# Loading work.tb_writeback_stage(fast)
+# Loading std.standard
+# Loading std.textio(body)
+# Loading ieee.std_logic_1164(body)
+# Loading ieee.numeric_std(body)
+# Loading work.globals(body)
+# Loading work.global_components(body)
+# Loading work.write_back_stage(structural)#1
+# ** Fatal: (vsim-3348) Port length (1) does not match actual length (2) for port "/tb_writeback_stage/uut/wb_mux/SEL".
+#    Time: 0 ps  Iteration: 0  Instance: /tb_writeback_stage/uut/wb_mux File: /home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/mux.vhd Line: 11
+# FATAL ERROR while loading design
+# Error loading design
+# End time: 18:08:42 on Jul 25,2020, Elapsed time: 0:00:01
+# Errors: 1, Warnings: 0
+# Compile of alu.vhd failed with 6 errors.
+# Compile of boothmul.vhd failed with 3 errors.
+# Compile of csb.vhd failed with 4 errors.
+# Compile of mux21_nbit.vhd failed with 3 errors.
+# Compile of p4_adder.vhd failed with 3 errors.
+# Compile of pg.vhd failed with 1 errors.
+# Compile of stcg.vhd failed with 6 errors.
+# Compile of sum_gen.vhd failed with 4 errors.
+# Compile of wrf.vhd failed with 3 errors.
+# Compile of a.b.e-Write_back.stage.vhd was successful.
+# 10 compiles, 9 failed with 33 errors.
+vsim -vopt work.tb_writeback_stage
+# vsim -vopt work.tb_writeback_stage 
+# Start time: 18:13:34 on Jul 25,2020
+# ** Note: (vsim-3813) Design is being optimized due to module recompilation...
+# Loading sv_std.std
+# Loading work.tb_writeback_stage(fast)
+# Loading std.standard
+# Loading std.textio(body)
+# Loading ieee.std_logic_1164(body)
+# Loading ieee.numeric_std(body)
+# Loading work.globals(body)
+# Loading work.global_components(body)
+# Loading work.write_back_stage(structural)#1
+# ** Fatal: (vsim-3348) Port length (128) does not match actual length (64) for port "/tb_writeback_stage/uut/wb_mux/inputs".
+#    Time: 0 ps  Iteration: 0  Instance: /tb_writeback_stage/uut/wb_mux File: /home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/mux.vhd Line: 10
+# FATAL ERROR while loading design
+# Error loading design
+# End time: 18:13:35 on Jul 25,2020, Elapsed time: 0:00:01
+# Errors: 1, Warnings: 0
+# Compile of 000-globals.vhd was successful.
+# Compile of 001-global_components.vhd was successful.
+# Compile of adder.vhd was successful.
+# Compile of alu.vhd failed with 6 errors.
+# Compile of boothmul.vhd failed with 3 errors.
+# Compile of complement2.vhd was successful.
+# Compile of csb.vhd failed with 4 errors.
+# Compile of encoder.vhd was successful.
+# Compile of fa.vhd was successful.
+# Compile of fd.vhd was successful.
+# Compile of gsb.vhd was successful.
+# Compile of mux.vhd was successful.
+# Compile of mux21_nbit.vhd failed with 3 errors.
+# Compile of p4_adder.vhd failed with 3 errors.
+# Compile of pg.vhd failed with 1 errors.
+# Compile of pgsb.vhd was successful.
+# Compile of rca.vhd was successful.
+# Compile of reg_nbit.vhd was successful.
+# Compile of registerfile.vhd was successful.
+# Compile of stcg.vhd failed with 6 errors.
+# Compile of sum_gen.vhd failed with 4 errors.
+# Compile of wrf.vhd failed with 3 errors.
+# Compile of tb_writeback_stage.sv was successful.
+# Compile of a.b.e-Write_back.stage.vhd failed with 1 errors.
+# 24 compiles, 10 failed with 34 errors.
+vsim -vopt work.tb_writeback_stage
+# vsim -vopt work.tb_writeback_stage 
+# Start time: 18:14:44 on Jul 25,2020
+# ** Note: (vsim-3813) Design is being optimized due to module recompilation...
+# ** Warning: (vopt-13) Recompile work.write_back_stage(structural) because work.write_back_stage has changed.
+# ** Error: /home/ms20.50/Desktop/DLX_project/hardware/dlx/a.b-DataPath.core/a.b.e-Write_back.stage.vhd(51): Signal [mode IN port] "select_wb" is type ieee.std_logic_1164.STD_LOGIC; expecting type ieee.std_logic_1164.STD_LOGIC_VECTOR.
+# Optimization failed
+# Error loading design
+# End time: 18:14:45 on Jul 25,2020, Elapsed time: 0:00:01
+# Errors: 1, Warnings: 1
+# Compile of alu.vhd failed with 6 errors.
+# Compile of boothmul.vhd failed with 3 errors.
+# Compile of csb.vhd failed with 4 errors.
+# Compile of mux21_nbit.vhd failed with 3 errors.
+# Compile of p4_adder.vhd failed with 3 errors.
+# Compile of pg.vhd failed with 1 errors.
+# Compile of stcg.vhd failed with 6 errors.
+# Compile of sum_gen.vhd failed with 4 errors.
+# Compile of wrf.vhd failed with 3 errors.
+# Compile of tb_writeback_stage.sv was successful.
+# Compile of a.b.e-Write_back.stage.vhd was successful.
+# 11 compiles, 9 failed with 33 errors.
+vsim -vopt work.tb_writeback_stage
+# vsim -vopt work.tb_writeback_stage 
+# Start time: 18:16:08 on Jul 25,2020
+# ** Note: (vsim-3812) Design is being optimized...
+# Loading sv_std.std
+# Loading work.tb_writeback_stage(fast)
+# Loading std.standard
+# Loading std.textio(body)
+# Loading ieee.std_logic_1164(body)
+# Loading ieee.numeric_std(body)
+# Loading work.globals(body)
+# Loading work.global_components(body)
+# Loading work.write_back_stage(structural)#1
+add waves *
+# ** Error: bad option "waves": should be one of...
+#   add atv ?options? ?arg arg ...?
+#   add button text action ?disable? ?options? ?help?
+#   add dataflow ?options? ?arg arg ...?
+#   add lists ?options? ?arg arg ...?
+#   add log ?options? ?arg arg ...?
+#   add memory options ?arg arg ...?
+#   add message ?options? ?arg arg ...?
+#   add monitor ?options? ?arg arg ...?
+#   add schematic ?options? ?arg arg ...?
+#   add testbrowser ?options? ?arg arg ...?
+#   add virtual ?options? ?arg arg ...?
+#   add watch ?options? ?arg arg ...?
+#   add wave ?options? ?arg arg ...?
+add waves *
+# ** Error: bad option "waves": should be one of...
+#   add atv ?options? ?arg arg ...?
+#   add button text action ?disable? ?options? ?help?
+#   add dataflow ?options? ?arg arg ...?
+#   add lists ?options? ?arg arg ...?
+#   add log ?options? ?arg arg ...?
+#   add memory options ?arg arg ...?
+#   add message ?options? ?arg arg ...?
+#   add monitor ?options? ?arg arg ...?
+#   add schematic ?options? ?arg arg ...?
+#   add testbrowser ?options? ?arg arg ...?
+#   add virtual ?options? ?arg arg ...?
+#   add watch ?options? ?arg arg ...?
+#   add wave ?options? ?arg arg ...?
+add wave *
+run 10 ns
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Instance: /tb_writeback_stage/uut/wb_mux
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Instance: /tb_writeback_stage/uut/wb_mux
+# Startign testbench for write back stage 
+# ** Note: $finish    : /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/tb_writeback_stage.sv(50)
+#    Time: 0 ps  Iteration: 0  Instance: /tb_writeback_stage
+# End time: 18:16:56 on Jul 25,2020, Elapsed time: 0:00:48
+# Errors: 0, Warnings: 2
