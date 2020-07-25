@@ -1,5 +1,8 @@
 #!/usr/bin/bash
 
+## using questasim 
+source /software/scripts/init_questa10.7c 
+
 path_to_hex_test_program = $1
 if [ -z "$path_to_hex_test_program" ] ; then
 	echo "Input software file for IRAM not defined"
