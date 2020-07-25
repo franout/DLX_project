@@ -7,7 +7,7 @@
 // Author : Angione Francesco s262620@studenti.polito.it franout@Github.com
 // File   : tb_writeback_stage.sv
 // Create : 2020-07-25 15:02:48
-// Revise : 2020-07-25 16:59:46
+// Revise : 2020-07-25 18:15:44
 // Editor : sublime text3, tab size (4)
 // Description: 
 // -----------------------------------------------------------------------------
@@ -52,6 +52,7 @@ write_back_stage #(.N(N)) uut (
 		$display("Error in mux ",);
 		$stop();
 	end
+	
 	repeat(2)@ posedge clk;
 	$display("Checking if it is still the same",);
 	if(data_to_rf!=data_from_memory) begin
