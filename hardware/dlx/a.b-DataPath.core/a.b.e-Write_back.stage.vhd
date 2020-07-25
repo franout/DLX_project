@@ -30,7 +30,7 @@ generic (
 	data_from_alu: in std_logic_vector(N-1 downto 0);
 	data_to_rf: out std_logic_vector(N-1 downto 0);
 	-- control signals from cu
-	select_wb: in std_logic_vector(1 downto 0)
+	select_wb: in std_logic_vector(0 downto 0)
   ) ;
 end entity ; -- write_back_stage
 

@@ -22,7 +22,7 @@ module tb_writeback_stage ();
 	logic [N-1:0]data_from_memory;
 	logic [N-1:0]data_from_alu;
 	logic [N-1:0]data_to_rf;
-	logic [1:0]select_wb;
+	logic [0:0]select_wb;
 
 	initial begin
 		clk = '0;
