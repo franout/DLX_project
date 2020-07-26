@@ -7,32 +7,13 @@
 // Author : Angione Francesco s262620@studenti.polito.it franout@Github.com
 // File   : rwmem.sv
 // Create : 2020-07-21 19:00:09
-// Revise : 2020-07-26 16:39:13
+// Revise : 2020-07-26 18:53:36
 // Editor : sublime text3, tab size (4)
 // Description: 
 // -----------------------------------------------------------------------------
 `timescale 1ns/1ps
-interface rwmem_interface
-#(parameter ADDRESS_SIZE=16,
-	WORD_SIZE=32) 
-(input logic clk);
- logic rst;  //  reset active low
- logic  [ADDRESS_SIZE - 1:0]ADDRESS;
- logic  ENABLE;
- logic  READNOTWRITE;
- logic  DATA_READY;
- wire [WORD_SIZE-1:0] INOUT_DATA;
- // clocking block
- // sampled after 1 time resoltuon see timescale
-    clocking ram_interface @(posedge clk);
-       input   #1  ADDRESS,ENABLE,READNOTWRITE; 
-       //inout   #1 INOUT_DATA;
-       output  #1  DATA_READY;
-    endclocking 
-modport tb (input ADDRESS, ENABLE, READNOTWRITE,rst,clk,inout INOUT_DATA, output DATA_READY);
-endinterface
 
-
+`include "memory_interfaces.svh"
 
 module rwmem
 #(parameter FILE_PATH="",		// RAM output data file
@@ -42,7 +23,7 @@ module rwmem
 			DATA_DELAY= 2		// Delay ( in # of clock cycles )
 			)
 			 ( 
-	 rwmem_interface.tb memif // memory interface clocked by clock 
+	 mem_interface.rw memif // memory interface clocked by clock 
 );
 
 /// internal signals

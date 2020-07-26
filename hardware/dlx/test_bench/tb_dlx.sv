@@ -7,13 +7,14 @@
 // Author : Angione Francesco s262620@studenti.polito.it franout@Github.com
 // File   : tb_dlx.sv
 // Create : 2020-07-21 19:00:18
-// Revise : 2020-07-26 16:55:42
+// Revise : 2020-07-26 18:51:14
 // Editor : sublime text3, tab size (4)
 // Description: 
 // -----------------------------------------------------------------------------
 
 `timescale  1ns/1ps
 `include "implemented_instructions.svh"
+`include "memory_interfaces.svh"
 
 `define  IRAM_WORD_SIZE 32
 `define  IRAM_ADDRESS_SIZE 32
@@ -22,6 +23,7 @@
 
 module tb_dlx ();
 	localparam clock_period= 10ns;
+	// it needs the absolute path
 	localparam PATH_TO_DMEM_FINAL="";
 	localparam PATH_TO_DMEM="";
 	localparam PATH_TO_IMEM="";

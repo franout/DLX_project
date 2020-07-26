@@ -15,23 +15,7 @@
 //				It is byte addressable
 // -----------------------------------------------------------------------------
 `timescale 1ns/1ps
-
-interface romem_interface
-#(parameter ADDRESS_SIZE=16,
-	WORD_SIZE=32)
- ( input logic clk);
- 	 logic rst;  //  reset active low
- 	 logic  [ADDRESS_SIZE-1:0] ADDRESS;
-	 logic  ENABLE;
-	 logic  DATA_READY;
-	 logic  [WORD_SIZE-1:0]DATA;
-	 // clocking block
-    clocking ram_interface @(posedge clk);
-       input   #1  ADDRESS,ENABLE; // sampled after 1 time resoltuon see `timescale
-       output  #1  DATA_READY,DATA;
-    endclocking 
-	modport tb (input ADDRESS, ENABLE, rst,clk , output DATA_READY, DATA);
-endinterface
+`include "memory_interfaces.svh"
 
 module romem
 #(parameter FILE_PATH="",	// ROM INIT data file Note: add also extension
@@ -40,7 +24,7 @@ ADDRESS_SIZE = 16, 			// number of bits per address
 DATA_DELAY	= 2			 	// Delay ( in # of clock cycles )
 )
  (
-	romem_interface.tb mif // memory interface clocked by clk
+	mem_interface.ro mif // memory interface clocked by clk
 );
 
 /// internal signals
