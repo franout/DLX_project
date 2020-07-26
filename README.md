@@ -1,21 +1,13 @@
-@PoliTo Microelectronics systems course 
-
-
-
-The DLX is essentially a cleaned up (and modernized) simplified MIPS CPU. The DLX has a simple 32-bit load/store architecture, somewhat unlike the modern MIPS CPU. As the DLX was intended primarily for teaching purposes, the DLX design is widely used in university-level computer architecture courses. 
-
-
-<a href="https://mytechdecisions.com"><img src="https://mytechdecisions.com/wp-content/uploads/2019/09/AdobeStock_245601545.jpeg" title="Machine Learning" ></a>
-
-<!-- [![FVCproductions](https://avatars1.githubusercontent.com/u/4284691?v=3&s=200)](http://fvcproductions.com) -->
-
+<p align="center">
+  <a href="https://www.tutorialspoint.com"><img src="https://www.tutorialspoint.com/basics_of_computers/images/microprocessor.jpg" title="Microprocessor" ></a>
+</p>
 
 # DeLuXe RISC processor project 
 
 [![Project Status: Active – The project has reached a stable, usable state and is being actively developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
 [![Build Status](http://img.shields.io/travis/badges/badgerbadgerbadger.svg?style=flat-square)](https://travis-ci.org/badges/badgerbadgerbadger) 
 
-RISC processor architecture designed by John L. Hennessy and David A. Patterson
+RISC processor architecture designed by John L. Hennessy and David A. Patterson.
 
 Microelectronic System course (MsC in Embedded Systems Engineering)  @ Polythecnic of Turin, Italy
 
@@ -63,6 +55,9 @@ Note: in the same folder there must be present the DTPU_delegate.cpp and DTPU_de
 ## Features
 The hardware accelerator is capable of tensor convolution, generally speaking matrix multiplication and accumulation.
 ## Architecture
+
+The DLX is essentially a cleaned up (and modernized) simplified MIPS CPU. The DLX has a simple 32-bit load/store architecture, somewhat unlike the modern MIPS CPU.
+
 - General architecture
   * Logical view
   
