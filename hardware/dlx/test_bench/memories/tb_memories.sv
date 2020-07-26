@@ -7,7 +7,7 @@
 // Author : Angione Francesco s262620@studenti.polito.it franout@Github.com
 // File   : tb_memories.sv
 // Create : 2020-07-22 20:19:53
-// Revise : 2020-07-24 19:27:46
+// Revise : 2020-07-25 18:41:11
 // Editor : sublime text3, tab size (4)
 // Description: 
 // -----------------------------------------------------------------------------
@@ -35,6 +35,21 @@ module tb_memories ();
   	
   	endclocking	// clock
 
+  	//bound of address 
+  	property address_range(int min, int max);
+  		@ (ram_clk)
+
+  	endproperty 
+
+  	// sequence
+  	property ready_check;
+  		iram_if.ENABLE ##1 iram_if.DATA_READY ;
+  	endproperty
+
+  	//=================================================
+ 	// Assertion Directive Layer
+  	//=================================================
+  	ready_check_property : assert property (ready_check);
 
 	// instantiate the interface
 	rwmem_interface #(.ADDRESS_SIZE(`DRAM_ADDRESS_SIZE),
@@ -63,20 +78,15 @@ module tb_memories ();
 
 
 	initial begin 
-		iram_if.rst='b1;
-		dram_if.rst='b1;
+		iram_if.rst='1;
+		dram_if.rst='1;
 		$display("Starting testbench for memories",);
 		## 1;
+		iram_if.rst='0;
+		dram_if.rst='0;
 		$display("Reading file for Read-Only memory",);
-		// naive march algorithm
-		// write all zeros
-
-		// read all zeros
-
-		// write all ones
-
-		// read all ones
-
+		iram_if.ENABLE='1;
+		## 1;
 
 
 		$display("Read-Only Memory passed the testbench",);
