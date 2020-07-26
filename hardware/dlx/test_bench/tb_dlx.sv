@@ -14,7 +14,7 @@
 
 `timescale  1ns/1ps
 `include "implemented_instructions.svh"
-`include "memory_interfaces.svh"
+`include "./memories/memory_interfaces.svh"
 
 `define  IRAM_WORD_SIZE 32
 `define  IRAM_ADDRESS_SIZE 32

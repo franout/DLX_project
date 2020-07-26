@@ -37,6 +37,7 @@ logic valid;
 int fd;
 string line;
 int index=0;
+int dummy; // for removing simulation warning
 
 // check if the path has been defined
  initial begin
@@ -63,7 +64,7 @@ always_ff @(posedge mif.clk) begin : proc_ram
 		index=0;
 		// fill up the memory 
 		while (!$feof(fd)) begin
-      	  $fgets(line, fd);
+      	  dummy= $fgets(line, fd);
       	   ram[index]<=line.atohex();// save  and convert to hex value
       	   index=index+1;
 	    end

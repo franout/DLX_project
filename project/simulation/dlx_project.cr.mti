@@ -1,10 +1,13 @@
-/home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/tb_memories.sv {0 {vlog -work work -vopt -sv -stats=none /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/tb_memories.sv
+/home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/tb_memories.sv {1 {vlog -work work -vopt -sv -stats=none /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/tb_memories.sv
 QuestaSim-64 vlog 10.7c Compiler 2018.08 Aug 17 2018
+-- Compiling interface mem_interface
+-- Compiling program test_memory
 -- Compiling module tb_memories
-** Error: (vlog-13069) /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/tb_memories.sv(42): near "endproperty": syntax error, unexpected "SystemVerilog keyword 'endproperty'", expecting disable.
-** Error: (vlog-13069) /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/tb_memories.sv(46): near "##": syntax error, unexpected ##, expecting IDENTIFIER or TYPE_IDENTIFIER or NETTYPE_IDENTIFIER.
 
-} {4.0 6.0} {}} /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/testbench_subunits/tb_writeback_stage.sv {1 {vlog -work work -vopt -sv -stats=none /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/testbench_subunits/tb_writeback_stage.sv
+Top level modules:
+	tb_memories
+
+} {} {}} /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/testbench_subunits/tb_writeback_stage.sv {1 {vlog -work work -vopt -sv -stats=none /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/testbench_subunits/tb_writeback_stage.sv
 QuestaSim-64 vlog 10.7c Compiler 2018.08 Aug 17 2018
 -- Compiling module tb_writeback_stage
 
@@ -34,18 +37,11 @@ QuestaSim-64 vcom 10.7c Compiler 2018.08 Aug 17 2018
 -- Loading entity register_file
 -- Loading architecture beh of register_file
 
-} {} {}} /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/testbench_subunits/tb_writeback_stage_simple.sv {1 {vlog -work work -vopt -sv -stats=none /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/testbench_subunits/tb_writeback_stage_simple.sv
-QuestaSim-64 vlog 10.7c Compiler 2018.08 Aug 17 2018
--- Compiling module tb_writeback_stage
-
-Top level modules:
-	tb_writeback_stage
-
 } {} {}} /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/romem.sv {2 {vlog -work work -vopt -sv -stats=none /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/romem.sv
 QuestaSim-64 vlog 10.7c Compiler 2018.08 Aug 17 2018
--- Compiling interface romem_interface
+-- Compiling interface mem_interface
 -- Compiling module romem
-** Warning: /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/romem.sv(102): (vlog-2121) Illegal concatenation of an unsized constant. Will treat it as a 32-bit value.
+** Warning: /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/romem.sv(87): (vlog-2121) Illegal concatenation of an unsized constant. Will treat it as a 32-bit value.
 
 Top level modules:
 	romem
@@ -116,21 +112,6 @@ QuestaSim-64 vcom 10.7c Compiler 2018.08 Aug 17 2018
 -- Loading entity encoder
 -- Loading architecture beh of encoder
 
-} {} {}} /home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/stcg.vhd {1 {vcom -work work -2002 -explicit -vopt -stats=none /home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/stcg.vhd
-QuestaSim-64 vcom 10.7c Compiler 2018.08 Aug 17 2018
--- Loading package STANDARD
--- Loading package TEXTIO
--- Loading package std_logic_1164
--- Loading package CONSTANTS
--- Compiling entity STCG
--- Compiling architecture STRUCTURAL of STCG
--- Compiling configuration CFG_STCG_STRUCTURAL
--- Loading entity STCG
--- Loading architecture STRUCTURAL of STCG
--- Loading entity PG
--- Loading entity PGSB
--- Loading entity GSB
-
 } {} {}} /home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/mux21_nbit.vhd {0 {vcom -work work -2002 -explicit -vopt -stats=none /home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/mux21_nbit.vhd
 QuestaSim-64 vcom 10.7c Compiler 2018.08 Aug 17 2018
 -- Loading package STANDARD
@@ -153,31 +134,22 @@ QuestaSim-64 vcom 10.7c Compiler 2018.08 Aug 17 2018
 ** Error: /home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/mux21_nbit.vhd(59): Unknown expanded name.
 ** Note: /home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/mux21_nbit.vhd(64): VHDL Compiler exiting
 
-} {17.0 18.0 19.0 21.0} {}} /home/ms20.50/Desktop/DLX_project/hardware/dlx/a.b-DataPath.core/a.b.e-Write_back.stage.vhd {1 {vcom -work work -2002 -explicit -vopt -stats=none /home/ms20.50/Desktop/DLX_project/hardware/dlx/a.b-DataPath.core/a.b.e-Write_back.stage.vhd
+} {17.0 18.0 19.0 21.0} {}} /home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/stcg.vhd {1 {vcom -work work -2002 -explicit -vopt -stats=none /home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/stcg.vhd
 QuestaSim-64 vcom 10.7c Compiler 2018.08 Aug 17 2018
 -- Loading package STANDARD
 -- Loading package TEXTIO
 -- Loading package std_logic_1164
--- Loading package NUMERIC_STD
--- Loading package globals
 -- Loading package CONSTANTS
--- Loading package global_components
--- Compiling entity write_back_stage
--- Compiling architecture structural of write_back_stage
+-- Compiling entity STCG
+-- Compiling architecture STRUCTURAL of STCG
+-- Compiling configuration CFG_STCG_STRUCTURAL
+-- Loading entity STCG
+-- Loading architecture STRUCTURAL of STCG
+-- Loading entity PG
+-- Loading entity PGSB
+-- Loading entity GSB
 
-} {} {}} /home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/alu.vhd {0 {vcom -work work -2002 -explicit -vopt -stats=none /home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/alu.vhd
-QuestaSim-64 vcom 10.7c Compiler 2018.08 Aug 17 2018
--- Loading package STANDARD
--- Loading package TEXTIO
--- Loading package std_logic_1164
--- Loading package NUMERIC_STD
--- Loading package CONSTANTS
-** Error: (vcom-11) Could not find work.alu_types.
-** Error (suppressible): /home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/alu.vhd(6): (vcom-1195) Cannot find expanded name "work.alu_types".
-** Error: /home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/alu.vhd(6): Unknown expanded name.
-** Note: /home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/alu.vhd(8): VHDL Compiler exiting
-
-} {8.0 9.0 10.0 11.0} {}} /home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/mux.vhd {1 {vcom -work work -2002 -explicit -vopt -stats=none /home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/mux.vhd
+} {} {}} /home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/mux.vhd {1 {vcom -work work -2002 -explicit -vopt -stats=none /home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/mux.vhd
 QuestaSim-64 vcom 10.7c Compiler 2018.08 Aug 17 2018
 -- Loading package STANDARD
 -- Loading package TEXTIO
@@ -190,6 +162,37 @@ QuestaSim-64 vcom 10.7c Compiler 2018.08 Aug 17 2018
 -- Loading entity MUX_zbit_nbit
 -- Loading architecture beh of mux_zbit_nbit
 
+} {} {}} /home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/alu.vhd {1 {vcom -work work -2002 -explicit -vopt -stats=none /home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/alu.vhd
+QuestaSim-64 vcom 10.7c Compiler 2018.08 Aug 17 2018
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package NUMERIC_STD
+-- Loading package CONSTANTS
+-- Loading package alu_types
+-- Compiling entity ALU
+-- Compiling architecture BEHAVIOR of ALU
+-- Compiling configuration CFG_ALU_BEHAVIORAL
+-- Loading entity ALU
+-- Loading architecture BEHAVIOR of ALU
+
+} {} {}} /home/ms20.50/Desktop/DLX_project/hardware/dlx/a.b-DataPath.core/a.b.e-Write_back.stage.vhd {1 {vcom -work work -2002 -explicit -vopt -stats=none /home/ms20.50/Desktop/DLX_project/hardware/dlx/a.b-DataPath.core/a.b.e-Write_back.stage.vhd
+QuestaSim-64 vcom 10.7c Compiler 2018.08 Aug 17 2018
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package NUMERIC_STD
+-- Loading package globals
+-- Loading package CONSTANTS
+-- Loading package global_components
+-- Compiling entity write_back_stage
+-- Compiling architecture structural of write_back_stage
+
+} {} {}} /home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/alu_type.vhd {1 {vcom -work work -2002 -explicit -vopt -stats=none /home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/alu_type.vhd
+QuestaSim-64 vcom 10.7c Compiler 2018.08 Aug 17 2018
+-- Loading package STANDARD
+-- Compiling package alu_types
+
 } {} {}} /home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/p4_adder.vhd {1 {vcom -work work -2002 -explicit -vopt -stats=none /home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/p4_adder.vhd
 QuestaSim-64 vcom 10.7c Compiler 2018.08 Aug 17 2018
 -- Loading package STANDARD
@@ -198,17 +201,6 @@ QuestaSim-64 vcom 10.7c Compiler 2018.08 Aug 17 2018
 -- Loading package CONSTANTS
 -- Compiling entity p4_adder
 -- Compiling architecture struc of p4_adder
-
-} {} {}} /home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/gsb.vhd {1 {vcom -work work -2002 -explicit -vopt -stats=none /home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/gsb.vhd
-QuestaSim-64 vcom 10.7c Compiler 2018.08 Aug 17 2018
--- Loading package STANDARD
--- Loading package TEXTIO
--- Loading package std_logic_1164
--- Compiling entity GSB
--- Compiling architecture BEHAVIORAL of GSB
--- Compiling configuration CFG_GSB_BEHAVIORAL
--- Loading entity GSB
--- Loading architecture BEHAVIORAL of GSB
 
 } {} {}} /home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/pgsb.vhd {1 {vcom -work work -2002 -explicit -vopt -stats=none /home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/pgsb.vhd
 QuestaSim-64 vcom 10.7c Compiler 2018.08 Aug 17 2018
@@ -221,6 +213,17 @@ QuestaSim-64 vcom 10.7c Compiler 2018.08 Aug 17 2018
 -- Loading entity PGSB
 -- Loading architecture BEHAVIORAL of PGSB
 
+} {} {}} /home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/gsb.vhd {1 {vcom -work work -2002 -explicit -vopt -stats=none /home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/gsb.vhd
+QuestaSim-64 vcom 10.7c Compiler 2018.08 Aug 17 2018
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Compiling entity GSB
+-- Compiling architecture BEHAVIORAL of GSB
+-- Compiling configuration CFG_GSB_BEHAVIORAL
+-- Loading entity GSB
+-- Loading architecture BEHAVIORAL of GSB
+
 } {} {}} /home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/constants.vhd {1 {vcom -work work -2002 -explicit -vopt -stats=none /home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/constants.vhd
 QuestaSim-64 vcom 10.7c Compiler 2018.08 Aug 17 2018
 -- Loading package STANDARD
@@ -228,16 +231,17 @@ QuestaSim-64 vcom 10.7c Compiler 2018.08 Aug 17 2018
 -- Compiling package body CONSTANTS
 -- Loading package CONSTANTS
 
-} {} {}} /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/implemented_instructions.svh {0 {vlog -work work -vopt -sv -stats=none /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/implemented_instructions.svh
+} {} {}} /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/rwmem.sv {2 {vlog -work work -vopt -sv -stats=none /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/rwmem.sv
 QuestaSim-64 vlog 10.7c Compiler 2018.08 Aug 17 2018
-** Error: (vlog-13069) /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/implemented_instructions.svh(14): near ".": syntax error, unexpected '.', expecting class.
+-- Compiling interface mem_interface
+-- Compiling module rwmem
+** Warning: /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/rwmem.sv(110): (vlog-2121) Illegal concatenation of an unsized constant. Will treat it as a 32-bit value.
+** Warning: /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/rwmem.sv(111): (vlog-2121) Illegal concatenation of an unsized constant. Will treat it as a 32-bit value.
 
-} {3.0 4.0} {}} /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/rwmem.sv {0 {vlog -work work -vopt -sv -stats=none /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/rwmem.sv
-QuestaSim-64 vlog 10.7c Compiler 2018.08 Aug 17 2018
--- Compiling interface rwmem_interface
-** Error: (vlog-13069) /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/rwmem.sv(29): near "#": syntax error, unexpected '#'.
+Top level modules:
+	rwmem
 
-} {4.0 5.0} {}} /home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/sum_gen.vhd {0 {vcom -work work -2002 -explicit -vopt -stats=none /home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/sum_gen.vhd
+} {} {}} /home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/sum_gen.vhd {0 {vcom -work work -2002 -explicit -vopt -stats=none /home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/sum_gen.vhd
 QuestaSim-64 vcom 10.7c Compiler 2018.08 Aug 17 2018
 -- Loading package STANDARD
 -- Loading package TEXTIO
@@ -257,13 +261,11 @@ QuestaSim-64 vcom 10.7c Compiler 2018.08 Aug 17 2018
 ** Warning: /home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/sum_gen.vhd(43): (vcom-1263) Component configuration "all : CSB" applies to no component instantiation statements.
 ** Note: /home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/sum_gen.vhd(47): VHDL Compiler exiting
 
-} {14.0 15.0 16.0 18.0} {}} /home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/fa.vhd {1 {vcom -work work -2002 -explicit -vopt -stats=none /home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/fa.vhd
-QuestaSim-64 vcom 10.7c Compiler 2018.08 Aug 17 2018
--- Loading package STANDARD
--- Loading package TEXTIO
--- Loading package std_logic_1164
--- Compiling entity FA
--- Compiling architecture BEHAVIORAL of FA
+} {14.0 15.0 16.0 18.0} {}} /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/implemented_instructions.svh {1 {vlog -work work -vopt -sv -stats=none /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/implemented_instructions.svh
+QuestaSim-64 vlog 10.7c Compiler 2018.08 Aug 17 2018
+
+Top level modules:
+	--none--
 
 } {} {}} /home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/pg.vhd {0 {vcom -work work -2002 -explicit -vopt -stats=none /home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/pg.vhd
 QuestaSim-64 vcom 10.7c Compiler 2018.08 Aug 17 2018
@@ -277,7 +279,15 @@ QuestaSim-64 vcom 10.7c Compiler 2018.08 Aug 17 2018
 	This facility is enabled by compiling with -2008.
 ** Note: /home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/pg.vhd(21): VHDL Compiler exiting
 
-} {8.0 9.0} {}} /home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/adder.vhd {1 {vcom -work work -2002 -explicit -vopt -stats=none /home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/adder.vhd
+} {8.0 9.0} {}} /home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/fa.vhd {1 {vcom -work work -2002 -explicit -vopt -stats=none /home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/fa.vhd
+QuestaSim-64 vcom 10.7c Compiler 2018.08 Aug 17 2018
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Compiling entity FA
+-- Compiling architecture BEHAVIORAL of FA
+
+} {} {}} /home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/adder.vhd {1 {vcom -work work -2002 -explicit -vopt -stats=none /home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/adder.vhd
 QuestaSim-64 vcom 10.7c Compiler 2018.08 Aug 17 2018
 -- Loading package STANDARD
 -- Loading package TEXTIO
@@ -288,6 +298,48 @@ QuestaSim-64 vcom 10.7c Compiler 2018.08 Aug 17 2018
 -- Compiling configuration CFG_ADDER_BEH
 -- Loading entity adder
 -- Loading architecture beh of adder
+
+} {} {}} /home/ms20.50/Desktop/DLX_project/hardware/dlx/000-globals.vhd {1 {vcom -work work -2002 -explicit -vopt -stats=none /home/ms20.50/Desktop/DLX_project/hardware/dlx/000-globals.vhd
+QuestaSim-64 vcom 10.7c Compiler 2018.08 Aug 17 2018
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Compiling package globals
+-- Compiling package body globals
+-- Loading package globals
+
+} {} {}} /home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/boothmul.vhd {1 {vcom -work work -2002 -explicit -vopt -stats=none /home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/boothmul.vhd
+QuestaSim-64 vcom 10.7c Compiler 2018.08 Aug 17 2018
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package NUMERIC_STD
+-- Loading package CONSTANTS
+-- Compiling entity boothmul
+-- Compiling architecture struc of boothmul
+-- Compiling configuration CFG_BOOTHMUL_struc
+-- Loading entity boothmul
+-- Loading architecture struc of boothmul
+-- Loading entity complement2
+-- Loading entity encoder
+-- Loading entity MUX_zbit_nbit
+-- Loading entity adder
+
+} {} {}} /home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/fd.vhd {1 {vcom -work work -2002 -explicit -vopt -stats=none /home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/fd.vhd
+QuestaSim-64 vcom 10.7c Compiler 2018.08 Aug 17 2018
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Compiling entity FD
+-- Compiling architecture PIPPO of FD
+-- Compiling architecture PLUTO of FD
+-- Loading entity FD
+-- Compiling configuration CFG_FD_PIPPO
+-- Loading entity FD
+-- Loading architecture PIPPO of FD
+-- Compiling configuration CFG_FD_PLUTO
+-- Loading entity FD
+-- Loading architecture PLUTO of FD
 
 } {} {}} /home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/reg_nbit.vhd {1 {vcom -work work -2002 -explicit -vopt -stats=none /home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/reg_nbit.vhd
 QuestaSim-64 vcom 10.7c Compiler 2018.08 Aug 17 2018
@@ -308,51 +360,13 @@ QuestaSim-64 vcom 10.7c Compiler 2018.08 Aug 17 2018
 -- Loading entity FD
 -- Loading configuration cfg_fd_pluto
 
-} {} {}} /home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/fd.vhd {1 {vcom -work work -2002 -explicit -vopt -stats=none /home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/fd.vhd
-QuestaSim-64 vcom 10.7c Compiler 2018.08 Aug 17 2018
--- Loading package STANDARD
--- Loading package TEXTIO
--- Loading package std_logic_1164
--- Compiling entity FD
--- Compiling architecture PIPPO of FD
--- Compiling architecture PLUTO of FD
--- Loading entity FD
--- Compiling configuration CFG_FD_PIPPO
--- Loading entity FD
--- Loading architecture PIPPO of FD
--- Compiling configuration CFG_FD_PLUTO
--- Loading entity FD
--- Loading architecture PLUTO of FD
-
-} {} {}} /home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/boothmul.vhd {1 {vcom -work work -2002 -explicit -vopt -stats=none /home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/boothmul.vhd
-QuestaSim-64 vcom 10.7c Compiler 2018.08 Aug 17 2018
--- Loading package STANDARD
--- Loading package TEXTIO
--- Loading package std_logic_1164
--- Loading package NUMERIC_STD
--- Loading package CONSTANTS
--- Compiling entity boothmul
--- Compiling architecture struc of boothmul
--- Compiling configuration CFG_BOOTHMUL_struc
--- Loading entity boothmul
--- Loading architecture struc of boothmul
--- Loading entity complement2
--- Loading entity encoder
--- Loading entity MUX_zbit_nbit
--- Loading entity adder
-
-} {} {}} /home/ms20.50/Desktop/DLX_project/hardware/dlx/000-globals.vhd {1 {vcom -work work -2002 -explicit -vopt -stats=none /home/ms20.50/Desktop/DLX_project/hardware/dlx/000-globals.vhd
-QuestaSim-64 vcom 10.7c Compiler 2018.08 Aug 17 2018
--- Loading package STANDARD
--- Loading package TEXTIO
--- Loading package std_logic_1164
--- Compiling package globals
--- Compiling package body globals
--- Loading package globals
-
-} {} {}} /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/tb_dlx.sv {0 {vlog -work work -vopt -sv -stats=none /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/tb_dlx.sv
+} {} {}} /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/tb_dlx.sv {1 {vlog -work work -vopt -sv -stats=none /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/tb_dlx.sv
 QuestaSim-64 vlog 10.7c Compiler 2018.08 Aug 17 2018
-** Error: (vlog-13069) ** while parsing file included at /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/tb_dlx.sv(16)
-** at /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/implemented_instructions.svh(14): near ".": syntax error, unexpected '.', expecting class.
+-- Compiling package tb_dlx_sv_unit
+-- Compiling interface mem_interface
+-- Compiling module tb_dlx
 
-} {3.0 4.0} {}}
+Top level modules:
+	tb_dlx
+
+} {} {}}

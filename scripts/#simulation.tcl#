@@ -1,0 +1,4 @@
+project compileall
+vsim -vopt work.{}
+add waves *
+run 1000 ns 
