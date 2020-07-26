@@ -1,0 +1,1585 @@
+# vsim tb_memoriesa -novopt -logfile ./log 
+# Start time: 00:07:24 on Jul 27,2020
+# ** Error (suppressible): (vsim-12110) -novopt option has no effect when used with the optimized design. -novopt option is now deprecated and will be removed in future releases.
+# Error loading design
+# End time: 00:07:24 on Jul 27,2020, Elapsed time: 0:00:00
+# Errors: 1, Warnings: 0
+ls
+# dlx_project.cr.mti
+# dlx_project.mpf
+# log
+# modelsim.ini
+# transcript
+# vsim.wlf
+# work
+vsim tb_memoriesa -novopt -fatal 12110
+# vsim tb_memoriesa -novopt -fatal 12110 
+# Start time: 00:10:19 on Jul 27,2020
+# ** Fatal: (vsim-12110) -novopt option has no effect when used with the optimized design. -novopt option is now deprecated and will be removed in future releases.
+# Error loading design
+# End time: 00:10:19 on Jul 27,2020, Elapsed time: 0:00:00
+# Errors: 1, Warnings: 0
+vsim tb_memoriesa -novopt -suppress 12110
+# vsim tb_memoriesa -novopt -suppress 12110 
+# Start time: 00:10:26 on Jul 27,2020
+# ** Warning: (vsim-8891) -novopt option has no effect when used with the optimized design. -novopt option is now deprecated and will be removed in future releases.
+# Loading sv_std.std
+# Loading work.tb_memories(fast)
+# Loading work.romem(fast)
+# Loading work.rwmem(fast)
+# Loading work.test_memory(fast)
+# ** Warning: (vsim-3838) Variable '/tb_memories/iram_if/DATA' written by continuous and procedural assignments. 
+# One of the assignments is implicit. See /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/romem.sv(87).
+#    Time: 0 ps  Iteration: 0  Instance: /tb_memories/iram_if File: /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/memory_interfaces.svh Line: 14
+add wave
+# wrong number of args for "add wave".
+# Usage: add wave [-allowconstants] [-clampanalog {0|1}] [-color <standard_color_name>] [-depth <level>] [-divider <divider_name>...] [-expand <signal_name>] [-filter <f> | -nofilter <f>] [-format <type> | -<format>] [-group <group_name> [<sig_name1>...]] [-height <pixels>] [[-in] [-out] [-inout] | [-ports]] [-internal] [-label <name>] [-max <real_num>] [-min <real_num>] [-mvcall] [-mvcovm] [-mvcreccomplete] [-noupdate] [-numdynitem <int>] [-optcells] [-position <location>] [-queueends] [-radix <type> | -<radix_type>] [-radixenumnumeric | -radixenumsymbolic] [-recursive] [-startdynitem <int>] [-time] [-window <wname>] [<object_name>...] [{<object_name> {sig1 sig2 ...}}] 
+run 100ns
+# Starting testbench for memories 
+# @0ns Starting Program
+# ** Error: Assertion error.
+#    Time: 5 ns Started: 5 ns  Scope: tb_memories.ready_check_property File: /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/tb_memories.sv Line: 162
+# Memory reset 
+# Reading file for Read-Only memory 
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# ** Error: Assertion error.
+#    Time: 25 ns Started: 25 ns  Scope: tb_memories.address_range_check_property File: /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/tb_memories.sv Line: 163
+# ** Error: Assertion error.
+#    Time: 25 ns Started: 15 ns  Scope: tb_memories.ready_check_property File: /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/tb_memories.sv Line: 162
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# ** Error: Assertion error.
+#    Time: 35 ns Started: 35 ns  Scope: tb_memories.address_range_check_property File: /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/tb_memories.sv Line: 163
+# ** Error: Assertion error.
+#    Time: 35 ns Started: 25 ns  Scope: tb_memories.ready_check_property File: /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/tb_memories.sv Line: 162
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# ** Error: Assertion error.
+#    Time: 45 ns Started: 45 ns  Scope: tb_memories.address_range_check_property File: /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/tb_memories.sv Line: 163
+# ** Error: Assertion error.
+#    Time: 45 ns Started: 35 ns  Scope: tb_memories.ready_check_property File: /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/tb_memories.sv Line: 162
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# ** Error: Assertion error.
+#    Time: 55 ns Started: 55 ns  Scope: tb_memories.address_range_check_property File: /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/tb_memories.sv Line: 163
+# ** Error: Assertion error.
+#    Time: 55 ns Started: 45 ns  Scope: tb_memories.ready_check_property File: /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/tb_memories.sv Line: 162
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# ** Error: Assertion error.
+#    Time: 65 ns Started: 65 ns  Scope: tb_memories.address_range_check_property File: /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/tb_memories.sv Line: 163
+# ** Error: Assertion error.
+#    Time: 65 ns Started: 55 ns  Scope: tb_memories.ready_check_property File: /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/tb_memories.sv Line: 162
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# ** Error: Assertion error.
+#    Time: 75 ns Started: 75 ns  Scope: tb_memories.address_range_check_property File: /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/tb_memories.sv Line: 163
+# ** Error: Assertion error.
+#    Time: 75 ns Started: 65 ns  Scope: tb_memories.ready_check_property File: /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/tb_memories.sv Line: 162
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# ** Error: Assertion error.
+#    Time: 85 ns Started: 85 ns  Scope: tb_memories.address_range_check_property File: /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/tb_memories.sv Line: 163
+# ** Error: Assertion error.
+#    Time: 85 ns Started: 75 ns  Scope: tb_memories.ready_check_property File: /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/tb_memories.sv Line: 162
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# ** Error: Assertion error.
+#    Time: 95 ns Started: 95 ns  Scope: tb_memories.address_range_check_property File: /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/tb_memories.sv Line: 163
+# ** Error: Assertion error.
+#    Time: 95 ns Started: 85 ns  Scope: tb_memories.ready_check_property File: /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/tb_memories.sv Line: 162
+run100ns
+# invalid command name "run100ns"
+add wave sim:/tb_memories/iram_uut/proc_ram/*
+# (vish-4014) No objects found matching '/tb_memories/iram_uut/proc_ram/*'.
+add wave -r ./*
+vsim -novopt -suppress 12110 work.tb_memories
+# End time: 00:15:14 on Jul 27,2020, Elapsed time: 0:04:48
+# Errors: 20, Warnings: 2
+# vsim -novopt -suppress 12110 work.tb_memories 
+# Start time: 00:15:14 on Jul 27,2020
+# ** Warning: (vsim-8891) All optimizations are disabled because the -novopt option is in effect. This will cause your simulation to run very slowly. If you are using this switch to preserve visibility for Debug or PLI features, please see the User's Manual section on Preserving Object Visibility with vopt. -novopt option is now deprecated and will be removed in future releases.
+# Refreshing /home/ms20.50/Desktop/DLX_project/project/simulation/work.tb_memories
+# ** Warning: (vlog-8891) All optimizations are disabled because the -novopt option is in effect. This will cause your simulation to run very slowly. If you are using this switch to preserve visibility for Debug or PLI features, please see the User's Manual section on Preserving Object Visibility with vopt. -novopt option is now deprecated and will be removed in future releases.
+# Loading sv_std.std
+# Loading work.tb_memories
+# Refreshing /home/ms20.50/Desktop/DLX_project/project/simulation/work.mem_interface
+# ** Warning: (vlog-8891) All optimizations are disabled because the -novopt option is in effect. This will cause your simulation to run very slowly. If you are using this switch to preserve visibility for Debug or PLI features, please see the User's Manual section on Preserving Object Visibility with vopt. -novopt option is now deprecated and will be removed in future releases.
+# Loading work.mem_interface
+# Refreshing /home/ms20.50/Desktop/DLX_project/project/simulation/work.romem
+# ** Warning: (vlog-8891) All optimizations are disabled because the -novopt option is in effect. This will cause your simulation to run very slowly. If you are using this switch to preserve visibility for Debug or PLI features, please see the User's Manual section on Preserving Object Visibility with vopt. -novopt option is now deprecated and will be removed in future releases.
+# Loading work.romem
+# Refreshing /home/ms20.50/Desktop/DLX_project/project/simulation/work.rwmem
+# ** Warning: (vlog-8891) All optimizations are disabled because the -novopt option is in effect. This will cause your simulation to run very slowly. If you are using this switch to preserve visibility for Debug or PLI features, please see the User's Manual section on Preserving Object Visibility with vopt. -novopt option is now deprecated and will be removed in future releases.
+# Loading work.rwmem
+# Refreshing /home/ms20.50/Desktop/DLX_project/project/simulation/work.test_memory
+# ** Warning: (vlog-8891) All optimizations are disabled because the -novopt option is in effect. This will cause your simulation to run very slowly. If you are using this switch to preserve visibility for Debug or PLI features, please see the User's Manual section on Preserving Object Visibility with vopt. -novopt option is now deprecated and will be removed in future releases.
+# Loading work.test_memory
+# ** Warning: (vsim-3838) Variable '/tb_memories/iram_if/DATA' written by continuous and procedural assignments. 
+# One of the assignments is implicit. See /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/memory_interfaces.svh(14).
+#    Time: 0 ps  Iteration: 0  Instance: /tb_memories/iram_uut File: /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/romem.sv Line: 87
+run 100ns
+# Starting testbench for memories 
+# @0ns Starting Program
+# ** Error: Assertion error.
+#    Time: 5 ns Started: 5 ns  Scope: tb_memories.ready_check_property File: /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/tb_memories.sv Line: 162
+# Memory reset 
+# Reading file for Read-Only memory 
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# ** Error: Assertion error.
+#    Time: 25 ns Started: 25 ns  Scope: tb_memories.address_range_check_property File: /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/tb_memories.sv Line: 163
+# ** Error: Assertion error.
+#    Time: 25 ns Started: 15 ns  Scope: tb_memories.ready_check_property File: /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/tb_memories.sv Line: 162
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# ** Error: Assertion error.
+#    Time: 35 ns Started: 35 ns  Scope: tb_memories.address_range_check_property File: /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/tb_memories.sv Line: 163
+# ** Error: Assertion error.
+#    Time: 35 ns Started: 25 ns  Scope: tb_memories.ready_check_property File: /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/tb_memories.sv Line: 162
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# ** Error: Assertion error.
+#    Time: 45 ns Started: 45 ns  Scope: tb_memories.address_range_check_property File: /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/tb_memories.sv Line: 163
+# ** Error: Assertion error.
+#    Time: 45 ns Started: 35 ns  Scope: tb_memories.ready_check_property File: /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/tb_memories.sv Line: 162
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# ** Error: Assertion error.
+#    Time: 55 ns Started: 55 ns  Scope: tb_memories.address_range_check_property File: /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/tb_memories.sv Line: 163
+# ** Error: Assertion error.
+#    Time: 55 ns Started: 45 ns  Scope: tb_memories.ready_check_property File: /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/tb_memories.sv Line: 162
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# ** Error: Assertion error.
+#    Time: 65 ns Started: 65 ns  Scope: tb_memories.address_range_check_property File: /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/tb_memories.sv Line: 163
+# ** Error: Assertion error.
+#    Time: 65 ns Started: 55 ns  Scope: tb_memories.ready_check_property File: /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/tb_memories.sv Line: 162
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# ** Error: Assertion error.
+#    Time: 75 ns Started: 75 ns  Scope: tb_memories.address_range_check_property File: /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/tb_memories.sv Line: 163
+# ** Error: Assertion error.
+#    Time: 75 ns Started: 65 ns  Scope: tb_memories.ready_check_property File: /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/tb_memories.sv Line: 162
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# ** Error: Assertion error.
+#    Time: 85 ns Started: 85 ns  Scope: tb_memories.address_range_check_property File: /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/tb_memories.sv Line: 163
+# ** Error: Assertion error.
+#    Time: 85 ns Started: 75 ns  Scope: tb_memories.ready_check_property File: /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/tb_memories.sv Line: 162
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# ** Error: Assertion error.
+#    Time: 95 ns Started: 95 ns  Scope: tb_memories.address_range_check_property File: /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/tb_memories.sv Line: 163
+# ** Error: Assertion error.
+#    Time: 95 ns Started: 85 ns  Scope: tb_memories.ready_check_property File: /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/tb_memories.sv Line: 162
+run
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# ** Error: Assertion error.
+#    Time: 105 ns Started: 105 ns  Scope: tb_memories.address_range_check_property File: /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/tb_memories.sv Line: 163
+# ** Error: Assertion error.
+#    Time: 105 ns Started: 95 ns  Scope: tb_memories.ready_check_property File: /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/tb_memories.sv Line: 162
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# ** Error: Assertion error.
+#    Time: 115 ns Started: 115 ns  Scope: tb_memories.address_range_check_property File: /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/tb_memories.sv Line: 163
+# ** Error: Assertion error.
+#    Time: 115 ns Started: 105 ns  Scope: tb_memories.ready_check_property File: /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/tb_memories.sv Line: 162
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# ** Error: Assertion error.
+#    Time: 125 ns Started: 125 ns  Scope: tb_memories.ready_check_property File: /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/tb_memories.sv Line: 162
+# ** Error: Assertion error.
+#    Time: 125 ns Started: 115 ns  Scope: tb_memories.ready_check_property File: /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/tb_memories.sv Line: 162
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# ** Error: Assertion error.
+#    Time: 135 ns Started: 135 ns  Scope: tb_memories.ready_check_property File: /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/tb_memories.sv Line: 162
+# Read-Only Memory passed the testbench 
+# Starting test of read and write memory 
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# ** Error: Assertion error.
+#    Time: 145 ns Started: 145 ns  Scope: tb_memories.ready_check_property File: /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/tb_memories.sv Line: 162
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# ** Error: Assertion error.
+#    Time: 155 ns Started: 155 ns  Scope: tb_memories.ready_check_property File: /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/tb_memories.sv Line: 162
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# ** Error: Assertion error.
+#    Time: 165 ns Started: 165 ns  Scope: tb_memories.ready_check_property File: /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/tb_memories.sv Line: 162
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# ** Error: Assertion error.
+#    Time: 175 ns Started: 175 ns  Scope: tb_memories.ready_check_property File: /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/tb_memories.sv Line: 162
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# ** Error: Assertion error.
+#    Time: 185 ns Started: 185 ns  Scope: tb_memories.ready_check_property File: /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/tb_memories.sv Line: 162
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# ** Error: Assertion error.
+#    Time: 195 ns Started: 195 ns  Scope: tb_memories.ready_check_property File: /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/tb_memories.sv Line: 162
+project compileall
+# Compile of 000-globals.vhd was successful.
+# Compile of 001-global_components.vhd was successful.
+# Compile of adder.vhd was successful.
+# Compile of boothmul.vhd was successful.
+# Compile of complement2.vhd was successful.
+# Compile of encoder.vhd was successful.
+# Compile of fa.vhd was successful.
+# Compile of fd.vhd was successful.
+# Compile of gsb.vhd was successful.
+# Compile of mux.vhd was successful.
+# Compile of p4_adder.vhd was successful.
+# Compile of pgsb.vhd was successful.
+# Compile of rca.vhd was successful.
+# Compile of reg_nbit.vhd was successful.
+# Compile of registerfile.vhd was successful.
+# Compile of stcg.vhd was successful.
+# Compile of wrf.vhd was successful.
+# Compile of a.b.e-Write_back.stage.vhd was successful.
+# Compile of constants.vhd was successful.
+# Compile of alu.vhd was successful.
+# Compile of csb.vhd was successful.
+# Compile of mux21_nbit.vhd was successful.
+# Compile of pg.vhd was successful.
+# Compile of sum_gen.vhd was successful with warnings.
+# Compile of romem.sv was successful.
+# Compile of rwmem.sv was successful.
+# Compile of tb_memories.sv was successful.
+# Compile of tb_writeback_stage.sv was successful.
+# Compile of implemented_instructions.svh was successful.
+# Compile of tb_dlx.sv was successful.
+# Compile of alu_type.vhd was successful.
+# Compile of memory_interfaces.svh was successful.
+# Compile of mux21.vhd was successful.
+# 33 compiles, 0 failed with no errors.
+vsim -novopt -suppress 12110 work.tb_memories
+# End time: 00:23:05 on Jul 27,2020, Elapsed time: 0:07:51
+# Errors: 30, Warnings: 2
+# vsim -novopt -suppress 12110 work.tb_memories 
+# Start time: 00:23:05 on Jul 27,2020
+# ** Warning: (vsim-8891) All optimizations are disabled because the -novopt option is in effect. This will cause your simulation to run very slowly. If you are using this switch to preserve visibility for Debug or PLI features, please see the User's Manual section on Preserving Object Visibility with vopt. -novopt option is now deprecated and will be removed in future releases.
+# Refreshing /home/ms20.50/Desktop/DLX_project/project/simulation/work.tb_memories
+# ** Warning: (vlog-8891) All optimizations are disabled because the -novopt option is in effect. This will cause your simulation to run very slowly. If you are using this switch to preserve visibility for Debug or PLI features, please see the User's Manual section on Preserving Object Visibility with vopt. -novopt option is now deprecated and will be removed in future releases.
+# Loading sv_std.std
+# Loading work.tb_memories
+# Refreshing /home/ms20.50/Desktop/DLX_project/project/simulation/work.mem_interface
+# ** Warning: (vlog-8891) All optimizations are disabled because the -novopt option is in effect. This will cause your simulation to run very slowly. If you are using this switch to preserve visibility for Debug or PLI features, please see the User's Manual section on Preserving Object Visibility with vopt. -novopt option is now deprecated and will be removed in future releases.
+# Loading work.mem_interface
+# Refreshing /home/ms20.50/Desktop/DLX_project/project/simulation/work.romem
+# ** Warning: (vlog-8891) All optimizations are disabled because the -novopt option is in effect. This will cause your simulation to run very slowly. If you are using this switch to preserve visibility for Debug or PLI features, please see the User's Manual section on Preserving Object Visibility with vopt. -novopt option is now deprecated and will be removed in future releases.
+# Loading work.romem
+# Refreshing /home/ms20.50/Desktop/DLX_project/project/simulation/work.rwmem
+# ** Warning: (vlog-8891) All optimizations are disabled because the -novopt option is in effect. This will cause your simulation to run very slowly. If you are using this switch to preserve visibility for Debug or PLI features, please see the User's Manual section on Preserving Object Visibility with vopt. -novopt option is now deprecated and will be removed in future releases.
+# Loading work.rwmem
+# Refreshing /home/ms20.50/Desktop/DLX_project/project/simulation/work.test_memory
+# ** Warning: (vlog-8891) All optimizations are disabled because the -novopt option is in effect. This will cause your simulation to run very slowly. If you are using this switch to preserve visibility for Debug or PLI features, please see the User's Manual section on Preserving Object Visibility with vopt. -novopt option is now deprecated and will be removed in future releases.
+# Loading work.test_memory
+# ** Warning: (vsim-3838) Variable '/tb_memories/iram_if/DATA' written by continuous and procedural assignments. 
+# One of the assignments is implicit. See /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/memory_interfaces.svh(14).
+#    Time: 0 ps  Iteration: 0  Instance: /tb_memories/iram_uut File: /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/romem.sv Line: 87
+run 100ns
+# Starting testbench for memories 
+# @0ns Starting Program
+# ** Error: Assertion error.
+#    Time: 5 ns Started: 5 ns  Scope: tb_memories.ready_check_property File: /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/tb_memories.sv Line: 162
+# Memory reset 
+# Reading file for Read-Only memory 
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# ** Error: Assertion error.
+#    Time: 25 ns Started: 25 ns  Scope: tb_memories.address_range_check_property File: /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/tb_memories.sv Line: 163
+# ** Error: Assertion error.
+#    Time: 25 ns Started: 15 ns  Scope: tb_memories.ready_check_property File: /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/tb_memories.sv Line: 162
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# ** Error: Assertion error.
+#    Time: 35 ns Started: 35 ns  Scope: tb_memories.address_range_check_property File: /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/tb_memories.sv Line: 163
+# ** Error: Assertion error.
+#    Time: 35 ns Started: 25 ns  Scope: tb_memories.ready_check_property File: /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/tb_memories.sv Line: 162
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# ** Error: Assertion error.
+#    Time: 45 ns Started: 45 ns  Scope: tb_memories.address_range_check_property File: /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/tb_memories.sv Line: 163
+# ** Error: Assertion error.
+#    Time: 45 ns Started: 35 ns  Scope: tb_memories.ready_check_property File: /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/tb_memories.sv Line: 162
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# ** Error: Assertion error.
+#    Time: 55 ns Started: 55 ns  Scope: tb_memories.address_range_check_property File: /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/tb_memories.sv Line: 163
+# ** Error: Assertion error.
+#    Time: 55 ns Started: 45 ns  Scope: tb_memories.ready_check_property File: /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/tb_memories.sv Line: 162
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# ** Error: Assertion error.
+#    Time: 65 ns Started: 65 ns  Scope: tb_memories.address_range_check_property File: /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/tb_memories.sv Line: 163
+# ** Error: Assertion error.
+#    Time: 65 ns Started: 55 ns  Scope: tb_memories.ready_check_property File: /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/tb_memories.sv Line: 162
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# ** Error: Assertion error.
+#    Time: 75 ns Started: 75 ns  Scope: tb_memories.address_range_check_property File: /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/tb_memories.sv Line: 163
+# ** Error: Assertion error.
+#    Time: 75 ns Started: 65 ns  Scope: tb_memories.ready_check_property File: /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/tb_memories.sv Line: 162
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# ** Error: Assertion error.
+#    Time: 85 ns Started: 85 ns  Scope: tb_memories.address_range_check_property File: /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/tb_memories.sv Line: 163
+# ** Error: Assertion error.
+#    Time: 85 ns Started: 75 ns  Scope: tb_memories.ready_check_property File: /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/tb_memories.sv Line: 162
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# ** Error: Assertion error.
+#    Time: 95 ns Started: 95 ns  Scope: tb_memories.address_range_check_property File: /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/tb_memories.sv Line: 163
+# ** Error: Assertion error.
+#    Time: 95 ns Started: 85 ns  Scope: tb_memories.ready_check_property File: /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/tb_memories.sv Line: 162
+project compileall
+# Compile of 000-globals.vhd was successful.
+# Compile of 001-global_components.vhd was successful.
+# Compile of adder.vhd was successful.
+# Compile of boothmul.vhd was successful.
+# Compile of complement2.vhd was successful.
+# Compile of encoder.vhd was successful.
+# Compile of fa.vhd was successful.
+# Compile of fd.vhd was successful.
+# Compile of gsb.vhd was successful.
+# Compile of mux.vhd was successful.
+# Compile of p4_adder.vhd was successful.
+# Compile of pgsb.vhd was successful.
+# Compile of rca.vhd was successful.
+# Compile of reg_nbit.vhd was successful.
+# Compile of registerfile.vhd was successful.
+# Compile of stcg.vhd was successful.
+# Compile of wrf.vhd was successful.
+# Compile of a.b.e-Write_back.stage.vhd was successful.
+# Compile of constants.vhd was successful.
+# Compile of alu.vhd was successful.
+# Compile of csb.vhd was successful.
+# Compile of mux21_nbit.vhd was successful.
+# Compile of pg.vhd was successful.
+# Compile of sum_gen.vhd was successful with warnings.
+# Compile of romem.sv was successful.
+# Compile of rwmem.sv was successful.
+# Compile of tb_memories.sv was successful.
+# Compile of tb_writeback_stage.sv was successful.
+# Compile of implemented_instructions.svh was successful.
+# Compile of tb_dlx.sv was successful.
+# Compile of alu_type.vhd was successful.
+# Compile of memory_interfaces.svh was successful.
+# Compile of mux21.vhd was successful.
+# 33 compiles, 0 failed with no errors.
+vsim -novopt -suppress 12110 work.tb_memories
+# End time: 00:25:06 on Jul 27,2020, Elapsed time: 0:02:01
+# Errors: 17, Warnings: 2
+# vsim -novopt -suppress 12110 work.tb_memories 
+# Start time: 00:25:06 on Jul 27,2020
+# ** Warning: (vsim-8891) All optimizations are disabled because the -novopt option is in effect. This will cause your simulation to run very slowly. If you are using this switch to preserve visibility for Debug or PLI features, please see the User's Manual section on Preserving Object Visibility with vopt. -novopt option is now deprecated and will be removed in future releases.
+# Refreshing /home/ms20.50/Desktop/DLX_project/project/simulation/work.tb_memories
+# ** Warning: (vlog-8891) All optimizations are disabled because the -novopt option is in effect. This will cause your simulation to run very slowly. If you are using this switch to preserve visibility for Debug or PLI features, please see the User's Manual section on Preserving Object Visibility with vopt. -novopt option is now deprecated and will be removed in future releases.
+# Loading sv_std.std
+# Loading work.tb_memories
+# Refreshing /home/ms20.50/Desktop/DLX_project/project/simulation/work.mem_interface
+# ** Warning: (vlog-8891) All optimizations are disabled because the -novopt option is in effect. This will cause your simulation to run very slowly. If you are using this switch to preserve visibility for Debug or PLI features, please see the User's Manual section on Preserving Object Visibility with vopt. -novopt option is now deprecated and will be removed in future releases.
+# Loading work.mem_interface
+# Refreshing /home/ms20.50/Desktop/DLX_project/project/simulation/work.romem
+# ** Warning: (vlog-8891) All optimizations are disabled because the -novopt option is in effect. This will cause your simulation to run very slowly. If you are using this switch to preserve visibility for Debug or PLI features, please see the User's Manual section on Preserving Object Visibility with vopt. -novopt option is now deprecated and will be removed in future releases.
+# Loading work.romem
+# Refreshing /home/ms20.50/Desktop/DLX_project/project/simulation/work.rwmem
+# ** Warning: (vlog-8891) All optimizations are disabled because the -novopt option is in effect. This will cause your simulation to run very slowly. If you are using this switch to preserve visibility for Debug or PLI features, please see the User's Manual section on Preserving Object Visibility with vopt. -novopt option is now deprecated and will be removed in future releases.
+# Loading work.rwmem
+# Refreshing /home/ms20.50/Desktop/DLX_project/project/simulation/work.test_memory
+# ** Warning: (vlog-8891) All optimizations are disabled because the -novopt option is in effect. This will cause your simulation to run very slowly. If you are using this switch to preserve visibility for Debug or PLI features, please see the User's Manual section on Preserving Object Visibility with vopt. -novopt option is now deprecated and will be removed in future releases.
+# Loading work.test_memory
+# ** Warning: (vsim-3838) Variable '/tb_memories/iram_if/DATA' written by continuous and procedural assignments. 
+# One of the assignments is implicit. See /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/memory_interfaces.svh(14).
+#    Time: 0 ps  Iteration: 0  Instance: /tb_memories/iram_uut File: /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/romem.sv Line: 87
+run
+# Starting testbench for memories 
+# @0ns Starting Program
+# ** Error: Assertion error.
+#    Time: 5 ns Started: 5 ns  Scope: tb_memories.ready_check_property File: /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/tb_memories.sv Line: 162
+# Memory reset 
+# Reading file for Read-Only memory 
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# ** Error: Assertion error.
+#    Time: 25 ns Started: 25 ns  Scope: tb_memories.address_range_check_property File: /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/tb_memories.sv Line: 163
+# ** Error: Assertion error.
+#    Time: 25 ns Started: 15 ns  Scope: tb_memories.ready_check_property File: /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/tb_memories.sv Line: 162
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# ** Error: Assertion error.
+#    Time: 35 ns Started: 35 ns  Scope: tb_memories.address_range_check_property File: /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/tb_memories.sv Line: 163
+# ** Error: Assertion error.
+#    Time: 35 ns Started: 25 ns  Scope: tb_memories.ready_check_property File: /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/tb_memories.sv Line: 162
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# ** Error: Assertion error.
+#    Time: 45 ns Started: 45 ns  Scope: tb_memories.address_range_check_property File: /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/tb_memories.sv Line: 163
+# ** Error: Assertion error.
+#    Time: 45 ns Started: 35 ns  Scope: tb_memories.ready_check_property File: /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/tb_memories.sv Line: 162
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# ** Error: Assertion error.
+#    Time: 55 ns Started: 55 ns  Scope: tb_memories.address_range_check_property File: /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/tb_memories.sv Line: 163
+# ** Error: Assertion error.
+#    Time: 55 ns Started: 45 ns  Scope: tb_memories.ready_check_property File: /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/tb_memories.sv Line: 162
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# ** Error: Assertion error.
+#    Time: 65 ns Started: 65 ns  Scope: tb_memories.address_range_check_property File: /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/tb_memories.sv Line: 163
+# ** Error: Assertion error.
+#    Time: 65 ns Started: 55 ns  Scope: tb_memories.ready_check_property File: /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/tb_memories.sv Line: 162
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# ** Error: Assertion error.
+#    Time: 75 ns Started: 75 ns  Scope: tb_memories.address_range_check_property File: /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/tb_memories.sv Line: 163
+# ** Error: Assertion error.
+#    Time: 75 ns Started: 65 ns  Scope: tb_memories.ready_check_property File: /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/tb_memories.sv Line: 162
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# ** Error: Assertion error.
+#    Time: 85 ns Started: 85 ns  Scope: tb_memories.address_range_check_property File: /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/tb_memories.sv Line: 163
+# ** Error: Assertion error.
+#    Time: 85 ns Started: 75 ns  Scope: tb_memories.ready_check_property File: /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/tb_memories.sv Line: 162
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# ** Error: Assertion error.
+#    Time: 95 ns Started: 95 ns  Scope: tb_memories.address_range_check_property File: /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/tb_memories.sv Line: 163
+# ** Error: Assertion error.
+#    Time: 95 ns Started: 85 ns  Scope: tb_memories.ready_check_property File: /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/tb_memories.sv Line: 162
+run
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# ** Error: Assertion error.
+#    Time: 105 ns Started: 105 ns  Scope: tb_memories.address_range_check_property File: /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/tb_memories.sv Line: 163
+# ** Error: Assertion error.
+#    Time: 105 ns Started: 95 ns  Scope: tb_memories.ready_check_property File: /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/tb_memories.sv Line: 162
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# ** Error: Assertion error.
+#    Time: 115 ns Started: 115 ns  Scope: tb_memories.address_range_check_property File: /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/tb_memories.sv Line: 163
+# ** Error: Assertion error.
+#    Time: 115 ns Started: 105 ns  Scope: tb_memories.ready_check_property File: /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/tb_memories.sv Line: 162
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# ** Error: Assertion error.
+#    Time: 125 ns Started: 125 ns  Scope: tb_memories.ready_check_property File: /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/tb_memories.sv Line: 162
+# ** Error: Assertion error.
+#    Time: 125 ns Started: 115 ns  Scope: tb_memories.ready_check_property File: /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/tb_memories.sv Line: 162
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# ** Error: Assertion error.
+#    Time: 135 ns Started: 135 ns  Scope: tb_memories.ready_check_property File: /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/tb_memories.sv Line: 162
+# Read-Only Memory passed the testbench 
+# Starting test of read and write memory 
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# ** Error: Assertion error.
+#    Time: 145 ns Started: 145 ns  Scope: tb_memories.ready_check_property File: /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/tb_memories.sv Line: 162
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# ** Error: Assertion error.
+#    Time: 155 ns Started: 155 ns  Scope: tb_memories.ready_check_property File: /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/tb_memories.sv Line: 162
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# ** Error: Assertion error.
+#    Time: 165 ns Started: 165 ns  Scope: tb_memories.ready_check_property File: /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/tb_memories.sv Line: 162
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# ** Error: Assertion error.
+#    Time: 175 ns Started: 175 ns  Scope: tb_memories.ready_check_property File: /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/tb_memories.sv Line: 162
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# ** Error: Assertion error.
+#    Time: 185 ns Started: 185 ns  Scope: tb_memories.ready_check_property File: /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/tb_memories.sv Line: 162
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# ** Error: Assertion error.
+#    Time: 195 ns Started: 195 ns  Scope: tb_memories.ready_check_property File: /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/tb_memories.sv Line: 162
+run
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# ** Error: Assertion error.
+#    Time: 205 ns Started: 205 ns  Scope: tb_memories.ready_check_property File: /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/tb_memories.sv Line: 162
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# ** Error: Assertion error.
+#    Time: 215 ns Started: 215 ns  Scope: tb_memories.ready_check_property File: /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/tb_memories.sv Line: 162
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# ** Error: Assertion error.
+#    Time: 225 ns Started: 225 ns  Scope: tb_memories.ready_check_property File: /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/tb_memories.sv Line: 162
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# ** Error: Assertion error.
+#    Time: 235 ns Started: 235 ns  Scope: tb_memories.ready_check_property File: /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/tb_memories.sv Line: 162
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# ** Error: Assertion error.
+#    Time: 245 ns Started: 245 ns  Scope: tb_memories.ready_check_property File: /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/tb_memories.sv Line: 162
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# ** Error: Assertion error.
+#    Time: 255 ns Started: 255 ns  Scope: tb_memories.ready_check_property File: /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/tb_memories.sv Line: 162
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# ** Error: Assertion error.
+#    Time: 265 ns Started: 265 ns  Scope: tb_memories.ready_check_property File: /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/tb_memories.sv Line: 162
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# ** Error: Assertion error.
+#    Time: 275 ns Started: 275 ns  Scope: tb_memories.ready_check_property File: /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/tb_memories.sv Line: 162
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# ** Error: Assertion error.
+#    Time: 285 ns Started: 285 ns  Scope: tb_memories.ready_check_property File: /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/tb_memories.sv Line: 162
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# ** Error: Assertion error.
+#    Time: 295 ns Started: 295 ns  Scope: tb_memories.ready_check_property File: /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/tb_memories.sv Line: 162
+run
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# ** Error: Assertion error.
+#    Time: 305 ns Started: 305 ns  Scope: tb_memories.ready_check_property File: /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/tb_memories.sv Line: 162
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# ** Error: Assertion error.
+#    Time: 315 ns Started: 315 ns  Scope: tb_memories.ready_check_property File: /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/tb_memories.sv Line: 162
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# ** Error: Assertion error.
+#    Time: 325 ns Started: 325 ns  Scope: tb_memories.ready_check_property File: /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/tb_memories.sv Line: 162
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# ** Error: Assertion error.
+#    Time: 335 ns Started: 335 ns  Scope: tb_memories.ready_check_property File: /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/tb_memories.sv Line: 162
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# ** Error: Assertion error.
+#    Time: 345 ns Started: 345 ns  Scope: tb_memories.ready_check_property File: /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/tb_memories.sv Line: 162
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# ** Error: Assertion error.
+#    Time: 355 ns Started: 355 ns  Scope: tb_memories.ready_check_property File: /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/tb_memories.sv Line: 162
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# ** Error: Assertion error.
+#    Time: 365 ns Started: 365 ns  Scope: tb_memories.ready_check_property File: /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/tb_memories.sv Line: 162
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# ** Error: Assertion error.
+#    Time: 375 ns Started: 375 ns  Scope: tb_memories.ready_check_property File: /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/tb_memories.sv Line: 162
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# ** Error: Assertion error.
+#    Time: 385 ns Started: 385 ns  Scope: tb_memories.ready_check_property File: /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/tb_memories.sv Line: 162
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# ** Error: Assertion error.
+#    Time: 395 ns Started: 395 ns  Scope: tb_memories.ready_check_property File: /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/tb_memories.sv Line: 162
+run
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# ** Error: Assertion error.
+#    Time: 405 ns Started: 405 ns  Scope: tb_memories.ready_check_property File: /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/tb_memories.sv Line: 162
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# ** Error: Assertion error.
+#    Time: 415 ns Started: 415 ns  Scope: tb_memories.ready_check_property File: /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/tb_memories.sv Line: 162
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# ** Error: Assertion error.
+#    Time: 425 ns Started: 425 ns  Scope: tb_memories.ready_check_property File: /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/tb_memories.sv Line: 162
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# ** Error: Assertion error.
+#    Time: 435 ns Started: 435 ns  Scope: tb_memories.ready_check_property File: /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/tb_memories.sv Line: 162
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# ** Error: Assertion error.
+#    Time: 445 ns Started: 445 ns  Scope: tb_memories.ready_check_property File: /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/tb_memories.sv Line: 162
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# ** Error: Assertion error.
+#    Time: 455 ns Started: 455 ns  Scope: tb_memories.ready_check_property File: /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/tb_memories.sv Line: 162
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# ** Error: Assertion error.
+#    Time: 465 ns Started: 465 ns  Scope: tb_memories.ready_check_property File: /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/tb_memories.sv Line: 162
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# ** Error: Assertion error.
+#    Time: 475 ns Started: 475 ns  Scope: tb_memories.ready_check_property File: /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/tb_memories.sv Line: 162
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# ** Error: Assertion error.
+#    Time: 485 ns Started: 485 ns  Scope: tb_memories.ready_check_property File: /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/tb_memories.sv Line: 162
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# ** Error: Assertion error.
+#    Time: 495 ns Started: 495 ns  Scope: tb_memories.ready_check_property File: /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/tb_memories.sv Line: 162
+run
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# ** Error: Assertion error.
+#    Time: 505 ns Started: 505 ns  Scope: tb_memories.ready_check_property File: /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/tb_memories.sv Line: 162
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# ** Error: Assertion error.
+#    Time: 515 ns Started: 515 ns  Scope: tb_memories.ready_check_property File: /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/tb_memories.sv Line: 162
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# ** Error: Assertion error.
+#    Time: 525 ns Started: 525 ns  Scope: tb_memories.ready_check_property File: /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/tb_memories.sv Line: 162
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# ** Error: Assertion error.
+#    Time: 535 ns Started: 535 ns  Scope: tb_memories.ready_check_property File: /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/tb_memories.sv Line: 162
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# ** Error: Assertion error.
+#    Time: 545 ns Started: 545 ns  Scope: tb_memories.ready_check_property File: /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/tb_memories.sv Line: 162
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# ** Error: Assertion error.
+#    Time: 555 ns Started: 555 ns  Scope: tb_memories.ready_check_property File: /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/tb_memories.sv Line: 162
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# ** Error: Assertion error.
+#    Time: 565 ns Started: 565 ns  Scope: tb_memories.ready_check_property File: /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/tb_memories.sv Line: 162
+# 565ns Terminating simulation
+# ** Note: $finish    : /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/tb_memories.sv(121)
+#    Time: 565 ns  Iteration: 1  Instance: /tb_memories/test_ram
+# 1
+# Break in Module test_memory at /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/tb_memories.sv line 121
+project compileall
+# Compile of 000-globals.vhd was successful.
+# Compile of 001-global_components.vhd was successful.
+# Compile of adder.vhd was successful.
+# Compile of boothmul.vhd was successful.
+# Compile of complement2.vhd was successful.
+# Compile of encoder.vhd was successful.
+# Compile of fa.vhd was successful.
+# Compile of fd.vhd was successful.
+# Compile of gsb.vhd was successful.
+# Compile of mux.vhd was successful.
+# Compile of p4_adder.vhd was successful.
+# Compile of pgsb.vhd was successful.
+# Compile of rca.vhd was successful.
+# Compile of reg_nbit.vhd was successful.
+# Compile of registerfile.vhd was successful.
+# Compile of stcg.vhd was successful.
+# Compile of wrf.vhd was successful.
+# Compile of a.b.e-Write_back.stage.vhd was successful.
+# Compile of constants.vhd was successful.
+# Compile of alu.vhd was successful.
+# Compile of csb.vhd was successful.
+# Compile of mux21_nbit.vhd was successful.
+# Compile of pg.vhd was successful.
+# Compile of sum_gen.vhd was successful with warnings.
+# Compile of romem.sv was successful.
+# Compile of rwmem.sv was successful.
+# Compile of tb_memories.sv was successful.
+# Compile of tb_writeback_stage.sv was successful.
+# Compile of implemented_instructions.svh was successful.
+# Compile of tb_dlx.sv was successful.
+# Compile of alu_type.vhd was successful.
+# Compile of memory_interfaces.svh was successful.
+# Compile of mux21.vhd was successful.
+# 33 compiles, 0 failed with no errors.
+vsim -novopt -suppress 12110 work.tb_memories
+# End time: 00:29:39 on Jul 27,2020, Elapsed time: 0:04:33
+# Errors: 67, Warnings: 2
+# vsim -novopt -suppress 12110 work.tb_memories 
+# Start time: 00:29:39 on Jul 27,2020
+# ** Warning: (vsim-8891) All optimizations are disabled because the -novopt option is in effect. This will cause your simulation to run very slowly. If you are using this switch to preserve visibility for Debug or PLI features, please see the User's Manual section on Preserving Object Visibility with vopt. -novopt option is now deprecated and will be removed in future releases.
+# Refreshing /home/ms20.50/Desktop/DLX_project/project/simulation/work.tb_memories
+# ** Warning: (vlog-8891) All optimizations are disabled because the -novopt option is in effect. This will cause your simulation to run very slowly. If you are using this switch to preserve visibility for Debug or PLI features, please see the User's Manual section on Preserving Object Visibility with vopt. -novopt option is now deprecated and will be removed in future releases.
+# Loading sv_std.std
+# Loading work.tb_memories
+# Refreshing /home/ms20.50/Desktop/DLX_project/project/simulation/work.mem_interface
+# ** Warning: (vlog-8891) All optimizations are disabled because the -novopt option is in effect. This will cause your simulation to run very slowly. If you are using this switch to preserve visibility for Debug or PLI features, please see the User's Manual section on Preserving Object Visibility with vopt. -novopt option is now deprecated and will be removed in future releases.
+# Loading work.mem_interface
+# Refreshing /home/ms20.50/Desktop/DLX_project/project/simulation/work.romem
+# ** Warning: (vlog-8891) All optimizations are disabled because the -novopt option is in effect. This will cause your simulation to run very slowly. If you are using this switch to preserve visibility for Debug or PLI features, please see the User's Manual section on Preserving Object Visibility with vopt. -novopt option is now deprecated and will be removed in future releases.
+# Loading work.romem
+# Refreshing /home/ms20.50/Desktop/DLX_project/project/simulation/work.rwmem
+# ** Warning: (vlog-8891) All optimizations are disabled because the -novopt option is in effect. This will cause your simulation to run very slowly. If you are using this switch to preserve visibility for Debug or PLI features, please see the User's Manual section on Preserving Object Visibility with vopt. -novopt option is now deprecated and will be removed in future releases.
+# Loading work.rwmem
+# Refreshing /home/ms20.50/Desktop/DLX_project/project/simulation/work.test_memory
+# ** Warning: (vlog-8891) All optimizations are disabled because the -novopt option is in effect. This will cause your simulation to run very slowly. If you are using this switch to preserve visibility for Debug or PLI features, please see the User's Manual section on Preserving Object Visibility with vopt. -novopt option is now deprecated and will be removed in future releases.
+# Loading work.test_memory
+# ** Warning: (vsim-3838) Variable '/tb_memories/iram_if/DATA' written by continuous and procedural assignments. 
+# One of the assignments is implicit. See /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/memory_interfaces.svh(14).
+#    Time: 0 ps  Iteration: 0  Instance: /tb_memories/iram_uut File: /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/romem.sv Line: 87
+project compileall
+# Compile of 000-globals.vhd was successful.
+# Compile of 001-global_components.vhd was successful.
+# Compile of adder.vhd was successful.
+# Compile of boothmul.vhd was successful.
+# Compile of complement2.vhd was successful.
+# Compile of encoder.vhd was successful.
+# Compile of fa.vhd was successful.
+# Compile of fd.vhd was successful.
+# Compile of gsb.vhd was successful.
+# Compile of mux.vhd was successful.
+# Compile of p4_adder.vhd was successful.
+# Compile of pgsb.vhd was successful.
+# Compile of rca.vhd was successful.
+# Compile of reg_nbit.vhd was successful.
+# Compile of registerfile.vhd was successful.
+# Compile of stcg.vhd was successful.
+# Compile of wrf.vhd was successful.
+# Compile of a.b.e-Write_back.stage.vhd was successful.
+# Compile of constants.vhd was successful.
+# Compile of alu.vhd was successful.
+# Compile of csb.vhd was successful.
+# Compile of mux21_nbit.vhd was successful.
+# Compile of pg.vhd was successful.
+# Compile of sum_gen.vhd was successful with warnings.
+# Compile of romem.sv was successful.
+# Compile of rwmem.sv was successful.
+# Compile of tb_memories.sv was successful.
+# Compile of tb_writeback_stage.sv was successful.
+# Compile of implemented_instructions.svh was successful.
+# Compile of tb_dlx.sv was successful.
+# Compile of alu_type.vhd was successful.
+# Compile of memory_interfaces.svh was successful.
+# Compile of mux21.vhd was successful.
+# 33 compiles, 0 failed with no errors.
+vsim -novopt -suppress 12110 work.tb_memories
+# End time: 00:30:29 on Jul 27,2020, Elapsed time: 0:00:50
+# Errors: 0, Warnings: 2
+# vsim -novopt -suppress 12110 work.tb_memories 
+# Start time: 00:30:29 on Jul 27,2020
+# ** Warning: (vsim-8891) All optimizations are disabled because the -novopt option is in effect. This will cause your simulation to run very slowly. If you are using this switch to preserve visibility for Debug or PLI features, please see the User's Manual section on Preserving Object Visibility with vopt. -novopt option is now deprecated and will be removed in future releases.
+# Refreshing /home/ms20.50/Desktop/DLX_project/project/simulation/work.tb_memories
+# ** Warning: (vlog-8891) All optimizations are disabled because the -novopt option is in effect. This will cause your simulation to run very slowly. If you are using this switch to preserve visibility for Debug or PLI features, please see the User's Manual section on Preserving Object Visibility with vopt. -novopt option is now deprecated and will be removed in future releases.
+# Loading sv_std.std
+# Loading work.tb_memories
+# Refreshing /home/ms20.50/Desktop/DLX_project/project/simulation/work.mem_interface
+# ** Warning: (vlog-8891) All optimizations are disabled because the -novopt option is in effect. This will cause your simulation to run very slowly. If you are using this switch to preserve visibility for Debug or PLI features, please see the User's Manual section on Preserving Object Visibility with vopt. -novopt option is now deprecated and will be removed in future releases.
+# Loading work.mem_interface
+# Refreshing /home/ms20.50/Desktop/DLX_project/project/simulation/work.romem
+# ** Warning: (vlog-8891) All optimizations are disabled because the -novopt option is in effect. This will cause your simulation to run very slowly. If you are using this switch to preserve visibility for Debug or PLI features, please see the User's Manual section on Preserving Object Visibility with vopt. -novopt option is now deprecated and will be removed in future releases.
+# Loading work.romem
+# Refreshing /home/ms20.50/Desktop/DLX_project/project/simulation/work.rwmem
+# ** Warning: (vlog-8891) All optimizations are disabled because the -novopt option is in effect. This will cause your simulation to run very slowly. If you are using this switch to preserve visibility for Debug or PLI features, please see the User's Manual section on Preserving Object Visibility with vopt. -novopt option is now deprecated and will be removed in future releases.
+# Loading work.rwmem
+# Refreshing /home/ms20.50/Desktop/DLX_project/project/simulation/work.test_memory
+# ** Warning: (vlog-8891) All optimizations are disabled because the -novopt option is in effect. This will cause your simulation to run very slowly. If you are using this switch to preserve visibility for Debug or PLI features, please see the User's Manual section on Preserving Object Visibility with vopt. -novopt option is now deprecated and will be removed in future releases.
+# Loading work.test_memory
+# ** Warning: (vsim-3838) Variable '/tb_memories/iram_if/DATA' written by continuous and procedural assignments. 
+# One of the assignments is implicit. See /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/memory_interfaces.svh(14).
+#    Time: 0 ps  Iteration: 0  Instance: /tb_memories/iram_uut File: /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/romem.sv Line: 87
+run 100ns
+# Starting testbench for memories 
+# @0ns Starting Program
+# ** Error: Assertion error.
+#    Time: 5 ns Started: 5 ns  Scope: tb_memories.ready_check_property File: /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/tb_memories.sv Line: 162
+# Memory reset 
+# Reading file for Read-Only memory 
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# ** Error: Assertion error.
+#    Time: 25 ns Started: 15 ns  Scope: tb_memories.ready_check_property File: /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/tb_memories.sv Line: 162
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# ** Error: Assertion error.
+#    Time: 35 ns Started: 25 ns  Scope: tb_memories.ready_check_property File: /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/tb_memories.sv Line: 162
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# ** Error: Assertion error.
+#    Time: 45 ns Started: 35 ns  Scope: tb_memories.ready_check_property File: /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/tb_memories.sv Line: 162
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# ** Error: Assertion error.
+#    Time: 55 ns Started: 45 ns  Scope: tb_memories.ready_check_property File: /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/tb_memories.sv Line: 162
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# ** Error: Assertion error.
+#    Time: 65 ns Started: 55 ns  Scope: tb_memories.ready_check_property File: /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/tb_memories.sv Line: 162
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# ** Error: Assertion error.
+#    Time: 75 ns Started: 65 ns  Scope: tb_memories.ready_check_property File: /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/tb_memories.sv Line: 162
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# ** Error: Assertion error.
+#    Time: 85 ns Started: 75 ns  Scope: tb_memories.ready_check_property File: /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/tb_memories.sv Line: 162
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# ** Error: Assertion error.
+#    Time: 95 ns Started: 85 ns  Scope: tb_memories.ready_check_property File: /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/tb_memories.sv Line: 162
+run 100ns
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# ** Error: Assertion error.
+#    Time: 105 ns Started: 95 ns  Scope: tb_memories.ready_check_property File: /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/tb_memories.sv Line: 162
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# ** Error: Assertion error.
+#    Time: 115 ns Started: 105 ns  Scope: tb_memories.ready_check_property File: /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/tb_memories.sv Line: 162
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# ** Error: Assertion error.
+#    Time: 125 ns Started: 125 ns  Scope: tb_memories.ready_check_property File: /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/tb_memories.sv Line: 162
+# ** Error: Assertion error.
+#    Time: 125 ns Started: 115 ns  Scope: tb_memories.ready_check_property File: /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/tb_memories.sv Line: 162
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# ** Error: Assertion error.
+#    Time: 135 ns Started: 135 ns  Scope: tb_memories.ready_check_property File: /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/tb_memories.sv Line: 162
+# Read-Only Memory passed the testbench 
+# Starting test of read and write memory 
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# ** Error: Assertion error.
+#    Time: 145 ns Started: 145 ns  Scope: tb_memories.ready_check_property File: /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/tb_memories.sv Line: 162
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# ** Error: Assertion error.
+#    Time: 155 ns Started: 155 ns  Scope: tb_memories.ready_check_property File: /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/tb_memories.sv Line: 162
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# ** Error: Assertion error.
+#    Time: 165 ns Started: 165 ns  Scope: tb_memories.ready_check_property File: /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/tb_memories.sv Line: 162
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# ** Error: Assertion error.
+#    Time: 175 ns Started: 175 ns  Scope: tb_memories.ready_check_property File: /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/tb_memories.sv Line: 162
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# ** Error: Assertion error.
+#    Time: 185 ns Started: 185 ns  Scope: tb_memories.ready_check_property File: /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/tb_memories.sv Line: 162
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# ** Error: Assertion error.
+#    Time: 195 ns Started: 195 ns  Scope: tb_memories.ready_check_property File: /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/tb_memories.sv Line: 162
+run
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# ** Error: Assertion error.
+#    Time: 205 ns Started: 205 ns  Scope: tb_memories.ready_check_property File: /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/tb_memories.sv Line: 162
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# ** Error: Assertion error.
+#    Time: 215 ns Started: 215 ns  Scope: tb_memories.ready_check_property File: /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/tb_memories.sv Line: 162
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# ** Error: Assertion error.
+#    Time: 225 ns Started: 225 ns  Scope: tb_memories.ready_check_property File: /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/tb_memories.sv Line: 162
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# ** Error: Assertion error.
+#    Time: 235 ns Started: 235 ns  Scope: tb_memories.ready_check_property File: /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/tb_memories.sv Line: 162
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# ** Error: Assertion error.
+#    Time: 245 ns Started: 245 ns  Scope: tb_memories.ready_check_property File: /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/tb_memories.sv Line: 162
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# ** Error: Assertion error.
+#    Time: 255 ns Started: 255 ns  Scope: tb_memories.ready_check_property File: /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/tb_memories.sv Line: 162
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# ** Error: Assertion error.
+#    Time: 265 ns Started: 265 ns  Scope: tb_memories.ready_check_property File: /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/tb_memories.sv Line: 162
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# ** Error: Assertion error.
+#    Time: 275 ns Started: 275 ns  Scope: tb_memories.ready_check_property File: /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/tb_memories.sv Line: 162
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# ** Error: Assertion error.
+#    Time: 285 ns Started: 285 ns  Scope: tb_memories.ready_check_property File: /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/tb_memories.sv Line: 162
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# ** Error: Assertion error.
+#    Time: 295 ns Started: 295 ns  Scope: tb_memories.ready_check_property File: /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/tb_memories.sv Line: 162
+run
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# ** Error: Assertion error.
+#    Time: 305 ns Started: 305 ns  Scope: tb_memories.ready_check_property File: /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/tb_memories.sv Line: 162
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# ** Error: Assertion error.
+#    Time: 315 ns Started: 315 ns  Scope: tb_memories.ready_check_property File: /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/tb_memories.sv Line: 162
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# ** Error: Assertion error.
+#    Time: 325 ns Started: 325 ns  Scope: tb_memories.ready_check_property File: /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/tb_memories.sv Line: 162
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# ** Error: Assertion error.
+#    Time: 335 ns Started: 335 ns  Scope: tb_memories.ready_check_property File: /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/tb_memories.sv Line: 162
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# ** Error: Assertion error.
+#    Time: 345 ns Started: 345 ns  Scope: tb_memories.ready_check_property File: /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/tb_memories.sv Line: 162
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# ** Error: Assertion error.
+#    Time: 355 ns Started: 355 ns  Scope: tb_memories.ready_check_property File: /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/tb_memories.sv Line: 162
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# ** Error: Assertion error.
+#    Time: 365 ns Started: 365 ns  Scope: tb_memories.ready_check_property File: /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/tb_memories.sv Line: 162
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# ** Error: Assertion error.
+#    Time: 375 ns Started: 375 ns  Scope: tb_memories.ready_check_property File: /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/tb_memories.sv Line: 162
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# ** Error: Assertion error.
+#    Time: 385 ns Started: 385 ns  Scope: tb_memories.ready_check_property File: /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/tb_memories.sv Line: 162
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# ** Error: Assertion error.
+#    Time: 395 ns Started: 395 ns  Scope: tb_memories.ready_check_property File: /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/tb_memories.sv Line: 162
+run
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# ** Error: Assertion error.
+#    Time: 405 ns Started: 405 ns  Scope: tb_memories.ready_check_property File: /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/tb_memories.sv Line: 162
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# ** Error: Assertion error.
+#    Time: 415 ns Started: 415 ns  Scope: tb_memories.ready_check_property File: /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/tb_memories.sv Line: 162
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# ** Error: Assertion error.
+#    Time: 425 ns Started: 425 ns  Scope: tb_memories.ready_check_property File: /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/tb_memories.sv Line: 162
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# ** Error: Assertion error.
+#    Time: 435 ns Started: 435 ns  Scope: tb_memories.ready_check_property File: /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/tb_memories.sv Line: 162
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# ** Error: Assertion error.
+#    Time: 445 ns Started: 445 ns  Scope: tb_memories.ready_check_property File: /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/tb_memories.sv Line: 162
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# ** Error: Assertion error.
+#    Time: 455 ns Started: 455 ns  Scope: tb_memories.ready_check_property File: /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/tb_memories.sv Line: 162
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# ** Error: Assertion error.
+#    Time: 465 ns Started: 465 ns  Scope: tb_memories.ready_check_property File: /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/tb_memories.sv Line: 162
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# ** Error: Assertion error.
+#    Time: 475 ns Started: 475 ns  Scope: tb_memories.ready_check_property File: /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/tb_memories.sv Line: 162
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# ** Error: Assertion error.
+#    Time: 485 ns Started: 485 ns  Scope: tb_memories.ready_check_property File: /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/tb_memories.sv Line: 162
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# ** Error: Assertion error.
+#    Time: 495 ns Started: 495 ns  Scope: tb_memories.ready_check_property File: /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/tb_memories.sv Line: 162
+run
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# ** Error: Assertion error.
+#    Time: 505 ns Started: 505 ns  Scope: tb_memories.ready_check_property File: /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/tb_memories.sv Line: 162
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# ** Error: Assertion error.
+#    Time: 515 ns Started: 515 ns  Scope: tb_memories.ready_check_property File: /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/tb_memories.sv Line: 162
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# ** Error: Assertion error.
+#    Time: 525 ns Started: 525 ns  Scope: tb_memories.ready_check_property File: /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/tb_memories.sv Line: 162
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# ** Error: Assertion error.
+#    Time: 535 ns Started: 535 ns  Scope: tb_memories.ready_check_property File: /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/tb_memories.sv Line: 162
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# ** Error: Assertion error.
+#    Time: 545 ns Started: 545 ns  Scope: tb_memories.ready_check_property File: /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/tb_memories.sv Line: 162
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# ** Error: Assertion error.
+#    Time: 555 ns Started: 555 ns  Scope: tb_memories.ready_check_property File: /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/tb_memories.sv Line: 162
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# ** Error: Assertion error.
+#    Time: 565 ns Started: 565 ns  Scope: tb_memories.ready_check_property File: /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/tb_memories.sv Line: 162
+# 565ns Terminating simulation
+# ** Note: $finish    : /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/tb_memories.sv(121)
+#    Time: 565 ns  Iteration: 1  Instance: /tb_memories/test_ram
+# 1
+# Break in Module test_memory at /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/tb_memories.sv line 121
+project compile all
+# unknown or ambiguous subcommand "compile": must be addfile, addfolder, calculateorder, close, compileall, compileorder, compileoutofdate, currentsim, delete, env, filenames, history, new, open, removefile, simargs, or startsim
+project compileall
+# Compile of 000-globals.vhd was successful.
+# Compile of 001-global_components.vhd was successful.
+# Compile of adder.vhd was successful.
+# Compile of boothmul.vhd was successful.
+# Compile of complement2.vhd was successful.
+# Compile of encoder.vhd was successful.
+# Compile of fa.vhd was successful.
+# Compile of fd.vhd was successful.
+# Compile of gsb.vhd was successful.
+# Compile of mux.vhd was successful.
+# Compile of p4_adder.vhd was successful.
+# Compile of pgsb.vhd was successful.
+# Compile of rca.vhd was successful.
+# Compile of reg_nbit.vhd was successful.
+# Compile of registerfile.vhd was successful.
+# Compile of stcg.vhd was successful.
+# Compile of wrf.vhd was successful.
+# Compile of a.b.e-Write_back.stage.vhd was successful.
+# Compile of constants.vhd was successful.
+# Compile of alu.vhd was successful.
+# Compile of csb.vhd was successful.
+# Compile of mux21_nbit.vhd was successful.
+# Compile of pg.vhd was successful.
+# Compile of sum_gen.vhd was successful with warnings.
+# Compile of romem.sv was successful.
+# Compile of rwmem.sv was successful.
+# Compile of tb_memories.sv was successful.
+# Compile of tb_writeback_stage.sv was successful.
+# Compile of implemented_instructions.svh was successful.
+# Compile of tb_dlx.sv was successful.
+# Compile of alu_type.vhd was successful.
+# Compile of memory_interfaces.svh was successful.
+# Compile of mux21.vhd was successful.
+# 33 compiles, 0 failed with no errors.
+vsim -novopt -suppress 12110 work.tb_memories
+# End time: 00:36:05 on Jul 27,2020, Elapsed time: 0:05:36
+# Errors: 58, Warnings: 2
+# vsim -novopt -suppress 12110 work.tb_memories 
+# Start time: 00:36:05 on Jul 27,2020
+# ** Warning: (vsim-8891) All optimizations are disabled because the -novopt option is in effect. This will cause your simulation to run very slowly. If you are using this switch to preserve visibility for Debug or PLI features, please see the User's Manual section on Preserving Object Visibility with vopt. -novopt option is now deprecated and will be removed in future releases.
+# Refreshing /home/ms20.50/Desktop/DLX_project/project/simulation/work.tb_memories
+# ** Warning: (vlog-8891) All optimizations are disabled because the -novopt option is in effect. This will cause your simulation to run very slowly. If you are using this switch to preserve visibility for Debug or PLI features, please see the User's Manual section on Preserving Object Visibility with vopt. -novopt option is now deprecated and will be removed in future releases.
+# Loading sv_std.std
+# Loading work.tb_memories
+# Refreshing /home/ms20.50/Desktop/DLX_project/project/simulation/work.mem_interface
+# ** Warning: (vlog-8891) All optimizations are disabled because the -novopt option is in effect. This will cause your simulation to run very slowly. If you are using this switch to preserve visibility for Debug or PLI features, please see the User's Manual section on Preserving Object Visibility with vopt. -novopt option is now deprecated and will be removed in future releases.
+# Loading work.mem_interface
+# Refreshing /home/ms20.50/Desktop/DLX_project/project/simulation/work.romem
+# ** Warning: (vlog-8891) All optimizations are disabled because the -novopt option is in effect. This will cause your simulation to run very slowly. If you are using this switch to preserve visibility for Debug or PLI features, please see the User's Manual section on Preserving Object Visibility with vopt. -novopt option is now deprecated and will be removed in future releases.
+# Loading work.romem
+# Refreshing /home/ms20.50/Desktop/DLX_project/project/simulation/work.rwmem
+# ** Warning: (vlog-8891) All optimizations are disabled because the -novopt option is in effect. This will cause your simulation to run very slowly. If you are using this switch to preserve visibility for Debug or PLI features, please see the User's Manual section on Preserving Object Visibility with vopt. -novopt option is now deprecated and will be removed in future releases.
+# Loading work.rwmem
+# Refreshing /home/ms20.50/Desktop/DLX_project/project/simulation/work.test_memory
+# ** Warning: (vlog-8891) All optimizations are disabled because the -novopt option is in effect. This will cause your simulation to run very slowly. If you are using this switch to preserve visibility for Debug or PLI features, please see the User's Manual section on Preserving Object Visibility with vopt. -novopt option is now deprecated and will be removed in future releases.
+# Loading work.test_memory
+# ** Warning: (vsim-3838) Variable '/tb_memories/iram_if/DATA' written by continuous and procedural assignments. 
+# One of the assignments is implicit. See /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/memory_interfaces.svh(14).
+#    Time: 0 ps  Iteration: 0  Instance: /tb_memories/iram_uut File: /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/romem.sv Line: 87
+run 100ns
+# Starting testbench for memories 
+# @0ns Starting Program
+# ** Error: Assertion error.
+#    Time: 5 ns Started: 5 ns  Scope: tb_memories.ready_check_property File: /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/tb_memories.sv Line: 162
+# Memory reset 
+# Reading file for Read-Only memory 
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# ** Error: Assertion error.
+#    Time: 25 ns Started: 15 ns  Scope: tb_memories.ready_check_property File: /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/tb_memories.sv Line: 162
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# ** Error: Assertion error.
+#    Time: 35 ns Started: 25 ns  Scope: tb_memories.ready_check_property File: /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/tb_memories.sv Line: 162
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# ** Error: Assertion error.
+#    Time: 45 ns Started: 35 ns  Scope: tb_memories.ready_check_property File: /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/tb_memories.sv Line: 162
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# ** Error: Assertion error.
+#    Time: 55 ns Started: 45 ns  Scope: tb_memories.ready_check_property File: /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/tb_memories.sv Line: 162
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# ** Error: Assertion error.
+#    Time: 65 ns Started: 55 ns  Scope: tb_memories.ready_check_property File: /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/tb_memories.sv Line: 162
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# ** Error: Assertion error.
+#    Time: 75 ns Started: 65 ns  Scope: tb_memories.ready_check_property File: /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/tb_memories.sv Line: 162
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# ** Error: Assertion error.
+#    Time: 85 ns Started: 75 ns  Scope: tb_memories.ready_check_property File: /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/tb_memories.sv Line: 162
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# ** Error: Assertion error.
+#    Time: 95 ns Started: 85 ns  Scope: tb_memories.ready_check_property File: /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/tb_memories.sv Line: 162
+run
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# ** Error: Assertion error.
+#    Time: 105 ns Started: 95 ns  Scope: tb_memories.ready_check_property File: /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/tb_memories.sv Line: 162
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# ** Error: Assertion error.
+#    Time: 115 ns Started: 105 ns  Scope: tb_memories.ready_check_property File: /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/tb_memories.sv Line: 162
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# ** Error: Assertion error.
+#    Time: 125 ns Started: 125 ns  Scope: tb_memories.ready_check_property File: /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/tb_memories.sv Line: 162
+# ** Error: Assertion error.
+#    Time: 125 ns Started: 115 ns  Scope: tb_memories.ready_check_property File: /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/tb_memories.sv Line: 162
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# ** Error: Assertion error.
+#    Time: 135 ns Started: 135 ns  Scope: tb_memories.ready_check_property File: /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/tb_memories.sv Line: 162
+# Read-Only Memory passed the testbench 
+# Starting test of read and write memory 
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# ** Error: Assertion error.
+#    Time: 145 ns Started: 145 ns  Scope: tb_memories.ready_check_property File: /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/tb_memories.sv Line: 162
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# ** Error: Assertion error.
+#    Time: 155 ns Started: 155 ns  Scope: tb_memories.ready_check_property File: /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/tb_memories.sv Line: 162
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# ** Error: Assertion error.
+#    Time: 165 ns Started: 165 ns  Scope: tb_memories.ready_check_property File: /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/tb_memories.sv Line: 162
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# ** Error: Assertion error.
+#    Time: 175 ns Started: 175 ns  Scope: tb_memories.ready_check_property File: /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/tb_memories.sv Line: 162
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# ** Error: Assertion error.
+#    Time: 185 ns Started: 185 ns  Scope: tb_memories.ready_check_property File: /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/tb_memories.sv Line: 162
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# ** Error: Assertion error.
+#    Time: 195 ns Started: 195 ns  Scope: tb_memories.ready_check_property File: /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/tb_memories.sv Line: 162
+run
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# ** Error: Assertion error.
+#    Time: 205 ns Started: 205 ns  Scope: tb_memories.ready_check_property File: /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/tb_memories.sv Line: 162
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# ** Error: Assertion error.
+#    Time: 215 ns Started: 215 ns  Scope: tb_memories.ready_check_property File: /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/tb_memories.sv Line: 162
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# ** Error: Assertion error.
+#    Time: 225 ns Started: 225 ns  Scope: tb_memories.ready_check_property File: /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/tb_memories.sv Line: 162
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# ** Error: Assertion error.
+#    Time: 235 ns Started: 235 ns  Scope: tb_memories.ready_check_property File: /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/tb_memories.sv Line: 162
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# ** Error: Assertion error.
+#    Time: 245 ns Started: 245 ns  Scope: tb_memories.ready_check_property File: /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/tb_memories.sv Line: 162
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# ** Error: Assertion error.
+#    Time: 255 ns Started: 255 ns  Scope: tb_memories.ready_check_property File: /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/tb_memories.sv Line: 162
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# ** Error: Assertion error.
+#    Time: 265 ns Started: 265 ns  Scope: tb_memories.ready_check_property File: /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/tb_memories.sv Line: 162
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# ** Error: Assertion error.
+#    Time: 275 ns Started: 275 ns  Scope: tb_memories.ready_check_property File: /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/tb_memories.sv Line: 162
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# ** Error: Assertion error.
+#    Time: 285 ns Started: 285 ns  Scope: tb_memories.ready_check_property File: /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/tb_memories.sv Line: 162
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# ** Error: Assertion error.
+#    Time: 295 ns Started: 295 ns  Scope: tb_memories.ready_check_property File: /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/tb_memories.sv Line: 162
+run
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# ** Error: Assertion error.
+#    Time: 305 ns Started: 305 ns  Scope: tb_memories.ready_check_property File: /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/tb_memories.sv Line: 162
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# ** Error: Assertion error.
+#    Time: 315 ns Started: 315 ns  Scope: tb_memories.ready_check_property File: /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/tb_memories.sv Line: 162
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# ** Error: Assertion error.
+#    Time: 325 ns Started: 325 ns  Scope: tb_memories.ready_check_property File: /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/tb_memories.sv Line: 162
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# ** Error: Assertion error.
+#    Time: 335 ns Started: 335 ns  Scope: tb_memories.ready_check_property File: /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/tb_memories.sv Line: 162
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# ** Error: Assertion error.
+#    Time: 345 ns Started: 345 ns  Scope: tb_memories.ready_check_property File: /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/tb_memories.sv Line: 162
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# ** Error: Assertion error.
+#    Time: 355 ns Started: 355 ns  Scope: tb_memories.ready_check_property File: /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/tb_memories.sv Line: 162
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# ** Error: Assertion error.
+#    Time: 365 ns Started: 365 ns  Scope: tb_memories.ready_check_property File: /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/tb_memories.sv Line: 162
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# ** Error: Assertion error.
+#    Time: 375 ns Started: 375 ns  Scope: tb_memories.ready_check_property File: /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/tb_memories.sv Line: 162
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# ** Error: Assertion error.
+#    Time: 385 ns Started: 385 ns  Scope: tb_memories.ready_check_property File: /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/tb_memories.sv Line: 162
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# ** Error: Assertion error.
+#    Time: 395 ns Started: 395 ns  Scope: tb_memories.ready_check_property File: /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/tb_memories.sv Line: 162
+run
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# ** Error: Assertion error.
+#    Time: 405 ns Started: 405 ns  Scope: tb_memories.ready_check_property File: /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/tb_memories.sv Line: 162
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# ** Error: Assertion error.
+#    Time: 415 ns Started: 415 ns  Scope: tb_memories.ready_check_property File: /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/tb_memories.sv Line: 162
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# ** Error: Assertion error.
+#    Time: 425 ns Started: 425 ns  Scope: tb_memories.ready_check_property File: /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/tb_memories.sv Line: 162
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# ** Error: Assertion error.
+#    Time: 435 ns Started: 435 ns  Scope: tb_memories.ready_check_property File: /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/tb_memories.sv Line: 162
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# ** Error: Assertion error.
+#    Time: 445 ns Started: 445 ns  Scope: tb_memories.ready_check_property File: /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/tb_memories.sv Line: 162
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# ** Error: Assertion error.
+#    Time: 455 ns Started: 455 ns  Scope: tb_memories.ready_check_property File: /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/tb_memories.sv Line: 162
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# ** Error: Assertion error.
+#    Time: 465 ns Started: 465 ns  Scope: tb_memories.ready_check_property File: /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/tb_memories.sv Line: 162
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# ** Error: Assertion error.
+#    Time: 475 ns Started: 475 ns  Scope: tb_memories.ready_check_property File: /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/tb_memories.sv Line: 162
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# ** Error: Assertion error.
+#    Time: 485 ns Started: 485 ns  Scope: tb_memories.ready_check_property File: /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/tb_memories.sv Line: 162
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# ** Error: Assertion error.
+#    Time: 495 ns Started: 495 ns  Scope: tb_memories.ready_check_property File: /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/tb_memories.sv Line: 162
+run
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# ** Error: Assertion error.
+#    Time: 505 ns Started: 505 ns  Scope: tb_memories.ready_check_property File: /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/tb_memories.sv Line: 162
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# ** Error: Assertion error.
+#    Time: 515 ns Started: 515 ns  Scope: tb_memories.ready_check_property File: /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/tb_memories.sv Line: 162
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# ** Error: Assertion error.
+#    Time: 525 ns Started: 525 ns  Scope: tb_memories.ready_check_property File: /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/tb_memories.sv Line: 162
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# ** Error: Assertion error.
+#    Time: 535 ns Started: 535 ns  Scope: tb_memories.ready_check_property File: /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/tb_memories.sv Line: 162
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# ** Error: Assertion error.
+#    Time: 545 ns Started: 545 ns  Scope: tb_memories.ready_check_property File: /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/tb_memories.sv Line: 162
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# ** Error: Assertion error.
+#    Time: 555 ns Started: 555 ns  Scope: tb_memories.ready_check_property File: /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/tb_memories.sv Line: 162
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# ** Error: Assertion error.
+#    Time: 565 ns Started: 565 ns  Scope: tb_memories.ready_check_property File: /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/tb_memories.sv Line: 162
+# 565ns Terminating simulation
+# ** Note: $finish    : /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/tb_memories.sv(121)
+#    Time: 565 ns  Iteration: 1  Instance: /tb_memories/test_ram
+# 1
+# Break in Module test_memory at /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/tb_memories.sv line 121
+project compileall
+# Compile of 000-globals.vhd was successful.
+# Compile of 001-global_components.vhd was successful.
+# Compile of adder.vhd was successful.
+# Compile of boothmul.vhd was successful.
+# Compile of complement2.vhd was successful.
+# Compile of encoder.vhd was successful.
+# Compile of fa.vhd was successful.
+# Compile of fd.vhd was successful.
+# Compile of gsb.vhd was successful.
+# Compile of mux.vhd was successful.
+# Compile of p4_adder.vhd was successful.
+# Compile of pgsb.vhd was successful.
+# Compile of rca.vhd was successful.
+# Compile of reg_nbit.vhd was successful.
+# Compile of registerfile.vhd was successful.
+# Compile of stcg.vhd was successful.
+# Compile of wrf.vhd was successful.
+# Compile of a.b.e-Write_back.stage.vhd was successful.
+# Compile of constants.vhd was successful.
+# Compile of alu.vhd was successful.
+# Compile of csb.vhd was successful.
+# Compile of mux21_nbit.vhd was successful.
+# Compile of pg.vhd was successful.
+# Compile of sum_gen.vhd was successful with warnings.
+# Compile of romem.sv was successful.
+# Compile of rwmem.sv was successful.
+# Compile of tb_memories.sv was successful.
+# Compile of tb_writeback_stage.sv was successful.
+# Compile of implemented_instructions.svh was successful.
+# Compile of tb_dlx.sv was successful.
+# Compile of alu_type.vhd was successful.
+# Compile of memory_interfaces.svh was successful.
+# Compile of mux21.vhd was successful.
+# 33 compiles, 0 failed with no errors.
+vsim -novopt -suppress 12110 work.tb_memories
+# End time: 00:43:20 on Jul 27,2020, Elapsed time: 0:07:15
+# Errors: 57, Warnings: 2
+# vsim -novopt -suppress 12110 work.tb_memories 
+# Start time: 00:43:20 on Jul 27,2020
+# ** Warning: (vsim-8891) All optimizations are disabled because the -novopt option is in effect. This will cause your simulation to run very slowly. If you are using this switch to preserve visibility for Debug or PLI features, please see the User's Manual section on Preserving Object Visibility with vopt. -novopt option is now deprecated and will be removed in future releases.
+# Refreshing /home/ms20.50/Desktop/DLX_project/project/simulation/work.tb_memories
+# ** Warning: (vlog-8891) All optimizations are disabled because the -novopt option is in effect. This will cause your simulation to run very slowly. If you are using this switch to preserve visibility for Debug or PLI features, please see the User's Manual section on Preserving Object Visibility with vopt. -novopt option is now deprecated and will be removed in future releases.
+# Loading sv_std.std
+# Loading work.tb_memories
+# Refreshing /home/ms20.50/Desktop/DLX_project/project/simulation/work.mem_interface
+# ** Warning: (vlog-8891) All optimizations are disabled because the -novopt option is in effect. This will cause your simulation to run very slowly. If you are using this switch to preserve visibility for Debug or PLI features, please see the User's Manual section on Preserving Object Visibility with vopt. -novopt option is now deprecated and will be removed in future releases.
+# Loading work.mem_interface
+# Refreshing /home/ms20.50/Desktop/DLX_project/project/simulation/work.romem
+# ** Warning: (vlog-8891) All optimizations are disabled because the -novopt option is in effect. This will cause your simulation to run very slowly. If you are using this switch to preserve visibility for Debug or PLI features, please see the User's Manual section on Preserving Object Visibility with vopt. -novopt option is now deprecated and will be removed in future releases.
+# Loading work.romem
+# Refreshing /home/ms20.50/Desktop/DLX_project/project/simulation/work.rwmem
+# ** Warning: (vlog-8891) All optimizations are disabled because the -novopt option is in effect. This will cause your simulation to run very slowly. If you are using this switch to preserve visibility for Debug or PLI features, please see the User's Manual section on Preserving Object Visibility with vopt. -novopt option is now deprecated and will be removed in future releases.
+# Loading work.rwmem
+# Refreshing /home/ms20.50/Desktop/DLX_project/project/simulation/work.test_memory
+# ** Warning: (vlog-8891) All optimizations are disabled because the -novopt option is in effect. This will cause your simulation to run very slowly. If you are using this switch to preserve visibility for Debug or PLI features, please see the User's Manual section on Preserving Object Visibility with vopt. -novopt option is now deprecated and will be removed in future releases.
+# Loading work.test_memory
+# ** Warning: (vsim-3838) Variable '/tb_memories/iram_if/DATA' written by continuous and procedural assignments. 
+# One of the assignments is implicit. See /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/memory_interfaces.svh(14).
+#    Time: 0 ps  Iteration: 0  Instance: /tb_memories/iram_uut File: /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/romem.sv Line: 87
+project compileall
+# Compile of 000-globals.vhd was successful.
+# Compile of 001-global_components.vhd was successful.
+# Compile of adder.vhd was successful.
+# Compile of boothmul.vhd was successful.
+# Compile of complement2.vhd was successful.
+# Compile of encoder.vhd was successful.
+# Compile of fa.vhd was successful.
+# Compile of fd.vhd was successful.
+# Compile of gsb.vhd was successful.
+# Compile of mux.vhd was successful.
+# Compile of p4_adder.vhd was successful.
+# Compile of pgsb.vhd was successful.
+# Compile of rca.vhd was successful.
+# Compile of reg_nbit.vhd was successful.
+# Compile of registerfile.vhd was successful.
+# Compile of stcg.vhd was successful.
+# Compile of wrf.vhd was successful.
+# Compile of a.b.e-Write_back.stage.vhd was successful.
+# Compile of constants.vhd was successful.
+# Compile of alu.vhd was successful.
+# Compile of csb.vhd was successful.
+# Compile of mux21_nbit.vhd was successful.
+# Compile of pg.vhd was successful.
+# Compile of sum_gen.vhd was successful with warnings.
+# Compile of romem.sv was successful.
+# Compile of rwmem.sv was successful.
+# Compile of tb_memories.sv was successful.
+# Compile of tb_writeback_stage.sv was successful.
+# Compile of implemented_instructions.svh was successful.
+# Compile of tb_dlx.sv was successful.
+# Compile of alu_type.vhd was successful.
+# Compile of memory_interfaces.svh was successful.
+# Compile of mux21.vhd was successful.
+# 33 compiles, 0 failed with no errors.
+vsim -novopt -suppress 12110 work.tb_memories
+# End time: 00:47:23 on Jul 27,2020, Elapsed time: 0:04:03
+# Errors: 0, Warnings: 2
+# vsim -novopt -suppress 12110 work.tb_memories 
+# Start time: 00:47:23 on Jul 27,2020
+# ** Warning: (vsim-8891) All optimizations are disabled because the -novopt option is in effect. This will cause your simulation to run very slowly. If you are using this switch to preserve visibility for Debug or PLI features, please see the User's Manual section on Preserving Object Visibility with vopt. -novopt option is now deprecated and will be removed in future releases.
+# Refreshing /home/ms20.50/Desktop/DLX_project/project/simulation/work.tb_memories
+# ** Warning: (vlog-8891) All optimizations are disabled because the -novopt option is in effect. This will cause your simulation to run very slowly. If you are using this switch to preserve visibility for Debug or PLI features, please see the User's Manual section on Preserving Object Visibility with vopt. -novopt option is now deprecated and will be removed in future releases.
+# Loading sv_std.std
+# Loading work.tb_memories
+# Refreshing /home/ms20.50/Desktop/DLX_project/project/simulation/work.mem_interface
+# ** Warning: (vlog-8891) All optimizations are disabled because the -novopt option is in effect. This will cause your simulation to run very slowly. If you are using this switch to preserve visibility for Debug or PLI features, please see the User's Manual section on Preserving Object Visibility with vopt. -novopt option is now deprecated and will be removed in future releases.
+# Loading work.mem_interface
+# Refreshing /home/ms20.50/Desktop/DLX_project/project/simulation/work.romem
+# ** Warning: (vlog-8891) All optimizations are disabled because the -novopt option is in effect. This will cause your simulation to run very slowly. If you are using this switch to preserve visibility for Debug or PLI features, please see the User's Manual section on Preserving Object Visibility with vopt. -novopt option is now deprecated and will be removed in future releases.
+# Loading work.romem
+# Refreshing /home/ms20.50/Desktop/DLX_project/project/simulation/work.rwmem
+# ** Warning: (vlog-8891) All optimizations are disabled because the -novopt option is in effect. This will cause your simulation to run very slowly. If you are using this switch to preserve visibility for Debug or PLI features, please see the User's Manual section on Preserving Object Visibility with vopt. -novopt option is now deprecated and will be removed in future releases.
+# Loading work.rwmem
+# Refreshing /home/ms20.50/Desktop/DLX_project/project/simulation/work.test_memory
+# ** Warning: (vlog-8891) All optimizations are disabled because the -novopt option is in effect. This will cause your simulation to run very slowly. If you are using this switch to preserve visibility for Debug or PLI features, please see the User's Manual section on Preserving Object Visibility with vopt. -novopt option is now deprecated and will be removed in future releases.
+# Loading work.test_memory
+run 100ns
+# Starting testbench for memories 
+# @0ns Starting Program
+# Memory reset 
+# Reading file for Read-Only memory 
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+run 100ns
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# Read-Only Memory passed the testbench 
+# Starting test of read and write memory 
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+run 100ns
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+run 100ns
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+run 100ns
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+run 100ns
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# 565ns Terminating simulation
+# ** Note: $finish    : /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/tb_memories.sv(121)
+#    Time: 565 ns  Iteration: 1  Instance: /tb_memories/test_ram
+# 1
+# Break in Module test_memory at /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/tb_memories.sv line 121
+# End time: 00:50:26 on Jul 27,2020, Elapsed time: 0:03:03
+# Errors: 0, Warnings: 1

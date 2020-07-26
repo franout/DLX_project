@@ -10,8 +10,8 @@ interface mem_interface
  	 logic rst;  //  reset active low
  	 logic  [ADDRESS_SIZE-1:0] ADDRESS;
 	 logic  ENABLE;
-	 logic  DATA_READY;
-	 logic  [WORD_SIZE-1:0]DATA;
+	 wire  DATA_READY;
+	 wire  [WORD_SIZE-1:0]DATA;
 	 logic  READNOTWRITE;
 	 wire  [WORD_SIZE-1:0] INOUT_DATA;
 

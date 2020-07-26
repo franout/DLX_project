@@ -107,7 +107,7 @@ always@(*) begin // refresh the content of the output file
 end
 
 assign memif.DATA_READY= valid;
-assign data_iw= memif.READNOTWRITE ? memif.INOUT_DATA : {WORD_SIZE{'bZ}};
-assign memif.INOUT_DATA = ~memif.READNOTWRITE ? data_ir : {WORD_SIZE{'bZ}};
+assign data_iw= memif.READNOTWRITE ? memif.INOUT_DATA :'Z;
+assign memif.INOUT_DATA = ~memif.READNOTWRITE ? data_ir :'Z;
 
 endmodule : rwmem

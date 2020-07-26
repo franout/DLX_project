@@ -16,9 +16,9 @@
 
 
 `define  IRAM_WORD_SIZE 32
-`define  IRAM_ADDRESS_SIZE 32
+`define  IRAM_ADDRESS_SIZE 16
 `define  DRAM_WORD_SIZE 32
-`define  DRAM_ADDRESS_SIZE 32
+`define  DRAM_ADDRESS_SIZE 16
 
 `include "memory_interfaces.svh"
 
@@ -50,6 +50,7 @@ endinterface
 program test_memory(mem_interface.ro iram_if , mem_interface.rw dram_if);
 integer i;
 integer read_data;
+integer write_data;
 
   	// Specify the default clocking
   	default clocking ram_clk_program @ (posedge iram_if.clk);
@@ -87,7 +88,6 @@ initial begin
 		for (i=0;i<11;i=i+1)begin
 			dram_if.ADDRESS=i;
 			##1;
-			read_data=dram_if.INOUT_DATA;
 			if(read_data==='x) begin
 				$display("Read operation n %d on romem is wrong",i);
 				$stop();
@@ -99,7 +99,8 @@ initial begin
 		dram_if.ENABLE=1;
 		for (i=0;i<11;i=i+1)begin
 			dram_if.ADDRESS=i;
-			dram_if.INOUT_DATA=i;
+			//dram_if.INOUT_DATA=i;
+			write_data=i;
 			##1;
 			// ready signal is checked by the property
 		end
@@ -110,17 +111,18 @@ initial begin
 		for (i=0;i<11;i=i+1)begin
 			dram_if.ADDRESS=i;
 			##1;
-			read_data=dram_if.INOUT_DATA;
 			if(read_data===i) begin
 				$display("Read operation n %d on romem is wrong",i);
 				$stop();
 			end
 			// ready signal is checked by the property
 		end
-		// read again 
 		#100  $display("%0dns Terminating simulation", $time);
 		$finish();
     end
+assign read_data= dram_if.READNOTWRITE?dram_if.INOUT_DATA  :0;
+assign dram_if.INOUT_DATA = ~dram_if.READNOTWRITE? write_data: 'Z;
+
 endprogram: test_memory
 
 
@@ -157,17 +159,17 @@ module tb_memories ();
   		assume : it specifies the property as an assumption for verification  useful for verification tools 
   		cover: it monitors the propertty for the sake of coverage 
   	*/
-  	ready_check_property : assert property (ready_check);
+  	/*ready_check_property : assert property (ready_check);
   	address_range_check_property : assert property (address_range(0,2**(`IRAM_ADDRESS_SIZE )));
-
+*/
 	// instantiate the interface
 	mem_interface #(.ADDRESS_SIZE(`DRAM_ADDRESS_SIZE),
 			.WORD_SIZE(`DRAM_WORD_SIZE))
-	dram_if (clk);
+	dram_if (.clk(clk));
 
 	mem_interface #(.ADDRESS_SIZE(`IRAM_ADDRESS_SIZE),
 		.WORD_SIZE(`IRAM_WORD_SIZE)) 
-	iram_if (clk);
+	iram_if ( .clk(clk));
 
 	// instantiate the dut and connect the interface
 	romem #(.FILE_PATH   ("/home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/test_mem.txt"),
@@ -178,7 +180,7 @@ module tb_memories ();
 	(.mif(iram_if.ro));
 		
 	rwmem #(
-		.FILE_PATH     ("/home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/test_mem.txt"), // it should update the existing file
+		.FILE_PATH     ("/home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/test_mem_out.txt"), // it should update the existing file
 		.FILE_PATH_INIT("/home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/test_mem.txt"),
 		.WORD_SIZE     (`DRAM_WORD_SIZE),
 		.ADDRESS_SIZE  (`DRAM_ADDRESS_SIZE),

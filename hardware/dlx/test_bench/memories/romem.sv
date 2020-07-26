@@ -84,7 +84,7 @@ end
 
 
 assign mif.DATA_READY= valid;
-assign mif.DATA= valid ? data_out : {WORD_SIZE{'bZ}} ;
+assign mif.DATA= valid ? data_out : 'Z;
 
 endmodule
 
