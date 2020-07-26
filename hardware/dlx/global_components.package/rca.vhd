@@ -41,3 +41,18 @@ begin
 
 end STRUCTURAL;
 
+
+configuration CFG_RCA_STRUCTURAL of RCA is
+      for STRUCTURAL 
+              for ADDER1
+                        for all : FA
+                                use configuration WORK.CFG_FA_BEHAVIORAL;
+                                  end for;
+                                  end for;
+                                    end for;
+                            end CFG_RCA_STRUCTURAL;
+
+configuration CFG_RCA_BEHAVIORAL of RCA is
+      for BEHAVIORAL 
+            end for;
+end CFG_RCA_BEHAVIORAL;

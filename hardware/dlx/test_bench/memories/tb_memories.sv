@@ -7,7 +7,7 @@
 // Author : Angione Francesco s262620@studenti.polito.it franout@Github.com
 // File   : tb_memories.sv
 // Create : 2020-07-22 20:19:53
-// Revise : 2020-07-26 18:53:55
+// Revise : 2020-07-26 19:52:17
 // Editor : sublime text3, tab size (4)
 // Description: 
 // -----------------------------------------------------------------------------
@@ -49,7 +49,7 @@ endinterface
 
 program test_memory(mem_interface.ro iram_if , mem_interface.rw dram_if);
 integer i;
-
+integer read_data;
 
   	// Specify the default clocking
   	default clocking ram_clk_program @ (posedge iram_if.clk);
@@ -58,13 +58,13 @@ integer i;
 
 initial begin
       	$monitor("@%0dns Starting Program",$time);
-      	iram_if.rst='1;
-		dram_if.rst='1;
+      	iram_if.rst=1;
+		dram_if.rst=1;
 		$display("Starting testbench for memories",);
 		## 1;
 		$display("Memory reset",);
-		iram_if.rst='0;
-		dram_if.rst='0;
+		iram_if.rst=0;
+		dram_if.rst=0;
 		$display("Reading file for Read-Only memory",);
 		iram_if.ENABLE='1;
 		for (i=0;i<11;i=i+1)begin
@@ -76,43 +76,45 @@ initial begin
 			end
 			// ready signal is checked by the property
 		end
-		iram_if.ENABLE='0;
+		iram_if.ENABLE=0;
 		## 2; // same of repeat(2)@(posdege clk);
 		$display("Read-Only Memory passed the testbench",);
 		$display("Starting test of read and write memory",);
 		// read operations
-		dram_if.READNOTWRITE='1;
-		dram_if.ENABLE='1;
+		dram_if.READNOTWRITE=1;
+		dram_if.ENABLE=1;
 		// opening the same file of the other memory
 		for (i=0;i<11;i=i+1)begin
 			dram_if.ADDRESS=i;
 			##1;
-			/*if(dram_if.INOUT_DATA==='x) begin
+			read_data=dram_if.INOUT_DATA;
+			if(read_data==='x) begin
 				$display("Read operation n %d on romem is wrong",i);
 				$stop();
-			end*/
+			end
 			// ready signal is checked by the property
 		end
 		// write operations
-		dram_if.READNOTWRITE='0;
-		dram_if.ENABLE='1;
+		dram_if.READNOTWRITE=0;
+		dram_if.ENABLE=1;
 		for (i=0;i<11;i=i+1)begin
 			dram_if.ADDRESS=i;
-			//dram_if.INOUT_DATA=i;
+			dram_if.INOUT_DATA=i;
 			##1;
 			// ready signal is checked by the property
 		end
 		// read operations
-		dram_if.READNOTWRITE='1;
-		dram_if.ENABLE='1;
+		dram_if.READNOTWRITE=1;
+		dram_if.ENABLE=1;
 		// opening the same file of the other memory
 		for (i=0;i<11;i=i+1)begin
 			dram_if.ADDRESS=i;
 			##1;
-			/*if(dram_if.INOUT_DATA!==i) begin
+			read_data=dram_if.INOUT_DATA;
+			if(read_data===i) begin
 				$display("Read operation n %d on romem is wrong",i);
 				$stop();
-			end*/
+			end
 			// ready signal is checked by the property
 		end
 		// read again 
