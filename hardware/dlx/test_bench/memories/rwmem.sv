@@ -29,7 +29,7 @@ interface rwmem_interface
        //inout   #1 INOUT_DATA;
        output  #1  DATA_READY;
     endclocking 
-modport tb (input ADDRESS, ENABLE, READNOTWRITE,rst,inout INOUT_DATA, output DATA_READY);
+modport tb (input ADDRESS, ENABLE, READNOTWRITE,rst,clk,inout INOUT_DATA, output DATA_READY);
 endinterface
 
 
@@ -62,18 +62,18 @@ int i;
  initial begin
  	if (FILE_PATH=="" || FILE_PATH_INIT=="") begin 
  		$display("ERROR! PATHS for read write memory is not defined!",);
- 		exit(-1);
+ 		$exit(-1);
  	end
  end
 
 // task for refreshing the dram output file 
-task refresh_dram();
+task refresh_file();
 		fd = $fopen (FILE_PATH, "w");
 		if (fd) begin 
 		 $display("File was opened successfully : %0d", fd);
 		end else begin 
-			$display("File was NOT opened successfully : %0d", fd);
-		    exit(-1);
+			$display("Output File was NOT opened successfully : %0d", fd);
+		    $exit(-1);
 		end
 		// flush down the memory 
 		for(i=0;i<2**ADDRESS_SIZE-1;i=i+1)begin
@@ -81,7 +81,7 @@ task refresh_dram();
 		end
 		// 3. Close the file descriptor
 		$fclose(fd);
-endtask : refresh_dram
+endtask : refresh_file
 
 
 always_ff @(posedge memif.clk) begin : proc_ram
@@ -95,7 +95,7 @@ always_ff @(posedge memif.clk) begin : proc_ram
 		 $display("File was opened successfully : %0d", fd);
 		end else begin 
 		     $display("File was NOT opened successfully : %0d", fd);
-		     exit(-1);
+		     $exit(-1);
 		end
 		index=0;
 		// fill up the memory 
@@ -120,8 +120,9 @@ always_ff @(posedge memif.clk) begin : proc_ram
 	end
 end
 
-
-refresh_dram();
+always@(*) begin // refresh the content of the output file
+	refresh_file();
+end
 
 assign memif.DATA_READY= valid;
 assign data_iw= memif.READNOTWRITE ? memif.INOUT_DATA : {WORD_SIZE{'bZ}};

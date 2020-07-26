@@ -21,7 +21,7 @@
 `define  DRAM_ADDRESS_SIZE 32
 
 module tb_dlx ();
-	localparam clock_period= 10 ns;
+	localparam clock_period= 10ns;
 	localparam PATH_TO_DMEM_FINAL="";
 	localparam PATH_TO_DMEM="";
 	localparam PATH_TO_IMEM="";
@@ -143,6 +143,7 @@ endmodule
 
 
 /*synthesizable*/
+/*
 interface example ();
 logic banan;
 
@@ -199,4 +200,4 @@ endproperty
 // $ -> infinite number of cycles
 // [*3] sequence of 3 events must be true for 3 consecutive cc
 // [=3] sequence of 3 event which can be non consecutive [=3:5] min 3 max 4
-
+*/

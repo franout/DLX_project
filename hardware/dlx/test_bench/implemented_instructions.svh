@@ -11,13 +11,13 @@
 // Editor : sublime text3, tab size (4)
 // Description:  List of current implemented instruction in the CU of the DLX 
 // -----------------------------------------------------------------------------
-`ifndef implemented_instructions.svh
-`def implemented_instructions.svh
+`ifndef __implemented_instructions__svh
+`define __implemented_instructions__svh
 
 
 
 enum byte {
-	
+	nop
 } instructions;
 
 
@@ -134,4 +134,4 @@ led f2,0x1c
 ged f2,0x1d
 */
 
-`endif // implemented_instructions.svh
+`endif // __implemented_instructions__svh

@@ -30,7 +30,7 @@ interface romem_interface
        input   #1  ADDRESS,ENABLE; // sampled after 1 time resoltuon see `timescale
        output  #1  DATA_READY,DATA;
     endclocking 
-	modport tb (input ADDRESS, ENABLE, rst , output DATA_READY, DATA);
+	modport tb (input ADDRESS, ENABLE, rst,clk , output DATA_READY, DATA);
 endinterface
 
 module romem
@@ -58,7 +58,7 @@ int index=0;
  initial begin
  	if (FILE_PATH=="") begin 
  		$display("ERROR! PATH for read only memory is not defined!",);
- 		exit(-1);
+ 		$exit(-1);
  	end
  end
 
@@ -74,7 +74,7 @@ always_ff @(posedge mif.clk) begin : proc_ram
 		 $display("File was opened successfully : %0d", fd);
 		end else begin 
 		     $display("File was NOT opened successfully : %0d", fd);
-		     exit(-1);
+		     $exit(-1);
 		end
 		index=0;
 		// fill up the memory 
@@ -87,7 +87,7 @@ always_ff @(posedge mif.clk) begin : proc_ram
 		$fclose(fd);
 		valid<='b0;
 	end else begin
-		if (mif.enable) begin
+		if (mif.ENABLE) begin
 			valid='b1;
 			data_out<=ram[mif.ADDRESS];
 		end else begin 
@@ -98,8 +98,8 @@ always_ff @(posedge mif.clk) begin : proc_ram
 end
 
 
-assign mid.DATA_READY= valid;
-assign mif.data= valid ? data_out : {WORD_SIZE{'bZ}} ;
+assign mif.DATA_READY= valid;
+assign mif.DATA= valid ? data_out : {WORD_SIZE{'bZ}} ;
 
 endmodule
 

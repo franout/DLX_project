@@ -65,7 +65,7 @@ module tb_memories ();
 	iram_if (clk);
 
 	// instantiate the dut and connect the interface
-	romem #(.FILE_PATH   ("./test_mem.txt"),
+	romem #(.FILE_PATH   ("/home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/test_mem.txt"),
 		.WORD_SIZE   (`IRAM_WORD_SIZE),
 		.ADDRESS_SIZE(`IRAM_ADDRESS_SIZE),
 		.DATA_DELAY  (2)) 
@@ -73,8 +73,8 @@ module tb_memories ();
 	(.mif(iram_if));
 		
 	rwmem #(
-		.FILE_PATH     ("./test_mem.txt"),
-		.FILE_PATH_INIT("./test_mem_out.txt"),
+		.FILE_PATH     ("/home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/test_mem_out.txt"),
+		.FILE_PATH_INIT("/home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/test_mem.txt"),
 		.WORD_SIZE     (`DRAM_WORD_SIZE),
 		.ADDRESS_SIZE  (`DRAM_ADDRESS_SIZE),
 		.DATA_DELAY    (2))
@@ -98,14 +98,6 @@ module tb_memories ();
 		$display("Starting test of read and write memory",);
 
 		$finish();
-	end
-
-// dump wave
-	initial begin
-		if ( $test$plusargs("fsdb") ) begin
-			$fsdbDumpfile("tb_memories.fsdb");
-			$fsdbDumpvars(0, "tb_memories", "+mda", "+functions");
-		end
 	end
 
 
