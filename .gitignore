@@ -1,3 +1,4 @@
 # ignore all the work folders
-./synthesis/
-/project/simulation/work/
+
+./project/simulation/work/
+./project/synthesis/
