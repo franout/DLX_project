@@ -7,7 +7,7 @@
 // Author : Angione Francesco s262620@studenti.polito.it franout@Github.com
 // File   : tb_dlx.sv
 // Create : 2020-07-21 19:00:18
-// Revise : 2020-07-25 18:02:30
+// Revise : 2020-07-26 16:55:42
 // Editor : sublime text3, tab size (4)
 // Description: 
 // -----------------------------------------------------------------------------
@@ -15,11 +15,20 @@
 `timescale  1ns/1ps
 `include "implemented_instructions.svh"
 
+`define  IRAM_WORD_SIZE 32
+`define  IRAM_ADDRESS_SIZE 32
+`define  DRAM_WORD_SIZE 32
+`define  DRAM_ADDRESS_SIZE 32
+
 module tb_dlx ();
 	localparam clock_period= 10 ns;
+	localparam PATH_TO_DMEM_FINAL="";
+	localparam PATH_TO_DMEM="";
+	localparam PATH_TO_IMEM="";
+
+
 	logic rst_n;
 	logic clk;
-
 
 	initial begin
 		clk = '0;
@@ -28,7 +37,6 @@ module tb_dlx ();
 
   	// Specify the default clocking
   	default clocking test_dlx @ (posedge clk);
-  	
   	endclocking	// clock
 
 /*
@@ -42,37 +50,79 @@ module tb_dlx ();
 	
 	// reset
 	initial begin
-		rstb <= '0;
-		srst <= '0;
-		#20
-		rstb <= '1;
-		repeat (5) @(posedge clk);
-		srst <= '1;
-		repeat (1) @(posedge clk);
-		srst <= '0;
+		rst_n='1;
+		##1 rst_n='0; 
+		##5 rst_n='1;
+		$display("Attention!!",);
+		$display("Starting simulated exection of the DLX",);
+		$display("Starting a very fancy testbench in System Verilog",);
+		// the monitor process for the instruction will end the simulation as soon as it finds the halt instruction
 	end
+	/////////////////////////////////////
+	// instantiate the components ///////
+	/////////////////////////////////////
 
-	// instantiate the components
 	// Instruction memory
+	// instantiate the interface
+	romem_interface #(.ADDRESS_SIZE(`IRAM_ADDRESS_SIZE),
+		.WORD_SIZE(`IRAM_WORD_SIZE)) 
+	iram_if (clk);
 
+	// instantiate the dut and connect the interface
+	romem #(.FILE_PATH   (PATH_TO_IMEM),
+		.WORD_SIZE   (`IRAM_WORD_SIZE),
+		.ADDRESS_SIZE(`IRAM_ADDRESS_SIZE),
+		.DATA_DELAY  (2)) 
+		iram
+	(.mif(iram_if));
+	
+
+	rwmem_interface #(.ADDRESS_SIZE(`DRAM_ADDRESS_SIZE),
+			.WORD_SIZE(`DRAM_WORD_SIZE))
+	dram_if (clk);
 	// Data memory
+	rwmem #(
+		.FILE_PATH     (PATH_TO_DMEM_FINAL),
+		.FILE_PATH_INIT(PATH_TO_DMEM),
+		.WORD_SIZE     (`DRAM_WORD_SIZE),
+		.ADDRESS_SIZE  (`DRAM_ADDRESS_SIZE),
+		.DATA_DELAY    (2))
+	dram ( .memif(dram_if));
+	
 
 	//DLX top level entity
+	DLX #(
+    .IR_SIZE(`IRAM_WORD_SIZE),
+    .PC_SIZE(`DRAM_WORD_SIZE)
+  ) dlx_uut (
+  	// verbose assignmento of the interfaces signals 
+  	// Inputs
+    .CLK 				(clk),
+    .RST 				(rst_n),
+    // Instruction memory interface
+    .IRAM_ADDRESS 		(iram_if.ADDRESS),
+    .IRAM_ENABLE		(iram_if.ENABLE),
+    .IRAM_READY			(iram_if.DATA_READY),
+    .IRAM_DATA			(iram_if.DATA),
+    // Data memory Interface
+    .DRAM_ADDRESS  		(dram_if.ADDRESS),
+    .DRAM_ENABLE        (dram_if.ENABLE),
+    .DRAM_READNOTWRITE 	(dram_if.READNOTWRITE),
+    .DRAM_READY        	(dram_if.DATA_READY),
+    .DRAM_DATA     		(dram_if.INOUT_DATA)
+    // simulation debug signals
+    //synthesis_translate off
+    ,
+    .STATE_CU			()
+    //synthesis_translate on
+  );
 
 //TODO  a task or a monitor which understand the current operation that is going to be executed and compare with the implemented_instructions.svh
 // and choose the property and assertion accordingly
 
 
-	initial begin
-		$display("Attention!!",);
-		$display("Starting a very fancy testbench in System Verilog",);
-
-
-		repeat(10)@(posedge clk);
-		$finish;
-	end
 	// check process for the instructions
-
+	// use monitor
 
 	// dump wave
 	initial begin
@@ -84,159 +134,6 @@ module tb_dlx ();
 
 
 endmodule
-
-library ieee;
-use ieee.std_logic_1164.all;
-use ieee.std_logic_unsigned.all;
-use ieee.std_logic_arith.all;
-use work.ROCACHE_PKG.all;
-use work.RWCACHE_PKG.all;
-
-entity DLX_TestBench is
-end DLX_TestBench;
-
-architecture tb of DLX_TestBench is
-	component ROMEM is
-	generic (
-		FILE_PATH	: string;				-- ROM data file
-		ENTRIES		: integer := 128;		-- Number of lines in the ROM
-		WORD_SIZE	: integer := 32;		-- Number of bits per word
-		DATA_DELAY	: natural := 2			-- Delay ( in # of clock cycles )
-	);
-	port (
-		CLK					: in std_logic;
-		RST					: in std_logic;
-		ADDRESS				: in std_logic_vector(WORD_SIZE - 1 downto 0);
-		ENABLE				: in std_logic;
-		DATA_READY			: out std_logic;
-		DATA				: out std_logic_vector(2*WORD_SIZE - 1 downto 0)
-	);
-	end component;
-
-	component RWMEM is
-	generic(
-			FILE_PATH: string;				-- RAM output data file
-			FILE_PATH_INIT: string;			-- RAM initialization data file
-			WORD_SIZE: natural := 32;		-- Number of bits per word
-			ENTRIES: 	natural := 128;		-- Number of lines in the ROM
-			DATA_DELAY: natural := 2		-- Delay ( in # of clock cycles )
-		);
-	port (
-			CLK   				: in std_logic;
-			RST					: in std_logic;
-			ADDRESS				: in std_logic_vector(WORD_SIZE - 1 downto 0);
-			ENABLE				: in std_logic;
-			READNOTWRITE		: in std_logic;
-			DATA_READY			: out std_logic;
-			INOUT_DATA			: inout std_logic_vector(2*WORD_SIZE-1 downto 0)
-		);
-	end component;
-
-	component DLX is
-		port (
-			-- Inputs
-			CLK						: in std_logic;		-- Clock
-			RST						: in std_logic;		-- Reset:Active-High
-
-			IRAM_ADDRESS			: out std_logic_vector(Instr_size - 1 downto 0);
-			IRAM_ISSUE				: out std_logic;
-			IRAM_READY				: in std_logic;
-			IRAM_DATA				: in std_logic_vector(2*Data_size-1 downto 0);
-
-			DRAM_ADDRESS			: out std_logic_vector(Instr_size-1 downto 0);
-			DRAM_ISSUE				: out std_logic;
-			DRAM_READNOTWRITE		: out std_logic;
-			DRAM_READY				: in std_logic;
-			DRAM_DATA				: inout std_logic_vector(2*Data_size-1 downto 0)
-		);
-	end component;
-
-	signal CLK :				std_logic := '0';		-- Clock
-	signal RST :				std_logic;		-- Reset:Active-Low
-	signal IRAM_ADDRESS :		std_logic_vector(Instr_size - 1 downto 0);
-	signal IRAM_ENABLE :		std_logic;
-	signal IRAM_READY :			std_logic;
-	signal IRAM_DATA :			std_logic_vector(2*Data_size-1 downto 0);
-
-	signal DRAM_ADDRESS :		std_logic_vector(Instr_size-1 downto 0);
-	signal DRAM_ENABLE :		std_logic;
-	signal DRAM_READNOTWRITE :	std_logic;
-	signal DRAM_READY :			std_logic;
-	signal DRAM_DATA :			std_logic_vector(2*Data_size-1 downto 0);
-
-begin
-	-- IRAM
-	IRAM : ROMEM
-		generic map ("/home/gandalf/Desktop/dlx/rocache/hex.txt")
-		port map (CLK, RST, IRAM_ADDRESS, IRAM_ENABLE, IRAM_READY, IRAM_DATA);
-
-	-- DRAM
-	DRAM : RWMEM
-		generic map ("/home/gandalf/Desktop/dlx/rwcache/hex_init.txt","/home/gandalf/Desktop/dlx/rwcache/hex.txt")
-		port map ( CLK, RST, DRAM_ADDRESS, DRAM_ENABLE, DRAM_READNOTWRITE, DRAM_READY, DRAM_DATA );
-
-	-- DLX
-	My_DLX_GIANLUCA : DLX
-		port map ( CLK, RST, IRAM_ADDRESS, IRAM_ENABLE, IRAM_READY, IRAM_DATA, DRAM_ADDRESS, DRAM_ENABLE, DRAM_READNOTWRITE, DRAM_READY, DRAM_DATA );
-
-	Clk <= not Clk after 10 ns;
-	Rst <= '1', '0' after 5 ns;
-	
-end tb;
-
-
-
-library IEEE;
-
-use IEEE.std_logic_1164.all;
-use WORK.all;
-
-entity tb_dlx is
-end tb_dlx;
-
-architecture TEST of tb_dlx is
-
-
-    constant SIZE_IR      : integer := 32;       -- Instruction Register Size
-    constant SIZE_PC      : integer := 32;       -- Program Counter Size
-    constant SIZE_ALU_OPC : integer := 6;        -- ALU Op Code Word Size in case explicit coding is used
-    signal Clock: std_logic := '0';
-    signal Reset: std_logic := '1';
-
-    component DLX
-       generic (
-       IR_SIZE      : integer := 32;       -- Instruction Register Size
-       PC_SIZE      : integer := 32       -- Program Counter Size
-       );  	   -- ALU_OPC_SIZE is explicit ALU Op Code Word Size
-       port (
-       Clk : in std_logic;
-       Rst : in std_logic);                -- Active Low
-    end component;
-begin
-
-
-        -- instance of DLX
-	U1: DLX
-        Generic Map (SIZE_IR, SIZE_PC) -- SIZE_ALU_OPC)   
-	Port Map (Clock, Reset);
-	
-
-        PCLOCK : process(Clock)
-	begin
-		Clock <= not(Clock) after 0.5 ns;	
-	end process;
-	
-	Reset <= '0', '1' after 6 ns, '0' after 11 ns, '1' after 15 ns;
-       
-
-end TEST;
-
--------------------------------
-
-configuration CFG_TB of tb_dlx  is
-	for TEST
-	end for;
-end CFG_TB;
 
 
 

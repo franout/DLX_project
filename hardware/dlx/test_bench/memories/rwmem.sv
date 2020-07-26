@@ -7,7 +7,7 @@
 // Author : Angione Francesco s262620@studenti.polito.it franout@Github.com
 // File   : rwmem.sv
 // Create : 2020-07-21 19:00:09
-// Revise : 2020-07-25 15:44:25
+// Revise : 2020-07-26 16:39:13
 // Editor : sublime text3, tab size (4)
 // Description: 
 // -----------------------------------------------------------------------------
@@ -21,12 +21,12 @@ interface rwmem_interface
  logic  ENABLE;
  logic  READNOTWRITE;
  logic  DATA_READY;
- logic [WORD_SIZE-1:0] INOUT_DATA;
+ wire [WORD_SIZE-1:0] INOUT_DATA;
  // clocking block
  // sampled after 1 time resoltuon see timescale
     clocking ram_interface @(posedge clk);
        input   #1  ADDRESS,ENABLE,READNOTWRITE; 
-       inout   #1 INOUT_DATA;
+       //inout   #1 INOUT_DATA;
        output  #1  DATA_READY;
     endclocking 
 modport tb (input ADDRESS, ENABLE, READNOTWRITE,rst,inout INOUT_DATA, output DATA_READY);
@@ -47,7 +47,8 @@ module rwmem
 
 /// internal signals
 logic [WORD_SIZE-1:0] ram [0:2**ADDRESS_SIZE-1];
-logic [WORD_SIZE-1:0] data_i;
+logic [WORD_SIZE-1:0] data_ir;
+logic [WORD_SIZE-1:0] data_iw;
 logic valid;
 // for file operations
 // 1. Declare an integer variable to hold the file descriptor
@@ -55,6 +56,15 @@ int fd;
 string line;
 int index=0;
 int i;
+
+
+// check if the path has been defined
+ initial begin
+ 	if (FILE_PATH=="" || FILE_PATH_INIT=="") begin 
+ 		$display("ERROR! PATHS for read write memory is not defined!",);
+ 		exit(-1);
+ 	end
+ end
 
 // task for refreshing the dram output file 
 task refresh_dram();
@@ -100,10 +110,10 @@ always_ff @(posedge memif.clk) begin : proc_ram
 	end else begin
 		if (memif.ENABLE) begin
 			if(memif.READNOTWRITE) begin // read operation 
-				data_i<=ram[memif.ADDRESS];
+				data_ir<=ram[memif.ADDRESS];
 				valid='b1;
 			end else begin  // write operation 
-				ram[memif.ADDRESS]<=data_i;
+				ram[memif.ADDRESS]<=data_iw;
 				valid<='b1;
 			end 
 		end
@@ -114,7 +124,7 @@ end
 refresh_dram();
 
 assign memif.DATA_READY= valid;
-assign data_i= memif.READNOTWRITE ? memif.INOUT_DATA : {WORD_SIZE{'bZ}};
-assign memif.INOUT_DATA = ~memif.READNOTWRITE ? data_i : {WORD_SIZE{'bZ}};
+assign data_iw= memif.READNOTWRITE ? memif.INOUT_DATA : {WORD_SIZE{'bZ}};
+assign memif.INOUT_DATA = ~memif.READNOTWRITE ? data_ir : {WORD_SIZE{'bZ}};
 
 endmodule : rwmem

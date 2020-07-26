@@ -7,7 +7,7 @@
 // Author : Angione Francesco s262620@studenti.polito.it franout@Github.com
 // File   : tb_memories.sv
 // Create : 2020-07-22 20:19:53
-// Revise : 2020-07-25 18:41:11
+// Revise : 2020-07-26 16:26:18
 // Editor : sublime text3, tab size (4)
 // Description: 
 // -----------------------------------------------------------------------------
@@ -38,7 +38,7 @@ module tb_memories ();
   	//bound of address 
   	property address_range(int min, int max);
   		@ (ram_clk)
-
+  			iram_if.ENABLE |-> (iram_if.ADDRESS >= min && iram_if.ADDRESS <=max);
   	endproperty 
 
   	// sequence
@@ -49,6 +49,10 @@ module tb_memories ();
   	//=================================================
  	// Assertion Directive Layer
   	//=================================================
+  	/* assert : if the property holds correctly
+  		assume : it specifies the property as an assumption for verification  useful for verification tools 
+  		cover: it monitors the propertty for the sake of coverage 
+  		*/
   	ready_check_property : assert property (ready_check);
 
 	// instantiate the interface
@@ -86,7 +90,7 @@ module tb_memories ();
 		dram_if.rst='0;
 		$display("Reading file for Read-Only memory",);
 		iram_if.ENABLE='1;
-		## 1;
+		## 1; // same of repeat(1)@(posdege clk);
 
 
 		$display("Read-Only Memory passed the testbench",);
