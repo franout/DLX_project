@@ -52,7 +52,4 @@ configuration CFG_RCA_STRUCTURAL of RCA is
                                     end for;
                             end CFG_RCA_STRUCTURAL;
 
-configuration CFG_RCA_BEHAVIORAL of RCA is
-      for BEHAVIORAL 
-            end for;
-end CFG_RCA_BEHAVIORAL;
+

@@ -19,3 +19,8 @@ begin
   Co <= (A and B) or (B and Ci) or (A and Ci); -- generation of carry out 
   
 end BEHAVIORAL;
+
+configuration CFG_FA_BEHAVIORAL of FA is
+for BEHAVIORAL
+end for;
+end CFG_FA_BEHAVIORAL;

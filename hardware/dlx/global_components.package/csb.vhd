@@ -17,9 +17,7 @@ end CSB;
 architecture STRUCTURAL of CSB is
 
     component RCA is
-        generic (DRCAS : 	Time := 0 ns;
-                 DRCAC : 	Time := 0 ns;
-                 NBIT  : 	Natural := 8);
+        generic (NBIT  : 	Natural := 8);
         Port (  A:	In	std_logic_vector((NBIT-1) downto 0);
                 B:	In	std_logic_vector((NBIT-1) downto 0);
                 Ci:	In	std_logic;
@@ -32,9 +30,9 @@ architecture STRUCTURAL of CSB is
 begin
 	-- generating both the sums with the two possible values of the carry in 
 	-- instantation of the rca with the carry in sets to zero
-    RCA0: RCA generic map(DRCAS => DCSBS, DRCAC => DCSBC, NBIT => NBIT) port map (A => A, B => B, Ci => '0', S => out_c0);
+    RCA0: RCA generic map(NBIT => NBIT) port map (A => A, B => B, Ci => '0', S => out_c0);
 	-- instantaton of the rca with the carry in sets to one 
-    RCA1: RCA generic map(DRCAS => DCSBS, DRCAC => DCSBC, NBIT => NBIT) port map (A => A, B => B, Ci => '1', S => out_c1);
+    RCA1: RCA generic map( NBIT => NBIT) port map (A => A, B => B, Ci => '1', S => out_c1);
 
     --behavioural mux component
     S <=    out_c0 when Ci = '0' else
