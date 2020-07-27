@@ -12,16 +12,20 @@
 // Description: 
 // -----------------------------------------------------------------------------
 
-`include "./memories/memory_interfaces.svh"
-`include "global_defs.svh"
+`include "../memories/memory_interfaces.svh"
+`include "../global_defs.svh"
 
-program test( mem_if.ro iram_if,new_pc_value_mem_stage ,new_pc_value ,curr_instruction,iram_enable_cu);
+program test( mem_interface.ro iram_if,
+output logic [`IRAM_ADDRESS_SIZE-1:0]new_pc_value_mem_stage ,
+input logic [`IRAM_ADDRESS_SIZE-1:0]new_pc_value ,
+input logic [`IRAM_WORD_SIZE-1:0]curr_instruction,
+output logic iram_enable_cu);
 
 	default clocking test_clk @ (posedge iram_if.clk);
   	endclocking	// clock
 
-	initial begin 
-		new_pc_value_mem_stage=0; 
+	initial begin  
+		new_pc_value_mem_stage=0;
 		$display("@%0dns Starting Program",$time);
       	iram_if.rst=1;
 		$display("Starting testbench for memories",);
@@ -36,12 +40,13 @@ program test( mem_if.ro iram_if,new_pc_value_mem_stage ,new_pc_value ,curr_instr
 			$display("@%0dns ---> wrong generated address",$time);
 			$stop();
 		end
+		##1;
 		if(new_pc_value!=4)begin
 			$display("@%0dns ---> wrong generated new program counter value",$time);
 			$stop();
 		end
 		##1;
-		if(curr_instruction!==0)begin
+		if(curr_instruction!=0)begin
 			$display("@%0dns ---> wrong generated address",$time);
 			$stop();
 		end
@@ -50,7 +55,7 @@ program test( mem_if.ro iram_if,new_pc_value_mem_stage ,new_pc_value ,curr_instr
 			$stop();
 		end
 		##1;
-		if(curr_instruction!==15)begin
+		if(curr_instruction!=15)begin
 			$display("@%0dns ---> wrong generated address",$time);
 			$stop();
 		end
@@ -68,7 +73,6 @@ endprogram: test
 
 module tb_fetch_stage ();
 	localparam clock_period= 10ns;
-	logic rst; // active low 
 	logic clk;
 
 	initial begin
@@ -81,10 +85,10 @@ module tb_fetch_stage ();
   	endclocking	// clock
 
   	// signal instantiation 
-  	logic [`IRAM_WORD_SIZE-1:0]new_pc_value_mem_stage;
-  	logic [`IRAM_WORD_SIZE-1:0]new_pc_value;
+  	logic [`IRAM_ADDRESS_SIZE-1:0]new_pc_value_mem_stage;
+  	logic [`IRAM_ADDRESS_SIZE-1:0]new_pc_value;
   	logic [`IRAM_WORD_SIZE-1:0]curr_instruction;
-  	logic iram_enable_cu;
+	logic iram_enable_cu;
 
   	//property definitions
   	property generated_address(int min , int max);
@@ -94,7 +98,7 @@ module tb_fetch_stage ();
 
   	property enable_propagate;
   		@ (test_clk)
-  		iram_enable_cu |=> mem_if.ENABLE; // it propagates directly to the ram
+  		iram_enable_cu |=> iram_if.ENABLE; // it propagates directly to the ram
   	endproperty
 
 
@@ -118,27 +122,27 @@ module tb_fetch_stage ();
 	// unit under test
 	fetch_stage #(
 		.IR_SIZE(`IRAM_WORD_SIZE),// Instruction Register Size
-		.PC_SIZE(`IRAM_WORD_SIZE)// Program Counter Size
+		.PC_SIZE(`IRAM_ADDRESS_SIZE)// Program Counter Size
 		)
 		 uut (
-		.clk(mem_if.clk),
-		.rst(mem_if.rst),
+		.clk(iram_if.clk),
+		.rst(iram_if.rst),
 		//from  memory stage
 		.new_pc_value_mem_stage(new_pc_value_mem_stage),
 		// to decode stage
 		.new_pc_value(new_pc_value),
 		// IRAM interface
-		.IRAM_ADDRESS (mem_if.ADDRESS),
-		.IRAM_ENABLE  (mem_if.ENABLE),
-		.IRAM_READY   (mem_if.DATA_READY),
-		.IRAM_DATA    (mem_if.DATA),
+		.IRAM_ADDRESS (iram_if.ADDRESS),
+		.IRAM_ENABLE  (iram_if.ENABLE),
+		.IRAM_READY   (iram_if.DATA_READY),
+		.IRAM_DATA    (iram_if.DATA),
 		// to/from control unit
 		.curr_instruction(curr_instruction),
 		.iram_enable_cu (iram_enable_cu)
 	);
 
 // test program 
-test test_program(.mem_if(mem_if),
+test test_program(.iram_if(iram_if),
 		.new_pc_value_mem_stage(new_pc_value_mem_stage),
 		.new_pc_value(new_pc_value),
 		.curr_instruction(curr_instruction),

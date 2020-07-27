@@ -40,8 +40,18 @@ end  component register_file;
 begin 
 
 RG:register_file
-GENERIC MAP(NBITREG=>64,NBITADD=>5); 
-PORT MAP (CLK,RESET,ENABLE,RD1,RD2,WR,ADD_WR,ADD_RD1,ADD_RD2,DATAIN,OUT1,OUT2);
+GENERIC MAP(NBITREG=>64,NBITADD=>5)
+PORT MAP (CLK=>CLK,RESET=>RESET,
+ENABLE=>ENABLE,
+RD1=>RD1,
+RD2=>RD2,
+WR=>WR,
+ADD_WR=>ADD_WR,
+ADD_RD1=>ADD_RD1,
+ADD_RD2=>ADD_RD2,
+DATAIN=>DATAIN,
+OUT1=>OUT1,
+OUT2=>OUT2);
 	RESET <= '1','0' after 5 ns;
 	ENABLE <= '0','1' after 3 ns, '0' after 10 ns, '1' after 15 ns;
 	WR <= '0','1' after 6 ns, '0' after 7 ns, '1' after 10 ns, '0' after 20 ns;

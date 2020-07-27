@@ -18,6 +18,7 @@
 
 library ieee;
 use ieee.std_logic_1164.all;
+use work.constants.all; -- it contains f_log2 function 
 
 package globals is
 
@@ -47,10 +48,10 @@ constant data_size : integer := 32;
 
 
 -- definition for memories size
-constant dram_size : integer := 128; 
---constant dram_address_size : integer := f_log2(dram_size); 
-constant iram_size : integer := 128; 
---constant iram_address_size : integer := f_log2(iram_size); 
+constant dram_size : integer := 2**16; 
+constant dram_address_size : integer := f_log2(dram_size); 
+constant iram_size : integer := 2**16; 
+constant iram_address_size : integer := f_log2(iram_size); 
 
 
 -- from lab 

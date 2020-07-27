@@ -7,6 +7,17 @@ QuestaSim-64 vlog 10.7c Compiler 2018.08 Aug 17 2018
 Top level modules:
 	tb_memories
 
+} {} {}} /home/ms20.50/Desktop/DLX_project/hardware/dlx/001-global_components.vhd {1 {vcom -work work -2008 -explicit -check_synthesis -vopt -stats=none /home/ms20.50/Desktop/DLX_project/hardware/dlx/001-global_components.vhd
+QuestaSim-64 vcom 10.7c Compiler 2018.08 Aug 17 2018
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package CONSTANTS
+-- Loading package globals
+-- Compiling package global_components
+-- Compiling package body global_components
+-- Loading package global_components
+
 } {} {}} /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/testbench_subunits/tb_writeback_stage.sv {1 {vlog -work work -vopt -sv -stats=none /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/testbench_subunits/tb_writeback_stage.sv
 QuestaSim-64 vlog 10.7c Compiler 2018.08 Aug 17 2018
 -- Compiling module tb_writeback_stage
@@ -14,167 +25,91 @@ QuestaSim-64 vlog 10.7c Compiler 2018.08 Aug 17 2018
 Top level modules:
 	tb_writeback_stage
 
-} {} {}} /home/ms20.50/Desktop/DLX_project/hardware/dlx/001-global_components.vhd {0 {vcom -work work -2008 -explicit -check_synthesis -vopt -stats=none /home/ms20.50/Desktop/DLX_project/hardware/dlx/001-global_components.vhd
-QuestaSim-64 vcom 10.7c Compiler 2018.08 Aug 17 2018
-** Error (suppressible): (vcom-19) Failed to access library 'work' at "work".
-No such file or directory. (errno = ENOENT)
-
-} {} {}} /home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/registerfile.vhd {0 {vcom -work work -2008 -explicit -vopt -stats=none /home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/registerfile.vhd
-QuestaSim-64 vcom 10.7c Compiler 2018.08 Aug 17 2018
-** Error (suppressible): (vcom-19) Failed to access library 'work' at "work".
-No such file or directory. (errno = ENOENT)
-
-} {} {}} /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/romem.sv {0 {vlog -work work -vopt -sv -stats=none /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/romem.sv
+} {} {}} /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/testbench_subunits/tb_decode_stage.sv {1 {vlog -work work -vopt -sv -stats=none /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/testbench_subunits/tb_decode_stage.sv
 QuestaSim-64 vlog 10.7c Compiler 2018.08 Aug 17 2018
-** Error: (vlib-35) Failed to create directory "work".
-File exists. (errno = EEXIST)
-Verilog Compiler exiting
-
-} {3.0 4.0} {}} /home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/rca.vhd {0 {vcom -work work -2008 -explicit -vopt -stats=none /home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/rca.vhd
-QuestaSim-64 vcom 10.7c Compiler 2018.08 Aug 17 2018
-** Error (suppressible): (vcom-19) Failed to access library 'work' at "work".
-No such file or directory. (errno = ENOENT)
-
-} {} {}} /home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/complement2.vhd {0 {vcom -work work -2008 -explicit -vopt -stats=none /home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/complement2.vhd
-QuestaSim-64 vcom 10.7c Compiler 2018.08 Aug 17 2018
-** Error (suppressible): (vcom-19) Failed to access library 'work' at "work".
-No such file or directory. (errno = ENOENT)
-
-} {} {}} /home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/wrf.vhd {0 {vcom -work work -2008 -explicit -vopt -stats=none /home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/wrf.vhd
-QuestaSim-64 vcom 10.7c Compiler 2018.08 Aug 17 2018
-** Error (suppressible): (vcom-19) Failed to access library 'work' at "work".
-No such file or directory. (errno = ENOENT)
-
-} {} {}} /home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/csb.vhd {0 {vcom -work work -2008 -explicit -vopt -stats=none /home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/csb.vhd
-QuestaSim-64 vcom 10.7c Compiler 2018.08 Aug 17 2018
-** Error (suppressible): (vcom-19) Failed to access library 'work' at "work".
-No such file or directory. (errno = ENOENT)
-
-} {} {}} /home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/encoder.vhd {0 {vcom -work work -2008 -explicit -vopt -stats=none /home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/encoder.vhd
-QuestaSim-64 vcom 10.7c Compiler 2018.08 Aug 17 2018
-** Error (suppressible): (vcom-19) Failed to access library 'work' at "work".
-No such file or directory. (errno = ENOENT)
-
-} {} {}} /home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/mux21_nbit.vhd {0 {vcom -work work -2008 -explicit -vopt -stats=none /home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/mux21_nbit.vhd
-QuestaSim-64 vcom 10.7c Compiler 2018.08 Aug 17 2018
-** Error (suppressible): (vcom-19) Failed to access library 'work' at "work".
-No such file or directory. (errno = ENOENT)
-
-} {} {}} /home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/stcg.vhd {0 {vcom -work work -2008 -explicit -vopt -stats=none /home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/stcg.vhd
-QuestaSim-64 vcom 10.7c Compiler 2018.08 Aug 17 2018
-** Error (suppressible): (vcom-19) Failed to access library 'work' at "work".
-No such file or directory. (errno = ENOENT)
-
-} {} {}} /home/ms20.50/Desktop/DLX_project/hardware/dlx/a.b-DataPath.core/a.b.e-Write_back.stage.vhd {0 {vcom -work work -2008 -explicit -check_synthesis -vopt -stats=none /home/ms20.50/Desktop/DLX_project/hardware/dlx/a.b-DataPath.core/a.b.e-Write_back.stage.vhd
-QuestaSim-64 vcom 10.7c Compiler 2018.08 Aug 17 2018
-** Error (suppressible): (vcom-19) Failed to access library 'work' at "work".
-No such file or directory. (errno = ENOENT)
-
-} {} {}} /home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/alu.vhd {0 {vcom -work work -2008 -explicit -vopt -stats=none /home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/alu.vhd
-QuestaSim-64 vcom 10.7c Compiler 2018.08 Aug 17 2018
-** Error (suppressible): (vcom-19) Failed to access library 'work' at "work".
-No such file or directory. (errno = ENOENT)
-
-} {} {}} /home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/mux.vhd {0 {vcom -work work -2008 -explicit -vopt -stats=none /home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/mux.vhd
-QuestaSim-64 vcom 10.7c Compiler 2018.08 Aug 17 2018
-** Error (suppressible): (vcom-19) Failed to access library 'work' at "work".
-No such file or directory. (errno = ENOENT)
-
-} {} {}} /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/memory_interfaces.svh {1 {vlog -work work -vopt -sv -stats=none /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/memory_interfaces.svh
-QuestaSim-64 vlog 10.7c Compiler 2018.08 Aug 17 2018
--- Compiling interface mem_interface
+-- Compiling module tb_decode_stage
 
 Top level modules:
-	--none--
+	tb_decode_stage
 
-} {} {}} /home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/p4_adder.vhd {0 {vcom -work work -2008 -explicit -vopt -stats=none /home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/p4_adder.vhd
-QuestaSim-64 vcom 10.7c Compiler 2018.08 Aug 17 2018
-** Error (suppressible): (vcom-19) Failed to access library 'work' at "work".
-No such file or directory. (errno = ENOENT)
-
-} {} {}} /home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/alu_type.vhd {1 {vcom -work work -2008 -explicit -vopt -stats=none /home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/alu_type.vhd
-QuestaSim-64 vcom 10.7c Compiler 2018.08 Aug 17 2018
--- Loading package STANDARD
--- Compiling package alu_types
-
-} {} {}} /home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/gsb.vhd {0 {vcom -work work -2008 -explicit -vopt -stats=none /home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/gsb.vhd
-QuestaSim-64 vcom 10.7c Compiler 2018.08 Aug 17 2018
-** Error (suppressible): (vcom-19) Failed to access library 'work' at "work".
-No such file or directory. (errno = ENOENT)
-
-} {} {}} /home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/pgsb.vhd {0 {vcom -work work -2008 -explicit -vopt -stats=none /home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/pgsb.vhd
-QuestaSim-64 vcom 10.7c Compiler 2018.08 Aug 17 2018
-** Error (suppressible): (vcom-19) Failed to access library 'work' at "work".
-No such file or directory. (errno = ENOENT)
-
-} {} {}} /home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/constants.vhd {0 {vcom -work work -2008 -explicit -vopt -stats=none /home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/constants.vhd
-QuestaSim-64 vcom 10.7c Compiler 2018.08 Aug 17 2018
-** Error (suppressible): (vcom-19) Failed to access library 'work' at "work".
-No such file or directory. (errno = ENOENT)
-
-} {} {}} /home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/mux21.vhd {0 {vcom -work work -2008 -explicit -vopt -stats=none /home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/mux21.vhd
+} {} {}} /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/testbench_subunits_labs/tb_fd.vhd {1 {vcom -work work -2002 -explicit -vopt -stats=none /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/testbench_subunits_labs/tb_fd.vhd
 QuestaSim-64 vcom 10.7c Compiler 2018.08 Aug 17 2018
 -- Loading package STANDARD
 -- Loading package TEXTIO
 -- Loading package std_logic_1164
-** Error: (vcom-11) Could not find work.constants.
-** Error (suppressible): /home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/mux21.vhd(3): (vcom-1195) Cannot find expanded name "work.constants".
-** Error: /home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/mux21.vhd(3): Unknown expanded name.
-** Note: /home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/mux21.vhd(5): VHDL Compiler exiting
+-- Compiling entity TBFD
+-- Compiling architecture TEST of TBFD
+-- Compiling configuration FDTEST
+-- Loading entity TBFD
+-- Loading architecture TEST of TBFD
+-- Loading entity FD
+-- Loading configuration cfg_fd_pippo
+-- Loading configuration cfg_fd_pluto
 
-} {6.0 7.0 8.0 9.0} {}} /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/implemented_instructions.svh {1 {vlog -work work -vopt -sv -stats=none /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/implemented_instructions.svh
+} {} {}} /home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/sum_gen.vhd {2 {vcom -work work -2008 -explicit -vopt -stats=none /home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/sum_gen.vhd
+QuestaSim-64 vcom 10.7c Compiler 2018.08 Aug 17 2018
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package std_logic_arith
+-- Loading package STD_LOGIC_UNSIGNED
+-- Compiling entity SUM_GEN
+-- Compiling architecture STRUCTURAL of SUM_GEN
+-- Compiling configuration CFG_SUM_GEN_STRUCTURAL
+-- Loading entity SUM_GEN
+-- Loading architecture STRUCTURAL of SUM_GEN
+-- Loading entity CSB
+-- Loading configuration cfg_csb_structural
+** Warning: /home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/sum_gen.vhd(43): (vcom-1263) Component configuration "all : CSB" applies to no component instantiation statements.
+
+} {} {}} /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/implemented_instructions.svh {1 {vlog -work work -vopt -sv -stats=none /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/implemented_instructions.svh
 QuestaSim-64 vlog 10.7c Compiler 2018.08 Aug 17 2018
 
 Top level modules:
 	--none--
 
-} {} {}} /home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/sum_gen.vhd {0 {vcom -work work -2008 -explicit -vopt -stats=none /home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/sum_gen.vhd
-QuestaSim-64 vcom 10.7c Compiler 2018.08 Aug 17 2018
-** Error (suppressible): (vcom-19) Failed to access library 'work' at "work".
-No such file or directory. (errno = ENOENT)
-
-} {} {}} /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/rwmem.sv {1 {vlog -work work -vopt -sv -stats=none /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/rwmem.sv
+} {} {}} /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/testbench_subunits/tb_cu.sv {1 {vlog -work work -vopt -sv -stats=none /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/testbench_subunits/tb_cu.sv
 QuestaSim-64 vlog 10.7c Compiler 2018.08 Aug 17 2018
--- Compiling interface mem_interface
--- Compiling module rwmem
+-- Compiling module tb_cu
 
 Top level modules:
-	rwmem
+	tb_cu
 
-} {} {}} /home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/pg.vhd {0 {vcom -work work -2008 -explicit -vopt -stats=none /home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/pg.vhd
+} {} {}} /home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/adder.vhd {1 {vcom -work work -2008 -explicit -vopt -stats=none /home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/adder.vhd
 QuestaSim-64 vcom 10.7c Compiler 2018.08 Aug 17 2018
-** Error (suppressible): (vcom-19) Failed to access library 'work' at "work".
-No such file or directory. (errno = ENOENT)
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package NUMERIC_STD
+-- Compiling entity adder
+-- Compiling architecture beh of adder
+-- Compiling configuration CFG_ADDER_BEH
+-- Loading entity adder
+-- Loading architecture beh of adder
 
-} {} {}} /home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/fa.vhd {0 {vcom -work work -2008 -explicit -vopt -stats=none /home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/fa.vhd
+} {} {}} /home/ms20.50/Desktop/DLX_project/hardware/dlx/a.b-DataPath.core/a.b.c-Execute.stage.vhd {1 {vcom -work work -2002 -explicit -vopt -stats=none /home/ms20.50/Desktop/DLX_project/hardware/dlx/a.b-DataPath.core/a.b.c-Execute.stage.vhd
 QuestaSim-64 vcom 10.7c Compiler 2018.08 Aug 17 2018
-** Error (suppressible): (vcom-19) Failed to access library 'work' at "work".
-No such file or directory. (errno = ENOENT)
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package NUMERIC_STD
+-- Compiling entity execute_stage
+-- Compiling architecture structural of execute_stage
 
-} {} {}} /home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/adder.vhd {0 {vcom -work work -2008 -explicit -vopt -stats=none /home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/adder.vhd
+} {} {}} /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/testbench_subunits_labs/tb_registerfile_wrf.vhd {1 {vcom -work work -2002 -explicit -vopt -stats=none /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/testbench_subunits_labs/tb_registerfile_wrf.vhd
 QuestaSim-64 vcom 10.7c Compiler 2018.08 Aug 17 2018
-** Error (suppressible): (vcom-19) Failed to access library 'work' at "work".
-No such file or directory. (errno = ENOENT)
-
-} {} {}} /home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/reg_nbit.vhd {0 {vcom -work work -2008 -explicit -vopt -stats=none /home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/reg_nbit.vhd
-QuestaSim-64 vcom 10.7c Compiler 2018.08 Aug 17 2018
-** Error (suppressible): (vcom-19) Failed to access library 'work' at "work".
-No such file or directory. (errno = ENOENT)
-
-} {} {}} /home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/fd.vhd {0 {vcom -work work -2008 -explicit -vopt -stats=none /home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/fd.vhd
-QuestaSim-64 vcom 10.7c Compiler 2018.08 Aug 17 2018
-** Error (suppressible): (vcom-19) Failed to access library 'work' at "work".
-No such file or directory. (errno = ENOENT)
-
-} {} {}} /home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/boothmul.vhd {0 {vcom -work work -2008 -explicit -vopt -stats=none /home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/boothmul.vhd
-QuestaSim-64 vcom 10.7c Compiler 2018.08 Aug 17 2018
-** Error (suppressible): (vcom-19) Failed to access library 'work' at "work".
-No such file or directory. (errno = ENOENT)
-
-} {} {}} /home/ms20.50/Desktop/DLX_project/hardware/dlx/000-globals.vhd {0 {vcom -work work -2008 -explicit -check_synthesis -vopt -stats=none /home/ms20.50/Desktop/DLX_project/hardware/dlx/000-globals.vhd
-QuestaSim-64 vcom 10.7c Compiler 2018.08 Aug 17 2018
-** Error (suppressible): (vcom-19) Failed to access library 'work' at "work".
-No such file or directory. (errno = ENOENT)
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package CONSTANTS
+-- Compiling entity TBREGISTERFILE
+-- Compiling architecture TESTA of TBREGISTERFILE
+-- Compiling configuration CFG_TESTRF
+-- Loading entity TBREGISTERFILE
+-- Loading architecture TESTA of TBREGISTERFILE
+-- Loading package NUMERIC_STD
+-- Loading entity wrf
+-- Loading configuration cfg_wrf_beh
 
 } {} {}} /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/tb_dlx.sv {1 {vlog -work work -vopt -sv -stats=none /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/tb_dlx.sv
 QuestaSim-64 vlog 10.7c Compiler 2018.08 Aug 17 2018
@@ -184,5 +119,547 @@ QuestaSim-64 vlog 10.7c Compiler 2018.08 Aug 17 2018
 
 Top level modules:
 	tb_dlx
+
+} {} {}} /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/testbench_subunits_labs/tb_regN.vhd {1 {vcom -work work -2002 -explicit -vopt -stats=none /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/testbench_subunits_labs/tb_regN.vhd
+QuestaSim-64 vcom 10.7c Compiler 2018.08 Aug 17 2018
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package CONSTANTS
+-- Compiling entity tb_regN
+-- Compiling architecture TEST of tb_regN
+-- Compiling configuration regn_TEST
+-- Loading entity tb_regN
+-- Loading architecture TEST of tb_regN
+-- Loading entity reg_nbit
+-- Loading configuration cfg_reg_pippo
+-- Loading configuration cfg_reg_pluto
+
+} {} {}} /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/testbench_subunits/tb_execute_stage.sv {1 {vlog -work work -vopt -sv -stats=none /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/testbench_subunits/tb_execute_stage.sv
+QuestaSim-64 vlog 10.7c Compiler 2018.08 Aug 17 2018
+-- Compiling module tb_execute_stage
+
+Top level modules:
+	tb_execute_stage
+
+} {} {}} /home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/registerfile.vhd {1 {vcom -work work -2008 -explicit -vopt -stats=none /home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/registerfile.vhd
+QuestaSim-64 vcom 10.7c Compiler 2018.08 Aug 17 2018
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package NUMERIC_STD
+-- Compiling entity register_file
+-- Compiling architecture beh of register_file
+-- Compiling configuration CFG_RF_BEH
+-- Loading entity register_file
+-- Loading architecture beh of register_file
+
+} {} {}} /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/testbench_subunits_labs/tb_sum_gen.vhd {1 {vcom -work work -2002 -explicit -vopt -stats=none /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/testbench_subunits_labs/tb_sum_gen.vhd
+QuestaSim-64 vcom 10.7c Compiler 2018.08 Aug 17 2018
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package NUMERIC_STD
+-- Compiling entity TBSUM_GEN
+-- Compiling architecture TEST of TBSUM_GEN
+-- Compiling configuration SUM_GENTEST
+-- Loading entity TBSUM_GEN
+-- Loading architecture TEST of TBSUM_GEN
+-- Loading package std_logic_arith
+-- Loading package STD_LOGIC_UNSIGNED
+-- Loading entity SUM_GEN
+-- Loading configuration cfg_sum_gen_structural
+
+} {} {}} /home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/complement2.vhd {1 {vcom -work work -2008 -explicit -vopt -stats=none /home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/complement2.vhd
+QuestaSim-64 vcom 10.7c Compiler 2018.08 Aug 17 2018
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package NUMERIC_STD
+-- Compiling entity complement2
+-- Compiling architecture beh of complement2
+-- Compiling configuration CFG_COMPLEMENT2_BEH
+-- Loading entity complement2
+-- Loading architecture beh of complement2
+
+} {} {}} /home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/rca.vhd {1 {vcom -work work -2008 -explicit -vopt -stats=none /home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/rca.vhd
+QuestaSim-64 vcom 10.7c Compiler 2018.08 Aug 17 2018
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package std_logic_arith
+-- Loading package STD_LOGIC_UNSIGNED
+-- Compiling entity RCA
+-- Compiling architecture STRUCTURAL of RCA
+-- Compiling configuration CFG_RCA_STRUCTURAL
+-- Loading entity RCA
+-- Loading architecture STRUCTURAL of RCA
+-- Loading entity FA
+-- Loading configuration cfg_fa_behavioral
+
+} {} {}} /home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/wrf.vhd {1 {vcom -work work -2008 -explicit -vopt -stats=none /home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/wrf.vhd
+QuestaSim-64 vcom 10.7c Compiler 2018.08 Aug 17 2018
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package NUMERIC_STD
+-- Loading package CONSTANTS
+-- Compiling entity wrf
+-- Compiling architecture beh of wrf
+-- Compiling configuration CFG_WRF_BEH
+-- Loading entity wrf
+-- Loading architecture beh of wrf
+
+} {} {}} /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/testbench_subunits_labs/MULTIPLIER_tb.vhd {1 {vcom -work work -2002 -explicit -vopt -stats=none /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/testbench_subunits_labs/MULTIPLIER_tb.vhd
+QuestaSim-64 vcom 10.7c Compiler 2018.08 Aug 17 2018
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package NUMERIC_STD
+-- Loading package CONSTANTS
+-- Compiling entity MULTIPLIER_tb
+-- Compiling architecture TEST of MULTIPLIER_tb
+
+} {} {}} /home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/encoder.vhd {1 {vcom -work work -2008 -explicit -vopt -stats=none /home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/encoder.vhd
+QuestaSim-64 vcom 10.7c Compiler 2018.08 Aug 17 2018
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package NUMERIC_STD
+-- Compiling entity encoder
+-- Compiling architecture beh of encoder
+-- Compiling configuration CFG_ENCODER_BEH
+-- Loading entity encoder
+-- Loading architecture beh of encoder
+
+} {} {}} /home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/alu.vhd {1 {vcom -work work -2008 -explicit -vopt -stats=none /home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/alu.vhd
+QuestaSim-64 vcom 10.7c Compiler 2018.08 Aug 17 2018
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package NUMERIC_STD
+-- Loading package CONSTANTS
+-- Loading package alu_types
+-- Compiling entity ALU
+-- Compiling architecture BEHAVIOR of ALU
+-- Compiling configuration CFG_ALU_BEHAVIORAL
+-- Loading entity ALU
+-- Loading architecture BEHAVIOR of ALU
+
+} {} {}} /home/ms20.50/Desktop/DLX_project/hardware/dlx/a.b-DataPath.core/a.b.e-Write_back.stage.vhd {1 {vcom -work work -2008 -explicit -check_synthesis -vopt -stats=none /home/ms20.50/Desktop/DLX_project/hardware/dlx/a.b-DataPath.core/a.b.e-Write_back.stage.vhd
+QuestaSim-64 vcom 10.7c Compiler 2018.08 Aug 17 2018
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package NUMERIC_STD
+-- Loading package CONSTANTS
+-- Loading package globals
+-- Loading package global_components
+-- Compiling entity write_back_stage
+-- Compiling architecture structural of write_back_stage
+
+} {} {}} /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/memory_interfaces.svh {1 {vlog -work work -vopt -sv -stats=none /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/memory_interfaces.svh
+QuestaSim-64 vlog 10.7c Compiler 2018.08 Aug 17 2018
+-- Compiling interface mem_interface
+
+Top level modules:
+	--none--
+
+} {} {}} /home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/alu_type.vhd {1 {vcom -work work -2008 -explicit -vopt -stats=none /home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/alu_type.vhd
+QuestaSim-64 vcom 10.7c Compiler 2018.08 Aug 17 2018
+-- Loading package STANDARD
+-- Compiling package alu_types
+
+} {} {}} /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/testbench_subunits_labs/tb_p4adder.vhd {1 {vcom -work work -2002 -explicit -vopt -stats=none /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/testbench_subunits_labs/tb_p4adder.vhd
+QuestaSim-64 vcom 10.7c Compiler 2018.08 Aug 17 2018
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package NUMERIC_STD
+-- Loading package CONSTANTS
+-- Compiling entity tb_p4adder
+-- Compiling architecture test of tb_p4adder
+-- Compiling configuration CFG_TB_P4ADDER
+-- Loading entity tb_p4adder
+-- Loading architecture test of tb_p4adder
+-- Loading entity p4_adder
+
+} {} {}} /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/testbench_subunits_labs/tb_registerfile.vhd {1 {vcom -work work -2002 -explicit -vopt -stats=none /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/testbench_subunits_labs/tb_registerfile.vhd
+QuestaSim-64 vcom 10.7c Compiler 2018.08 Aug 17 2018
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Compiling entity TBREGISTERFILE
+-- Compiling architecture TESTA of TBREGISTERFILE
+-- Compiling configuration CFG_TESTRF
+-- Loading entity TBREGISTERFILE
+-- Loading architecture TESTA of TBREGISTERFILE
+-- Loading package NUMERIC_STD
+-- Loading entity register_file
+-- Loading configuration cfg_rf_beh
+
+} {} {}} /home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/constants.vhd {1 {vcom -work work -2008 -explicit -vopt -stats=none /home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/constants.vhd
+QuestaSim-64 vcom 10.7c Compiler 2018.08 Aug 17 2018
+-- Loading package STANDARD
+-- Compiling package CONSTANTS
+-- Compiling package body CONSTANTS
+-- Loading package CONSTANTS
+
+} {} {}} /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/testbench_subunits/tb_datapath.sv {1 {vlog -work work -vopt -sv -stats=none /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/testbench_subunits/tb_datapath.sv
+QuestaSim-64 vlog 10.7c Compiler 2018.08 Aug 17 2018
+-- Compiling module tb_datapath
+
+Top level modules:
+	tb_datapath
+
+} {} {}} /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/testbench_subunits_labs/tb_rca.vhd {1 {vcom -work work -2002 -explicit -vopt -stats=none /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/testbench_subunits_labs/tb_rca.vhd
+QuestaSim-64 vcom 10.7c Compiler 2018.08 Aug 17 2018
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package NUMERIC_STD
+-- Compiling entity TBRCA
+-- Compiling architecture TEST of TBRCA
+-- Compiling configuration RCATEST
+-- Loading entity TBRCA
+-- Loading architecture TEST of TBRCA
+-- Loading package std_logic_arith
+-- Loading package STD_LOGIC_UNSIGNED
+-- Loading entity RCA
+-- Loading configuration cfg_rca_structural
+
+} {} {}} /home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/fa.vhd {1 {vcom -work work -2008 -explicit -vopt -stats=none /home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/fa.vhd
+QuestaSim-64 vcom 10.7c Compiler 2018.08 Aug 17 2018
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Compiling entity FA
+-- Compiling architecture BEHAVIORAL of FA
+-- Compiling configuration CFG_FA_BEHAVIORAL
+-- Loading entity FA
+-- Loading architecture BEHAVIORAL of FA
+
+} {} {}} /home/ms20.50/Desktop/DLX_project/hardware/dlx/a.b-DataPath.core/a.b.b-Decode.stage.vhd {1 {vcom -work work -2002 -explicit -vopt -stats=none /home/ms20.50/Desktop/DLX_project/hardware/dlx/a.b-DataPath.core/a.b.b-Decode.stage.vhd
+QuestaSim-64 vcom 10.7c Compiler 2018.08 Aug 17 2018
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package NUMERIC_STD
+-- Compiling entity decode_stage
+-- Compiling architecture structural of decode_stage
+
+} {} {}} /home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/reg_nbit.vhd {1 {vcom -work work -2008 -explicit -vopt -stats=none /home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/reg_nbit.vhd
+QuestaSim-64 vcom 10.7c Compiler 2018.08 Aug 17 2018
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package CONSTANTS
+-- Compiling entity reg_nbit
+-- Compiling architecture struc of reg_nbit
+-- Compiling configuration CFG_REG_PIPPO
+-- Loading entity reg_nbit
+-- Loading architecture struc of reg_nbit
+-- Loading entity FD
+-- Loading configuration cfg_fd_pippo
+-- Compiling configuration CFG_REG_PLUTO
+-- Loading entity reg_nbit
+-- Loading architecture struc of reg_nbit
+-- Loading entity FD
+-- Loading configuration cfg_fd_pluto
+
+} {} {}} /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/testbench_subunits_labs/tb_alu.vhd {1 {vcom -work work -2002 -explicit -vopt -stats=none /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/testbench_subunits_labs/tb_alu.vhd
+QuestaSim-64 vcom 10.7c Compiler 2018.08 Aug 17 2018
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package CONSTANTS
+-- Loading package alu_types
+-- Compiling entity TBALU
+-- Compiling architecture TEST of TBALU
+-- Compiling configuration ALU_TEST
+-- Loading entity TBALU
+-- Loading architecture TEST of TBALU
+-- Loading package NUMERIC_STD
+-- Loading entity ALU
+-- Loading configuration cfg_alu_behavioral
+
+} {} {}} /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/romem.sv {1 {vlog -work work -vopt -sv -stats=none /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/romem.sv
+QuestaSim-64 vlog 10.7c Compiler 2018.08 Aug 17 2018
+-- Compiling interface mem_interface
+-- Compiling module romem
+
+Top level modules:
+	romem
+
+} {} {}} /home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/csb.vhd {1 {vcom -work work -2008 -explicit -vopt -stats=none /home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/csb.vhd
+QuestaSim-64 vcom 10.7c Compiler 2018.08 Aug 17 2018
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package std_logic_arith
+-- Loading package STD_LOGIC_UNSIGNED
+-- Compiling entity CSB
+-- Compiling architecture STRUCTURAL of CSB
+-- Compiling configuration CFG_CSB_STRUCTURAL
+-- Loading entity CSB
+-- Loading architecture STRUCTURAL of CSB
+-- Loading entity RCA
+-- Loading configuration cfg_rca_structural
+
+} {} {}} /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/global_defs.svh {1 {vlog -work work -vopt -sv -stats=none /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/global_defs.svh
+QuestaSim-64 vlog 10.7c Compiler 2018.08 Aug 17 2018
+
+} {} {}} /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/testbench_subunits/tb_memory_stage.sv {1 {vlog -work work -vopt -sv -stats=none /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/testbench_subunits/tb_memory_stage.sv
+QuestaSim-64 vlog 10.7c Compiler 2018.08 Aug 17 2018
+-- Compiling module tb_memory_stage
+
+Top level modules:
+	tb_memory_stage
+
+} {} {}} /home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/p4_adder.vhd {1 {vcom -work work -2008 -explicit -vopt -stats=none /home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/p4_adder.vhd
+QuestaSim-64 vcom 10.7c Compiler 2018.08 Aug 17 2018
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package CONSTANTS
+-- Compiling entity p4_adder
+-- Compiling architecture struc of p4_adder
+
+} {} {}} /home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/gsb.vhd {1 {vcom -work work -2008 -explicit -vopt -stats=none /home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/gsb.vhd
+QuestaSim-64 vcom 10.7c Compiler 2018.08 Aug 17 2018
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Compiling entity GSB
+-- Compiling architecture BEHAVIORAL of GSB
+-- Compiling configuration CFG_GSB_BEHAVIORAL
+-- Loading entity GSB
+-- Loading architecture BEHAVIORAL of GSB
+
+} {} {}} /home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/mux21.vhd {1 {vcom -work work -2008 -explicit -vopt -stats=none /home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/mux21.vhd
+QuestaSim-64 vcom 10.7c Compiler 2018.08 Aug 17 2018
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package CONSTANTS
+-- Compiling entity MUX21
+-- Compiling architecture BEHAVIORAL_1 of MUX21
+-- Compiling architecture BEHAVIORAL_2 of MUX21
+-- Loading entity MUX21
+-- Compiling architecture BEHAVIORAL_3 of MUX21
+-- Loading entity MUX21
+-- Compiling configuration CFG_MUX21_BEHAVIORAL_1
+-- Loading entity MUX21
+-- Loading architecture BEHAVIORAL_1 of MUX21
+-- Compiling configuration CFG_MUX21_BEHAVIORAL_2
+-- Loading entity MUX21
+-- Loading architecture BEHAVIORAL_2 of MUX21
+-- Compiling configuration CFG_MUX21_BEHAVIORAL_3
+-- Loading entity MUX21
+-- Loading architecture BEHAVIORAL_3 of MUX21
+
+} {} {}} /home/ms20.50/Desktop/DLX_project/hardware/dlx/a.b-DataPath.core/a.b.a-Fetch.stage.vhd {1 {vcom -work work -2002 -explicit -vopt -stats=none /home/ms20.50/Desktop/DLX_project/hardware/dlx/a.b-DataPath.core/a.b.a-Fetch.stage.vhd
+QuestaSim-64 vcom 10.7c Compiler 2018.08 Aug 17 2018
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package NUMERIC_STD
+-- Loading package CONSTANTS
+-- Loading package globals
+-- Loading package global_components
+-- Compiling entity fetch_stage
+-- Compiling architecture structural of fetch_stage
+
+} {} {}} /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/rwmem.sv {1 {vlog -work work -vopt -sv -stats=none /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/rwmem.sv
+QuestaSim-64 vlog 10.7c Compiler 2018.08 Aug 17 2018
+-- Compiling interface mem_interface
+-- Compiling module rwmem
+
+Top level modules:
+	rwmem
+
+} {} {}} /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/testbench_subunits_labs/tb_csb.vhd {1 {vcom -work work -2002 -explicit -vopt -stats=none /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/testbench_subunits_labs/tb_csb.vhd
+QuestaSim-64 vcom 10.7c Compiler 2018.08 Aug 17 2018
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package NUMERIC_STD
+-- Compiling entity TBCSB
+-- Compiling architecture TEST of TBCSB
+-- Compiling configuration CSBTEST
+-- Loading entity TBCSB
+-- Loading architecture TEST of TBCSB
+-- Loading package std_logic_arith
+-- Loading package STD_LOGIC_UNSIGNED
+-- Loading entity CSB
+-- Loading configuration cfg_csb_structural
+
+} {} {}} /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/testbench_subunits_labs/tb_mux21_generic.vhd {1 {vcom -work work -2002 -explicit -vopt -stats=none /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/testbench_subunits_labs/tb_mux21_generic.vhd
+QuestaSim-64 vcom 10.7c Compiler 2018.08 Aug 17 2018
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package CONSTANTS
+-- Compiling entity TBMUX21_GENERIC
+-- Compiling architecture TEST of TBMUX21_GENERIC
+-- Compiling configuration MUX21GENTEST
+-- Loading entity TBMUX21_GENERIC
+-- Loading architecture TEST of TBMUX21_GENERIC
+-- Loading entity mux21_nbit
+-- Loading configuration cfg_mux21_generic_beh
+-- Loading configuration cfg_mux21_generic_struc
+
+} {} {}} /home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/stcg.vhd {1 {vcom -work work -2008 -explicit -vopt -stats=none /home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/stcg.vhd
+QuestaSim-64 vcom 10.7c Compiler 2018.08 Aug 17 2018
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package CONSTANTS
+-- Compiling entity STCG
+-- Compiling architecture STRUCTURAL of STCG
+-- Compiling configuration CFG_STCG_STRUCTURAL
+-- Loading entity STCG
+-- Loading architecture STRUCTURAL of STCG
+-- Loading entity PG
+-- Loading entity PGSB
+-- Loading entity GSB
+
+} {} {}} /home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/mux21_nbit.vhd {1 {vcom -work work -2008 -explicit -vopt -stats=none /home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/mux21_nbit.vhd
+QuestaSim-64 vcom 10.7c Compiler 2018.08 Aug 17 2018
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package CONSTANTS
+-- Compiling entity mux21_nbit
+-- Compiling architecture beh of mux21_nbit
+-- Compiling architecture struc of mux21_nbit
+-- Loading entity mux21_nbit
+-- Compiling configuration CFG_MUX21_GENERIC_BEH
+-- Loading entity mux21_nbit
+-- Loading architecture beh of mux21_nbit
+-- Compiling configuration CFG_MUX21_GENERIC_STRUC
+-- Loading entity mux21_nbit
+-- Loading architecture struc of mux21_nbit
+-- Loading entity MUX21
+-- Loading configuration cfg_mux21_behavioral_2
+
+} {} {}} /home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/mux.vhd {1 {vcom -work work -2008 -explicit -vopt -stats=none /home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/mux.vhd
+QuestaSim-64 vcom 10.7c Compiler 2018.08 Aug 17 2018
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package NUMERIC_STD
+-- Loading package CONSTANTS
+-- Compiling entity MUX_zbit_nbit
+-- Compiling architecture beh of mux_zbit_nbit
+-- Compiling configuration CFG_MUX_BEH
+-- Loading entity MUX_zbit_nbit
+-- Loading architecture beh of mux_zbit_nbit
+
+} {} {}} /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/testbench_subunits/tb_fetch_stage.sv {1 {vlog -work work -vopt -sv -stats=none /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/testbench_subunits/tb_fetch_stage.sv
+QuestaSim-64 vlog 10.7c Compiler 2018.08 Aug 17 2018
+-- Compiling interface mem_interface
+-- Compiling program test
+-- Compiling module tb_fetch_stage
+
+Top level modules:
+	tb_fetch_stage
+
+} {} {}} /home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/pgsb.vhd {1 {vcom -work work -2008 -explicit -vopt -stats=none /home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/pgsb.vhd
+QuestaSim-64 vcom 10.7c Compiler 2018.08 Aug 17 2018
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Compiling entity PGSB
+-- Compiling architecture BEHAVIORAL of PGSB
+-- Compiling configuration CFG_PGSB_BEHAVIORAL
+-- Loading entity PGSB
+-- Loading architecture BEHAVIORAL of PGSB
+
+} {} {}} /home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/pg.vhd {1 {vcom -work work -2008 -explicit -vopt -stats=none /home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/pg.vhd
+QuestaSim-64 vcom 10.7c Compiler 2018.08 Aug 17 2018
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Compiling entity PG
+-- Compiling architecture BEHAVIORAL of PG
+-- Compiling configuration CFG_PG_BEHAVIORAL
+-- Loading entity PG
+-- Loading architecture BEHAVIORAL of PG
+
+} {} {}} /home/ms20.50/Desktop/DLX_project/hardware/dlx/a.b-DataPath.core/a.b.d.Memory.stage.vhd {0 {vcom -work work -2002 -explicit -vopt -stats=none /home/ms20.50/Desktop/DLX_project/hardware/dlx/a.b-DataPath.core/a.b.d.Memory.stage.vhd
+QuestaSim-64 vcom 10.7c Compiler 2018.08 Aug 17 2018
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package NUMERIC_STD
+-- Loading package CONSTANTS
+-- Loading package globals
+-- Loading package global_components
+-- Compiling entity memory_stage
+-- Compiling architecture structural of memory_stage
+** Error: /home/ms20.50/Desktop/DLX_project/hardware/dlx/a.b-DataPath.core/a.b.d.Memory.stage.vhd(64): near ",": syntax error
+** Error: /home/ms20.50/Desktop/DLX_project/hardware/dlx/a.b-DataPath.core/a.b.d.Memory.stage.vhd(71): Statement cannot be labeled.
+** Error (suppressible): /home/ms20.50/Desktop/DLX_project/hardware/dlx/a.b-DataPath.core/a.b.d.Memory.stage.vhd(71): (vcom-1141) Identifier "regN" does not identify a component declaration.
+** Error: /home/ms20.50/Desktop/DLX_project/hardware/dlx/a.b-DataPath.core/a.b.d.Memory.stage.vhd(85): (vcom-1136) Unknown identifier "regN".
+** Error: /home/ms20.50/Desktop/DLX_project/hardware/dlx/a.b-DataPath.core/a.b.d.Memory.stage.vhd(85): near "generic": (vcom-1576) expecting ';'.
+** Note: /home/ms20.50/Desktop/DLX_project/hardware/dlx/a.b-DataPath.core/a.b.d.Memory.stage.vhd(95): VHDL Compiler exiting
+
+} {12.0 14.0 15.0 17.0} {}} /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/testbench_subunits_labs/tb_stcg.vhd {1 {vcom -work work -2002 -explicit -vopt -stats=none /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/testbench_subunits_labs/tb_stcg.vhd
+QuestaSim-64 vcom 10.7c Compiler 2018.08 Aug 17 2018
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package CONSTANTS
+-- Compiling entity tb_stcg
+-- Compiling architecture test of tb_stcg
+-- Compiling configuration CGF_TB_STCG
+-- Loading entity tb_stcg
+-- Loading architecture test of tb_stcg
+-- Loading entity STCG
+-- Loading configuration cfg_stcg_structural
+
+} {} {}} /home/ms20.50/Desktop/DLX_project/hardware/dlx/000-globals.vhd {1 {vcom -work work -2008 -explicit -check_synthesis -vopt -stats=none /home/ms20.50/Desktop/DLX_project/hardware/dlx/000-globals.vhd
+QuestaSim-64 vcom 10.7c Compiler 2018.08 Aug 17 2018
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package CONSTANTS
+-- Compiling package globals
+-- Compiling package body globals
+-- Loading package globals
+
+} {} {}} /home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/boothmul.vhd {1 {vcom -work work -2008 -explicit -vopt -stats=none /home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/boothmul.vhd
+QuestaSim-64 vcom 10.7c Compiler 2018.08 Aug 17 2018
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package NUMERIC_STD
+-- Loading package CONSTANTS
+-- Compiling entity boothmul
+-- Compiling architecture struc of boothmul
+-- Compiling configuration CFG_BOOTHMUL_struc
+-- Loading entity boothmul
+-- Loading architecture struc of boothmul
+-- Loading entity complement2
+-- Loading entity encoder
+-- Loading entity MUX_zbit_nbit
+-- Loading entity adder
+
+} {} {}} /home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/fd.vhd {1 {vcom -work work -2008 -explicit -vopt -stats=none /home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/fd.vhd
+QuestaSim-64 vcom 10.7c Compiler 2018.08 Aug 17 2018
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Compiling entity FD
+-- Compiling architecture PIPPO of FD
+-- Compiling architecture PLUTO of FD
+-- Loading entity FD
+-- Compiling configuration CFG_FD_PIPPO
+-- Loading entity FD
+-- Loading architecture PIPPO of FD
+-- Compiling configuration CFG_FD_PLUTO
+-- Loading entity FD
+-- Loading architecture PLUTO of FD
 
 } {} {}}

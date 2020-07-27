@@ -15,9 +15,8 @@ architecture TEST of TBMUX21_GENERIC is
 	signal	output1:	std_logic_vector(NBIT-1 downto 0);
 	signal	output2:	std_logic_vector(NBIT-1 downto 0);
 	
-	component MUX21_NBIT
-	Generic (N: integer:= numBit;
-		 DELAY_MUX: Time:= tp_mux);
+	component mux21_nbit
+	Generic (N: integer:= numBit);
 	Port (	A:	In	std_logic_vector(NBIT-1 downto 0) ;
 		B:	In	std_logic_vector(NBIT-1 downto 0);
 		SEL:	In	std_logic;
@@ -26,11 +25,11 @@ architecture TEST of TBMUX21_GENERIC is
 
 begin 
 		
-	U1 : MUX21_NBIT
-	Generic Map (NBIT, 3 ns)
+	U1 : mux21_nbit
+	Generic Map (NBIT)
 	Port Map ( A1, B1, S1, output1); 
 
-	U2 : MUX21_NBIT
+	U2 : mux21_nbit
 	Generic Map (NBIT)
 	Port Map ( A1, B1, S1, output2); 
 

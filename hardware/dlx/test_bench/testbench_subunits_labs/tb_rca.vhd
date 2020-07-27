@@ -15,8 +15,7 @@ architecture TEST of TBRCA is
   end component;
 
   component RCA
-        generic ( DRCAS : Time := 0 ns;
-	          DRCAC : Time := 0 ns;
+        generic (
 		  NBIT : Natural := 8);
 	Port (	A:	In	std_logic_vector(5 downto 0);
 		B:	In	std_logic_vector(5 downto 0);
@@ -39,18 +38,18 @@ Begin
 
 -- Instanciate the ADDER without delay in the carry generation
   UADDER1: RCA 
-	   generic map (DRCAS => 0.02 ns, DRCAC => 0 ns, NBIT => 6) 
+	   generic map ( NBIT => 6) 
 	   port map (A, B, Ci, S1, Co1);
   
 -- Instanciate the ADDER with delay
   UADDER2: RCA 
-	   generic map (DRCAS => 0.02 ns, DRCAC => 0.02 ns, NBIT => 6) 
+	   generic map ( NBIT => 6) 
 	   port map (A, B, Ci, S2, Co2);
 
 -- Instanciate the ADDER behavioral
-  UADDER3: RCA 
-	   generic map (DRCAS => 0.02 ns, DRCAC => 0.02 ns, NBIT => 6) 
-	   port map (A, B, Ci, S3, Co3);
+ -- UADDER3: RCA 
+	--   generic map ( NBIT => 6) 
+	  -- port map (A, B, Ci, S3, Co3);
   
 
 
@@ -101,8 +100,8 @@ configuration RCATEST of TBRCA is
     for UADDER2: RCA
       use configuration WORK.CFG_RCA_STRUCTURAL;
     end for;
-    for UADDER3: RCA
-      use configuration WORK.CFG_RCA_BEHAVIORAL;
-    end for;
+    --for UADDER3: RCA
+      --use configuration WORK.CFG_RCA_BEHAVIORAL;
+    --end for;
   end for;
 end RCATEST;

@@ -19,6 +19,7 @@ library ieee ;
 use ieee.std_logic_1164.all ;
 use ieee.numeric_std.all ;
 use work.global_components.all;
+use work.globals.all;
 
 entity fetch_stage is
 	generic (
@@ -46,10 +47,13 @@ end entity ; -- fetch_stage
 architecture structural of fetch_stage is
 
 -- internal signals declaration
-signal new_program_counter_val_i: std_logic_vector(PC_SIZE-1 downto 0);
-signal instruction_reg:std_logic_vector(IR_SIZE-1 downto 0);
-
+signal new_program_counter_val: std_logic_vector(PC_SIZE-1 downto 0);
+signal program_counter_val: std_logic_vector(PC_SIZE-1 downto 0);
+signal instruction_reg_val:std_logic_vector(IR_SIZE-1 downto 0);
+signal restn: std_logic;
 begin
+
+restn<=not(rst);
 
 	-- Program counter
 	program_counter : reg_nbit
@@ -58,7 +62,7 @@ begin
 		)
 		port map (
 			clk   => clk,
-			reset => not(rst),
+			reset => restn,
 			d     => new_pc_value_mem_stage,
 			Q     => program_counter_val
 		);	
@@ -66,7 +70,7 @@ begin
 
 
 	-- logic for incremenentig the program counter 
-	new_program_counter_val_i<= std_logic_vector(unsigned(program_counter_val)+4);
+	new_program_counter_val<= std_logic_vector(unsigned(program_counter_val)+4);
 
 	-- New Program counter
 	new_program_counter : reg_nbit
@@ -75,8 +79,8 @@ begin
 		)
 		port map (
 			clk   => clk,
-			reset => not(rst),
-			d     => new_program_counter_val_i,
+			reset =>restn,
+			d     => new_program_counter_val,
 			Q     => new_pc_value
 		);	
 
@@ -88,7 +92,7 @@ begin
 		)
 		port map (
 			clk   => clk,
-			reset => not(rst),
+			reset => restn,
 			d     => IRAM_DATA,
 			Q     => instruction_reg_val
 		);
@@ -98,7 +102,7 @@ curr_instruction<=instruction_reg_val; -- it has to go to the CU and part of it 
 
 IRAM_ENABLE<=iram_enable_cu;-- forward memory enable
 
-IRAM_ADDRESS<=program_counter_val when IRAM_ENABLE='1' else
+IRAM_ADDRESS<=program_counter_val when iram_enable_cu='1' else
 	(OTHERS=>'Z');
 
 end architecture ; -- structural

@@ -20,7 +20,7 @@ library ieee ;
 use ieee.std_logic_1164.all ;
 use ieee.numeric_std.all ;
 use work.global_components.all;
-use work.global.all;
+use work.globals.all;
 entity memory_stage is
 	generic (
 		N       : integer := 32;

@@ -1,5 +1,5 @@
 LIBRARY ieee;
-USE ieee.std_logic1164.ALL;
+USE ieee.std_logic_1164.ALL;
 use ieee.numeric_std.ALL;
 USE work.constants.ALL;
 
@@ -7,6 +7,8 @@ ENTITY tb_p4adder IS
 END ENTITY tb_p4adder;
 
 ARCHITECTURE test OF tb_p4adder IS
+
+CONSTANT tb_nbit: integer := 32;
 
 COMPONENT  p4_adder IS
       GENERIC ( NBIT: integer :=8 ); -- number of bits for the adder
@@ -16,7 +18,6 @@ COMPONENT  p4_adder IS
 
 END COMPONENT  p4_adder;
 
-CONSTANT tn_nbit: integer := 32;
 
 SIGNAL tb_a,tb_b,tb_s: std_logic_vector(tb_nbit-1 DOWNTO 0);
 SIGNAL tb_cin: std_logic;
@@ -25,7 +26,7 @@ BEGIN
 dut: p4_adder GENERIC MAP(tb_nbit) PORT MAP(a=>tb_a,b=>tb_b,cin=>tb_cin,s=>tb_s);
 
 
-stimumus:PROCESS
+stimulus:PROCESS
 BEGIN
 tb_cin<='0';
 tb_a<=(OTHERS=>'0');
@@ -43,7 +44,7 @@ tb_cin<='1'; -- testing result with carry in
 WAIT FOR 5 ns;
 tb_cin<='0';
 -- checking the correct carry propagation
-tb_a<=x"00000001"
+tb_a<=x"00000001";
 tb_b<=(OTHERS=>'1');
 WAIT FOR 5 ns;
 WAIT;

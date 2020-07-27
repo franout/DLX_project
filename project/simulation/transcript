@@ -1255,3 +1255,5 @@ run 200ns
 #    Time: 615 ns  Iteration: 1  Instance: /tb_memories/test_ram
 # 1
 # Break in Module test_memory at /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/tb_memories.sv line 128
+# End time: 18:43:20 on Jul 27,2020, Elapsed time: 0:12:55
+# Errors: 0, Warnings: 1

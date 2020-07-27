@@ -14,7 +14,7 @@
 
 `timescale 1ns/1ps
 
-`include "global_defs.svh"
+`include "../global_defs.svh"
 `include "memory_interfaces.svh"
 
 /* in memory_interfaces.svh

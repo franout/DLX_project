@@ -9,12 +9,12 @@ architecture TEST of tb_regN is
 
 	signal	CK:		std_logic ;
 	signal	RESET:		std_logic ;
-	signal	D,QSYNCH,qasynch:	       std_logic_vector(numbit-1 downto 0);
+	signal	D,QSYNCH,qasynch:	       std_logic_vector(4-1 downto 0);
 
 	
 
 component reg_nbit IS
-  generic ( n: INTEGER := numbit);
+  generic ( n: INTEGER := 4);
   port (clk,reset:in std_logic;
       d:in std_logic_vector(N-1 DOWNTO 0);
         Q:out std_logic_vector(N-1 downto 0));
@@ -22,10 +22,10 @@ component reg_nbit IS
   
 begin 
 		
-	reg_sr : reg_nbit
+	reg_sr : reg_nbit generic map(4)
 	Port Map (clk=>ck,reset=>reset,d=>d,q=>qsynch ); -- sinc
 
-	reg_asr : reg_nbit
+	reg_asr : reg_nbit generic map(4)
 	Port Map ( clk=>ck,reset=>reset,d=>d,q=>qasynch); -- asinc
 	
 
