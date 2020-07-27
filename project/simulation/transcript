@@ -12,216 +12,1246 @@
 # //  is prohibited from disclosure under the Trade Secrets Act,
 # //  18 U.S.C. Section 1905.
 # //
-# Project file /home/ms20.50/Desktop/DLX_project/scripts/simulation_project/dlx_project.mpf was not found.
-# Unable to open project.
 # Loading project dlx_project
 # Compile of 000-globals.vhd was successful.
-# Compile of 001-global_components.vhd was successful.
+# Compile of 001-global_components.vhd failed with 3 errors.
 # Compile of adder.vhd was successful.
-# Compile of alu.vhd failed with 6 errors.
 # Compile of boothmul.vhd failed with 3 errors.
 # Compile of complement2.vhd was successful.
-# Compile of csb.vhd failed with 4 errors.
 # Compile of encoder.vhd was successful.
 # Compile of fa.vhd was successful.
 # Compile of fd.vhd was successful.
 # Compile of gsb.vhd was successful.
-# Compile of mux.vhd was successful.
-# Compile of mux21_nbit.vhd failed with 3 errors.
+# Compile of mux.vhd failed with 3 errors.
 # Compile of p4_adder.vhd failed with 3 errors.
-# Compile of pg.vhd failed with 1 errors.
 # Compile of pgsb.vhd was successful.
 # Compile of rca.vhd was successful.
-# Compile of reg_nbit.vhd was successful.
+# Compile of reg_nbit.vhd failed with 3 errors.
 # Compile of registerfile.vhd was successful.
 # Compile of stcg.vhd failed with 6 errors.
-# Compile of sum_gen.vhd failed with 4 errors.
 # Compile of wrf.vhd failed with 3 errors.
+# Compile of a.b.e-Write_back.stage.vhd failed with 3 errors.
+# Compile of constants.vhd was successful.
+# Compile of alu.vhd failed with 3 errors.
+# Compile of csb.vhd was successful.
+# Compile of mux21_nbit.vhd failed with 4 errors.
+# Compile of pg.vhd was successful.
+# Compile of sum_gen.vhd was successful with warnings.
+# Compile of romem.sv was successful.
+# Compile of rwmem.sv was successful.
+# Compile of tb_memories.sv was successful.
 # Compile of tb_writeback_stage.sv was successful.
-# 23 compiles, 9 failed with 33 errors.
-vsim work.tb_writeback_stage -novopt
-# vsim work.tb_writeback_stage -novopt 
-# Start time: 18:05:01 on Jul 25,2020
-# ** Error (suppressible): (vsim-12110) All optimizations are disabled because the -novopt option is in effect. This will cause your simulation to run very slowly. If you are using this switch to preserve visibility for Debug or PLI features, please see the User's Manual section on Preserving Object Visibility with vopt. -novopt option is now deprecated and will be removed in future releases.
-# Error loading design
-# End time: 18:05:02 on Jul 25,2020, Elapsed time: 0:00:01
-# Errors: 1, Warnings: 0
-# A time value could not be extracted from the current line
-vsim -vopt work.tb_writeback_stage
-# vsim -vopt work.tb_writeback_stage 
-# Start time: 18:06:09 on Jul 25,2020
-# ** Note: (vsim-3812) Design is being optimized...
-# ** Error: /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/tb_writeback_stage.sv(38): Module 'write_back_stage' is not defined.
-# Optimization failed
-# Error loading design
-# End time: 18:06:10 on Jul 25,2020, Elapsed time: 0:00:01
-# Errors: 1, Warnings: 0
-# Compile of alu.vhd failed with 6 errors.
-# Compile of boothmul.vhd failed with 3 errors.
-# Compile of csb.vhd failed with 4 errors.
-# Compile of mux21_nbit.vhd failed with 3 errors.
-# Compile of p4_adder.vhd failed with 3 errors.
-# Compile of pg.vhd failed with 1 errors.
-# Compile of stcg.vhd failed with 6 errors.
-# Compile of sum_gen.vhd failed with 4 errors.
-# Compile of wrf.vhd failed with 3 errors.
-# Compile of a.b.e-Write_back.stage.vhd was successful.
-# 10 compiles, 9 failed with 33 errors.
-vsim -novopt work.tb_writeback_stage
-# vsim -novopt work.tb_writeback_stage 
-# Start time: 18:08:04 on Jul 25,2020
-# ** Error (suppressible): (vsim-12110) All optimizations are disabled because the -novopt option is in effect. This will cause your simulation to run very slowly. If you are using this switch to preserve visibility for Debug or PLI features, please see the User's Manual section on Preserving Object Visibility with vopt. -novopt option is now deprecated and will be removed in future releases.
-# Error loading design
-# End time: 18:08:04 on Jul 25,2020, Elapsed time: 0:00:00
-# Errors: 1, Warnings: 0
-# A time value could not be extracted from the current line
-vsim -vopt work.tb_writeback_stage
-# vsim -vopt work.tb_writeback_stage 
-# Start time: 18:08:41 on Jul 25,2020
-# ** Note: (vsim-3812) Design is being optimized...
-# Loading sv_std.std
-# Loading work.tb_writeback_stage(fast)
-# Loading std.standard
-# Loading std.textio(body)
-# Loading ieee.std_logic_1164(body)
-# Loading ieee.numeric_std(body)
-# Loading work.globals(body)
-# Loading work.global_components(body)
-# Loading work.write_back_stage(structural)#1
-# ** Fatal: (vsim-3348) Port length (1) does not match actual length (2) for port "/tb_writeback_stage/uut/wb_mux/SEL".
-#    Time: 0 ps  Iteration: 0  Instance: /tb_writeback_stage/uut/wb_mux File: /home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/mux.vhd Line: 11
-# FATAL ERROR while loading design
-# Error loading design
-# End time: 18:08:42 on Jul 25,2020, Elapsed time: 0:00:01
-# Errors: 1, Warnings: 0
-# Compile of alu.vhd failed with 6 errors.
-# Compile of boothmul.vhd failed with 3 errors.
-# Compile of csb.vhd failed with 4 errors.
-# Compile of mux21_nbit.vhd failed with 3 errors.
-# Compile of p4_adder.vhd failed with 3 errors.
-# Compile of pg.vhd failed with 1 errors.
-# Compile of stcg.vhd failed with 6 errors.
-# Compile of sum_gen.vhd failed with 4 errors.
-# Compile of wrf.vhd failed with 3 errors.
-# Compile of a.b.e-Write_back.stage.vhd was successful.
-# 10 compiles, 9 failed with 33 errors.
-vsim -vopt work.tb_writeback_stage
-# vsim -vopt work.tb_writeback_stage 
-# Start time: 18:13:34 on Jul 25,2020
-# ** Note: (vsim-3813) Design is being optimized due to module recompilation...
-# Loading sv_std.std
-# Loading work.tb_writeback_stage(fast)
-# Loading std.standard
-# Loading std.textio(body)
-# Loading ieee.std_logic_1164(body)
-# Loading ieee.numeric_std(body)
-# Loading work.globals(body)
-# Loading work.global_components(body)
-# Loading work.write_back_stage(structural)#1
-# ** Fatal: (vsim-3348) Port length (128) does not match actual length (64) for port "/tb_writeback_stage/uut/wb_mux/inputs".
-#    Time: 0 ps  Iteration: 0  Instance: /tb_writeback_stage/uut/wb_mux File: /home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/mux.vhd Line: 10
-# FATAL ERROR while loading design
-# Error loading design
-# End time: 18:13:35 on Jul 25,2020, Elapsed time: 0:00:01
-# Errors: 1, Warnings: 0
+# Compile of implemented_instructions.svh was successful.
+# Compile of tb_dlx.sv was successful.
+# Compile of alu_type.vhd was successful.
+# Compile of memory_interfaces.svh was successful.
+# Compile of mux21.vhd was successful.
+# 33 compiles, 10 failed with 34 errors.
+project compileall
 # Compile of 000-globals.vhd was successful.
 # Compile of 001-global_components.vhd was successful.
 # Compile of adder.vhd was successful.
-# Compile of alu.vhd failed with 6 errors.
-# Compile of boothmul.vhd failed with 3 errors.
+# Compile of boothmul.vhd was successful.
 # Compile of complement2.vhd was successful.
-# Compile of csb.vhd failed with 4 errors.
 # Compile of encoder.vhd was successful.
 # Compile of fa.vhd was successful.
 # Compile of fd.vhd was successful.
 # Compile of gsb.vhd was successful.
 # Compile of mux.vhd was successful.
-# Compile of mux21_nbit.vhd failed with 3 errors.
-# Compile of p4_adder.vhd failed with 3 errors.
-# Compile of pg.vhd failed with 1 errors.
+# Compile of p4_adder.vhd was successful.
 # Compile of pgsb.vhd was successful.
 # Compile of rca.vhd was successful.
 # Compile of reg_nbit.vhd was successful.
 # Compile of registerfile.vhd was successful.
-# Compile of stcg.vhd failed with 6 errors.
-# Compile of sum_gen.vhd failed with 4 errors.
-# Compile of wrf.vhd failed with 3 errors.
-# Compile of tb_writeback_stage.sv was successful.
-# Compile of a.b.e-Write_back.stage.vhd failed with 1 errors.
-# 24 compiles, 10 failed with 34 errors.
-vsim -vopt work.tb_writeback_stage
-# vsim -vopt work.tb_writeback_stage 
-# Start time: 18:14:44 on Jul 25,2020
-# ** Note: (vsim-3813) Design is being optimized due to module recompilation...
-# ** Warning: (vopt-13) Recompile work.write_back_stage(structural) because work.write_back_stage has changed.
-# ** Error: /home/ms20.50/Desktop/DLX_project/hardware/dlx/a.b-DataPath.core/a.b.e-Write_back.stage.vhd(51): Signal [mode IN port] "select_wb" is type ieee.std_logic_1164.STD_LOGIC; expecting type ieee.std_logic_1164.STD_LOGIC_VECTOR.
-# Optimization failed
-# Error loading design
-# End time: 18:14:45 on Jul 25,2020, Elapsed time: 0:00:01
-# Errors: 1, Warnings: 1
-# Compile of alu.vhd failed with 6 errors.
-# Compile of boothmul.vhd failed with 3 errors.
-# Compile of csb.vhd failed with 4 errors.
-# Compile of mux21_nbit.vhd failed with 3 errors.
-# Compile of p4_adder.vhd failed with 3 errors.
-# Compile of pg.vhd failed with 1 errors.
-# Compile of stcg.vhd failed with 6 errors.
-# Compile of sum_gen.vhd failed with 4 errors.
-# Compile of wrf.vhd failed with 3 errors.
-# Compile of tb_writeback_stage.sv was successful.
+# Compile of stcg.vhd was successful.
+# Compile of wrf.vhd was successful.
 # Compile of a.b.e-Write_back.stage.vhd was successful.
-# 11 compiles, 9 failed with 33 errors.
-vsim -vopt work.tb_writeback_stage
-# vsim -vopt work.tb_writeback_stage 
-# Start time: 18:16:08 on Jul 25,2020
-# ** Note: (vsim-3812) Design is being optimized...
+# Compile of constants.vhd was successful.
+# Compile of alu.vhd was successful.
+# Compile of csb.vhd was successful.
+# Compile of mux21_nbit.vhd was successful.
+# Compile of pg.vhd was successful.
+# Compile of sum_gen.vhd was successful with warnings.
+# Compile of romem.sv was successful.
+# Compile of rwmem.sv was successful.
+# Compile of tb_memories.sv was successful.
+# Compile of tb_writeback_stage.sv was successful.
+# Compile of implemented_instructions.svh was successful.
+# Compile of tb_dlx.sv was successful.
+# Compile of alu_type.vhd was successful.
+# Compile of memory_interfaces.svh was successful.
+# Compile of mux21.vhd was successful.
+# 33 compiles, 0 failed with no errors.
+# Load canceled
+vsim 
+# Load canceled
+vsim -suppress 12110 -novpt work.tb_memories
+# ** Error: (vish-3296) Unknown option '-novpt'.
+# Use the -help option for complete vsim usage.
+# Error loading design
+vsim -suppress 12110 -nvopt work.tb_memories
+# ** Error: (vish-3296) Unknown option '-nvopt'.
+# Use the -help option for complete vsim usage.
+# Error loading design
+vsim -suppress 12110 -novopt work.tb_memories
+# vsim -suppress 12110 -novopt work.tb_memories 
+# Start time: 17:26:21 on Jul 27,2020
+# ** Warning: (vsim-8891) All optimizations are disabled because the -novopt option is in effect. This will cause your simulation to run very slowly. If you are using this switch to preserve visibility for Debug or PLI features, please see the User's Manual section on Preserving Object Visibility with vopt. -novopt option is now deprecated and will be removed in future releases.
+# Refreshing /home/ms20.50/Desktop/DLX_project/project/simulation/work.tb_memories
+# ** Warning: (vlog-8891) All optimizations are disabled because the -novopt option is in effect. This will cause your simulation to run very slowly. If you are using this switch to preserve visibility for Debug or PLI features, please see the User's Manual section on Preserving Object Visibility with vopt. -novopt option is now deprecated and will be removed in future releases.
 # Loading sv_std.std
-# Loading work.tb_writeback_stage(fast)
+# Loading work.tb_memories
+# Refreshing /home/ms20.50/Desktop/DLX_project/project/simulation/work.mem_interface
+# ** Warning: (vlog-8891) All optimizations are disabled because the -novopt option is in effect. This will cause your simulation to run very slowly. If you are using this switch to preserve visibility for Debug or PLI features, please see the User's Manual section on Preserving Object Visibility with vopt. -novopt option is now deprecated and will be removed in future releases.
+# Loading work.mem_interface
+# Refreshing /home/ms20.50/Desktop/DLX_project/project/simulation/work.romem
+# ** Warning: (vlog-8891) All optimizations are disabled because the -novopt option is in effect. This will cause your simulation to run very slowly. If you are using this switch to preserve visibility for Debug or PLI features, please see the User's Manual section on Preserving Object Visibility with vopt. -novopt option is now deprecated and will be removed in future releases.
+# Loading work.romem
+# Refreshing /home/ms20.50/Desktop/DLX_project/project/simulation/work.rwmem
+# ** Warning: (vlog-8891) All optimizations are disabled because the -novopt option is in effect. This will cause your simulation to run very slowly. If you are using this switch to preserve visibility for Debug or PLI features, please see the User's Manual section on Preserving Object Visibility with vopt. -novopt option is now deprecated and will be removed in future releases.
+# Loading work.rwmem
+# Refreshing /home/ms20.50/Desktop/DLX_project/project/simulation/work.test_memory
+# ** Warning: (vlog-8891) All optimizations are disabled because the -novopt option is in effect. This will cause your simulation to run very slowly. If you are using this switch to preserve visibility for Debug or PLI features, please see the User's Manual section on Preserving Object Visibility with vopt. -novopt option is now deprecated and will be removed in future releases.
+# Loading work.test_memory
+run
+# Starting testbench for memories 
+# @0ns Starting Program
+# Memory reset 
+# Reading file for Read-Only memory 
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+add wave
+# wrong number of args for "add wave".
+# Usage: add wave [-allowconstants] [-clampanalog {0|1}] [-color <standard_color_name>] [-depth <level>] [-divider <divider_name>...] [-expand <signal_name>] [-filter <f> | -nofilter <f>] [-format <type> | -<format>] [-group <group_name> [<sig_name1>...]] [-height <pixels>] [[-in] [-out] [-inout] | [-ports]] [-internal] [-label <name>] [-max <real_num>] [-min <real_num>] [-mvcall] [-mvcovm] [-mvcreccomplete] [-noupdate] [-numdynitem <int>] [-optcells] [-position <location>] [-queueends] [-radix <type> | -<radix_type>] [-radixenumnumeric | -radixenumsymbolic] [-recursive] [-startdynitem <int>] [-time] [-window <wname>] [<object_name>...] [{<object_name> {sig1 sig2 ...}}] 
+add wave *
+run
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# Read-Only Memory passed the testbench 
+# Starting test of read and write memory 
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# Read operation n           0 on romem is wrong
+# ** Note: $stop    : /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/tb_memories.sv(93)
+#    Time: 145 ns  Iteration: 1  Instance: /tb_memories/test_ram
+# Break in Module test_memory at /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/tb_memories.sv line 93
+run
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# Read operation n           1 on romem is wrong
+# ** Note: $stop    : /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/tb_memories.sv(93)
+#    Time: 155 ns  Iteration: 1  Instance: /tb_memories/test_ram
+# Break in Module test_memory at /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/tb_memories.sv line 93
+run
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# Read operation n           2 on romem is wrong
+# ** Note: $stop    : /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/tb_memories.sv(93)
+#    Time: 165 ns  Iteration: 1  Instance: /tb_memories/test_ram
+# Break in Module test_memory at /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/tb_memories.sv line 93
+run
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# Read operation n           3 on romem is wrong
+# ** Note: $stop    : /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/tb_memories.sv(93)
+#    Time: 175 ns  Iteration: 1  Instance: /tb_memories/test_ram
+# Break in Module test_memory at /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/tb_memories.sv line 93
+run
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# Read operation n           4 on romem is wrong
+# ** Note: $stop    : /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/tb_memories.sv(93)
+#    Time: 185 ns  Iteration: 1  Instance: /tb_memories/test_ram
+# Break in Module test_memory at /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/tb_memories.sv line 93
+run
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# Read operation n           5 on romem is wrong
+# ** Note: $stop    : /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/tb_memories.sv(93)
+#    Time: 195 ns  Iteration: 1  Instance: /tb_memories/test_ram
+# Break in Module test_memory at /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/tb_memories.sv line 93
+run
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# Read operation n           6 on romem is wrong
+# ** Note: $stop    : /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/tb_memories.sv(93)
+#    Time: 205 ns  Iteration: 1  Instance: /tb_memories/test_ram
+# Break in Module test_memory at /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/tb_memories.sv line 93
+restart
+# ** Warning: (vsim-8891) All optimizations are disabled because the -novopt option is in effect. This will cause your simulation to run very slowly. If you are using this switch to preserve visibility for Debug or PLI features, please see the User's Manual section on Preserving Object Visibility with vopt. -novopt option is now deprecated and will be removed in future releases.
+run
+# Starting testbench for memories 
+# @0ns Starting Program
+# Memory reset 
+# Reading file for Read-Only memory 
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+vsim -suppress 12110 -novopt work.tb_writeback_stage
+# End time: 17:30:12 on Jul 27,2020, Elapsed time: 0:03:51
+# Errors: 1, Warnings: 0
+# vsim -suppress 12110 -novopt work.tb_writeback_stage 
+# Start time: 17:30:12 on Jul 27,2020
+# ** Warning: (vsim-8891) All optimizations are disabled because the -novopt option is in effect. This will cause your simulation to run very slowly. If you are using this switch to preserve visibility for Debug or PLI features, please see the User's Manual section on Preserving Object Visibility with vopt. -novopt option is now deprecated and will be removed in future releases.
+# Refreshing /home/ms20.50/Desktop/DLX_project/project/simulation/work.tb_writeback_stage
+# ** Warning: (vlog-8891) All optimizations are disabled because the -novopt option is in effect. This will cause your simulation to run very slowly. If you are using this switch to preserve visibility for Debug or PLI features, please see the User's Manual section on Preserving Object Visibility with vopt. -novopt option is now deprecated and will be removed in future releases.
+# Loading sv_std.std
+# Loading work.tb_writeback_stage
 # Loading std.standard
+# Refreshing /home/ms20.50/Desktop/DLX_project/project/simulation/work.write_back_stage(structural)
+# ** Warning: (vcom-8891) All optimizations are disabled because the -novopt option is in effect. This will cause your simulation to run very slowly. If you are using this switch to preserve visibility for Debug or PLI features, please see the User's Manual section on Preserving Object Visibility with vopt. -novopt option is now deprecated and will be removed in future releases.
 # Loading std.textio(body)
 # Loading ieee.std_logic_1164(body)
 # Loading ieee.numeric_std(body)
+# Refreshing /home/ms20.50/Desktop/DLX_project/project/simulation/work.global_components(body)
+# ** Warning: (vcom-8891) All optimizations are disabled because the -novopt option is in effect. This will cause your simulation to run very slowly. If you are using this switch to preserve visibility for Debug or PLI features, please see the User's Manual section on Preserving Object Visibility with vopt. -novopt option is now deprecated and will be removed in future releases.
+# Refreshing /home/ms20.50/Desktop/DLX_project/project/simulation/work.globals(body)
+# ** Warning: (vcom-8891) All optimizations are disabled because the -novopt option is in effect. This will cause your simulation to run very slowly. If you are using this switch to preserve visibility for Debug or PLI features, please see the User's Manual section on Preserving Object Visibility with vopt. -novopt option is now deprecated and will be removed in future releases.
 # Loading work.globals(body)
+# Refreshing /home/ms20.50/Desktop/DLX_project/project/simulation/work.constants(body)
+# ** Warning: (vcom-8891) All optimizations are disabled because the -novopt option is in effect. This will cause your simulation to run very slowly. If you are using this switch to preserve visibility for Debug or PLI features, please see the User's Manual section on Preserving Object Visibility with vopt. -novopt option is now deprecated and will be removed in future releases.
+# Loading work.constants(body)
 # Loading work.global_components(body)
-# Loading work.write_back_stage(structural)#1
-add waves *
-# ** Error: bad option "waves": should be one of...
-#   add atv ?options? ?arg arg ...?
-#   add button text action ?disable? ?options? ?help?
-#   add dataflow ?options? ?arg arg ...?
-#   add lists ?options? ?arg arg ...?
-#   add log ?options? ?arg arg ...?
-#   add memory options ?arg arg ...?
-#   add message ?options? ?arg arg ...?
-#   add monitor ?options? ?arg arg ...?
-#   add schematic ?options? ?arg arg ...?
-#   add testbrowser ?options? ?arg arg ...?
-#   add virtual ?options? ?arg arg ...?
-#   add watch ?options? ?arg arg ...?
-#   add wave ?options? ?arg arg ...?
-add waves *
-# ** Error: bad option "waves": should be one of...
-#   add atv ?options? ?arg arg ...?
-#   add button text action ?disable? ?options? ?help?
-#   add dataflow ?options? ?arg arg ...?
-#   add lists ?options? ?arg arg ...?
-#   add log ?options? ?arg arg ...?
-#   add memory options ?arg arg ...?
-#   add message ?options? ?arg arg ...?
-#   add monitor ?options? ?arg arg ...?
-#   add schematic ?options? ?arg arg ...?
-#   add testbrowser ?options? ?arg arg ...?
-#   add virtual ?options? ?arg arg ...?
-#   add watch ?options? ?arg arg ...?
-#   add wave ?options? ?arg arg ...?
-add wave *
-run 10 ns
+# Loading work.write_back_stage(structural)
+# Refreshing /home/ms20.50/Desktop/DLX_project/project/simulation/work.mux_zbit_nbit(beh)
+# ** Warning: (vcom-8891) All optimizations are disabled because the -novopt option is in effect. This will cause your simulation to run very slowly. If you are using this switch to preserve visibility for Debug or PLI features, please see the User's Manual section on Preserving Object Visibility with vopt. -novopt option is now deprecated and will be removed in future releases.
+# Loading work.mux_zbit_nbit(beh)
+run
 # ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
 #    Time: 0 ps  Iteration: 0  Instance: /tb_writeback_stage/uut/wb_mux
 # ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
 #    Time: 0 ps  Iteration: 0  Instance: /tb_writeback_stage/uut/wb_mux
 # Startign testbench for write back stage 
-# ** Note: $finish    : /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/tb_writeback_stage.sv(50)
-#    Time: 0 ps  Iteration: 0  Instance: /tb_writeback_stage
-# End time: 18:16:56 on Jul 25,2020, Elapsed time: 0:00:48
-# Errors: 0, Warnings: 2
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 1  Instance: /tb_writeback_stage/uut/wb_mux
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 1  Instance: /tb_writeback_stage/uut/wb_mux
+# Checking if it is still the same 
+# Check if it is still the same 
+# ** Note: $finish    : /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/testbench_subunits/tb_writeback_stage.sv(74)
+#    Time: 95 ns  Iteration: 1  Instance: /tb_writeback_stage
+# 1
+# Break in Module tb_writeback_stage at /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/testbench_subunits/tb_writeback_stage.sv line 74
+# Causality operation skipped due to absence of debug database file
+restart
+# ** Warning: (vsim-8891) All optimizations are disabled because the -novopt option is in effect. This will cause your simulation to run very slowly. If you are using this switch to preserve visibility for Debug or PLI features, please see the User's Manual section on Preserving Object Visibility with vopt. -novopt option is now deprecated and will be removed in future releases.
+run
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Instance: /tb_writeback_stage/uut/wb_mux
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Instance: /tb_writeback_stage/uut/wb_mux
+# Startign testbench for write back stage 
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 1  Instance: /tb_writeback_stage/uut/wb_mux
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 1  Instance: /tb_writeback_stage/uut/wb_mux
+# Checking if it is still the same 
+# Check if it is still the same 
+# ** Note: $finish    : /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/testbench_subunits/tb_writeback_stage.sv(74)
+#    Time: 95 ns  Iteration: 1  Instance: /tb_writeback_stage
+# 1
+# Break in Module tb_writeback_stage at /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/testbench_subunits/tb_writeback_stage.sv line 74
+add wave *
+restart
+# ** Warning: (vsim-8891) All optimizations are disabled because the -novopt option is in effect. This will cause your simulation to run very slowly. If you are using this switch to preserve visibility for Debug or PLI features, please see the User's Manual section on Preserving Object Visibility with vopt. -novopt option is now deprecated and will be removed in future releases.
+run
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Instance: /tb_writeback_stage/uut/wb_mux
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Instance: /tb_writeback_stage/uut/wb_mux
+# Startign testbench for write back stage 
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 1  Instance: /tb_writeback_stage/uut/wb_mux
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 1  Instance: /tb_writeback_stage/uut/wb_mux
+# Checking if it is still the same 
+# Check if it is still the same 
+# ** Note: $finish    : /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/testbench_subunits/tb_writeback_stage.sv(74)
+#    Time: 95 ns  Iteration: 1  Instance: /tb_writeback_stage
+# 1
+# Break in Module tb_writeback_stage at /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/testbench_subunits/tb_writeback_stage.sv line 74
+# Load canceled
+# Optimization canceled
+vsim -suppress 12110 -novopt work.tb_memories
+# End time: 17:31:59 on Jul 27,2020, Elapsed time: 0:01:47
+# Errors: 2, Warnings: 5
+# vsim -suppress 12110 -novopt work.tb_memories 
+# Start time: 17:31:59 on Jul 27,2020
+# ** Warning: (vsim-8891) All optimizations are disabled because the -novopt option is in effect. This will cause your simulation to run very slowly. If you are using this switch to preserve visibility for Debug or PLI features, please see the User's Manual section on Preserving Object Visibility with vopt. -novopt option is now deprecated and will be removed in future releases.
+# Loading sv_std.std
+# Loading work.tb_memories
+# Loading work.mem_interface
+# Loading work.romem
+# Loading work.rwmem
+# Loading work.test_memory
+add wave *
+add wave ./iram_if/*
+add wave ./dram_if/*
+run 100ns
+# Starting testbench for memories 
+# @0ns Starting Program
+# Memory reset 
+# Reading file for Read-Only memory 
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+write format wave -window .main_pane.wave.interior.cs.body.pw.wf /home/ms20.50/Desktop/DLX_project/project/simulation/wave.do
+write format wave -window .main_pane.wave.interior.cs.body.pw.wf /home/ms20.50/Desktop/DLX_project/scripts/memories_tb.do
+run
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# Read-Only Memory passed the testbench 
+# Starting test of read and write memory 
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# Read operation n           0 on romem is wrong
+# ** Note: $stop    : /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/tb_memories.sv(93)
+#    Time: 145 ns  Iteration: 1  Instance: /tb_memories/test_ram
+# Break in Module test_memory at /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/tb_memories.sv line 93
+run
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# Read operation n           1 on romem is wrong
+# ** Note: $stop    : /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/tb_memories.sv(93)
+#    Time: 155 ns  Iteration: 1  Instance: /tb_memories/test_ram
+# Break in Module test_memory at /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/tb_memories.sv line 93
+restart
+# ** Warning: (vsim-8891) All optimizations are disabled because the -novopt option is in effect. This will cause your simulation to run very slowly. If you are using this switch to preserve visibility for Debug or PLI features, please see the User's Manual section on Preserving Object Visibility with vopt. -novopt option is now deprecated and will be removed in future releases.
+run
+# Starting testbench for memories 
+# @0ns Starting Program
+# Memory reset 
+# Reading file for Read-Only memory 
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+restart
+# ** Warning: (vsim-8891) All optimizations are disabled because the -novopt option is in effect. This will cause your simulation to run very slowly. If you are using this switch to preserve visibility for Debug or PLI features, please see the User's Manual section on Preserving Object Visibility with vopt. -novopt option is now deprecated and will be removed in future releases.
+run
+# Starting testbench for memories 
+# @0ns Starting Program
+# Break in Module test_memory at /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/tb_memories.sv line 66
+step
+# Memory reset 
+step
+step
+step
+# Reading file for Read-Only memory 
+step
+add wave *
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+# Next activity is in 1001 ps.
+step
+# Next activity is in 3999 ps.
+step
+step
+step
+# Next activity is in 5 ns.
+step
+step
+step
+step
+step
+step
+step
+# File was opened successfully : -2147483645
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+run
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+run
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# Read-Only Memory passed the testbench 
+# Starting test of read and write memory 
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# Read operation n           0 on romem is wrong
+# ** Note: $stop    : /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/tb_memories.sv(93)
+#    Time: 145 ns  Iteration: 1  Instance: /tb_memories/test_ram
+# Break in Module test_memory at /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/tb_memories.sv line 93
+project work.tb_memories
+# unknown or ambiguous subcommand "work.tb_memories": must be addfile, addfolder, calculateorder, close, compileall, compileorder, compileoutofdate, currentsim, delete, env, filenames, history, new, open, removefile, simargs, or startsim
+project tb_memories
+# unknown or ambiguous subcommand "tb_memories": must be addfile, addfolder, calculateorder, close, compileall, compileorder, compileoutofdate, currentsim, delete, env, filenames, history, new, open, removefile, simargs, or startsim
+project compileoutdate
+# unknown or ambiguous subcommand "compileoutdate": must be addfile, addfolder, calculateorder, close, compileall, compileorder, compileoutofdate, currentsim, delete, env, filenames, history, new, open, removefile, simargs, or startsim
+project compileoutofdate
+# Compile of tb_memories.sv was successful.
+vsim -suppress 12110 -novopt work.tb_memories
+# End time: 17:46:47 on Jul 27,2020, Elapsed time: 0:14:48
+# Errors: 3, Warnings: 0
+# vsim -suppress 12110 -novopt work.tb_memories 
+# Start time: 17:46:47 on Jul 27,2020
+# ** Warning: (vsim-8891) All optimizations are disabled because the -novopt option is in effect. This will cause your simulation to run very slowly. If you are using this switch to preserve visibility for Debug or PLI features, please see the User's Manual section on Preserving Object Visibility with vopt. -novopt option is now deprecated and will be removed in future releases.
+# Refreshing /home/ms20.50/Desktop/DLX_project/project/simulation/work.tb_memories
+# ** Warning: (vlog-8891) All optimizations are disabled because the -novopt option is in effect. This will cause your simulation to run very slowly. If you are using this switch to preserve visibility for Debug or PLI features, please see the User's Manual section on Preserving Object Visibility with vopt. -novopt option is now deprecated and will be removed in future releases.
+# Loading sv_std.std
+# Loading work.tb_memories
+# Refreshing /home/ms20.50/Desktop/DLX_project/project/simulation/work.mem_interface
+# ** Warning: (vlog-8891) All optimizations are disabled because the -novopt option is in effect. This will cause your simulation to run very slowly. If you are using this switch to preserve visibility for Debug or PLI features, please see the User's Manual section on Preserving Object Visibility with vopt. -novopt option is now deprecated and will be removed in future releases.
+# Loading work.mem_interface
+# Loading work.romem
+# Loading work.rwmem
+# Refreshing /home/ms20.50/Desktop/DLX_project/project/simulation/work.test_memory
+# ** Warning: (vlog-8891) All optimizations are disabled because the -novopt option is in effect. This will cause your simulation to run very slowly. If you are using this switch to preserve visibility for Debug or PLI features, please see the User's Manual section on Preserving Object Visibility with vopt. -novopt option is now deprecated and will be removed in future releases.
+# Loading work.test_memory
+vsim -suppress 12110 -novopt work.tb_memories -do ./../../scripts/memories_tb.do
+# End time: 17:47:14 on Jul 27,2020, Elapsed time: 0:00:27
+# Errors: 0, Warnings: 1
+# vsim -suppress 12110 -novopt work.tb_memories -do "./../../scripts/memories_tb.do" 
+# Start time: 17:47:14 on Jul 27,2020
+# ** Warning: (vsim-8891) All optimizations are disabled because the -novopt option is in effect. This will cause your simulation to run very slowly. If you are using this switch to preserve visibility for Debug or PLI features, please see the User's Manual section on Preserving Object Visibility with vopt. -novopt option is now deprecated and will be removed in future releases.
+# Loading sv_std.std
+# Loading work.tb_memories
+# Loading work.mem_interface
+# Loading work.romem
+# Loading work.rwmem
+# Loading work.test_memory
+# do ./../../scripts/memories_tb.do
+run 100ns
+# Starting testbench for memories 
+# @0ns Starting Program
+# Memory reset 
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# Reading file for Read-Only memory 
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+run
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# Read-Only Memory passed the testbench 
+# Starting test of read and write memory 
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# Read operation n           0 on romem is wrong
+# ** Note: $stop    : /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/tb_memories.sv(94)
+#    Time: 155 ns  Iteration: 1  Instance: /tb_memories/test_ram
+# Break in Module test_memory at /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/tb_memories.sv line 94
+project compileoutofdata
+# unknown or ambiguous subcommand "compileoutofdata": must be addfile, addfolder, calculateorder, close, compileall, compileorder, compileoutofdate, currentsim, delete, env, filenames, history, new, open, removefile, simargs, or startsim
+project compileoutofdate
+# Compile of tb_memories.sv was successful.
+vsim -suppress 12110 -novopt work.tb_memories -do ./../../scripts/memories_tb.do
+# End time: 17:50:33 on Jul 27,2020, Elapsed time: 0:03:19
+# Errors: 1, Warnings: 1
+# vsim -suppress 12110 -novopt work.tb_memories -do "./../../scripts/memories_tb.do" 
+# Start time: 17:50:33 on Jul 27,2020
+# ** Warning: (vsim-8891) All optimizations are disabled because the -novopt option is in effect. This will cause your simulation to run very slowly. If you are using this switch to preserve visibility for Debug or PLI features, please see the User's Manual section on Preserving Object Visibility with vopt. -novopt option is now deprecated and will be removed in future releases.
+# Refreshing /home/ms20.50/Desktop/DLX_project/project/simulation/work.tb_memories
+# ** Warning: (vlog-8891) All optimizations are disabled because the -novopt option is in effect. This will cause your simulation to run very slowly. If you are using this switch to preserve visibility for Debug or PLI features, please see the User's Manual section on Preserving Object Visibility with vopt. -novopt option is now deprecated and will be removed in future releases.
+# Loading sv_std.std
+# Loading work.tb_memories
+# Refreshing /home/ms20.50/Desktop/DLX_project/project/simulation/work.mem_interface
+# ** Warning: (vlog-8891) All optimizations are disabled because the -novopt option is in effect. This will cause your simulation to run very slowly. If you are using this switch to preserve visibility for Debug or PLI features, please see the User's Manual section on Preserving Object Visibility with vopt. -novopt option is now deprecated and will be removed in future releases.
+# Loading work.mem_interface
+# Loading work.romem
+# Loading work.rwmem
+# Refreshing /home/ms20.50/Desktop/DLX_project/project/simulation/work.test_memory
+# ** Warning: (vlog-8891) All optimizations are disabled because the -novopt option is in effect. This will cause your simulation to run very slowly. If you are using this switch to preserve visibility for Debug or PLI features, please see the User's Manual section on Preserving Object Visibility with vopt. -novopt option is now deprecated and will be removed in future releases.
+# Loading work.test_memory
+# do ./../../scripts/memories_tb.do
+run 100ns
+# Starting testbench for memories 
+# @0ns Starting Program
+# Memory reset 
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# Reading file for Read-Only memory 
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# Read operation n           0 on romem is wrong
+# ** Note: $stop    : /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/tb_memories.sv(77)
+#    Time: 25 ns  Iteration: 1  Instance: /tb_memories/test_ram
+# Break in Module test_memory at /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/tb_memories.sv line 77
+project compileoutofdate
+# Compile of memory_interfaces.svh was successful.
+vsim -suppress 12110 -novopt work.tb_memories -do ./../../scripts/memories_tb.do
+# End time: 17:52:05 on Jul 27,2020, Elapsed time: 0:01:32
+# Errors: 0, Warnings: 1
+# vsim -suppress 12110 -novopt work.tb_memories -do "./../../scripts/memories_tb.do" 
+# Start time: 17:52:05 on Jul 27,2020
+# ** Warning: (vsim-8891) All optimizations are disabled because the -novopt option is in effect. This will cause your simulation to run very slowly. If you are using this switch to preserve visibility for Debug or PLI features, please see the User's Manual section on Preserving Object Visibility with vopt. -novopt option is now deprecated and will be removed in future releases.
+# Loading sv_std.std
+# Loading work.tb_memories
+# Refreshing /home/ms20.50/Desktop/DLX_project/project/simulation/work.mem_interface
+# ** Warning: (vlog-8891) All optimizations are disabled because the -novopt option is in effect. This will cause your simulation to run very slowly. If you are using this switch to preserve visibility for Debug or PLI features, please see the User's Manual section on Preserving Object Visibility with vopt. -novopt option is now deprecated and will be removed in future releases.
+# Loading work.mem_interface
+# Loading work.romem
+# Loading work.rwmem
+# Loading work.test_memory
+# ** Error: (vsim-8220) This or another usage of 'dram_if.ADDRESS' inconsistent with 'net' object.
+#    Time: 0 ps  Iteration: 0  Instance: /tb_memories/test_ram File: /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/tb_memories.sv Line: 90
+# ** Error: (vsim-8220) This or another usage of 'dram_if.ENABLE' inconsistent with 'net' object.
+#    Time: 0 ps  Iteration: 0  Instance: /tb_memories/test_ram File: /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/tb_memories.sv Line: 87
+# ** Error: (vsim-8220) This or another usage of 'dram_if.READNOTWRITE' inconsistent with 'net' object.
+#    Time: 0 ps  Iteration: 0  Instance: /tb_memories/test_ram File: /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/tb_memories.sv Line: 86
+# ** Error: (vsim-8220) This or another usage of 'dram_if.rst' inconsistent with 'net' object.
+#    Time: 0 ps  Iteration: 0  Instance: /tb_memories/test_ram File: /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/tb_memories.sv Line: 63
+# ** Error: (vsim-8220) This or another usage of 'iram_if.ADDRESS' inconsistent with 'net' object.
+#    Time: 0 ps  Iteration: 0  Instance: /tb_memories/test_ram File: /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/tb_memories.sv Line: 73
+# ** Error: (vsim-8220) This or another usage of 'iram_if.ENABLE' inconsistent with 'net' object.
+#    Time: 0 ps  Iteration: 0  Instance: /tb_memories/test_ram File: /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/tb_memories.sv Line: 71
+# ** Error: (vsim-8220) This or another usage of 'iram_if.rst' inconsistent with 'net' object.
+#    Time: 0 ps  Iteration: 0  Instance: /tb_memories/test_ram File: /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/tb_memories.sv Line: 62
+# Error loading design
+# End time: 17:52:06 on Jul 27,2020, Elapsed time: 0:00:01
+# Errors: 7, Warnings: 1
+project compileoutofdata && vsim -suppress 12110 -novopt work.tb_memories -do ./../../scripts/memories_tb.do
+# unknown or ambiguous subcommand "compileoutofdata": must be addfile, addfolder, calculateorder, close, compileall, compileorder, compileoutofdate, currentsim, delete, env, filenames, history, new, open, removefile, simargs, or startsim
+project compileoutofdate && vsim -suppress 12110 -novopt work.tb_memories -do ./../../scripts/memories_tb.do
+# Compile of tb_memories.sv was successful.
+vsim -suppress 12110 -novopt work.tb_memories -do ./../../scripts/memories_tb.do
+# vsim -suppress 12110 -novopt work.tb_memories -do "./../../scripts/memories_tb.do" 
+# Start time: 17:54:07 on Jul 27,2020
+# ** Warning: (vsim-8891) All optimizations are disabled because the -novopt option is in effect. This will cause your simulation to run very slowly. If you are using this switch to preserve visibility for Debug or PLI features, please see the User's Manual section on Preserving Object Visibility with vopt. -novopt option is now deprecated and will be removed in future releases.
+# Refreshing /home/ms20.50/Desktop/DLX_project/project/simulation/work.tb_memories
+# ** Warning: (vlog-8891) All optimizations are disabled because the -novopt option is in effect. This will cause your simulation to run very slowly. If you are using this switch to preserve visibility for Debug or PLI features, please see the User's Manual section on Preserving Object Visibility with vopt. -novopt option is now deprecated and will be removed in future releases.
+# Loading sv_std.std
+# Loading work.tb_memories
+# Refreshing /home/ms20.50/Desktop/DLX_project/project/simulation/work.mem_interface
+# ** Warning: (vlog-8891) All optimizations are disabled because the -novopt option is in effect. This will cause your simulation to run very slowly. If you are using this switch to preserve visibility for Debug or PLI features, please see the User's Manual section on Preserving Object Visibility with vopt. -novopt option is now deprecated and will be removed in future releases.
+# Loading work.mem_interface
+# Loading work.romem
+# Loading work.rwmem
+# Refreshing /home/ms20.50/Desktop/DLX_project/project/simulation/work.test_memory
+# ** Warning: (vlog-8891) All optimizations are disabled because the -novopt option is in effect. This will cause your simulation to run very slowly. If you are using this switch to preserve visibility for Debug or PLI features, please see the User's Manual section on Preserving Object Visibility with vopt. -novopt option is now deprecated and will be removed in future releases.
+# Loading work.test_memory
+# ** Error: (vsim-8220) This or another usage of 'dram_if.ADDRESS' inconsistent with 'net' object.
+#    Time: 0 ps  Iteration: 0  Instance: /tb_memories/test_ram File: /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/tb_memories.sv Line: 90
+# ** Error: (vsim-8220) This or another usage of 'dram_if.ENABLE' inconsistent with 'net' object.
+#    Time: 0 ps  Iteration: 0  Instance: /tb_memories/test_ram File: /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/tb_memories.sv Line: 87
+# ** Error: (vsim-8220) This or another usage of 'dram_if.READNOTWRITE' inconsistent with 'net' object.
+#    Time: 0 ps  Iteration: 0  Instance: /tb_memories/test_ram File: /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/tb_memories.sv Line: 86
+# ** Error: (vsim-8220) This or another usage of 'dram_if.rst' inconsistent with 'net' object.
+#    Time: 0 ps  Iteration: 0  Instance: /tb_memories/test_ram File: /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/tb_memories.sv Line: 63
+# ** Error: (vsim-8220) This or another usage of 'iram_if.ADDRESS' inconsistent with 'net' object.
+#    Time: 0 ps  Iteration: 0  Instance: /tb_memories/test_ram File: /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/tb_memories.sv Line: 73
+# ** Error: (vsim-8220) This or another usage of 'iram_if.ENABLE' inconsistent with 'net' object.
+#    Time: 0 ps  Iteration: 0  Instance: /tb_memories/test_ram File: /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/tb_memories.sv Line: 71
+# ** Error: (vsim-8220) This or another usage of 'iram_if.rst' inconsistent with 'net' object.
+#    Time: 0 ps  Iteration: 0  Instance: /tb_memories/test_ram File: /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/tb_memories.sv Line: 62
+# Error loading design
+# End time: 17:54:08 on Jul 27,2020, Elapsed time: 0:00:01
+# Errors: 7, Warnings: 1
+project compileoutofdate && vsim -suppress 12110 -novopt work.tb_memories -do ./../../scripts/memories_tb.do
+# Compile of memory_interfaces.svh was successful.
+vsim -suppress 12110 -novopt work.tb_memories -do ./../../scripts/memories_tb.do
+# vsim -suppress 12110 -novopt work.tb_memories -do "./../../scripts/memories_tb.do" 
+# Start time: 17:54:49 on Jul 27,2020
+# ** Warning: (vsim-8891) All optimizations are disabled because the -novopt option is in effect. This will cause your simulation to run very slowly. If you are using this switch to preserve visibility for Debug or PLI features, please see the User's Manual section on Preserving Object Visibility with vopt. -novopt option is now deprecated and will be removed in future releases.
+# Loading sv_std.std
+# Loading work.tb_memories
+# Refreshing /home/ms20.50/Desktop/DLX_project/project/simulation/work.mem_interface
+# ** Warning: (vlog-8891) All optimizations are disabled because the -novopt option is in effect. This will cause your simulation to run very slowly. If you are using this switch to preserve visibility for Debug or PLI features, please see the User's Manual section on Preserving Object Visibility with vopt. -novopt option is now deprecated and will be removed in future releases.
+# Loading work.mem_interface
+# Loading work.romem
+# Loading work.rwmem
+# Loading work.test_memory
+# ** Error: (vsim-8220) This or another usage of 'dram_if.READNOTWRITE' inconsistent with 'net' object.
+#    Time: 0 ps  Iteration: 0  Instance: /tb_memories/test_ram File: /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/tb_memories.sv Line: 86
+# Error loading design
+# End time: 17:54:50 on Jul 27,2020, Elapsed time: 0:00:01
+# Errors: 1, Warnings: 1
+project compileoutofdate && vsim -suppress 12110 -novopt work.tb_memories -do ./../../scripts/memories_tb.do
+# Compile of memory_interfaces.svh was successful.
+vsim -suppress 12110 -novopt work.tb_memories -do ./../../scripts/memories_tb.do
+# vsim -suppress 12110 -novopt work.tb_memories -do "./../../scripts/memories_tb.do" 
+# Start time: 17:55:04 on Jul 27,2020
+# ** Warning: (vsim-8891) All optimizations are disabled because the -novopt option is in effect. This will cause your simulation to run very slowly. If you are using this switch to preserve visibility for Debug or PLI features, please see the User's Manual section on Preserving Object Visibility with vopt. -novopt option is now deprecated and will be removed in future releases.
+# Loading sv_std.std
+# Loading work.tb_memories
+# Refreshing /home/ms20.50/Desktop/DLX_project/project/simulation/work.mem_interface
+# ** Warning: (vlog-8891) All optimizations are disabled because the -novopt option is in effect. This will cause your simulation to run very slowly. If you are using this switch to preserve visibility for Debug or PLI features, please see the User's Manual section on Preserving Object Visibility with vopt. -novopt option is now deprecated and will be removed in future releases.
+# Loading work.mem_interface
+# Loading work.romem
+# Loading work.rwmem
+# Loading work.test_memory
+# do ./../../scripts/memories_tb.do
+run 100ns
+# Starting testbench for memories 
+# @0ns Starting Program
+# Memory reset 
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# Reading file for Read-Only memory 
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# Read operation n           0 on romem is wrong
+# ** Note: $stop    : /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/tb_memories.sv(77)
+#    Time: 25 ns  Iteration: 1  Instance: /tb_memories/test_ram
+# Break in Module test_memory at /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/tb_memories.sv line 77
+restart
+# ** Warning: (vsim-8891) All optimizations are disabled because the -novopt option is in effect. This will cause your simulation to run very slowly. If you are using this switch to preserve visibility for Debug or PLI features, please see the User's Manual section on Preserving Object Visibility with vopt. -novopt option is now deprecated and will be removed in future releases.
+run
+# Starting testbench for memories 
+# @0ns Starting Program
+# Break in NamedBeginStat proc_ram at /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/romem.sv line 75
+run -continue
+# Memory reset 
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# Reading file for Read-Only memory 
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# Read operation n           0 on romem is wrong
+# ** Note: $stop    : /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/tb_memories.sv(77)
+#    Time: 25 ns  Iteration: 1  Instance: /tb_memories/test_ram
+# Break in Module test_memory at /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/tb_memories.sv line 77
+project compileoutofdate && vsim -suppress 12110 -novopt work.tb_memories -do ./../../scripts/memories_tb.do
+# Compile of tb_memories.sv was successful.
+vsim -suppress 12110 -novopt work.tb_memories -do ./../../scripts/memories_tb.do
+# End time: 17:58:06 on Jul 27,2020, Elapsed time: 0:03:02
+# Errors: 0, Warnings: 0
+# vsim -suppress 12110 -novopt work.tb_memories -do "./../../scripts/memories_tb.do" 
+# Start time: 17:58:06 on Jul 27,2020
+# ** Warning: (vsim-8891) All optimizations are disabled because the -novopt option is in effect. This will cause your simulation to run very slowly. If you are using this switch to preserve visibility for Debug or PLI features, please see the User's Manual section on Preserving Object Visibility with vopt. -novopt option is now deprecated and will be removed in future releases.
+# Refreshing /home/ms20.50/Desktop/DLX_project/project/simulation/work.tb_memories
+# ** Warning: (vlog-8891) All optimizations are disabled because the -novopt option is in effect. This will cause your simulation to run very slowly. If you are using this switch to preserve visibility for Debug or PLI features, please see the User's Manual section on Preserving Object Visibility with vopt. -novopt option is now deprecated and will be removed in future releases.
+# Loading sv_std.std
+# Loading work.tb_memories
+# Refreshing /home/ms20.50/Desktop/DLX_project/project/simulation/work.mem_interface
+# ** Warning: (vlog-8891) All optimizations are disabled because the -novopt option is in effect. This will cause your simulation to run very slowly. If you are using this switch to preserve visibility for Debug or PLI features, please see the User's Manual section on Preserving Object Visibility with vopt. -novopt option is now deprecated and will be removed in future releases.
+# Loading work.mem_interface
+# Loading work.romem
+# Loading work.rwmem
+# Refreshing /home/ms20.50/Desktop/DLX_project/project/simulation/work.test_memory
+# ** Warning: (vlog-8891) All optimizations are disabled because the -novopt option is in effect. This will cause your simulation to run very slowly. If you are using this switch to preserve visibility for Debug or PLI features, please see the User's Manual section on Preserving Object Visibility with vopt. -novopt option is now deprecated and will be removed in future releases.
+# Loading work.test_memory
+# do ./../../scripts/memories_tb.do
+run 100ns
+# Starting testbench for memories 
+# @0ns Starting Program
+# Memory reset 
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# Reading file for Read-Only memory 
+run
+# Read-Only Memory passed the testbench 
+# Starting test of read and write memory 
+run
+run
+run
+# Read operation n           0 on rwmem is wrong
+# ** Note: $stop    : /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/tb_memories.sv(120)
+#    Time: 405 ns  Iteration: 2  Instance: /tb_memories/test_ram
+# Break in Module test_memory at /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/tb_memories.sv line 120
+run
+# Read operation n           1 on rwmem is wrong
+# ** Note: $stop    : /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/tb_memories.sv(120)
+#    Time: 415 ns  Iteration: 2  Instance: /tb_memories/test_ram
+# Break in Module test_memory at /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/tb_memories.sv line 120
+project compileoutofdate && vsim -suppress 12110 -novopt work.tb_memories -do ./../../scripts/memories_tb.do
+# Compile of tb_memories.sv was successful.
+vsim -suppress 12110 -novopt work.tb_memories -do ./../../scripts/memories_tb.do
+# End time: 18:00:56 on Jul 27,2020, Elapsed time: 0:02:50
+# Errors: 0, Warnings: 1
+# vsim -suppress 12110 -novopt work.tb_memories -do "./../../scripts/memories_tb.do" 
+# Start time: 18:00:57 on Jul 27,2020
+# ** Warning: (vsim-8891) All optimizations are disabled because the -novopt option is in effect. This will cause your simulation to run very slowly. If you are using this switch to preserve visibility for Debug or PLI features, please see the User's Manual section on Preserving Object Visibility with vopt. -novopt option is now deprecated and will be removed in future releases.
+# Refreshing /home/ms20.50/Desktop/DLX_project/project/simulation/work.tb_memories
+# ** Warning: (vlog-8891) All optimizations are disabled because the -novopt option is in effect. This will cause your simulation to run very slowly. If you are using this switch to preserve visibility for Debug or PLI features, please see the User's Manual section on Preserving Object Visibility with vopt. -novopt option is now deprecated and will be removed in future releases.
+# Loading sv_std.std
+# Loading work.tb_memories
+# Refreshing /home/ms20.50/Desktop/DLX_project/project/simulation/work.mem_interface
+# ** Warning: (vlog-8891) All optimizations are disabled because the -novopt option is in effect. This will cause your simulation to run very slowly. If you are using this switch to preserve visibility for Debug or PLI features, please see the User's Manual section on Preserving Object Visibility with vopt. -novopt option is now deprecated and will be removed in future releases.
+# Loading work.mem_interface
+# Loading work.romem
+# Loading work.rwmem
+# Refreshing /home/ms20.50/Desktop/DLX_project/project/simulation/work.test_memory
+# ** Warning: (vlog-8891) All optimizations are disabled because the -novopt option is in effect. This will cause your simulation to run very slowly. If you are using this switch to preserve visibility for Debug or PLI features, please see the User's Manual section on Preserving Object Visibility with vopt. -novopt option is now deprecated and will be removed in future releases.
+# Loading work.test_memory
+# do ./../../scripts/memories_tb.do
+run 100ns
+# Starting testbench for memories 
+# @0ns Starting Program
+# Memory reset 
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# Reading file for Read-Only memory 
+run 100ns
+# Read-Only Memory passed the testbench 
+# Starting test of read and write memory 
+run
+run
+run
+# Read operation n           0 on rwmem is wrong
+# ** Note: $stop    : /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/tb_memories.sv(122)
+#    Time: 415 ns  Iteration: 2  Instance: /tb_memories/test_ram
+# Break in Module test_memory at /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/tb_memories.sv line 122
+project compileoutofdate && vsim -suppress 12110 -novopt work.tb_memories -do ./../../scripts/memories_tb.do
+# Compile of tb_memories.sv was successful.
+vsim -suppress 12110 -novopt work.tb_memories -do ./../../scripts/memories_tb.do
+# End time: 18:02:50 on Jul 27,2020, Elapsed time: 0:01:53
+# Errors: 0, Warnings: 1
+# vsim -suppress 12110 -novopt work.tb_memories -do "./../../scripts/memories_tb.do" 
+# Start time: 18:02:50 on Jul 27,2020
+# ** Warning: (vsim-8891) All optimizations are disabled because the -novopt option is in effect. This will cause your simulation to run very slowly. If you are using this switch to preserve visibility for Debug or PLI features, please see the User's Manual section on Preserving Object Visibility with vopt. -novopt option is now deprecated and will be removed in future releases.
+# Refreshing /home/ms20.50/Desktop/DLX_project/project/simulation/work.tb_memories
+# ** Warning: (vlog-8891) All optimizations are disabled because the -novopt option is in effect. This will cause your simulation to run very slowly. If you are using this switch to preserve visibility for Debug or PLI features, please see the User's Manual section on Preserving Object Visibility with vopt. -novopt option is now deprecated and will be removed in future releases.
+# Loading sv_std.std
+# Loading work.tb_memories
+# Refreshing /home/ms20.50/Desktop/DLX_project/project/simulation/work.mem_interface
+# ** Warning: (vlog-8891) All optimizations are disabled because the -novopt option is in effect. This will cause your simulation to run very slowly. If you are using this switch to preserve visibility for Debug or PLI features, please see the User's Manual section on Preserving Object Visibility with vopt. -novopt option is now deprecated and will be removed in future releases.
+# Loading work.mem_interface
+# Loading work.romem
+# Loading work.rwmem
+# Refreshing /home/ms20.50/Desktop/DLX_project/project/simulation/work.test_memory
+# ** Warning: (vlog-8891) All optimizations are disabled because the -novopt option is in effect. This will cause your simulation to run very slowly. If you are using this switch to preserve visibility for Debug or PLI features, please see the User's Manual section on Preserving Object Visibility with vopt. -novopt option is now deprecated and will be removed in future releases.
+# Loading work.test_memory
+# do ./../../scripts/memories_tb.do
+run 100ns
+# Starting testbench for memories 
+# @0ns Starting Program
+# Memory reset 
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# Reading file for Read-Only memory 
+run 500ns
+# Read-Only Memory passed the testbench 
+# Starting test of read and write memory 
+# Read operation n           0 on rwmem is wrong
+# ** Note: $stop    : /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/tb_memories.sv(122)
+#    Time: 415 ns  Iteration: 2  Instance: /tb_memories/test_ram
+# Break in Module test_memory at /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/tb_memories.sv line 122
+project compileoutofdate && vsim -suppress 12110 -novopt work.tb_memories -do ./../../scripts/memories_tb.do
+# Compile of romem.sv was successful.
+# Compile of rwmem.sv was successful.
+# 2 compiles, 0 failed with no errors.
+vsim -suppress 12110 -novopt work.tb_memories -do ./../../scripts/memories_tb.do
+# End time: 18:04:42 on Jul 27,2020, Elapsed time: 0:01:52
+# Errors: 0, Warnings: 1
+# vsim -suppress 12110 -novopt work.tb_memories -do "./../../scripts/memories_tb.do" 
+# Start time: 18:04:42 on Jul 27,2020
+# ** Warning: (vsim-8891) All optimizations are disabled because the -novopt option is in effect. This will cause your simulation to run very slowly. If you are using this switch to preserve visibility for Debug or PLI features, please see the User's Manual section on Preserving Object Visibility with vopt. -novopt option is now deprecated and will be removed in future releases.
+# Loading sv_std.std
+# Loading work.tb_memories
+# Refreshing /home/ms20.50/Desktop/DLX_project/project/simulation/work.mem_interface
+# ** Warning: (vlog-8891) All optimizations are disabled because the -novopt option is in effect. This will cause your simulation to run very slowly. If you are using this switch to preserve visibility for Debug or PLI features, please see the User's Manual section on Preserving Object Visibility with vopt. -novopt option is now deprecated and will be removed in future releases.
+# Loading work.mem_interface
+# Refreshing /home/ms20.50/Desktop/DLX_project/project/simulation/work.romem
+# ** Warning: (vlog-8891) All optimizations are disabled because the -novopt option is in effect. This will cause your simulation to run very slowly. If you are using this switch to preserve visibility for Debug or PLI features, please see the User's Manual section on Preserving Object Visibility with vopt. -novopt option is now deprecated and will be removed in future releases.
+# Loading work.romem
+# Refreshing /home/ms20.50/Desktop/DLX_project/project/simulation/work.rwmem
+# ** Warning: (vlog-8891) All optimizations are disabled because the -novopt option is in effect. This will cause your simulation to run very slowly. If you are using this switch to preserve visibility for Debug or PLI features, please see the User's Manual section on Preserving Object Visibility with vopt. -novopt option is now deprecated and will be removed in future releases.
+# Loading work.rwmem
+# Loading work.test_memory
+# do ./../../scripts/memories_tb.do
+run 500ns
+# Starting testbench for memories 
+# @0ns Starting Program
+# Memory reset 
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# Reading file for Read-Only memory 
+# Read-Only Memory passed the testbench 
+# Starting test of read and write memory 
+# Read operation n           0 on rwmem is wrong
+# ** Note: $stop    : /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/tb_memories.sv(122)
+#    Time: 415 ns  Iteration: 2  Instance: /tb_memories/test_ram
+# Break in Module test_memory at /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/tb_memories.sv line 122
+restart
+# ** Warning: (vsim-8891) All optimizations are disabled because the -novopt option is in effect. This will cause your simulation to run very slowly. If you are using this switch to preserve visibility for Debug or PLI features, please see the User's Manual section on Preserving Object Visibility with vopt. -novopt option is now deprecated and will be removed in future releases.
+run
+# Starting testbench for memories 
+# @0ns Starting Program
+# Memory reset 
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# Reading file for Read-Only memory 
+# Read-Only Memory passed the testbench 
+# Starting test of read and write memory 
+project compileoutofdate
+# Compile of romem.sv was successful.
+# Compile of rwmem.sv failed with 1 errors.
+# Compile of tb_memories.sv was successful.
+# 3 compiles, 1 failed with 1 error.
+project compileoutofdate
+# Compile of rwmem.sv was successful.
+vsim -suppress 12110 -novopt work.tb_memories -do ./../../scripts/memories_tb.do
+# End time: 18:08:19 on Jul 27,2020, Elapsed time: 0:03:37
+# Errors: 0, Warnings: 0
+# vsim -suppress 12110 -novopt work.tb_memories -do "./../../scripts/memories_tb.do" 
+# Start time: 18:08:19 on Jul 27,2020
+# ** Warning: (vsim-8891) All optimizations are disabled because the -novopt option is in effect. This will cause your simulation to run very slowly. If you are using this switch to preserve visibility for Debug or PLI features, please see the User's Manual section on Preserving Object Visibility with vopt. -novopt option is now deprecated and will be removed in future releases.
+# Refreshing /home/ms20.50/Desktop/DLX_project/project/simulation/work.tb_memories
+# ** Warning: (vlog-8891) All optimizations are disabled because the -novopt option is in effect. This will cause your simulation to run very slowly. If you are using this switch to preserve visibility for Debug or PLI features, please see the User's Manual section on Preserving Object Visibility with vopt. -novopt option is now deprecated and will be removed in future releases.
+# Loading sv_std.std
+# Loading work.tb_memories
+# Refreshing /home/ms20.50/Desktop/DLX_project/project/simulation/work.mem_interface
+# ** Warning: (vlog-8891) All optimizations are disabled because the -novopt option is in effect. This will cause your simulation to run very slowly. If you are using this switch to preserve visibility for Debug or PLI features, please see the User's Manual section on Preserving Object Visibility with vopt. -novopt option is now deprecated and will be removed in future releases.
+# Loading work.mem_interface
+# Refreshing /home/ms20.50/Desktop/DLX_project/project/simulation/work.romem
+# ** Warning: (vlog-8891) All optimizations are disabled because the -novopt option is in effect. This will cause your simulation to run very slowly. If you are using this switch to preserve visibility for Debug or PLI features, please see the User's Manual section on Preserving Object Visibility with vopt. -novopt option is now deprecated and will be removed in future releases.
+# Loading work.romem
+# Refreshing /home/ms20.50/Desktop/DLX_project/project/simulation/work.rwmem
+# ** Warning: (vlog-8891) All optimizations are disabled because the -novopt option is in effect. This will cause your simulation to run very slowly. If you are using this switch to preserve visibility for Debug or PLI features, please see the User's Manual section on Preserving Object Visibility with vopt. -novopt option is now deprecated and will be removed in future releases.
+# Loading work.rwmem
+# Refreshing /home/ms20.50/Desktop/DLX_project/project/simulation/work.test_memory
+# ** Warning: (vlog-8891) All optimizations are disabled because the -novopt option is in effect. This will cause your simulation to run very slowly. If you are using this switch to preserve visibility for Debug or PLI features, please see the User's Manual section on Preserving Object Visibility with vopt. -novopt option is now deprecated and will be removed in future releases.
+# Loading work.test_memory
+# do ./../../scripts/memories_tb.do
+run 405ns
+# Starting testbench for memories 
+# @0ns Starting Program
+# Memory reset 
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# Reading file for Read-Only memory 
+# Read-Only Memory passed the testbench 
+# Starting test of read and write memory 
+run 50ns
+# Read operation n           0 on rwmem is wrong
+# ** Note: $stop    : /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/tb_memories.sv(123)
+#    Time: 415 ns  Iteration: 2  Instance: /tb_memories/test_ram
+# Break in Module test_memory at /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/tb_memories.sv line 123
+project compileoutofdate
+# Compile of tb_memories.sv was successful.
+vsim -suppress 12110 -novopt work.tb_memories -do ./../../scripts/memories_tb.do
+# End time: 18:11:14 on Jul 27,2020, Elapsed time: 0:02:55
+# Errors: 0, Warnings: 1
+# vsim -suppress 12110 -novopt work.tb_memories -do "./../../scripts/memories_tb.do" 
+# Start time: 18:11:14 on Jul 27,2020
+# ** Warning: (vsim-8891) All optimizations are disabled because the -novopt option is in effect. This will cause your simulation to run very slowly. If you are using this switch to preserve visibility for Debug or PLI features, please see the User's Manual section on Preserving Object Visibility with vopt. -novopt option is now deprecated and will be removed in future releases.
+# Refreshing /home/ms20.50/Desktop/DLX_project/project/simulation/work.tb_memories
+# ** Warning: (vlog-8891) All optimizations are disabled because the -novopt option is in effect. This will cause your simulation to run very slowly. If you are using this switch to preserve visibility for Debug or PLI features, please see the User's Manual section on Preserving Object Visibility with vopt. -novopt option is now deprecated and will be removed in future releases.
+# Loading sv_std.std
+# Loading work.tb_memories
+# Refreshing /home/ms20.50/Desktop/DLX_project/project/simulation/work.mem_interface
+# ** Warning: (vlog-8891) All optimizations are disabled because the -novopt option is in effect. This will cause your simulation to run very slowly. If you are using this switch to preserve visibility for Debug or PLI features, please see the User's Manual section on Preserving Object Visibility with vopt. -novopt option is now deprecated and will be removed in future releases.
+# Loading work.mem_interface
+# Loading work.romem
+# Loading work.rwmem
+# Refreshing /home/ms20.50/Desktop/DLX_project/project/simulation/work.test_memory
+# ** Warning: (vlog-8891) All optimizations are disabled because the -novopt option is in effect. This will cause your simulation to run very slowly. If you are using this switch to preserve visibility for Debug or PLI features, please see the User's Manual section on Preserving Object Visibility with vopt. -novopt option is now deprecated and will be removed in future releases.
+# Loading work.test_memory
+# do ./../../scripts/memories_tb.do
+run 420ns
+# Starting testbench for memories 
+# @0ns Starting Program
+# Memory reset 
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# Reading file for Read-Only memory 
+# Read-Only Memory passed the testbench 
+# Starting test of read and write memory 
+# Read operation n           0 on rwmem is wrong
+# ** Note: $stop    : /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/tb_memories.sv(123)
+#    Time: 415 ns  Iteration: 2  Instance: /tb_memories/test_ram
+# Break in Module test_memory at /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/tb_memories.sv line 123
+project compileoutofdate
+# Compile of tb_memories.sv was successful.
+vsim -suppress 12110 -novopt work.tb_memories -do ./../../scripts/memories_tb.do
+# End time: 18:12:06 on Jul 27,2020, Elapsed time: 0:00:52
+# Errors: 0, Warnings: 1
+# vsim -suppress 12110 -novopt work.tb_memories -do "./../../scripts/memories_tb.do" 
+# Start time: 18:12:06 on Jul 27,2020
+# ** Warning: (vsim-8891) All optimizations are disabled because the -novopt option is in effect. This will cause your simulation to run very slowly. If you are using this switch to preserve visibility for Debug or PLI features, please see the User's Manual section on Preserving Object Visibility with vopt. -novopt option is now deprecated and will be removed in future releases.
+# Refreshing /home/ms20.50/Desktop/DLX_project/project/simulation/work.tb_memories
+# ** Warning: (vlog-8891) All optimizations are disabled because the -novopt option is in effect. This will cause your simulation to run very slowly. If you are using this switch to preserve visibility for Debug or PLI features, please see the User's Manual section on Preserving Object Visibility with vopt. -novopt option is now deprecated and will be removed in future releases.
+# Loading sv_std.std
+# Loading work.tb_memories
+# Refreshing /home/ms20.50/Desktop/DLX_project/project/simulation/work.mem_interface
+# ** Warning: (vlog-8891) All optimizations are disabled because the -novopt option is in effect. This will cause your simulation to run very slowly. If you are using this switch to preserve visibility for Debug or PLI features, please see the User's Manual section on Preserving Object Visibility with vopt. -novopt option is now deprecated and will be removed in future releases.
+# Loading work.mem_interface
+# Loading work.romem
+# Loading work.rwmem
+# Refreshing /home/ms20.50/Desktop/DLX_project/project/simulation/work.test_memory
+# ** Warning: (vlog-8891) All optimizations are disabled because the -novopt option is in effect. This will cause your simulation to run very slowly. If you are using this switch to preserve visibility for Debug or PLI features, please see the User's Manual section on Preserving Object Visibility with vopt. -novopt option is now deprecated and will be removed in future releases.
+# Loading work.test_memory
+# do ./../../scripts/memories_tb.do
+run 420ns
+# Starting testbench for memories 
+# @0ns Starting Program
+# Memory reset 
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# Reading file for Read-Only memory 
+# Read-Only Memory passed the testbench 
+# Starting test of read and write memory 
+run finish
+# Invalid time value: finish
+run 10ns
+run 100ns
+run 100ns
+# 615ns Terminating simulation
+# ** Note: $finish    : /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/tb_memories.sv(128)
+#    Time: 615 ns  Iteration: 1  Instance: /tb_memories/test_ram
+# 1
+# Break in Module test_memory at /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/tb_memories.sv line 128
+project compileoutofdate
+# Compile of tb_memories.sv was successful.
+vsim -suppress 12110 -novopt work.tb_memories -do ./../../scripts/memories_tb.do
+# End time: 18:16:40 on Jul 27,2020, Elapsed time: 0:04:34
+# Errors: 1, Warnings: 1
+# vsim -suppress 12110 -novopt work.tb_memories -do "./../../scripts/memories_tb.do" 
+# Start time: 18:16:40 on Jul 27,2020
+# ** Warning: (vsim-8891) All optimizations are disabled because the -novopt option is in effect. This will cause your simulation to run very slowly. If you are using this switch to preserve visibility for Debug or PLI features, please see the User's Manual section on Preserving Object Visibility with vopt. -novopt option is now deprecated and will be removed in future releases.
+# Refreshing /home/ms20.50/Desktop/DLX_project/project/simulation/work.tb_memories
+# ** Warning: (vlog-8891) All optimizations are disabled because the -novopt option is in effect. This will cause your simulation to run very slowly. If you are using this switch to preserve visibility for Debug or PLI features, please see the User's Manual section on Preserving Object Visibility with vopt. -novopt option is now deprecated and will be removed in future releases.
+# Loading sv_std.std
+# Loading work.tb_memories
+# Refreshing /home/ms20.50/Desktop/DLX_project/project/simulation/work.mem_interface
+# ** Warning: (vlog-8891) All optimizations are disabled because the -novopt option is in effect. This will cause your simulation to run very slowly. If you are using this switch to preserve visibility for Debug or PLI features, please see the User's Manual section on Preserving Object Visibility with vopt. -novopt option is now deprecated and will be removed in future releases.
+# Loading work.mem_interface
+# Loading work.romem
+# Loading work.rwmem
+# Refreshing /home/ms20.50/Desktop/DLX_project/project/simulation/work.test_memory
+# ** Warning: (vlog-8891) All optimizations are disabled because the -novopt option is in effect. This will cause your simulation to run very slowly. If you are using this switch to preserve visibility for Debug or PLI features, please see the User's Manual section on Preserving Object Visibility with vopt. -novopt option is now deprecated and will be removed in future releases.
+# Loading work.test_memory
+# do ./../../scripts/memories_tb.do
+run 500ns
+# Starting testbench for memories 
+# @0ns Starting Program
+# ** Error: Assertion error.
+#    Time: 5 ns Started: 5 ns  Scope: tb_memories.ready_check_property File: /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/tb_memories.sv Line: 169
+# Memory reset 
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# ** Error: Assertion error.
+#    Time: 15 ns Started: 15 ns  Scope: tb_memories.ready_check_property File: /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/tb_memories.sv Line: 169
+# ** Error: Assertion error.
+#    Time: 25 ns Started: 25 ns  Scope: tb_memories.ready_check_property File: /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/tb_memories.sv Line: 169
+# ** Error: Assertion error.
+#    Time: 35 ns Started: 35 ns  Scope: tb_memories.ready_check_property File: /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/tb_memories.sv Line: 169
+# ** Error: Assertion error.
+#    Time: 45 ns Started: 45 ns  Scope: tb_memories.ready_check_property File: /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/tb_memories.sv Line: 169
+# Reading file for Read-Only memory 
+# ** Error: Assertion error.
+#    Time: 165 ns Started: 165 ns  Scope: tb_memories.ready_check_property File: /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/tb_memories.sv Line: 169
+# ** Error: Assertion error.
+#    Time: 165 ns Started: 155 ns  Scope: tb_memories.ready_check_property File: /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/tb_memories.sv Line: 169
+# ** Error: Assertion error.
+#    Time: 175 ns Started: 175 ns  Scope: tb_memories.ready_check_property File: /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/tb_memories.sv Line: 169
+# Read-Only Memory passed the testbench 
+# Starting test of read and write memory 
+# ** Error: Assertion error.
+#    Time: 185 ns Started: 185 ns  Scope: tb_memories.ready_check_property File: /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/tb_memories.sv Line: 169
+# ** Error: Assertion error.
+#    Time: 195 ns Started: 195 ns  Scope: tb_memories.ready_check_property File: /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/tb_memories.sv Line: 169
+# ** Error: Assertion error.
+#    Time: 205 ns Started: 205 ns  Scope: tb_memories.ready_check_property File: /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/tb_memories.sv Line: 169
+# ** Error: Assertion error.
+#    Time: 215 ns Started: 215 ns  Scope: tb_memories.ready_check_property File: /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/tb_memories.sv Line: 169
+# ** Error: Assertion error.
+#    Time: 225 ns Started: 225 ns  Scope: tb_memories.ready_check_property File: /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/tb_memories.sv Line: 169
+# ** Error: Assertion error.
+#    Time: 235 ns Started: 235 ns  Scope: tb_memories.ready_check_property File: /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/tb_memories.sv Line: 169
+# ** Error: Assertion error.
+#    Time: 245 ns Started: 245 ns  Scope: tb_memories.ready_check_property File: /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/tb_memories.sv Line: 169
+# ** Error: Assertion error.
+#    Time: 255 ns Started: 255 ns  Scope: tb_memories.ready_check_property File: /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/tb_memories.sv Line: 169
+# ** Error: Assertion error.
+#    Time: 265 ns Started: 265 ns  Scope: tb_memories.ready_check_property File: /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/tb_memories.sv Line: 169
+# ** Error: Assertion error.
+#    Time: 275 ns Started: 275 ns  Scope: tb_memories.ready_check_property File: /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/tb_memories.sv Line: 169
+# ** Error: Assertion error.
+#    Time: 285 ns Started: 285 ns  Scope: tb_memories.ready_check_property File: /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/tb_memories.sv Line: 169
+# ** Error: Assertion error.
+#    Time: 295 ns Started: 295 ns  Scope: tb_memories.ready_check_property File: /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/tb_memories.sv Line: 169
+# ** Error: Assertion error.
+#    Time: 305 ns Started: 305 ns  Scope: tb_memories.ready_check_property File: /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/tb_memories.sv Line: 169
+# ** Error: Assertion error.
+#    Time: 315 ns Started: 315 ns  Scope: tb_memories.ready_check_property File: /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/tb_memories.sv Line: 169
+# ** Error: Assertion error.
+#    Time: 325 ns Started: 325 ns  Scope: tb_memories.ready_check_property File: /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/tb_memories.sv Line: 169
+# ** Error: Assertion error.
+#    Time: 335 ns Started: 335 ns  Scope: tb_memories.ready_check_property File: /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/tb_memories.sv Line: 169
+# ** Error: Assertion error.
+#    Time: 345 ns Started: 345 ns  Scope: tb_memories.ready_check_property File: /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/tb_memories.sv Line: 169
+# ** Error: Assertion error.
+#    Time: 355 ns Started: 355 ns  Scope: tb_memories.ready_check_property File: /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/tb_memories.sv Line: 169
+# ** Error: Assertion error.
+#    Time: 365 ns Started: 365 ns  Scope: tb_memories.ready_check_property File: /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/tb_memories.sv Line: 169
+# ** Error: Assertion error.
+#    Time: 375 ns Started: 375 ns  Scope: tb_memories.ready_check_property File: /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/tb_memories.sv Line: 169
+# ** Error: Assertion error.
+#    Time: 385 ns Started: 385 ns  Scope: tb_memories.ready_check_property File: /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/tb_memories.sv Line: 169
+# ** Error: Assertion error.
+#    Time: 395 ns Started: 395 ns  Scope: tb_memories.ready_check_property File: /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/tb_memories.sv Line: 169
+# ** Error: Assertion error.
+#    Time: 405 ns Started: 405 ns  Scope: tb_memories.ready_check_property File: /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/tb_memories.sv Line: 169
+# ** Error: Assertion error.
+#    Time: 415 ns Started: 415 ns  Scope: tb_memories.ready_check_property File: /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/tb_memories.sv Line: 169
+# ** Error: Assertion error.
+#    Time: 425 ns Started: 425 ns  Scope: tb_memories.ready_check_property File: /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/tb_memories.sv Line: 169
+# ** Error: Assertion error.
+#    Time: 435 ns Started: 435 ns  Scope: tb_memories.ready_check_property File: /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/tb_memories.sv Line: 169
+# ** Error: Assertion error.
+#    Time: 445 ns Started: 445 ns  Scope: tb_memories.ready_check_property File: /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/tb_memories.sv Line: 169
+# ** Error: Assertion error.
+#    Time: 455 ns Started: 455 ns  Scope: tb_memories.ready_check_property File: /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/tb_memories.sv Line: 169
+# ** Error: Assertion error.
+#    Time: 465 ns Started: 465 ns  Scope: tb_memories.ready_check_property File: /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/tb_memories.sv Line: 169
+# ** Error: Assertion error.
+#    Time: 475 ns Started: 475 ns  Scope: tb_memories.ready_check_property File: /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/tb_memories.sv Line: 169
+# ** Error: Assertion error.
+#    Time: 485 ns Started: 485 ns  Scope: tb_memories.ready_check_property File: /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/tb_memories.sv Line: 169
+# ** Error: Assertion error.
+#    Time: 495 ns Started: 495 ns  Scope: tb_memories.ready_check_property File: /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/tb_memories.sv Line: 169
+project compileoutofdate
+# Compile of tb_memories.sv failed with 1 errors.
+run 500ns
+# ** Error: Assertion error.
+#    Time: 505 ns Started: 505 ns  Scope: tb_memories.ready_check_property File: /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/tb_memories.sv Line: 169
+# ** Error: Assertion error.
+#    Time: 515 ns Started: 515 ns  Scope: tb_memories.ready_check_property File: /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/tb_memories.sv Line: 169
+# ** Error: Assertion error.
+#    Time: 525 ns Started: 525 ns  Scope: tb_memories.ready_check_property File: /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/tb_memories.sv Line: 169
+# ** Error: Assertion error.
+#    Time: 535 ns Started: 535 ns  Scope: tb_memories.ready_check_property File: /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/tb_memories.sv Line: 169
+# ** Error: Assertion error.
+#    Time: 545 ns Started: 545 ns  Scope: tb_memories.ready_check_property File: /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/tb_memories.sv Line: 169
+# ** Error: Assertion error.
+#    Time: 555 ns Started: 555 ns  Scope: tb_memories.ready_check_property File: /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/tb_memories.sv Line: 169
+# ** Error: Assertion error.
+#    Time: 565 ns Started: 565 ns  Scope: tb_memories.ready_check_property File: /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/tb_memories.sv Line: 169
+# ** Error: Assertion error.
+#    Time: 575 ns Started: 575 ns  Scope: tb_memories.ready_check_property File: /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/tb_memories.sv Line: 169
+# ** Error: Assertion error.
+#    Time: 585 ns Started: 585 ns  Scope: tb_memories.ready_check_property File: /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/tb_memories.sv Line: 169
+# ** Error: Assertion error.
+#    Time: 595 ns Started: 595 ns  Scope: tb_memories.ready_check_property File: /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/tb_memories.sv Line: 169
+# ** Error: Assertion error.
+#    Time: 605 ns Started: 605 ns  Scope: tb_memories.ready_check_property File: /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/tb_memories.sv Line: 169
+# ** Error: Assertion error.
+#    Time: 615 ns Started: 615 ns  Scope: tb_memories.ready_check_property File: /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/tb_memories.sv Line: 169
+# 615ns Terminating simulation
+# ** Note: $finish    : /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/tb_memories.sv(128)
+#    Time: 615 ns  Iteration: 1  Instance: /tb_memories/test_ram
+# 1
+# Break in Module test_memory at /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/tb_memories.sv line 128
+run 500ns
+# ** Note: implicit $finish from program    : /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/tb_memories.sv(128)
+#    Time: 615 ns  Iteration: 1  Instance: /tb_memories/test_ram
+# 1
+# Simulation stop requested.
+project compileoutofdate
+# Compile of tb_memories.sv was successful.
+vsim -suppress 12110 -novopt work.tb_memories -do ./../../scripts/memories_tb.do
+# End time: 18:26:53 on Jul 27,2020, Elapsed time: 0:10:13
+# Errors: 52, Warnings: 1
+# vsim -suppress 12110 -novopt work.tb_memories -do "./../../scripts/memories_tb.do" 
+# Start time: 18:26:53 on Jul 27,2020
+# ** Warning: (vsim-8891) All optimizations are disabled because the -novopt option is in effect. This will cause your simulation to run very slowly. If you are using this switch to preserve visibility for Debug or PLI features, please see the User's Manual section on Preserving Object Visibility with vopt. -novopt option is now deprecated and will be removed in future releases.
+# Refreshing /home/ms20.50/Desktop/DLX_project/project/simulation/work.tb_memories
+# ** Warning: (vlog-8891) All optimizations are disabled because the -novopt option is in effect. This will cause your simulation to run very slowly. If you are using this switch to preserve visibility for Debug or PLI features, please see the User's Manual section on Preserving Object Visibility with vopt. -novopt option is now deprecated and will be removed in future releases.
+# Loading sv_std.std
+# Loading work.tb_memories
+# Refreshing /home/ms20.50/Desktop/DLX_project/project/simulation/work.mem_interface
+# ** Warning: (vlog-8891) All optimizations are disabled because the -novopt option is in effect. This will cause your simulation to run very slowly. If you are using this switch to preserve visibility for Debug or PLI features, please see the User's Manual section on Preserving Object Visibility with vopt. -novopt option is now deprecated and will be removed in future releases.
+# Loading work.mem_interface
+# Loading work.romem
+# Loading work.rwmem
+# Refreshing /home/ms20.50/Desktop/DLX_project/project/simulation/work.test_memory
+# ** Warning: (vlog-8891) All optimizations are disabled because the -novopt option is in effect. This will cause your simulation to run very slowly. If you are using this switch to preserve visibility for Debug or PLI features, please see the User's Manual section on Preserving Object Visibility with vopt. -novopt option is now deprecated and will be removed in future releases.
+# Loading work.test_memory
+# do ./../../scripts/memories_tb.do
+run 500ns
+# Starting testbench for memories 
+# @0ns Starting Program
+# Memory reset 
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# Reading file for Read-Only memory 
+# ** Error: Assertion error.
+#    Time: 165 ns Started: 155 ns  Scope: tb_memories.ready_check_property File: /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/tb_memories.sv Line: 173
+# Read-Only Memory passed the testbench 
+# Starting test of read and write memory 
+project compileoutofdate
+# Compile of tb_memories.sv failed with 1 errors.
+project compileoutofdate
+# Compile of tb_memories.sv was successful.
+vsim -suppress 12110 -novopt work.tb_memories -do ./../../scripts/memories_tb.do
+# End time: 18:30:25 on Jul 27,2020, Elapsed time: 0:03:32
+# Errors: 1, Warnings: 1
+# vsim -suppress 12110 -novopt work.tb_memories -do "./../../scripts/memories_tb.do" 
+# Start time: 18:30:25 on Jul 27,2020
+# ** Warning: (vsim-8891) All optimizations are disabled because the -novopt option is in effect. This will cause your simulation to run very slowly. If you are using this switch to preserve visibility for Debug or PLI features, please see the User's Manual section on Preserving Object Visibility with vopt. -novopt option is now deprecated and will be removed in future releases.
+# Refreshing /home/ms20.50/Desktop/DLX_project/project/simulation/work.tb_memories
+# ** Warning: (vlog-8891) All optimizations are disabled because the -novopt option is in effect. This will cause your simulation to run very slowly. If you are using this switch to preserve visibility for Debug or PLI features, please see the User's Manual section on Preserving Object Visibility with vopt. -novopt option is now deprecated and will be removed in future releases.
+# Loading sv_std.std
+# Loading work.tb_memories
+# Refreshing /home/ms20.50/Desktop/DLX_project/project/simulation/work.mem_interface
+# ** Warning: (vlog-8891) All optimizations are disabled because the -novopt option is in effect. This will cause your simulation to run very slowly. If you are using this switch to preserve visibility for Debug or PLI features, please see the User's Manual section on Preserving Object Visibility with vopt. -novopt option is now deprecated and will be removed in future releases.
+# Loading work.mem_interface
+# Loading work.romem
+# Loading work.rwmem
+# Refreshing /home/ms20.50/Desktop/DLX_project/project/simulation/work.test_memory
+# ** Warning: (vlog-8891) All optimizations are disabled because the -novopt option is in effect. This will cause your simulation to run very slowly. If you are using this switch to preserve visibility for Debug or PLI features, please see the User's Manual section on Preserving Object Visibility with vopt. -novopt option is now deprecated and will be removed in future releases.
+# Loading work.test_memory
+# do ./../../scripts/memories_tb.do
+run 600ns
+# Starting testbench for memories 
+# @0ns Starting Program
+# Memory reset 
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# Reading file for Read-Only memory 
+# Read-Only Memory passed the testbench 
+# Starting test of read and write memory 
+run 200ns
+# 615ns Terminating simulation
+# ** Note: $finish    : /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/tb_memories.sv(128)
+#    Time: 615 ns  Iteration: 1  Instance: /tb_memories/test_ram
+# 1
+# Break in Module test_memory at /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/tb_memories.sv line 128

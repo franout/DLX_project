@@ -14,137 +14,71 @@ QuestaSim-64 vlog 10.7c Compiler 2018.08 Aug 17 2018
 Top level modules:
 	tb_writeback_stage
 
-} {} {}} /home/ms20.50/Desktop/DLX_project/hardware/dlx/001-global_components.vhd {1 {vcom -work work -2008 -explicit -check_synthesis -vopt -stats=none /home/ms20.50/Desktop/DLX_project/hardware/dlx/001-global_components.vhd
+} {} {}} /home/ms20.50/Desktop/DLX_project/hardware/dlx/001-global_components.vhd {0 {vcom -work work -2008 -explicit -check_synthesis -vopt -stats=none /home/ms20.50/Desktop/DLX_project/hardware/dlx/001-global_components.vhd
 QuestaSim-64 vcom 10.7c Compiler 2018.08 Aug 17 2018
--- Loading package STANDARD
--- Loading package TEXTIO
--- Loading package std_logic_1164
--- Loading package globals
--- Loading package CONSTANTS
--- Compiling package global_components
--- Compiling package body global_components
--- Loading package global_components
+** Error (suppressible): (vcom-19) Failed to access library 'work' at "work".
+No such file or directory. (errno = ENOENT)
 
-} {} {}} /home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/registerfile.vhd {1 {vcom -work work -2008 -explicit -vopt -stats=none /home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/registerfile.vhd
+} {} {}} /home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/registerfile.vhd {0 {vcom -work work -2008 -explicit -vopt -stats=none /home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/registerfile.vhd
 QuestaSim-64 vcom 10.7c Compiler 2018.08 Aug 17 2018
--- Loading package STANDARD
--- Loading package TEXTIO
--- Loading package std_logic_1164
--- Loading package NUMERIC_STD
--- Compiling entity register_file
--- Compiling architecture beh of register_file
--- Compiling configuration CFG_RF_BEH
--- Loading entity register_file
--- Loading architecture beh of register_file
+** Error (suppressible): (vcom-19) Failed to access library 'work' at "work".
+No such file or directory. (errno = ENOENT)
 
-} {} {}} /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/romem.sv {1 {vlog -work work -vopt -sv -stats=none /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/romem.sv
+} {} {}} /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/romem.sv {0 {vlog -work work -vopt -sv -stats=none /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/romem.sv
 QuestaSim-64 vlog 10.7c Compiler 2018.08 Aug 17 2018
--- Compiling interface mem_interface
--- Compiling module romem
+** Error: (vlib-35) Failed to create directory "work".
+File exists. (errno = EEXIST)
+Verilog Compiler exiting
 
-Top level modules:
-	romem
-
-} {} {}} /home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/rca.vhd {1 {vcom -work work -2008 -explicit -vopt -stats=none /home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/rca.vhd
+} {3.0 4.0} {}} /home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/rca.vhd {0 {vcom -work work -2008 -explicit -vopt -stats=none /home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/rca.vhd
 QuestaSim-64 vcom 10.7c Compiler 2018.08 Aug 17 2018
--- Loading package STANDARD
--- Loading package TEXTIO
--- Loading package std_logic_1164
--- Loading package std_logic_arith
--- Loading package STD_LOGIC_UNSIGNED
--- Compiling entity RCA
--- Compiling architecture STRUCTURAL of RCA
--- Compiling configuration CFG_RCA_STRUCTURAL
--- Loading entity RCA
--- Loading architecture STRUCTURAL of RCA
--- Loading entity FA
--- Loading configuration cfg_fa_behavioral
+** Error (suppressible): (vcom-19) Failed to access library 'work' at "work".
+No such file or directory. (errno = ENOENT)
 
-} {} {}} /home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/complement2.vhd {1 {vcom -work work -2008 -explicit -vopt -stats=none /home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/complement2.vhd
+} {} {}} /home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/complement2.vhd {0 {vcom -work work -2008 -explicit -vopt -stats=none /home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/complement2.vhd
 QuestaSim-64 vcom 10.7c Compiler 2018.08 Aug 17 2018
--- Loading package STANDARD
--- Loading package TEXTIO
--- Loading package std_logic_1164
--- Loading package NUMERIC_STD
--- Compiling entity complement2
--- Compiling architecture beh of complement2
--- Compiling configuration CFG_COMPLEMENT2_BEH
--- Loading entity complement2
--- Loading architecture beh of complement2
+** Error (suppressible): (vcom-19) Failed to access library 'work' at "work".
+No such file or directory. (errno = ENOENT)
 
-} {} {}} /home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/wrf.vhd {1 {vcom -work work -2008 -explicit -vopt -stats=none /home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/wrf.vhd
+} {} {}} /home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/wrf.vhd {0 {vcom -work work -2008 -explicit -vopt -stats=none /home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/wrf.vhd
 QuestaSim-64 vcom 10.7c Compiler 2018.08 Aug 17 2018
--- Loading package STANDARD
--- Loading package TEXTIO
--- Loading package std_logic_1164
--- Loading package NUMERIC_STD
--- Loading package CONSTANTS
--- Compiling entity wrf
--- Compiling architecture beh of wrf
--- Compiling configuration CFG_WRF_BEH
--- Loading entity wrf
--- Loading architecture beh of wrf
+** Error (suppressible): (vcom-19) Failed to access library 'work' at "work".
+No such file or directory. (errno = ENOENT)
 
-} {} {}} /home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/csb.vhd {1 {vcom -work work -2008 -explicit -vopt -stats=none /home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/csb.vhd
+} {} {}} /home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/csb.vhd {0 {vcom -work work -2008 -explicit -vopt -stats=none /home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/csb.vhd
 QuestaSim-64 vcom 10.7c Compiler 2018.08 Aug 17 2018
--- Loading package STANDARD
--- Loading package TEXTIO
--- Loading package std_logic_1164
--- Loading package std_logic_arith
--- Loading package STD_LOGIC_UNSIGNED
--- Compiling entity CSB
--- Compiling architecture STRUCTURAL of CSB
--- Compiling configuration CFG_CSB_STRUCTURAL
--- Loading entity CSB
--- Loading architecture STRUCTURAL of CSB
--- Loading entity RCA
--- Loading configuration cfg_rca_structural
+** Error (suppressible): (vcom-19) Failed to access library 'work' at "work".
+No such file or directory. (errno = ENOENT)
 
-} {} {}} /home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/encoder.vhd {1 {vcom -work work -2008 -explicit -vopt -stats=none /home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/encoder.vhd
+} {} {}} /home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/encoder.vhd {0 {vcom -work work -2008 -explicit -vopt -stats=none /home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/encoder.vhd
 QuestaSim-64 vcom 10.7c Compiler 2018.08 Aug 17 2018
--- Loading package STANDARD
--- Loading package TEXTIO
--- Loading package std_logic_1164
--- Loading package NUMERIC_STD
--- Compiling entity encoder
--- Compiling architecture beh of encoder
--- Compiling configuration CFG_ENCODER_BEH
--- Loading entity encoder
--- Loading architecture beh of encoder
+** Error (suppressible): (vcom-19) Failed to access library 'work' at "work".
+No such file or directory. (errno = ENOENT)
 
-} {} {}} /home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/mux21_nbit.vhd {1 {vcom -work work -2008 -explicit -vopt -stats=none /home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/mux21_nbit.vhd
+} {} {}} /home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/mux21_nbit.vhd {0 {vcom -work work -2008 -explicit -vopt -stats=none /home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/mux21_nbit.vhd
 QuestaSim-64 vcom 10.7c Compiler 2018.08 Aug 17 2018
--- Loading package STANDARD
--- Loading package TEXTIO
--- Loading package std_logic_1164
--- Loading package CONSTANTS
--- Compiling entity mux21_nbit
--- Compiling architecture beh of mux21_nbit
--- Compiling architecture struc of mux21_nbit
--- Loading entity mux21_nbit
--- Compiling configuration CFG_MUX21_GENERIC_BEH
--- Loading entity mux21_nbit
--- Loading architecture beh of mux21_nbit
--- Compiling configuration CFG_MUX21_GENERIC_STRUC
--- Loading entity mux21_nbit
--- Loading architecture struc of mux21_nbit
--- Loading entity MUX21
--- Loading configuration cfg_mux21_behavioral_2
+** Error (suppressible): (vcom-19) Failed to access library 'work' at "work".
+No such file or directory. (errno = ENOENT)
 
-} {} {}} /home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/stcg.vhd {1 {vcom -work work -2008 -explicit -vopt -stats=none /home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/stcg.vhd
+} {} {}} /home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/stcg.vhd {0 {vcom -work work -2008 -explicit -vopt -stats=none /home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/stcg.vhd
 QuestaSim-64 vcom 10.7c Compiler 2018.08 Aug 17 2018
--- Loading package STANDARD
--- Loading package TEXTIO
--- Loading package std_logic_1164
--- Loading package CONSTANTS
--- Compiling entity STCG
--- Compiling architecture STRUCTURAL of STCG
--- Compiling configuration CFG_STCG_STRUCTURAL
--- Loading entity STCG
--- Loading architecture STRUCTURAL of STCG
--- Loading entity PG
--- Loading entity PGSB
--- Loading entity GSB
+** Error (suppressible): (vcom-19) Failed to access library 'work' at "work".
+No such file or directory. (errno = ENOENT)
+
+} {} {}} /home/ms20.50/Desktop/DLX_project/hardware/dlx/a.b-DataPath.core/a.b.e-Write_back.stage.vhd {0 {vcom -work work -2008 -explicit -check_synthesis -vopt -stats=none /home/ms20.50/Desktop/DLX_project/hardware/dlx/a.b-DataPath.core/a.b.e-Write_back.stage.vhd
+QuestaSim-64 vcom 10.7c Compiler 2018.08 Aug 17 2018
+** Error (suppressible): (vcom-19) Failed to access library 'work' at "work".
+No such file or directory. (errno = ENOENT)
+
+} {} {}} /home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/alu.vhd {0 {vcom -work work -2008 -explicit -vopt -stats=none /home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/alu.vhd
+QuestaSim-64 vcom 10.7c Compiler 2018.08 Aug 17 2018
+** Error (suppressible): (vcom-19) Failed to access library 'work' at "work".
+No such file or directory. (errno = ENOENT)
+
+} {} {}} /home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/mux.vhd {0 {vcom -work work -2008 -explicit -vopt -stats=none /home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/mux.vhd
+QuestaSim-64 vcom 10.7c Compiler 2018.08 Aug 17 2018
+** Error (suppressible): (vcom-19) Failed to access library 'work' at "work".
+No such file or directory. (errno = ENOENT)
 
 } {} {}} /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/memory_interfaces.svh {1 {vlog -work work -vopt -sv -stats=none /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/memory_interfaces.svh
 QuestaSim-64 vlog 10.7c Compiler 2018.08 Aug 17 2018
@@ -153,109 +87,51 @@ QuestaSim-64 vlog 10.7c Compiler 2018.08 Aug 17 2018
 Top level modules:
 	--none--
 
-} {} {}} /home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/mux.vhd {1 {vcom -work work -2008 -explicit -vopt -stats=none /home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/mux.vhd
+} {} {}} /home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/p4_adder.vhd {0 {vcom -work work -2008 -explicit -vopt -stats=none /home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/p4_adder.vhd
 QuestaSim-64 vcom 10.7c Compiler 2018.08 Aug 17 2018
--- Loading package STANDARD
--- Loading package TEXTIO
--- Loading package std_logic_1164
--- Loading package NUMERIC_STD
--- Loading package CONSTANTS
--- Compiling entity MUX_zbit_nbit
--- Compiling architecture beh of mux_zbit_nbit
--- Compiling configuration CFG_MUX_BEH
--- Loading entity MUX_zbit_nbit
--- Loading architecture beh of mux_zbit_nbit
-
-} {} {}} /home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/alu.vhd {1 {vcom -work work -2008 -explicit -vopt -stats=none /home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/alu.vhd
-QuestaSim-64 vcom 10.7c Compiler 2018.08 Aug 17 2018
--- Loading package STANDARD
--- Loading package TEXTIO
--- Loading package std_logic_1164
--- Loading package NUMERIC_STD
--- Loading package CONSTANTS
--- Loading package alu_types
--- Compiling entity ALU
--- Compiling architecture BEHAVIOR of ALU
--- Compiling configuration CFG_ALU_BEHAVIORAL
--- Loading entity ALU
--- Loading architecture BEHAVIOR of ALU
-
-} {} {}} /home/ms20.50/Desktop/DLX_project/hardware/dlx/a.b-DataPath.core/a.b.e-Write_back.stage.vhd {1 {vcom -work work -2008 -explicit -check_synthesis -vopt -stats=none /home/ms20.50/Desktop/DLX_project/hardware/dlx/a.b-DataPath.core/a.b.e-Write_back.stage.vhd
-QuestaSim-64 vcom 10.7c Compiler 2018.08 Aug 17 2018
--- Loading package STANDARD
--- Loading package TEXTIO
--- Loading package std_logic_1164
--- Loading package NUMERIC_STD
--- Loading package globals
--- Loading package CONSTANTS
--- Loading package global_components
--- Compiling entity write_back_stage
--- Compiling architecture structural of write_back_stage
+** Error (suppressible): (vcom-19) Failed to access library 'work' at "work".
+No such file or directory. (errno = ENOENT)
 
 } {} {}} /home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/alu_type.vhd {1 {vcom -work work -2008 -explicit -vopt -stats=none /home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/alu_type.vhd
 QuestaSim-64 vcom 10.7c Compiler 2018.08 Aug 17 2018
 -- Loading package STANDARD
 -- Compiling package alu_types
 
-} {} {}} /home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/p4_adder.vhd {1 {vcom -work work -2008 -explicit -vopt -stats=none /home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/p4_adder.vhd
+} {} {}} /home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/gsb.vhd {0 {vcom -work work -2008 -explicit -vopt -stats=none /home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/gsb.vhd
+QuestaSim-64 vcom 10.7c Compiler 2018.08 Aug 17 2018
+** Error (suppressible): (vcom-19) Failed to access library 'work' at "work".
+No such file or directory. (errno = ENOENT)
+
+} {} {}} /home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/pgsb.vhd {0 {vcom -work work -2008 -explicit -vopt -stats=none /home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/pgsb.vhd
+QuestaSim-64 vcom 10.7c Compiler 2018.08 Aug 17 2018
+** Error (suppressible): (vcom-19) Failed to access library 'work' at "work".
+No such file or directory. (errno = ENOENT)
+
+} {} {}} /home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/constants.vhd {0 {vcom -work work -2008 -explicit -vopt -stats=none /home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/constants.vhd
+QuestaSim-64 vcom 10.7c Compiler 2018.08 Aug 17 2018
+** Error (suppressible): (vcom-19) Failed to access library 'work' at "work".
+No such file or directory. (errno = ENOENT)
+
+} {} {}} /home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/mux21.vhd {0 {vcom -work work -2008 -explicit -vopt -stats=none /home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/mux21.vhd
 QuestaSim-64 vcom 10.7c Compiler 2018.08 Aug 17 2018
 -- Loading package STANDARD
 -- Loading package TEXTIO
 -- Loading package std_logic_1164
--- Loading package CONSTANTS
--- Compiling entity p4_adder
--- Compiling architecture struc of p4_adder
+** Error: (vcom-11) Could not find work.constants.
+** Error (suppressible): /home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/mux21.vhd(3): (vcom-1195) Cannot find expanded name "work.constants".
+** Error: /home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/mux21.vhd(3): Unknown expanded name.
+** Note: /home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/mux21.vhd(5): VHDL Compiler exiting
 
-} {} {}} /home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/pgsb.vhd {1 {vcom -work work -2008 -explicit -vopt -stats=none /home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/pgsb.vhd
-QuestaSim-64 vcom 10.7c Compiler 2018.08 Aug 17 2018
--- Loading package STANDARD
--- Loading package TEXTIO
--- Loading package std_logic_1164
--- Compiling entity PGSB
--- Compiling architecture BEHAVIORAL of PGSB
--- Compiling configuration CFG_PGSB_BEHAVIORAL
--- Loading entity PGSB
--- Loading architecture BEHAVIORAL of PGSB
+} {6.0 7.0 8.0 9.0} {}} /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/implemented_instructions.svh {1 {vlog -work work -vopt -sv -stats=none /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/implemented_instructions.svh
+QuestaSim-64 vlog 10.7c Compiler 2018.08 Aug 17 2018
 
-} {} {}} /home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/gsb.vhd {1 {vcom -work work -2008 -explicit -vopt -stats=none /home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/gsb.vhd
-QuestaSim-64 vcom 10.7c Compiler 2018.08 Aug 17 2018
--- Loading package STANDARD
--- Loading package TEXTIO
--- Loading package std_logic_1164
--- Compiling entity GSB
--- Compiling architecture BEHAVIORAL of GSB
--- Compiling configuration CFG_GSB_BEHAVIORAL
--- Loading entity GSB
--- Loading architecture BEHAVIORAL of GSB
+Top level modules:
+	--none--
 
-} {} {}} /home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/mux21.vhd {1 {vcom -work work -2008 -explicit -vopt -stats=none /home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/mux21.vhd
+} {} {}} /home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/sum_gen.vhd {0 {vcom -work work -2008 -explicit -vopt -stats=none /home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/sum_gen.vhd
 QuestaSim-64 vcom 10.7c Compiler 2018.08 Aug 17 2018
--- Loading package STANDARD
--- Loading package TEXTIO
--- Loading package std_logic_1164
--- Loading package CONSTANTS
--- Compiling entity MUX21
--- Compiling architecture BEHAVIORAL_1 of MUX21
--- Compiling architecture BEHAVIORAL_2 of MUX21
--- Loading entity MUX21
--- Compiling architecture BEHAVIORAL_3 of MUX21
--- Loading entity MUX21
--- Compiling configuration CFG_MUX21_BEHAVIORAL_1
--- Loading entity MUX21
--- Loading architecture BEHAVIORAL_1 of MUX21
--- Compiling configuration CFG_MUX21_BEHAVIORAL_2
--- Loading entity MUX21
--- Loading architecture BEHAVIORAL_2 of MUX21
--- Compiling configuration CFG_MUX21_BEHAVIORAL_3
--- Loading entity MUX21
--- Loading architecture BEHAVIORAL_3 of MUX21
-
-} {} {}} /home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/constants.vhd {1 {vcom -work work -2008 -explicit -vopt -stats=none /home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/constants.vhd
-QuestaSim-64 vcom 10.7c Compiler 2018.08 Aug 17 2018
--- Loading package STANDARD
--- Compiling package CONSTANTS
--- Compiling package body CONSTANTS
--- Loading package CONSTANTS
+** Error (suppressible): (vcom-19) Failed to access library 'work' at "work".
+No such file or directory. (errno = ENOENT)
 
 } {} {}} /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/rwmem.sv {1 {vlog -work work -vopt -sv -stats=none /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/rwmem.sv
 QuestaSim-64 vlog 10.7c Compiler 2018.08 Aug 17 2018
@@ -265,122 +141,40 @@ QuestaSim-64 vlog 10.7c Compiler 2018.08 Aug 17 2018
 Top level modules:
 	rwmem
 
-} {} {}} /home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/sum_gen.vhd {2 {vcom -work work -2008 -explicit -vopt -stats=none /home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/sum_gen.vhd
+} {} {}} /home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/pg.vhd {0 {vcom -work work -2008 -explicit -vopt -stats=none /home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/pg.vhd
 QuestaSim-64 vcom 10.7c Compiler 2018.08 Aug 17 2018
--- Loading package STANDARD
--- Loading package TEXTIO
--- Loading package std_logic_1164
--- Loading package std_logic_arith
--- Loading package STD_LOGIC_UNSIGNED
--- Compiling entity SUM_GEN
--- Compiling architecture STRUCTURAL of SUM_GEN
--- Compiling configuration CFG_SUM_GEN_STRUCTURAL
--- Loading entity SUM_GEN
--- Loading architecture STRUCTURAL of SUM_GEN
--- Loading entity CSB
--- Loading configuration cfg_csb_structural
-** Warning: /home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/sum_gen.vhd(43): (vcom-1263) Component configuration "all : CSB" applies to no component instantiation statements.
+** Error (suppressible): (vcom-19) Failed to access library 'work' at "work".
+No such file or directory. (errno = ENOENT)
 
-} {} {}} /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/implemented_instructions.svh {1 {vlog -work work -vopt -sv -stats=none /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/implemented_instructions.svh
-QuestaSim-64 vlog 10.7c Compiler 2018.08 Aug 17 2018
-
-Top level modules:
-	--none--
-
-} {} {}} /home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/fa.vhd {1 {vcom -work work -2008 -explicit -vopt -stats=none /home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/fa.vhd
+} {} {}} /home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/fa.vhd {0 {vcom -work work -2008 -explicit -vopt -stats=none /home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/fa.vhd
 QuestaSim-64 vcom 10.7c Compiler 2018.08 Aug 17 2018
--- Loading package STANDARD
--- Loading package TEXTIO
--- Loading package std_logic_1164
--- Compiling entity FA
--- Compiling architecture BEHAVIORAL of FA
--- Compiling configuration CFG_FA_BEHAVIORAL
--- Loading entity FA
--- Loading architecture BEHAVIORAL of FA
+** Error (suppressible): (vcom-19) Failed to access library 'work' at "work".
+No such file or directory. (errno = ENOENT)
 
-} {} {}} /home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/pg.vhd {1 {vcom -work work -2008 -explicit -vopt -stats=none /home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/pg.vhd
+} {} {}} /home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/adder.vhd {0 {vcom -work work -2008 -explicit -vopt -stats=none /home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/adder.vhd
 QuestaSim-64 vcom 10.7c Compiler 2018.08 Aug 17 2018
--- Loading package STANDARD
--- Loading package TEXTIO
--- Loading package std_logic_1164
--- Compiling entity PG
--- Compiling architecture BEHAVIORAL of PG
--- Compiling configuration CFG_PG_BEHAVIORAL
--- Loading entity PG
--- Loading architecture BEHAVIORAL of PG
+** Error (suppressible): (vcom-19) Failed to access library 'work' at "work".
+No such file or directory. (errno = ENOENT)
 
-} {} {}} /home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/adder.vhd {1 {vcom -work work -2008 -explicit -vopt -stats=none /home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/adder.vhd
+} {} {}} /home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/reg_nbit.vhd {0 {vcom -work work -2008 -explicit -vopt -stats=none /home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/reg_nbit.vhd
 QuestaSim-64 vcom 10.7c Compiler 2018.08 Aug 17 2018
--- Loading package STANDARD
--- Loading package TEXTIO
--- Loading package std_logic_1164
--- Loading package NUMERIC_STD
--- Compiling entity adder
--- Compiling architecture beh of adder
--- Compiling configuration CFG_ADDER_BEH
--- Loading entity adder
--- Loading architecture beh of adder
+** Error (suppressible): (vcom-19) Failed to access library 'work' at "work".
+No such file or directory. (errno = ENOENT)
 
-} {} {}} /home/ms20.50/Desktop/DLX_project/hardware/dlx/000-globals.vhd {1 {vcom -work work -2008 -explicit -check_synthesis -vopt -stats=none /home/ms20.50/Desktop/DLX_project/hardware/dlx/000-globals.vhd
+} {} {}} /home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/fd.vhd {0 {vcom -work work -2008 -explicit -vopt -stats=none /home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/fd.vhd
 QuestaSim-64 vcom 10.7c Compiler 2018.08 Aug 17 2018
--- Loading package STANDARD
--- Loading package TEXTIO
--- Loading package std_logic_1164
--- Compiling package globals
--- Compiling package body globals
--- Loading package globals
+** Error (suppressible): (vcom-19) Failed to access library 'work' at "work".
+No such file or directory. (errno = ENOENT)
 
-} {} {}} /home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/boothmul.vhd {1 {vcom -work work -2008 -explicit -vopt -stats=none /home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/boothmul.vhd
+} {} {}} /home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/boothmul.vhd {0 {vcom -work work -2008 -explicit -vopt -stats=none /home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/boothmul.vhd
 QuestaSim-64 vcom 10.7c Compiler 2018.08 Aug 17 2018
--- Loading package STANDARD
--- Loading package TEXTIO
--- Loading package std_logic_1164
--- Loading package NUMERIC_STD
--- Loading package CONSTANTS
--- Compiling entity boothmul
--- Compiling architecture struc of boothmul
--- Compiling configuration CFG_BOOTHMUL_struc
--- Loading entity boothmul
--- Loading architecture struc of boothmul
--- Loading entity complement2
--- Loading entity encoder
--- Loading entity MUX_zbit_nbit
--- Loading entity adder
+** Error (suppressible): (vcom-19) Failed to access library 'work' at "work".
+No such file or directory. (errno = ENOENT)
 
-} {} {}} /home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/fd.vhd {1 {vcom -work work -2008 -explicit -vopt -stats=none /home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/fd.vhd
+} {} {}} /home/ms20.50/Desktop/DLX_project/hardware/dlx/000-globals.vhd {0 {vcom -work work -2008 -explicit -check_synthesis -vopt -stats=none /home/ms20.50/Desktop/DLX_project/hardware/dlx/000-globals.vhd
 QuestaSim-64 vcom 10.7c Compiler 2018.08 Aug 17 2018
--- Loading package STANDARD
--- Loading package TEXTIO
--- Loading package std_logic_1164
--- Compiling entity FD
--- Compiling architecture PIPPO of FD
--- Compiling architecture PLUTO of FD
--- Loading entity FD
--- Compiling configuration CFG_FD_PIPPO
--- Loading entity FD
--- Loading architecture PIPPO of FD
--- Compiling configuration CFG_FD_PLUTO
--- Loading entity FD
--- Loading architecture PLUTO of FD
-
-} {} {}} /home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/reg_nbit.vhd {1 {vcom -work work -2008 -explicit -vopt -stats=none /home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/reg_nbit.vhd
-QuestaSim-64 vcom 10.7c Compiler 2018.08 Aug 17 2018
--- Loading package STANDARD
--- Loading package TEXTIO
--- Loading package std_logic_1164
--- Loading package CONSTANTS
--- Compiling entity reg_nbit
--- Compiling architecture struc of reg_nbit
--- Compiling configuration CFG_REG_PIPPO
--- Loading entity reg_nbit
--- Loading architecture struc of reg_nbit
--- Loading entity FD
--- Loading configuration cfg_fd_pippo
--- Compiling configuration CFG_REG_PLUTO
--- Loading entity reg_nbit
--- Loading architecture struc of reg_nbit
--- Loading entity FD
--- Loading configuration cfg_fd_pluto
+** Error (suppressible): (vcom-19) Failed to access library 'work' at "work".
+No such file or directory. (errno = ENOENT)
 
 } {} {}} /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/tb_dlx.sv {1 {vlog -work work -vopt -sv -stats=none /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/tb_dlx.sv
 QuestaSim-64 vlog 10.7c Compiler 2018.08 Aug 17 2018
