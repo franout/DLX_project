@@ -5,7 +5,7 @@
 interface mem_interface
 	#(parameter ADDRESS_SIZE=16,
 	WORD_SIZE=32)
-	 ( input logic clk);
+	 ( input wire clk);
 
  	 logic rst;  //  reset active low
  	 logic  [ADDRESS_SIZE-1:0] ADDRESS;

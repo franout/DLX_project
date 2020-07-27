@@ -94,7 +94,8 @@ always_ff @(posedge memif.clk) begin : proc_ram
 			if(memif.READNOTWRITE) begin // read operation 
 				data_ir<=ram[memif.ADDRESS];
 				valid='b1;
-			end else begin  // write operation 
+			end else begin  // write operation
+				data_ir<='Z;
 				ram[memif.ADDRESS]<=data_iw;
 				valid<='b1;
 			end 
@@ -106,8 +107,8 @@ always@(*) begin // refresh the content of the output file
 	refresh_file();
 end
 
-assign memif.DATA_READY= valid;
-assign data_iw= ~memif.READNOTWRITE ? memif.INOUT_DATA :'Z;
-assign memif.INOUT_DATA = memif.READNOTWRITE ? data_ir :'Z;
+assign memif.DATA_READY= memif.ENABLE? valid: '0;
+assign data_iw= ~memif.READNOTWRITE && memif.ENABLE? memif.INOUT_DATA :'Z;
+assign memif.INOUT_DATA = memif.READNOTWRITE  && memif.ENABLE? data_ir :'Z;
 
 endmodule : rwmem

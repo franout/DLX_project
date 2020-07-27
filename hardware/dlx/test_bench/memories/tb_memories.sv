@@ -26,14 +26,14 @@
 interface mem_interface
 	#(parameter ADDRESS_SIZE=16,
 	WORD_SIZE=32)
-	 ( input logic clk);
+	 ( input wire clk);
 
- 	 logic rst;  //  reset active low
- 	 logic  [ADDRESS_SIZE-1:0] ADDRESS;
-	 logic  ENABLE;
-	 logic  DATA_READY;
-	 logic  [WORD_SIZE-1:0]DATA;
-	 logic  READNOTWRITE;
+ 	 wire rst;  //  reset active low
+ 	 wire  [ADDRESS_SIZE-1:0] ADDRESS;
+	 wire  ENABLE;
+	 wire  DATA_READY;
+	 wire  [WORD_SIZE-1:0]DATA;
+	 wire  READNOTWRITE;
 	 wire [WORD_SIZE-1:0] INOUT_DATA;
 
     clocking ram_interface @(posedge clk);
@@ -66,12 +66,16 @@ initial begin
 		$display("Memory reset",);
 		iram_if.rst=0;
 		dram_if.rst=0;
+		##1;
+		iram_if.rst=1;
+		dram_if.rst=1;
+		##3;
 		$display("Reading file for Read-Only memory",);
 		iram_if.ENABLE='1;
 		for (i=0;i<11;i=i+1)begin
 			iram_if.ADDRESS=i;
 			##1;
-			if(iram_if.DATA==='x) begin
+			if(iram_if.DATA==='x || iram_if.DATA==='z) begin
 				$display("Read operation n %d on romem is wrong",i);
 				$stop();
 			end
@@ -89,7 +93,7 @@ initial begin
 			dram_if.ADDRESS=i;
 			##1;
 			if(read_data==='x) begin
-				$display("Read operation n %d on romem is wrong",i);
+				$display("Read operation n %d on rwmem is wrong",i);
 				$stop();
 			end
 			// ready signal is checked by the property
@@ -104,15 +108,18 @@ initial begin
 			##1;
 			// ready signal is checked by the property
 		end
-		// read operations
+		dram_if.ENABLE=0;
+		dram_if.ADDRESS=0;
 		dram_if.READNOTWRITE=1;
+		##1;
+		// read operations
 		dram_if.ENABLE=1;
 		// opening the same file of the other memory
 		for (i=0;i<11;i=i+1)begin
 			dram_if.ADDRESS=i;
 			##1;
-			if(read_data===i) begin
-				$display("Read operation n %d on romem is wrong",i);
+			if(read_data!==i) begin
+				$display("Read operation n %d on rwmem is wrong",i);
 				$stop();
 			end
 			// ready signal is checked by the property
@@ -120,8 +127,8 @@ initial begin
 		#100  $display("%0dns Terminating simulation", $time);
 		$finish();
     end
-assign read_data= dram_if.READNOTWRITE?dram_if.INOUT_DATA  :0;
-assign dram_if.INOUT_DATA = ~dram_if.READNOTWRITE? write_data: 'Z;
+assign read_data= dram_if.READNOTWRITE && dram_if.ENABLE?dram_if.INOUT_DATA  :0;
+assign dram_if.INOUT_DATA = ~dram_if.READNOTWRITE && dram_if.ENABLE? write_data: 'Z;
 
 endprogram: test_memory
 

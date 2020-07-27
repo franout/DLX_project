@@ -77,14 +77,15 @@ always_ff @(posedge mif.clk) begin : proc_ram
 			data_out<=ram[mif.ADDRESS];
 		end else begin 
 			// memory not enabled
+			data_out<='Z;
 			valid<='b0;
 		end 
 	end
 end
 
 
-assign mif.DATA_READY= valid;
-assign mif.DATA= valid ? data_out : 'Z;
+assign mif.DATA_READY= mif.ENABLE?  valid:'0;
+assign mif.DATA= valid && mif.ENABLE ? data_out : 'Z;
 
 endmodule
 
