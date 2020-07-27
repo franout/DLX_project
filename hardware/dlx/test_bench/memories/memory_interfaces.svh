@@ -2,6 +2,7 @@
 `define __MEMORY_INTERFACES__VH
 
 `timescale 1ns/1ps
+
 interface mem_interface
 	#(parameter ADDRESS_SIZE=16,
 	WORD_SIZE=32)

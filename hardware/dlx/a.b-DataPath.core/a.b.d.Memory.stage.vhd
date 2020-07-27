@@ -6,7 +6,7 @@
 -- Author      : Francesco Angione <s262620@studenti.polito.it> franout@github.com
 -- Company     : Politecnico di Torino, Italy
 -- Created     : Wed Jul 22 23:00:17 2020
--- Last update : Mon Jul 27 15:17:14 2020
+-- Last update : Mon Jul 27 16:54:28 2020
 -- Platform    : Default Part Number
 -- Standard    : VHDL-2008 
 --------------------------------------------------------------------------------
@@ -50,6 +50,7 @@ entity memory_stage is
 end entity ; -- memory_stage
 
 architecture structural of memory_stage is
+signal data_i : std_logic_vector(data_size-1 downto 0);
 
 begin
 
@@ -71,10 +72,24 @@ begin
 			N => N
 		)
 		port map (
-			clk   => ,
-			reset => not(), -- reset is active low internally to the register
-			d     => ,
-			Q     =>
+			clk   => clk,
+			reset => not(rst), -- reset is active low internally to the register
+			d     => data_i,
+			Q     =>data_from_memory
+		);
+
+data_i<=
+
+
+-- delay register for data from alu
+ regN generic map (
+			N => N
+		)
+		port map (
+			clk   => clk,
+			reset => not(rst), -- reset is active low internally to the register
+			d     => alu_output_val,
+			Q     =>data_from_alu
 		);
 
 end architecture ; -- structural

@@ -6,7 +6,7 @@
 -- Author      : Francesco Angione <s262620@studenti.polito.it> franout@github.com
 -- Company     : Politecnico di Torino, Italy
 -- Created     : Wed Jul 22 22:59:30 2020
--- Last update : Mon Jul 27 15:25:14 2020
+-- Last update : Mon Jul 27 17:11:08 2020
 -- Platform    : Default Part Number
 -- Standard    : VHDL-2008 
 --------------------------------------------------------------------------------
@@ -36,7 +36,10 @@ entity fetch_stage is
 		IRAM_ADDRESS : out std_logic_vector( iram_address_size- 1 downto 0); -- the current PC value 
 		IRAM_ENABLE  : out std_logic; -- from control unit
 		IRAM_READY   : in  std_logic; -- to the control unit 
-		IRAM_DATA    : in  std_logic_vector(instruction_size-1 downto 0)
+		IRAM_DATA    : in  std_logic_vector(IR_SIZE-1 downto 0);
+		-- to/from control unit
+		curr_instruction: out std_logic_vector(IR_SIZE-1 downto 0);
+		iram_enable_cu: in std_logic
 	) ;
 end entity ; -- fetch_stage
 
@@ -55,7 +58,7 @@ begin
 		)
 		port map (
 			clk   => clk,
-			reset => rst,
+			reset => not(rst),
 			d     => new_pc_value_mem_stage,
 			Q     => program_counter_val
 		);	
@@ -72,7 +75,7 @@ begin
 		)
 		port map (
 			clk   => clk,
-			reset => rst,
+			reset => not(rst),
 			d     => new_program_counter_val_i,
 			Q     => new_pc_value
 		);	
@@ -85,13 +88,16 @@ begin
 		)
 		port map (
 			clk   => clk,
-			reset => rst,
+			reset => not(rst),
 			d     => IRAM_DATA,
 			Q     => instruction_reg_val
 		);
 
 
-instruction_reg_val -- it has to go to the CU and part of it to the register file in the decode stage
+curr_instruction<=instruction_reg_val; -- it has to go to the CU and part of it to the register file in the decode stage
+
+IRAM_ENABLE<=iram_enable_cu;-- forward memory enable
+
 IRAM_ADDRESS<=program_counter_val when IRAM_ENABLE='1' else
 	(OTHERS=>'Z');
 

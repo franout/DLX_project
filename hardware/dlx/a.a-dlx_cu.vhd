@@ -6,7 +6,7 @@
 -- Author      : Francesco Angione <s262620@studenti.polito.it> franout@github.com
 -- Company     : Politecnico di Torino, Italy
 -- Created     : Thu Jul 23 15:49:45 2020
--- Last update : Thu Jul 23 19:00:20 2020
+-- Last update : Mon Jul 27 16:51:29 2020
 -- Platform    : Default Part Number
 -- Standard    : VHDL-2008 
 --------------------------------------------------------------------------------
@@ -18,6 +18,7 @@
 library ieee ;
 	use ieee.std_logic_1164.all ;
 	use ieee.numeric_std.all ;
+  --TODO try to add clock gating 
 
 entity dlx_cu  is
   generic (

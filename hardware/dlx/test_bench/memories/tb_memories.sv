@@ -7,19 +7,14 @@
 // Author : Angione Francesco s262620@studenti.polito.it franout@Github.com
 // File   : tb_memories.sv
 // Create : 2020-07-22 20:19:53
-// Revise : 2020-07-26 19:52:17
+// Revise : 2020-07-27 17:17:05
 // Editor : sublime text3, tab size (4)
 // Description: 
 // -----------------------------------------------------------------------------
 
 `timescale 1ns/1ps
 
-
-`define  IRAM_WORD_SIZE 32
-`define  IRAM_ADDRESS_SIZE 16
-`define  DRAM_WORD_SIZE 32
-`define  DRAM_ADDRESS_SIZE 16
-
+`include "global_defs.svh"
 `include "memory_interfaces.svh"
 
 /* in memory_interfaces.svh
