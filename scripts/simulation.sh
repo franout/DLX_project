@@ -27,4 +27,4 @@ echo "Starting simulation"
 ## need a do file and a waveform file
 vsim  -f simulation.tcl  -t 10 ps # from a script file 
 ## add a list of all possible testpanch and print usage in case of help
-vsim -t 10ns work.dlx_testbench 
+vsim -t 10ns work.dlx_testbench -do 
