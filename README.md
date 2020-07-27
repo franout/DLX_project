@@ -15,9 +15,7 @@ Microelectronic System course (MsC in Embedded Systems Engineering)  @ Polythecn
 ## Table of Contents 
 
 
-- [Installation](#installation)
 - [Setup](#setup)
-- [Features](#features)
 - [Architecture](#architecture)
 - [Software](#software)
 - [Tests](#tests)
@@ -28,95 +26,49 @@ Microelectronic System course (MsC in Embedded Systems Engineering)  @ Polythecn
 ### Clone
  Clone this repo to your local machine using and feel free to contribute!
   ```shell
-  $ git clone https://github.com/franout/Cogitantium.git
+  $ git clone https://github.com/franout/DLX_project.git
   ```
   
-## Installation
-For using the accelerator you only need to install tensorflow wheel and python according to   <a href="https://github.com/franout/tensorflow_for_pynqz2" target="_blank">`Tensorflow for Pynq-Z2 `</a>
-
-
-The following command are used for loading and using the accelerator into the Tensorflow Lite environment:
-```python
-DTPU_lib=tflite.load_delegate("./DTPU_delegate.so",options=[])
-interpreter = tflite.Interpreter(model_path=tflite_model_file,experimental_delegates=[DTPU_lib])
-```
-The shared library is created with the following command :
-  ```shell
-  $ python3.5 ./dtpu/software/create_library.py
-  ```
-Note: in the same folder there must be present the DTPU_delegate.cpp and DTPU_delegate.py used for building the library.
 
 ### Setup
- For editing, simulating and synthesizing the verilog code you can use whatever IDE and tools you prefer.
-  In this project Xilinx Vivado Tools have been used
+You need to have installed a HDL simulator tool (for the simulation) and a synthesis tool (in case you want to synthesize the design).
+In this project Questa Sim 10.7 and Design Compiler have been used.
   
   
-
-## Features
-The hardware accelerator is capable of tensor convolution, generally speaking matrix multiplication and accumulation.
 ## Architecture
 
-The DLX is essentially a cleaned up (and modernized) simplified MIPS CPU. The DLX has a simple 32-bit load/store architecture, somewhat unlike the modern MIPS CPU.
+The DLX is essentially a cleaned up (and modernized) simplified MIPS CPU. The DLX has a simple Big Endian 32-bit load/store pipelined architecture, somewhat unlike the modern MIPS CPU.
 
-- General architecture
-  * Logical view
+- Test Bench General architecture
+  * Unit Under Test
   
-  ![image](documentation/chalmers_template/figure/logical_view.png)
+  * DLX top level entity 
   
-  * Real Implementation 
   
-  ![image](documentation/chalmers_template/figure/accelerator_schematic.png)
-  
-  * Datapath of dtpu core
-  
-  ![image](documentation/chalmers_template/figure/datapath_dtpu_core.png)
-
 - Customizable hardware parameters (pre-synthesis)
-    * ROWS, rows in the matrix multiplication unit (MXU)
-    * COLUMNS, columns in the matrix multiplication unit (MXU)
-    * SIZE WMEMORY, size of weight memory
-    * ADDRESS SIZE WMEMORY
-    * ADDRESS SIZE CSR
-    * SIZE CSR, size of control and status register memor
-    * DATA WIDTH CSR
-    * DATA WIDTH WMEMORY
-    * DATA WIDTH FIFO IN
-    * DATA DIDTH FIFO OUT
-    * MAX BOARD DSP, max dsp entities on the board
+    * IR size, bitwidth of Instruction Register 
+    * PC size, bitwidth of Program Counter
 
 ## Software
-For creating models:
+
+For creating creating the hex dump file to be used in the simulation (loaded in the Instruction Data Ram):
 ```shell
-  $ python3.5 ./dtpu/software/create_models.py
+  $ ./software/assembler.sh {ASM_FILE_PATH}
   ```
 
-Other models can be found at  <a href="https://www.tensorflow.org/lite/guide/hosted_models" target="_blank">`Hosted Models `</a>
-  
-For executing a models is necessary to run:
-  ```shell
-  $ sudo python3.5 ./dtpu/software/run_model.py
-  ```
-The already quantized model must be present in the same folder of the previous script. Moreover, sudo is necessary for being able to program the FPGA witht the pynq python package.
-
-The shared library for using the accelerator has been created according to <a href="https://www.tensorflow.org/lite/performance/delegates" target="_blank">`Tensorflow Delegate `</a> . The API can be checked into the /dtpu/software/create_library.py (a more detailed explanation will be done).
-## Documentation 
+## Documentation
 - IN PROGRESS
 
 ## Tests 
-For testing the solo accelerator you can use:
-  ```shell
-  $ sudo python3.5 ./dtpu/run_dtpu.py
-  ```
+For testing the microprocessor refers to the testbench in System Verilog.
 
 ## Useful Link 
 
 Reach out to me at one of the following places!
 
--  <a href="https://pynq.readthedocs.io/en/v2.5/getting_started/pynq_z2_setup.html" target="_blank">`Pynq Tutorial `</a>
--  <a href="https://www.tensorflow.org/">`Tensorflow `</a>
--  <a href="https://xilinx-wiki.atlassian.net/wiki/spaces/A/overview" target="_blank">`Zynq wiki `</a>
--  <a href="https://cffi.readthedocs.io/en/latest/" target="_blank">`C  function foreign interface `</a>
-
+-  <a href="https://www.chipverify.com/systemverilog/systemverilog-tutorial" target="_blank">`System Verilog Tutorial`</a>
+-  <a href="http://www.asic-world.com/systemverilog/index.html">`System Verilog Tutorial 2 `</a>
+-  <a href="https://www.cc.gatech.edu/~hadi/teaching/cs3220/doc/modelsim/ModelSim_Users_Manual_v10.1c.pdf" target="_blank">`Model Sim User Manual `</a>
 
 
 ## License
