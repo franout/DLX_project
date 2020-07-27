@@ -148,17 +148,20 @@ module tb_memories ();
   	
   	endclocking	// clock
 
-  	//bound of address 
-  	property address_range(int min, int max);
+  	//bound check of address 
+  	property address_rangei(int min, int max);
   		@ (ram_clk)
   			iram_if.ENABLE |-> (iram_if.ADDRESS >= min && iram_if.ADDRESS <=max);
   	endproperty 
 
-  	// sequence
-  	property ready_check;
-  		iram_if.ENABLE ##1 iram_if.DATA_READY ;
-  	endproperty
+ 
+  	//bound check of address 
+  	property address_ranged(int min, int max);
+  		@ (ram_clk)
+  			dram_if.ENABLE |-> (dram_if.ADDRESS >= min && dram_if.ADDRESS <=max);
+  	endproperty 
 
+ 
   	//=================================================
  	// Assertion Directive Layer
   	//=================================================
@@ -166,9 +169,11 @@ module tb_memories ();
   		assume : it specifies the property as an assumption for verification  useful for verification tools 
   		cover: it monitors the propertty for the sake of coverage 
   	*/
-  	/*ready_check_property : assert property (ready_check);
-  	address_range_check_property : assert property (address_range(0,2**(`IRAM_ADDRESS_SIZE )));
-*/
+
+  	address_range_check_property_iram : assert property (address_rangei(0,2**(`IRAM_ADDRESS_SIZE )));
+
+  	address_range_check_property_dram : assert property (address_ranged(0,2**(`DRAM_ADDRESS_SIZE )));
+
 	// instantiate the interface
 	mem_interface #(.ADDRESS_SIZE(`DRAM_ADDRESS_SIZE),
 			.WORD_SIZE(`DRAM_WORD_SIZE))
