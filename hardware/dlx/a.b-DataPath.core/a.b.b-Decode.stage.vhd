@@ -6,7 +6,7 @@
 -- Author      : Francesco Angione <s262620@studenti.polito.it> franout@github.com
 -- Company     : Politecnico di Torino, Italy
 -- Created     : Wed Jul 22 22:59:52 2020
--- Last update : Thu Jul 23 21:37:45 2020
+-- Last update : Mon Jul 27 15:22:53 2020
 -- Platform    : Default Part Number
 -- Standard    : VHDL-2008 
 --------------------------------------------------------------------------------
@@ -21,8 +21,13 @@ library ieee ;
 	use ieee.numeric_std.all ;
 
 entity decode_stage is
-  port (
-	clock
+generic (
+		N       : integer := 32;
+		PC_SIZE : integer := 32 -- Program Counter Size
+	);
+	port (
+		clk : in std_logic;
+		rst : in std_logic -- active low 
   ) ;
 end entity ; -- decode_stage
 

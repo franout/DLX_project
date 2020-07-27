@@ -7,7 +7,7 @@
 // Author : Angione Francesco s262620@studenti.polito.it franout@Github.com
 // File   : rwmem.sv
 // Create : 2020-07-21 19:00:09
-// Revise : 2020-07-26 18:53:36
+// Revise : 2020-07-27 15:14:47
 // Editor : sublime text3, tab size (4)
 // Description: 
 // -----------------------------------------------------------------------------
@@ -107,7 +107,7 @@ always@(*) begin // refresh the content of the output file
 end
 
 assign memif.DATA_READY= valid;
-assign data_iw= memif.READNOTWRITE ? memif.INOUT_DATA :'Z;
-assign memif.INOUT_DATA = ~memif.READNOTWRITE ? data_ir :'Z;
+assign data_iw= ~memif.READNOTWRITE ? memif.INOUT_DATA :'Z;
+assign memif.INOUT_DATA = memif.READNOTWRITE ? data_ir :'Z;
 
 endmodule : rwmem
