@@ -7,7 +7,7 @@
 // Author : Angione Francesco s262620@studenti.polito.it franout@Github.com
 // File   : tb_fetch_stage.sv
 // Create : 2020-07-27 15:18:55
-// Revise : 2020-07-28 18:33:16
+// Revise : 2020-07-28 18:59:48
 // Editor : sublime text3, tab size (4)
 // Description: 
 // -----------------------------------------------------------------------------
@@ -15,7 +15,7 @@
 `include "../memories/memory_interfaces.svh"
 `include "../global_defs.svh"
 
-program test( mem_interface.ro iram_if,
+program test_fetch( mem_interface.ro iram_if,
 input logic [`IRAM_ADDRESS_SIZE-1:0]new_pc_value ,
 input logic [`IRAM_WORD_SIZE-1:0]curr_instruction,
 output logic iram_enable_cu);
@@ -26,7 +26,7 @@ output logic iram_enable_cu);
 	initial begin  
 		$display("@%0dns Starting Program",$time);
       	iram_if.rst=1;
-		$display("Starting testbench for memories",);
+		$display("Starting testbench for fetch stge",);
 		## 1;
 		$display("Memory reset",);
 		iram_if.rst=0;
@@ -142,7 +142,7 @@ module tb_fetch_stage ();
 	);
 
 // test program 
-test test_program(.iram_if(iram_if),
+test_fetch test_program(.iram_if(iram_if),
 		.new_pc_value(new_pc_value),
 		.curr_instruction(curr_instruction),
 		.iram_enable_cu(iram_enable_cu)
