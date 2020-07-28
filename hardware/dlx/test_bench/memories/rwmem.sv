@@ -7,7 +7,7 @@
 // Author : Angione Francesco s262620@studenti.polito.it franout@Github.com
 // File   : rwmem.sv
 // Create : 2020-07-21 19:00:09
-// Revise : 2020-07-27 15:14:47
+// Revise : 2020-07-28 15:06:45
 // Editor : sublime text3, tab size (4)
 // Description: 
 // -----------------------------------------------------------------------------
@@ -59,7 +59,7 @@ task refresh_file();
 		end
 		// flush down the memory 
 		for(i=0;i<2**ADDRESS_SIZE-1;i=i+1)begin
-			$fdisplay (fd, "%8h", ram[i]);
+			$fwrite(fd, "%8h\n", ram[i]);
 		end
 		// 3. Close the file descriptor
 		$fclose(fd);
