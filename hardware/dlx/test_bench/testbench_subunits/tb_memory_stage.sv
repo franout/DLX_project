@@ -17,7 +17,7 @@
 `include "../memories/memory_interfaces.svh"
 `include "../global_defs.svh"
 
-program test( mem_interface.ro iram_if,
+program test_mem( mem_interface.ro iram_if,
 output logic [`IRAM_ADDRESS_SIZE-1:0]new_pc_value_mem_stage ,
 input logic [`IRAM_ADDRESS_SIZE-1:0]new_pc_value ,
 input logic [`IRAM_WORD_SIZE-1:0]curr_instruction,
@@ -25,7 +25,7 @@ output logic iram_enable_cu);
 
 	default clocking test_clk @ (posedge iram_if.clk);
   	endclocking	// clock
-
+/*
 	initial begin  
 		new_pc_value_mem_stage=0;
 		$display("@%0dns Starting Program",$time);
@@ -69,7 +69,7 @@ output logic iram_enable_cu);
 		$display("Fetch stage has passed the testbench",);
 		$finish;
 	end
-
+*/
 endprogram: test 
 
 module tb_memory_stage ();
