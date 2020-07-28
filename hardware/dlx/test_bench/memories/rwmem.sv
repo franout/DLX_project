@@ -52,7 +52,7 @@ integer dummy; // for removing simulation warning
 task refresh_file;
 		input string FILE_PATH_TASK;
 		begin 
-		$display("in the task");
+		//$display("in the task");
 		fd = $fopen (FILE_PATH_TASK, "w");
 		if (fd) begin 
 		 $display("File was opened successfully : %0d", fd);
