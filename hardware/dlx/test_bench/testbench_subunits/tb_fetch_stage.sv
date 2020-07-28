@@ -7,11 +7,11 @@
 // Author : Angione Francesco s262620@studenti.polito.it franout@Github.com
 // File   : tb_fetch_stage.sv
 // Create : 2020-07-27 15:18:55
-// Revise : 2020-07-27 18:15:49
+// Revise : 2020-07-28 17:21:20
 // Editor : sublime text3, tab size (4)
 // Description: 
 // -----------------------------------------------------------------------------
-
+`timescale 1ns/1ps
 `include "../memories/memory_interfaces.svh"
 `include "../global_defs.svh"
 
@@ -40,7 +40,6 @@ output logic iram_enable_cu);
 			$display("@%0dns ---> wrong generated address",$time);
 			$stop();
 		end
-		##1;
 		if(new_pc_value!=4)begin
 			$display("@%0dns ---> wrong generated new program counter value",$time);
 			$stop();
