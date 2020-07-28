@@ -7,7 +7,7 @@
 // Author : Angione Francesco s262620@studenti.polito.it franout@Github.com
 // File   : rwmem.sv
 // Create : 2020-07-21 19:00:09
-// Revise : 2020-07-28 15:06:45
+// Revise : 2020-07-28 18:29:04
 // Editor : sublime text3, tab size (4)
 // Description: 
 // -----------------------------------------------------------------------------
@@ -27,9 +27,9 @@ module rwmem
 );
 
 /// internal signals
-logic [WORD_SIZE-1:0] ram [0:2**ADDRESS_SIZE-1];
-logic [WORD_SIZE-1:0] data_ir;
-logic [WORD_SIZE-1:0] data_iw;
+logic [0:WORD_SIZE-1] ram [0:2**ADDRESS_SIZE-1];
+logic [0:WORD_SIZE-1] data_ir;
+logic [0:WORD_SIZE-1] data_iw;
 logic valid;
 // for file operations
 // 1. Declare an integer variable to hold the file descriptor
@@ -96,11 +96,21 @@ always_ff @(posedge memif.clk) begin : proc_ram
 	end else begin
 		if (memif.ENABLE) begin
 			if(memif.READNOTWRITE) begin // read operation 
-				data_ir<=ram[memif.ADDRESS];
+				// byte selection
+				case (memif.ADDRESS[1:0])
+					'1: data_ir<=ram[memif.ADDRESS][WORD_SIZE-8:WORD_SIZE-1];// byte access
+					'2: data_ir<=ram[memif.ADDRESS][WORD_SIZE-16:WORD_SIZE-1];// half word access
+					default: data_ir<=ram[memif.ADDRESS];// word access 
+				endcase;
 				valid='b1;
 			end else begin  // write operation
 				data_ir<='Z;
-				ram[memif.ADDRESS]<=data_iw;
+				// byte selection
+				case (memif.ADDRESS[1:0])
+					'1: ram[memif.ADDRESS]<=data_iw[WORD_SIZE-8:WORD_SIZE-1];// byte access
+					'2: ram[memif.ADDRESS]<=data_iw[WORD_SIZE-16:WORD_SIZE-1];// half word access
+					default: ram[memif.ADDRESS]<=data_iw; // word access
+				endcase;
 				// refresh the content of the output file
 				fork 
 					refresh_file(FILE_PATH);
@@ -112,6 +122,8 @@ always_ff @(posedge memif.clk) begin : proc_ram
 end
 
 assign memif.DATA_READY= memif.ENABLE? valid: '0;
+
+
 assign data_iw= ~memif.READNOTWRITE && memif.ENABLE? memif.INOUT_DATA :'Z;
 assign memif.INOUT_DATA = memif.READNOTWRITE  && memif.ENABLE? data_ir :'Z;
 

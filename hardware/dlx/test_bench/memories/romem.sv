@@ -12,7 +12,8 @@
 // Description:  Instruction memory for DLX
 // 				Memory filled by a process which reads from a file
 //				It  behaves like a cache, i.e. it is able to provide data in 1 cc
-//				It is byte addressable
+//				It is byte addressable for read only memory byte addressable support is not implemented
+//				since it will be always be accessed by word accesses
 // -----------------------------------------------------------------------------
 `timescale 1ns/1ps
 `include "memory_interfaces.svh"
@@ -28,8 +29,8 @@ DATA_DELAY	= 2			 	// Delay ( in # of clock cycles )
 );
 
 /// internal signals
-logic [WORD_SIZE-1:0]ram [0:2**ADDRESS_SIZE-1];
-logic [WORD_SIZE-1:0] data_out;
+logic [0:WORD_SIZE-1]ram [0:2**ADDRESS_SIZE-1];
+logic [0:WORD_SIZE-1] data_out;
 logic valid;
 
 // for file operations
@@ -86,6 +87,7 @@ end
 
 assign mif.DATA_READY= mif.ENABLE?  valid:'0;
 assign mif.DATA= valid && mif.ENABLE ? data_out : 'Z;
+
 
 endmodule
 

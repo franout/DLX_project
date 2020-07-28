@@ -6,6 +6,7 @@
 
 
 ;; test -->add!
+add r3,r1,r2
 ;; test -->addi!
 ;; test -->and!
 ;; test -->andi!
