@@ -49,8 +49,11 @@ integer dummy; // for removing simulation warning
  end
 
 // task for refreshing the dram output file 
-task refresh_file();
-		fd = $fopen (FILE_PATH, "w");
+task refresh_file;
+		input string FILE_PATH_TASK;
+		begin 
+		$display("in the task");
+		fd = $fopen (FILE_PATH_TASK, "w");
 		if (fd) begin 
 		 $display("File was opened successfully : %0d", fd);
 		end else begin 
@@ -63,6 +66,7 @@ task refresh_file();
 		end
 		// 3. Close the file descriptor
 		$fclose(fd);
+		end
 endtask : refresh_file
 
 
@@ -97,14 +101,14 @@ always_ff @(posedge memif.clk) begin : proc_ram
 			end else begin  // write operation
 				data_ir<='Z;
 				ram[memif.ADDRESS]<=data_iw;
+				// refresh the content of the output file
+				fork 
+					refresh_file(FILE_PATH);
+				join_none
 				valid<='b1;
 			end 
 		end
 	end
-end
-
-always@(*) begin // refresh the content of the output file
-	refresh_file();
 end
 
 assign memif.DATA_READY= memif.ENABLE? valid: '0;

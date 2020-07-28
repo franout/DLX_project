@@ -119,7 +119,7 @@ initial begin
 			end
 			// ready signal is checked by the property
 		end
-		#100  $display("%0dns Terminating simulation", $time);
+		#100  $display("@%0dns Terminating simulation", $time);
 		$finish();
     end
 assign read_data= dram_if.READNOTWRITE && dram_if.ENABLE?dram_if.INOUT_DATA  :0;

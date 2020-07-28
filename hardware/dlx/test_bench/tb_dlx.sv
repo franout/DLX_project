@@ -202,4 +202,6 @@ endproperty
 // $ -> infinite number of cycles
 // [*3] sequence of 3 events must be true for 3 consecutive cc
 // [=3] sequence of 3 event which can be non consecutive [=3:5] min 3 max 4
+$system("shell command");
+
 */
