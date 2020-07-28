@@ -14,111 +14,241 @@
 # //
 # reading modelsim.ini
 # Loading project dlx_project
-project compileoutofdate
-# Compile of a.b.d.Memory.stage.vhd failed with 5 errors.
-vsim -novopt -suppress 12110 work.tb_fetch_stage -do ../../scripts/fetch_sta
-# vsim -novopt -suppress 12110 work.tb_fetch_stage -do "../../scripts/fetch_sta" 
-# Start time: 20:07:57 on Jul 28,2020
-# ** Warning: (vsim-8891) All optimizations are disabled because the -novopt option is in effect. This will cause your simulation to run very slowly. If you are using this switch to preserve visibility for Debug or PLI features, please see the User's Manual section on Preserving Object Visibility with vopt. -novopt option is now deprecated and will be removed in future releases.
-# Loading sv_std.std
-# Loading work.tb_fetch_stage
-# Loading work.mem_interface
-# Loading work.romem
-# Loading work.test
-# Loading std.standard
-# Loading std.textio(body)
-# Loading ieee.std_logic_1164(body)
-# Loading ieee.numeric_std(body)
-# Loading work.constants(body)
-# Loading work.globals(body)
-# Loading work.global_components(body)
-# Loading work.fetch_stage(structural)
-# Loading work.reg_nbit(struc)
-# Loading work.fd(pluto)
-# ../../scripts/fetch_sta
-# invalid command name "../../scripts/fetch_sta"
-vsim -novopt -suppress 12110 work.tb_fetch_stage -do ../../scripts/fetch_stage_tb.do
-# End time: 20:08:16 on Jul 28,2020, Elapsed time: 0:00:19
-# Errors: 1, Warnings: 1
-# vsim -novopt -suppress 12110 work.tb_fetch_stage -do "../../scripts/fetch_stage_tb.do" 
-# Start time: 20:08:16 on Jul 28,2020
-# ** Warning: (vsim-8891) All optimizations are disabled because the -novopt option is in effect. This will cause your simulation to run very slowly. If you are using this switch to preserve visibility for Debug or PLI features, please see the User's Manual section on Preserving Object Visibility with vopt. -novopt option is now deprecated and will be removed in future releases.
-# Loading sv_std.std
-# Loading work.tb_fetch_stage
-# Loading work.mem_interface
-# Loading work.romem
-# Loading work.test
-# Loading std.standard
-# Loading std.textio(body)
-# Loading ieee.std_logic_1164(body)
-# Loading ieee.numeric_std(body)
-# Loading work.constants(body)
-# Loading work.globals(body)
-# Loading work.global_components(body)
-# Loading work.fetch_stage(structural)
-# Loading work.reg_nbit(struc)
-# Loading work.fd(pluto)
-# do ../../scripts/fetch_stage_tb.do
-run 500ns
-# @0ns Starting Program
-# Starting testbench for memories 
-# Memory reset 
-# File was opened successfully : -2147483645
-# ** Error: Assertion error.
-#    Time: 125 ns Started: 115 ns  Scope: tb_fetch_stage.enable_propagate_check File: /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/testbench_subunits/tb_fetch_stage.sv Line: 109
-# Fetch stage has passed the testbench 
-# ** Note: $finish    : /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/testbench_subunits/tb_fetch_stage.sv(71)
-#    Time: 125 ns  Iteration: 4  Instance: /tb_fetch_stage/test_program
-# 1
-# Break in Module test at /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/testbench_subunits/tb_fetch_stage.sv line 71
-run 500ns
-# ** Note: implicit $finish from program    : /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/testbench_subunits/tb_fetch_stage.sv(71)
-#    Time: 125 ns  Iteration: 4  Instance: /tb_fetch_stage/test_program
-# 1
-# Simulation stop requested.
-vsim -novopt -suppress 12110 work.tb_fetch_stage -do ../../scripts/fetch_stage_tb.do
-# End time: 20:08:55 on Jul 28,2020, Elapsed time: 0:00:39
-# Errors: 1, Warnings: 1
-# vsim -novopt -suppress 12110 work.tb_fetch_stage -do "../../scripts/fetch_stage_tb.do" 
-# Start time: 20:08:55 on Jul 28,2020
-# ** Warning: (vsim-8891) All optimizations are disabled because the -novopt option is in effect. This will cause your simulation to run very slowly. If you are using this switch to preserve visibility for Debug or PLI features, please see the User's Manual section on Preserving Object Visibility with vopt. -novopt option is now deprecated and will be removed in future releases.
-# Loading sv_std.std
-# Loading work.tb_fetch_stage
-# Loading work.mem_interface
-# Loading work.romem
-# Loading work.test
-# Loading std.standard
-# Loading std.textio(body)
-# Loading ieee.std_logic_1164(body)
-# Loading ieee.numeric_std(body)
-# Loading work.constants(body)
-# Loading work.globals(body)
-# Loading work.global_components(body)
-# Loading work.fetch_stage(structural)
-# Loading work.reg_nbit(struc)
-# Loading work.fd(pluto)
-# do ../../scripts/fetch_stage_tb.do
-run 500ns
-# @0ns Starting Program
-# Starting testbench for memories 
-# Memory reset 
-# File was opened successfully : -2147483645
-# ** Error: Assertion error.
-#    Time: 125 ns Started: 115 ns  Scope: tb_fetch_stage.enable_propagate_check File: /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/testbench_subunits/tb_fetch_stage.sv Line: 109
-# Fetch stage has passed the testbench 
-# ** Note: $finish    : /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/testbench_subunits/tb_fetch_stage.sv(71)
-#    Time: 125 ns  Iteration: 4  Instance: /tb_fetch_stage/test_program
-# 1
-# Break in Module test at /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/testbench_subunits/tb_fetch_stage.sv line 71
-project compileoutofdate
+project compileall
+# Compile of 000-globals.vhd was successful.
+# Compile of 001-global_components.vhd was successful.
+# Compile of adder.vhd was successful.
+# Compile of boothmul.vhd was successful.
+# Compile of complement2.vhd was successful.
+# Compile of encoder.vhd was successful.
+# Compile of fa.vhd was successful.
+# Compile of fd.vhd was successful.
+# Compile of gsb.vhd was successful.
+# Compile of mux.vhd was successful.
+# Compile of p4_adder.vhd was successful.
+# Compile of pgsb.vhd was successful.
+# Compile of rca.vhd was successful.
+# Compile of reg_nbit.vhd was successful.
+# Compile of registerfile.vhd was successful.
+# Compile of stcg.vhd was successful.
+# Compile of wrf.vhd was successful.
+# Compile of a.b.e-Write_back.stage.vhd was successful.
+# Compile of constants.vhd was successful.
+# Compile of alu.vhd was successful.
+# Compile of csb.vhd was successful.
+# Compile of mux21_nbit.vhd was successful.
+# Compile of pg.vhd was successful.
+# Compile of sum_gen.vhd was successful with warnings.
+# Compile of romem.sv was successful.
+# Compile of rwmem.sv failed with 4 errors.
+# Compile of tb_memories.sv was successful.
+# Compile of tb_writeback_stage.sv was successful.
+# Compile of implemented_instructions.svh was successful.
+# Compile of tb_dlx.sv was successful.
+# Compile of alu_type.vhd was successful.
+# Compile of memory_interfaces.svh was successful.
+# Compile of mux21.vhd was successful.
+# Compile of global_defs.svh was successful.
+# Compile of tb_cu.sv was successful.
+# Compile of tb_datapath.sv was successful.
+# Compile of tb_decode_stage.sv was successful.
+# Compile of tb_execute_stage.sv was successful.
 # Compile of tb_fetch_stage.sv was successful.
+# Compile of a.b.a-Fetch.stage.vhd was successful.
+# Compile of a.b.b-Decode.stage.vhd was successful.
+# Compile of a.b.c-Execute.stage.vhd was successful.
 # Compile of a.b.d.Memory.stage.vhd failed with 5 errors.
-# 2 compiles, 1 failed with 5 errors.
+# Compile of MULTIPLIER_tb.vhd was successful.
+# Compile of tb_alu.vhd was successful.
+# Compile of tb_csb.vhd was successful.
+# Compile of tb_fd.vhd was successful.
+# Compile of tb_mux21_generic.vhd was successful.
+# Compile of tb_p4adder.vhd was successful.
+# Compile of tb_rca.vhd was successful.
+# Compile of tb_registerfile.vhd was successful.
+# Compile of tb_registerfile_wrf.vhd was successful.
+# Compile of tb_regN.vhd was successful.
+# Compile of tb_stcg.vhd was successful.
+# Compile of tb_sum_gen.vhd was successful.
+# 55 compiles, 2 failed with 9 errors.
+project compileall
+# Compile of 000-globals.vhd was successful.
+# Compile of 001-global_components.vhd was successful.
+# Compile of adder.vhd was successful.
+# Compile of boothmul.vhd was successful.
+# Compile of complement2.vhd was successful.
+# Compile of encoder.vhd was successful.
+# Compile of fa.vhd was successful.
+# Compile of fd.vhd was successful.
+# Compile of gsb.vhd was successful.
+# Compile of mux.vhd was successful.
+# Compile of p4_adder.vhd was successful.
+# Compile of pgsb.vhd was successful.
+# Compile of rca.vhd was successful.
+# Compile of reg_nbit.vhd was successful.
+# Compile of registerfile.vhd was successful.
+# Compile of stcg.vhd was successful.
+# Compile of wrf.vhd was successful.
+# Compile of a.b.e-Write_back.stage.vhd was successful.
+# Compile of constants.vhd was successful.
+# Compile of alu.vhd was successful.
+# Compile of csb.vhd was successful.
+# Compile of mux21_nbit.vhd was successful.
+# Compile of pg.vhd was successful.
+# Compile of sum_gen.vhd was successful with warnings.
+# Compile of romem.sv was successful.
+# Compile of rwmem.sv failed with 4 errors.
+# Compile of tb_memories.sv was successful.
+# Compile of tb_writeback_stage.sv was successful.
+# Compile of implemented_instructions.svh was successful.
+# Compile of tb_dlx.sv was successful.
+# Compile of alu_type.vhd was successful.
+# Compile of memory_interfaces.svh was successful.
+# Compile of mux21.vhd was successful.
+# Compile of global_defs.svh was successful.
+# Compile of tb_cu.sv was successful.
+# Compile of tb_datapath.sv was successful.
+# Compile of tb_decode_stage.sv was successful.
+# Compile of tb_execute_stage.sv was successful.
+# Compile of tb_fetch_stage.sv was successful.
+# Compile of a.b.a-Fetch.stage.vhd was successful.
+# Compile of a.b.b-Decode.stage.vhd was successful.
+# Compile of a.b.c-Execute.stage.vhd was successful.
+# Compile of a.b.d.Memory.stage.vhd failed with 5 errors.
+# Compile of MULTIPLIER_tb.vhd was successful.
+# Compile of tb_alu.vhd was successful.
+# Compile of tb_csb.vhd was successful.
+# Compile of tb_fd.vhd was successful.
+# Compile of tb_mux21_generic.vhd was successful.
+# Compile of tb_p4adder.vhd was successful.
+# Compile of tb_rca.vhd was successful.
+# Compile of tb_registerfile.vhd was successful.
+# Compile of tb_registerfile_wrf.vhd was successful.
+# Compile of tb_regN.vhd was successful.
+# Compile of tb_stcg.vhd was successful.
+# Compile of tb_sum_gen.vhd was successful.
+# 55 compiles, 2 failed with 9 errors.
+project compileall
+# Compile of 000-globals.vhd was successful.
+# Compile of 001-global_components.vhd was successful.
+# Compile of adder.vhd was successful.
+# Compile of boothmul.vhd was successful.
+# Compile of complement2.vhd was successful.
+# Compile of encoder.vhd was successful.
+# Compile of fa.vhd was successful.
+# Compile of fd.vhd was successful.
+# Compile of gsb.vhd was successful.
+# Compile of mux.vhd was successful.
+# Compile of p4_adder.vhd was successful.
+# Compile of pgsb.vhd was successful.
+# Compile of rca.vhd was successful.
+# Compile of reg_nbit.vhd was successful.
+# Compile of registerfile.vhd was successful.
+# Compile of stcg.vhd was successful.
+# Compile of wrf.vhd was successful.
+# Compile of a.b.e-Write_back.stage.vhd was successful.
+# Compile of constants.vhd was successful.
+# Compile of alu.vhd was successful.
+# Compile of csb.vhd was successful.
+# Compile of mux21_nbit.vhd was successful.
+# Compile of pg.vhd was successful.
+# Compile of sum_gen.vhd was successful with warnings.
+# Compile of romem.sv was successful.
+# Compile of rwmem.sv failed with 2 errors.
+# Compile of tb_memories.sv was successful.
+# Compile of tb_writeback_stage.sv was successful.
+# Compile of implemented_instructions.svh was successful.
+# Compile of tb_dlx.sv was successful.
+# Compile of alu_type.vhd was successful.
+# Compile of memory_interfaces.svh was successful.
+# Compile of mux21.vhd was successful.
+# Compile of global_defs.svh was successful.
+# Compile of tb_cu.sv was successful.
+# Compile of tb_datapath.sv was successful.
+# Compile of tb_decode_stage.sv was successful.
+# Compile of tb_execute_stage.sv was successful.
+# Compile of tb_fetch_stage.sv was successful.
+# Compile of a.b.a-Fetch.stage.vhd was successful.
+# Compile of a.b.b-Decode.stage.vhd was successful.
+# Compile of a.b.c-Execute.stage.vhd was successful.
+# Compile of a.b.d.Memory.stage.vhd failed with 5 errors.
+# Compile of MULTIPLIER_tb.vhd was successful.
+# Compile of tb_alu.vhd was successful.
+# Compile of tb_csb.vhd was successful.
+# Compile of tb_fd.vhd was successful.
+# Compile of tb_mux21_generic.vhd was successful.
+# Compile of tb_p4adder.vhd was successful.
+# Compile of tb_rca.vhd was successful.
+# Compile of tb_registerfile.vhd was successful.
+# Compile of tb_registerfile_wrf.vhd was successful.
+# Compile of tb_regN.vhd was successful.
+# Compile of tb_stcg.vhd was successful.
+# Compile of tb_sum_gen.vhd was successful.
+# 55 compiles, 2 failed with 7 errors.
+project compileall
+# Compile of 000-globals.vhd was successful.
+# Compile of 001-global_components.vhd was successful.
+# Compile of adder.vhd was successful.
+# Compile of boothmul.vhd was successful.
+# Compile of complement2.vhd was successful.
+# Compile of encoder.vhd was successful.
+# Compile of fa.vhd was successful.
+# Compile of fd.vhd was successful.
+# Compile of gsb.vhd was successful.
+# Compile of mux.vhd was successful.
+# Compile of p4_adder.vhd was successful.
+# Compile of pgsb.vhd was successful.
+# Compile of rca.vhd was successful.
+# Compile of reg_nbit.vhd was successful.
+# Compile of registerfile.vhd was successful.
+# Compile of stcg.vhd was successful.
+# Compile of wrf.vhd was successful.
+# Compile of a.b.e-Write_back.stage.vhd was successful.
+# Compile of constants.vhd was successful.
+# Compile of alu.vhd was successful.
+# Compile of csb.vhd was successful.
+# Compile of mux21_nbit.vhd was successful.
+# Compile of pg.vhd was successful.
+# Compile of sum_gen.vhd was successful with warnings.
+# Compile of romem.sv was successful.
+# Compile of rwmem.sv was successful.
+# Compile of tb_memories.sv was successful.
+# Compile of tb_writeback_stage.sv was successful.
+# Compile of implemented_instructions.svh was successful.
+# Compile of tb_dlx.sv was successful.
+# Compile of alu_type.vhd was successful.
+# Compile of memory_interfaces.svh was successful.
+# Compile of mux21.vhd was successful.
+# Compile of global_defs.svh was successful.
+# Compile of tb_cu.sv was successful.
+# Compile of tb_datapath.sv was successful.
+# Compile of tb_decode_stage.sv was successful.
+# Compile of tb_execute_stage.sv was successful.
+# Compile of tb_fetch_stage.sv was successful.
+# Compile of a.b.a-Fetch.stage.vhd was successful.
+# Compile of a.b.b-Decode.stage.vhd was successful.
+# Compile of a.b.c-Execute.stage.vhd was successful.
+# Compile of a.b.d.Memory.stage.vhd failed with 5 errors.
+# Compile of MULTIPLIER_tb.vhd was successful.
+# Compile of tb_alu.vhd was successful.
+# Compile of tb_csb.vhd was successful.
+# Compile of tb_fd.vhd was successful.
+# Compile of tb_mux21_generic.vhd was successful.
+# Compile of tb_p4adder.vhd was successful.
+# Compile of tb_rca.vhd was successful.
+# Compile of tb_registerfile.vhd was successful.
+# Compile of tb_registerfile_wrf.vhd was successful.
+# Compile of tb_regN.vhd was successful.
+# Compile of tb_stcg.vhd was successful.
+# Compile of tb_sum_gen.vhd was successful.
+# 55 compiles, 1 failed with 5 errors.
+vsim --novopt -suppress 12110 work.tb_fetch_stage -do ../../scripts/fetch_stage_tb.do
+# ** Error: (vish-3296) Unknown option '--novopt'.
+# Use the -help option for complete vsim usage.
+# Error loading design
 vsim -novopt -suppress 12110 work.tb_fetch_stage -do ../../scripts/fetch_stage_tb.do
-# End time: 20:10:15 on Jul 28,2020, Elapsed time: 0:01:20
-# Errors: 1, Warnings: 1
 # vsim -novopt -suppress 12110 work.tb_fetch_stage -do "../../scripts/fetch_stage_tb.do" 
-# Start time: 20:10:15 on Jul 28,2020
+# Start time: 20:36:50 on Jul 28,2020
 # ** Warning: (vsim-8891) All optimizations are disabled because the -novopt option is in effect. This will cause your simulation to run very slowly. If you are using this switch to preserve visibility for Debug or PLI features, please see the User's Manual section on Preserving Object Visibility with vopt. -novopt option is now deprecated and will be removed in future releases.
 # Refreshing /home/ms20.50/Desktop/DLX_project/project/simulation/work.tb_fetch_stage
 # ** Warning: (vlog-8891) All optimizations are disabled because the -novopt option is in effect. This will cause your simulation to run very slowly. If you are using this switch to preserve visibility for Debug or PLI features, please see the User's Manual section on Preserving Object Visibility with vopt. -novopt option is now deprecated and will be removed in future releases.
@@ -127,19 +257,380 @@ vsim -novopt -suppress 12110 work.tb_fetch_stage -do ../../scripts/fetch_stage_t
 # Refreshing /home/ms20.50/Desktop/DLX_project/project/simulation/work.mem_interface
 # ** Warning: (vlog-8891) All optimizations are disabled because the -novopt option is in effect. This will cause your simulation to run very slowly. If you are using this switch to preserve visibility for Debug or PLI features, please see the User's Manual section on Preserving Object Visibility with vopt. -novopt option is now deprecated and will be removed in future releases.
 # Loading work.mem_interface
+# Refreshing /home/ms20.50/Desktop/DLX_project/project/simulation/work.romem
+# ** Warning: (vlog-8891) All optimizations are disabled because the -novopt option is in effect. This will cause your simulation to run very slowly. If you are using this switch to preserve visibility for Debug or PLI features, please see the User's Manual section on Preserving Object Visibility with vopt. -novopt option is now deprecated and will be removed in future releases.
 # Loading work.romem
 # Refreshing /home/ms20.50/Desktop/DLX_project/project/simulation/work.test
 # ** Warning: (vlog-8891) All optimizations are disabled because the -novopt option is in effect. This will cause your simulation to run very slowly. If you are using this switch to preserve visibility for Debug or PLI features, please see the User's Manual section on Preserving Object Visibility with vopt. -novopt option is now deprecated and will be removed in future releases.
 # Loading work.test
 # Loading std.standard
+# Refreshing /home/ms20.50/Desktop/DLX_project/project/simulation/work.fetch_stage(structural)
+# ** Warning: (vcom-8891) All optimizations are disabled because the -novopt option is in effect. This will cause your simulation to run very slowly. If you are using this switch to preserve visibility for Debug or PLI features, please see the User's Manual section on Preserving Object Visibility with vopt. -novopt option is now deprecated and will be removed in future releases.
 # Loading std.textio(body)
 # Loading ieee.std_logic_1164(body)
 # Loading ieee.numeric_std(body)
+# Refreshing /home/ms20.50/Desktop/DLX_project/project/simulation/work.global_components(body)
+# ** Warning: (vcom-8891) All optimizations are disabled because the -novopt option is in effect. This will cause your simulation to run very slowly. If you are using this switch to preserve visibility for Debug or PLI features, please see the User's Manual section on Preserving Object Visibility with vopt. -novopt option is now deprecated and will be removed in future releases.
+# Refreshing /home/ms20.50/Desktop/DLX_project/project/simulation/work.globals(body)
+# ** Warning: (vcom-8891) All optimizations are disabled because the -novopt option is in effect. This will cause your simulation to run very slowly. If you are using this switch to preserve visibility for Debug or PLI features, please see the User's Manual section on Preserving Object Visibility with vopt. -novopt option is now deprecated and will be removed in future releases.
+# Refreshing /home/ms20.50/Desktop/DLX_project/project/simulation/work.constants(body)
+# ** Warning: (vcom-8891) All optimizations are disabled because the -novopt option is in effect. This will cause your simulation to run very slowly. If you are using this switch to preserve visibility for Debug or PLI features, please see the User's Manual section on Preserving Object Visibility with vopt. -novopt option is now deprecated and will be removed in future releases.
 # Loading work.constants(body)
 # Loading work.globals(body)
 # Loading work.global_components(body)
 # Loading work.fetch_stage(structural)
+# Refreshing /home/ms20.50/Desktop/DLX_project/project/simulation/work.reg_nbit(struc)
+# ** Warning: (vcom-8891) All optimizations are disabled because the -novopt option is in effect. This will cause your simulation to run very slowly. If you are using this switch to preserve visibility for Debug or PLI features, please see the User's Manual section on Preserving Object Visibility with vopt. -novopt option is now deprecated and will be removed in future releases.
 # Loading work.reg_nbit(struc)
+# Refreshing /home/ms20.50/Desktop/DLX_project/project/simulation/work.fd(pluto)
+# ** Warning: (vcom-8891) All optimizations are disabled because the -novopt option is in effect. This will cause your simulation to run very slowly. If you are using this switch to preserve visibility for Debug or PLI features, please see the User's Manual section on Preserving Object Visibility with vopt. -novopt option is now deprecated and will be removed in future releases.
+# Loading work.fd(pluto)
+# do ../../scripts/fetch_stage_tb.do
+run 400ns
+# @0ns Starting Program
+# Starting testbench for memories 
+# Memory reset 
+# File was opened successfully : -2147483645
+# @45ns ---> wrong generated new program counter value
+# ** Note: $stop    : /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/testbench_subunits/tb_fetch_stage.sv(55)
+#    Time: 45 ns  Iteration: 1  Instance: /tb_fetch_stage/test_program
+# Break in Module test at /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/testbench_subunits/tb_fetch_stage.sv line 55
+project compileall
+# Compile of 000-globals.vhd was successful.
+# Compile of 001-global_components.vhd was successful.
+# Compile of adder.vhd was successful.
+# Compile of boothmul.vhd was successful.
+# Compile of complement2.vhd was successful.
+# Compile of encoder.vhd was successful.
+# Compile of fa.vhd was successful.
+# Compile of fd.vhd was successful.
+# Compile of gsb.vhd was successful.
+# Compile of mux.vhd was successful.
+# Compile of p4_adder.vhd was successful.
+# Compile of pgsb.vhd was successful.
+# Compile of rca.vhd was successful.
+# Compile of reg_nbit.vhd was successful.
+# Compile of registerfile.vhd was successful.
+# Compile of stcg.vhd was successful.
+# Compile of wrf.vhd was successful.
+# Compile of a.b.e-Write_back.stage.vhd was successful.
+# Compile of constants.vhd was successful.
+# Compile of alu.vhd was successful.
+# Compile of csb.vhd was successful.
+# Compile of mux21_nbit.vhd was successful.
+# Compile of pg.vhd was successful.
+# Compile of sum_gen.vhd was successful with warnings.
+# Compile of romem.sv was successful.
+# Compile of rwmem.sv was successful.
+# Compile of tb_memories.sv was successful.
+# Compile of tb_writeback_stage.sv was successful.
+# Compile of implemented_instructions.svh was successful.
+# Compile of tb_dlx.sv was successful.
+# Compile of alu_type.vhd was successful.
+# Compile of memory_interfaces.svh was successful.
+# Compile of mux21.vhd was successful.
+# Compile of global_defs.svh was successful.
+# Compile of tb_cu.sv was successful.
+# Compile of tb_datapath.sv was successful.
+# Compile of tb_decode_stage.sv was successful.
+# Compile of tb_execute_stage.sv was successful.
+# Compile of tb_fetch_stage.sv was successful.
+# Compile of a.b.a-Fetch.stage.vhd was successful.
+# Compile of a.b.b-Decode.stage.vhd was successful.
+# Compile of a.b.c-Execute.stage.vhd was successful.
+# Compile of a.b.d.Memory.stage.vhd failed with 5 errors.
+# Compile of MULTIPLIER_tb.vhd was successful.
+# Compile of tb_alu.vhd was successful.
+# Compile of tb_csb.vhd was successful.
+# Compile of tb_fd.vhd was successful.
+# Compile of tb_mux21_generic.vhd was successful.
+# Compile of tb_p4adder.vhd was successful.
+# Compile of tb_rca.vhd was successful.
+# Compile of tb_registerfile.vhd was successful.
+# Compile of tb_registerfile_wrf.vhd was successful.
+# Compile of tb_regN.vhd was successful.
+# Compile of tb_stcg.vhd was successful.
+# Compile of tb_sum_gen.vhd was successful.
+# 55 compiles, 1 failed with 5 errors.
+vsim -novopt -suppress 12110 work.tb_fetch_stage -do ../../scripts/fetch_stage_tb.do
+# End time: 20:38:12 on Jul 28,2020, Elapsed time: 0:01:22
+# Errors: 0, Warnings: 1
+# vsim -novopt -suppress 12110 work.tb_fetch_stage -do "../../scripts/fetch_stage_tb.do" 
+# Start time: 20:38:12 on Jul 28,2020
+# ** Warning: (vsim-8891) All optimizations are disabled because the -novopt option is in effect. This will cause your simulation to run very slowly. If you are using this switch to preserve visibility for Debug or PLI features, please see the User's Manual section on Preserving Object Visibility with vopt. -novopt option is now deprecated and will be removed in future releases.
+# Refreshing /home/ms20.50/Desktop/DLX_project/project/simulation/work.tb_fetch_stage
+# ** Warning: (vlog-8891) All optimizations are disabled because the -novopt option is in effect. This will cause your simulation to run very slowly. If you are using this switch to preserve visibility for Debug or PLI features, please see the User's Manual section on Preserving Object Visibility with vopt. -novopt option is now deprecated and will be removed in future releases.
+# Loading sv_std.std
+# Loading work.tb_fetch_stage
+# Refreshing /home/ms20.50/Desktop/DLX_project/project/simulation/work.mem_interface
+# ** Warning: (vlog-8891) All optimizations are disabled because the -novopt option is in effect. This will cause your simulation to run very slowly. If you are using this switch to preserve visibility for Debug or PLI features, please see the User's Manual section on Preserving Object Visibility with vopt. -novopt option is now deprecated and will be removed in future releases.
+# Loading work.mem_interface
+# Refreshing /home/ms20.50/Desktop/DLX_project/project/simulation/work.romem
+# ** Warning: (vlog-8891) All optimizations are disabled because the -novopt option is in effect. This will cause your simulation to run very slowly. If you are using this switch to preserve visibility for Debug or PLI features, please see the User's Manual section on Preserving Object Visibility with vopt. -novopt option is now deprecated and will be removed in future releases.
+# Loading work.romem
+# Refreshing /home/ms20.50/Desktop/DLX_project/project/simulation/work.test
+# ** Warning: (vlog-8891) All optimizations are disabled because the -novopt option is in effect. This will cause your simulation to run very slowly. If you are using this switch to preserve visibility for Debug or PLI features, please see the User's Manual section on Preserving Object Visibility with vopt. -novopt option is now deprecated and will be removed in future releases.
+# Loading work.test
+# Loading std.standard
+# Refreshing /home/ms20.50/Desktop/DLX_project/project/simulation/work.fetch_stage(structural)
+# ** Warning: (vcom-8891) All optimizations are disabled because the -novopt option is in effect. This will cause your simulation to run very slowly. If you are using this switch to preserve visibility for Debug or PLI features, please see the User's Manual section on Preserving Object Visibility with vopt. -novopt option is now deprecated and will be removed in future releases.
+# Loading std.textio(body)
+# Loading ieee.std_logic_1164(body)
+# Loading ieee.numeric_std(body)
+# Refreshing /home/ms20.50/Desktop/DLX_project/project/simulation/work.global_components(body)
+# ** Warning: (vcom-8891) All optimizations are disabled because the -novopt option is in effect. This will cause your simulation to run very slowly. If you are using this switch to preserve visibility for Debug or PLI features, please see the User's Manual section on Preserving Object Visibility with vopt. -novopt option is now deprecated and will be removed in future releases.
+# Refreshing /home/ms20.50/Desktop/DLX_project/project/simulation/work.globals(body)
+# ** Warning: (vcom-8891) All optimizations are disabled because the -novopt option is in effect. This will cause your simulation to run very slowly. If you are using this switch to preserve visibility for Debug or PLI features, please see the User's Manual section on Preserving Object Visibility with vopt. -novopt option is now deprecated and will be removed in future releases.
+# Refreshing /home/ms20.50/Desktop/DLX_project/project/simulation/work.constants(body)
+# ** Warning: (vcom-8891) All optimizations are disabled because the -novopt option is in effect. This will cause your simulation to run very slowly. If you are using this switch to preserve visibility for Debug or PLI features, please see the User's Manual section on Preserving Object Visibility with vopt. -novopt option is now deprecated and will be removed in future releases.
+# Loading work.constants(body)
+# Loading work.globals(body)
+# Loading work.global_components(body)
+# Loading work.fetch_stage(structural)
+# Refreshing /home/ms20.50/Desktop/DLX_project/project/simulation/work.reg_nbit(struc)
+# ** Warning: (vcom-8891) All optimizations are disabled because the -novopt option is in effect. This will cause your simulation to run very slowly. If you are using this switch to preserve visibility for Debug or PLI features, please see the User's Manual section on Preserving Object Visibility with vopt. -novopt option is now deprecated and will be removed in future releases.
+# Loading work.reg_nbit(struc)
+# Refreshing /home/ms20.50/Desktop/DLX_project/project/simulation/work.fd(pluto)
+# ** Warning: (vcom-8891) All optimizations are disabled because the -novopt option is in effect. This will cause your simulation to run very slowly. If you are using this switch to preserve visibility for Debug or PLI features, please see the User's Manual section on Preserving Object Visibility with vopt. -novopt option is now deprecated and will be removed in future releases.
+# Loading work.fd(pluto)
+# do ../../scripts/fetch_stage_tb.do
+run 100ns
+# @0ns Starting Program
+# Starting testbench for memories 
+# Memory reset 
+# File was opened successfully : -2147483645
+# @55ns ---> wrong generated new program counter value
+# ** Note: $stop    : /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/testbench_subunits/tb_fetch_stage.sv(56)
+#    Time: 55 ns  Iteration: 1  Instance: /tb_fetch_stage/test_program
+# Break in Module test at /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/testbench_subunits/tb_fetch_stage.sv line 56
+run
+# @65ns ---> wrong generated address
+# ** Note: $stop    : /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/testbench_subunits/tb_fetch_stage.sv(61)
+#    Time: 65 ns  Iteration: 1  Instance: /tb_fetch_stage/test_program
+# Break in Module test at /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/testbench_subunits/tb_fetch_stage.sv line 61
+run
+# @75ns ---> wrong generated new program counter value
+# ** Note: $stop    : /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/testbench_subunits/tb_fetch_stage.sv(66)
+#    Time: 75 ns  Iteration: 1  Instance: /tb_fetch_stage/test_program
+# Break in Module test at /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/testbench_subunits/tb_fetch_stage.sv line 66
+run
+# Fetch stage has passed the testbench 
+# ** Note: $finish    : /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/testbench_subunits/tb_fetch_stage.sv(70)
+#    Time: 85 ns  Iteration: 1  Instance: /tb_fetch_stage/test_program
+# 1
+# Break in Module test at /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/testbench_subunits/tb_fetch_stage.sv line 70
+project compileall
+# Compile of 000-globals.vhd was successful.
+# Compile of 001-global_components.vhd was successful.
+# Compile of adder.vhd was successful.
+# Compile of boothmul.vhd was successful.
+# Compile of complement2.vhd was successful.
+# Compile of encoder.vhd was successful.
+# Compile of fa.vhd was successful.
+# Compile of fd.vhd was successful.
+# Compile of gsb.vhd was successful.
+# Compile of mux.vhd was successful.
+# Compile of p4_adder.vhd was successful.
+# Compile of pgsb.vhd was successful.
+# Compile of rca.vhd was successful.
+# Compile of reg_nbit.vhd was successful.
+# Compile of registerfile.vhd was successful.
+# Compile of stcg.vhd was successful.
+# Compile of wrf.vhd was successful.
+# Compile of a.b.e-Write_back.stage.vhd was successful.
+# Compile of constants.vhd was successful.
+# Compile of alu.vhd was successful.
+# Compile of csb.vhd was successful.
+# Compile of mux21_nbit.vhd was successful.
+# Compile of pg.vhd was successful.
+# Compile of sum_gen.vhd was successful with warnings.
+# Compile of romem.sv was successful.
+# Compile of rwmem.sv was successful.
+# Compile of tb_memories.sv was successful.
+# Compile of tb_writeback_stage.sv was successful.
+# Compile of implemented_instructions.svh was successful.
+# Compile of tb_dlx.sv was successful.
+# Compile of alu_type.vhd was successful.
+# Compile of memory_interfaces.svh was successful.
+# Compile of mux21.vhd was successful.
+# Compile of global_defs.svh was successful.
+# Compile of tb_cu.sv was successful.
+# Compile of tb_datapath.sv was successful.
+# Compile of tb_decode_stage.sv was successful.
+# Compile of tb_execute_stage.sv was successful.
+# Compile of tb_fetch_stage.sv was successful.
+# Compile of a.b.a-Fetch.stage.vhd was successful.
+# Compile of a.b.b-Decode.stage.vhd was successful.
+# Compile of a.b.c-Execute.stage.vhd was successful.
+# Compile of a.b.d.Memory.stage.vhd failed with 5 errors.
+# Compile of MULTIPLIER_tb.vhd was successful.
+# Compile of tb_alu.vhd was successful.
+# Compile of tb_csb.vhd was successful.
+# Compile of tb_fd.vhd was successful.
+# Compile of tb_mux21_generic.vhd was successful.
+# Compile of tb_p4adder.vhd was successful.
+# Compile of tb_rca.vhd was successful.
+# Compile of tb_registerfile.vhd was successful.
+# Compile of tb_registerfile_wrf.vhd was successful.
+# Compile of tb_regN.vhd was successful.
+# Compile of tb_stcg.vhd was successful.
+# Compile of tb_sum_gen.vhd was successful.
+# 55 compiles, 1 failed with 5 errors.
+vsim -novopt -suppress 12110 work.tb_fetch_stage -do ../../scripts/fetch_stage_tb.do
+# End time: 20:41:26 on Jul 28,2020, Elapsed time: 0:03:14
+# Errors: 0, Warnings: 1
+# vsim -novopt -suppress 12110 work.tb_fetch_stage -do "../../scripts/fetch_stage_tb.do" 
+# Start time: 20:41:26 on Jul 28,2020
+# ** Warning: (vsim-8891) All optimizations are disabled because the -novopt option is in effect. This will cause your simulation to run very slowly. If you are using this switch to preserve visibility for Debug or PLI features, please see the User's Manual section on Preserving Object Visibility with vopt. -novopt option is now deprecated and will be removed in future releases.
+# Refreshing /home/ms20.50/Desktop/DLX_project/project/simulation/work.tb_fetch_stage
+# ** Warning: (vlog-8891) All optimizations are disabled because the -novopt option is in effect. This will cause your simulation to run very slowly. If you are using this switch to preserve visibility for Debug or PLI features, please see the User's Manual section on Preserving Object Visibility with vopt. -novopt option is now deprecated and will be removed in future releases.
+# Loading sv_std.std
+# Loading work.tb_fetch_stage
+# Refreshing /home/ms20.50/Desktop/DLX_project/project/simulation/work.mem_interface
+# ** Warning: (vlog-8891) All optimizations are disabled because the -novopt option is in effect. This will cause your simulation to run very slowly. If you are using this switch to preserve visibility for Debug or PLI features, please see the User's Manual section on Preserving Object Visibility with vopt. -novopt option is now deprecated and will be removed in future releases.
+# Loading work.mem_interface
+# Refreshing /home/ms20.50/Desktop/DLX_project/project/simulation/work.romem
+# ** Warning: (vlog-8891) All optimizations are disabled because the -novopt option is in effect. This will cause your simulation to run very slowly. If you are using this switch to preserve visibility for Debug or PLI features, please see the User's Manual section on Preserving Object Visibility with vopt. -novopt option is now deprecated and will be removed in future releases.
+# Loading work.romem
+# Refreshing /home/ms20.50/Desktop/DLX_project/project/simulation/work.test
+# ** Warning: (vlog-8891) All optimizations are disabled because the -novopt option is in effect. This will cause your simulation to run very slowly. If you are using this switch to preserve visibility for Debug or PLI features, please see the User's Manual section on Preserving Object Visibility with vopt. -novopt option is now deprecated and will be removed in future releases.
+# Loading work.test
+# Loading std.standard
+# Refreshing /home/ms20.50/Desktop/DLX_project/project/simulation/work.fetch_stage(structural)
+# ** Warning: (vcom-8891) All optimizations are disabled because the -novopt option is in effect. This will cause your simulation to run very slowly. If you are using this switch to preserve visibility for Debug or PLI features, please see the User's Manual section on Preserving Object Visibility with vopt. -novopt option is now deprecated and will be removed in future releases.
+# Loading std.textio(body)
+# Loading ieee.std_logic_1164(body)
+# Loading ieee.numeric_std(body)
+# Refreshing /home/ms20.50/Desktop/DLX_project/project/simulation/work.global_components(body)
+# ** Warning: (vcom-8891) All optimizations are disabled because the -novopt option is in effect. This will cause your simulation to run very slowly. If you are using this switch to preserve visibility for Debug or PLI features, please see the User's Manual section on Preserving Object Visibility with vopt. -novopt option is now deprecated and will be removed in future releases.
+# Refreshing /home/ms20.50/Desktop/DLX_project/project/simulation/work.globals(body)
+# ** Warning: (vcom-8891) All optimizations are disabled because the -novopt option is in effect. This will cause your simulation to run very slowly. If you are using this switch to preserve visibility for Debug or PLI features, please see the User's Manual section on Preserving Object Visibility with vopt. -novopt option is now deprecated and will be removed in future releases.
+# Refreshing /home/ms20.50/Desktop/DLX_project/project/simulation/work.constants(body)
+# ** Warning: (vcom-8891) All optimizations are disabled because the -novopt option is in effect. This will cause your simulation to run very slowly. If you are using this switch to preserve visibility for Debug or PLI features, please see the User's Manual section on Preserving Object Visibility with vopt. -novopt option is now deprecated and will be removed in future releases.
+# Loading work.constants(body)
+# Loading work.globals(body)
+# Loading work.global_components(body)
+# Loading work.fetch_stage(structural)
+# Refreshing /home/ms20.50/Desktop/DLX_project/project/simulation/work.reg_nbit(struc)
+# ** Warning: (vcom-8891) All optimizations are disabled because the -novopt option is in effect. This will cause your simulation to run very slowly. If you are using this switch to preserve visibility for Debug or PLI features, please see the User's Manual section on Preserving Object Visibility with vopt. -novopt option is now deprecated and will be removed in future releases.
+# Loading work.reg_nbit(struc)
+# Refreshing /home/ms20.50/Desktop/DLX_project/project/simulation/work.fd(pluto)
+# ** Warning: (vcom-8891) All optimizations are disabled because the -novopt option is in effect. This will cause your simulation to run very slowly. If you are using this switch to preserve visibility for Debug or PLI features, please see the User's Manual section on Preserving Object Visibility with vopt. -novopt option is now deprecated and will be removed in future releases.
+# Loading work.fd(pluto)
+# do ../../scripts/fetch_stage_tb.do
+run 10ns
+# @0ns Starting Program
+# Starting testbench for memories 
+# Memory reset 
+run 100ns
+# File was opened successfully : -2147483645
+# @65ns ---> wrong generated address
+# ** Note: $stop    : /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/testbench_subunits/tb_fetch_stage.sv(59)
+#    Time: 65 ns  Iteration: 3  Instance: /tb_fetch_stage/test_program
+# Break in Module test at /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/testbench_subunits/tb_fetch_stage.sv line 59
+run 100ns
+# Fetch stage has passed the testbench 
+# ** Note: $finish    : /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/testbench_subunits/tb_fetch_stage.sv(68)
+#    Time: 85 ns  Iteration: 3  Instance: /tb_fetch_stage/test_program
+# 1
+# Break in Module test at /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/testbench_subunits/tb_fetch_stage.sv line 68
+project compileall
+# Compile of 000-globals.vhd was successful.
+# Compile of 001-global_components.vhd was successful.
+# Compile of adder.vhd was successful.
+# Compile of boothmul.vhd was successful.
+# Compile of complement2.vhd was successful.
+# Compile of encoder.vhd was successful.
+# Compile of fa.vhd was successful.
+# Compile of fd.vhd was successful.
+# Compile of gsb.vhd was successful.
+# Compile of mux.vhd was successful.
+# Compile of p4_adder.vhd was successful.
+# Compile of pgsb.vhd was successful.
+# Compile of rca.vhd was successful.
+# Compile of reg_nbit.vhd was successful.
+# Compile of registerfile.vhd was successful.
+# Compile of stcg.vhd was successful.
+# Compile of wrf.vhd was successful.
+# Compile of a.b.e-Write_back.stage.vhd was successful.
+# Compile of constants.vhd was successful.
+# Compile of alu.vhd was successful.
+# Compile of csb.vhd was successful.
+# Compile of mux21_nbit.vhd was successful.
+# Compile of pg.vhd was successful.
+# Compile of sum_gen.vhd was successful with warnings.
+# Compile of romem.sv was successful.
+# Compile of rwmem.sv was successful.
+# Compile of tb_memories.sv was successful.
+# Compile of tb_writeback_stage.sv was successful.
+# Compile of implemented_instructions.svh was successful.
+# Compile of tb_dlx.sv was successful.
+# Compile of alu_type.vhd was successful.
+# Compile of memory_interfaces.svh was successful.
+# Compile of mux21.vhd was successful.
+# Compile of global_defs.svh was successful.
+# Compile of tb_cu.sv was successful.
+# Compile of tb_datapath.sv was successful.
+# Compile of tb_decode_stage.sv was successful.
+# Compile of tb_execute_stage.sv was successful.
+# Compile of tb_fetch_stage.sv was successful.
+# Compile of a.b.a-Fetch.stage.vhd was successful.
+# Compile of a.b.b-Decode.stage.vhd was successful.
+# Compile of a.b.c-Execute.stage.vhd was successful.
+# Compile of a.b.d.Memory.stage.vhd failed with 5 errors.
+# Compile of MULTIPLIER_tb.vhd was successful.
+# Compile of tb_alu.vhd was successful.
+# Compile of tb_csb.vhd was successful.
+# Compile of tb_fd.vhd was successful.
+# Compile of tb_mux21_generic.vhd was successful.
+# Compile of tb_p4adder.vhd was successful.
+# Compile of tb_rca.vhd was successful.
+# Compile of tb_registerfile.vhd was successful.
+# Compile of tb_registerfile_wrf.vhd was successful.
+# Compile of tb_regN.vhd was successful.
+# Compile of tb_stcg.vhd was successful.
+# Compile of tb_sum_gen.vhd was successful.
+# 55 compiles, 1 failed with 5 errors.
+vsim -novopt -suppress 12110 work.tb_fetch_stage -do ../../scripts/fetch_stage_tb.do
+# End time: 20:42:56 on Jul 28,2020, Elapsed time: 0:01:30
+# Errors: 0, Warnings: 1
+# vsim -novopt -suppress 12110 work.tb_fetch_stage -do "../../scripts/fetch_stage_tb.do" 
+# Start time: 20:42:56 on Jul 28,2020
+# ** Warning: (vsim-8891) All optimizations are disabled because the -novopt option is in effect. This will cause your simulation to run very slowly. If you are using this switch to preserve visibility for Debug or PLI features, please see the User's Manual section on Preserving Object Visibility with vopt. -novopt option is now deprecated and will be removed in future releases.
+# Refreshing /home/ms20.50/Desktop/DLX_project/project/simulation/work.tb_fetch_stage
+# ** Warning: (vlog-8891) All optimizations are disabled because the -novopt option is in effect. This will cause your simulation to run very slowly. If you are using this switch to preserve visibility for Debug or PLI features, please see the User's Manual section on Preserving Object Visibility with vopt. -novopt option is now deprecated and will be removed in future releases.
+# Loading sv_std.std
+# Loading work.tb_fetch_stage
+# Refreshing /home/ms20.50/Desktop/DLX_project/project/simulation/work.mem_interface
+# ** Warning: (vlog-8891) All optimizations are disabled because the -novopt option is in effect. This will cause your simulation to run very slowly. If you are using this switch to preserve visibility for Debug or PLI features, please see the User's Manual section on Preserving Object Visibility with vopt. -novopt option is now deprecated and will be removed in future releases.
+# Loading work.mem_interface
+# Refreshing /home/ms20.50/Desktop/DLX_project/project/simulation/work.romem
+# ** Warning: (vlog-8891) All optimizations are disabled because the -novopt option is in effect. This will cause your simulation to run very slowly. If you are using this switch to preserve visibility for Debug or PLI features, please see the User's Manual section on Preserving Object Visibility with vopt. -novopt option is now deprecated and will be removed in future releases.
+# Loading work.romem
+# Refreshing /home/ms20.50/Desktop/DLX_project/project/simulation/work.test
+# ** Warning: (vlog-8891) All optimizations are disabled because the -novopt option is in effect. This will cause your simulation to run very slowly. If you are using this switch to preserve visibility for Debug or PLI features, please see the User's Manual section on Preserving Object Visibility with vopt. -novopt option is now deprecated and will be removed in future releases.
+# Loading work.test
+# Loading std.standard
+# Refreshing /home/ms20.50/Desktop/DLX_project/project/simulation/work.fetch_stage(structural)
+# ** Warning: (vcom-8891) All optimizations are disabled because the -novopt option is in effect. This will cause your simulation to run very slowly. If you are using this switch to preserve visibility for Debug or PLI features, please see the User's Manual section on Preserving Object Visibility with vopt. -novopt option is now deprecated and will be removed in future releases.
+# Loading std.textio(body)
+# Loading ieee.std_logic_1164(body)
+# Loading ieee.numeric_std(body)
+# Refreshing /home/ms20.50/Desktop/DLX_project/project/simulation/work.global_components(body)
+# ** Warning: (vcom-8891) All optimizations are disabled because the -novopt option is in effect. This will cause your simulation to run very slowly. If you are using this switch to preserve visibility for Debug or PLI features, please see the User's Manual section on Preserving Object Visibility with vopt. -novopt option is now deprecated and will be removed in future releases.
+# Refreshing /home/ms20.50/Desktop/DLX_project/project/simulation/work.globals(body)
+# ** Warning: (vcom-8891) All optimizations are disabled because the -novopt option is in effect. This will cause your simulation to run very slowly. If you are using this switch to preserve visibility for Debug or PLI features, please see the User's Manual section on Preserving Object Visibility with vopt. -novopt option is now deprecated and will be removed in future releases.
+# Refreshing /home/ms20.50/Desktop/DLX_project/project/simulation/work.constants(body)
+# ** Warning: (vcom-8891) All optimizations are disabled because the -novopt option is in effect. This will cause your simulation to run very slowly. If you are using this switch to preserve visibility for Debug or PLI features, please see the User's Manual section on Preserving Object Visibility with vopt. -novopt option is now deprecated and will be removed in future releases.
+# Loading work.constants(body)
+# Loading work.globals(body)
+# Loading work.global_components(body)
+# Loading work.fetch_stage(structural)
+# Refreshing /home/ms20.50/Desktop/DLX_project/project/simulation/work.reg_nbit(struc)
+# ** Warning: (vcom-8891) All optimizations are disabled because the -novopt option is in effect. This will cause your simulation to run very slowly. If you are using this switch to preserve visibility for Debug or PLI features, please see the User's Manual section on Preserving Object Visibility with vopt. -novopt option is now deprecated and will be removed in future releases.
+# Loading work.reg_nbit(struc)
+# Refreshing /home/ms20.50/Desktop/DLX_project/project/simulation/work.fd(pluto)
+# ** Warning: (vcom-8891) All optimizations are disabled because the -novopt option is in effect. This will cause your simulation to run very slowly. If you are using this switch to preserve visibility for Debug or PLI features, please see the User's Manual section on Preserving Object Visibility with vopt. -novopt option is now deprecated and will be removed in future releases.
 # Loading work.fd(pluto)
 # do ../../scripts/fetch_stage_tb.do
 run 500ns
@@ -148,9 +639,54 @@ run 500ns
 # Memory reset 
 # File was opened successfully : -2147483645
 # Fetch stage has passed the testbench 
-# ** Note: $finish    : /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/testbench_subunits/tb_fetch_stage.sv(71)
-#    Time: 125 ns  Iteration: 4  Instance: /tb_fetch_stage/test_program
+# ** Note: $finish    : /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/testbench_subunits/tb_fetch_stage.sv(68)
+#    Time: 85 ns  Iteration: 3  Instance: /tb_fetch_stage/test_program
 # 1
-# Break in Module test at /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/testbench_subunits/tb_fetch_stage.sv line 71
-# End time: 20:10:38 on Jul 28,2020, Elapsed time: 0:00:23
+# Break in Module test at /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/testbench_subunits/tb_fetch_stage.sv line 68
+vsim -novopt -suppress 12110 work.tb_memories -do ../../scripts/memories_tb.do
+# End time: 20:43:28 on Jul 28,2020, Elapsed time: 0:00:32
+# Errors: 0, Warnings: 1
+# vsim -novopt -suppress 12110 work.tb_memories -do "../../scripts/memories_tb.do" 
+# Start time: 20:43:28 on Jul 28,2020
+# ** Warning: (vsim-8891) All optimizations are disabled because the -novopt option is in effect. This will cause your simulation to run very slowly. If you are using this switch to preserve visibility for Debug or PLI features, please see the User's Manual section on Preserving Object Visibility with vopt. -novopt option is now deprecated and will be removed in future releases.
+# Refreshing /home/ms20.50/Desktop/DLX_project/project/simulation/work.tb_memories
+# ** Warning: (vlog-8891) All optimizations are disabled because the -novopt option is in effect. This will cause your simulation to run very slowly. If you are using this switch to preserve visibility for Debug or PLI features, please see the User's Manual section on Preserving Object Visibility with vopt. -novopt option is now deprecated and will be removed in future releases.
+# Loading sv_std.std
+# Loading work.tb_memories
+# Loading work.mem_interface
+# Loading work.romem
+# Refreshing /home/ms20.50/Desktop/DLX_project/project/simulation/work.rwmem
+# ** Warning: (vlog-8891) All optimizations are disabled because the -novopt option is in effect. This will cause your simulation to run very slowly. If you are using this switch to preserve visibility for Debug or PLI features, please see the User's Manual section on Preserving Object Visibility with vopt. -novopt option is now deprecated and will be removed in future releases.
+# Loading work.rwmem
+# Refreshing /home/ms20.50/Desktop/DLX_project/project/simulation/work.test_memory
+# ** Warning: (vlog-8891) All optimizations are disabled because the -novopt option is in effect. This will cause your simulation to run very slowly. If you are using this switch to preserve visibility for Debug or PLI features, please see the User's Manual section on Preserving Object Visibility with vopt. -novopt option is now deprecated and will be removed in future releases.
+# Loading work.test_memory
+# do ../../scripts/memories_tb.do
+run 500ns
+# Starting testbench for memories 
+# @0ns Starting Program
+# Memory reset 
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# Reading file for Read-Only memory 
+# Read-Only Memory passed the testbench 
+# Starting test of read and write memory 
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+# File was opened successfully : -2147483645
+run 500ns
+# @615ns Terminating simulation
+# ** Note: $finish    : /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/tb_memories.sv(123)
+#    Time: 615 ns  Iteration: 1  Instance: /tb_memories/test_ram
+# 1
+# Break in Module test_memory at /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/tb_memories.sv line 123
+# End time: 20:44:03 on Jul 28,2020, Elapsed time: 0:00:35
 # Errors: 0, Warnings: 1

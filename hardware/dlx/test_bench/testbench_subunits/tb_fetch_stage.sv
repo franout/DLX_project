@@ -16,7 +16,6 @@
 `include "../global_defs.svh"
 
 program test( mem_interface.ro iram_if,
-output logic [`IRAM_ADDRESS_SIZE-1:0]new_pc_value_mem_stage ,
 input logic [`IRAM_ADDRESS_SIZE-1:0]new_pc_value ,
 input logic [`IRAM_WORD_SIZE-1:0]curr_instruction,
 output logic iram_enable_cu);
@@ -25,7 +24,6 @@ output logic iram_enable_cu);
   	endclocking	// clock
 
 	initial begin  
-		new_pc_value_mem_stage=0;
 		$display("@%0dns Starting Program",$time);
       	iram_if.rst=1;
 		$display("Starting testbench for memories",);
@@ -50,15 +48,17 @@ output logic iram_enable_cu);
 			$display("@%0dns ---> wrong generated address",$time);
 			$stop();
 		end
+		##1;
 		if(new_pc_value!=8)begin
 			$display("@%0dns ---> wrong generated new program counter value",$time);
 			$stop();
 		end
 		##1;
-		if(curr_instruction!=15)begin
+		if(curr_instruction!=61440)begin
 			$display("@%0dns ---> wrong generated address",$time);
 			$stop();
 		end
+		##1;
 		if(new_pc_value!=12)begin
 			$display("@%0dns ---> wrong generated new program counter value",$time);
 			$stop();
@@ -85,8 +85,8 @@ module tb_fetch_stage ();
   	endclocking	// clock
 
   	// signal instantiation 
-  	logic [`IRAM_ADDRESS_SIZE-1:0]new_pc_value_mem_stage;
-  	logic [`IRAM_ADDRESS_SIZE-1:0]new_pc_value;
+//  	logic [`IRAM_ADDRESS_SIZE-1:0]new_pc_value_mem_stage;
+  	logic [`IRAM_ADDRESS_SIZE-1:0]new_pc_value; // forward this 
   	logic [`IRAM_WORD_SIZE-1:0]curr_instruction;
 	logic iram_enable_cu;
 
@@ -128,7 +128,7 @@ module tb_fetch_stage ();
 		.clk(iram_if.clk),
 		.rst(iram_if.rst),
 		//from  memory stage
-		.new_pc_value_mem_stage(new_pc_value_mem_stage),
+		.new_pc_value_mem_stage(new_pc_value),
 		// to decode stage
 		.new_pc_value(new_pc_value),
 		// IRAM interface
@@ -143,7 +143,6 @@ module tb_fetch_stage ();
 
 // test program 
 test test_program(.iram_if(iram_if),
-		.new_pc_value_mem_stage(new_pc_value_mem_stage),
 		.new_pc_value(new_pc_value),
 		.curr_instruction(curr_instruction),
 		.iram_enable_cu(iram_enable_cu)

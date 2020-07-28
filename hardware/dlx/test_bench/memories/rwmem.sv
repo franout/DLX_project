@@ -98,8 +98,8 @@ always_ff @(posedge memif.clk) begin : proc_ram
 			if(memif.READNOTWRITE) begin // read operation 
 				// byte selection
 				case (memif.ADDRESS[1:0])
-					'1: data_ir<=ram[memif.ADDRESS][WORD_SIZE-8:WORD_SIZE-1];// byte access
-					'2: data_ir<=ram[memif.ADDRESS][WORD_SIZE-16:WORD_SIZE-1];// half word access
+					2'b01: data_ir<=ram[memif.ADDRESS][WORD_SIZE-8:WORD_SIZE-1];// byte access
+					2'b10: data_ir<=ram[memif.ADDRESS][WORD_SIZE-16:WORD_SIZE-1];// half word access
 					default: data_ir<=ram[memif.ADDRESS];// word access 
 				endcase;
 				valid='b1;
@@ -107,8 +107,8 @@ always_ff @(posedge memif.clk) begin : proc_ram
 				data_ir<='Z;
 				// byte selection
 				case (memif.ADDRESS[1:0])
-					'1: ram[memif.ADDRESS]<=data_iw[WORD_SIZE-8:WORD_SIZE-1];// byte access
-					'2: ram[memif.ADDRESS]<=data_iw[WORD_SIZE-16:WORD_SIZE-1];// half word access
+					2'b01: ram[memif.ADDRESS]<=data_iw[WORD_SIZE-8:WORD_SIZE-1];// byte access
+					2'b10: ram[memif.ADDRESS]<=data_iw[WORD_SIZE-16:WORD_SIZE-1];// half word access
 					default: ram[memif.ADDRESS]<=data_iw; // word access
 				endcase;
 				// refresh the content of the output file
