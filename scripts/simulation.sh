@@ -23,7 +23,7 @@ echo "Start hierarchical compilation"
 vcom name
 
 
-echo "Starting simulation"
+echo "Starting simulation of dlx top level entity"
 ## need a do file and a waveform file
 vsim  -f simulation.tcl  -t 10 ps # from a script file 
 ## add a list of all possible testpanch and print usage in case of help
