@@ -7,20 +7,33 @@
 // Author : Angione Francesco s262620@studenti.polito.it franout@Github.com
 // File   : tb_memory_stage.sv
 // Create : 2020-07-27 15:16:47
-// Revise : 2020-07-28 19:01:14
+// Revise : 2020-07-29 17:22:22
 // Editor : sublime text3, tab size (4)
 // Description: 
 // -----------------------------------------------------------------------------
 `timescale 1ns/1ps
 `include "../memories/memory_interfaces.svh"
 `include "../global_defs.svh"
+`define NBIT 32
 
-program test_memory( mem_interface.rw dram_if);
+//automatic for having a clear environment eveyr call of the program 
+program automatic test_memory( mem_interface.rw dram_if, 
+				output logic select_pc,
+				output logic [`NBIT-1:0] alu_output_val,
+				output logic dram_enable_cu,
+				output logic dram_r_nw_cu,
+				input logic[`DRAM_WORD_SIZE-1:0] data_from_memory,
+				input logic [`NBIT-1:0]data_from_alu,
+				input logic [`IRAM_WORD_SIZE-1:0]new_pc_value_branch
+				 );
 
 	default clocking test_clk @ (posedge dram_if.clk);
   	endclocking	// clock
 
 	initial begin  
+		dram_enable_cu=0;
+		dram_r_nw_cu=1;
+		alu_output_val=$urandom();
 		$display("@%0dns Starting Program",$time);
    		dram_if.rst=1;
 		$display("Starting testbench for Memory stge",);
@@ -29,23 +42,61 @@ program test_memory( mem_interface.rw dram_if);
 		dram_if.rst=0;
 		##1;
 		dram_if.rst=1;
+		##2;
+		if(data_from_alu!=156)begin 
+			$display("Data from alu not correctly propagated",);
+			$stop();
+		end
+		select_pc=0;
 		##1;
-
-		/*
-
-			TODO
-		*/
+		if(new_pc_value_branch!==data_from_alu)
+		begin
+			$display("Error in selecting new value of program counter for jump ",);
+			$stop();
+		end
+		select_pc=1;
+		##1;
+		if(new_pc_value_branch!==4)begin
+			$display("Error in selecting the new value of program counter",);
+			$stop();
+		end
+		##1;
+		$display("Starting memory accesses",);
+		// read
+		dram_r_nw_cu=1;
+		alu_output_val=1; // it contains the address
+		dram_enable_cu=1;
+		##1;
+		if(data_from_memory!==1)begin
+			$display("Error in reading memory",);
+			$stop();
+		end
+		//write 
+		dram_r_nw_cu=0;
+		alu_output_val=1; // it contains the address
+		dram_enable_cu=1;
+		##1;
+		//read 
+		dram_r_nw_cu=1;
+		alu_output_val=1; // it contains the address
+		dram_enable_cu=1;
+		##1;
+		if(data_from_memory!==156)begin
+			$display("Error in reading memory",);
+			$stop();
+		end
 
 
 		$display("Memory stage has passed the testbench",);
 		$finish;
 	end
 
-endprogram: test 
+endprogram: test_memory 
 
 
 module tb_memory_stage ();
 	localparam clock_period= 10ns;
+	localparam N=`NBIT;
 	logic clk;
 
 	initial begin
@@ -58,8 +109,19 @@ module tb_memory_stage ();
   	endclocking	// clock
 
   	// signal instantiation 
-
+  	/*
+	maybe implicit
+  	logic select_pc
+	logic [N-1:0]alu_output_val;
+	logic dram_r_nw_cu;
+	logic dram_ready_cu;
+	logic [`DRAM_WORD_SIZE-1:0]data_from_memory
+	logic [N-1 :0]data_from_alu
 	logic ram_enable_cu;
+*/
+	logic dram_enable_cu;
+	logic [`IRAM_WORD_SIZE-1:0]new_pc_value;
+	logic [N-1:0]value_to_mem;
 
   	//property definitions
   	property generated_address(int min , int max);
@@ -69,7 +131,7 @@ module tb_memory_stage ();
 
   	property enable_propagate;
   		@ (test_clk)
-  		ram_enable_cu |=> dram_if.ENABLE; // it propagates directly to the ram
+  		dram_enable_cu |=> dram_if.ENABLE; // it propagates directly to the ram
   	endproperty
 
 
@@ -89,20 +151,51 @@ module tb_memory_stage ();
 		.WORD_SIZE     (`DRAM_WORD_SIZE),
 		.ADDRESS_SIZE  (`DRAM_ADDRESS_SIZE),
 		.DATA_DELAY    (2))
-	dram_uut ( .memif(dram_if));
+	dram ( .memif(dram_if));
+
+
+	
+	assign value_to_mem=156;
+	assign new_pc_value= 4;
 
 	// unit under test
-	memory_stage #(
-		.IR_SIZE(`IRAM_WORD_SIZE),// Instruction Register Size
-		.PC_SIZE(`IRAM_ADDRESS_SIZE)// Program Counter Size
-		)
-		 uut (
-	
-	);
+	memory_stage #(.N(N),
+				.PC_SIZE(`IRAM_WORD_SIZE))
+	uut (
+		.clk(dram_if.clk),
+		.rst(dram_if.rst),
+		//from fetch stage
+		.new_pc_value(new_pc_value),
+		//to fetch stage
+		.new_pc_value_branch(new_pc_value_branch),
+		//from execute stage
+		.select_pc     (select_pc), 
+		.alu_output_val (alu_output_val),
+		.value_to_mem   (value_to_mem),
+		// to write back stage
+		.data_from_memory (data_from_memory),
+		.data_from_alu    (data_from_alu),
+		// control signals from CU
+		.dram_enable_cu (dram_enable_cu),
+		.dram_r_nw_cu(dram_r_nw_cu),
+		.dram_ready_cu(dram_ready_cu),
+		//DRAM INTERFACES 
+		.DRAM_ADDRESS      (dram_if.ADDRESS),
+		.DRAM_ENABLE       (dram_if.ENABLE),
+		.DRAM_READNOTWRITE (dram_if.READNOTWRITE),
+		.DRAM_READY        (dram_if.DATA_READY),
+		.DRAM_DATA         (dram_if.INOUT_DATA)
+	) ;
 
 // test program 
 test_memory test_program(.dram_if(dram_if),
-
+			.select_pc(select_pc),
+			.alu_output_val(alu_output_val),
+			.dram_enable_cu(dram_enable_cu),
+			.dram_r_nw_cu(dram_r_nw_cu),
+			.data_from_memory(data_from_memory),
+			.data_from_alu(data_from_alu),
+			.new_pc_value_branch(new_pc_value_branch)
 		);
 
 	

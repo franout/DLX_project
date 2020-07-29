@@ -6,7 +6,7 @@
 -- Author      : Francesco Angione <s262620@studenti.polito.it> franout@github.com
 -- Company     : Politecnico di Torino, Italy
 -- Created     : Wed Jul 22 22:59:30 2020
--- Last update : Mon Jul 27 17:11:08 2020
+-- Last update : Wed Jul 29 15:25:49 2020
 -- Platform    : Default Part Number
 -- Standard    : VHDL-2008 
 --------------------------------------------------------------------------------
@@ -40,7 +40,8 @@ entity fetch_stage is
 		IRAM_DATA    : in  std_logic_vector(IR_SIZE-1 downto 0);
 		-- to/from control unit
 		curr_instruction: out std_logic_vector(IR_SIZE-1 downto 0);
-		iram_enable_cu: in std_logic
+		iram_enable_cu: in std_logic;
+		iram_ready_cu: out std_logic
 	) ;
 end entity ; -- fetch_stage
 

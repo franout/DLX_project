@@ -7,7 +7,7 @@
 // Author : Angione Francesco s262620@studenti.polito.it franout@Github.com
 // File   : tb_fetch_stage.sv
 // Create : 2020-07-27 15:18:55
-// Revise : 2020-07-28 18:59:48
+// Revise : 2020-07-29 15:50:50
 // Editor : sublime text3, tab size (4)
 // Description: 
 // -----------------------------------------------------------------------------
@@ -68,7 +68,7 @@ output logic iram_enable_cu);
 		$finish;
 	end
 
-endprogram: test 
+endprogram: test_fetch 
 
 
 module tb_fetch_stage ();
