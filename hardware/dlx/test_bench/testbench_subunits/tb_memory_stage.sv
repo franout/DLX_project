@@ -43,18 +43,18 @@ program automatic test_memory( mem_interface.rw dram_if,
 		##1;
 		dram_if.rst=1;
 		##2;
-		if(data_from_alu!=156)begin 
+		if(data_from_alu!==alu_output_val)begin 
 			$display("Data from alu not correctly propagated",);
 			$stop();
 		end
-		select_pc=0;
+		select_pc=1;
 		##1;
 		if(new_pc_value_branch!==data_from_alu)
 		begin
 			$display("Error in selecting new value of program counter for jump ",);
 			$stop();
 		end
-		select_pc=1;
+		select_pc=0;
 		##1;
 		if(new_pc_value_branch!==4)begin
 			$display("Error in selecting the new value of program counter",);
@@ -63,11 +63,12 @@ program automatic test_memory( mem_interface.rw dram_if,
 		##1;
 		$display("Starting memory accesses",);
 		// read
-		dram_r_nw_cu=1;
 		alu_output_val=1; // it contains the address
+		dram_r_nw_cu=1;
 		dram_enable_cu=1;
-		##1;
-		if(data_from_memory!==1)begin
+		##2;
+		##1;  //this is for loadin in lmd reg
+		if(data_from_memory!==15)begin
 			$display("Error in reading memory",);
 			$stop();
 		end
@@ -80,13 +81,14 @@ program automatic test_memory( mem_interface.rw dram_if,
 		dram_r_nw_cu=1;
 		alu_output_val=1; // it contains the address
 		dram_enable_cu=1;
-		##1;
+		##2;
+		##1;  //this is for loadin in lmd reg
 		if(data_from_memory!==156)begin
 			$display("Error in reading memory",);
 			$stop();
 		end
-
-
+		##3;
+		dram_enable_cu=0;
 		$display("Memory stage has passed the testbench",);
 		$finish;
 	end
@@ -109,16 +111,15 @@ module tb_memory_stage ();
   	endclocking	// clock
 
   	// signal instantiation 
-  	/*
-	maybe implicit
-  	logic select_pc
-	logic [N-1:0]alu_output_val;
+  
+  	logic select_pc;
+	logic [`NBIT-1:0] alu_output_val;
 	logic dram_r_nw_cu;
 	logic dram_ready_cu;
-	logic [`DRAM_WORD_SIZE-1:0]data_from_memory
-	logic [N-1 :0]data_from_alu
-	logic ram_enable_cu;
-*/
+	logic [`DRAM_WORD_SIZE-1:0]data_from_memory;
+	logic [`NBIT-1 :0]data_from_alu;
+	logic [`IRAM_WORD_SIZE-1:0]new_pc_value_branch;
+
 	logic dram_enable_cu;
 	logic [`IRAM_WORD_SIZE-1:0]new_pc_value;
 	logic [N-1:0]value_to_mem;

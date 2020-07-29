@@ -101,13 +101,13 @@ begin
 			Q     => data_from_alu
 		);
 
-	DRAM_ADDRESS      <= alu_output_val; -- computed address 
+	DRAM_ADDRESS      <= alu_output_val( dram_address_size-1  downto 0 ); -- computed address, dllx is computing memory addresses on 32 bit. however 32 bit in sv for the memory cause an overflow so it is 16 bit address
 	DRAM_ENABLE       <= dram_enable_cu;
 	DRAM_READNOTWRITE <= dram_r_nw_cu;
 	dram_ready_cu     <= DRAM_READY;
 
 
-	data_ir <= DRAM_DATA when dram_r_nw_cu='1' else (OTHERS => '0');
+	data_ir <= DRAM_DATA when dram_r_nw_cu='1' ;
 
 	DRAM_DATA <= value_to_mem when dram_r_nw_cu='0' else (OTHERS => 'Z');
 
