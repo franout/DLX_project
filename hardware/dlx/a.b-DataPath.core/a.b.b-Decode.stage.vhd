@@ -6,7 +6,7 @@
 -- Author      : Francesco Angione <s262620@studenti.polito.it> franout@github.com
 -- Company     : Politecnico di Torino, Italy
 -- Created     : Wed Jul 22 22:59:52 2020
--- Last update : Wed Jul 29 18:40:36 2020
+-- Last update : Thu Jul 30 16:48:25 2020
 -- Platform    : Default Part Number
 -- Standard    : VHDL-2008 
 --------------------------------------------------------------------------------
@@ -49,7 +49,7 @@ entity decode_stage is
 		read_rf_p2: in std_logic;
 		write_rf: in std_logic;
 		address_rf_write: in std_logic_vector(f_log2(RF_REGS)-1 downto 0);
-		compute_sext: in std_logic -- signal for computing sign exention of 16bit immediate value
+		compute_sext: in std_logic_vector(1 downto 0) -- signal for computing sign exention of 16bit immediate value, msb bit is for signed or not 
 	) ;
 end entity ; -- decode_stage
 
@@ -72,7 +72,7 @@ begin
 		RESET   => rst,
 		ENABLE  =>enable_rf,
 		RD1     =>read_rf_p1,
-		RD2     =>read_rf_p1,
+		RD2     =>read_rf_p2,
 		WR      =>write_rf,
 		ADD_WR  =>address_rf_write,
 		ADD_RD1 =>instruction_reg(21 to 25),

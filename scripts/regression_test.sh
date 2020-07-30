@@ -13,70 +13,73 @@ echo "Starting regression tests"
 vlib ./work # it also creates the folder
 echo "Simulation ready to go!"
 echo "Start hierarchical compilation" 
-# vlog for verilog -incr(mental) compilation
-vlog -incr ${path_to_file}
+
 # vcom for vhdl-2008 and drc for synthesis (basic)
-vcom  -2008 -check_synthesis ${path_to_file}
+vcom -2008 -check_synthesis ${path_to_file}000-globals.vhd
+vcom -2008 -check_synthesis ${path_to_file}001-global_components.vhd 
+vcom -2008 -check_synthesis ${path_to_file}global_components.package/adder.vhd
+vcom -2008 -check_synthesis ${path_to_file}global_components.package/boothmul.vhd 
+vcom -2008 -check_synthesis ${path_to_file}global_components.package/complement2.vhd 
+vcom -2008 -check_synthesis ${path_to_file}global_components.package/encoder.vhd
+vcom -2008 -check_synthesis ${path_to_file}global_components.package/fa.vhd 
+vcom -2008 -check_synthesis ${path_to_file}global_components.package/fd.vhd 
+vcom -2008 -check_synthesis ${path_to_file}global_components.package/gsb.vhd
+vcom -2008 -check_synthesis ${path_to_file}global_components.package/mux.vhd
+vcom -2008 -check_synthesis ${path_to_file}global_components.package/p4_adder.vhd 
+vcom -2008 -check_synthesis ${path_to_file}global_components.package/pgsb.vhd
+vcom -2008 -check_synthesis ${path_to_file}global_components.package/rca.vhd 
+vcom -2008 -check_synthesis ${path_to_file}global_components.package/reg_nbit.vhd 
+vcom -2008 -check_synthesis ${path_to_file}global_components.package/registerfile.vhd 
+vcom -2008 -check_synthesis ${path_to_file}global_components.package/stcg.vhd 
+vcom -2008 -check_synthesis ${path_to_file}global_components.package/wrf.vhd
+vcom -2008 -check_synthesis ${path_to_file}a.b-DataPath.core/a.b.e-Write_back.stage.vhd 
+vcom -2008 -check_synthesis ${path_to_file}global_components.package/constants.vhd 
+vcom -2008 -check_synthesis ${path_to_file}global_components.package/alu.vhd 
+vcom -2008 -check_synthesis ${path_to_file}global_components.package/csb.vhd 
+vcom -2008 -check_synthesis ${path_to_file}global_components.package/mux21_nbit.vhd 
+vcom -2008 -check_synthesis ${path_to_file}global_components.package/pg.vhd 
+vcom -2008 -check_synthesis ${path_to_file}global_components.package/sum_gen.vhd
+
+# vlog for verilog -incr(mental) compilation
+vlog -incr ${path_to_file}test_bench/memories/romem.sv
+vlog -incr ${path_to_file}test_bench/memories/rwmem.sv 
+vlog -incr ${path_to_file}test_bench/memories/tb_memories.sv 
+vlog -incr ${path_to_file}test_bench/test_bench_subunits/tb_writeback_stage.sv
+vlog -incr ${path_to_file}test_bench/implemented_instructions.svh
+vlog -incr ${path_to_file}/test_bench/tb_dlx.sv
+
+vcom -2008 -check_synthesis ${path_to_file}global_components.package/alu_type.vhd 
+
+vlog -incr ${path_to_file}test_bench/memories/memory_interfaces.svh 
+vcom -2008 -check_synthesis ${path_to_file}mux21.vhd 
+vlog -incr ${path_to_file}test_bench/global_defs.svh 
+vlog -incr ${path_to_file}test_bench/test_bench_subunits/tb_cu.sv 
+vlog -incr ${path_to_file}test_bench/test_bench_subunits/tb_datapath.sv 
+vlog -incr ${path_to_file}test_bench/test_bench_subunits/tb_decode_stage.sv 
+vlog -incr ${path_to_file}test_bench/test_bench_subunits/tb_execute_stage.sv 
+vlog -incr ${path_to_file}test_bench/test_bench_subunits/tb_fetch_stage.sv 
+vcom -2008 -check_synthesis ${path_to_file}a.b-DataPath.core/a.b.a-Fetch.stage.vhd 
+vcom -2008 -check_synthesis ${path_to_file}a.b-DataPath.core/a.b.b-Decode.stage.vhd  
+vcom -2008 -check_synthesis ${path_to_file}a.b-DataPath.core/a.b.c-Execute.stage.vhd 
+vcom -2008 -check_synthesis ${path_to_file}a.b-DataPath.core/a.b.d.Memory.stage.vhd 
+vcom -2008 -check_synthesis ${path_to_file}test_bench/test_bench_subunits_labs/MULTIPLIER_tb.vhd 
+vcom -2008 -check_synthesis ${path_to_file}test_bench/test_bench_subunits_labs/tb_alu.vhd 
+vcom -2008 -check_synthesis ${path_to_file}test_bench/test_bench_subunits_labs/tb_csb.vhd 
+vcom -2008 -check_synthesis ${path_to_file}test_bench/test_bench_subunits_labs/tb_fd.vhd 
+vcom -2008 -check_synthesis ${path_to_file}test_bench/test_bench_subunits_labs/tb_mux21_generic.vhd 
+vcom -2008 -check_synthesis ${path_to_file}test_bench/test_bench_subunits_labs/tb_p4adder.vhd 
+vcom -2008 -check_synthesis ${path_to_file}test_bench/test_bench_subunits_labs/tb_rca.vhd 
+vcom -2008 -check_synthesis ${path_to_file}test_bench/test_bench_subunits_labs/tb_registerfile.vhd 
+vcom -2008 -check_synthesis ${path_to_file}test_bench/test_bench_subunits_labs/tb_registerfile_wrf.vhd 
+vcom -2008 -check_synthesis ${path_to_file}test_bench/test_bench_subunits_labs/tb_regN.vhd 
+vcom -2008 -check_synthesis ${path_to_file}test_bench/test_bench_subunits_labs/tb_stcg.vhd 
+vcom -2008 -check_synthesis ${path_to_file}test_bench/test_bench_subunits_labs/tb_sum_gen.vhd 
+vlog -incr ${path_to_file}/test_bench/test_bench_subunits/tb_memory_stage.sv 
 
 
-# Compile of 000-globals.vhd was successful.
-# Compile of 001-global_components.vhd was successful.
-# Compile of adder.vhd was successful.
-# Compile of boothmul.vhd was successful.
-# Compile of complement2.vhd was successful.
-# Compile of encoder.vhd was successful.
-# Compile of fa.vhd was successful.
-# Compile of fd.vhd was successful.
-# Compile of gsb.vhd was successful.
-# Compile of mux.vhd was successful.
-# Compile of p4_adder.vhd was successful.
-# Compile of pgsb.vhd was successful.
-# Compile of rca.vhd was successful.
-# Compile of reg_nbit.vhd was successful.
-# Compile of registerfile.vhd was successful.
-# Compile of stcg.vhd was successful.
-# Compile of wrf.vhd was successful.
-# Compile of a.b.e-Write_back.stage.vhd was successful.
-# Compile of constants.vhd was successful.
-# Compile of alu.vhd was successful.
-# Compile of csb.vhd was successful.
-# Compile of mux21_nbit.vhd was successful.
-# Compile of pg.vhd was successful.
-# Compile of sum_gen.vhd was successful with warnings.
-# Compile of romem.sv was successful.
-# Compile of rwmem.sv was successful.
-# Compile of tb_memories.sv was successful.
-# Compile of tb_writeback_stage.sv was successful.
-# Compile of implemented_instructions.svh was successful.
-# Compile of tb_dlx.sv was successful.
-# Compile of alu_type.vhd was successful.
-# Compile of memory_interfaces.svh was successful.
-# Compile of mux21.vhd was successful.
-# Compile of global_defs.svh was successful.
-# Compile of tb_cu.sv was successful.
-# Compile of tb_datapath.sv was successful.
-# Compile of tb_decode_stage.sv failed with 1 errors.
-# Compile of tb_execute_stage.sv was successful.
-# Compile of tb_fetch_stage.sv was successful.
-# Compile of a.b.a-Fetch.stage.vhd was successful.
-# Compile of a.b.b-Decode.stage.vhd failed with 2 errors.
-# Compile of a.b.c-Execute.stage.vhd was successful.
-# Compile of a.b.d.Memory.stage.vhd was successful.
-# Compile of MULTIPLIER_tb.vhd was successful.
-# Compile of tb_alu.vhd was successful.
-# Compile of tb_csb.vhd was successful.
-# Compile of tb_fd.vhd was successful.
-# Compile of tb_mux21_generic.vhd was successful.
-# Compile of tb_p4adder.vhd was successful.
-# Compile of tb_rca.vhd was successful.
-# Compile of tb_registerfile.vhd was successful.
-# Compile of tb_registerfile_wrf.vhd was successful.
-# Compile of tb_regN.vhd was successful.
-# Compile of tb_stcg.vhd was successful.
-# Compile of tb_sum_gen.vhd was successful.
-# Compile of tb_memory_stage.sv was successful.
-
-
+echo "##########################################################"
+echo "####---> Starting regression test for every units <---####"
+echo "##########################################################"
 
 echo "Starting simulation of memory units"
 vism -suppress 12110 -novopt work.tb_memories -do ./scripts/memories_tb.do
@@ -96,6 +99,6 @@ vism -suppress 12110 -novopt work.tb_datapath -do ./scripts/datapath_tb.do
 echo "Starting simulation of cu stage unit"
 vism -suppress 12110 -novopt work.tb_cu -do ./scripts/cu_tb.do
 
-echo "Regression test passed"
+echo "[PASS] -> Regression test passed"
 rm -rf work 
 exit
