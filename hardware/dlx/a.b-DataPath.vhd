@@ -6,7 +6,7 @@
 -- Author      : Francesco Angione <s262620@studenti.polito.it> franout@github.com
 -- Company     : Politecnico di Torino, Italy
 -- Created     : Wed Jul 22 22:58:34 2020
--- Last update : Thu Jul 30 16:55:41 2020
+-- Last update : Fri Jul 31 17:41:38 2020
 -- Platform    : Default Part Number
 -- Standard    : VHDL-2008 
 --------------------------------------------------------------------------------
@@ -77,7 +77,7 @@ architecture structural of DATAPATH is
 			read_rf_p2               : in  std_logic;
 			write_rf                 : in  std_logic;
 			address_rf_write         : in  std_logic_vector(f_log2(RF_REGS)-1 downto 0);
-			compute_sext             : in  std_logic_vector(1 downto 0)
+			compute_sext             : in  std_logic
 		);
 	end component decode_stage;
 

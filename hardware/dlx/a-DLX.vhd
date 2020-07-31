@@ -6,7 +6,7 @@
 -- Author      : Francesco Angione <s262620@studenti.polito.it> franout@github.com
 -- Company     : Politecnico di Torino, Italy
 -- Created     : Wed Jul 22 22:58:15 2020
--- Last update : Thu Jul 23 17:39:42 2020
+-- Last update : Fri Jul 31 17:44:37 2020
 -- Platform    : Default Part Number
 -- Standard    : VHDL-2008 
 --------------------------------------------------------------------------------
@@ -31,22 +31,22 @@ entity DLX is
     -- Inputs
     CLK : in std_logic; -- Clock
     RST : in std_logic; -- Reset:Active-low
-    -- Instruction memory interface
+                        -- Instruction memory interface
     IRAM_ADDRESS : out std_logic_vector( iram_address_size- 1 downto 0);
-    IRAM_ENABLE   : out std_logic;
+    IRAM_ENABLE  : out std_logic;
     IRAM_READY   : in  std_logic;
     IRAM_DATA    : in  std_logic_vector(instruction_size-1 downto 0);
     -- Data memory Interface
     DRAM_ADDRESS      : out   std_logic_vector(dram_address_size-1 downto 0);
-    DRAM_ENABLE        : out   std_logic;
+    DRAM_ENABLE       : out   std_logic;
     DRAM_READNOTWRITE : out   std_logic;
     DRAM_READY        : in    std_logic;
     DRAM_DATA         : inout std_logic_vector(data_size-1 downto 0)
     -- simulation debug signals
     --synthesis_translate off
     ,
-    STATE_CU: out std_logic_vector(f_log2(tot_state)-1 downto 0)
-    --synthesis_translate on
+    STATE_CU : out std_logic_vector(f_log2(tot_state)-1 downto 0)
+  --synthesis_translate on
   );
 end DLX;
 
@@ -89,18 +89,18 @@ architecture dlx_rtl of DLX is
                                        -- WB Control signals
       WB_MUX_SEL : out std_logic;      -- Write Back MUX Sel
       RF_WE      : out std_logic);     -- Register File Write Enable
-    -- TODO add state output 
+                                       -- TODO add state output 
   end component;
   -- Datapath 
 
-component DATAPATH is
-generic (
-  
-);
-  port (
-    
-  );
-end component DATAPATH;
+  component DATAPATH is
+    generic (
+
+    );
+    port (
+
+    );
+  end component DATAPATH;
   ----------------------------------------------------------------
   -- Signals Declaration
   ----------------------------------------------------------------

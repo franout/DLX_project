@@ -25,21 +25,94 @@ program automatic test_decode(
 						output logic read_rf_p2,
 						output logic write_rf,
 						output logic [5-1:0]address_rf_write,
-						output logic [5-1:0]address_rf_read1,
-						output logic [5-1:0]address_rf_read2,
-						output logic [1:0]compute_sext
+						output logic compute_sext
 						);
+
+function logic [`NBIT-1:0] little_to_big_endian (logic [`NBIT-1:0] val);
+ 	automatic logic [`NBIT-1:0] tmp;
+ 	integer i;
+ 	for (i=0;i<`NBIT;i=i+1) begin
+
+ 	end
+ 	return tmp;
+
+ endfunction :  little_to_big_endian
+
 
 
 	default clocking test_clk @ (posedge dram_if.clk);
   	endclocking	// clock
-
+integer register_index;
 
 initial begin
+		$display("@%0dns Starting Program",$time);
+		rst=1;
+		enable_rf=1;
+		address_rf_write=0;
+		update_reg_value=0;
+		instruction_reg=0;
+		new_prog_counter_val=$urandom();
+		read_rf_p2=0;
+		read_rf_p1=0;
+		write_rf=0;
+		$display("Starting testbench for decode stge",);
+		## 1;
+		$display("Reset stage",);
+		rst=0;
+		new_prog_counter_val=$urandom();
+		##3 ;
+		$display("Sign extention check unsigned",);
+		rst=1;
+		compute_sext=1;
+		instruction_reg='h1234FFFF;
+		new_prog_counter_val=$urandom();
+		##1 ;
+		$display("Sign extention check signed",);
+		compute_sext=1;
+		instruction_reg='h1238FFFF;
+		new_prog_counter_val=$urandom();
+		##1;
+		$display("Read and write on the same port",);
+		$urandom_range(0,31);
+		register_index=$urandom();
+		read_rf_p1=1;
+		read_rf_p2=1;
+		instruction_reg=register_index
+		if(val_a!==0 || val_b!==0) begin
+			$display("Init values of register files are not zeros",);
+			$stop();
+		end
+		##1;
+		// write
+		read_p1=0;
+		read_p2=0;
+		write_rf=1;
+		address_rf_write=$urandom();
+		update_reg_value=159753;
+		##1;
+		// read again 
+		read_p1=1;
+		write_rf=0;
+		register_index=address_rf_write;
+
+		if(val_a!==159753)begin
+			$display("Error in writing in the register file",);
+			$stop();
+		end
+		##1;
+
+		$display("Random read and write",);
+
+		for ( i=0;i<4;i++) begin
+			register_index=$urandom();
 
 
+		end
 
-end 
+		## 3;
+		$display("Decode stage has passed the testbench",);
+		$finish;
+end 	
 
 
 endprogram : test_decode
@@ -72,19 +145,54 @@ localparam clock_period= 10ns;
 	logic read_rf_p2;
 	logic write_rf;
 	logic [5-1:0]address_rf_write; // # regs is fixed at 32
-	logic [5-1:0]address_rf_read1;
-	logic [5-1:0]address_rf_read2;
-	logic [1:0]compute_sext; // msb is for signed or not 
+	logic compute_sext; // msb is for signed or not 
 
   	// property definitions
-
-
   	// ADDRESS CHECK RANGE for rf
+  	property address_range();
+  		@(test_clk)
 
-  	// address check range it is the same for the rf and ir
 
+  	endproperty;
+
+  	// address  it is the same for the rf and ir
+  	property address_equal_rf_ir();
+  			@(test_clk) // calling also address range
+
+  	endproperty;
 
   	// read and output on the same port 
+  	property read_p1();
+  		@(test_clk)
+  			disable iff(!rst)
+  				read_p1 |-> val_a;
+  	endproperty;
+
+  	property read_p2();
+  		@(test_clk)
+  			disable iff(!rst)
+  				read_p2 |-> val_b;
+  	endproperty;
+
+  	property write_in_rf();
+  		@(test_clk)
+  			disable iff(!rst)
+  				write_rf |=> address_rf_write;
+  	endproperty;
+
+
+  	// program counter propagation to the first operand of the ALU
+  	property pc_propagation();
+  		 @(test_clk)
+  		 	disable iff (!rst) // except for reset condition 
+  		 		new_prog_counter_val |-> (new_prog_counter_val_exe && new_prog_counter_val_exe=== new_prog_counter_val_exe);
+  	endproperty;
+
+  	/// properties instantiations
+
+  	pc_propagation_check: assert pc_propagation();
+  	address_equal_rf_ir_check: assert address_equal_rf_ir();
+
 
   	// instantiate the uut
   	decode_stage #(
@@ -112,8 +220,6 @@ localparam clock_period= 10ns;
 		.read_rf_p2(read_rf_p2),
 		.write_rf(write_rf),
 		.address_rf_write(address_rf_write),
-		.address_rf_read1(address_rf_read1),
-		.address_rf_read2(address_rf_read2),
 		.compute_sext(compute_sext) // signal for computing sign exention of 16bit immediate value
   		);
 
@@ -128,8 +234,6 @@ localparam clock_period= 10ns;
 				.read_rf_p2(read_rf_p2),
 				.write_rf(write_rf),
 				.address_rf_write(address_rf_write),
-				.address_rf_read1(address_rf_read1),
-				.address_rf_read2(address_rf_read2),
 				.compute_sext(compute_sext)
   					);
 

@@ -6,7 +6,7 @@
 -- Author      : Francesco Angione <s262620@studenti.polito.it> franout@github.com
 -- Company     : Politecnico di Torino, Italy
 -- Created     : Wed Jul 22 23:00:17 2020
--- Last update : Wed Jul 29 17:33:43 2020
+-- Last update : Fri Jul 31 17:44:12 2020
 -- Platform    : Default Part Number
 -- Standard    : VHDL-2008 
 --------------------------------------------------------------------------------
@@ -101,7 +101,7 @@ begin
 			Q     => data_from_alu
 		);
 
-	DRAM_ADDRESS      <= alu_output_val( dram_address_size-1  downto 0 ); -- computed address, dllx is computing memory addresses on 32 bit. however 32 bit in sv for the memory cause an overflow so it is 16 bit address
+	DRAM_ADDRESS      <= alu_output_val( dram_address_size-1 downto 0 ); -- computed address, dllx is computing memory addresses on 32 bit. however 32 bit in sv for the memory cause an overflow so it is 16 bit address
 	DRAM_ENABLE       <= dram_enable_cu;
 	DRAM_READNOTWRITE <= dram_r_nw_cu;
 	dram_ready_cu     <= DRAM_READY;
