@@ -7,13 +7,13 @@
 // Author : Angione Francesco s262620@studenti.polito.it franout@Github.com
 // File   : tb_memory_stage.sv
 // Create : 2020-07-27 15:16:47
-// Revise : 2020-07-29 17:22:22
+// Revise : 2020-08-01 19:06:05
 // Editor : sublime text3, tab size (4)
 // Description: 
 // -----------------------------------------------------------------------------
 `timescale 1ns/1ps
-`include "../memories/memory_interfaces.svh"
-`include "../global_defs.svh"
+`include "../memories/005-memory_interfaces.svh"
+`include "../003-global_defs.svh"
 `define NBIT 32
 
 //automatic for having a clear environment eveyr call of the program 

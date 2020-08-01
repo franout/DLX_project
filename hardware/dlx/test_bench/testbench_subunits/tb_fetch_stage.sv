@@ -7,13 +7,13 @@
 // Author : Angione Francesco s262620@studenti.polito.it franout@Github.com
 // File   : tb_fetch_stage.sv
 // Create : 2020-07-27 15:18:55
-// Revise : 2020-07-29 15:50:50
+// Revise : 2020-08-01 19:06:48
 // Editor : sublime text3, tab size (4)
 // Description: 
 // -----------------------------------------------------------------------------
 `timescale 1ns/1ps
-`include "../memories/memory_interfaces.svh"
-`include "../global_defs.svh"
+`include "../memories/005-memory_interfaces.svh"
+`include "../003-global_defs.svh"
 
 program test_fetch( mem_interface.ro iram_if,
 input logic [`IRAM_ADDRESS_SIZE-1:0]new_pc_value ,

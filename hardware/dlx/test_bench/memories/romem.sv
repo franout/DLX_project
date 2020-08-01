@@ -16,7 +16,7 @@
 //				since it will be always be accessed by word accesses
 // -----------------------------------------------------------------------------
 `timescale 1ns/1ps
-`include "memory_interfaces.svh"
+`include "005-memory_interfaces.svh"
 
 module romem
 #(parameter FILE_PATH="",	// ROM INIT data file Note: add also extension

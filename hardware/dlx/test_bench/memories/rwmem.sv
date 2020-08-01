@@ -7,13 +7,13 @@
 // Author : Angione Francesco s262620@studenti.polito.it franout@Github.com
 // File   : rwmem.sv
 // Create : 2020-07-21 19:00:09
-// Revise : 2020-07-28 18:29:04
+// Revise : 2020-08-01 19:09:02
 // Editor : sublime text3, tab size (4)
 // Description: 
 // -----------------------------------------------------------------------------
 `timescale 1ns/1ps
 
-`include "memory_interfaces.svh"
+`include "005-memory_interfaces.svh"
 
 module rwmem
 #(parameter FILE_PATH="",		// RAM output data file

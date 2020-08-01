@@ -12,7 +12,8 @@
 // Description: 
 // ////////////////////////////////////////////////////////////////////////////-
 `timescale 1ns/1ps
-`include "../global_defs.svh"
+`include "../003-global_defs.svh"
+`include "uvm_macros.svh"
 `define NBIT 32
 
 program automatic test_decode(
@@ -29,8 +30,7 @@ program automatic test_decode(
 						input logic [`NBIT-1:0]val_a,
 						input logic [`IRAM_WORD_SIZE-1:0]new_prog_counter_val_exe,
 						input logic [`NBIT-1:0]val_b,
-						input logic [`NBIT-1:0]val_immediate,
-						input logic [`NBIT-1:0]update_reg_value
+						input logic [`NBIT-1:0]val_immediate
 						);
   
 	// tmp data for bit reverse
@@ -38,7 +38,7 @@ program automatic test_decode(
   	 bit [4:0] array ; // we just need to reverse the address of the registers use {<<{array}} and then mask properly the integer value
 	integer register_index;		 // {<<8{array}}; 
 
-
+	integer i;
 
 	default clocking test_clk @ (posedge dram_if.clk);
   	endclocking	// clock
@@ -88,8 +88,8 @@ initial begin
 		end
 		##1;
 		// write
-		read_p1=0;
-		read_p2=0;
+		read_rf_p1=0;
+		read_rf_p2=0;
 		write_rf=1;
 		array=$urandom();
 		register_index={<<{array}};
@@ -98,7 +98,7 @@ initial begin
 		update_reg_value=159753;
 		##1;
 		// read again 
-		read_p1=1;
+		read_rf_p1=1;
 		write_rf=0;
 		register_index=address_rf_write;
 		if(val_a!==159753)begin
@@ -111,16 +111,16 @@ initial begin
 			register_index=$urandom();
 			if(i%2==0) begin
 				write_rf=0;
-				read_p1=1;
-				read_p2=1;
+				read_rf_p1=1;
+				read_rf_p2=1;
 				array=$urandom();
 				register_index={<<{array}};
 				instruction_reg[10:6]=register_index; // check indexes 
 				instruction_reg[15:11]=register_index+1;
 			end else begin 
 				write_rf=1;
-				read_p1=0;
-				read_p2=0;
+				read_rf_p1=0;
+				read_rf_p2=0;
 				array=$urandom();
 				register_index={<<{array}};
 				address_rf_write=register_index;
@@ -172,29 +172,37 @@ localparam clock_period= 10ns;
   	property address_range(int min, int max);
   		@(test_clk)
   				disable iff(!rst)
-  				write_rf |=> (address_rf_write>= min && address_rf_write<=max)
+  				write_rf |=> (address_rf_write>= min && address_rf_write<=max);
+  	endproperty;
+
+  	property address_equality;
+  	int v_a; 
+  		  		@(test_clk) 
+  		  			disable iff(!rst)
+     (!$stable(address_rf_write), v_a = address_rf_write) |=> (v_a==(instruction_reg[20:16]>>4));
+  		  			
   	endproperty;
 
   	// address  it is the same for the rf and ir
-  	property address_equal_rf_ir();
+  	property address_equal_rf_ir;
   		@(test_clk) // calling also address range
-  		write_rf |=> ( address_rf_write==={instruction_reg[20:16]>>} && address_range(0,31)); // address equals to the ones in the IR , check also the range
+  		write_rf |=> (  address_equality && address_range(0,31) ); // address equals to the ones in the IR , check also the range
   	endproperty;
 
   	// read and output on the same port 
-  	property read_p1();
+  	property read_p1;
   		@(test_clk)
   			disable iff(!rst)
   				read_p1 |-> val_a;
   	endproperty;
 
-  	property read_p2();
+  	property read_p2;
   		@(test_clk)
   			disable iff(!rst)
   				read_p2 |-> val_b;
   	endproperty;
 
-  	property write_in_rf();
+  	property write_in_rf;
   		@(test_clk)
   			disable iff(!rst)
   				write_rf |=> address_rf_write;
@@ -202,7 +210,7 @@ localparam clock_period= 10ns;
 
 
   	// program counter propagation to the first operand of the ALU
-  	property pc_propagation();
+  	property pc_propagation;
   		 @(test_clk)
   		 	disable iff (!rst) // except for reset condition 
   		 		new_prog_counter_val |-> (new_prog_counter_val_exe && new_prog_counter_val_exe=== new_prog_counter_val_exe);
@@ -210,11 +218,11 @@ localparam clock_period= 10ns;
 
   	/// properties instantiations
 
-  	pc_propagation_check: assert pc_propagation();
-  	address_equal_rf_ir_check: assert address_equal_rf_ir();
-  	read_p1_check: assert read_p1();
-  	read_p2_check: assert read_p2();
-  	write_rf_check: assert write_in_rf();
+  	pc_propagation_check: assert  property (pc_propagation) else `uvm_error("Failed at %0dns pc propagation check",$time());
+  	address_equal_rf_ir_check: assert  property (address_equal_rf_ir);
+  	read_p1_check: assert property  (read_p1);
+  	read_p2_check: assert property  (read_p2);
+  	write_rf_check: assert property  (write_in_rf);
 
   	// instantiate the uut
   	decode_stage #(
@@ -256,7 +264,7 @@ localparam clock_period= 10ns;
 				.read_rf_p2(read_rf_p2),
 				.write_rf(write_rf),
 				.address_rf_write(address_rf_write),
-				.compute_sext(compute_sext)
+				.compute_sext(compute_sext),
 				.val_a(val_a),
 				.new_prog_counter_val_exe(new_prog_counter_val_exe),
 				.val_b(val_b),

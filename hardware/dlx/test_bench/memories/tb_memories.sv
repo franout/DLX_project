@@ -7,15 +7,15 @@
 // Author : Angione Francesco s262620@studenti.polito.it franout@Github.com
 // File   : tb_memories.sv
 // Create : 2020-07-22 20:19:53
-// Revise : 2020-07-27 17:17:05
+// Revise : 2020-08-01 19:12:15
 // Editor : sublime text3, tab size (4)
 // Description: 
 // -----------------------------------------------------------------------------
 
 `timescale 1ns/1ps
 
-`include "../global_defs.svh"
-`include "memory_interfaces.svh"
+`include "../003-global_defs.svh"
+`include "005-memory_interfaces.svh"
 
 /* in memory_interfaces.svh
 interface mem_interface
