@@ -13,10 +13,11 @@
 // ////////////////////////////////////////////////////////////////////////////-
 `timescale 1ns/1ps
 `include "../003-global_defs.svh"
-`include "uvm_macros.svh"
+
 `define NBIT 32
 
 program automatic test_decode(
+						input logic clk,
 						output logic rst,
 						output logic [`IRAM_WORD_SIZE-1:0]instruction_reg,
 						output logic [`IRAM_WORD_SIZE-1:0]new_prog_counter_val,
@@ -40,13 +41,13 @@ program automatic test_decode(
 
 	integer i;
 
-	default clocking test_clk @ (posedge dram_if.clk);
+	default clocking test_clk @ (posedge clk);
   	endclocking	// clock
-
+//TODO PROBLEM WITH ADDRESSES
 
 initial begin
 		$display("@%0dns Starting Program",$time);
-		rst=1;
+		rst=0;
 		enable_rf=1;
 		address_rf_write=0;
 		update_reg_value=0;
@@ -59,8 +60,7 @@ initial begin
 		## 1;
 		$display("Reset stage",);
 		rst=0;
-		new_prog_counter_val=$urandom();
-		##3 ;
+		##1 ;
 		$display("Sign extention check unsigned",);
 		rst=1;
 		compute_sext=1;
@@ -170,41 +170,42 @@ localparam clock_period= 10ns;
   	// property definitions
   	// ADDRESS CHECK RANGE for rf
   	property address_range(int min, int max);
-  		@(test_clk)
-  				disable iff(!rst)
   				write_rf |=> (address_rf_write>= min && address_rf_write<=max);
   	endproperty;
 
   	property address_equality;
   	int v_a; 
-  		  		@(test_clk) 
-  		  			disable iff(!rst)
      (!$stable(address_rf_write), v_a = address_rf_write) |=> (v_a==(instruction_reg[20:16]>>4));
   		  			
   	endproperty;
 
   	// address  it is the same for the rf and ir
   	property address_equal_rf_ir;
-  		@(test_clk) // calling also address range
-  		write_rf |=> (  address_equality && address_range(0,31) ); // address equals to the ones in the IR , check also the range
+  		@(test_clk) 
+			disable iff(!rst || !enable_rf )
+  		write_rf |=> (  address_equality and address_range(0,31) ); // address equals to the ones in the IR , check also the range
   	endproperty;
 
-  	// read and output on the same port 
+  	// read and output on the same port
+	sequence read_port(port_num, val);
+		port_num ##1 val;
+	endsequence;
+ 
   	property read_p1;
   		@(test_clk)
-  			disable iff(!rst)
-  				read_p1 |-> val_a;
+  			disable iff(!rst|| !enable_rf)
+			read_port(read_rf_p1 ,val_a);
   	endproperty;
 
   	property read_p2;
   		@(test_clk)
-  			disable iff(!rst)
-  				read_p2 |-> val_b;
+  			disable iff(!rst|| !enable_rf || compute_sext)
+	  			read_port(read_rf_p2, val_b);
   	endproperty;
 
   	property write_in_rf;
   		@(test_clk)
-  			disable iff(!rst)
+  			disable iff(!rst || !enable_rf || compute_sext)
   				write_rf |=> address_rf_write;
   	endproperty;
 
@@ -218,11 +219,11 @@ localparam clock_period= 10ns;
 
   	/// properties instantiations
 
-  	pc_propagation_check: assert  property (pc_propagation) else `uvm_error("Failed at %0dns pc propagation check",$time());
-  	address_equal_rf_ir_check: assert  property (address_equal_rf_ir);
-  	read_p1_check: assert property  (read_p1);
-  	read_p2_check: assert property  (read_p2);
-  	write_rf_check: assert property  (write_in_rf);
+  	pc_propagation_check: assert  property (pc_propagation) else $display("Failed at %0dns pc propagation check",$time());
+  	address_equal_rf_ir_check: assert  property (address_equal_rf_ir) else $display("Failed at %0dns address equal in IR and write RF",$time());
+  	read_p1_check: assert property  (read_p1)else $display("Failed at %0dns Read port 1 rf",$time());
+  	read_p2_check: assert property  (read_p2)else $display("Failed at %0dns Read port 2 rf",$time());
+  	write_rf_check: assert property  (write_in_rf)else $display("Failed at %0dns Write port rf",$time());
 
   	// instantiate the uut
   	decode_stage #(
@@ -255,6 +256,7 @@ localparam clock_period= 10ns;
 
   	// instanatiate the test_program
   	test_decode test(
+				.clk(clk),
   				.rst(rst),
   				.new_prog_counter_val(new_prog_counter_val),
   				.instruction_reg(instruction_reg),

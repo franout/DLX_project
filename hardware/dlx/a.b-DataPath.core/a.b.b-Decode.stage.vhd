@@ -69,7 +69,7 @@ begin
 		)
 		port map (
 			CLK     => clk,
-			RESET   => rst,
+			RESET   => rstn,
 			ENABLE  => enable_rf,
 			RD1     => read_rf_p1,
 			RD2     => read_rf_p2,

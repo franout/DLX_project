@@ -8,122 +8,147 @@ z2
 !i10f 100
 cModel Technology
 Z0 d/home/ms20.50/Desktop/DLX_project/project/simulation
-Eadder
-Z1 w1595526181
-Z2 DPx4 ieee 11 numeric_std 0 22 aU^R8eGcicLcUFIaBQSL>3
-Z3 DPx3 std 6 textio 0 22 zE1`LPoLg^DX3Oz^4Fj1K3
-Z4 DPx4 ieee 14 std_logic_1164 0 22 cVAk:aDinOX8^VGI1ekP<3
+X_0042dimplemented_instructions_svh_unit
+Z1 DXx6 sv_std 3 std 0 22 d=_JfHTnXCN[H5FjiaJJc0
+Z2 !s110 1596311151
+!i10b 1
+!s100 8Y]J]SkP:zL1K1O?zcPH>3
+IiaAE:Qg=NaC6d>Y=NXP9j1
+ViaAE:Qg=NaC6d>Y=NXP9j1
+!i103 1
+S1
 R0
-Z5 8/home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/adder.vhd
-Z6 F/home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/adder.vhd
+Z3 w1596311071
+8/home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/004-implemented_instructions.svh
+Z4 F/home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/004-implemented_instructions.svh
+Z5 L0 19
+Z6 OL;L;10.7c;67
+r1
+!s85 0
+31
+Z7 !s108 1596311151.000000
+!s107 /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/004-implemented_instructions.svh|
+!s90 -reportprogress|300|-work|work|-vopt|-sv|-stats=none|/home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/004-implemented_instructions.svh|
+!i113 0
+Z8 o-work work -sv -L mtiAvm -L mtiRnm -L mtiOvm -L mtiUvm -L mtiUPF -L infact
+Z9 tCvgOpt 0
+n@_0042dimplemented_instructions_svh_unit
+Eadder
+Z10 w1595526181
+Z11 DPx4 ieee 11 numeric_std 0 22 aU^R8eGcicLcUFIaBQSL>3
+Z12 DPx3 std 6 textio 0 22 zE1`LPoLg^DX3Oz^4Fj1K3
+Z13 DPx4 ieee 14 std_logic_1164 0 22 cVAk:aDinOX8^VGI1ekP<3
+R0
+Z14 8/home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/adder.vhd
+Z15 F/home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/adder.vhd
 l0
 L6
 VjLm<f<[;fF`8e]VNm8;[;2
 !s100 Z1[Kf^ge:i<cI9h06I<h:3
-Z7 OL;C;10.7c;67
+Z16 OL;C;10.7c;67
 33
-Z8 !s110 1596297759
+Z17 !s110 1596311144
 !i10b 1
-Z9 !s108 1596297759.000000
-Z10 !s90 -reportprogress|300|-work|work|-2008|-explicit|-vopt|-stats=none|/home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/adder.vhd|
-Z11 !s107 /home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/adder.vhd|
+Z18 !s108 1596311144.000000
+Z19 !s90 -reportprogress|300|-work|work|-2008|-explicit|-vopt|-stats=none|/home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/adder.vhd|
+Z20 !s107 /home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/adder.vhd|
 !i113 0
-Z12 o-work work -2008 -explicit
-Z13 tExplicit 1 CvgOpt 0
+Z21 o-work work -2008 -explicit
+Z22 tExplicit 1 CvgOpt 0
 Abeh
-R2
-R3
-R4
-Z14 DEx4 work 5 adder 0 22 jLm<f<[;fF`8e]VNm8;[;2
+R11
+R12
+R13
+Z23 DEx4 work 5 adder 0 22 jLm<f<[;fF`8e]VNm8;[;2
 l17
 L14
 VgiFXNl7R]eCe:ISV?Ka@W2
 !s100 KP5kfz]TKUPklm52bg4T33
-R7
+R16
 33
-R8
+R17
 !i10b 1
-R9
-R10
-R11
+R18
+R19
+R20
 !i113 0
+R21
+R22
+Ealu
+R10
+Z24 DPx4 work 9 alu_types 0 22 ]`05eK144jfSK_;9kf<UZ2
+Z25 DPx4 work 9 constants 0 22 >jSn0;jgZJ==XeSecBYgm2
+R11
 R12
 R13
-Ealu
-R1
-Z15 DPx4 work 9 alu_types 0 22 ]`05eK144jfSK_;9kf<UZ2
-Z16 DPx4 work 9 constants 0 22 >jSn0;jgZJ==XeSecBYgm2
-R2
-R3
-R4
 R0
-Z17 8/home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/alu.vhd
-Z18 F/home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/alu.vhd
+Z26 8/home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/alu.vhd
+Z27 F/home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/alu.vhd
 l0
 L8
 VF@:McnIbX7JHN9j_?W3K]2
 !s100 1?7e;[D=FJ`IIk5^HM77F0
-R7
+R16
 33
-Z19 !s110 1596297761
+Z28 !s110 1596311146
 !i10b 1
-Z20 !s108 1596297761.000000
-Z21 !s90 -reportprogress|300|-work|work|-2008|-explicit|-vopt|-stats=none|/home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/alu.vhd|
-Z22 !s107 /home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/alu.vhd|
+Z29 !s108 1596311146.000000
+Z30 !s90 -reportprogress|300|-work|work|-2008|-explicit|-vopt|-stats=none|/home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/alu.vhd|
+Z31 !s107 /home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/alu.vhd|
 !i113 0
+R21
+R22
+Abehavior
+R24
+R25
+R11
 R12
 R13
-Abehavior
-R15
-R16
-R2
-R3
-R4
-Z23 DEx4 work 3 alu 0 22 F@:McnIbX7JHN9j_?W3K]2
+Z32 DEx4 work 3 alu 0 22 F@:McnIbX7JHN9j_?W3K]2
 l30
 L15
 VRXIK?PEdMGG<]>cC3<jWo3
 !s100 19C9><JdDXCnz^6Fk;NlR0
-R7
+R16
 33
-R19
+R28
 !i10b 1
-R20
+R29
+R30
+R31
+!i113 0
 R21
 R22
-!i113 0
-R12
-R13
 Calu_test
 eTBALU
-Z24 aTEST
-R23
-R2
+Z33 aTEST
+R32
+R11
 DCx4 work 18 cfg_alu_behavioral 0 22 X2;XMYS;DNXOaQR?i6eSz2
 DAx4 work 5 tbalu 4 test 22 lMNO0@Fm`aI@z14kR:kGB1
-R15
-R16
-R3
-R4
-Z25 DEx4 work 5 tbalu 0 22 36h4R[BCJ`:U_XN^^YFkF2
-Z26 w1595518543
+R24
+R25
+R12
+R13
+Z34 DEx4 work 5 tbalu 0 22 36h4R[BCJ`:U_XN^^YFkF2
+Z35 w1595518543
 R0
-Z27 8/home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/testbench_subunits_labs/tb_alu.vhd
-Z28 F/home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/testbench_subunits_labs/tb_alu.vhd
+Z36 8/home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/testbench_subunits_labs/tb_alu.vhd
+Z37 F/home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/testbench_subunits_labs/tb_alu.vhd
 l0
 L53
 V37Y8C13mjNW=7N6=0h`4l1
 !s100 jmh50@aS9GZ;>?@^[EV9l2
-R7
+R16
 32
-Z29 !s110 1596297764
+Z38 !s110 1596311149
 !i10b 0
-Z30 !s108 1596297764.000000
-Z31 !s90 -reportprogress|300|-work|work|-2002|-explicit|-vopt|-stats=none|/home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/testbench_subunits_labs/tb_alu.vhd|
-Z32 !s107 /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/testbench_subunits_labs/tb_alu.vhd|
+Z39 !s108 1596311149.000000
+Z40 !s90 -reportprogress|300|-work|work|-2002|-explicit|-vopt|-stats=none|/home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/testbench_subunits_labs/tb_alu.vhd|
+Z41 !s107 /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/testbench_subunits_labs/tb_alu.vhd|
 !i113 0
-Z33 o-work work -2002 -explicit
-R13
+Z42 o-work work -2002 -explicit
+R22
 Palu_types
 w1595783136
 R0
@@ -133,1391 +158,1397 @@ l0
 L1
 V]`05eK144jfSK_;9kf<UZ2
 !s100 >1l]M3gU8FUKWMRLYjVhi1
-R7
+R16
 33
-Z34 !s110 1596297762
+Z43 !s110 1596311148
 !i10b 1
-Z35 !s108 1596297762.000000
+Z44 !s108 1596311147.000000
 !s90 -reportprogress|300|-work|work|-2008|-explicit|-vopt|-stats=none|/home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/alu_type.vhd|
 !s107 /home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/alu_type.vhd|
 !i113 0
+R21
+R22
+Eboothmul
+R10
+R25
+R11
 R12
 R13
-Eboothmul
-R1
-R16
-R2
-R3
-R4
 R0
-Z36 8/home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/boothmul.vhd
-Z37 F/home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/boothmul.vhd
+Z45 8/home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/boothmul.vhd
+Z46 F/home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/boothmul.vhd
 l0
 L7
 VV_1B;RGg2V[laKBfQ>aIU3
 !s100 onC=7DW0ob?:lDNlM_Y``0
-R7
+R16
 33
-R8
+R17
 !i10b 1
-R9
-Z38 !s90 -reportprogress|300|-work|work|-2008|-explicit|-vopt|-stats=none|/home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/boothmul.vhd|
-Z39 !s107 /home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/boothmul.vhd|
+R18
+Z47 !s90 -reportprogress|300|-work|work|-2008|-explicit|-vopt|-stats=none|/home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/boothmul.vhd|
+Z48 !s107 /home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/boothmul.vhd|
 !i113 0
+R21
+R22
+Astruc
+R25
+R11
 R12
 R13
-Astruc
-R16
-R2
-R3
-R4
-Z40 DEx4 work 8 boothmul 0 22 V_1B;RGg2V[laKBfQ>aIU3
+Z49 DEx4 work 8 boothmul 0 22 V_1B;RGg2V[laKBfQ>aIU3
 l65
 L14
 V:<IJQJi^jUC:bHjd?PHZY1
 !s100 1Q[j``aZ43G^hG@[fGZa_2
-R7
+R16
 33
-R8
+R17
 !i10b 1
-R9
-R38
-R39
+R18
+R47
+R48
 !i113 0
-R12
-R13
+R21
+R22
 Ccfg_adder_beh
 eadder
 abeh
 DAx4 work 5 adder 3 beh 22 giFXNl7R]eCe:ISV?Ka@W2
-R2
-R3
-R4
-R14
-R1
+R11
+R12
+R13
+R23
+R10
 R0
-R5
-R6
+R14
+R15
 l0
 L26
 VkaVDlh5zgc8[I=];d3ij13
 !s100 fR<T8M6A5B>iZKS[h:1kC3
-R7
+R16
 33
-R8
+R17
 !i10b 0
-R9
-R10
-R11
+R18
+R19
+R20
 !i113 0
-R12
-R13
+R21
+R22
 Ccfg_alu_behavioral
 eALU
 aBEHAVIOR
 DAx4 work 3 alu 8 behavior 22 RXIK?PEdMGG<]>cC3<jWo3
-R15
-R16
-R2
-R3
-R4
-R23
-R1
+R24
+R25
+R11
+R12
+R13
+R32
+R10
 R0
-R17
-R18
+R26
+R27
 l0
 L87
 VX2;XMYS;DNXOaQR?i6eSz2
 !s100 _IXY02h[kl6^:h_RjKIhk1
-R7
+R16
 33
-R19
+R28
 !i10b 0
-R20
+R29
+R30
+R31
+!i113 0
 R21
 R22
-!i113 0
-R12
-R13
 Ccfg_boothmul_struc
 eboothmul
-Z41 astruc
-R14
-Z42 DEx4 work 13 mux_zbit_nbit 0 22 DECif3Wd9gce?f`@7Vo?k2
-Z43 DEx4 work 7 encoder 0 22 gYafUF]LM?z]KDJSj]z`O0
-Z44 DEx4 work 11 complement2 0 22 iPaBhT1_ih:E`IdU1N3R?1
+Z50 astruc
+R23
+Z51 DEx4 work 13 mux_zbit_nbit 0 22 DECif3Wd9gce?f`@7Vo?k2
+Z52 DEx4 work 7 encoder 0 22 gYafUF]LM?z]KDJSj]z`O0
+Z53 DEx4 work 11 complement2 0 22 iPaBhT1_ih:E`IdU1N3R?1
 DAx4 work 8 boothmul 5 struc 22 :<IJQJi^jUC:bHjd?PHZY1
-R16
-R2
-R3
-R4
-R40
-R1
-R0
-R36
-R37
-l0
-L120
-V9NT7X@o2jQfj8cV2cJ<;32
-!s100 zE_A[eK4WX1Di>2`Zbbl@0
-R7
-33
-R8
-!i10b 0
-R9
-R38
-R39
-!i113 0
+R25
+R11
 R12
 R13
-Ccfg_complement2_beh
-ecomplement2
-abeh
-DAx4 work 11 complement2 3 beh 22 5=gVDFSc`]=6KB6Gl6g[I3
-R2
-R3
-R4
-R44
-R1
-R0
-Z45 8/home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/complement2.vhd
-Z46 F/home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/complement2.vhd
-l0
-L29
-V?cH?>Q:bJPXXMKVbhZE?W1
-!s100 ^[V=gbP=Iiee8Yje]hWk:2
-R7
-33
-R8
-!i10b 0
-R9
-Z47 !s90 -reportprogress|300|-work|work|-2008|-explicit|-vopt|-stats=none|/home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/complement2.vhd|
-Z48 !s107 /home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/complement2.vhd|
-!i113 0
-R12
-R13
-Ccfg_csb_structural
-eCSB
-Z49 aSTRUCTURAL
-Z50 DEx4 work 3 rca 0 22 :=lKE0;MbCJA0[TEGCIVe3
-Z51 DCx4 work 18 cfg_rca_structural 0 22 A>MjC5:PC>PE_4F1CTEDZ0
-DAx4 work 3 csb 10 structural 22 J4XZ[jzB^l@S57S^oPO1k3
-Z52 DPx4 ieee 15 std_logic_arith 0 22 [G314=:2zXJ`VORJe1J@Z1
-Z53 DPx4 ieee 18 std_logic_unsigned 0 22 ;eZjO2D4ZDz<]0>8AL<ne1
-R3
-R4
-Z54 DEx4 work 3 csb 0 22 ao7CYz=agQ_2b>lZ8I^Al2
-Z55 w1595794885
-R0
-Z56 8/home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/csb.vhd
-Z57 F/home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/csb.vhd
-l0
-L43
-Vf[:nL^dh?H^Q^L@FfdoKS2
-!s100 <CT45d7?lc`d<Vz>naHK;0
-R7
-33
-R19
-!i10b 0
-R20
-Z58 !s90 -reportprogress|300|-work|work|-2008|-explicit|-vopt|-stats=none|/home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/csb.vhd|
-Z59 !s107 /home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/csb.vhd|
-!i113 0
-R12
-R13
-Ccfg_encoder_beh
-eencoder
-abeh
-DAx4 work 7 encoder 3 beh 22 Y8F=^i9[DGI^STdN8IfGA0
-R2
-R3
-R4
-R43
-R1
-R0
-Z60 8/home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/encoder.vhd
-Z61 F/home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/encoder.vhd
-l0
-L21
-Vc1FHU;0<<mHai<5X[C3e33
-!s100 ;S<0B7XcU;OYBPeHen@2>1
-R7
-33
-R8
-!i10b 0
-R9
-Z62 !s90 -reportprogress|300|-work|work|-2008|-explicit|-vopt|-stats=none|/home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/encoder.vhd|
-Z63 !s107 /home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/encoder.vhd|
-!i113 0
-R12
-R13
-Ccfg_fa_behavioral
-eFA
-Z64 aBEHAVIORAL
-DAx4 work 2 fa 10 behavioral 22 T6fk=KH]U>k73HS[eBlj23
-R3
-R4
-Z65 DEx4 work 2 fa 0 22 C6lU6`GO:9k?bX51g0<G72
-Z66 w1595794766
-R0
-Z67 8/home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/fa.vhd
-Z68 F/home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/fa.vhd
-l0
-L23
-VPN=8kUdVUA1o09nj;TO_a3
-!s100 <aoN6nTNdYz7gZCU7J1zR3
-R7
-33
-R8
-!i10b 0
-R9
-Z69 !s90 -reportprogress|300|-work|work|-2008|-explicit|-vopt|-stats=none|/home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/fa.vhd|
-Z70 !s107 /home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/fa.vhd|
-!i113 0
-R12
-R13
-Ccfg_fd_pippo
-eFD
-aPIPPO
-DAx4 work 2 fd 5 pippo 22 Id3f]ahb6bz`AC[:@jo_M0
-R3
-R4
-Z71 DEx4 work 2 fd 0 22 6<302cT@E[CDhIc_US^P<1
-R1
-R0
-Z72 8/home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/fd.vhd
-Z73 F/home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/fd.vhd
-l0
-L44
-VkTGf505MWP399BMTLQJO^2
-!s100 ILaMdNiCeAn^GdZ^nC0[C1
-R7
-33
-Z74 !s110 1596297760
-!i10b 0
-Z75 !s108 1596297760.000000
-Z76 !s90 -reportprogress|300|-work|work|-2008|-explicit|-vopt|-stats=none|/home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/fd.vhd|
-Z77 !s107 /home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/fd.vhd|
-!i113 0
-R12
-R13
-Ccfg_fd_pluto
-eFD
-aPLUTO
-DAx4 work 2 fd 5 pluto 22 O?^?7m7:@hQTobF>E6;^b3
-R3
-R4
-R71
-R1
-R0
-R72
-R73
-l0
-L50
-VNjOi]=`_JodfgA1UclV_z1
-!s100 <e6XkBm65:?3OXb:G]NDl3
-R7
-33
-R74
-!i10b 0
-R75
-R76
-R77
-!i113 0
-R12
-R13
-Ccfg_gsb_behavioral
-eGSB
-R64
-DAx4 work 3 gsb 10 behavioral 22 amQ[PX3YPg4iSgB9R3N7R1
-R3
-R4
-Z78 DEx4 work 3 gsb 0 22 `X=PSCmHF9QnW@:T47_i73
-R1
-R0
-Z79 8/home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/gsb.vhd
-Z80 F/home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/gsb.vhd
-l0
-L19
-V<`JaRbgoS=2>4YeSVJoOj1
-!s100 kL`_VX_Yi3NA>:GQ<]P9o3
-R7
-33
-R74
-!i10b 0
-R75
-Z81 !s90 -reportprogress|300|-work|work|-2008|-explicit|-vopt|-stats=none|/home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/gsb.vhd|
-Z82 !s107 /home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/gsb.vhd|
-!i113 0
-R12
-R13
-Ccfg_mux21_behavioral_1
-Z83 eMUX21
-aBEHAVIORAL_1
-DAx4 work 5 mux21 12 behavioral_1 22 6Yz0aGJ>1GTbVbPLPOhVd2
-R16
-R3
-R4
-Z84 DEx4 work 5 mux21 0 22 8C`Pj6EdV9XM5ASMh8WIW1
-Z85 w1595793751
-R0
-Z86 8/home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/mux21.vhd
-Z87 F/home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/mux21.vhd
-l0
-L83
-VnS8lPGnfAlMhS6Jk]kTej1
-!s100 N<SV[43h4J[4SVS[2=kYF2
-R7
-33
-Z88 !s110 1596297763
-!i10b 0
-Z89 !s108 1596297763.000000
-Z90 !s90 -reportprogress|300|-work|work|-2008|-explicit|-vopt|-stats=none|/home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/mux21.vhd|
-Z91 !s107 /home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/mux21.vhd|
-!i113 0
-R12
-R13
-Ccfg_mux21_behavioral_2
-R83
-aBEHAVIORAL_2
-DAx4 work 5 mux21 12 behavioral_2 22 WVL:[WE8l`C^ObT_J>dYk1
-R16
-R3
-R4
-R84
-R85
-R0
-R86
-R87
-l0
-L88
-V[IG[OOY7[i5VbGQSYiRde3
-!s100 YbFM7Ko]Mh=[0;4zYlm1[3
-R7
-33
-R88
-!i10b 0
-R89
-R90
-R91
-!i113 0
-R12
-R13
-Ccfg_mux21_behavioral_3
-R83
-aBEHAVIORAL_3
-DAx4 work 5 mux21 12 behavioral_3 22 ]RD@Kd@S?FSEZ:;U6bdg23
-R16
-R3
-R4
-R84
-R85
-R0
-R86
-R87
-l0
-L93
-V[>>BWDVNdcnM1<DYnzk1V1
-!s100 X=8]aSPcdB`V_ZX1PGn>l2
-R7
-33
-R88
-!i10b 0
-R89
-R90
-R91
-!i113 0
-R12
-R13
-Ccfg_mux21_generic_beh
-Z92 emux21_nbit
-abeh
-DAx4 work 10 mux21_nbit 3 beh 22 JLD[cL9CN0I=hjWYGz7X_2
-R16
-R3
-R4
-Z93 DEx4 work 10 mux21_nbit 0 22 ::ZW3hP;b[OoLGgP0F5Y>1
-R1
-R0
-Z94 8/home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/mux21_nbit.vhd
-Z95 F/home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/mux21_nbit.vhd
-l0
-L51
-VeH>o9f;4oAa6K8NbKUm<g3
-!s100 HnXWL2_G=2=]]]<^N1R;h1
-R7
-33
-R19
-!i10b 0
-R20
-Z96 !s90 -reportprogress|300|-work|work|-2008|-explicit|-vopt|-stats=none|/home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/mux21_nbit.vhd|
-Z97 !s107 /home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/mux21_nbit.vhd|
-!i113 0
-R12
-R13
-Ccfg_mux21_generic_struc
-R92
-R41
-R84
-DCx4 work 22 cfg_mux21_behavioral_2 0 22 [IG[OOY7[i5VbGQSYiRde3
-DAx4 work 10 mux21_nbit 5 struc 22 Eb[38iD;NZE`IC8R:KQ:<3
-R16
-R3
-R4
-R93
-R1
-R0
-R94
-R95
-l0
-L56
-V=edW0V[aY<R=m?0ZBKfEh2
-!s100 VYVh0A:XJEzm7U?@0K>c90
-R7
-33
-R19
-!i10b 0
-R20
-R96
-R97
-!i113 0
-R12
-R13
-Ccfg_mux_beh
-eMUX_zbit_nbit
-abeh
-DAx4 work 13 mux_zbit_nbit 3 beh 22 TH@B0WG]LoceTh;m7c4B11
-R16
-R2
-R3
-R4
-R42
-Z98 w1595700166
-R0
-Z99 8/home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/mux.vhd
-Z100 F/home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/mux.vhd
-l0
-L34
-VHeO9CChZAWj@NB]MkYZ=10
-!s100 TY[Koz5_k7knUNJb<oYSY1
-R7
-33
-R74
-!i10b 0
-R75
-Z101 !s90 -reportprogress|300|-work|work|-2008|-explicit|-vopt|-stats=none|/home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/mux.vhd|
-Z102 !s107 /home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/mux.vhd|
-!i113 0
-R12
-R13
-Ccfg_pg_behavioral
-ePG
-R64
-DAx4 work 2 pg 10 behavioral 22 HbzLBC<Gla@B<4JDg9=ki1
-R3
-R4
-Z103 DEx4 work 2 pg 0 22 MlSO[QCR`P8HBSz1UcZ_Q1
-R1
-R0
-Z104 8/home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/pg.vhd
-Z105 F/home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/pg.vhd
-l0
-L23
-VoRHP4HeVMW6nhQFcK2SUz2
-!s100 HbNnVXbk;;[kFWAM_a9Vj1
-R7
-33
-R34
-!i10b 0
-R20
-Z106 !s90 -reportprogress|300|-work|work|-2008|-explicit|-vopt|-stats=none|/home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/pg.vhd|
-Z107 !s107 /home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/pg.vhd|
-!i113 0
-R12
-R13
-Ccfg_pgsb_behavioral
-ePGSB
-R64
-DAx4 work 4 pgsb 10 behavioral 22 W[3lkD]@SimJABahh1;cE1
-R3
-R4
-Z108 DEx4 work 4 pgsb 0 22 Q;7K2HUQ2[jQmVj:ZC_lE0
-R1
-R0
-Z109 8/home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/pgsb.vhd
-Z110 F/home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/pgsb.vhd
-l0
-L22
-VM0Ym>Zi995foULc0>[Fdn2
-!s100 JV0ZYe7f3Tm3YD8VohhDL2
-R7
-33
-R74
-!i10b 0
-R75
-Z111 !s90 -reportprogress|300|-work|work|-2008|-explicit|-vopt|-stats=none|/home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/pgsb.vhd|
-Z112 !s107 /home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/pgsb.vhd|
-!i113 0
-R12
-R13
-Ccfg_rca_structural
-eRCA
 R49
-R65
-DCx4 work 17 cfg_fa_behavioral 0 22 PN=8kUdVUA1o09nj;TO_a3
-DAx4 work 3 rca 10 structural 22 [[R]?9P1=5NA2O:GRX12h0
-R52
-R53
-R3
-R4
-R50
-Z113 w1595794808
-R0
-Z114 8/home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/rca.vhd
-Z115 F/home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/rca.vhd
-l0
-L45
-VA>MjC5:PC>PE_4F1CTEDZ0
-!s100 NP4ii1Lz5DJdATcK3JmNI3
-R7
-33
-R74
-!i10b 0
-R75
-Z116 !s90 -reportprogress|300|-work|work|-2008|-explicit|-vopt|-stats=none|/home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/rca.vhd|
-Z117 !s107 /home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/rca.vhd|
-!i113 0
-R12
-R13
-Ccfg_reg_pippo
-Z118 ereg_nbit
-R41
-R71
-Z119 DCx4 work 12 cfg_fd_pippo 0 22 kTGf505MWP399BMTLQJO^2
-Z120 DAx4 work 8 reg_nbit 5 struc 22 [TB@Ff_nX;mCzVIZM?Sj33
-R16
-R3
-R4
-Z121 DEx4 work 8 reg_nbit 0 22 zR>?0G=l7ng95=9?hhOS30
-R98
-R0
-Z122 8/home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/reg_nbit.vhd
-Z123 F/home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/reg_nbit.vhd
-l0
-L31
-V=kWm3Xin^3oCTmAaUzaaM0
-!s100 kGeS9h5;Mng_zi:SjkmAJ1
-R7
-33
-R74
-!i10b 0
-R75
-Z124 !s90 -reportprogress|300|-work|work|-2008|-explicit|-vopt|-stats=none|/home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/reg_nbit.vhd|
-Z125 !s107 /home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/reg_nbit.vhd|
-!i113 0
-R12
-R13
-Ccfg_reg_pluto
-R118
-R41
-R71
-Z126 DCx4 work 12 cfg_fd_pluto 0 22 NjOi]=`_JodfgA1UclV_z1
-R120
-R16
-R3
-R4
-R121
-R98
-R0
-R122
-R123
-l0
-L44
-VjVMDlgj?[`[FiBUCIkQA?2
-!s100 `z4^DmRe]GEQ`B><_`cSi0
-R7
-33
-R74
-!i10b 0
-R75
-R124
-R125
-!i113 0
-R12
-R13
-Ccfg_rf_beh
-eregister_file
-abeh
-DAx4 work 13 register_file 3 beh 22 m_1?Ol<acGZTh[:9za@J^2
-R2
-R3
-R4
-Z127 DEx4 work 13 register_file 0 22 W><jY26^XLPmTA]>T=@A12
-R1
-R0
-Z128 8/home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/registerfile.vhd
-Z129 F/home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/registerfile.vhd
-l0
-L60
-VdaZ2B@bEUPS6cfkV_c>JZ1
-!s100 H8bV@^l=OQ0aOUUdYj1693
-R7
-33
-R74
-!i10b 0
-R75
-Z130 !s90 -reportprogress|300|-work|work|-2008|-explicit|-vopt|-stats=none|/home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/registerfile.vhd|
-Z131 !s107 /home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/registerfile.vhd|
-!i113 0
-R12
-R13
-Ccfg_stcg_structural
-eSTCG
-R49
-R78
-R108
-R103
-DAx4 work 4 stcg 10 structural 22 Ln@JN@fid``DO==l:oO;L0
-R16
-R3
-R4
-Z132 DEx4 work 4 stcg 0 22 L283BimF^583zM1k3hDZ63
-R1
-R0
-Z133 8/home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/stcg.vhd
-Z134 F/home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/stcg.vhd
-l0
-L166
-VgzeNbk8e0QOfFYmT8jG:d3
-!s100 NdLcgj9kjAdE8gFMLA93l3
-R7
-33
-R19
-!i10b 0
-R20
-Z135 !s90 -reportprogress|300|-work|work|-2008|-explicit|-vopt|-stats=none|/home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/stcg.vhd|
-Z136 !s107 /home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/stcg.vhd|
-!i113 0
-R12
-R13
-Ccfg_sum_gen_structural
-eSUM_GEN
-R49
-R54
-Z137 DCx4 work 18 cfg_csb_structural 0 22 f[:nL^dh?H^Q^L@FfdoKS2
-DAx4 work 7 sum_gen 10 structural 22 =Gk20>zkWHz7TaKKJj:U92
-R52
-R53
-R3
-R4
-Z138 DEx4 work 7 sum_gen 0 22 0dmc>lEP9TjVdRMdWmC8b3
-R1
-R0
-Z139 8/home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/sum_gen.vhd
-Z140 F/home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/sum_gen.vhd
-l0
-L41
-VZO`EifHefg_PgGRl?7UAK2
-!s100 gKz976;9@6DF3hISX]o8<2
-R7
-33
-R34
-!i10b 0
-R35
-Z141 !s90 -reportprogress|300|-work|work|-2008|-explicit|-vopt|-stats=none|/home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/sum_gen.vhd|
-Z142 !s107 /home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/sum_gen.vhd|
-!i113 0
-R12
-R13
-Ccfg_tb_p4adder
-etb_p4adder
-Z143 atest
-Z144 DEx4 work 8 p4_adder 0 22 LflfY71>KQk063:LFP?Y;0
-DAx4 work 10 tb_p4adder 4 test 22 Nil0C^Ml=k7z5LPdVJUCM1
-R16
-R2
-R3
-R4
-Z145 DEx4 work 10 tb_p4adder 0 22 @YgL3D`FJ6d`In9f;L5gz3
-Z146 w1595886142
-R0
-Z147 8/home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/testbench_subunits_labs/tb_p4adder.vhd
-Z148 F/home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/testbench_subunits_labs/tb_p4adder.vhd
-l0
-L55
-VTD>6HbS]51eSnMh8:lG353
-!s100 Un9QAe6b9ojZAMZc1^UNR2
-R7
-32
-Z149 !s110 1596297765
-!i10b 0
-Z150 !s108 1596297765.000000
-Z151 !s90 -reportprogress|300|-work|work|-2002|-explicit|-vopt|-stats=none|/home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/testbench_subunits_labs/tb_p4adder.vhd|
-Z152 !s107 /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/testbench_subunits_labs/tb_p4adder.vhd|
-!i113 0
-R33
-R13
-Ccfg_testrf
-eTBREGISTERFILE
-aTESTA
-Z153 DEx4 work 3 wrf 0 22 fNdSi`:7Q=jM3PNS_1[US2
-R2
-DCx4 work 11 cfg_wrf_beh 0 22 28nWZmIiGc07;be9>HA]e3
-DAx4 work 14 tbregisterfile 5 testa 22 5ChIWjUDaRURnY:QSf0Ih3
-R16
-R3
-R4
-Z154 DEx4 work 14 tbregisterfile 0 22 T=P9aQ]ZDPj^bc5J8bo[@2
-R26
-R0
-Z155 8/home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/testbench_subunits_labs/tb_registerfile_wrf.vhd
-Z156 F/home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/testbench_subunits_labs/tb_registerfile_wrf.vhd
-l0
-L274
-VH;FYSmi]<Y>1g]VUGm_Om3
-!s100 ]9Y?R6UR1TUEY`2PdZY2Q1
-R7
-32
-R149
-!i10b 0
-R150
-Z157 !s90 -reportprogress|300|-work|work|-2002|-explicit|-vopt|-stats=none|/home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/testbench_subunits_labs/tb_registerfile_wrf.vhd|
-Z158 !s107 /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/testbench_subunits_labs/tb_registerfile_wrf.vhd|
-!i113 0
-R33
-R13
-Ccfg_wrf_beh
-ewrf
-abeh
-DAx4 work 3 wrf 3 beh 22 D_]eI?jZfMmEA]=cj82T23
-R16
-R2
-R3
-R4
-R153
-R1
-R0
-Z159 8/home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/wrf.vhd
-Z160 F/home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/wrf.vhd
-l0
-L167
-V28nWZmIiGc07;be9>HA]e3
-!s100 XV`UPOM^MCFUcG>W`KAT[3
-R7
-33
-R19
-!i10b 0
-R20
-Z161 !s90 -reportprogress|300|-work|work|-2008|-explicit|-vopt|-stats=none|/home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/wrf.vhd|
-Z162 !s107 /home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/wrf.vhd|
-!i113 0
-R12
-R13
-Ccgf_tb_stcg
-etb_stcg
-R143
-R132
-DCx4 work 19 cfg_stcg_structural 0 22 gzeNbk8e0QOfFYmT8jG:d3
-DAx4 work 7 tb_stcg 4 test 22 @gD`m>AnY2N2S5DjDbQhj0
-R16
-R3
-R4
-Z163 DEx4 work 7 tb_stcg 0 22 3ggog6eg2c2fQ]]>_J=b11
-R26
-R0
-Z164 8/home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/testbench_subunits_labs/tb_stcg.vhd
-Z165 F/home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/testbench_subunits_labs/tb_stcg.vhd
-l0
-L45
-VP;Wf2dKbdA^_0iaS9g`Xj3
-!s100 eZ6Q5]F7[GmNQhYg4BS`l2
-R7
-32
-Z166 !s110 1596297766
-!i10b 0
-R150
-Z167 !s90 -reportprogress|300|-work|work|-2002|-explicit|-vopt|-stats=none|/home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/testbench_subunits_labs/tb_stcg.vhd|
-Z168 !s107 /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/testbench_subunits_labs/tb_stcg.vhd|
-!i113 0
-R33
-R13
-Ecomplement2
-R1
-R2
-R3
-R4
+R10
 R0
 R45
 R46
 l0
-L7
-ViPaBhT1_ih:E`IdU1N3R?1
-!s100 =i92d:^ljKhk:SICTBSKb1
-R7
+L120
+V9NT7X@o2jQfj8cV2cJ<;32
+!s100 zE_A[eK4WX1Di>2`Zbbl@0
+R16
 33
-R8
-!i10b 1
-R9
+R17
+!i10b 0
+R18
 R47
 R48
 !i113 0
+R21
+R22
+Ccfg_complement2_beh
+ecomplement2
+abeh
+DAx4 work 11 complement2 3 beh 22 5=gVDFSc`]=6KB6Gl6g[I3
+R11
 R12
 R13
-Abeh
-R2
-R3
-R4
+R53
+R10
+R0
+Z54 8/home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/complement2.vhd
+Z55 F/home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/complement2.vhd
+l0
+L29
+V?cH?>Q:bJPXXMKVbhZE?W1
+!s100 ^[V=gbP=Iiee8Yje]hWk:2
+R16
+33
+R17
+!i10b 0
+R18
+Z56 !s90 -reportprogress|300|-work|work|-2008|-explicit|-vopt|-stats=none|/home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/complement2.vhd|
+Z57 !s107 /home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/complement2.vhd|
+!i113 0
+R21
+R22
+Ccfg_csb_structural
+eCSB
+Z58 aSTRUCTURAL
+Z59 DEx4 work 3 rca 0 22 :=lKE0;MbCJA0[TEGCIVe3
+Z60 DCx4 work 18 cfg_rca_structural 0 22 A>MjC5:PC>PE_4F1CTEDZ0
+DAx4 work 3 csb 10 structural 22 J4XZ[jzB^l@S57S^oPO1k3
+Z61 DPx4 ieee 15 std_logic_arith 0 22 [G314=:2zXJ`VORJe1J@Z1
+Z62 DPx4 ieee 18 std_logic_unsigned 0 22 ;eZjO2D4ZDz<]0>8AL<ne1
+R12
+R13
+Z63 DEx4 work 3 csb 0 22 ao7CYz=agQ_2b>lZ8I^Al2
+Z64 w1595794885
+R0
+Z65 8/home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/csb.vhd
+Z66 F/home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/csb.vhd
+l0
+L43
+Vf[:nL^dh?H^Q^L@FfdoKS2
+!s100 <CT45d7?lc`d<Vz>naHK;0
+R16
+33
+R28
+!i10b 0
+R29
+Z67 !s90 -reportprogress|300|-work|work|-2008|-explicit|-vopt|-stats=none|/home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/csb.vhd|
+Z68 !s107 /home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/csb.vhd|
+!i113 0
+R21
+R22
+Ccfg_encoder_beh
+eencoder
+abeh
+DAx4 work 7 encoder 3 beh 22 Y8F=^i9[DGI^STdN8IfGA0
+R11
+R12
+R13
+R52
+R10
+R0
+Z69 8/home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/encoder.vhd
+Z70 F/home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/encoder.vhd
+l0
+L21
+Vc1FHU;0<<mHai<5X[C3e33
+!s100 ;S<0B7XcU;OYBPeHen@2>1
+R16
+33
+R17
+!i10b 0
+R18
+Z71 !s90 -reportprogress|300|-work|work|-2008|-explicit|-vopt|-stats=none|/home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/encoder.vhd|
+Z72 !s107 /home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/encoder.vhd|
+!i113 0
+R21
+R22
+Ccfg_fa_behavioral
+eFA
+Z73 aBEHAVIORAL
+DAx4 work 2 fa 10 behavioral 22 T6fk=KH]U>k73HS[eBlj23
+R12
+R13
+Z74 DEx4 work 2 fa 0 22 C6lU6`GO:9k?bX51g0<G72
+Z75 w1595794766
+R0
+Z76 8/home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/fa.vhd
+Z77 F/home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/fa.vhd
+l0
+L23
+VPN=8kUdVUA1o09nj;TO_a3
+!s100 <aoN6nTNdYz7gZCU7J1zR3
+R16
+33
+R17
+!i10b 0
+R18
+Z78 !s90 -reportprogress|300|-work|work|-2008|-explicit|-vopt|-stats=none|/home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/fa.vhd|
+Z79 !s107 /home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/fa.vhd|
+!i113 0
+R21
+R22
+Ccfg_fd_pippo
+eFD
+aPIPPO
+DAx4 work 2 fd 5 pippo 22 Id3f]ahb6bz`AC[:@jo_M0
+R12
+R13
+Z80 DEx4 work 2 fd 0 22 6<302cT@E[CDhIc_US^P<1
+R10
+R0
+Z81 8/home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/fd.vhd
+Z82 F/home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/fd.vhd
+l0
+L44
+VkTGf505MWP399BMTLQJO^2
+!s100 ILaMdNiCeAn^GdZ^nC0[C1
+R16
+33
+Z83 !s110 1596311145
+!i10b 0
+Z84 !s108 1596311145.000000
+Z85 !s90 -reportprogress|300|-work|work|-2008|-explicit|-vopt|-stats=none|/home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/fd.vhd|
+Z86 !s107 /home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/fd.vhd|
+!i113 0
+R21
+R22
+Ccfg_fd_pluto
+eFD
+aPLUTO
+DAx4 work 2 fd 5 pluto 22 O?^?7m7:@hQTobF>E6;^b3
+R12
+R13
+R80
+R10
+R0
+R81
+R82
+l0
+L50
+VNjOi]=`_JodfgA1UclV_z1
+!s100 <e6XkBm65:?3OXb:G]NDl3
+R16
+33
+R83
+!i10b 0
+R84
+R85
+R86
+!i113 0
+R21
+R22
+Ccfg_gsb_behavioral
+eGSB
+R73
+DAx4 work 3 gsb 10 behavioral 22 amQ[PX3YPg4iSgB9R3N7R1
+R12
+R13
+Z87 DEx4 work 3 gsb 0 22 `X=PSCmHF9QnW@:T47_i73
+R10
+R0
+Z88 8/home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/gsb.vhd
+Z89 F/home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/gsb.vhd
+l0
+L19
+V<`JaRbgoS=2>4YeSVJoOj1
+!s100 kL`_VX_Yi3NA>:GQ<]P9o3
+R16
+33
+R83
+!i10b 0
+R84
+Z90 !s90 -reportprogress|300|-work|work|-2008|-explicit|-vopt|-stats=none|/home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/gsb.vhd|
+Z91 !s107 /home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/gsb.vhd|
+!i113 0
+R21
+R22
+Ccfg_mux21_behavioral_1
+Z92 eMUX21
+aBEHAVIORAL_1
+DAx4 work 5 mux21 12 behavioral_1 22 6Yz0aGJ>1GTbVbPLPOhVd2
+R25
+R12
+R13
+Z93 DEx4 work 5 mux21 0 22 8C`Pj6EdV9XM5ASMh8WIW1
+Z94 w1595793751
+R0
+Z95 8/home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/mux21.vhd
+Z96 F/home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/mux21.vhd
+l0
+L83
+VnS8lPGnfAlMhS6Jk]kTej1
+!s100 N<SV[43h4J[4SVS[2=kYF2
+R16
+33
+R43
+!i10b 0
+Z97 !s108 1596311148.000000
+Z98 !s90 -reportprogress|300|-work|work|-2008|-explicit|-vopt|-stats=none|/home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/mux21.vhd|
+Z99 !s107 /home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/mux21.vhd|
+!i113 0
+R21
+R22
+Ccfg_mux21_behavioral_2
+R92
+aBEHAVIORAL_2
+DAx4 work 5 mux21 12 behavioral_2 22 WVL:[WE8l`C^ObT_J>dYk1
+R25
+R12
+R13
+R93
+R94
+R0
+R95
+R96
+l0
+L88
+V[IG[OOY7[i5VbGQSYiRde3
+!s100 YbFM7Ko]Mh=[0;4zYlm1[3
+R16
+33
+R43
+!i10b 0
+R97
+R98
+R99
+!i113 0
+R21
+R22
+Ccfg_mux21_behavioral_3
+R92
+aBEHAVIORAL_3
+DAx4 work 5 mux21 12 behavioral_3 22 ]RD@Kd@S?FSEZ:;U6bdg23
+R25
+R12
+R13
+R93
+R94
+R0
+R95
+R96
+l0
+L93
+V[>>BWDVNdcnM1<DYnzk1V1
+!s100 X=8]aSPcdB`V_ZX1PGn>l2
+R16
+33
+R43
+!i10b 0
+R97
+R98
+R99
+!i113 0
+R21
+R22
+Ccfg_mux21_generic_beh
+Z100 emux21_nbit
+abeh
+DAx4 work 10 mux21_nbit 3 beh 22 JLD[cL9CN0I=hjWYGz7X_2
+R25
+R12
+R13
+Z101 DEx4 work 10 mux21_nbit 0 22 ::ZW3hP;b[OoLGgP0F5Y>1
+R10
+R0
+Z102 8/home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/mux21_nbit.vhd
+Z103 F/home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/mux21_nbit.vhd
+l0
+L51
+VeH>o9f;4oAa6K8NbKUm<g3
+!s100 HnXWL2_G=2=]]]<^N1R;h1
+R16
+33
+Z104 !s110 1596311147
+!i10b 0
+R29
+Z105 !s90 -reportprogress|300|-work|work|-2008|-explicit|-vopt|-stats=none|/home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/mux21_nbit.vhd|
+Z106 !s107 /home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/mux21_nbit.vhd|
+!i113 0
+R21
+R22
+Ccfg_mux21_generic_struc
+R100
+R50
+R93
+DCx4 work 22 cfg_mux21_behavioral_2 0 22 [IG[OOY7[i5VbGQSYiRde3
+DAx4 work 10 mux21_nbit 5 struc 22 Eb[38iD;NZE`IC8R:KQ:<3
+R25
+R12
+R13
+R101
+R10
+R0
+R102
+R103
+l0
+L56
+V=edW0V[aY<R=m?0ZBKfEh2
+!s100 VYVh0A:XJEzm7U?@0K>c90
+R16
+33
+R104
+!i10b 0
+R29
+R105
+R106
+!i113 0
+R21
+R22
+Ccfg_mux_beh
+eMUX_zbit_nbit
+abeh
+DAx4 work 13 mux_zbit_nbit 3 beh 22 TH@B0WG]LoceTh;m7c4B11
+R25
+R11
+R12
+R13
+R51
+Z107 w1595700166
+R0
+Z108 8/home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/mux.vhd
+Z109 F/home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/mux.vhd
+l0
+L34
+VHeO9CChZAWj@NB]MkYZ=10
+!s100 TY[Koz5_k7knUNJb<oYSY1
+R16
+33
+R83
+!i10b 0
+R84
+Z110 !s90 -reportprogress|300|-work|work|-2008|-explicit|-vopt|-stats=none|/home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/mux.vhd|
+Z111 !s107 /home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/mux.vhd|
+!i113 0
+R21
+R22
+Ccfg_pg_behavioral
+ePG
+R73
+DAx4 work 2 pg 10 behavioral 22 HbzLBC<Gla@B<4JDg9=ki1
+R12
+R13
+Z112 DEx4 work 2 pg 0 22 MlSO[QCR`P8HBSz1UcZ_Q1
+R10
+R0
+Z113 8/home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/pg.vhd
+Z114 F/home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/pg.vhd
+l0
+L23
+VoRHP4HeVMW6nhQFcK2SUz2
+!s100 HbNnVXbk;;[kFWAM_a9Vj1
+R16
+33
+R104
+!i10b 0
 R44
+Z115 !s90 -reportprogress|300|-work|work|-2008|-explicit|-vopt|-stats=none|/home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/pg.vhd|
+Z116 !s107 /home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/pg.vhd|
+!i113 0
+R21
+R22
+Ccfg_pgsb_behavioral
+ePGSB
+R73
+DAx4 work 4 pgsb 10 behavioral 22 W[3lkD]@SimJABahh1;cE1
+R12
+R13
+Z117 DEx4 work 4 pgsb 0 22 Q;7K2HUQ2[jQmVj:ZC_lE0
+R10
+R0
+Z118 8/home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/pgsb.vhd
+Z119 F/home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/pgsb.vhd
+l0
+L22
+VM0Ym>Zi995foULc0>[Fdn2
+!s100 JV0ZYe7f3Tm3YD8VohhDL2
+R16
+33
+R83
+!i10b 0
+R84
+Z120 !s90 -reportprogress|300|-work|work|-2008|-explicit|-vopt|-stats=none|/home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/pgsb.vhd|
+Z121 !s107 /home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/pgsb.vhd|
+!i113 0
+R21
+R22
+Ccfg_rca_structural
+eRCA
+R58
+R74
+DCx4 work 17 cfg_fa_behavioral 0 22 PN=8kUdVUA1o09nj;TO_a3
+DAx4 work 3 rca 10 structural 22 [[R]?9P1=5NA2O:GRX12h0
+R61
+R62
+R12
+R13
+R59
+Z122 w1595794808
+R0
+Z123 8/home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/rca.vhd
+Z124 F/home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/rca.vhd
+l0
+L45
+VA>MjC5:PC>PE_4F1CTEDZ0
+!s100 NP4ii1Lz5DJdATcK3JmNI3
+R16
+33
+R83
+!i10b 0
+R84
+Z125 !s90 -reportprogress|300|-work|work|-2008|-explicit|-vopt|-stats=none|/home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/rca.vhd|
+Z126 !s107 /home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/rca.vhd|
+!i113 0
+R21
+R22
+Ccfg_reg_pippo
+Z127 ereg_nbit
+R50
+R80
+Z128 DCx4 work 12 cfg_fd_pippo 0 22 kTGf505MWP399BMTLQJO^2
+Z129 DAx4 work 8 reg_nbit 5 struc 22 [TB@Ff_nX;mCzVIZM?Sj33
+R25
+R12
+R13
+Z130 DEx4 work 8 reg_nbit 0 22 zR>?0G=l7ng95=9?hhOS30
+R107
+R0
+Z131 8/home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/reg_nbit.vhd
+Z132 F/home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/reg_nbit.vhd
+l0
+L31
+V=kWm3Xin^3oCTmAaUzaaM0
+!s100 kGeS9h5;Mng_zi:SjkmAJ1
+R16
+33
+R83
+!i10b 0
+R84
+Z133 !s90 -reportprogress|300|-work|work|-2008|-explicit|-vopt|-stats=none|/home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/reg_nbit.vhd|
+Z134 !s107 /home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/reg_nbit.vhd|
+!i113 0
+R21
+R22
+Ccfg_reg_pluto
+R127
+R50
+R80
+Z135 DCx4 work 12 cfg_fd_pluto 0 22 NjOi]=`_JodfgA1UclV_z1
+R129
+R25
+R12
+R13
+R130
+R107
+R0
+R131
+R132
+l0
+L44
+VjVMDlgj?[`[FiBUCIkQA?2
+!s100 `z4^DmRe]GEQ`B><_`cSi0
+R16
+33
+R83
+!i10b 0
+R84
+R133
+R134
+!i113 0
+R21
+R22
+Ccfg_rf_beh
+eregister_file
+abeh
+DAx4 work 13 register_file 3 beh 22 m_1?Ol<acGZTh[:9za@J^2
+R11
+R12
+R13
+Z136 DEx4 work 13 register_file 0 22 W><jY26^XLPmTA]>T=@A12
+R10
+R0
+Z137 8/home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/registerfile.vhd
+Z138 F/home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/registerfile.vhd
+l0
+L60
+VdaZ2B@bEUPS6cfkV_c>JZ1
+!s100 H8bV@^l=OQ0aOUUdYj1693
+R16
+33
+R28
+!i10b 0
+R84
+Z139 !s90 -reportprogress|300|-work|work|-2008|-explicit|-vopt|-stats=none|/home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/registerfile.vhd|
+Z140 !s107 /home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/registerfile.vhd|
+!i113 0
+R21
+R22
+Ccfg_stcg_structural
+eSTCG
+R58
+R87
+R117
+R112
+DAx4 work 4 stcg 10 structural 22 Ln@JN@fid``DO==l:oO;L0
+R25
+R12
+R13
+Z141 DEx4 work 4 stcg 0 22 L283BimF^583zM1k3hDZ63
+R10
+R0
+Z142 8/home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/stcg.vhd
+Z143 F/home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/stcg.vhd
+l0
+L166
+VgzeNbk8e0QOfFYmT8jG:d3
+!s100 NdLcgj9kjAdE8gFMLA93l3
+R16
+33
+R28
+!i10b 0
+R29
+Z144 !s90 -reportprogress|300|-work|work|-2008|-explicit|-vopt|-stats=none|/home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/stcg.vhd|
+Z145 !s107 /home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/stcg.vhd|
+!i113 0
+R21
+R22
+Ccfg_sum_gen_structural
+eSUM_GEN
+R58
+R63
+Z146 DCx4 work 18 cfg_csb_structural 0 22 f[:nL^dh?H^Q^L@FfdoKS2
+DAx4 work 7 sum_gen 10 structural 22 =Gk20>zkWHz7TaKKJj:U92
+R61
+R62
+R12
+R13
+Z147 DEx4 work 7 sum_gen 0 22 0dmc>lEP9TjVdRMdWmC8b3
+R10
+R0
+Z148 8/home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/sum_gen.vhd
+Z149 F/home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/sum_gen.vhd
+l0
+L41
+VZO`EifHefg_PgGRl?7UAK2
+!s100 gKz976;9@6DF3hISX]o8<2
+R16
+33
+R104
+!i10b 0
+R44
+Z150 !s90 -reportprogress|300|-work|work|-2008|-explicit|-vopt|-stats=none|/home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/sum_gen.vhd|
+Z151 !s107 /home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/sum_gen.vhd|
+!i113 0
+R21
+R22
+Ccfg_tb_p4adder
+etb_p4adder
+Z152 atest
+Z153 DEx4 work 8 p4_adder 0 22 LflfY71>KQk063:LFP?Y;0
+DAx4 work 10 tb_p4adder 4 test 22 Nil0C^Ml=k7z5LPdVJUCM1
+R25
+R11
+R12
+R13
+Z154 DEx4 work 10 tb_p4adder 0 22 @YgL3D`FJ6d`In9f;L5gz3
+Z155 w1595886142
+R0
+Z156 8/home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/testbench_subunits_labs/tb_p4adder.vhd
+Z157 F/home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/testbench_subunits_labs/tb_p4adder.vhd
+l0
+L55
+VTD>6HbS]51eSnMh8:lG353
+!s100 Un9QAe6b9ojZAMZc1^UNR2
+R16
+32
+Z158 !s110 1596311150
+!i10b 0
+Z159 !s108 1596311150.000000
+Z160 !s90 -reportprogress|300|-work|work|-2002|-explicit|-vopt|-stats=none|/home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/testbench_subunits_labs/tb_p4adder.vhd|
+Z161 !s107 /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/testbench_subunits_labs/tb_p4adder.vhd|
+!i113 0
+R42
+R22
+Ccfg_testrf
+eTBREGISTERFILE
+aTESTA
+Z162 DEx4 work 3 wrf 0 22 fNdSi`:7Q=jM3PNS_1[US2
+R11
+DCx4 work 11 cfg_wrf_beh 0 22 28nWZmIiGc07;be9>HA]e3
+DAx4 work 14 tbregisterfile 5 testa 22 5ChIWjUDaRURnY:QSf0Ih3
+R25
+R12
+R13
+Z163 DEx4 work 14 tbregisterfile 0 22 T=P9aQ]ZDPj^bc5J8bo[@2
+R35
+R0
+Z164 8/home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/testbench_subunits_labs/tb_registerfile_wrf.vhd
+Z165 F/home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/testbench_subunits_labs/tb_registerfile_wrf.vhd
+l0
+L274
+VH;FYSmi]<Y>1g]VUGm_Om3
+!s100 ]9Y?R6UR1TUEY`2PdZY2Q1
+R16
+32
+R158
+!i10b 0
+R159
+Z166 !s90 -reportprogress|300|-work|work|-2002|-explicit|-vopt|-stats=none|/home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/testbench_subunits_labs/tb_registerfile_wrf.vhd|
+Z167 !s107 /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/testbench_subunits_labs/tb_registerfile_wrf.vhd|
+!i113 0
+R42
+R22
+Ccfg_wrf_beh
+ewrf
+abeh
+DAx4 work 3 wrf 3 beh 22 D_]eI?jZfMmEA]=cj82T23
+R25
+R11
+R12
+R13
+R162
+R10
+R0
+Z168 8/home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/wrf.vhd
+Z169 F/home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/wrf.vhd
+l0
+L167
+V28nWZmIiGc07;be9>HA]e3
+!s100 XV`UPOM^MCFUcG>W`KAT[3
+R16
+33
+R28
+!i10b 0
+R29
+Z170 !s90 -reportprogress|300|-work|work|-2008|-explicit|-vopt|-stats=none|/home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/wrf.vhd|
+Z171 !s107 /home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/wrf.vhd|
+!i113 0
+R21
+R22
+Ccgf_tb_stcg
+etb_stcg
+R152
+R141
+DCx4 work 19 cfg_stcg_structural 0 22 gzeNbk8e0QOfFYmT8jG:d3
+DAx4 work 7 tb_stcg 4 test 22 @gD`m>AnY2N2S5DjDbQhj0
+R25
+R12
+R13
+Z172 DEx4 work 7 tb_stcg 0 22 3ggog6eg2c2fQ]]>_J=b11
+R35
+R0
+Z173 8/home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/testbench_subunits_labs/tb_stcg.vhd
+Z174 F/home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/testbench_subunits_labs/tb_stcg.vhd
+l0
+L45
+VP;Wf2dKbdA^_0iaS9g`Xj3
+!s100 eZ6Q5]F7[GmNQhYg4BS`l2
+R16
+32
+R2
+!i10b 0
+R159
+Z175 !s90 -reportprogress|300|-work|work|-2002|-explicit|-vopt|-stats=none|/home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/testbench_subunits_labs/tb_stcg.vhd|
+Z176 !s107 /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/testbench_subunits_labs/tb_stcg.vhd|
+!i113 0
+R42
+R22
+Ecomplement2
+R10
+R11
+R12
+R13
+R0
+R54
+R55
+l0
+L7
+ViPaBhT1_ih:E`IdU1N3R?1
+!s100 =i92d:^ljKhk:SICTBSKb1
+R16
+33
+R17
+!i10b 1
+R18
+R56
+R57
+!i113 0
+R21
+R22
+Abeh
+R11
+R12
+R13
+R53
 l17
 L14
 V5=gVDFSc`]=6KB6Gl6g[I3
 !s100 RjTlVoWIJYO>ei5zKI[l90
-R7
+R16
 33
-R8
+R17
 !i10b 1
-R9
-R47
-R48
+R18
+R56
+R57
 !i113 0
-R12
-R13
+R21
+R22
 Pconstants
-R98
+R107
 R0
-Z169 8/home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/constants.vhd
-Z170 F/home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/constants.vhd
+Z177 8/home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/constants.vhd
+Z178 F/home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/constants.vhd
 l0
 L1
 V>jSn0;jgZJ==XeSecBYgm2
 !s100 1m=I^7SERf81TJ`IN_J9J2
-R7
-33
-b1
-R19
-!i10b 1
-R20
-Z171 !s90 -reportprogress|300|-work|work|-2008|-explicit|-vopt|-stats=none|/home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/constants.vhd|
-Z172 !s107 /home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/constants.vhd|
-!i113 0
-R12
-R13
-Bbody
 R16
 33
-R19
+b1
+R28
+!i10b 1
+R29
+Z179 !s90 -reportprogress|300|-work|work|-2008|-explicit|-vopt|-stats=none|/home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/constants.vhd|
+Z180 !s107 /home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/constants.vhd|
+!i113 0
+R21
+R22
+Bbody
+R25
+33
+R28
 l0
 L16
 Vn5l<Pz8C476g:;5:??C_P0
 !s100 bn6KXZ3bdY7>Jn>7Wo8]L0
-R7
+R16
 !i10b 1
-R20
-R171
-R172
+R29
+R179
+R180
 !i113 0
+R21
+R22
+Ecsb
+R64
+R61
+R62
 R12
 R13
-Ecsb
-R55
-R52
-R53
-R3
-R4
 R0
-R56
-R57
+R65
+R66
 l0
 L7
 Vao7CYz=agQ_2b>lZ8I^Al2
 !s100 @b<ZRH6EXXgSAOVKYNGY>2
-R7
+R16
 33
-R19
+R28
 !i10b 1
-R20
-R58
-R59
+R29
+R67
+R68
 !i113 0
+R21
+R22
+Astructural
+R61
+R62
 R12
 R13
-Astructural
-R52
-R53
-R3
-R4
-R54
+R63
 l30
 L17
 VJ4XZ[jzB^l@S57S^oPO1k3
 !s100 >Ij4MT]VEPz;m5hL;Bm`L2
-R7
+R16
 33
-R19
+R28
 !i10b 1
-R20
-R58
-R59
+R29
+R67
+R68
 !i113 0
-R12
-R13
+R21
+R22
 Ccsbtest
 eTBCSB
-R24
-R54
-R52
-R53
-R137
+R33
+R63
+R61
+R62
+R146
 DAx4 work 5 tbcsb 4 test 22 NeE^hzhg>^VX^=V7T`aHX3
-R2
-R3
-R4
-Z173 DEx4 work 5 tbcsb 0 22 <z2`_lEi<i4X4fc8TzGlB0
-R26
+R11
+R12
+R13
+Z181 DEx4 work 5 tbcsb 0 22 <z2`_lEi<i4X4fc8TzGlB0
+R35
 R0
-Z174 8/home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/testbench_subunits_labs/tb_csb.vhd
-Z175 F/home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/testbench_subunits_labs/tb_csb.vhd
+Z182 8/home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/testbench_subunits_labs/tb_csb.vhd
+Z183 F/home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/testbench_subunits_labs/tb_csb.vhd
 l0
 L83
 VGzN38077R5X`>CH;i_NP@0
 !s100 HXWV[Wdm`8AP8YLfNC2N]2
-R7
-32
-R29
-!i10b 0
-R30
-Z176 !s90 -reportprogress|300|-work|work|-2002|-explicit|-vopt|-stats=none|/home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/testbench_subunits_labs/tb_csb.vhd|
-Z177 !s107 /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/testbench_subunits_labs/tb_csb.vhd|
-!i113 0
-R33
-R13
-Edecode_stage
-Z178 w1596297719
-Z179 DPx4 work 17 global_components 0 22 YPJOIDhCZDKkcnYkV0VW53
 R16
-Z180 DPx4 work 7 globals 0 22 91L;HQj=Gn4zgQ36@PoeV1
-R2
-R3
-R4
+32
+R38
+!i10b 0
+R39
+Z184 !s90 -reportprogress|300|-work|work|-2002|-explicit|-vopt|-stats=none|/home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/testbench_subunits_labs/tb_csb.vhd|
+Z185 !s107 /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/testbench_subunits_labs/tb_csb.vhd|
+!i113 0
+R42
+R22
+Edecode_stage
+Z186 w1596312850
+Z187 DPx4 work 17 global_components 0 22 YPJOIDhCZDKkcnYkV0VW53
+R25
+Z188 DPx4 work 7 globals 0 22 91L;HQj=Gn4zgQ36@PoeV1
+R11
+R12
+R13
 R0
-Z181 8/home/ms20.50/Desktop/DLX_project/hardware/dlx/a.b-DataPath.core/a.b.b-Decode.stage.vhd
-Z182 F/home/ms20.50/Desktop/DLX_project/hardware/dlx/a.b-DataPath.core/a.b.b-Decode.stage.vhd
+Z189 8/home/ms20.50/Desktop/DLX_project/hardware/dlx/a.b-DataPath.core/a.b.b-Decode.stage.vhd
+Z190 F/home/ms20.50/Desktop/DLX_project/hardware/dlx/a.b-DataPath.core/a.b.b-Decode.stage.vhd
 l0
 L26
 VEjd[z5N3X_<;HGAf0WORC3
 !s100 PaRmDMY4T0zC=BH?BAUTa1
-R7
-32
-R29
-!i10b 1
-R30
-Z183 !s90 -reportprogress|300|-work|work|-2002|-explicit|-vopt|-stats=none|/home/ms20.50/Desktop/DLX_project/hardware/dlx/a.b-DataPath.core/a.b.b-Decode.stage.vhd|
-Z184 !s107 /home/ms20.50/Desktop/DLX_project/hardware/dlx/a.b-DataPath.core/a.b.b-Decode.stage.vhd|
-!i113 0
-R33
-R13
-Astructural
-R179
 R16
-R180
-R2
-R3
-R4
+32
+Z191 !s110 1596312855
+!i10b 1
+Z192 !s108 1596312855.000000
+Z193 !s90 -reportprogress|300|-work|work|-2002|-explicit|-vopt|-stats=none|/home/ms20.50/Desktop/DLX_project/hardware/dlx/a.b-DataPath.core/a.b.b-Decode.stage.vhd|
+Z194 !s107 /home/ms20.50/Desktop/DLX_project/hardware/dlx/a.b-DataPath.core/a.b.b-Decode.stage.vhd|
+!i113 0
+R42
+R22
+Astructural
+R187
+R25
+R188
+R11
+R12
+R13
 DEx4 work 12 decode_stage 0 22 Ejd[z5N3X_<;HGAf0WORC3
+32
+R191
 l60
 L56
-V];z7iW68]0OAi?lU4KMkC0
-!s100 nUb=?OQdY<mm]akkGBU^F3
-R7
-32
-R29
+VSTZP;NW9E[Wo9S;eEANO^0
+!s100 U;Wo[@hQLP0O0W=a`;DLG2
+R16
 !i10b 1
-R30
-R183
-R184
+R192
+R193
+R194
 !i113 0
-R33
-R13
+R42
+R22
 Eencoder
-R1
-R2
-R3
-R4
+R10
+R11
+R12
+R13
 R0
-R60
-R61
+R69
+R70
 l0
 L7
 VgYafUF]LM?z]KDJSj]z`O0
 !s100 T8MXg1^eze_DFJ0gLjZlF2
-R7
+R16
 33
-R8
+R17
 !i10b 1
-R9
-R62
-R63
+R18
+R71
+R72
 !i113 0
+R21
+R22
+Abeh
+R11
 R12
 R13
-Abeh
-R2
-R3
-R4
-R43
+R52
 l16
 L13
 VY8F=^i9[DGI^STdN8IfGA0
 !s100 jWR5Em_dTY:oAMMO9YEk22
-R7
+R16
 33
-R8
+R17
 !i10b 1
-R9
-R62
-R63
+R18
+R71
+R72
 !i113 0
+R21
+R22
+Eexecute_stage
+Z195 w1596307853
+R187
+R25
+R188
+R11
 R12
 R13
-Eexecute_stage
-Z185 w1595863321
-R2
-R3
-R4
 R0
-Z186 8/home/ms20.50/Desktop/DLX_project/hardware/dlx/a.b-DataPath.core/a.b.c-Execute.stage.vhd
-Z187 F/home/ms20.50/Desktop/DLX_project/hardware/dlx/a.b-DataPath.core/a.b.c-Execute.stage.vhd
+Z196 8/home/ms20.50/Desktop/DLX_project/hardware/dlx/a.b-DataPath.core/a.b.c-Execute.stage.vhd
+Z197 F/home/ms20.50/Desktop/DLX_project/hardware/dlx/a.b-DataPath.core/a.b.c-Execute.stage.vhd
 l0
-L22
-VE^DBY@j_=KGNjd2CnbEG73
-!s100 M_Oc15FK?B_Kg@?AFM?mK3
-R7
+L24
+V16EHYdb6bPS?o>C5@1McH2
+!s100 ieUa>k<E2:1c`7BQSe`SZ1
+R16
 32
-R29
+R38
 !i10b 1
-R30
-Z188 !s90 -reportprogress|300|-work|work|-2002|-explicit|-vopt|-stats=none|/home/ms20.50/Desktop/DLX_project/hardware/dlx/a.b-DataPath.core/a.b.c-Execute.stage.vhd|
-Z189 !s107 /home/ms20.50/Desktop/DLX_project/hardware/dlx/a.b-DataPath.core/a.b.c-Execute.stage.vhd|
+R39
+Z198 !s90 -reportprogress|300|-work|work|-2002|-explicit|-vopt|-stats=none|/home/ms20.50/Desktop/DLX_project/hardware/dlx/a.b-DataPath.core/a.b.c-Execute.stage.vhd|
+Z199 !s107 /home/ms20.50/Desktop/DLX_project/hardware/dlx/a.b-DataPath.core/a.b.c-Execute.stage.vhd|
 !i113 0
-R33
-R13
+R42
+R22
 Astructural
-R2
-R3
-R4
-DEx4 work 13 execute_stage 0 22 E^DBY@j_=KGNjd2CnbEG73
-l35
-L33
-V]>kzaIU_O6f>lfGCOE=;<1
-!s100 K7Lo1oZcTgd8_mAYfTa0W3
-R7
-32
-R29
-!i10b 1
-R30
+R187
+R25
 R188
-R189
-!i113 0
-R33
+R11
+R12
 R13
+DEx4 work 13 execute_stage 0 22 16EHYdb6bPS?o>C5@1McH2
+l55
+L51
+V[`=AS=:YZk[TJBN7XSiDC2
+!s100 KPm0d:G8;W9odjZWl>5IU3
+R16
+32
+R38
+!i10b 1
+R39
+R198
+R199
+!i113 0
+R42
+R22
 Efa
-R66
-R3
-R4
+R75
+R12
+R13
 R0
-R67
-R68
+R76
+R77
 l0
 L6
 VC6lU6`GO:9k?bX51g0<G72
 !s100 BW[dVmz3YG^Z9Eze24iC^1
-R7
+R16
 33
-R8
+R17
 !i10b 1
-R9
-R69
-R70
+R18
+R78
+R79
 !i113 0
+R21
+R22
+Abehavioral
 R12
 R13
-Abehavioral
-R3
-R4
-R65
+R74
 l16
 L14
 VT6fk=KH]U>k73HS[eBlj23
 !s100 K8cX^YiX7[k75zMLajg1k3
-R7
+R16
 33
-R8
+R17
 !i10b 1
-R9
-R69
-R70
+R18
+R78
+R79
 !i113 0
+R21
+R22
+Efd
+R10
 R12
 R13
-Efd
-R1
-R3
-R4
 R0
-R72
-R73
+R81
+R82
 l0
 L4
 V6<302cT@E[CDhIc_US^P<1
 !s100 5Ah>[R?SSFVYK=4UZmM>N2
-R7
+R16
 33
-R74
+R83
 !i10b 1
-R75
-R76
-R77
+R84
+R85
+R86
 !i113 0
+R21
+R22
+Apluto
 R12
 R13
-Apluto
-R3
-R4
-R71
+R80
+33
+R83
 l30
 L28
 VO?^?7m7:@hQTobF>E6;^b3
 !s100 fN:l>1]L_ADJ?`iCUMkJ73
-R7
-33
-R74
+R16
 !i10b 1
-R75
-R76
-R77
+R84
+R85
+R86
 !i113 0
+R21
+R22
+Apippo
 R12
 R13
-Apippo
-R3
-R4
-R71
+R80
 l14
 L12
 VId3f]ahb6bz`AC[:@jo_M0
 !s100 ?j4EcNI5Q0c<LLRkAU7Ce1
-R7
+R16
 33
-R74
+R83
 !i10b 1
-R75
-R76
-R77
+R84
+R85
+R86
 !i113 0
-R12
-R13
+R21
+R22
 Cfdtest
 eTBFD
-R24
-R71
-R126
-R119
+R33
+R80
+R135
+R128
 DAx4 work 4 tbfd 4 test 22 ;^4;hj::]RMPYXfc4PcH91
-R3
-R4
-Z190 DEx4 work 4 tbfd 0 22 4D=E92njPY30[gBYT01EZ1
-R26
+R12
+R13
+Z200 DEx4 work 4 tbfd 0 22 4D=E92njPY30[gBYT01EZ1
+R35
 R0
-Z191 8/home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/testbench_subunits_labs/tb_fd.vhd
-Z192 F/home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/testbench_subunits_labs/tb_fd.vhd
+Z201 8/home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/testbench_subunits_labs/tb_fd.vhd
+Z202 F/home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/testbench_subunits_labs/tb_fd.vhd
 l0
 L75
 VUoikCNL0dR6H6GOl=zohc1
 !s100 0TO0mRiBIjBe39^NS8cQ?3
-R7
-32
-R149
-!i10b 0
-R30
-Z193 !s90 -reportprogress|300|-work|work|-2002|-explicit|-vopt|-stats=none|/home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/testbench_subunits_labs/tb_fd.vhd|
-Z194 !s107 /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/testbench_subunits_labs/tb_fd.vhd|
-!i113 0
-R33
-R13
-Efetch_stage
-R178
 R16
-R180
-R179
-R2
-R3
-R4
+32
+R158
+!i10b 0
+R39
+Z203 !s90 -reportprogress|300|-work|work|-2002|-explicit|-vopt|-stats=none|/home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/testbench_subunits_labs/tb_fd.vhd|
+Z204 !s107 /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/testbench_subunits_labs/tb_fd.vhd|
+!i113 0
+R42
+R22
+Efetch_stage
+Z205 w1596297719
+R25
+R188
+R187
+R11
+R12
+R13
 R0
-Z195 8/home/ms20.50/Desktop/DLX_project/hardware/dlx/a.b-DataPath.core/a.b.a-Fetch.stage.vhd
-Z196 F/home/ms20.50/Desktop/DLX_project/hardware/dlx/a.b-DataPath.core/a.b.a-Fetch.stage.vhd
+Z206 8/home/ms20.50/Desktop/DLX_project/hardware/dlx/a.b-DataPath.core/a.b.a-Fetch.stage.vhd
+Z207 F/home/ms20.50/Desktop/DLX_project/hardware/dlx/a.b-DataPath.core/a.b.a-Fetch.stage.vhd
 l0
 L24
 V;PHJ@30j<RV0Fa_?LOW]S2
 !s100 ^QnWa3DTF2UG8Wj3_>@YV1
-R7
-32
-R29
-!i10b 1
-R89
-Z197 !s90 -reportprogress|300|-work|work|-2002|-explicit|-vopt|-stats=none|/home/ms20.50/Desktop/DLX_project/hardware/dlx/a.b-DataPath.core/a.b.a-Fetch.stage.vhd|
-Z198 !s107 /home/ms20.50/Desktop/DLX_project/hardware/dlx/a.b-DataPath.core/a.b.a-Fetch.stage.vhd|
-!i113 0
-R33
-R13
-Astructural
 R16
-R180
-R179
-R2
-R3
-R4
+32
+R38
+!i10b 1
+R97
+Z208 !s90 -reportprogress|300|-work|work|-2002|-explicit|-vopt|-stats=none|/home/ms20.50/Desktop/DLX_project/hardware/dlx/a.b-DataPath.core/a.b.a-Fetch.stage.vhd|
+Z209 !s107 /home/ms20.50/Desktop/DLX_project/hardware/dlx/a.b-DataPath.core/a.b.a-Fetch.stage.vhd|
+!i113 0
+R42
+R22
+Astructural
+R25
+R188
+R187
+R11
+R12
+R13
 DEx4 work 11 fetch_stage 0 22 ;PHJ@30j<RV0Fa_?LOW]S2
 l55
 L48
 Ve4iUhZ8nYK2@6Z0eV=RR^2
 !s100 QH76YL>5[JZ2TaV4N;UBe3
-R7
-32
-R29
-!i10b 1
-R89
-R197
-R198
-!i113 0
-R33
-R13
-Pglobal_components
 R16
-R180
-R3
-R4
-Z199 w1595700907
+32
+R38
+!i10b 1
+R97
+R208
+R209
+!i113 0
+R42
+R22
+Pglobal_components
+R25
+R188
+R12
+R13
+Z210 w1595700907
 R0
-Z200 8/home/ms20.50/Desktop/DLX_project/hardware/dlx/001-global_components.vhd
-Z201 F/home/ms20.50/Desktop/DLX_project/hardware/dlx/001-global_components.vhd
+Z211 8/home/ms20.50/Desktop/DLX_project/hardware/dlx/001-global_components.vhd
+Z212 F/home/ms20.50/Desktop/DLX_project/hardware/dlx/001-global_components.vhd
 l0
 L26
 VYPJOIDhCZDKkcnYkV0VW53
 !s100 LVS3NI]lle1:J^YkQk2KW0
-R7
-33
-R8
-!i10b 1
-R9
-Z202 !s90 -reportprogress|300|-work|work|-2008|-explicit|-check_synthesis|-vopt|-stats=none|/home/ms20.50/Desktop/DLX_project/hardware/dlx/001-global_components.vhd|
-Z203 !s107 /home/ms20.50/Desktop/DLX_project/hardware/dlx/001-global_components.vhd|
-!i113 0
-Z204 o-work work -2008 -explicit -check_synthesis
-R13
-Bbody
-R179
 R16
-R180
-R3
-R4
 33
-R8
+R17
+!i10b 1
+R18
+Z213 !s90 -reportprogress|300|-work|work|-2008|-explicit|-check_synthesis|-vopt|-stats=none|/home/ms20.50/Desktop/DLX_project/hardware/dlx/001-global_components.vhd|
+Z214 !s107 /home/ms20.50/Desktop/DLX_project/hardware/dlx/001-global_components.vhd|
+!i113 0
+Z215 o-work work -2008 -explicit -check_synthesis
+R22
+Bbody
+R187
+R25
+R188
+R12
+R13
+33
+R17
 l0
 L159
 V_Vd;l<gonEOG;CP`9CHY[3
 !s100 @Ffe9k57I3<RFjICKgzE33
-R7
-!i10b 1
-R9
-R202
-R203
-!i113 0
-R204
-R13
-Pglobals
 R16
-R3
-R4
-Z205 w1595874138
+!i10b 1
+R18
+R213
+R214
+!i113 0
+R215
+R22
+Pglobals
+R25
+R12
+R13
+Z216 w1595874138
 R0
-Z206 8/home/ms20.50/Desktop/DLX_project/hardware/dlx/000-globals.vhd
-Z207 F/home/ms20.50/Desktop/DLX_project/hardware/dlx/000-globals.vhd
+Z217 8/home/ms20.50/Desktop/DLX_project/hardware/dlx/000-globals.vhd
+Z218 F/home/ms20.50/Desktop/DLX_project/hardware/dlx/000-globals.vhd
 l0
 L23
 V91L;HQj=Gn4zgQ36@PoeV1
 !s100 8Hgli=Uoli1aW^`SIPh@B1
-R7
-33
-R8
-!i10b 1
-R9
-Z208 !s90 -reportprogress|300|-work|work|-2008|-explicit|-check_synthesis|-vopt|-stats=none|/home/ms20.50/Desktop/DLX_project/hardware/dlx/000-globals.vhd|
-Z209 !s107 /home/ms20.50/Desktop/DLX_project/hardware/dlx/000-globals.vhd|
-!i113 0
-R204
-R13
-Bbody
-R180
 R16
-R3
-R4
 33
-R8
+R17
+!i10b 1
+Z219 !s108 1596311143.000000
+Z220 !s90 -reportprogress|300|-work|work|-2008|-explicit|-check_synthesis|-vopt|-stats=none|/home/ms20.50/Desktop/DLX_project/hardware/dlx/000-globals.vhd|
+Z221 !s107 /home/ms20.50/Desktop/DLX_project/hardware/dlx/000-globals.vhd|
+!i113 0
+R215
+R22
+Bbody
+R188
+R25
+R12
+R13
+33
+R17
 l0
 L115
 VSgdXFbf@N3FBW`bgnH^CH0
 !s100 =`M?Q4P=8:73BQJWmC^mA2
-R7
+R16
 !i10b 1
-R9
-R208
-R209
+R219
+R220
+R221
 !i113 0
-R204
-R13
+R215
+R22
 Egsb
-R1
-R3
-R4
+R10
+R12
+R13
 R0
-R79
-R80
+R88
+R89
 l0
 L4
 V`X=PSCmHF9QnW@:T47_i73
 !s100 i=3^Hi5hogR_LbPYG46Wh0
-R7
+R16
 33
-R74
+R83
 !i10b 1
-R75
-R81
-R82
+R84
+R90
+R91
 !i113 0
+R21
+R22
+Abehavioral
 R12
 R13
-Abehavioral
-R3
-R4
-R78
+R87
 l13
 L11
 VamQ[PX3YPg4iSgB9R3N7R1
 !s100 bfXID=didUNgSYX<]1Z?>3
-R7
+R16
 33
-R74
+R83
 !i10b 1
-R75
-R81
-R82
+R84
+R90
+R91
 !i113 0
-R12
-R13
+R21
+R22
 Ximplemented_instructions_svh_unit
-Z210 DXx6 sv_std 3 std 0 22 d=_JfHTnXCN[H5FjiaJJc0
-R34
+R1
+!s110 1596297762
 !i10b 1
 !s100 jf]BP=bXVd6HCP2VAG1f]2
 IDhmkfIa[>k0S0HCdo^S1B3
@@ -1527,884 +1558,883 @@ S1
 R0
 w1595782816
 8/home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/implemented_instructions.svh
-Z211 F/home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/implemented_instructions.svh
-Z212 L0 19
-Z213 OL;L;10.7c;67
+F/home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/implemented_instructions.svh
+R5
+R6
 r1
 !s85 0
 31
-R35
+!s108 1596297762.000000
 !s107 /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/implemented_instructions.svh|
 !s90 -reportprogress|300|-work|work|-vopt|-sv|-stats=none|/home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/implemented_instructions.svh|
 !i113 0
-Z214 o-work work -sv -L mtiAvm -L mtiRnm -L mtiOvm -L mtiUvm -L mtiUPF -L infact
-Z215 tCvgOpt 0
+R8
+R9
 Ymem_interface
-R210
-R166
+R1
+R2
 !i10b 1
 !s100 ?R7eM1XUzAce8HY2=9:9g3
-I004MRc5f8kbLN^cVB:l_I1
-Z216 VDg1SIo80bB@j0V0VzS_@n1
-Z217 !s105 tb_memory_stage_sv_unit
+Ie5iF<m3GELYfDLZWPiL6J3
+Z222 VDg1SIo80bB@j0V0VzS_@n1
+!s105 _0052dmemory_interfaces_svh_unit
 S1
 R0
-Z218 w1595961107
-8/home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/testbench_subunits/../memories/memory_interfaces.svh
-F/home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/testbench_subunits/../memories/memory_interfaces.svh
+R3
+8/home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/005-memory_interfaces.svh
+F/home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/005-memory_interfaces.svh
 L0 6
-R213
+R6
 r1
 !s85 0
 31
-Z219 !s108 1596297766.000000
-Z220 !s107 /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/testbench_subunits/../global_defs.svh|/home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/testbench_subunits/../memories/memory_interfaces.svh|/home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/testbench_subunits/tb_memory_stage.sv|
-Z221 !s90 -reportprogress|300|-work|work|-vopt|-sv|-stats=none|/home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/testbench_subunits/tb_memory_stage.sv|
+R7
+!s107 /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/005-memory_interfaces.svh|
+!s90 -reportprogress|300|-work|work|-vopt|-sv|-stats=none|/home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/005-memory_interfaces.svh|
 !i113 0
-R214
-R215
+R8
+R9
 Ememory_stage
-R178
-R16
-R180
-R179
-R2
-R3
-R4
+R205
+R25
+R188
+R187
+R11
+R12
+R13
 R0
-Z222 8/home/ms20.50/Desktop/DLX_project/hardware/dlx/a.b-DataPath.core/a.b.d.Memory.stage.vhd
-Z223 F/home/ms20.50/Desktop/DLX_project/hardware/dlx/a.b-DataPath.core/a.b.d.Memory.stage.vhd
+Z223 8/home/ms20.50/Desktop/DLX_project/hardware/dlx/a.b-DataPath.core/a.b.d.Memory.stage.vhd
+Z224 F/home/ms20.50/Desktop/DLX_project/hardware/dlx/a.b-DataPath.core/a.b.d.Memory.stage.vhd
 l0
 L26
 Vg2<;:iCTVRj6Ngg]MLRBF3
 !s100 h;^P58dgFD1gglSB;cikY3
-R7
-32
-R29
-!i10b 1
-R30
-Z224 !s90 -reportprogress|300|-work|work|-2002|-explicit|-vopt|-stats=none|/home/ms20.50/Desktop/DLX_project/hardware/dlx/a.b-DataPath.core/a.b.d.Memory.stage.vhd|
-Z225 !s107 /home/ms20.50/Desktop/DLX_project/hardware/dlx/a.b-DataPath.core/a.b.d.Memory.stage.vhd|
-!i113 0
-R33
-R13
-Astructural
 R16
-R180
-R179
-R2
-R3
-R4
+32
+R38
+!i10b 1
+R39
+Z225 !s90 -reportprogress|300|-work|work|-2002|-explicit|-vopt|-stats=none|/home/ms20.50/Desktop/DLX_project/hardware/dlx/a.b-DataPath.core/a.b.d.Memory.stage.vhd|
+Z226 !s107 /home/ms20.50/Desktop/DLX_project/hardware/dlx/a.b-DataPath.core/a.b.d.Memory.stage.vhd|
+!i113 0
+R42
+R22
+Astructural
+R25
+R188
+R187
+R11
+R12
+R13
 DEx4 work 12 memory_stage 0 22 g2<;:iCTVRj6Ngg]MLRBF3
 l63
 L58
 VQOcR>_c@>D30N2z<a17UH2
 !s100 9>[eZZ]0LB8C5Q?gnLgVg3
-R7
-32
-R29
-!i10b 1
-R30
-R224
-R225
-!i113 0
-R33
-R13
-Emultiplier_tb
-R1
 R16
-R2
-R3
-R4
+32
+R38
+!i10b 1
+R39
+R225
+R226
+!i113 0
+R42
+R22
+Emultiplier_tb
+R10
+R25
+R11
+R12
+R13
 R0
-Z226 8/home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/testbench_subunits_labs/MULTIPLIER_tb.vhd
-Z227 F/home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/testbench_subunits_labs/MULTIPLIER_tb.vhd
+Z227 8/home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/testbench_subunits_labs/MULTIPLIER_tb.vhd
+Z228 F/home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/testbench_subunits_labs/MULTIPLIER_tb.vhd
 l0
 L6
 V]23HdfDXAhX34dz8H>^cj0
 !s100 0Oc[nAm0e1LLHo=W69k<I0
-R7
-32
-R29
-!i10b 1
-R30
-Z228 !s90 -reportprogress|300|-work|work|-2002|-explicit|-vopt|-stats=none|/home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/testbench_subunits_labs/MULTIPLIER_tb.vhd|
-Z229 !s107 /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/testbench_subunits_labs/MULTIPLIER_tb.vhd|
-!i113 0
-R33
-R13
-Atest
 R16
-R2
-R3
-R4
+32
+R38
+!i10b 1
+R39
+Z229 !s90 -reportprogress|300|-work|work|-2002|-explicit|-vopt|-stats=none|/home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/testbench_subunits_labs/MULTIPLIER_tb.vhd|
+Z230 !s107 /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/testbench_subunits_labs/MULTIPLIER_tb.vhd|
+!i113 0
+R42
+R22
+Atest
+R25
+R11
+R12
+R13
 DEx4 work 13 multiplier_tb 0 22 ]23HdfDXAhX34dz8H>^cj0
 l36
 L10
 VM4@ohI9LhB9KAYd?lb89j2
 !s100 7;S;IXdXHRZB^eR;lmicd3
-R7
-32
-R29
-!i10b 1
-R30
-R228
-R229
-!i113 0
-R33
-R13
-Emux21
-R85
 R16
-R3
-R4
+32
+R38
+!i10b 1
+R39
+R229
+R230
+!i113 0
+R42
+R22
+Emux21
+R94
+R25
+R12
+R13
 R0
-R86
-R87
+R95
+R96
 l0
 L5
 V8C`Pj6EdV9XM5ASMh8WIW1
 !s100 8[7C]XjR_lILJSXIUl9e11
-R7
+R16
 33
-R88
+R43
 !i10b 1
-R89
-R90
-R91
+R97
+R98
+R99
 !i113 0
+R21
+R22
+Abehavioral_3
+R25
 R12
 R13
-Abehavioral_3
-R16
-R3
-R4
-R84
+R93
 l31
 L29
 V]RD@Kd@S?FSEZ:;U6bdg23
 !s100 H`fomV559ELnDKzgmX`0:1
-R7
+R16
 33
-R88
+R43
 !i10b 1
-R89
-R90
-R91
+R97
+R98
+R99
 !i113 0
+R21
+R22
+Abehavioral_2
+R25
 R12
 R13
-Abehavioral_2
-R16
-R3
-R4
-R84
+R93
 l23
 L21
 VWVL:[WE8l`C^ObT_J>dYk1
 !s100 >12;bKH`aAKmECeOFBXJ]1
-R7
+R16
 33
-R88
+R43
 !i10b 1
-R89
-R90
-R91
+R97
+R98
+R99
 !i113 0
+R21
+R22
+Abehavioral_1
+R25
 R12
 R13
-Abehavioral_1
-R16
-R3
-R4
-R84
+R93
 l15
 L13
 V6Yz0aGJ>1GTbVbPLPOhVd2
 !s100 ghVEL:7]j]:CiG[ai`UZn3
-R7
+R16
 33
-R88
+R43
 !i10b 1
-R89
-R90
-R91
+R97
+R98
+R99
 !i113 0
+R21
+R22
+Emux21_nbit
+R10
+R25
 R12
 R13
-Emux21_nbit
-R1
-R16
-R3
-R4
 R0
-R94
-R95
+R102
+R103
 l0
 L5
 V::ZW3hP;b[OoLGgP0F5Y>1
 !s100 5EKVd<WPFRN9E9?n8=;HX1
-R7
+R16
 33
-R19
+R104
 !i10b 1
-R20
-R96
-R97
+R29
+R105
+R106
 !i113 0
+R21
+R22
+Astruc
+R25
 R12
 R13
-Astruc
-R16
-R3
-R4
-R93
+R101
 l41
 L31
 VEb[38iD;NZE`IC8R:KQ:<3
 !s100 K6CF1X2Jc]ah8Ra`0B7Nd2
-R7
+R16
 33
-R19
+R104
 !i10b 1
-R20
-R96
-R97
+R29
+R105
+R106
 !i113 0
+R21
+R22
+Abeh
+R25
 R12
 R13
-Abeh
-R16
-R3
-R4
-R93
+R101
 l18
 L16
 VJLD[cL9CN0I=hjWYGz7X_2
 !s100 J;ABa__]Za2Ko>i;jBgjL3
-R7
+R16
 33
-R19
+R104
 !i10b 1
-R20
-R96
-R97
+R29
+R105
+R106
 !i113 0
-R12
-R13
+R21
+R22
 Cmux21gentest
 eTBMUX21_GENERIC
-R24
-R93
+R33
+R101
 DCx4 work 23 cfg_mux21_generic_struc 0 22 =edW0V[aY<R=m?0ZBKfEh2
 DCx4 work 21 cfg_mux21_generic_beh 0 22 eH>o9f;4oAa6K8NbKUm<g3
 DAx4 work 15 tbmux21_generic 4 test 22 4QCRTDVEB;RZ6QRUzgMiE2
-R16
-R3
-R4
-Z230 DEx4 work 15 tbmux21_generic 0 22 dFi_]m33@CiiGO<K>3VcC2
-Z231 w1595885380
+R25
+R12
+R13
+Z231 DEx4 work 15 tbmux21_generic 0 22 dFi_]m33@CiiGO<K>3VcC2
+Z232 w1595885380
 R0
-Z232 8/home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/testbench_subunits_labs/tb_mux21_generic.vhd
-Z233 F/home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/testbench_subunits_labs/tb_mux21_generic.vhd
+Z233 8/home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/testbench_subunits_labs/tb_mux21_generic.vhd
+Z234 F/home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/testbench_subunits_labs/tb_mux21_generic.vhd
 l0
 L45
 VRPDUh^Xb7;GhMRVa2F@W42
 !s100 ek7di^mZCQGgWF3m>0U]c0
-R7
-32
-R149
-!i10b 0
-R150
-Z234 !s90 -reportprogress|300|-work|work|-2002|-explicit|-vopt|-stats=none|/home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/testbench_subunits_labs/tb_mux21_generic.vhd|
-Z235 !s107 /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/testbench_subunits_labs/tb_mux21_generic.vhd|
-!i113 0
-R33
-R13
-Emux_zbit_nbit
-R98
 R16
-R2
-R3
-R4
+32
+R158
+!i10b 0
+R159
+Z235 !s90 -reportprogress|300|-work|work|-2002|-explicit|-vopt|-stats=none|/home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/testbench_subunits_labs/tb_mux21_generic.vhd|
+Z236 !s107 /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/testbench_subunits_labs/tb_mux21_generic.vhd|
+!i113 0
+R42
+R22
+Emux_zbit_nbit
+R107
+R25
+R11
+R12
+R13
 R0
-R99
-R100
+R108
+R109
 l0
 L7
 VDECif3Wd9gce?f`@7Vo?k2
 !s100 9TGNVT=jDeeil1k3:cD`h0
-R7
+R16
 33
-R74
+R83
 !i10b 1
-R75
-R101
-R102
+R84
+R110
+R111
 !i113 0
+R21
+R22
+Abeh
+R25
+R11
 R12
 R13
-Abeh
-R16
-R2
-R3
-R4
-R42
-33
-R74
+R51
 l18
 L16
 VTH@B0WG]LoceTh;m7c4B11
 !s100 M51`MA4nzobmKD@?Y;;2R3
-R7
+R16
+33
+R83
 !i10b 1
-R75
-R101
-R102
+R84
+R110
+R111
 !i113 0
+R21
+R22
+Ep4_adder
+R10
+R25
 R12
 R13
-Ep4_adder
-R1
-R16
-R3
-R4
 R0
-Z236 8/home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/p4_adder.vhd
-Z237 F/home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/p4_adder.vhd
+Z237 8/home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/p4_adder.vhd
+Z238 F/home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/p4_adder.vhd
 l0
 L6
 VLflfY71>KQk063:LFP?Y;0
 !s100 <XcamATnO;DhGWJXHc[D83
-R7
+R16
 33
-R74
+R83
 !i10b 1
-R75
-Z238 !s90 -reportprogress|300|-work|work|-2008|-explicit|-vopt|-stats=none|/home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/p4_adder.vhd|
-Z239 !s107 /home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/p4_adder.vhd|
+R84
+Z239 !s90 -reportprogress|300|-work|work|-2008|-explicit|-vopt|-stats=none|/home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/p4_adder.vhd|
+Z240 !s107 /home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/p4_adder.vhd|
 !i113 0
+R21
+R22
+Astruc
+R25
 R12
 R13
-Astruc
-R16
-R3
-R4
-R144
+R153
 l42
 L15
 VRZLKf`Hke`:cGf^3;Eham0
 !s100 aT;AzBm?bi]WQcdf1mUNd1
-R7
+R16
 33
-R74
+R83
 !i10b 1
-R75
-R238
+R84
 R239
+R240
 !i113 0
+R21
+R22
+Epg
+R10
 R12
 R13
-Epg
-R1
-R3
-R4
 R0
-R104
-R105
+R113
+R114
 l0
 L4
 VMlSO[QCR`P8HBSz1UcZ_Q1
 !s100 M?aFhVD5>TAE=aADQR25V2
-R7
+R16
 33
-R34
+R104
 !i10b 1
-R20
-R106
-R107
+R44
+R115
+R116
 !i113 0
+R21
+R22
+Abehavioral
 R12
 R13
-Abehavioral
-R3
-R4
-R103
+R112
 l15
 L13
 VHbzLBC<Gla@B<4JDg9=ki1
 !s100 4NT2oghh`cMBbT25noP1:1
-R7
+R16
 33
-R34
+R104
 !i10b 1
-R20
-R106
-R107
+R44
+R115
+R116
 !i113 0
+R21
+R22
+Epgsb
+R10
 R12
 R13
-Epgsb
-R1
-R3
-R4
 R0
-R109
-R110
+R118
+R119
 l0
 L4
 VQ;7K2HUQ2[jQmVj:ZC_lE0
 !s100 ;VWT5^GVV[HAbGA>iPde32
-R7
+R16
 33
-R74
+R83
 !i10b 1
-R75
-R111
-R112
+R84
+R120
+R121
 !i113 0
+R21
+R22
+Abehavioral
 R12
 R13
-Abehavioral
-R3
-R4
-R108
+R117
 l15
 L13
 VW[3lkD]@SimJABahh1;cE1
 !s100 W2QN;e;92V<9SCKd_m5MX3
-R7
+R16
 33
-R74
+R83
 !i10b 1
-R75
-R111
-R112
+R84
+R120
+R121
 !i113 0
+R21
+R22
+Erca
+R122
+R61
+R62
 R12
 R13
-Erca
-R113
-R52
-R53
-R3
-R4
 R0
-R114
-R115
+R123
+R124
 l0
 L7
 V:=lKE0;MbCJA0[TEGCIVe3
 !s100 Jc2nLkgKESf7EPFMlc[Z02
-R7
+R16
 33
-R74
+R83
 !i10b 1
-R75
-R116
-R117
+R84
+R125
+R126
 !i113 0
+R21
+R22
+Astructural
+R61
+R62
 R12
 R13
-Astructural
-R52
-R53
-R3
-R4
-R50
+R59
 l29
 L16
 V[[R]?9P1=5NA2O:GRX12h0
 !s100 CThY6J@Qz]?BfYhAPbC602
-R7
+R16
 33
-R74
+R83
 !i10b 1
-R75
-R116
-R117
+R84
+R125
+R126
 !i113 0
-R12
-R13
+R21
+R22
 Crcatest
 eTBRCA
-R24
-R50
-R52
-R53
-R51
+R33
+R59
+R61
+R62
+R60
 DAx4 work 5 tbrca 4 test 22 nj3[kiXz2MlBEnT8=mOWj0
-R2
-R3
-R4
-Z240 DEx4 work 5 tbrca 0 22 XbkPET=9lF?QBWVb1Cc7n3
-Z241 w1595885971
+R11
+R12
+R13
+Z241 DEx4 work 5 tbrca 0 22 XbkPET=9lF?QBWVb1Cc7n3
+Z242 w1595885971
 R0
-Z242 8/home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/testbench_subunits_labs/tb_rca.vhd
-Z243 F/home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/testbench_subunits_labs/tb_rca.vhd
+Z243 8/home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/testbench_subunits_labs/tb_rca.vhd
+Z244 F/home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/testbench_subunits_labs/tb_rca.vhd
 l0
 L95
 VWW528dH[TCL1`W>6MnDza1
 !s100 dGaLQLYi1UVz=K5a7]JH82
-R7
-32
-R149
-!i10b 0
-R150
-Z244 !s90 -reportprogress|300|-work|work|-2002|-explicit|-vopt|-stats=none|/home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/testbench_subunits_labs/tb_rca.vhd|
-Z245 !s107 /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/testbench_subunits_labs/tb_rca.vhd|
-!i113 0
-R33
-R13
-Ereg_nbit
-R98
 R16
-R3
-R4
+32
+R158
+!i10b 0
+R159
+Z245 !s90 -reportprogress|300|-work|work|-2002|-explicit|-vopt|-stats=none|/home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/testbench_subunits_labs/tb_rca.vhd|
+Z246 !s107 /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/testbench_subunits_labs/tb_rca.vhd|
+!i113 0
+R42
+R22
+Ereg_nbit
+R107
+R25
+R12
+R13
 R0
-R122
-R123
+R131
+R132
 l0
 L6
 VzR>?0G=l7ng95=9?hhOS30
 !s100 lZ7@<afGg^B7zIbRCIXlB1
-R7
+R16
 33
-R74
+R83
 !i10b 1
-R75
-R124
-R125
+R84
+R133
+R134
 !i113 0
+R21
+R22
+Astruc
+R25
 R12
 R13
-Astruc
-R16
-R3
-R4
-R121
+R130
+33
+R83
 l22
 L14
 V[TB@Ff_nX;mCzVIZM?Sj33
 !s100 iG@j=Go3XlWOl<5kX@GCQ3
-R7
-33
-R74
+R16
 !i10b 1
-R75
-R124
-R125
+R84
+R133
+R134
 !i113 0
+R21
+R22
+Eregister_file
+R10
+R11
 R12
 R13
-Eregister_file
-R1
-R2
-R3
-R4
 R0
-R128
-R129
+R137
+R138
 l0
 L6
 VW><jY26^XLPmTA]>T=@A12
 !s100 HG[N>[cl>3hcAb5]D[MdT1
-R7
+R16
 33
-R74
+R28
 !i10b 1
-R75
-R130
-R131
+R84
+R139
+R140
 !i113 0
+R21
+R22
+Abeh
+R11
 R12
 R13
-Abeh
-R2
-R3
-R4
-R127
+R136
+33
+R28
 l31
 L23
 Vm_1?Ol<acGZTh[:9za@J^2
 !s100 oO_BOVzGb6fkNzbLi03661
-R7
-33
-R74
+R16
 !i10b 1
-R75
-R130
-R131
+R84
+R139
+R140
 !i113 0
-R12
-R13
+R21
+R22
 Cregn_test
 etb_regN
-R24
-R121
+R33
+R130
 DCx4 work 13 cfg_reg_pluto 0 22 jVMDlgj?[`[FiBUCIkQA?2
 DCx4 work 13 cfg_reg_pippo 0 22 =kWm3Xin^3oCTmAaUzaaM0
 DAx4 work 7 tb_regn 4 test 22 DQ0ThzdEPhYB3Ao25197M0
-R16
-R3
-R4
-Z246 DEx4 work 7 tb_regn 0 22 h<^dm<SCS>[Pi^MgH?>L?3
-Z247 w1595886271
+R25
+R12
+R13
+Z247 DEx4 work 7 tb_regn 0 22 h<^dm<SCS>[Pi^MgH?>L?3
+Z248 w1595886271
 R0
-Z248 8/home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/testbench_subunits_labs/tb_regN.vhd
-Z249 F/home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/testbench_subunits_labs/tb_regN.vhd
+Z249 8/home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/testbench_subunits_labs/tb_regN.vhd
+Z250 F/home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/testbench_subunits_labs/tb_regN.vhd
 l0
 L61
 VA0Ecdc76ae<hEa_0BhG`G2
 !s100 GJeVD^z;:dEXSzL__:^F60
-R7
+R16
 32
-R149
+R158
 !i10b 0
-R150
-Z250 !s90 -reportprogress|300|-work|work|-2002|-explicit|-vopt|-stats=none|/home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/testbench_subunits_labs/tb_regN.vhd|
-Z251 !s107 /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/testbench_subunits_labs/tb_regN.vhd|
+R159
+Z251 !s90 -reportprogress|300|-work|work|-2002|-explicit|-vopt|-stats=none|/home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/testbench_subunits_labs/tb_regN.vhd|
+Z252 !s107 /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/testbench_subunits_labs/tb_regN.vhd|
 !i113 0
-R33
-R13
+R42
+R22
 vromem
-R210
-R34
+R1
+R104
 !i10b 1
 !s100 78Xi@HT2KG5AT9Dn@nM9k1
 I2VM8OfO84C>:GQXLaQ2C>3
-R216
+R222
 !s105 romem_sv_unit
 S1
 R0
-R218
+R3
 8/home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/romem.sv
 F/home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/romem.sv
-Z252 L0 21
-R213
+Z253 L0 21
+R6
 r1
 !s85 0
 31
-R35
-!s107 /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/memory_interfaces.svh|/home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/romem.sv|
+R44
+!s107 /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/005-memory_interfaces.svh|/home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/romem.sv|
 !s90 -reportprogress|300|-work|work|-vopt|-sv|-stats=none|/home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/romem.sv|
 !i113 0
-R214
-R215
+R8
+R9
 vrwmem
-R210
-R34
+R1
+R104
 !i10b 1
 !s100 XV7=L27bP29FOH`If5Eg<3
 I:=M[Z=IKl@SUdn;Jf]in11
-R216
+R222
 !s105 rwmem_sv_unit
 S1
 R0
-w1595961367
+R3
 8/home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/rwmem.sv
 F/home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/rwmem.sv
-Z253 L0 18
-R213
+Z254 L0 18
+R6
 r1
 !s85 0
 31
-R35
-!s107 /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/memory_interfaces.svh|/home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/rwmem.sv|
+R44
+!s107 /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/005-memory_interfaces.svh|/home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/rwmem.sv|
 !s90 -reportprogress|300|-work|work|-vopt|-sv|-stats=none|/home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/rwmem.sv|
 !i113 0
-R214
-R215
+R8
+R9
 Estcg
-R1
-R16
-R3
-R4
+R10
+R25
+R12
+R13
 R0
-R133
-R134
+R142
+R143
 l0
 L9
 VL283BimF^583zM1k3hDZ63
 !s100 5Bk?6[:JP3g7O<e`64@0m0
-R7
+R16
 33
-R19
+R28
 !i10b 1
-R20
-R135
-R136
+R29
+R144
+R145
 !i113 0
+R21
+R22
+Astructural
+R25
 R12
 R13
-Astructural
-R16
-R3
-R4
-R132
+R141
 l141
 L18
 VLn@JN@fid``DO==l:oO;L0
 !s100 C8]n[@EMdZkG;IT;=0K]J3
-R7
+R16
 33
-R19
+R28
 !i10b 1
-R20
-R135
-R136
+R29
+R144
+R145
 !i113 0
+R21
+R22
+Esum_gen
+R10
+R61
+R62
 R12
 R13
-Esum_gen
-R1
-R52
-R53
-R3
-R4
 R0
-R139
-R140
+R148
+R149
 l0
 L7
 V0dmc>lEP9TjVdRMdWmC8b3
 !s100 zUlD5;9WH6[Hlb7;16o^K3
-R7
+R16
 33
-R34
+R104
 !i10b 1
-R35
-R141
-R142
+R44
+R150
+R151
 !i113 0
+R21
+R22
+Astructural
+R61
+R62
 R12
 R13
-Astructural
-R52
-R53
-R3
-R4
-R138
+R147
 l32
 L18
 V=Gk20>zkWHz7TaKKJj:U92
 !s100 l;BoeB[35CEKk:9mE85Q82
-R7
+R16
 33
-R34
+R104
 !i10b 1
-R35
-R141
-R142
+R44
+R150
+R151
 !i113 0
-R12
-R13
+R21
+R22
 Csum_gentest
 eTBSUM_GEN
-R24
-R138
-R52
-R53
+R33
+R147
+R61
+R62
 DCx4 work 22 cfg_sum_gen_structural 0 22 ZO`EifHefg_PgGRl?7UAK2
 DAx4 work 9 tbsum_gen 4 test 22 aDlR18>kZK`Z37<jTNKAO2
-R2
-R3
-R4
-Z254 DEx4 work 9 tbsum_gen 0 22 DJ=zd7nmciGh9UJjeD7GP2
-R26
+R11
+R12
+R13
+Z255 DEx4 work 9 tbsum_gen 0 22 DJ=zd7nmciGh9UJjeD7GP2
+R35
 R0
-Z255 8/home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/testbench_subunits_labs/tb_sum_gen.vhd
-Z256 F/home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/testbench_subunits_labs/tb_sum_gen.vhd
+Z256 8/home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/testbench_subunits_labs/tb_sum_gen.vhd
+Z257 F/home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/testbench_subunits_labs/tb_sum_gen.vhd
 l0
 L87
 V`C201VgLGMSjAE6QQgSPf0
 !s100 QGhIi>mZz9`V6RMY;9oM:2
-R7
+R16
 32
-R166
+R2
 !i10b 0
-R219
-Z257 !s90 -reportprogress|300|-work|work|-2002|-explicit|-vopt|-stats=none|/home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/testbench_subunits_labs/tb_sum_gen.vhd|
-Z258 !s107 /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/testbench_subunits_labs/tb_sum_gen.vhd|
+R7
+Z258 !s90 -reportprogress|300|-work|work|-2002|-explicit|-vopt|-stats=none|/home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/testbench_subunits_labs/tb_sum_gen.vhd|
+Z259 !s107 /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/testbench_subunits_labs/tb_sum_gen.vhd|
 !i113 0
-R33
-R13
+R42
+R22
 vtb_cu
-R210
-R88
+R1
+R43
 !i10b 1
 !s100 <R;fXZmjj2Sd5U@f1P9Dm1
 I]QgO7<8AoSm=n6mIIK1f]3
-R216
+R222
 !s105 tb_cu_sv_unit
 S1
 R0
-Z259 w1595956845
+R3
 8/home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/testbench_subunits/tb_cu.sv
 F/home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/testbench_subunits/tb_cu.sv
-R253
-R213
+R254
+R6
 r1
 !s85 0
 31
-R89
-!s107 /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/testbench_subunits/../global_defs.svh|/home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/testbench_subunits/tb_cu.sv|
+R97
+!s107 /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/testbench_subunits/../003-global_defs.svh|/home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/testbench_subunits/tb_cu.sv|
 !s90 -reportprogress|300|-work|work|-vopt|-sv|-stats=none|/home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/testbench_subunits/tb_cu.sv|
 !i113 0
-R214
-R215
+R8
+R9
 vtb_datapath
-R210
-R88
+R1
+R43
 !i10b 1
-!s100 <_V1E;=OCnkR6njc8;GG00
-I<mnI?TH;n;IPn[]_aSfI92
-R216
-!s105 tb_datapath_sv_unit
+!s100 E>PbUUJ47<P1h2eL6`VSj0
+IhC5OQo>OiD]7c6[`m5D@I3
+R222
+Z260 !s105 tb_datapath_sv_unit
 S1
 R0
-R178
-8/home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/testbench_subunits/tb_datapath.sv
-F/home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/testbench_subunits/tb_datapath.sv
-L0 34
-R213
+R3
+Z261 8/home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/testbench_subunits/tb_datapath.sv
+Z262 F/home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/testbench_subunits/tb_datapath.sv
+L0 38
+R6
 r1
 !s85 0
 31
-R89
-!s107 /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/testbench_subunits/../global_defs.svh|/home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/testbench_subunits/tb_datapath.sv|
-!s90 -reportprogress|300|-work|work|-vopt|-sv|-stats=none|/home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/testbench_subunits/tb_datapath.sv|
+R97
+Z263 !s107 /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/testbench_subunits/../003-global_defs.svh|/home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/testbench_subunits/tb_datapath.sv|
+Z264 !s90 -reportprogress|300|-work|work|-vopt|-sv|-stats=none|/home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/testbench_subunits/tb_datapath.sv|
 !i113 0
-R214
-R215
+R8
+R9
 vtb_decode_stage
-R210
-!s110 1595961768
-!i10b 1
-!s100 SFIU1K^>g`lnFQSUZiTV@2
-IJ[j;`SIo3:F>hF=NN_jX53
-R216
-Z260 !s105 tb_decode_stage_sv_unit
-S1
-R0
-R259
-Z261 8/home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/testbench_subunits/tb_decode_stage.sv
-Z262 F/home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/testbench_subunits/tb_decode_stage.sv
-R253
-R213
+R1
+R222
 r1
 !s85 0
+!i10b 1
+!s100 ibB]TG;]Ee84g:Wj<o`4e2
+In]R5Wk:ZUS1>:0H_MSRiU2
+Z265 !s105 tb_decode_stage_sv_unit
+S1
+R0
+Z266 w1596313229
+Z267 8/home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/testbench_subunits/tb_decode_stage.sv
+Z268 F/home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/testbench_subunits/tb_decode_stage.sv
+L0 141
+R6
 31
-!s108 1595961767.000000
-Z263 !s107 /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/testbench_subunits/../global_defs.svh|/home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/testbench_subunits/tb_decode_stage.sv|
-Z264 !s90 -reportprogress|300|-work|work|-vopt|-sv|-stats=none|/home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/testbench_subunits/tb_decode_stage.sv|
+Z269 !s108 1596313232.000000
+Z270 !s107 /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/testbench_subunits/../003-global_defs.svh|/home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/testbench_subunits/tb_decode_stage.sv|
+Z271 !s90 -reportprogress|300|-work|work|-vopt|-sv|-stats=none|/home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/testbench_subunits/tb_decode_stage.sv|
 !i113 0
-R214
-R215
+R8
+R9
 vtb_dlx
-R210
-DXx4 work 14 tb_dlx_sv_unit 0 22 mINfKm:eL;Y[Gd5Fk1hiD2
-R216
+R1
+DXx4 work 14 tb_dlx_sv_unit 0 22 7Y5W9Y7Eh<JB3>VlOhciD1
+R222
 r1
 !s85 0
 !i10b 1
@@ -2413,781 +2443,805 @@ IBV94h;mWO82VOkcYR9SUe1
 !s105 tb_dlx_sv_unit
 S1
 R0
-R259
-Z265 8/home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/tb_dlx.sv
-Z266 F/home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/tb_dlx.sv
-R252
-R213
+R3
+Z272 8/home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/tb_dlx.sv
+Z273 F/home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/tb_dlx.sv
+R253
+R6
 31
-R35
-Z267 !s107 /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/global_defs.svh|/home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/./memories/memory_interfaces.svh|/home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/implemented_instructions.svh|/home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/tb_dlx.sv|
-Z268 !s90 -reportprogress|300|-work|work|-vopt|-sv|-stats=none|/home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/tb_dlx.sv|
+R44
+Z274 !s107 /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/003-global_defs.svh|/home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/./memories/005-memory_interfaces.svh|/home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/004-implemented_instructions.svh|/home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/tb_dlx.sv|
+Z275 !s90 -reportprogress|300|-work|work|-vopt|-sv|-stats=none|/home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/tb_dlx.sv|
 !i113 0
-R214
-R215
+R8
+R9
 Xtb_dlx_sv_unit
-R210
-VmINfKm:eL;Y[Gd5Fk1hiD2
+R1
+V7Y5W9Y7Eh<JB3>VlOhciD1
 r1
 !s85 0
 !i10b 1
 !s100 j=D`m_lIQ:22]8Q>E8Hof2
-ImINfKm:eL;Y[Gd5Fk1hiD2
+I7Y5W9Y7Eh<JB3>VlOhciD1
 !i103 1
 S1
 R0
-R218
-R265
-R266
-R211
-F/home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/./memories/memory_interfaces.svh
-F/home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/global_defs.svh
-R212
-R213
+R3
+R272
+R273
+R4
+F/home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/./memories/005-memory_interfaces.svh
+F/home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/003-global_defs.svh
+R5
+R6
 31
-R35
-R267
-R268
+R44
+R274
+R275
 !i113 0
-R214
-R215
+R8
+R9
 vtb_execute_stage
-R210
-R88
+R1
+R43
 !i10b 1
 !s100 ]bCB4GhNO72ZBfEVE4e3R2
 IF43>[bUh5[AaYCAi8G30W3
-R216
+R222
 !s105 tb_execute_stage_sv_unit
 S1
 R0
-R259
+R3
 8/home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/testbench_subunits/tb_execute_stage.sv
 F/home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/testbench_subunits/tb_execute_stage.sv
-R253
-R213
+R254
+R6
 r1
 !s85 0
 31
-R89
-!s107 /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/testbench_subunits/../global_defs.svh|/home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/testbench_subunits/tb_execute_stage.sv|
+R97
+!s107 /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/testbench_subunits/../003-global_defs.svh|/home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/testbench_subunits/tb_execute_stage.sv|
 !s90 -reportprogress|300|-work|work|-vopt|-sv|-stats=none|/home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/testbench_subunits/tb_execute_stage.sv|
 !i113 0
-R214
-R215
+R8
+R9
 vtb_fetch_stage
-R210
-R88
+R1
+R43
 !i10b 1
 !s100 jIkB:Z=^lceS=OCgLH_H^2
 IolhH0DJK_>gc:QRdBKTNF3
-R216
-Z269 !s105 tb_fetch_stage_sv_unit
+R222
+Z276 !s105 tb_fetch_stage_sv_unit
 S1
 R0
-Z270 w1596061655
-Z271 8/home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/testbench_subunits/tb_fetch_stage.sv
-Z272 F/home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/testbench_subunits/tb_fetch_stage.sv
+R3
+Z277 8/home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/testbench_subunits/tb_fetch_stage.sv
+Z278 F/home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/testbench_subunits/tb_fetch_stage.sv
 L0 74
-R213
+R6
 r1
 !s85 0
 31
-R89
-Z273 !s107 /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/testbench_subunits/../global_defs.svh|/home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/testbench_subunits/../memories/memory_interfaces.svh|/home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/testbench_subunits/tb_fetch_stage.sv|
-Z274 !s90 -reportprogress|300|-work|work|-vopt|-sv|-stats=none|/home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/testbench_subunits/tb_fetch_stage.sv|
+R97
+Z279 !s107 /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/testbench_subunits/../003-global_defs.svh|/home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/testbench_subunits/../memories/005-memory_interfaces.svh|/home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/testbench_subunits/tb_fetch_stage.sv|
+Z280 !s90 -reportprogress|300|-work|work|-vopt|-sv|-stats=none|/home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/testbench_subunits/tb_fetch_stage.sv|
 !i113 0
-R214
-R215
+R8
+R9
 vtb_memories
-R210
-R34
+R1
+R104
 !i10b 1
 !s100 ]fXlNAgL9@hi3@im22haA1
 IZN3a7C2gV]lM9`Y[jY0d93
-R216
+R222
 !s105 tb_memories_sv_unit
 S1
 R0
-w1595948895
+R3
 8/home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/tb_memories.sv
 F/home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/tb_memories.sv
 L0 131
-R213
+R6
 r1
 !s85 0
 31
-R35
-!s107 /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/memory_interfaces.svh|/home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/../global_defs.svh|/home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/tb_memories.sv|
+R44
+!s107 /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/005-memory_interfaces.svh|/home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/../003-global_defs.svh|/home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/tb_memories.sv|
 !s90 -reportprogress|300|-work|work|-vopt|-sv|-stats=none|/home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/tb_memories.sv|
 !i113 0
-R214
-R215
+R8
+R9
 vtb_memory_stage
-R210
-R166
+R1
+R2
 !i10b 1
 !s100 ml<YoWZ;[j7macnUd^<C22
 Ifi[EZZe9UWl7@J=a_bM4j3
-R216
-R217
+R222
+Z281 !s105 tb_memory_stage_sv_unit
 S1
 R0
-Z275 w1596064286
-Z276 8/home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/testbench_subunits/tb_memory_stage.sv
-Z277 F/home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/testbench_subunits/tb_memory_stage.sv
+R3
+Z282 8/home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/testbench_subunits/tb_memory_stage.sv
+Z283 F/home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/testbench_subunits/tb_memory_stage.sv
 L0 99
-R213
+R6
 r1
 !s85 0
 31
-R219
-R220
-R221
+R7
+Z284 !s107 /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/testbench_subunits/../003-global_defs.svh|/home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/testbench_subunits/../memories/005-memory_interfaces.svh|/home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/testbench_subunits/tb_memory_stage.sv|
+Z285 !s90 -reportprogress|300|-work|work|-vopt|-sv|-stats=none|/home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/testbench_subunits/tb_memory_stage.sv|
 !i113 0
-R214
-R215
+R8
+R9
 Etb_p4adder
-R146
-R16
-R2
-R3
-R4
+R155
+R25
+R11
+R12
+R13
 R0
-R147
-R148
+R156
+R157
 l0
 L6
 V@YgL3D`FJ6d`In9f;L5gz3
 !s100 286haRMBUkl6LXYnWl=_91
-R7
-32
-R149
-!i10b 1
-R150
-R151
-R152
-!i113 0
-R33
-R13
-Atest
 R16
-R2
-R3
-R4
-R145
+32
+R158
+!i10b 1
+R159
+R160
+R161
+!i113 0
+R42
+R22
+Atest
+R25
+R11
+R12
+R13
+R154
 l25
 L9
 VNil0C^Ml=k7z5LPdVJUCM1
 !s100 _2DI4=8g=VV0aSP6EFo_L0
-R7
-32
-R149
-!i10b 1
-R150
-R151
-R152
-!i113 0
-R33
-R13
-Etb_regn
-R247
 R16
-R3
-R4
-R0
+32
+R158
+!i10b 1
+R159
+R160
+R161
+!i113 0
+R42
+R22
+Etb_regn
 R248
+R25
+R12
+R13
+R0
 R249
+R250
 l0
 L5
 Vh<^dm<SCS>[Pi^MgH?>L?3
 !s100 Y665?@LlW2Ncb^AWZ=Ik]0
-R7
-32
-R149
-!i10b 1
-R150
-R250
-R251
-!i113 0
-R33
-R13
-Atest
 R16
-R3
-R4
-R246
+32
+R158
+!i10b 1
+R159
+R251
+R252
+!i113 0
+R42
+R22
+Atest
+R25
+R12
+R13
+R247
 l23
 L8
 VDQ0ThzdEPhYB3Ao25197M0
 !s100 [Q?8^^n2KC::gCYB:gf6h0
-R7
-32
-R149
-!i10b 1
-R150
-R250
-R251
-!i113 0
-R33
-R13
-Etb_stcg
-R26
 R16
-R3
-R4
+32
+R158
+!i10b 1
+R159
+R251
+R252
+!i113 0
+R42
+R22
+Etb_stcg
+R35
+R25
+R12
+R13
 R0
-R164
-R165
+R173
+R174
 l0
 L6
 V3ggog6eg2c2fQ]]>_J=b11
 !s100 =RZN?Y@JeTSgBJ1nGaX:L3
-R7
-32
-R166
-!i10b 1
-R150
-R167
-R168
-!i113 0
-R33
-R13
-Atest
 R16
-R3
-R4
-R163
+32
+R2
+!i10b 1
+R159
+R175
+R176
+!i113 0
+R42
+R22
+Atest
+R25
+R12
+R13
+R172
 l24
 L9
 V@gD`m>AnY2N2S5DjDbQhj0
 !s100 i;dXlB;>@d>dKb0bj;Z`71
-R7
+R16
 32
-R166
+R2
 !i10b 1
-R150
-R167
-R168
+R159
+R175
+R176
 !i113 0
-R33
-R13
+R42
+R22
 vtb_writeback_stage
-R210
-R216
-r1
-!s85 0
+R1
+R104
 !i10b 1
 !s100 9HlSl9TmS>1Wg[0QNB3_23
 IKZID18l:1TYS`KJF2jJKR1
+R222
 !s105 tb_writeback_stage_sv_unit
 S1
 R0
 w1595778824
 8/home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/testbench_subunits/tb_writeback_stage.sv
 F/home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/testbench_subunits/tb_writeback_stage.sv
-R253
-R213
+R254
+R6
+r1
+!s85 0
 31
-R35
+R44
 !s107 /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/testbench_subunits/tb_writeback_stage.sv|
 !s90 -reportprogress|300|-work|work|-vopt|-sv|-stats=none|/home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/testbench_subunits/tb_writeback_stage.sv|
 !i113 0
-R214
-R215
+R8
+R9
 Etbalu
-R26
-R15
-R16
-R3
-R4
+R35
+R24
+R25
+R12
+R13
 R0
-R27
-R28
+R36
+R37
 l0
 L7
 V36h4R[BCJ`:U_XN^^YFkF2
 !s100 NH>cINnd`PHHf:A7[Hjai1
-R7
-32
-R29
-!i10b 1
-R30
-R31
-R32
-!i113 0
-R33
-R13
-Atest
-R15
 R16
-R3
-R4
+32
+R38
+!i10b 1
+R39
+R40
+R41
+!i113 0
+R42
+R22
+Atest
+R24
 R25
+R12
+R13
+R34
 l24
 L10
 VlMNO0@Fm`aI@z14kR:kGB1
 !s100 Ne[?_fM`AhPXdGidKibcf3
-R7
+R16
 32
-R29
+R38
 !i10b 1
-R30
-R31
-R32
+R39
+R40
+R41
 !i113 0
-R33
-R13
+R42
+R22
 Etbcsb
-R26
-R2
-R3
-R4
+R35
+R11
+R12
+R13
 R0
-R174
-R175
+R182
+R183
 l0
 L5
 V<z2`_lEi<i4X4fc8TzGlB0
 !s100 BTM>HIPhceS:UJ8M7_iO[1
-R7
+R16
 32
-R29
+R38
 !i10b 1
-R30
-R176
-R177
+R39
+R184
+R185
 !i113 0
-R33
-R13
+R42
+R22
 Atest
-R2
-R3
-R4
-R173
+R11
+R12
+R13
+R181
 l36
 L8
 VNeE^hzhg>^VX^=V7T`aHX3
 !s100 9PG9d_k>>U6Cabg<z;fdS0
-R7
+R16
 32
-R29
+R38
 !i10b 1
-R30
-R176
-R177
+R39
+R184
+R185
 !i113 0
-R33
-R13
+R42
+R22
 Etbfd
-R26
-R3
-R4
+R35
+R12
+R13
 R0
-R191
-R192
+R201
+R202
 l0
 L5
 V4D=E92njPY30[gBYT01EZ1
 !s100 eFG`LW@00z9jgeZGhHm^P0
-R7
+R16
 32
-R149
+R158
 !i10b 1
-R30
-R193
-R194
+R39
+R203
+R204
 !i113 0
-R33
-R13
+R42
+R22
 Atest
-R3
-R4
-R190
+R12
+R13
+R200
 l24
 L8
 V;^4;hj::]RMPYXfc4PcH91
 !s100 QK34f9EiQ^oUNozNMni@H1
-R7
-32
-R149
-!i10b 1
-R30
-R193
-R194
-!i113 0
-R33
-R13
-Etbmux21_generic
-R231
 R16
-R3
-R4
-R0
+32
+R158
+!i10b 1
+R39
+R203
+R204
+!i113 0
+R42
+R22
+Etbmux21_generic
 R232
+R25
+R12
+R13
+R0
 R233
+R234
 l0
 L6
 VdFi_]m33@CiiGO<K>3VcC2
 !s100 Cemk`9C=@;kab5Mk6_63`0
-R7
-32
-R149
-!i10b 1
-R150
-R234
-R235
-!i113 0
-R33
-R13
-Atest
 R16
-R3
-R4
-R230
+32
+R158
+!i10b 1
+R159
+R235
+R236
+!i113 0
+R42
+R22
+Atest
+R25
+R12
+R13
+R231
 l26
 L9
 V4QCRTDVEB;RZ6QRUzgMiE2
 !s100 PQJhJPIYdRz7?iFTA7Qnc0
-R7
+R16
 32
-R149
+R158
 !i10b 1
-R150
-R234
+R159
 R235
+R236
 !i113 0
-R33
-R13
+R42
+R22
 Etbrca
-R241
-R2
-R3
-R4
-R0
 R242
+R11
+R12
+R13
+R0
 R243
+R244
 l0
 L5
 VXbkPET=9lF?QBWVb1Cc7n3
 !s100 k`F>;=UC4<144]>o2nHzn3
-R7
+R16
 32
-R149
+R158
 !i10b 1
-R150
-R244
+R159
 R245
+R246
 !i113 0
-R33
-R13
+R42
+R22
 Atest
-R2
-R3
-R4
-R240
+R11
+R12
+R13
+R241
 l37
 L8
 Vnj3[kiXz2MlBEnT8=mOWj0
 !s100 iFF9[2Aa?BZ?Hm2PZBYBG2
-R7
-32
-R149
-!i10b 1
-R150
-R244
-R245
-!i113 0
-R33
-R13
-Etbregisterfile
-R26
 R16
-R3
-R4
+32
+R158
+!i10b 1
+R159
+R245
+R246
+!i113 0
+R42
+R22
+Etbregisterfile
+R35
+R25
+R12
+R13
 R0
-R155
-R156
+R164
+R165
 l0
 L6
 VT=P9aQ]ZDPj^bc5J8bo[@2
 !s100 ?5m;MT_DR7C[T;m3mdcGj0
-R7
-32
-R149
-!i10b 1
-R150
-R157
-R158
-!i113 0
-R33
-R13
-Atesta
 R16
-R3
-R4
-R154
+32
+R158
+!i10b 1
+R159
+R166
+R167
+!i113 0
+R42
+R22
+Atesta
+R25
+R12
+R13
+R163
 l58
 L9
 V5ChIWjUDaRURnY:QSf0Ih3
 !s100 <gcPcWUXeWAG7AokH>g:@2
-R7
+R16
 32
-R149
-!i10b 1
-R150
-R157
 R158
+!i10b 1
+R159
+R166
+R167
 !i113 0
-R33
-R13
+R42
+R22
 Etbsum_gen
-R26
-R2
-R3
-R4
+R35
+R11
+R12
+R13
 R0
-R255
 R256
+R257
 l0
 L5
 VDJ=zd7nmciGh9UJjeD7GP2
 !s100 @RGjZ4k@36Pn5j<HXBKe81
-R7
+R16
 32
-R166
-!i10b 1
-R219
-R257
-R258
-!i113 0
-R33
-R13
-Atest
 R2
-R3
-R4
-R254
+!i10b 1
+R7
+R258
+R259
+!i113 0
+R42
+R22
+Atest
+R11
+R12
+R13
+R255
 l35
 L8
 VaDlR18>kZK`Z37<jTNKAO2
 !s100 z77f0_OLLZ>Z3dD5YLV[R0
-R7
+R16
 32
-R166
+R2
 !i10b 1
-R219
-R257
+R7
 R258
+R259
 !i113 0
-R33
-R13
+R42
+R22
 4test
-R210
-R216
+R1
+R222
 r1
 !s85 0
 !i10b 1
 !s100 8MQS0Wlc<ne=?GTgan_5c3
 IY]`3_ImYOiVH<L8Bd[o[60
-R269
+R276
 S1
 R0
 w1595961757
-R271
-R272
-R253
-R213
+R277
+R278
+R254
+R6
 31
 !s108 1595961768.000000
-R273
-R274
+!s107 /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/testbench_subunits/../global_defs.svh|/home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/testbench_subunits/../memories/memory_interfaces.svh|/home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/testbench_subunits/tb_fetch_stage.sv|
+R280
 !i113 0
-R214
-R215
-4test_decode
-R210
-!s110 1596064493
+R8
+R9
+4test_datapath
+R1
+R43
 !i10b 1
-!s100 ;<WjG@1hdcHI@NKme;___1
-I7O>Z:F;SCo04CCQX[]@bS0
-R216
+!s100 GQ_>]@e4fbW0bP0miFLVl3
+I2TCDEDAkhYlI5oMHHGYCU0
+R222
 R260
 S1
 R0
-R270
+R3
 R261
 R262
-R253
-R213
+L0 17
+R6
 r1
 !s85 0
 31
-!s108 1596064493.000000
+R97
 R263
 R264
 !i113 0
-R214
-R215
+R8
+R9
+4test_decode
+R1
+R222
+r1
+!s85 0
+!i10b 1
+!s100 e=_S4RcnVlZFElSbPD`Yb1
+I1T4T>LcAdXnR:oZJI6a163
+R265
+S1
+R0
+R266
+R267
+R268
+R5
+R6
+31
+R269
+R270
+R271
+!i113 0
+R8
+R9
 4test_fetch
-R210
-R88
+R1
+R43
 !i10b 1
 !s100 bYZIm19f_G;:<nod:I<Cf3
 I6[T`XAROARUAP59_^hz=b3
-R216
-R269
+R222
+R276
 S1
 R0
-R270
-R271
-R272
-R253
-R213
+R3
+R277
+R278
+R254
+R6
 r1
 !s85 0
 31
-R89
-R273
-R274
+R97
+R279
+R280
 !i113 0
-R214
-R215
+R8
+R9
 4test_mem
-R210
+R1
 !s110 1595958844
 !i10b 1
 !s100 CP31M;i=ce0^BRSJhJ4CF0
 I0368GR:^o2X6DgE`VfKOI3
-R216
-R217
+R222
+R281
 S1
 R0
 w1595958833
-R276
-R277
-Z278 L0 20
-R213
+R282
+R283
+Z286 L0 20
+R6
 r1
 !s85 0
 31
 !s108 1595958844.000000
-R220
-R221
+!s107 /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/testbench_subunits/../global_defs.svh|/home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/testbench_subunits/../memories/memory_interfaces.svh|/home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/testbench_subunits/tb_memory_stage.sv|
+R285
 !i113 0
-R214
-R215
+R8
+R9
 4test_memory
-R210
-R166
+R1
+R2
 !i10b 1
 !s100 I2XoK:FHh[[RiFM?Z1e@_0
 IC1ANQ_?zF=@cY]a[RPJSk0
-R216
-R217
+R222
+R281
 S1
 R0
-R275
-R276
-R277
-R278
-R213
+R3
+R282
+R283
+R286
+R6
 r1
 !s85 0
 31
-R219
-R220
-R221
+R7
+R284
+R285
 !i113 0
-R214
-R215
+R8
+R9
 Ewrf
-R1
-R16
-R2
-R3
-R4
+R10
+R25
+R11
+R12
+R13
 R0
-R159
-R160
+R168
+R169
 l0
 L7
 VfNdSi`:7Q=jM3PNS_1[US2
 !s100 YQz`g9KZ<Je@X?YiX6;ec1
-R7
+R16
 33
-R19
+R28
 !i10b 1
-R20
-R161
-R162
+R29
+R170
+R171
 !i113 0
+R21
+R22
+Abeh
+R25
+R11
 R12
 R13
-Abeh
-R16
-R2
-R3
-R4
-R153
+R162
 l55
 L34
 VD_]eI?jZfMmEA]=cj82T23
 !s100 4KhT5>X]g1Tbnj^[Vh;L_2
-R7
+R16
 33
-R19
+R28
 !i10b 1
-R20
-R161
-R162
+R29
+R170
+R171
 !i113 0
+R21
+R22
+Ewrite_back_stage
+Z287 w1595700693
+R25
+R188
+R187
+R11
 R12
 R13
-Ewrite_back_stage
-Z279 w1595700693
-R16
-R180
-R179
-R2
-R3
-R4
 R0
-Z280 8/home/ms20.50/Desktop/DLX_project/hardware/dlx/a.b-DataPath.core/a.b.e-Write_back.stage.vhd
-Z281 F/home/ms20.50/Desktop/DLX_project/hardware/dlx/a.b-DataPath.core/a.b.e-Write_back.stage.vhd
+Z288 8/home/ms20.50/Desktop/DLX_project/hardware/dlx/a.b-DataPath.core/a.b.e-Write_back.stage.vhd
+Z289 F/home/ms20.50/Desktop/DLX_project/hardware/dlx/a.b-DataPath.core/a.b.e-Write_back.stage.vhd
 l0
 L23
 VSOmk^jEJaHoVcT@9I^UB<3
 !s100 PY<LVfe;k^g9gQ:=OlUPm1
-R7
-33
-R19
-!i10b 1
-R20
-Z282 !s90 -reportprogress|300|-work|work|-2008|-explicit|-check_synthesis|-vopt|-stats=none|/home/ms20.50/Desktop/DLX_project/hardware/dlx/a.b-DataPath.core/a.b.e-Write_back.stage.vhd|
-Z283 !s107 /home/ms20.50/Desktop/DLX_project/hardware/dlx/a.b-DataPath.core/a.b.e-Write_back.stage.vhd|
-!i113 0
-R204
-R13
-Astructural
 R16
-R180
-R179
-R2
-R3
-R4
-DEx4 work 16 write_back_stage 0 22 SOmk^jEJaHoVcT@9I^UB<3
 33
-R19
+R28
+!i10b 1
+R29
+Z290 !s90 -reportprogress|300|-work|work|-2008|-explicit|-check_synthesis|-vopt|-stats=none|/home/ms20.50/Desktop/DLX_project/hardware/dlx/a.b-DataPath.core/a.b.e-Write_back.stage.vhd|
+Z291 !s107 /home/ms20.50/Desktop/DLX_project/hardware/dlx/a.b-DataPath.core/a.b.e-Write_back.stage.vhd|
+!i113 0
+R215
+R22
+Astructural
+R25
+R188
+R187
+R11
+R12
+R13
+DEx4 work 16 write_back_stage 0 22 SOmk^jEJaHoVcT@9I^UB<3
 l39
 L37
 VGho>_ilLX1@=^1Z27?lP;0
 !s100 4mf1F`mh_IKOWkSKMZm=I0
-R7
+R16
+33
+R28
 !i10b 1
-R20
-R282
-R283
+R29
+R290
+R291
 !i113 0
-R204
-R13
+R215
+R22
