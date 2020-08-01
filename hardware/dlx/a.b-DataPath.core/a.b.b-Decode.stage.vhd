@@ -6,7 +6,7 @@
 -- Author      : Francesco Angione <s262620@studenti.polito.it> franout@github.com
 -- Company     : Politecnico di Torino, Italy
 -- Created     : Wed Jul 22 22:59:52 2020
--- Last update : Sat Aug  1 16:05:13 2020
+-- Last update : Sat Aug  1 22:28:41 2020
 -- Platform    : Default Part Number
 -- Standard    : VHDL-2008 
 --------------------------------------------------------------------------------
@@ -75,7 +75,7 @@ begin
 			RD2     => read_rf_p2,
 			WR      => write_rf,
 			ADD_WR  => address_rf_write,
-			ADD_RD1 => instruction_reg(10 downto 6),
+			ADD_RD1 => instruction_reg(10 downto 6), -- TODO the reverse
 			ADD_RD2 => instruction_reg(15 downto 11),
 			DATAIN  => update_reg_value,
 			OUT1    => val_reg_a_i,
@@ -107,11 +107,19 @@ begin
 		);
 
 
-
 	-- sign exted logic check only the last bit of the immediate value and extend ( it work for both signed and unsigned)
+	sign_extension_logic_i: sign_extension_logic generic map (
+		N=>N
+	)
+	port map (
+		val_to_exetend=>instruction_reg(N-1 downto 16)
+		enable=>compute_sext,
+		extended_val=>val_reg_immediate_i
+	);
+
+
 	sign_extension_logic : process( compute_sext,instruction_reg )
 	begin
-
 		if(compute_sext = '1') then
 			if(instruction_reg(16)='1') then
 				val_reg_immediate_i <= (N-1 downto 16 => '0') & instruction_reg(N-1 downto 16) ;
