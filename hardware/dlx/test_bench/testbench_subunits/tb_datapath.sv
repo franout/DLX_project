@@ -16,6 +16,10 @@
 
 program test_datapath();
 
+
+  	default clocking test_clk @ (posedge clk);
+  	endclocking	// clock
+
 	initial begin 
 		$display("@%0dns Starting Program",$time);
 		##1;

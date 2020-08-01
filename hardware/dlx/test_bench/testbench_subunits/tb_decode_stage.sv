@@ -25,7 +25,12 @@ program automatic test_decode(
 						output logic read_rf_p2,
 						output logic write_rf,
 						output logic [5-1:0]address_rf_write,
-						output logic compute_sext
+						output logic compute_sext,
+						input logic [`NBIT-1:0]val_a,
+						input logic [`IRAM_WORD_SIZE-1:0]new_prog_counter_val_exe,
+						input logic [`NBIT-1:0]val_b,
+						input logic [`NBIT-1:0]val_immediate,
+						input logic [`NBIT-1:0]update_reg_value
 						);
   
 	// tmp data for bit reverse
@@ -252,6 +257,10 @@ localparam clock_period= 10ns;
 				.write_rf(write_rf),
 				.address_rf_write(address_rf_write),
 				.compute_sext(compute_sext)
+				.val_a(val_a),
+				.new_prog_counter_val_exe(new_prog_counter_val_exe),
+				.val_b(val_b),
+				.val_immediate(val_immediate)
   					);
 
 
