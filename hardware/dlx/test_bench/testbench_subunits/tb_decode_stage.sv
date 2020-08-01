@@ -74,8 +74,9 @@ initial begin
 		register_index={<<{array}};
 		read_rf_p1=1;
 		read_rf_p2=1;
-		instruction_reg[20:16]=register_index;
-		instruction_reg[20:16]=register_index+1;
+		// it is a reg to reg ops
+		instruction_reg[10:6]=register_index; // check indexes 
+		instruction_reg[15:11]=register_index+1;
 		if(val_a!==0 || val_b!==0) begin
 			$display("Init values of register files are not zeros",);
 			$stop();
@@ -100,23 +101,26 @@ initial begin
 			$stop();
 		end
 		##1;
-
 		$display("Random read and write",);
-
 		for ( i=0;i<4;i++) begin
 			register_index=$urandom();
 			if(i%2==0) begin
 				write_rf=0;
 				read_p1=1;
 				read_p2=1;
-
-
+				array=$urandom();
+				register_index={<<{array}};
+				instruction_reg[10:6]=register_index; // check indexes 
+				instruction_reg[15:11]=register_index+1;
 			end else begin 
 				write_rf=1;
 				read_p1=0;
 				read_p2=0;
-				address_rf_write=$urandom();
-
+				array=$urandom();
+				register_index={<<{array}};
+				address_rf_write=register_index;
+				instruction_reg[20:16]=register_index;
+				update_reg_value=159753;
 			end 
 			##1;
 		end
