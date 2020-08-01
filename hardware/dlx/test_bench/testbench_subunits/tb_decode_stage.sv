@@ -27,22 +27,17 @@ program automatic test_decode(
 						output logic [5-1:0]address_rf_write,
 						output logic compute_sext
 						);
-
-function logic [`NBIT-1:0] little_to_big_endian (logic [`NBIT-1:0] val);
- 	automatic logic [`NBIT-1:0] tmp;
- 	integer i;
- 	for (i=0;i<`NBIT;i=i+1) begin
-
- 	end
- 	return tmp;
-
- endfunction :  little_to_big_endian
+  
+	// tmp data for bit reverse
+  	 //bit [7:0] array[8] ;// array of 8 8 bit values
+  	 bit [4:0] array ; // we just need to reverse the address of the registers use {<<{array}} and then mask properly the integer value
+	integer register_index;		 // {<<8{array}}; 
 
 
 
 	default clocking test_clk @ (posedge dram_if.clk);
   	endclocking	// clock
-integer register_index;
+
 
 initial begin
 		$display("@%0dns Starting Program",$time);
@@ -72,12 +67,15 @@ initial begin
 		instruction_reg='h1238FFFF;
 		new_prog_counter_val=$urandom();
 		##1;
+		instruction_reg=0;
 		$display("Read and write on the same port",);
 		$urandom_range(0,31);
-		register_index=$urandom();
+		array=$urandom();
+		register_index={<<{array}};
 		read_rf_p1=1;
 		read_rf_p2=1;
-		instruction_reg=register_index
+		instruction_reg[20:16]=register_index;
+		instruction_reg[20:16]=register_index+1;
 		if(val_a!==0 || val_b!==0) begin
 			$display("Init values of register files are not zeros",);
 			$stop();
@@ -87,14 +85,16 @@ initial begin
 		read_p1=0;
 		read_p2=0;
 		write_rf=1;
-		address_rf_write=$urandom();
+		array=$urandom();
+		register_index={<<{array}};
+		address_rf_write=register_index;
+		instruction_reg[20:16]=register_index;
 		update_reg_value=159753;
 		##1;
 		// read again 
 		read_p1=1;
 		write_rf=0;
 		register_index=address_rf_write;
-
 		if(val_a!==159753)begin
 			$display("Error in writing in the register file",);
 			$stop();
@@ -105,10 +105,21 @@ initial begin
 
 		for ( i=0;i<4;i++) begin
 			register_index=$urandom();
+			if(i%2==0) begin
+				write_rf=0;
+				read_p1=1;
+				read_p2=1;
 
 
+			end else begin 
+				write_rf=1;
+				read_p1=0;
+				read_p2=0;
+				address_rf_write=$urandom();
+
+			end 
+			##1;
 		end
-
 		## 3;
 		$display("Decode stage has passed the testbench",);
 		$finish;
@@ -149,16 +160,16 @@ localparam clock_period= 10ns;
 
   	// property definitions
   	// ADDRESS CHECK RANGE for rf
-  	property address_range();
+  	property address_range(int min, int max);
   		@(test_clk)
-
-
+  				disable iff(!rst)
+  				write_rf |=> (address_rf_write>= min && address_rf_write<=max)
   	endproperty;
 
   	// address  it is the same for the rf and ir
   	property address_equal_rf_ir();
-  			@(test_clk) // calling also address range
-
+  		@(test_clk) // calling also address range
+  		write_rf |=> ( address_rf_write==={instruction_reg[20:16]>>} && address_range(0,31)); // address equals to the ones in the IR , check also the range
   	endproperty;
 
   	// read and output on the same port 
@@ -192,7 +203,9 @@ localparam clock_period= 10ns;
 
   	pc_propagation_check: assert pc_propagation();
   	address_equal_rf_ir_check: assert address_equal_rf_ir();
-
+  	read_p1_check: assert read_p1();
+  	read_p2_check: assert read_p2();
+  	write_rf_check: assert write_in_rf();
 
   	// instantiate the uut
   	decode_stage #(
