@@ -14,6 +14,10 @@
 # //
 # reading modelsim.ini
 # Loading project dlx_project
+compile all
+# wrong # args: should be "compile w cmd ?arg ...?"
+project compile all
+# unknown or ambiguous subcommand "compile": must be addfile, addfolder, calculateorder, close, compileall, compileorder, compileoutofdate, currentsim, delete, env, filenames, history, new, open, removefile, simargs, or startsim
 project compileall
 # Compile of 000-globals.vhd was successful.
 # Compile of 001-global_components.vhd was successful.
@@ -50,12 +54,12 @@ project compileall
 # Compile of mux21.vhd was successful.
 # Compile of global_defs.svh was successful.
 # Compile of tb_cu.sv was successful.
-# Compile of tb_datapath.sv was successful.
-# Compile of tb_decode_stage.sv failed with 1 errors.
+# Compile of tb_datapath.sv failed with 2 errors.
+# Compile of tb_decode_stage.sv failed with 11 errors.
 # Compile of tb_execute_stage.sv was successful.
 # Compile of tb_fetch_stage.sv was successful.
 # Compile of a.b.a-Fetch.stage.vhd was successful.
-# Compile of a.b.b-Decode.stage.vhd failed with 2 errors.
+# Compile of a.b.b-Decode.stage.vhd was successful.
 # Compile of a.b.c-Execute.stage.vhd was successful.
 # Compile of a.b.d.Memory.stage.vhd was successful.
 # Compile of MULTIPLIER_tb.vhd was successful.
@@ -71,4 +75,51 @@ project compileall
 # Compile of tb_stcg.vhd was successful.
 # Compile of tb_sum_gen.vhd was successful.
 # Compile of tb_memory_stage.sv was successful.
-# 56 compiles, 2 failed with 3 errors.
+# 56 compiles, 2 failed with 13 errors.
+vsim -suppress 12110 -novopt work.tb_writeback_stage
+# vsim -suppress 12110 -novopt work.tb_writeback_stage 
+# Start time: 18:03:33 on Aug 01,2020
+# ** Warning: (vsim-8891) All optimizations are disabled because the -novopt option is in effect. This will cause your simulation to run very slowly. If you are using this switch to preserve visibility for Debug or PLI features, please see the User's Manual section on Preserving Object Visibility with vopt. -novopt option is now deprecated and will be removed in future releases.
+# Refreshing /home/ms20.50/Desktop/DLX_project/project/simulation/work.tb_writeback_stage
+# ** Warning: (vlog-8891) All optimizations are disabled because the -novopt option is in effect. This will cause your simulation to run very slowly. If you are using this switch to preserve visibility for Debug or PLI features, please see the User's Manual section on Preserving Object Visibility with vopt. -novopt option is now deprecated and will be removed in future releases.
+# Loading sv_std.std
+# Loading work.tb_writeback_stage
+# Loading std.standard
+# Refreshing /home/ms20.50/Desktop/DLX_project/project/simulation/work.write_back_stage(structural)
+# ** Warning: (vcom-8891) All optimizations are disabled because the -novopt option is in effect. This will cause your simulation to run very slowly. If you are using this switch to preserve visibility for Debug or PLI features, please see the User's Manual section on Preserving Object Visibility with vopt. -novopt option is now deprecated and will be removed in future releases.
+# Loading std.textio(body)
+# Loading ieee.std_logic_1164(body)
+# Loading ieee.numeric_std(body)
+# Refreshing /home/ms20.50/Desktop/DLX_project/project/simulation/work.global_components(body)
+# ** Warning: (vcom-8891) All optimizations are disabled because the -novopt option is in effect. This will cause your simulation to run very slowly. If you are using this switch to preserve visibility for Debug or PLI features, please see the User's Manual section on Preserving Object Visibility with vopt. -novopt option is now deprecated and will be removed in future releases.
+# Refreshing /home/ms20.50/Desktop/DLX_project/project/simulation/work.globals(body)
+# ** Warning: (vcom-8891) All optimizations are disabled because the -novopt option is in effect. This will cause your simulation to run very slowly. If you are using this switch to preserve visibility for Debug or PLI features, please see the User's Manual section on Preserving Object Visibility with vopt. -novopt option is now deprecated and will be removed in future releases.
+# Refreshing /home/ms20.50/Desktop/DLX_project/project/simulation/work.constants(body)
+# ** Warning: (vcom-8891) All optimizations are disabled because the -novopt option is in effect. This will cause your simulation to run very slowly. If you are using this switch to preserve visibility for Debug or PLI features, please see the User's Manual section on Preserving Object Visibility with vopt. -novopt option is now deprecated and will be removed in future releases.
+# Loading work.constants(body)
+# Loading work.globals(body)
+# Loading work.global_components(body)
+# Loading work.write_back_stage(structural)
+# Refreshing /home/ms20.50/Desktop/DLX_project/project/simulation/work.mux_zbit_nbit(beh)
+# ** Warning: (vcom-8891) All optimizations are disabled because the -novopt option is in effect. This will cause your simulation to run very slowly. If you are using this switch to preserve visibility for Debug or PLI features, please see the User's Manual section on Preserving Object Visibility with vopt. -novopt option is now deprecated and will be removed in future releases.
+# Loading work.mux_zbit_nbit(beh)
+add wave *
+run 100 ns
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Instance: /tb_writeback_stage/uut/wb_mux
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Instance: /tb_writeback_stage/uut/wb_mux
+# Startign testbench for write back stage 
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 1  Instance: /tb_writeback_stage/uut/wb_mux
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 1  Instance: /tb_writeback_stage/uut/wb_mux
+# Checking if it is still the same 
+# Check if it is still the same 
+# ** Note: $finish    : /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/testbench_subunits/tb_writeback_stage.sv(74)
+#    Time: 95 ns  Iteration: 1  Instance: /tb_writeback_stage
+# 1
+# Break in Module tb_writeback_stage at /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/testbench_subunits/tb_writeback_stage.sv line 74
+write format wave -window .main_pane.wave.interior.cs.body.pw.wf /home/ms20.50/Desktop/DLX_project/scripts/writeback_stage_tb.do
+# End time: 18:05:10 on Aug 01,2020, Elapsed time: 0:01:37
+# Errors: 0, Warnings: 5
