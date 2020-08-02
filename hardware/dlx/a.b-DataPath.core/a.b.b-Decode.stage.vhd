@@ -6,7 +6,7 @@
 -- Author      : Francesco Angione <s262620@studenti.polito.it> franout@github.com
 -- Company     : Politecnico di Torino, Italy
 -- Created     : Wed Jul 22 22:59:52 2020
--- Last update : Sat Aug  1 22:28:41 2020
+-- Last update : Sun Aug  2 16:08:03 2020
 -- Platform    : Default Part Number
 -- Standard    : VHDL-2008 
 --------------------------------------------------------------------------------
@@ -33,7 +33,7 @@ entity decode_stage is
 	port (
 		clk : in std_logic;
 		rst : in std_logic; -- active low 
-		-- from fetch stage
+		                    -- from fetch stage
 		new_prog_counter_val : in std_logic_vector(PC_SIZE-1 downto 0);
 		instruction_reg      : in std_logic_vector(IR_SIZE-1 downto 0);
 		-- to execute stage
@@ -54,6 +54,17 @@ entity decode_stage is
 end entity ; -- decode_stage
 
 architecture structural of decode_stage is
+
+	component sign_extension is
+		generic (
+			N : integer := 32
+		);
+		port (
+			val_to_exetend : in  std_logic_vector(N/2-1 downto 0);
+			enable         : in  std_logic;
+			extended_val   : out std_logic_vector(N-1 downto 0)
+		);
+	end component sign_extension;
 	signal rstn                                         : std_logic;
 	signal val_reg_a_i,val_reg_b_i, val_reg_immediate_i : std_logic_vector(N-1 downto 0);
 	signal clk_immediate                                : std_logic;
@@ -107,27 +118,17 @@ begin
 		);
 
 
-	-- sign exted logic check only the last bit of the immediate value and extend ( it work for both signed and unsigned)
-	sign_extension_logic_i: sign_extension_logic generic map (
-		N=>N
-	)
-	port map (
-		val_to_exetend=>instruction_reg(N-1 downto 16)
-		enable=>compute_sext,
-		extended_val=>val_reg_immediate_i
-	);
+		-- sign exted logic check only the last bit of the immediate value and extend ( it work for both signed and unsigned)
+		sign_extension_logic_i : sign_extension generic map (
+			N => N
+		)
+		port map (
+			val_to_exetend => instruction_reg(N-1 downto 16),
+			enable => compute_sext,
+			extended_val => val_reg_immediate_i
+		);
 
 
-	sign_extension_logic : process( compute_sext,instruction_reg )
-	begin
-		if(compute_sext = '1') then
-			if(instruction_reg(16)='1') then
-				val_reg_immediate_i <= (N-1 downto 16 => '0') & instruction_reg(N-1 downto 16) ;
-			else -- == zero
-				val_reg_immediate_i <= (N-1 downto 16 => '1') & instruction_reg(N-1 downto 16) ;
-			end if;
-		end if;
-	end process sign_extension_logic;
 
 
 

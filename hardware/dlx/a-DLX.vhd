@@ -6,7 +6,7 @@
 -- Author      : Francesco Angione <s262620@studenti.polito.it> franout@github.com
 -- Company     : Politecnico di Torino, Italy
 -- Created     : Wed Jul 22 22:58:15 2020
--- Last update : Sat Aug  1 18:33:46 2020
+-- Last update : Sun Aug  2 16:30:55 2020
 -- Platform    : Default Part Number
 -- Standard    : VHDL-2008 
 --------------------------------------------------------------------------------
@@ -20,6 +20,7 @@ library IEEE;
 use IEEE.std_logic_1164.all;
 
 use work.globals.all;
+use work.constants.all;
 
 
 entity DLX is
@@ -44,7 +45,7 @@ entity DLX is
     DRAM_DATA         : inout std_logic_vector(data_size-1 downto 0)
     -- simulation debug signals
     --synthesis_translate off
-    ,
+    ;
     STATE_CU : out std_logic_vector(f_log2(tot_state)-1 downto 0)
   --synthesis_translate on
   );
@@ -96,53 +97,53 @@ architecture dlx_rtl of DLX is
 
   -- Datapath 
 
-component  DATAPATH is
-  generic (
-    N       : integer := 32;
-    RF_REGS : integer := 32; -- number of registers in register file component
-    IR_SIZE : integer := 32; -- Instruction register size
-    PC_SIZE : integer := 32  -- Program Counter Size
-  );
-  port (
-    clk     : in std_logic;
-    rst     : in std_logic;
-    -- iram interface
-    IRAM_ADDRESS : out std_logic_vector( iram_address_size- 1 downto 0);
-    IRAM_ENABLE : out std_logic;
-    IRAM_READY  : in  std_logic;
-    IRAM_DATA   : in  std_logic_vector(IR_SIZE-1 downto 0);
-    -- dram interface
-    DRAM_ADDRESS      : out   std_logic_vector(dram_address_size-1 downto 0);
-    DRAM_ENABLE       : out   std_logic;
-    DRAM_READNOTWRITE : out   std_logic;
-    DRAM_READY        : in    std_logic;
-    DRAM_DATA         : inout std_logic_vector(data_size-1 downto 0);
-    -- control unit interface, signals from/to control unit 
-    -- for fetch stage
-    iram_enable_cu  : in std_logic;
-    iram_ready_cu : out std_logic;
-    curr_instruction_to_cu : out std_logic_vector(PC_SIZE-1 downto 0);
-    -- for decode stage
-    enable_rf      : in std_logic;  
-    read_rf_p1     : in std_logic;  
-    read_rf_p2     : in std_logic;  
-    write_rf       : in std_logic;  
-    address_rf_write : in std_logic_vector(f_log2(RF_REGS)-1 downto 0);
-    compute_sext  : in std_logic;
-    -- for execute stage
-    alu_op_type: in std_logic_vector(2 downto 0); -- todo
-    sel_val_a  : in std_logic_vector(0 downto 0 );
-    sel_val_b  : in std_logic_vector(0 downto 0 );
-    evaluate_branch : in std_logic;
-    -- for memory stage
-    dram_enable_cu: in  std_logic;
-    dram_r_nw_cu  : in  std_logic;
-    dram_ready_cu : out std_logic; 
-    -- for write back stage   
-    select_wb: in std_logic_vector(0 downto 0)
+  component DATAPATH is
+    generic (
+      N       : integer := 32;
+      RF_REGS : integer := 32; -- number of registers in register file component
+      IR_SIZE : integer := 32; -- Instruction register size
+      PC_SIZE : integer := 32  -- Program Counter Size
+    );
+    port (
+      clk : in std_logic;
+      rst : in std_logic;
+      -- iram interface
+      IRAM_ADDRESS : out std_logic_vector( iram_address_size- 1 downto 0);
+      IRAM_ENABLE  : out std_logic;
+      IRAM_READY   : in  std_logic;
+      IRAM_DATA    : in  std_logic_vector(IR_SIZE-1 downto 0);
+      -- dram interface
+      DRAM_ADDRESS      : out   std_logic_vector(dram_address_size-1 downto 0);
+      DRAM_ENABLE       : out   std_logic;
+      DRAM_READNOTWRITE : out   std_logic;
+      DRAM_READY        : in    std_logic;
+      DRAM_DATA         : inout std_logic_vector(data_size-1 downto 0);
+      -- control unit interface, signals from/to control unit 
+      -- for fetch stage
+      iram_enable_cu         : in  std_logic;
+      iram_ready_cu          : out std_logic;
+      curr_instruction_to_cu : out std_logic_vector(PC_SIZE-1 downto 0);
+      -- for decode stage
+      enable_rf        : in std_logic;
+      read_rf_p1       : in std_logic;
+      read_rf_p2       : in std_logic;
+      write_rf         : in std_logic;
+      address_rf_write : in std_logic_vector(f_log2(RF_REGS)-1 downto 0);
+      compute_sext     : in std_logic;
+      -- for execute stage
+      alu_op_type     : in std_logic_vector(2 downto 0); -- todo
+      sel_val_a       : in std_logic_vector(0 downto 0 );
+      sel_val_b       : in std_logic_vector(0 downto 0 );
+      evaluate_branch : in std_logic;
+      -- for memory stage
+      dram_enable_cu : in  std_logic;
+      dram_r_nw_cu   : in  std_logic;
+      dram_ready_cu  : out std_logic;
+      -- for write back stage   
+      select_wb : in std_logic_vector(0 downto 0)
 
-  );
-end component  DATAPATH;
+    );
+  end component DATAPATH;
 
 
   ----------------------------------------------------------------
@@ -247,54 +248,54 @@ begin -- DLX
       WB_MUX_SEL      => WB_MUX_SEL_i,
       RF_WE           => RF_WE_i);
 
-  -- Datapath instantiation 
-  datapath_i:  DATAPATH generic map (
-        N       : integer := 32;
-    RF_REGS : integer := 32; -- number of registers in register file component
-    IR_SIZE : integer := 32; -- Instruction register size
-    PC_SIZE : integer := 32  -- Program Counter Size
-  )
-  port map (
-       clk     : in std_logic;
-    rst     : in std_logic;
-    -- iram interface
-    IRAM_ADDRESS : out std_logic_vector( iram_address_size- 1 downto 0);
-    IRAM_ENABLE : out std_logic;
-    IRAM_READY  : in  std_logic;
-    IRAM_DATA   : in  std_logic_vector(IR_SIZE-1 downto 0);
-    -- dram interface
-    DRAM_ADDRESS      : out   std_logic_vector(dram_address_size-1 downto 0);
-    DRAM_ENABLE       : out   std_logic;
-    DRAM_READNOTWRITE : out   std_logic;
-    DRAM_READY        : in    std_logic;
-    DRAM_DATA         : inout std_logic_vector(data_size-1 downto 0);
-    -- control unit interface, signals from/to control unit 
-    -- for fetch stage
-    iram_enable_cu  : in std_logic;
-    iram_ready_cu : out std_logic;
-    curr_instruction_to_cu : out std_logic_vector(PC_SIZE-1 downto 0);
-    -- for decode stage
-    enable_rf      : in std_logic;  
-    read_rf_p1     : in std_logic;  
-    read_rf_p2     : in std_logic;  
-    write_rf       : in std_logic;  
-    address_rf_write : in std_logic_vector(f_log2(RF_REGS)-1 downto 0);
-    compute_sext  : in std_logic;
-    -- for execute stage
-    alu_op_type: in std_logic_vector(2 downto 0); -- todo
-    sel_val_a  : in std_logic_vector(0 downto 0 );
-    sel_val_b  : in std_logic_vector(0 downto 0 );
-    evaluate_branch : in std_logic;
-    -- for memory stage
-    dram_enable_cu: in  std_logic;
-    dram_r_nw_cu  : in  std_logic;
-    dram_ready_cu : out std_logic; 
-    -- for write back stage   
-    select_wb: in std_logic_vector(0 downto 0)
+    -- Datapath instantiation 
+    datapath_i : DATAPATH generic map (
+      N       : integer := 32;
+      RF_REGS : integer := 32; -- number of registers in register file component
+      IR_SIZE : integer := 32; -- Instruction register size
+      PC_SIZE : integer := 32  -- Program Counter Size
+      )
+        port map (
+          clk : in std_logic;
+          rst : in std_logic;
+          -- iram interface
+          IRAM_ADDRESS : out std_logic_vector( iram_address_size- 1 downto 0);
+          IRAM_ENABLE  : out std_logic;
+          IRAM_READY   : in  std_logic;
+          IRAM_DATA    : in  std_logic_vector(IR_SIZE-1 downto 0);
+          -- dram interface
+          DRAM_ADDRESS      : out   std_logic_vector(dram_address_size-1 downto 0);
+          DRAM_ENABLE       : out   std_logic;
+          DRAM_READNOTWRITE : out   std_logic;
+          DRAM_READY        : in    std_logic;
+          DRAM_DATA         : inout std_logic_vector(data_size-1 downto 0);
+          -- control unit interface, signals from/to control unit 
+          -- for fetch stage
+          iram_enable_cu         : in  std_logic;
+          iram_ready_cu          : out std_logic;
+          curr_instruction_to_cu : out std_logic_vector(PC_SIZE-1 downto 0);
+          -- for decode stage
+          enable_rf        : in std_logic;
+          read_rf_p1       : in std_logic;
+          read_rf_p2       : in std_logic;
+          write_rf         : in std_logic;
+          address_rf_write : in std_logic_vector(f_log2(RF_REGS)-1 downto 0);
+          compute_sext     : in std_logic;
+          -- for execute stage
+          alu_op_type     : in std_logic_vector(2 downto 0); -- todo
+          sel_val_a       : in std_logic_vector(0 downto 0 );
+          sel_val_b       : in std_logic_vector(0 downto 0 );
+          evaluate_branch : in std_logic;
+          -- for memory stage
+          dram_enable_cu : in  std_logic;
+          dram_r_nw_cu   : in  std_logic;
+          dram_ready_cu  : out std_logic;
+          -- for write back stage   
+          select_wb : in std_logic_vector(0 downto 0)
 
-  );
-
-
+        );
 
 
-end dlx_rtl;
+
+
+      end dlx_rtl;

@@ -6,7 +6,7 @@
 -- Author      : Francesco Angione <s262620@studenti.polito.it> franout@github.com
 -- Company     : Politecnico di Torino, Italy
 -- Created     : Sat Aug  1 22:21:49 2020
--- Last update : Sat Aug  1 22:31:44 2020
+-- Last update : Sun Aug  2 15:54:20 2020
 -- Platform    : Default Part Number
 -- Standard    : VHDL-2008 
 --------------------------------------------------------------------------------
@@ -37,7 +37,7 @@ begin
 	begin
 		if(enable='1') then
 			check_logic : for i in 0 to N-1 loop
-				tmp <= tmp and input_val(i);
+				tmp := tmp and input_val(i);
 			end loop ; -- check_logic
 			decision <= tmp;
 		end if;
