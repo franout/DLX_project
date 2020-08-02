@@ -48,9 +48,10 @@ program automatic test_decode(
 initial begin
 		$display("@%0dns Starting Program",$time);
 		rst=0;
-		enable_rf=1;
+		enable_rf=0;
 		address_rf_write=0;
 		update_reg_value=0;
+		compute_sext=0;
 		instruction_reg=0;
 		new_prog_counter_val=$urandom();
 		read_rf_p2=0;
@@ -73,6 +74,7 @@ initial begin
 		new_prog_counter_val=$urandom();
 		##1;
 		instruction_reg=0;
+		enable_rf=1;
 		$display("Read and write on the same port",);
 		$urandom_range(0,31);
 		array=$urandom();
@@ -82,11 +84,12 @@ initial begin
 		// it is a reg to reg ops
 		instruction_reg[10:6]=register_index; // check indexes 
 		instruction_reg[15:11]=register_index+1;
+		##1;		
 		if(val_a!==0 || val_b!==0) begin
 			$display("Init values of register files are not zeros",);
 			$stop();
 		end
-		##1;
+
 		// write
 		read_rf_p1=0;
 		read_rf_p2=0;
@@ -152,20 +155,20 @@ localparam clock_period= 10ns;
 
 
   	// signal declaration 
-	logic rst;
-	logic [`IRAM_WORD_SIZE-1:0]new_prog_counter_val;
-	logic [`IRAM_WORD_SIZE-1:0]instruction_reg;
-	logic [`NBIT-1:0]val_a;
-	logic [`IRAM_WORD_SIZE-1:0]new_prog_counter_val_exe;
-	logic [`NBIT-1:0]val_b;
-	logic [`NBIT-1:0]val_immediate;
-	logic [`NBIT-1:0]update_reg_value;
-	logic enable_rf;
-	logic read_rf_p1;
-	logic read_rf_p2;
-	logic write_rf;
-	logic [5-1:0]address_rf_write; // # regs is fixed at 32
-	logic compute_sext; // msb is for signed or not 
+	wire rst;
+	wire [`IRAM_WORD_SIZE-1:0]new_prog_counter_val;
+	wire [`IRAM_WORD_SIZE-1:0]instruction_reg;
+	wire [`NBIT-1:0]val_a;
+	wire [`IRAM_WORD_SIZE-1:0]new_prog_counter_val_exe;
+	wire [`NBIT-1:0]val_b;
+	wire [`NBIT-1:0]val_immediate;
+	wire [`NBIT-1:0]update_reg_value;
+	wire enable_rf;
+	wire read_rf_p1;
+	wire read_rf_p2;
+	wire write_rf;
+	wire [5-1:0]address_rf_write; // # regs is fixed at 32
+	wire compute_sext; // msb is for signed or not 
 
   	// property definitions
   	// ADDRESS CHECK RANGE for rf
@@ -193,7 +196,7 @@ localparam clock_period= 10ns;
  
   	property read_p1;
   		@(test_clk)
-  			disable iff(!rst|| !enable_rf)
+  			disable iff(!rst|| !enable_rf || compute_sext)
 			read_port(read_rf_p1 ,val_a);
   	endproperty;
 
@@ -214,7 +217,7 @@ localparam clock_period= 10ns;
   	property pc_propagation;
   		 @(test_clk)
   		 	disable iff (!rst) // except for reset condition 
-  		 		new_prog_counter_val |-> (new_prog_counter_val_exe && new_prog_counter_val_exe=== new_prog_counter_val_exe);
+  		 		new_prog_counter_val |-> $changed(new_prog_counter_val_exe );
   	endproperty;
 
   	/// properties instantiations
