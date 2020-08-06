@@ -57,11 +57,11 @@ For creating creating the hex dump file to be used in the simulation (loaded in 
   ```
 
 ## Documentation
-- IN PROGRESS
+*- IN PROGRESS*
 
 ## Tests 
 For testing the microprocessor refers to the testbench in System Verilog.
-
+*coming soon*
 ## Useful Link 
 
 Reach out to me at one of the following places!
