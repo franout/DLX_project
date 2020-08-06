@@ -19,7 +19,7 @@
 program automatic test_decode(
 						input logic clk,
 						output logic rst,
-						output logic [0:`IRAM_WORD_SIZE-1]instruction_reg,
+						output logic [`IRAM_WORD_SIZE-1:0]instruction_reg,
 						output logic [`IRAM_WORD_SIZE-1:0]new_prog_counter_val,
 						output logic [`NBIT-1:0]update_reg_value,
 						output logic enable_rf,
@@ -65,20 +65,20 @@ initial begin
 		$display("Sign extention check unsigned",);
 		rst=1;
 		compute_sext=1;
-		instruction_reg='h1234FFFF;
+		instruction_reg='h12340FFF;
 		new_prog_counter_val=$urandom();
 		##1 ;
-		if(val_immediate==='h1234) begin
-			$dis
-			stop();
+		if(val_immediate!=='h0fff) begin
+			$display("wrong sign extentions unsigned");
+			$stop();
 		end
 		$display("Sign extention check signed",);
 		compute_sext=1;
-		instruction_reg='h1238FFFF;
+		instruction_reg='h12388FFF;
 		new_prog_counter_val=$urandom();
 		##1;
-		if(val_immediate==='h) begin 
-
+		if(val_immediate!=='hffff8fff) begin 
+			$display("wrong signed sign extention");
 			$stop();
 		end
 		instruction_reg=0;
@@ -90,9 +90,11 @@ initial begin
 		read_rf_p1=1;
 		read_rf_p2=1;
 		// it is a reg to reg ops
-		instruction_reg[10:6]=register_index; // check indexes 
-		instruction_reg[15:11]=register_index+1;
-		##1;		
+//		instruction_reg[10:6]=register_index; 
+//   	instruction_reg[15:11]=register_index+1;
+		instruction_reg[25:21]=register_index; 
+	   	instruction_reg[20:16]=register_index+1;
+		##2;		
 		if(val_a!==0 || val_b!==0) begin
 			$display("Init values of register files are not zeros",);
 			$stop();
@@ -112,11 +114,11 @@ initial begin
 		read_rf_p1=1;
 		write_rf=0;
 		register_index=address_rf_write;
+		##2;
 		if(val_a!==159753)begin
 			$display("Error in writing in the register file",);
 			$stop();
 		end
-		##1;
 		$display("Random read and write",);
 		for ( i=0;i<4;i++) begin
 			register_index=$urandom();
@@ -127,7 +129,8 @@ initial begin
 				array=$urandom();
 				register_index={<<{array}};
 				instruction_reg[10:6]=register_index; // check indexes 
-				instruction_reg[15:11]=register_index+1;
+				instruction_reg[15:11]=register_index+1;	
+				##2;
 			end else begin 
 				write_rf=1;
 				read_rf_p1=0;
@@ -137,8 +140,9 @@ initial begin
 				address_rf_write=register_index;
 				instruction_reg[20:16]=register_index;
 				update_reg_value=159753;
+				##1;
 			end 
-			##1;
+			
 		end
 		## 3;
 		$display("Decode stage has passed the testbench",);
@@ -165,7 +169,7 @@ localparam clock_period= 10ns;
   	// signal declaration 
 	wire rst;
 	wire [`IRAM_WORD_SIZE-1:0]new_prog_counter_val;
-	wire [0:`IRAM_WORD_SIZE-1]instruction_reg;
+	wire [`IRAM_WORD_SIZE-1:0]instruction_reg;
 	wire [`NBIT-1:0]val_a;
 	wire [`IRAM_WORD_SIZE-1:0]new_prog_counter_val_exe;
 	wire [`NBIT-1:0]val_b;
@@ -225,7 +229,7 @@ localparam clock_period= 10ns;
   	property pc_propagation;
   		 @(test_clk)
   		 	disable iff (!rst) // except for reset condition 
-  		 		new_prog_counter_val |-> $changed(new_prog_counter_val_exe );
+  		 		$changed(new_prog_counter_val)|-> $changed(new_prog_counter_val_exe );
   	endproperty;
 
   	/// properties instantiations

@@ -36,9 +36,9 @@ begin
 	begin
 		if(enable = '1') then
 			if(val_to_exetend(N/2-1)='1') then
-				extended_val <= (N-1 downto N/2 => '0') & val_to_exetend(N/2-1 downto 0) ;
-			else -- == zero
 				extended_val <= (N-1 downto N/2 => '1') & val_to_exetend(N/2-1 downto 0) ;
+			else -- == zero
+				extended_val <= (N-1 downto N/2 => '0') & val_to_exetend(N/2-1 downto 0) ;
 			end if;
 		end if;
 	end process sign_extension_logic;

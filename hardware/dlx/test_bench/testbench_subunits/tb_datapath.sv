@@ -127,6 +127,6 @@ localparam clock_period= 10ns;
 	);
 
   	// test program 
-  	test_datapath test(rst,.dram_if(dram_if),
+  	test_datapath test(.rst(rst),.dram_if(dram_if),
   						.iram_if(iram_if));
 endmodule

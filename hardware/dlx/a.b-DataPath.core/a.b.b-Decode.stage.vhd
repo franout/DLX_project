@@ -85,9 +85,9 @@ begin
 			RD1     => read_rf_p1,
 			RD2     => read_rf_p2,
 			WR      => write_rf,
-			ADD_WR  => address_rf_write,
-			ADD_RD1 => instruction_reg(6 to 10),
-			ADD_RD2 => instruction_reg(11 to 15),
+			ADD_WR  => address_rf_write, -- TODO can add a two reg delay?
+			ADD_RD1 => instruction_reg(25 downto 21),--(6 to 10),
+			ADD_RD2 => instruction_reg(20 downto 16),--(11 to 15),
 			DATAIN  => update_reg_value,
 			OUT1    => val_reg_a_i,
 			OUT2    => val_reg_b_i
@@ -123,7 +123,7 @@ begin
 			N => N
 		)
 		port map (
-			val_to_exetend => instruction_reg(0 to 16),
+			val_to_exetend => instruction_reg(15 downto 0),--(0 to 16),
 			enable => compute_sext,
 			extended_val => val_reg_immediate_i
 		);

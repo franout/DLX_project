@@ -40,7 +40,7 @@ entity execute_stage is
 		alu_output_val        : out std_logic_vector(N-1 downto 0);
 		value_to_mem          : out std_logic_vector(N-1 downto 0);
 		-- to/from control unit
-		alu_op_type     : in std_logic_vector( 2 downto 0 );
+		alu_op_type     : in TYPE_OP ;
 		sel_val_a       : in std_logic_vector(0 downto 0);
 		sel_val_b       : in std_logic_vector(0 downto 0);
 		evaluate_branch : in std_logic

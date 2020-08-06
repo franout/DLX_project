@@ -61,13 +61,9 @@ package globals is
         constant iram_address_size : integer := f_log2(iram_size);
 
 
-        -- from lab 
+        -- from lab defined in alu_types.vhd package
         type TYPE_OP is (ADD, SUB, MULT, BITAND, BITOR, BITXOR, FUNCLSL, FUNCLSR, FUNCRL, FUNCRR);
 
-
-        type aluOp is (
-                ADDS, LLS, LRS --- to be completed
-            );
         -- see also implemented_instruction.svh in ./test_bench
         type instruction is (
                 addition
