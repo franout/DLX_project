@@ -9,7 +9,7 @@
 // Create : 2020-07-27 17:47:25
 // Revise : 2020-07-27 17:47:25
 // Editor : sublime text3, tab size (4)
-// Description: util global definisitons
+// Description: util global definisiton (mirror of 000-globals.vhd)
 // -----------------------------------------------------------------------------
 `ifndef  __GLOBAL_DEFS__SVH
 `define  __GLOBAL_DEFS__SVH
@@ -22,6 +22,12 @@
 `define  DRAM_WORD_SIZE 32
 `define  DRAM_SIZE 2**16-1
 `define  DRAM_ADDRESS_SIZE 16
+
+
+typedef enum  {
+	ADD, SUB, MULT, BITAND, BITOR, BITXOR, FUNCLSL, FUNCLSR, FUNCRL, FUNCRR
+} TYPE_OP_sv;
+
 
 
 

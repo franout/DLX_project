@@ -7,7 +7,7 @@
 // Author : Angione Francesco s262620@studenti.polito.it franout@Github.com
 // File   : tb_execute_stage.sv
 // Create : 2020-07-27 15:17:03
-// Revise : 2020-08-06 20:35:54
+// Revise : 2020-08-06 20:41:08
 // Editor : sublime text3, tab size (4)
 // Description: 
 // -----------------------------------------------------------------------------
@@ -16,7 +16,6 @@
 `include "../003-global_defs.svh"
 `define NUMBIT 32
 
-import 000-globals::*; // importing vhdl package
 // input val are implicit
 program automatic test_execute(logic clk, 
 							output logic rst,
@@ -24,7 +23,7 @@ program automatic test_execute(logic clk,
 							output logic [`NUMBIT-1:0]opb,
 							output logic [`NUMBIT-1:0]immediate,
 							output logic [`IRAM_WORD_SIZE-1:0]prog_counter,
-							output TYPE_OP lu_operation,
+							output TYPE_OP_sv lu_operation,
 							input logic [`NUMBIT-1:0]alu_out
 							);
 
@@ -70,7 +69,7 @@ localparam clock_period= 10ns;
 	wire [`NUMBIT-1:0]opb;
 	wire [`NUMBIT-1:0]immediate;
 	wire [`IRAM_WORD_SIZE-1:0]prog_counter;
-	wire TYPE_OP alu_operation;
+	wire TYPE_OP_sv alu_operation;
 	wire [`NUMBIT-1:0]alu_output_va;
 
   	// property definition
