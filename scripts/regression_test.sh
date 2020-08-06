@@ -9,7 +9,7 @@ cd .. # go in parent folder
 if [ -d "./work" ] ;then 
 	rm -rf work
 fi
-echo "Starting regression tests"
+echo "Starting regression functional tests "
 vlib ./work # it also creates the folder
 echo "Simulation ready to go!"
 echo "Start hierarchical compilation" 
@@ -62,6 +62,8 @@ vcom -2008 -check_synthesis ${path_to_file}a.b-DataPath.core/a.b.a-Fetch.stage.v
 vcom -2008 -check_synthesis ${path_to_file}a.b-DataPath.core/a.b.b-Decode.stage.vhd  
 vcom -2008 -check_synthesis ${path_to_file}a.b-DataPath.core/a.b.c-Execute.stage.vhd 
 vcom -2008 -check_synthesis ${path_to_file}a.b-DataPath.core/a.b.d.Memory.stage.vhd 
+vcom -2008 -check_synthesis ${path_to_file}a.b.c.a-check_branch_logic.vhd 
+vcom -2008 -check_synthesis ${path_to_file}a.b.b.a-sign_extension.vhd
 vcom -2008 -check_synthesis ${path_to_file}test_bench/test_bench_subunits_labs/MULTIPLIER_tb.vhd 
 vcom -2008 -check_synthesis ${path_to_file}test_bench/test_bench_subunits_labs/tb_alu.vhd 
 vcom -2008 -check_synthesis ${path_to_file}test_bench/test_bench_subunits_labs/tb_csb.vhd 
