@@ -30,7 +30,7 @@ DATA_DELAY	= 2			 	// Delay ( in # of clock cycles )
 
 /// internal signals
 logic [0:WORD_SIZE-1]ram [0:2**ADDRESS_SIZE-1];
-logic [0:WORD_SIZE-1] data_out;
+logic [0:WORD_SIZE-1]data_out;
 logic valid;
 
 // for file operations
@@ -44,7 +44,9 @@ int dummy; // for removing simulation warning
  initial begin
  	if (FILE_PATH=="") begin 
  		$display("ERROR! PATH for read only memory is not defined!",);
- 		$exit(-1);
+		    `ifndef VIVADO_SIM
+		    $exit(-1);
+		    `endif
  	end
  end
 
@@ -60,7 +62,9 @@ always_ff @(posedge mif.clk) begin : proc_ram
 		 $display("File was opened successfully : %0d", fd);
 		end else begin 
 		     $display("File was NOT opened successfully : %0d", fd);
-		     $exit(-1);
+		    `ifndef VIVADO_SIM
+		    $exit(-1);
+		    `endif
 		end
 		index=0;
 		// fill up the memory 

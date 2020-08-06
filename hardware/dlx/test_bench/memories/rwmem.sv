@@ -7,7 +7,7 @@
 // Author : Angione Francesco s262620@studenti.polito.it franout@Github.com
 // File   : rwmem.sv
 // Create : 2020-07-21 19:00:09
-// Revise : 2020-08-01 19:09:02
+// Revise : 2020-08-06 19:20:08
 // Editor : sublime text3, tab size (4)
 // Description: 
 // -----------------------------------------------------------------------------
@@ -58,7 +58,9 @@ task refresh_file;
 		 $display("File was opened successfully : %0d", fd);
 		end else begin 
 			$display("Output File was NOT opened successfully : %0d", fd);
+		    `ifndef VIVADO_SIM
 		    $exit(-1);
+		    `endif
 		end
 		// flush down the memory 
 		for(i=0;i<2**ADDRESS_SIZE-1;i=i+1)begin

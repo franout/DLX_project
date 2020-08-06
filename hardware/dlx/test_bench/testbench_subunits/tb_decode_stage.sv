@@ -19,7 +19,7 @@
 program automatic test_decode(
 						input logic clk,
 						output logic rst,
-						output logic [`IRAM_WORD_SIZE-1:0]instruction_reg,
+						output logic [0:`IRAM_WORD_SIZE-1]instruction_reg,
 						output logic [`IRAM_WORD_SIZE-1:0]new_prog_counter_val,
 						output logic [`NBIT-1:0]update_reg_value,
 						output logic enable_rf,
@@ -43,7 +43,7 @@ program automatic test_decode(
 
 	default clocking test_clk @ (posedge clk);
   	endclocking	// clock
-//TODO PROBLEM WITH ADDRESSES
+
 
 initial begin
 		$display("@%0dns Starting Program",$time);
@@ -68,11 +68,19 @@ initial begin
 		instruction_reg='h1234FFFF;
 		new_prog_counter_val=$urandom();
 		##1 ;
+		if(val_immediate==='h1234) begin
+			$dis
+			stop();
+		end
 		$display("Sign extention check signed",);
 		compute_sext=1;
 		instruction_reg='h1238FFFF;
 		new_prog_counter_val=$urandom();
 		##1;
+		if(val_immediate==='h) begin 
+
+			$stop();
+		end
 		instruction_reg=0;
 		enable_rf=1;
 		$display("Read and write on the same port",);
@@ -157,7 +165,7 @@ localparam clock_period= 10ns;
   	// signal declaration 
 	wire rst;
 	wire [`IRAM_WORD_SIZE-1:0]new_prog_counter_val;
-	wire [`IRAM_WORD_SIZE-1:0]instruction_reg;
+	wire [0:`IRAM_WORD_SIZE-1]instruction_reg;
 	wire [`NBIT-1:0]val_a;
 	wire [`IRAM_WORD_SIZE-1:0]new_prog_counter_val_exe;
 	wire [`NBIT-1:0]val_b;

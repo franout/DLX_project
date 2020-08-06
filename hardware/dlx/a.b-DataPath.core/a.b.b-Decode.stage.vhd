@@ -6,7 +6,7 @@
 -- Author      : Francesco Angione <s262620@studenti.polito.it> franout@github.com
 -- Company     : Politecnico di Torino, Italy
 -- Created     : Wed Jul 22 22:59:52 2020
--- Last update : Sun Aug  2 16:08:03 2020
+-- Last update : Mon Aug  3 17:37:33 2020
 -- Platform    : Default Part Number
 -- Standard    : VHDL-2008 
 --------------------------------------------------------------------------------
@@ -35,7 +35,7 @@ entity decode_stage is
 		rst : in std_logic; -- active low 
 		                    -- from fetch stage
 		new_prog_counter_val : in std_logic_vector(PC_SIZE-1 downto 0);
-		instruction_reg      : in std_logic_vector(IR_SIZE-1 downto 0);
+		instruction_reg      : in std_logic_vector( IR_SIZE-1 downto 0 );
 		-- to execute stage
 		val_a                    : out std_logic_vector(N-1 downto 0);
 		new_prog_counter_val_exe : out std_logic_vector(PC_SIZE-1 downto 0);
@@ -86,8 +86,8 @@ begin
 			RD2     => read_rf_p2,
 			WR      => write_rf,
 			ADD_WR  => address_rf_write,
-			ADD_RD1 => instruction_reg(10 downto 6), -- TODO the reverse
-			ADD_RD2 => instruction_reg(15 downto 11),
+			ADD_RD1 => instruction_reg(6 to 10),
+			ADD_RD2 => instruction_reg(11 to 15),
 			DATAIN  => update_reg_value,
 			OUT1    => val_reg_a_i,
 			OUT2    => val_reg_b_i
@@ -123,7 +123,7 @@ begin
 			N => N
 		)
 		port map (
-			val_to_exetend => instruction_reg(N-1 downto 16),
+			val_to_exetend => instruction_reg(0 to 16),
 			enable => compute_sext,
 			extended_val => val_reg_immediate_i
 		);

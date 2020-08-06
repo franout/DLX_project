@@ -6,7 +6,7 @@
 -- Author      : Francesco Angione <s262620@studenti.polito.it> franout@github.com
 -- Company     : Politecnico di Torino, Italy
 -- Created     : Wed Jul 22 22:59:30 2020
--- Last update : Fri Jul 31 17:42:26 2020
+-- Last update : Mon Aug  3 17:37:19 2020
 -- Platform    : Default Part Number
 -- Standard    : VHDL-2008 
 --------------------------------------------------------------------------------
@@ -37,7 +37,7 @@ entity fetch_stage is
 		IRAM_ADDRESS : out std_logic_vector( iram_address_size- 1 downto 0); -- the current PC value 
 		IRAM_ENABLE  : out std_logic;                                        -- from control unit
 		IRAM_READY   : in  std_logic;                                        -- to the control unit 
-		IRAM_DATA    : in  std_logic_vector(IR_SIZE-1 downto 0);
+		IRAM_DATA    : in  std_logic_vector(0 to IR_SIZE-1 );
 		-- to/from control unit
 		curr_instruction : out std_logic_vector(IR_SIZE-1 downto 0);
 		iram_enable_cu   : in  std_logic;
@@ -51,6 +51,7 @@ architecture structural of fetch_stage is
 	signal new_program_counter_val : std_logic_vector(PC_SIZE-1 downto 0);
 	signal program_counter_val     : std_logic_vector(PC_SIZE-1 downto 0);
 	signal instruction_reg_val     : std_logic_vector(IR_SIZE-1 downto 0);
+	signal iram_reversed	       : std_logic_vector(IR_SIZE-1 downto 0);
 	signal restn                   : std_logic;
 begin
 
@@ -84,8 +85,8 @@ begin
 			d     => new_program_counter_val,
 			Q     => new_pc_value
 		);
-
-
+-- transform from big endian format to little endian
+iram_reversed<=b2l_endian(IRAM_DATA);
 	-- Instruction register
 	instruction_reg : reg_nbit
 		generic map (
@@ -94,7 +95,7 @@ begin
 		port map (
 			clk   => clk,
 			reset => restn,
-			d     => IRAM_DATA,
+			d     => iram_reversed,
 			Q     => instruction_reg_val
 		);
 
