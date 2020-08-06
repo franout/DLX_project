@@ -14,23 +14,7 @@
 # //
 # reading modelsim.ini
 # Loading project dlx_project
-compile outofdate
-# wrong # args: should be "compile w cmd ?arg ...?"
-project compileoutofdate
-# Compile of tb_datapath.sv failed with 2 errors.
-# Compile of tb_decode_stage.sv failed with 11 errors.
-# Compile of a.b.c-Execute.stage.vhd was successful.
-# Compile of property_def.svh was successful.
-# 4 compiles, 2 failed with 13 errors.
-# Compile of tb_datapath.sv failed with 2 errors.
-# Compile of tb_decode_stage.sv failed with 1 errors.
-# 2 compiles, 2 failed with 3 errors.
-# Compile of tb_datapath.sv failed with 2 errors.
-# Compile of tb_decode_stage.sv failed with 13 errors.
-# 2 compiles, 2 failed with 15 errors.
-# Compile of tb_datapath.sv failed with 1 errors.
-# Compile of tb_decode_stage.sv failed with 13 errors.
-# 2 compiles, 2 failed with 14 errors.
+project  compileall
 # Compile of 000-globals.vhd was successful.
 # Compile of 001-global_components.vhd was successful.
 # Compile of adder.vhd was successful.
@@ -59,13 +43,13 @@ project compileoutofdate
 # Compile of rwmem.sv was successful.
 # Compile of tb_memories.sv was successful.
 # Compile of tb_writeback_stage.sv was successful.
-# Compile of tb_dlx.sv was successful with warnings.
+# Compile of tb_dlx.sv was successful.
 # Compile of alu_type.vhd was successful.
 # Compile of mux21.vhd was successful.
 # Compile of tb_cu.sv was successful.
 # Compile of tb_datapath.sv was successful.
-# Compile of tb_decode_stage.sv failed with 10 errors.
-# Compile of tb_execute_stage.sv was successful.
+# Compile of tb_decode_stage.sv was successful.
+# Compile of tb_execute_stage.sv failed with 2 errors.
 # Compile of tb_fetch_stage.sv was successful.
 # Compile of a.b.a-Fetch.stage.vhd was successful.
 # Compile of a.b.b-Decode.stage.vhd was successful.
@@ -88,47 +72,152 @@ project compileoutofdate
 # Compile of 003-global_defs.svh was successful.
 # Compile of 004-implemented_instructions.svh was successful.
 # Compile of 006-property_def.svh was successful.
-# 57 compiles, 1 failed with 10 errors.
-# Compile of tb_decode_stage.sv failed with 8 errors.
-# Compile of tb_decode_stage.sv failed with 4 errors.
-# Compile of tb_decode_stage.sv failed with 4 errors.
-# Compile of tb_decode_stage.sv was successful with warnings.
+# Compile of a.b.b.a-sign_extension.vhd was successful.
+# 58 compiles, 1 failed with 2 errors.
+project  compileall
+# Compile of 000-globals.vhd was successful.
+# Compile of 001-global_components.vhd was successful.
+# Compile of adder.vhd was successful.
+# Compile of boothmul.vhd was successful.
+# Compile of complement2.vhd was successful.
+# Compile of encoder.vhd was successful.
+# Compile of fa.vhd was successful.
+# Compile of fd.vhd was successful.
+# Compile of gsb.vhd was successful.
+# Compile of mux.vhd was successful.
+# Compile of p4_adder.vhd was successful.
+# Compile of pgsb.vhd was successful.
+# Compile of rca.vhd was successful.
+# Compile of reg_nbit.vhd was successful.
+# Compile of registerfile.vhd was successful.
+# Compile of stcg.vhd was successful.
+# Compile of wrf.vhd was successful.
+# Compile of a.b.e-Write_back.stage.vhd was successful.
+# Compile of constants.vhd was successful.
+# Compile of alu.vhd was successful.
+# Compile of csb.vhd was successful.
+# Compile of mux21_nbit.vhd was successful.
+# Compile of pg.vhd was successful.
+# Compile of sum_gen.vhd was successful with warnings.
+# Compile of romem.sv was successful.
+# Compile of rwmem.sv was successful.
+# Compile of tb_memories.sv was successful.
+# Compile of tb_writeback_stage.sv was successful.
+# Compile of tb_dlx.sv was successful.
+# Compile of alu_type.vhd was successful.
+# Compile of mux21.vhd was successful.
+# Compile of tb_cu.sv was successful.
+# Compile of tb_datapath.sv was successful.
 # Compile of tb_decode_stage.sv was successful.
+# Compile of tb_execute_stage.sv failed with 2 errors.
+# Compile of tb_fetch_stage.sv was successful.
+# Compile of a.b.a-Fetch.stage.vhd was successful.
+# Compile of a.b.b-Decode.stage.vhd was successful.
+# Compile of a.b.c-Execute.stage.vhd was successful.
+# Compile of a.b.d.Memory.stage.vhd was successful.
+# Compile of MULTIPLIER_tb.vhd was successful.
+# Compile of tb_alu.vhd was successful.
+# Compile of tb_csb.vhd was successful.
+# Compile of tb_fd.vhd was successful.
+# Compile of tb_mux21_generic.vhd was successful.
+# Compile of tb_p4adder.vhd was successful.
+# Compile of tb_rca.vhd was successful.
+# Compile of tb_registerfile.vhd was successful.
+# Compile of tb_registerfile_wrf.vhd was successful.
+# Compile of tb_regN.vhd was successful.
+# Compile of tb_stcg.vhd was successful.
+# Compile of tb_sum_gen.vhd was successful.
+# Compile of tb_memory_stage.sv was successful.
+# Compile of 005-memory_interfaces.svh was successful.
+# Compile of 003-global_defs.svh was successful.
+# Compile of 004-implemented_instructions.svh was successful.
+# Compile of 006-property_def.svh was successful.
+# Compile of a.b.b.a-sign_extension.vhd was successful.
+# 58 compiles, 1 failed with 2 errors.
+project  compileall
+# Compile of 000-globals.vhd was successful.
+# Compile of 001-global_components.vhd was successful.
+# Compile of adder.vhd was successful.
+# Compile of boothmul.vhd was successful.
+# Compile of complement2.vhd was successful.
+# Compile of encoder.vhd was successful.
+# Compile of fa.vhd was successful.
+# Compile of fd.vhd was successful.
+# Compile of gsb.vhd was successful.
+# Compile of mux.vhd was successful.
+# Compile of p4_adder.vhd was successful.
+# Compile of pgsb.vhd was successful.
+# Compile of rca.vhd was successful.
+# Compile of reg_nbit.vhd was successful.
+# Compile of registerfile.vhd was successful.
+# Compile of stcg.vhd was successful.
+# Compile of wrf.vhd was successful.
+# Compile of a.b.e-Write_back.stage.vhd was successful.
+# Compile of constants.vhd was successful.
+# Compile of alu.vhd was successful.
+# Compile of csb.vhd was successful.
+# Compile of mux21_nbit.vhd was successful.
+# Compile of pg.vhd was successful.
+# Compile of sum_gen.vhd was successful with warnings.
+# Compile of romem.sv was successful.
+# Compile of rwmem.sv was successful.
+# Compile of tb_memories.sv was successful.
+# Compile of tb_writeback_stage.sv was successful.
+# Compile of tb_dlx.sv was successful.
+# Compile of alu_type.vhd was successful.
+# Compile of mux21.vhd was successful.
+# Compile of tb_cu.sv was successful.
+# Compile of tb_datapath.sv was successful.
 # Compile of tb_decode_stage.sv was successful.
-vsim -suppress 12110 -novopt work.tb_decode_stage
-# vsim -suppress 12110 -novopt work.tb_decode_stage 
-# Start time: 21:54:49 on Aug 01,2020
+# Compile of tb_execute_stage.sv failed with 2 errors.
+# Compile of tb_fetch_stage.sv was successful.
+# Compile of a.b.a-Fetch.stage.vhd was successful.
+# Compile of a.b.b-Decode.stage.vhd was successful.
+# Compile of a.b.c-Execute.stage.vhd was successful.
+# Compile of a.b.d.Memory.stage.vhd was successful.
+# Compile of MULTIPLIER_tb.vhd was successful.
+# Compile of tb_alu.vhd was successful.
+# Compile of tb_csb.vhd was successful.
+# Compile of tb_fd.vhd was successful.
+# Compile of tb_mux21_generic.vhd was successful.
+# Compile of tb_p4adder.vhd was successful.
+# Compile of tb_rca.vhd was successful.
+# Compile of tb_registerfile.vhd was successful.
+# Compile of tb_registerfile_wrf.vhd was successful.
+# Compile of tb_regN.vhd was successful.
+# Compile of tb_stcg.vhd was successful.
+# Compile of tb_sum_gen.vhd was successful.
+# Compile of tb_memory_stage.sv was successful.
+# Compile of 005-memory_interfaces.svh was successful.
+# Compile of 003-global_defs.svh was successful.
+# Compile of 004-implemented_instructions.svh was successful.
+# Compile of 006-property_def.svh was successful.
+# Compile of a.b.b.a-sign_extension.vhd was successful.
+# 58 compiles, 1 failed with 2 errors.
+project  compileoutofdate
+# Compile of tb_execute_stage.sv failed with 2 errors.
+project  compileoutofdate
+# Compile of tb_execute_stage.sv failed with 1 errors.
+project  compileoutofdate
+# Compile of tb_execute_stage.sv was successful with warnings.
+project  compileoutofdate
+# Compile of tb_execute_stage.sv was successful.
+vsim -suppress 12110 -novopt work.tb_execute_stage 
+# vsim -suppress 12110 -novopt work.tb_execute_stage 
+# Start time: 23:41:12 on Aug 06,2020
 # ** Warning: (vsim-8891) All optimizations are disabled because the -novopt option is in effect. This will cause your simulation to run very slowly. If you are using this switch to preserve visibility for Debug or PLI features, please see the User's Manual section on Preserving Object Visibility with vopt. -novopt option is now deprecated and will be removed in future releases.
-# Refreshing /home/ms20.50/Desktop/DLX_project/project/simulation/work.tb_decode_stage
+# Refreshing /home/ms20.50/Desktop/DLX_project/project/simulation/work.tb_execute_stage
 # ** Warning: (vlog-8891) All optimizations are disabled because the -novopt option is in effect. This will cause your simulation to run very slowly. If you are using this switch to preserve visibility for Debug or PLI features, please see the User's Manual section on Preserving Object Visibility with vopt. -novopt option is now deprecated and will be removed in future releases.
-# ** Error: /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/testbench_subunits/tb_decode_stage.sv(182): Illegal disable in the expression. Only top level disable is allowed in System Verilog
-# ** Error: /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/testbench_subunits/tb_decode_stage.sv(175): Illegal disable in the expression. Only top level disable is allowed in System Verilog
-# ** Error: /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/testbench_subunits/tb_decode_stage.sv(182): Illegal disable in the expression. Only top level disable is allowed in System Verilog
-# ** Error: /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/testbench_subunits/tb_decode_stage.sv(175): Illegal disable in the expression. Only top level disable is allowed in System Verilog
-# ** Error: vlog failed.
-# ** Error: subinvocation of vlog failed; return status = 1.
-# ** Error: (vsim-3171) Could not find machine code for '/home/ms20.50/Desktop/DLX_project/project/simulation/work.tb_decode_stage'.
-# No such file or directory. (errno = ENOENT)
-# Error loading design
-# End time: 21:54:49 on Aug 01,2020, Elapsed time: 0:00:00
-# Errors: 2, Warnings: 1
-project compileoutofdate
-# Compile of tb_decode_stage.sv was successful.
-vsim -suppress 12110 -novopt work.tb_decode_stage
-# vsim -suppress 12110 -novopt work.tb_decode_stage 
-# Start time: 21:55:41 on Aug 01,2020
-# ** Warning: (vsim-8891) All optimizations are disabled because the -novopt option is in effect. This will cause your simulation to run very slowly. If you are using this switch to preserve visibility for Debug or PLI features, please see the User's Manual section on Preserving Object Visibility with vopt. -novopt option is now deprecated and will be removed in future releases.
-# Refreshing /home/ms20.50/Desktop/DLX_project/project/simulation/work.tb_decode_stage
+# Refreshing /home/ms20.50/Desktop/DLX_project/project/simulation/work.tb_execute_stage_sv_unit
 # ** Warning: (vlog-8891) All optimizations are disabled because the -novopt option is in effect. This will cause your simulation to run very slowly. If you are using this switch to preserve visibility for Debug or PLI features, please see the User's Manual section on Preserving Object Visibility with vopt. -novopt option is now deprecated and will be removed in future releases.
 # Loading sv_std.std
-# Loading work.tb_decode_stage
-# Refreshing /home/ms20.50/Desktop/DLX_project/project/simulation/work.test_decode
+# Loading work.tb_execute_stage_sv_unit
+# Loading work.tb_execute_stage
+# Refreshing /home/ms20.50/Desktop/DLX_project/project/simulation/work.test_execute
 # ** Warning: (vlog-8891) All optimizations are disabled because the -novopt option is in effect. This will cause your simulation to run very slowly. If you are using this switch to preserve visibility for Debug or PLI features, please see the User's Manual section on Preserving Object Visibility with vopt. -novopt option is now deprecated and will be removed in future releases.
-# Loading work.test_decode
-# ** Warning: (vsim-PLI-3691) Expected a system task, not a system function '$urandom_range'.
-#    Time: 0 ps  Iteration: 0  Instance: /tb_decode_stage/test File: /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/testbench_subunits/tb_decode_stage.sv Line: 77
+# Loading work.test_execute
 # Loading std.standard
-# Refreshing /home/ms20.50/Desktop/DLX_project/project/simulation/work.decode_stage(structural)
+# Refreshing /home/ms20.50/Desktop/DLX_project/project/simulation/work.execute_stage(structural)
 # ** Warning: (vcom-8891) All optimizations are disabled because the -novopt option is in effect. This will cause your simulation to run very slowly. If you are using this switch to preserve visibility for Debug or PLI features, please see the User's Manual section on Preserving Object Visibility with vopt. -novopt option is now deprecated and will be removed in future releases.
 # Loading std.textio(body)
 # Loading ieee.std_logic_1164(body)
@@ -142,36 +231,36 @@ vsim -suppress 12110 -novopt work.tb_decode_stage
 # Refreshing /home/ms20.50/Desktop/DLX_project/project/simulation/work.global_components(body)
 # ** Warning: (vcom-8891) All optimizations are disabled because the -novopt option is in effect. This will cause your simulation to run very slowly. If you are using this switch to preserve visibility for Debug or PLI features, please see the User's Manual section on Preserving Object Visibility with vopt. -novopt option is now deprecated and will be removed in future releases.
 # Loading work.global_components(body)
-# Loading work.decode_stage(structural)
-# Refreshing /home/ms20.50/Desktop/DLX_project/project/simulation/work.register_file(beh)
-# ** Warning: (vcom-8891) All optimizations are disabled because the -novopt option is in effect. This will cause your simulation to run very slowly. If you are using this switch to preserve visibility for Debug or PLI features, please see the User's Manual section on Preserving Object Visibility with vopt. -novopt option is now deprecated and will be removed in future releases.
-# Loading work.register_file(beh)
+# Loading work.execute_stage(structural)
+# ** Warning: (vsim-3473) Component instance "check_branch_logic_i : check_branch_logic" is not bound.
+#    Time: 0 ps  Iteration: 0  Instance: /tb_execute_stage/uut File: /home/ms20.50/Desktop/DLX_project/hardware/dlx/a.b-DataPath.core/a.b.c-Execute.stage.vhd
 # Refreshing /home/ms20.50/Desktop/DLX_project/project/simulation/work.reg_nbit(struc)
 # ** Warning: (vcom-8891) All optimizations are disabled because the -novopt option is in effect. This will cause your simulation to run very slowly. If you are using this switch to preserve visibility for Debug or PLI features, please see the User's Manual section on Preserving Object Visibility with vopt. -novopt option is now deprecated and will be removed in future releases.
 # Loading work.reg_nbit(struc)
 # Refreshing /home/ms20.50/Desktop/DLX_project/project/simulation/work.fd(pluto)
 # ** Warning: (vcom-8891) All optimizations are disabled because the -novopt option is in effect. This will cause your simulation to run very slowly. If you are using this switch to preserve visibility for Debug or PLI features, please see the User's Manual section on Preserving Object Visibility with vopt. -novopt option is now deprecated and will be removed in future releases.
 # Loading work.fd(pluto)
-# ** Error: (vsim-3043) Unresolved reference to 'dram_if'.
-#    Time: 0 ps  Iteration: 0  Instance: /tb_decode_stage/test File: /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/testbench_subunits/tb_decode_stage.sv Line: 43
+# Refreshing /home/ms20.50/Desktop/DLX_project/project/simulation/work.mux_zbit_nbit(beh)
+# ** Warning: (vcom-8891) All optimizations are disabled because the -novopt option is in effect. This will cause your simulation to run very slowly. If you are using this switch to preserve visibility for Debug or PLI features, please see the User's Manual section on Preserving Object Visibility with vopt. -novopt option is now deprecated and will be removed in future releases.
+# Loading work.mux_zbit_nbit(beh)
+# ** Fatal: (vsim-3348) Port length (64) does not match actual length (32) for port "/tb_execute_stage/uut/alu_opa/inputs".
+#    Time: 0 ps  Iteration: 0  Instance: /tb_execute_stage/uut/alu_opa File: /home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/mux.vhd Line: 10
+# FATAL ERROR while loading design
 # Error loading design
-# End time: 21:55:43 on Aug 01,2020, Elapsed time: 0:00:02
+# End time: 23:41:14 on Aug 06,2020, Elapsed time: 0:00:02
 # Errors: 1, Warnings: 2
-project compileoutofdate
-# Compile of tb_decode_stage.sv was successful.
-vsim -suppress 12110 -novopt work.tb_decode_stage
-# vsim -suppress 12110 -novopt work.tb_decode_stage 
-# Start time: 21:56:51 on Aug 01,2020
+project  compileoutofdate
+# Compile of 003-global_defs.svh failed with 1 errors.
+project  compileoutofdate
+# Compile of 003-global_defs.svh was successful.
+vsim -suppress 12110 -novopt work.tb_execute_stage
+# vsim -suppress 12110 -novopt work.tb_execute_stage 
+# Start time: 23:44:05 on Aug 06,2020
 # ** Warning: (vsim-8891) All optimizations are disabled because the -novopt option is in effect. This will cause your simulation to run very slowly. If you are using this switch to preserve visibility for Debug or PLI features, please see the User's Manual section on Preserving Object Visibility with vopt. -novopt option is now deprecated and will be removed in future releases.
-# Refreshing /home/ms20.50/Desktop/DLX_project/project/simulation/work.tb_decode_stage
-# ** Warning: (vlog-8891) All optimizations are disabled because the -novopt option is in effect. This will cause your simulation to run very slowly. If you are using this switch to preserve visibility for Debug or PLI features, please see the User's Manual section on Preserving Object Visibility with vopt. -novopt option is now deprecated and will be removed in future releases.
 # Loading sv_std.std
-# Loading work.tb_decode_stage
-# Refreshing /home/ms20.50/Desktop/DLX_project/project/simulation/work.test_decode
-# ** Warning: (vlog-8891) All optimizations are disabled because the -novopt option is in effect. This will cause your simulation to run very slowly. If you are using this switch to preserve visibility for Debug or PLI features, please see the User's Manual section on Preserving Object Visibility with vopt. -novopt option is now deprecated and will be removed in future releases.
-# Loading work.test_decode
-# ** Warning: (vsim-PLI-3691) Expected a system task, not a system function '$urandom_range'.
-#    Time: 0 ps  Iteration: 0  Instance: /tb_decode_stage/test File: /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/testbench_subunits/tb_decode_stage.sv Line: 78
+# Loading work.tb_execute_stage_sv_unit
+# Loading work.tb_execute_stage
+# Loading work.test_execute
 # Loading std.standard
 # Loading std.textio(body)
 # Loading ieee.std_logic_1164(body)
@@ -179,231 +268,30 @@ vsim -suppress 12110 -novopt work.tb_decode_stage
 # Loading work.constants(body)
 # Loading work.globals(body)
 # Loading work.global_components(body)
-# Loading work.decode_stage(structural)
-# Loading work.register_file(beh)
+# Loading work.execute_stage(structural)
+# ** Warning: (vsim-3473) Component instance "check_branch_logic_i : check_branch_logic" is not bound.
+#    Time: 0 ps  Iteration: 0  Instance: /tb_execute_stage/uut File: /home/ms20.50/Desktop/DLX_project/hardware/dlx/a.b-DataPath.core/a.b.c-Execute.stage.vhd
 # Loading work.reg_nbit(struc)
 # Loading work.fd(pluto)
-add wave *
-run 200ns
-# @0ns Starting Program
-# Starting testbench for decode stge 
-# Failed at 5ns Read port 1 rf
-# Failed at 5ns Read port 2 rf
-# Failed at 5ns pc propagation check
-# Reset stage 
-# Sign extention check unsigned 
-# Failed at 45ns Read port 2 rf
-# Failed at 45ns Read port 1 rf
-# Failed at 45ns pc propagation check
-# Sign extention check signed 
-# Failed at 55ns Read port 2 rf
-# Failed at 55ns Read port 1 rf
-# Read and write on the same port 
-# Init values of register files are not zeros 
-# ** Note: $stop    : /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/testbench_subunits/tb_decode_stage.sv(88)
-#    Time: 55 ns  Iteration: 3  Instance: /tb_decode_stage/test
-# Break in Module test_decode at /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/testbench_subunits/tb_decode_stage.sv line 88
-write format wave -window .main_pane.wave.interior.cs.body.pw.wf /home/ms20.50/Desktop/DLX_project/scripts/decode_stage_tb.do
-project compileoutofdate
-# Compile of tb_decode_stage.sv failed with 1 errors.
-project compileoutofdate
-# Compile of tb_decode_stage.sv failed with 1 errors.
-write format wave -window .main_pane.wave.interior.cs.body.pw.wf /home/ms20.50/Desktop/DLX_project/scripts/decode_stage_tb.do
-project compileoutofdate
-# Compile of tb_decode_stage.sv failed with 1 errors.
-write format wave -window .main_pane.wave.interior.cs.body.pw.wf /home/ms20.50/Desktop/DLX_project/scripts/decode_stage_tb.do
-project compileoutofdate
-# Compile of tb_decode_stage.sv was successful.
-vsim -suppress 12110 -novopt work.tb_decode_stage -do ../../scripts/decode_stage_tb.do
-# End time: 22:03:50 on Aug 01,2020, Elapsed time: 0:06:59
-# Errors: 0, Warnings: 2
-# vsim -suppress 12110 -novopt work.tb_decode_stage -do "../../scripts/decode_stage_tb.do" 
-# Start time: 22:03:50 on Aug 01,2020
+# Loading work.mux_zbit_nbit(beh)
+# ** Fatal: (vsim-3348) Port length (64) does not match actual length (32) for port "/tb_execute_stage/uut/alu_opa/inputs".
+#    Time: 0 ps  Iteration: 0  Instance: /tb_execute_stage/uut/alu_opa File: /home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/mux.vhd Line: 10
+# FATAL ERROR while loading design
+# Error loading design
+# End time: 23:44:06 on Aug 06,2020, Elapsed time: 0:00:01
+# Errors: 1, Warnings: 2
+project  compileoutofdate
+# Compile of a.b.c-Execute.stage.vhd was successful.
+vsim -suppress 12110 -novopt work.tb_execute_stage
+# vsim -suppress 12110 -novopt work.tb_execute_stage 
+# Start time: 23:47:20 on Aug 06,2020
 # ** Warning: (vsim-8891) All optimizations are disabled because the -novopt option is in effect. This will cause your simulation to run very slowly. If you are using this switch to preserve visibility for Debug or PLI features, please see the User's Manual section on Preserving Object Visibility with vopt. -novopt option is now deprecated and will be removed in future releases.
-# Refreshing /home/ms20.50/Desktop/DLX_project/project/simulation/work.tb_decode_stage
-# ** Warning: (vlog-8891) All optimizations are disabled because the -novopt option is in effect. This will cause your simulation to run very slowly. If you are using this switch to preserve visibility for Debug or PLI features, please see the User's Manual section on Preserving Object Visibility with vopt. -novopt option is now deprecated and will be removed in future releases.
 # Loading sv_std.std
-# Loading work.tb_decode_stage
-# Refreshing /home/ms20.50/Desktop/DLX_project/project/simulation/work.test_decode
-# ** Warning: (vlog-8891) All optimizations are disabled because the -novopt option is in effect. This will cause your simulation to run very slowly. If you are using this switch to preserve visibility for Debug or PLI features, please see the User's Manual section on Preserving Object Visibility with vopt. -novopt option is now deprecated and will be removed in future releases.
-# Loading work.test_decode
-# ** Warning: (vsim-PLI-3691) Expected a system task, not a system function '$urandom_range'.
-#    Time: 0 ps  Iteration: 0  Instance: /tb_decode_stage/test File: /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/testbench_subunits/tb_decode_stage.sv Line: 78
+# Loading work.tb_execute_stage_sv_unit
+# Loading work.tb_execute_stage
+# Loading work.test_execute
 # Loading std.standard
-# Loading std.textio(body)
-# Loading ieee.std_logic_1164(body)
-# Loading ieee.numeric_std(body)
-# Loading work.constants(body)
-# Loading work.globals(body)
-# Loading work.global_components(body)
-# Loading work.decode_stage(structural)
-# Loading work.register_file(beh)
-# Loading work.reg_nbit(struc)
-# Loading work.fd(pluto)
-# do ../../scripts/decode_stage_tb.do
-run 200ns
-# @0ns Starting Program
-# Starting testbench for decode stge 
-# Failed at 5ns Read port 1 rf
-# Failed at 5ns Read port 2 rf
-# Failed at 5ns pc propagation check
-# Reset stage 
-# Sign extention check unsigned 
-# Failed at 45ns Read port 1 rf
-# Failed at 45ns Read port 2 rf
-# Failed at 45ns pc propagation check
-# Sign extention check signed 
-# Failed at 55ns Read port 1 rf
-# Failed at 55ns Read port 2 rf
-# Read and write on the same port 
-# Init values of register files are not zeros 
-# ** Note: $stop    : /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/testbench_subunits/tb_decode_stage.sv(88)
-#    Time: 55 ns  Iteration: 3  Instance: /tb_decode_stage/test
-# Break in Module test_decode at /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/testbench_subunits/tb_decode_stage.sv line 88
-project compileoutofdate
-# Compile of tb_decode_stage.sv was successful.
-vsim -suppress 12110 -novopt work.tb_decode_stage -do ../../scripts/decode_stage_tb.do
-# End time: 22:06:28 on Aug 01,2020, Elapsed time: 0:02:38
-# Errors: 0, Warnings: 2
-# vsim -suppress 12110 -novopt work.tb_decode_stage -do "../../scripts/decode_stage_tb.do" 
-# Start time: 22:06:28 on Aug 01,2020
-# ** Warning: (vsim-8891) All optimizations are disabled because the -novopt option is in effect. This will cause your simulation to run very slowly. If you are using this switch to preserve visibility for Debug or PLI features, please see the User's Manual section on Preserving Object Visibility with vopt. -novopt option is now deprecated and will be removed in future releases.
-# Refreshing /home/ms20.50/Desktop/DLX_project/project/simulation/work.tb_decode_stage
-# ** Warning: (vlog-8891) All optimizations are disabled because the -novopt option is in effect. This will cause your simulation to run very slowly. If you are using this switch to preserve visibility for Debug or PLI features, please see the User's Manual section on Preserving Object Visibility with vopt. -novopt option is now deprecated and will be removed in future releases.
-# Loading sv_std.std
-# Loading work.tb_decode_stage
-# Refreshing /home/ms20.50/Desktop/DLX_project/project/simulation/work.test_decode
-# ** Warning: (vlog-8891) All optimizations are disabled because the -novopt option is in effect. This will cause your simulation to run very slowly. If you are using this switch to preserve visibility for Debug or PLI features, please see the User's Manual section on Preserving Object Visibility with vopt. -novopt option is now deprecated and will be removed in future releases.
-# Loading work.test_decode
-# ** Warning: (vsim-PLI-3691) Expected a system task, not a system function '$urandom_range'.
-#    Time: 0 ps  Iteration: 0  Instance: /tb_decode_stage/test File: /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/testbench_subunits/tb_decode_stage.sv Line: 78
-# Loading std.standard
-# Loading std.textio(body)
-# Loading ieee.std_logic_1164(body)
-# Loading ieee.numeric_std(body)
-# Loading work.constants(body)
-# Loading work.globals(body)
-# Loading work.global_components(body)
-# Loading work.decode_stage(structural)
-# Loading work.register_file(beh)
-# Loading work.reg_nbit(struc)
-# Loading work.fd(pluto)
-# do ../../scripts/decode_stage_tb.do
-run 100ns
-# @0ns Starting Program
-# Starting testbench for decode stge 
-# Reset stage 
-# Sign extention check unsigned 
-# Failed at 45ns Read port 1 rf
-# Failed at 45ns Read port 2 rf
-# Failed at 45ns pc propagation check
-# Sign extention check signed 
-# Failed at 55ns Read port 1 rf
-# Failed at 55ns Read port 2 rf
-# Read and write on the same port 
-# Init values of register files are not zeros 
-# ** Note: $stop    : /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/testbench_subunits/tb_decode_stage.sv(88)
-#    Time: 55 ns  Iteration: 3  Instance: /tb_decode_stage/test
-# Break in Module test_decode at /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/testbench_subunits/tb_decode_stage.sv line 88
-run 100ns
-# Failed at 75ns Read port 1 rf
-# Failed at 75ns Read port 1 rf
-# Failed at 75ns Read port 2 rf
-# Failed at 75ns Read port 2 rf
-# Error in writing in the register file 
-# ** Note: $stop    : /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/testbench_subunits/tb_decode_stage.sv(107)
-#    Time: 75 ns  Iteration: 2  Instance: /tb_decode_stage/test
-# Break in Module test_decode at /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/testbench_subunits/tb_decode_stage.sv line 107
-run 100ns
-# Failed at 85ns Write port rf
-# Failed at 85ns Read port 2 rf
-# Random read and write 
-# Failed at 95ns Read port 1 rf
-# Failed at 105ns Read port 1 rf
-# Failed at 105ns Read port 1 rf
-# Failed at 105ns Read port 2 rf
-# Failed at 105ns Read port 2 rf
-# Failed at 115ns Write port rf
-# Failed at 125ns Read port 1 rf
-# Failed at 125ns Read port 1 rf
-# Failed at 125ns Read port 2 rf
-# Failed at 125ns Read port 2 rf
-# Failed at 135ns Write port rf
-# Failed at 135ns Read port 1 rf
-# Failed at 135ns Read port 2 rf
-# Failed at 145ns Write port rf
-# Failed at 145ns Read port 1 rf
-# Failed at 145ns Read port 2 rf
-# Failed at 155ns Write port rf
-# Failed at 155ns Read port 1 rf
-# Failed at 155ns Read port 2 rf
-# Decode stage has passed the testbench 
-# ** Note: $finish    : /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/testbench_subunits/tb_decode_stage.sv(135)
-#    Time: 155 ns  Iteration: 2  Instance: /tb_decode_stage/test
-# 1
-# Break in Module test_decode at /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/testbench_subunits/tb_decode_stage.sv line 135
-restart
-# ** Warning: (vsim-8891) All optimizations are disabled because the -novopt option is in effect. This will cause your simulation to run very slowly. If you are using this switch to preserve visibility for Debug or PLI features, please see the User's Manual section on Preserving Object Visibility with vopt. -novopt option is now deprecated and will be removed in future releases.
-# ** Warning: (vsim-PLI-3691) Expected a system task, not a system function '$urandom_range'.
-#    Time: 0 ps  Iteration: 0  Instance: /tb_decode_stage/test File: /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/testbench_subunits/tb_decode_stage.sv Line: 78
-run 110ns2
-# @0ns Starting Program
-# Starting testbench for decode stge 
-# Reset stage 
-# Sign extention check unsigned 
-# Failed at 45ns Read port 1 rf
-# Failed at 45ns Read port 2 rf
-# Failed at 45ns pc propagation check
-# Sign extention check signed 
-# Failed at 55ns Read port 1 rf
-# Failed at 55ns Read port 2 rf
-# Read and write on the same port 
-# Init values of register files are not zeros 
-# ** Note: $stop    : /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/testbench_subunits/tb_decode_stage.sv(88)
-#    Time: 55 ns  Iteration: 3  Instance: /tb_decode_stage/test
-# Break in Module test_decode at /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/testbench_subunits/tb_decode_stage.sv line 88
-run 10ns
-run 10ns
-# Failed at 75ns Read port 1 rf
-# Failed at 75ns Read port 1 rf
-# Failed at 75ns Read port 2 rf
-# Failed at 75ns Read port 2 rf
-# Error in writing in the register file 
-# ** Note: $stop    : /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/testbench_subunits/tb_decode_stage.sv(107)
-#    Time: 75 ns  Iteration: 2  Instance: /tb_decode_stage/test
-# Break in Module test_decode at /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/testbench_subunits/tb_decode_stage.sv line 107
-run 10ns
-# Failed at 85ns Write port rf
-# Failed at 85ns Read port 2 rf
-# Random read and write 
-run 10ns
-# Failed at 95ns Read port 1 rf
-run 10ns
-# Failed at 105ns Read port 1 rf
-# Failed at 105ns Read port 1 rf
-# Failed at 105ns Read port 2 rf
-# Failed at 105ns Read port 2 rf
-project compileoutofdate
-# Compile of tb_decode_stage.sv was successful.
-# Compile of a.b.b-Decode.stage.vhd was successful.
-# 2 compiles, 0 failed with no errors.
-vsim -suppress 12110 -novopt work.tb_decode_stage -do ../../scripts/decode_stage_tb.do
-# End time: 22:14:21 on Aug 01,2020, Elapsed time: 0:07:53
-# Errors: 0, Warnings: 0
-# vsim -suppress 12110 -novopt work.tb_decode_stage -do "../../scripts/decode_stage_tb.do" 
-# Start time: 22:14:21 on Aug 01,2020
-# ** Warning: (vsim-8891) All optimizations are disabled because the -novopt option is in effect. This will cause your simulation to run very slowly. If you are using this switch to preserve visibility for Debug or PLI features, please see the User's Manual section on Preserving Object Visibility with vopt. -novopt option is now deprecated and will be removed in future releases.
-# Refreshing /home/ms20.50/Desktop/DLX_project/project/simulation/work.tb_decode_stage
-# ** Warning: (vlog-8891) All optimizations are disabled because the -novopt option is in effect. This will cause your simulation to run very slowly. If you are using this switch to preserve visibility for Debug or PLI features, please see the User's Manual section on Preserving Object Visibility with vopt. -novopt option is now deprecated and will be removed in future releases.
-# Loading sv_std.std
-# Loading work.tb_decode_stage
-# Refreshing /home/ms20.50/Desktop/DLX_project/project/simulation/work.test_decode
-# ** Warning: (vlog-8891) All optimizations are disabled because the -novopt option is in effect. This will cause your simulation to run very slowly. If you are using this switch to preserve visibility for Debug or PLI features, please see the User's Manual section on Preserving Object Visibility with vopt. -novopt option is now deprecated and will be removed in future releases.
-# Loading work.test_decode
-# ** Warning: (vsim-PLI-3691) Expected a system task, not a system function '$urandom_range'.
-#    Time: 0 ps  Iteration: 0  Instance: /tb_decode_stage/test File: /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/testbench_subunits/tb_decode_stage.sv Line: 78
-# Loading std.standard
-# Refreshing /home/ms20.50/Desktop/DLX_project/project/simulation/work.decode_stage(structural)
+# Refreshing /home/ms20.50/Desktop/DLX_project/project/simulation/work.execute_stage(structural)
 # ** Warning: (vcom-8891) All optimizations are disabled because the -novopt option is in effect. This will cause your simulation to run very slowly. If you are using this switch to preserve visibility for Debug or PLI features, please see the User's Manual section on Preserving Object Visibility with vopt. -novopt option is now deprecated and will be removed in future releases.
 # Loading std.textio(body)
 # Loading ieee.std_logic_1164(body)
@@ -411,86 +299,33 @@ vsim -suppress 12110 -novopt work.tb_decode_stage -do ../../scripts/decode_stage
 # Loading work.constants(body)
 # Loading work.globals(body)
 # Loading work.global_components(body)
-# Loading work.decode_stage(structural)
-# Loading work.register_file(beh)
+# Loading work.execute_stage(structural)
+# ** Warning: (vsim-3473) Component instance "check_branch_logic_i : check_branch_logic" is not bound.
+#    Time: 0 ps  Iteration: 0  Instance: /tb_execute_stage/uut File: /home/ms20.50/Desktop/DLX_project/hardware/dlx/a.b-DataPath.core/a.b.c-Execute.stage.vhd
 # Loading work.reg_nbit(struc)
 # Loading work.fd(pluto)
-# do ../../scripts/decode_stage_tb.do
-run 100ns
-# @0ns Starting Program
-# Starting testbench for decode stge 
-# Reset stage 
-# Sign extention check unsigned 
-# Failed at 45ns Read port 1 rf
-# Failed at 45ns Read port 2 rf
-# Failed at 45ns pc propagation check
-# Sign extention check signed 
-# Failed at 55ns Read port 1 rf
-# Failed at 55ns Read port 2 rf
-# Read and write on the same port 
-# Init values of register files are not zeros 
-# ** Note: $stop    : /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/testbench_subunits/tb_decode_stage.sv(88)
-#    Time: 55 ns  Iteration: 3  Instance: /tb_decode_stage/test
-# Break in Module test_decode at /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/testbench_subunits/tb_decode_stage.sv line 88
-run 100ns
-# Failed at 75ns Read port 1 rf
-# Failed at 75ns Read port 1 rf
-# Failed at 75ns Read port 2 rf
-# Failed at 75ns Read port 2 rf
-# Error in writing in the register file 
-# ** Note: $stop    : /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/testbench_subunits/tb_decode_stage.sv(107)
-#    Time: 75 ns  Iteration: 2  Instance: /tb_decode_stage/test
-# Break in Module test_decode at /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/testbench_subunits/tb_decode_stage.sv line 107
-run 10ns
-# Failed at 85ns Write port rf
-# Failed at 85ns Read port 2 rf
-# Random read and write 
-run 10ns
-# Failed at 95ns Read port 1 rf
-run 10ns
-# Failed at 105ns Read port 1 rf
-# Failed at 105ns Read port 2 rf
-# Failed at 105ns Read port 2 rf
-run 10ns
-# Failed at 115ns Write port rf
-run 10ns
-# Failed at 125ns Read port 1 rf
-# Failed at 125ns Read port 2 rf
-# Failed at 125ns Read port 2 rf
-run 10ns
-# Failed at 135ns Write port rf
-# Failed at 135ns Read port 1 rf
-# Failed at 135ns Read port 2 rf
-run 10ns
-# Failed at 145ns Write port rf
-# Failed at 145ns Read port 1 rf
-# Failed at 145ns Read port 2 rf
-run 10ns
-# Failed at 155ns Write port rf
-# Failed at 155ns Read port 1 rf
-# Failed at 155ns Read port 2 rf
-# Decode stage has passed the testbench 
-# ** Note: $finish    : /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/testbench_subunits/tb_decode_stage.sv(135)
-#    Time: 155 ns  Iteration: 2  Instance: /tb_decode_stage/test
-# 1
-# Break in Module test_decode at /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/testbench_subunits/tb_decode_stage.sv line 135
-project compileoutofdate
-# Compile of tb_decode_stage.sv was successful.
-vsim -suppress 12110 -novopt work.tb_decode_stage -do ../../scripts/decode_stage_tb.do
-# End time: 22:16:59 on Aug 01,2020, Elapsed time: 0:02:38
-# Errors: 0, Warnings: 2
-# vsim -suppress 12110 -novopt work.tb_decode_stage -do "../../scripts/decode_stage_tb.do" 
-# Start time: 22:16:59 on Aug 01,2020
+# Loading work.mux_zbit_nbit(beh)
+# Refreshing /home/ms20.50/Desktop/DLX_project/project/simulation/work.alu(behavior)
+# ** Warning: (vcom-8891) All optimizations are disabled because the -novopt option is in effect. This will cause your simulation to run very slowly. If you are using this switch to preserve visibility for Debug or PLI features, please see the User's Manual section on Preserving Object Visibility with vopt. -novopt option is now deprecated and will be removed in future releases.
+# Refreshing /home/ms20.50/Desktop/DLX_project/project/simulation/work.alu_types
+# ** Warning: (vcom-8891) All optimizations are disabled because the -novopt option is in effect. This will cause your simulation to run very slowly. If you are using this switch to preserve visibility for Debug or PLI features, please see the User's Manual section on Preserving Object Visibility with vopt. -novopt option is now deprecated and will be removed in future releases.
+# Loading work.alu_types
+# Loading work.alu(behavior)
+# ** Fatal: (vsim-3807) Types do not match between component and entity for port "FUNC".
+#    Time: 0 ps  Iteration: 0  Instance: /tb_execute_stage/uut/ALU_i File: /home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/alu.vhd Line: 10
+# FATAL ERROR while loading design
+# Error loading design
+# End time: 23:47:21 on Aug 06,2020, Elapsed time: 0:00:01
+# Errors: 1, Warnings: 2
+project  compileoutofdate
+vsim -suppress 12110 -novopt work.tb_execute_stage
+# vsim -suppress 12110 -novopt work.tb_execute_stage 
+# Start time: 23:48:50 on Aug 06,2020
 # ** Warning: (vsim-8891) All optimizations are disabled because the -novopt option is in effect. This will cause your simulation to run very slowly. If you are using this switch to preserve visibility for Debug or PLI features, please see the User's Manual section on Preserving Object Visibility with vopt. -novopt option is now deprecated and will be removed in future releases.
-# Refreshing /home/ms20.50/Desktop/DLX_project/project/simulation/work.tb_decode_stage
-# ** Warning: (vlog-8891) All optimizations are disabled because the -novopt option is in effect. This will cause your simulation to run very slowly. If you are using this switch to preserve visibility for Debug or PLI features, please see the User's Manual section on Preserving Object Visibility with vopt. -novopt option is now deprecated and will be removed in future releases.
 # Loading sv_std.std
-# Loading work.tb_decode_stage
-# Refreshing /home/ms20.50/Desktop/DLX_project/project/simulation/work.test_decode
-# ** Warning: (vlog-8891) All optimizations are disabled because the -novopt option is in effect. This will cause your simulation to run very slowly. If you are using this switch to preserve visibility for Debug or PLI features, please see the User's Manual section on Preserving Object Visibility with vopt. -novopt option is now deprecated and will be removed in future releases.
-# Loading work.test_decode
-# ** Warning: (vsim-PLI-3691) Expected a system task, not a system function '$urandom_range'.
-#    Time: 0 ps  Iteration: 0  Instance: /tb_decode_stage/test File: /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/testbench_subunits/tb_decode_stage.sv Line: 78
+# Loading work.tb_execute_stage_sv_unit
+# Loading work.tb_execute_stage
+# Loading work.test_execute
 # Loading std.standard
 # Loading std.textio(body)
 # Loading ieee.std_logic_1164(body)
@@ -498,100 +333,572 @@ vsim -suppress 12110 -novopt work.tb_decode_stage -do ../../scripts/decode_stage
 # Loading work.constants(body)
 # Loading work.globals(body)
 # Loading work.global_components(body)
-# Loading work.decode_stage(structural)
-# Loading work.register_file(beh)
+# Loading work.execute_stage(structural)
+# ** Warning: (vsim-3473) Component instance "check_branch_logic_i : check_branch_logic" is not bound.
+#    Time: 0 ps  Iteration: 0  Instance: /tb_execute_stage/uut File: /home/ms20.50/Desktop/DLX_project/hardware/dlx/a.b-DataPath.core/a.b.c-Execute.stage.vhd
 # Loading work.reg_nbit(struc)
 # Loading work.fd(pluto)
-# do ../../scripts/decode_stage_tb.do
-run 100ns
-# @0ns Starting Program
-# Starting testbench for decode stge 
-# Reset stage 
-# Sign extention check unsigned 
-# Failed at 45ns Read port 1 rf
-# Failed at 45ns pc propagation check
-# Sign extention check signed 
-# Failed at 55ns Read port 1 rf
-# Read and write on the same port 
-# Init values of register files are not zeros 
-# ** Note: $stop    : /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/testbench_subunits/tb_decode_stage.sv(88)
-#    Time: 55 ns  Iteration: 3  Instance: /tb_decode_stage/test
-# Break in Module test_decode at /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/testbench_subunits/tb_decode_stage.sv line 88
-run
-# Failed at 75ns Read port 1 rf
-# Failed at 75ns Read port 1 rf
-# Error in writing in the register file 
-# ** Note: $stop    : /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/testbench_subunits/tb_decode_stage.sv(107)
-#    Time: 75 ns  Iteration: 2  Instance: /tb_decode_stage/test
-# Break in Module test_decode at /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/testbench_subunits/tb_decode_stage.sv line 107
-run
-# Random read and write 
-# Failed at 95ns Read port 1 rf
-# Failed at 105ns Read port 1 rf
-# Failed at 125ns Read port 1 rf
-project compileoutofdate
-# Compile of tb_decode_stage.sv was successful.
-vsim -suppress 12110 -novopt work.tb_decode_stage -do ../../scripts/decode_stage_tb.do
-# End time: 22:20:37 on Aug 01,2020, Elapsed time: 0:03:38
-# Errors: 0, Warnings: 2
-# vsim -suppress 12110 -novopt work.tb_decode_stage -do "../../scripts/decode_stage_tb.do" 
-# Start time: 22:20:37 on Aug 01,2020
+# Loading work.mux_zbit_nbit(beh)
+# Loading work.alu_types
+# Loading work.alu(behavior)
+# ** Fatal: (vsim-3807) Types do not match between component and entity for port "FUNC".
+#    Time: 0 ps  Iteration: 0  Instance: /tb_execute_stage/uut/ALU_i File: /home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/alu.vhd Line: 10
+# FATAL ERROR while loading design
+# Error loading design
+# End time: 23:48:51 on Aug 06,2020, Elapsed time: 0:00:01
+# Errors: 1, Warnings: 2
+vsim -suppress 12110 -novopt work.tb_p4adder
+# vsim -suppress 12110 -novopt work.tb_p4adder 
+# Start time: 23:58:51 on Aug 06,2020
 # ** Warning: (vsim-8891) All optimizations are disabled because the -novopt option is in effect. This will cause your simulation to run very slowly. If you are using this switch to preserve visibility for Debug or PLI features, please see the User's Manual section on Preserving Object Visibility with vopt. -novopt option is now deprecated and will be removed in future releases.
-# Refreshing /home/ms20.50/Desktop/DLX_project/project/simulation/work.tb_decode_stage
-# ** Warning: (vlog-8891) All optimizations are disabled because the -novopt option is in effect. This will cause your simulation to run very slowly. If you are using this switch to preserve visibility for Debug or PLI features, please see the User's Manual section on Preserving Object Visibility with vopt. -novopt option is now deprecated and will be removed in future releases.
-# Loading sv_std.std
-# Loading work.tb_decode_stage
-# Refreshing /home/ms20.50/Desktop/DLX_project/project/simulation/work.test_decode
-# ** Warning: (vlog-8891) All optimizations are disabled because the -novopt option is in effect. This will cause your simulation to run very slowly. If you are using this switch to preserve visibility for Debug or PLI features, please see the User's Manual section on Preserving Object Visibility with vopt. -novopt option is now deprecated and will be removed in future releases.
-# Loading work.test_decode
-# ** Warning: (vsim-PLI-3691) Expected a system task, not a system function '$urandom_range'.
-#    Time: 0 ps  Iteration: 0  Instance: /tb_decode_stage/test File: /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/testbench_subunits/tb_decode_stage.sv Line: 77
+# Loading std.standard
+# Refreshing /home/ms20.50/Desktop/DLX_project/project/simulation/work.tb_p4adder(test)
+# ** Warning: (vcom-8891) All optimizations are disabled because the -novopt option is in effect. This will cause your simulation to run very slowly. If you are using this switch to preserve visibility for Debug or PLI features, please see the User's Manual section on Preserving Object Visibility with vopt. -novopt option is now deprecated and will be removed in future releases.
+# Loading std.textio(body)
+# Loading ieee.std_logic_1164(body)
+# Loading ieee.numeric_std(body)
+# Loading work.constants(body)
+# Loading work.tb_p4adder(test)
+# Refreshing /home/ms20.50/Desktop/DLX_project/project/simulation/work.p4_adder(struc)
+# ** Warning: (vcom-8891) All optimizations are disabled because the -novopt option is in effect. This will cause your simulation to run very slowly. If you are using this switch to preserve visibility for Debug or PLI features, please see the User's Manual section on Preserving Object Visibility with vopt. -novopt option is now deprecated and will be removed in future releases.
+# Loading work.p4_adder(struc)
+# Refreshing /home/ms20.50/Desktop/DLX_project/project/simulation/work.stcg(structural)
+# ** Warning: (vcom-8891) All optimizations are disabled because the -novopt option is in effect. This will cause your simulation to run very slowly. If you are using this switch to preserve visibility for Debug or PLI features, please see the User's Manual section on Preserving Object Visibility with vopt. -novopt option is now deprecated and will be removed in future releases.
+# Loading work.stcg(structural)
+# ** Fatal: (vsim-3348) Port length (33) does not match actual length (32) for port "/tb_p4adder/dut/carry_select/Cout".
+#    Time: 0 ns  Iteration: 0  Instance: /tb_p4adder/dut/carry_select File: /home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/stcg.vhd Line: 15
+# FATAL ERROR while loading design
+# Error loading design
+# End time: 23:58:52 on Aug 06,2020, Elapsed time: 0:00:01
+# Errors: 1, Warnings: 1
+vsim -suppress 12110 -novopt work.MULTIPLIER_tb
+# vsim -suppress 12110 -novopt work.MULTIPLIER_tb 
+# Start time: 23:59:30 on Aug 06,2020
+# ** Warning: (vsim-8891) All optimizations are disabled because the -novopt option is in effect. This will cause your simulation to run very slowly. If you are using this switch to preserve visibility for Debug or PLI features, please see the User's Manual section on Preserving Object Visibility with vopt. -novopt option is now deprecated and will be removed in future releases.
+# Loading std.standard
+# Refreshing /home/ms20.50/Desktop/DLX_project/project/simulation/work.multiplier_tb(test)
+# ** Warning: (vcom-8891) All optimizations are disabled because the -novopt option is in effect. This will cause your simulation to run very slowly. If you are using this switch to preserve visibility for Debug or PLI features, please see the User's Manual section on Preserving Object Visibility with vopt. -novopt option is now deprecated and will be removed in future releases.
+# Loading std.textio(body)
+# Loading ieee.std_logic_1164(body)
+# Loading ieee.numeric_std(body)
+# Loading work.constants(body)
+# Loading work.multiplier_tb(test)
+# ** Warning: (vsim-3473) Component instance "dut : mult_gm" is not bound.
+#    Time: 0 ns  Iteration: 0  Instance: /multiplier_tb File: /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/testbench_subunits_labs/MULTIPLIER_tb.vhd
+# Refreshing /home/ms20.50/Desktop/DLX_project/project/simulation/work.boothmul(struc)
+# ** Warning: (vcom-8891) All optimizations are disabled because the -novopt option is in effect. This will cause your simulation to run very slowly. If you are using this switch to preserve visibility for Debug or PLI features, please see the User's Manual section on Preserving Object Visibility with vopt. -novopt option is now deprecated and will be removed in future releases.
+# Loading work.boothmul(struc)
+# Refreshing /home/ms20.50/Desktop/DLX_project/project/simulation/work.complement2(beh)
+# ** Warning: (vcom-8891) All optimizations are disabled because the -novopt option is in effect. This will cause your simulation to run very slowly. If you are using this switch to preserve visibility for Debug or PLI features, please see the User's Manual section on Preserving Object Visibility with vopt. -novopt option is now deprecated and will be removed in future releases.
+# Loading work.complement2(beh)
+# Refreshing /home/ms20.50/Desktop/DLX_project/project/simulation/work.encoder(beh)
+# ** Warning: (vcom-8891) All optimizations are disabled because the -novopt option is in effect. This will cause your simulation to run very slowly. If you are using this switch to preserve visibility for Debug or PLI features, please see the User's Manual section on Preserving Object Visibility with vopt. -novopt option is now deprecated and will be removed in future releases.
+# Loading work.encoder(beh)
+# Loading work.mux_zbit_nbit(beh)
+# Refreshing /home/ms20.50/Desktop/DLX_project/project/simulation/work.adder(beh)
+# ** Warning: (vcom-8891) All optimizations are disabled because the -novopt option is in effect. This will cause your simulation to run very slowly. If you are using this switch to preserve visibility for Debug or PLI features, please see the User's Manual section on Preserving Object Visibility with vopt. -novopt option is now deprecated and will be removed in future releases.
+# Loading work.adder(beh)
+add wave *
+run 100ns
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ns  Iteration: 0  Instance: /multiplier_tb/dut1/stage_i(7)/middle_stages/MUXi
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ns  Iteration: 0  Instance: /multiplier_tb/dut1/stage_i(7)/middle_stages/MUXi
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ns  Iteration: 0  Instance: /multiplier_tb/dut1/stage_i(7)/middle_stages/MUXi
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ns  Iteration: 0  Instance: /multiplier_tb/dut1/stage_i(7)/middle_stages/MUXi
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ns  Iteration: 0  Instance: /multiplier_tb/dut1/stage_i(7)/middle_stages/MUXi
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ns  Iteration: 0  Instance: /multiplier_tb/dut1/stage_i(7)/middle_stages/MUXi
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ns  Iteration: 0  Instance: /multiplier_tb/dut1/stage_i(7)/middle_stages/MUXi
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ns  Iteration: 0  Instance: /multiplier_tb/dut1/stage_i(7)/middle_stages/MUXi
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ns  Iteration: 0  Instance: /multiplier_tb/dut1/stage_i(6)/middle_stages/MUXi
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ns  Iteration: 0  Instance: /multiplier_tb/dut1/stage_i(6)/middle_stages/MUXi
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ns  Iteration: 0  Instance: /multiplier_tb/dut1/stage_i(6)/middle_stages/MUXi
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ns  Iteration: 0  Instance: /multiplier_tb/dut1/stage_i(6)/middle_stages/MUXi
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ns  Iteration: 0  Instance: /multiplier_tb/dut1/stage_i(6)/middle_stages/MUXi
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ns  Iteration: 0  Instance: /multiplier_tb/dut1/stage_i(6)/middle_stages/MUXi
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ns  Iteration: 0  Instance: /multiplier_tb/dut1/stage_i(6)/middle_stages/MUXi
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ns  Iteration: 0  Instance: /multiplier_tb/dut1/stage_i(6)/middle_stages/MUXi
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ns  Iteration: 0  Instance: /multiplier_tb/dut1/stage_i(5)/middle_stages/MUXi
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ns  Iteration: 0  Instance: /multiplier_tb/dut1/stage_i(5)/middle_stages/MUXi
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ns  Iteration: 0  Instance: /multiplier_tb/dut1/stage_i(5)/middle_stages/MUXi
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ns  Iteration: 0  Instance: /multiplier_tb/dut1/stage_i(5)/middle_stages/MUXi
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ns  Iteration: 0  Instance: /multiplier_tb/dut1/stage_i(5)/middle_stages/MUXi
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ns  Iteration: 0  Instance: /multiplier_tb/dut1/stage_i(5)/middle_stages/MUXi
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ns  Iteration: 0  Instance: /multiplier_tb/dut1/stage_i(5)/middle_stages/MUXi
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ns  Iteration: 0  Instance: /multiplier_tb/dut1/stage_i(5)/middle_stages/MUXi
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ns  Iteration: 0  Instance: /multiplier_tb/dut1/stage_i(4)/middle_stages/MUXi
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ns  Iteration: 0  Instance: /multiplier_tb/dut1/stage_i(4)/middle_stages/MUXi
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ns  Iteration: 0  Instance: /multiplier_tb/dut1/stage_i(4)/middle_stages/MUXi
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ns  Iteration: 0  Instance: /multiplier_tb/dut1/stage_i(4)/middle_stages/MUXi
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ns  Iteration: 0  Instance: /multiplier_tb/dut1/stage_i(4)/middle_stages/MUXi
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ns  Iteration: 0  Instance: /multiplier_tb/dut1/stage_i(4)/middle_stages/MUXi
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ns  Iteration: 0  Instance: /multiplier_tb/dut1/stage_i(4)/middle_stages/MUXi
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ns  Iteration: 0  Instance: /multiplier_tb/dut1/stage_i(4)/middle_stages/MUXi
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ns  Iteration: 0  Instance: /multiplier_tb/dut1/stage_i(3)/middle_stages/MUXi
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ns  Iteration: 0  Instance: /multiplier_tb/dut1/stage_i(3)/middle_stages/MUXi
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ns  Iteration: 0  Instance: /multiplier_tb/dut1/stage_i(3)/middle_stages/MUXi
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ns  Iteration: 0  Instance: /multiplier_tb/dut1/stage_i(3)/middle_stages/MUXi
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ns  Iteration: 0  Instance: /multiplier_tb/dut1/stage_i(3)/middle_stages/MUXi
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ns  Iteration: 0  Instance: /multiplier_tb/dut1/stage_i(3)/middle_stages/MUXi
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ns  Iteration: 0  Instance: /multiplier_tb/dut1/stage_i(3)/middle_stages/MUXi
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ns  Iteration: 0  Instance: /multiplier_tb/dut1/stage_i(3)/middle_stages/MUXi
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ns  Iteration: 0  Instance: /multiplier_tb/dut1/stage_i(2)/middle_stages/MUXi
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ns  Iteration: 0  Instance: /multiplier_tb/dut1/stage_i(2)/middle_stages/MUXi
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ns  Iteration: 0  Instance: /multiplier_tb/dut1/stage_i(2)/middle_stages/MUXi
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ns  Iteration: 0  Instance: /multiplier_tb/dut1/stage_i(2)/middle_stages/MUXi
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ns  Iteration: 0  Instance: /multiplier_tb/dut1/stage_i(2)/middle_stages/MUXi
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ns  Iteration: 0  Instance: /multiplier_tb/dut1/stage_i(2)/middle_stages/MUXi
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ns  Iteration: 0  Instance: /multiplier_tb/dut1/stage_i(2)/middle_stages/MUXi
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ns  Iteration: 0  Instance: /multiplier_tb/dut1/stage_i(2)/middle_stages/MUXi
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ns  Iteration: 0  Instance: /multiplier_tb/dut1/stage_i(1)/middle_stages/MUXi
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ns  Iteration: 0  Instance: /multiplier_tb/dut1/stage_i(1)/middle_stages/MUXi
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ns  Iteration: 0  Instance: /multiplier_tb/dut1/stage_i(1)/middle_stages/MUXi
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ns  Iteration: 0  Instance: /multiplier_tb/dut1/stage_i(1)/middle_stages/MUXi
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ns  Iteration: 0  Instance: /multiplier_tb/dut1/stage_i(1)/middle_stages/MUXi
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ns  Iteration: 0  Instance: /multiplier_tb/dut1/stage_i(1)/middle_stages/MUXi
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ns  Iteration: 0  Instance: /multiplier_tb/dut1/stage_i(1)/middle_stages/MUXi
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ns  Iteration: 0  Instance: /multiplier_tb/dut1/stage_i(1)/middle_stages/MUXi
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ns  Iteration: 0  Instance: /multiplier_tb/dut1/stage_i(0)/stage_1/MUX0
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ns  Iteration: 0  Instance: /multiplier_tb/dut1/stage_i(0)/stage_1/MUX0
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ns  Iteration: 0  Instance: /multiplier_tb/dut1/stage_i(0)/stage_1/MUX0
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ns  Iteration: 0  Instance: /multiplier_tb/dut1/stage_i(0)/stage_1/MUX0
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ns  Iteration: 0  Instance: /multiplier_tb/dut1/stage_i(0)/stage_1/MUX0
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ns  Iteration: 0  Instance: /multiplier_tb/dut1/stage_i(0)/stage_1/MUX0
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ns  Iteration: 0  Instance: /multiplier_tb/dut1/stage_i(0)/stage_1/MUX0
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ns  Iteration: 0  Instance: /multiplier_tb/dut1/stage_i(0)/stage_1/MUX0
+# ** Warning: NUMERIC_STD."=": metavalue detected, returning FALSE
+#    Time: 2 ns  Iteration: 0  Instance: /multiplier_tb
+# ** Warning: wrong multiplication
+#    Time: 2 ns  Iteration: 0  Instance: /multiplier_tb
+# ** Warning: NUMERIC_STD."=": metavalue detected, returning FALSE
+#    Time: 4 ns  Iteration: 0  Instance: /multiplier_tb
+# ** Warning: wrong multiplication
+#    Time: 4 ns  Iteration: 0  Instance: /multiplier_tb
+# ** Warning: NUMERIC_STD."=": metavalue detected, returning FALSE
+#    Time: 6 ns  Iteration: 0  Instance: /multiplier_tb
+# ** Warning: wrong multiplication
+#    Time: 6 ns  Iteration: 0  Instance: /multiplier_tb
+# ** Warning: NUMERIC_STD."=": metavalue detected, returning FALSE
+#    Time: 8 ns  Iteration: 0  Instance: /multiplier_tb
+# ** Warning: wrong multiplication
+#    Time: 8 ns  Iteration: 0  Instance: /multiplier_tb
+# ** Warning: NUMERIC_STD."=": metavalue detected, returning FALSE
+#    Time: 10 ns  Iteration: 0  Instance: /multiplier_tb
+# ** Warning: wrong multiplication
+#    Time: 10 ns  Iteration: 0  Instance: /multiplier_tb
+# ** Warning: NUMERIC_STD."=": metavalue detected, returning FALSE
+#    Time: 12 ns  Iteration: 0  Instance: /multiplier_tb
+# ** Warning: wrong multiplication
+#    Time: 12 ns  Iteration: 0  Instance: /multiplier_tb
+# ** Warning: NUMERIC_STD."=": metavalue detected, returning FALSE
+#    Time: 14 ns  Iteration: 0  Instance: /multiplier_tb
+# ** Warning: wrong multiplication
+#    Time: 14 ns  Iteration: 0  Instance: /multiplier_tb
+# ** Warning: NUMERIC_STD."=": metavalue detected, returning FALSE
+#    Time: 16 ns  Iteration: 0  Instance: /multiplier_tb
+# ** Warning: wrong multiplication
+#    Time: 16 ns  Iteration: 0  Instance: /multiplier_tb
+# ** Warning: NUMERIC_STD."=": metavalue detected, returning FALSE
+#    Time: 18 ns  Iteration: 0  Instance: /multiplier_tb
+# ** Warning: wrong multiplication
+#    Time: 18 ns  Iteration: 0  Instance: /multiplier_tb
+# ** Warning: NUMERIC_STD."=": metavalue detected, returning FALSE
+#    Time: 20 ns  Iteration: 0  Instance: /multiplier_tb
+# ** Warning: wrong multiplication
+#    Time: 20 ns  Iteration: 0  Instance: /multiplier_tb
+# ** Warning: NUMERIC_STD."=": metavalue detected, returning FALSE
+#    Time: 22 ns  Iteration: 0  Instance: /multiplier_tb
+# ** Warning: wrong multiplication
+#    Time: 22 ns  Iteration: 0  Instance: /multiplier_tb
+# ** Warning: NUMERIC_STD."=": metavalue detected, returning FALSE
+#    Time: 24 ns  Iteration: 0  Instance: /multiplier_tb
+# ** Warning: wrong multiplication
+#    Time: 24 ns  Iteration: 0  Instance: /multiplier_tb
+# ** Warning: NUMERIC_STD."=": metavalue detected, returning FALSE
+#    Time: 26 ns  Iteration: 0  Instance: /multiplier_tb
+# ** Warning: wrong multiplication
+#    Time: 26 ns  Iteration: 0  Instance: /multiplier_tb
+# ** Warning: NUMERIC_STD."=": metavalue detected, returning FALSE
+#    Time: 28 ns  Iteration: 0  Instance: /multiplier_tb
+# ** Warning: wrong multiplication
+#    Time: 28 ns  Iteration: 0  Instance: /multiplier_tb
+# ** Warning: NUMERIC_STD."=": metavalue detected, returning FALSE
+#    Time: 30 ns  Iteration: 0  Instance: /multiplier_tb
+# ** Warning: wrong multiplication
+#    Time: 30 ns  Iteration: 0  Instance: /multiplier_tb
+# ** Warning: NUMERIC_STD."=": metavalue detected, returning FALSE
+#    Time: 32 ns  Iteration: 0  Instance: /multiplier_tb
+# ** Warning: wrong multiplication
+#    Time: 32 ns  Iteration: 0  Instance: /multiplier_tb
+# ** Warning: NUMERIC_STD."=": metavalue detected, returning FALSE
+#    Time: 34 ns  Iteration: 0  Instance: /multiplier_tb
+# ** Warning: wrong multiplication
+#    Time: 34 ns  Iteration: 0  Instance: /multiplier_tb
+# ** Warning: NUMERIC_STD."=": metavalue detected, returning FALSE
+#    Time: 36 ns  Iteration: 0  Instance: /multiplier_tb
+# ** Warning: wrong multiplication
+#    Time: 36 ns  Iteration: 0  Instance: /multiplier_tb
+# ** Warning: NUMERIC_STD."=": metavalue detected, returning FALSE
+#    Time: 38 ns  Iteration: 0  Instance: /multiplier_tb
+# ** Warning: wrong multiplication
+#    Time: 38 ns  Iteration: 0  Instance: /multiplier_tb
+# ** Warning: NUMERIC_STD."=": metavalue detected, returning FALSE
+#    Time: 40 ns  Iteration: 0  Instance: /multiplier_tb
+# ** Warning: wrong multiplication
+#    Time: 40 ns  Iteration: 0  Instance: /multiplier_tb
+# ** Warning: NUMERIC_STD."=": metavalue detected, returning FALSE
+#    Time: 42 ns  Iteration: 0  Instance: /multiplier_tb
+# ** Warning: wrong multiplication
+#    Time: 42 ns  Iteration: 0  Instance: /multiplier_tb
+# ** Warning: NUMERIC_STD."=": metavalue detected, returning FALSE
+#    Time: 44 ns  Iteration: 0  Instance: /multiplier_tb
+# ** Warning: wrong multiplication
+#    Time: 44 ns  Iteration: 0  Instance: /multiplier_tb
+# ** Warning: NUMERIC_STD."=": metavalue detected, returning FALSE
+#    Time: 46 ns  Iteration: 0  Instance: /multiplier_tb
+# ** Warning: wrong multiplication
+#    Time: 46 ns  Iteration: 0  Instance: /multiplier_tb
+# ** Warning: NUMERIC_STD."=": metavalue detected, returning FALSE
+#    Time: 48 ns  Iteration: 0  Instance: /multiplier_tb
+# ** Warning: wrong multiplication
+#    Time: 48 ns  Iteration: 0  Instance: /multiplier_tb
+# ** Warning: NUMERIC_STD."=": metavalue detected, returning FALSE
+#    Time: 50 ns  Iteration: 0  Instance: /multiplier_tb
+# ** Warning: wrong multiplication
+#    Time: 50 ns  Iteration: 0  Instance: /multiplier_tb
+# ** Warning: NUMERIC_STD."=": metavalue detected, returning FALSE
+#    Time: 52 ns  Iteration: 0  Instance: /multiplier_tb
+# ** Warning: wrong multiplication
+#    Time: 52 ns  Iteration: 0  Instance: /multiplier_tb
+# ** Warning: NUMERIC_STD."=": metavalue detected, returning FALSE
+#    Time: 54 ns  Iteration: 0  Instance: /multiplier_tb
+# ** Warning: wrong multiplication
+#    Time: 54 ns  Iteration: 0  Instance: /multiplier_tb
+# ** Warning: NUMERIC_STD."=": metavalue detected, returning FALSE
+#    Time: 56 ns  Iteration: 0  Instance: /multiplier_tb
+# ** Warning: wrong multiplication
+#    Time: 56 ns  Iteration: 0  Instance: /multiplier_tb
+# ** Warning: NUMERIC_STD."=": metavalue detected, returning FALSE
+#    Time: 58 ns  Iteration: 0  Instance: /multiplier_tb
+# ** Warning: wrong multiplication
+#    Time: 58 ns  Iteration: 0  Instance: /multiplier_tb
+# ** Warning: NUMERIC_STD."=": metavalue detected, returning FALSE
+#    Time: 60 ns  Iteration: 0  Instance: /multiplier_tb
+# ** Warning: wrong multiplication
+#    Time: 60 ns  Iteration: 0  Instance: /multiplier_tb
+# ** Warning: NUMERIC_STD."=": metavalue detected, returning FALSE
+#    Time: 62 ns  Iteration: 0  Instance: /multiplier_tb
+# ** Warning: wrong multiplication
+#    Time: 62 ns  Iteration: 0  Instance: /multiplier_tb
+# ** Warning: NUMERIC_STD."=": metavalue detected, returning FALSE
+#    Time: 64 ns  Iteration: 0  Instance: /multiplier_tb
+# ** Warning: wrong multiplication
+#    Time: 64 ns  Iteration: 0  Instance: /multiplier_tb
+# ** Warning: NUMERIC_STD."=": metavalue detected, returning FALSE
+#    Time: 66 ns  Iteration: 0  Instance: /multiplier_tb
+# ** Warning: wrong multiplication
+#    Time: 66 ns  Iteration: 0  Instance: /multiplier_tb
+# ** Warning: NUMERIC_STD."=": metavalue detected, returning FALSE
+#    Time: 68 ns  Iteration: 0  Instance: /multiplier_tb
+# ** Warning: wrong multiplication
+#    Time: 68 ns  Iteration: 0  Instance: /multiplier_tb
+# ** Warning: NUMERIC_STD."=": metavalue detected, returning FALSE
+#    Time: 70 ns  Iteration: 0  Instance: /multiplier_tb
+# ** Warning: wrong multiplication
+#    Time: 70 ns  Iteration: 0  Instance: /multiplier_tb
+# ** Warning: NUMERIC_STD."=": metavalue detected, returning FALSE
+#    Time: 72 ns  Iteration: 0  Instance: /multiplier_tb
+# ** Warning: wrong multiplication
+#    Time: 72 ns  Iteration: 0  Instance: /multiplier_tb
+# ** Warning: NUMERIC_STD."=": metavalue detected, returning FALSE
+#    Time: 74 ns  Iteration: 0  Instance: /multiplier_tb
+# ** Warning: wrong multiplication
+#    Time: 74 ns  Iteration: 0  Instance: /multiplier_tb
+# ** Warning: NUMERIC_STD."=": metavalue detected, returning FALSE
+#    Time: 76 ns  Iteration: 0  Instance: /multiplier_tb
+# ** Warning: wrong multiplication
+#    Time: 76 ns  Iteration: 0  Instance: /multiplier_tb
+# ** Warning: NUMERIC_STD."=": metavalue detected, returning FALSE
+#    Time: 78 ns  Iteration: 0  Instance: /multiplier_tb
+# ** Warning: wrong multiplication
+#    Time: 78 ns  Iteration: 0  Instance: /multiplier_tb
+# ** Warning: NUMERIC_STD."=": metavalue detected, returning FALSE
+#    Time: 80 ns  Iteration: 0  Instance: /multiplier_tb
+# ** Warning: wrong multiplication
+#    Time: 80 ns  Iteration: 0  Instance: /multiplier_tb
+# ** Warning: NUMERIC_STD."=": metavalue detected, returning FALSE
+#    Time: 82 ns  Iteration: 0  Instance: /multiplier_tb
+# ** Warning: wrong multiplication
+#    Time: 82 ns  Iteration: 0  Instance: /multiplier_tb
+# ** Warning: NUMERIC_STD."=": metavalue detected, returning FALSE
+#    Time: 84 ns  Iteration: 0  Instance: /multiplier_tb
+# ** Warning: wrong multiplication
+#    Time: 84 ns  Iteration: 0  Instance: /multiplier_tb
+# ** Warning: NUMERIC_STD."=": metavalue detected, returning FALSE
+#    Time: 86 ns  Iteration: 0  Instance: /multiplier_tb
+# ** Warning: wrong multiplication
+#    Time: 86 ns  Iteration: 0  Instance: /multiplier_tb
+# ** Warning: NUMERIC_STD."=": metavalue detected, returning FALSE
+#    Time: 88 ns  Iteration: 0  Instance: /multiplier_tb
+# ** Warning: wrong multiplication
+#    Time: 88 ns  Iteration: 0  Instance: /multiplier_tb
+# ** Warning: NUMERIC_STD."=": metavalue detected, returning FALSE
+#    Time: 90 ns  Iteration: 0  Instance: /multiplier_tb
+# ** Warning: wrong multiplication
+#    Time: 90 ns  Iteration: 0  Instance: /multiplier_tb
+# ** Warning: NUMERIC_STD."=": metavalue detected, returning FALSE
+#    Time: 92 ns  Iteration: 0  Instance: /multiplier_tb
+# ** Warning: wrong multiplication
+#    Time: 92 ns  Iteration: 0  Instance: /multiplier_tb
+# ** Warning: NUMERIC_STD."=": metavalue detected, returning FALSE
+#    Time: 94 ns  Iteration: 0  Instance: /multiplier_tb
+# ** Warning: wrong multiplication
+#    Time: 94 ns  Iteration: 0  Instance: /multiplier_tb
+# ** Warning: NUMERIC_STD."=": metavalue detected, returning FALSE
+#    Time: 96 ns  Iteration: 0  Instance: /multiplier_tb
+# ** Warning: wrong multiplication
+#    Time: 96 ns  Iteration: 0  Instance: /multiplier_tb
+# ** Warning: NUMERIC_STD."=": metavalue detected, returning FALSE
+#    Time: 98 ns  Iteration: 0  Instance: /multiplier_tb
+# ** Warning: wrong multiplication
+#    Time: 98 ns  Iteration: 0  Instance: /multiplier_tb
+# ** Warning: NUMERIC_STD."=": metavalue detected, returning FALSE
+#    Time: 100 ns  Iteration: 0  Instance: /multiplier_tb
+# ** Warning: wrong multiplication
+#    Time: 100 ns  Iteration: 0  Instance: /multiplier_tb
+project  compileoutofdate
+# Compile of mult_gm.vhd was successful.
+vsim -suppress 12110 -novopt work.tb_p4adder
+# End time: 00:04:05 on Aug 07,2020, Elapsed time: 0:04:35
+# Errors: 0, Warnings: 166
+# vsim -suppress 12110 -novopt work.tb_p4adder 
+# Start time: 00:04:05 on Aug 07,2020
+# ** Warning: (vsim-8891) All optimizations are disabled because the -novopt option is in effect. This will cause your simulation to run very slowly. If you are using this switch to preserve visibility for Debug or PLI features, please see the User's Manual section on Preserving Object Visibility with vopt. -novopt option is now deprecated and will be removed in future releases.
 # Loading std.standard
 # Loading std.textio(body)
 # Loading ieee.std_logic_1164(body)
 # Loading ieee.numeric_std(body)
 # Loading work.constants(body)
-# Loading work.globals(body)
-# Loading work.global_components(body)
-# Loading work.decode_stage(structural)
-# Loading work.register_file(beh)
-# Loading work.reg_nbit(struc)
-# Loading work.fd(pluto)
-# do ../../scripts/decode_stage_tb.do
+# Loading work.tb_p4adder(test)
+# Loading work.p4_adder(struc)
+# Loading work.stcg(structural)
+# ** Fatal: (vsim-3348) Port length (33) does not match actual length (32) for port "/tb_p4adder/dut/carry_select/Cout".
+#    Time: 0 ns  Iteration: 0  Instance: /tb_p4adder/dut/carry_select File: /home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/stcg.vhd Line: 15
+# FATAL ERROR while loading design
+# Error loading design
+# End time: 00:04:06 on Aug 07,2020, Elapsed time: 0:00:01
+# Errors: 1, Warnings: 1
+vsim -suppress 12110 -novopt work.MULTIPLIER_tb
+# vsim -suppress 12110 -novopt work.MULTIPLIER_tb 
+# Start time: 00:04:10 on Aug 07,2020
+# ** Warning: (vsim-8891) All optimizations are disabled because the -novopt option is in effect. This will cause your simulation to run very slowly. If you are using this switch to preserve visibility for Debug or PLI features, please see the User's Manual section on Preserving Object Visibility with vopt. -novopt option is now deprecated and will be removed in future releases.
+# Loading std.standard
+# Loading std.textio(body)
+# Loading ieee.std_logic_1164(body)
+# Loading ieee.numeric_std(body)
+# Loading work.constants(body)
+# Loading work.multiplier_tb(test)
+# Refreshing /home/ms20.50/Desktop/DLX_project/project/simulation/work.mult_gm(gm)
+# ** Warning: (vcom-8891) All optimizations are disabled because the -novopt option is in effect. This will cause your simulation to run very slowly. If you are using this switch to preserve visibility for Debug or PLI features, please see the User's Manual section on Preserving Object Visibility with vopt. -novopt option is now deprecated and will be removed in future releases.
+# Loading work.mult_gm(gm)
+# Loading work.boothmul(struc)
+# Loading work.complement2(beh)
+# Loading work.encoder(beh)
+# Loading work.mux_zbit_nbit(beh)
+# Loading work.adder(beh)
+add wave *
 run 100ns
-# @0ns Starting Program
-# Starting testbench for decode stge 
-# Reset stage 
-# Sign extention check unsigned 
-# Failed at 25ns Read port 1 rf
-# Failed at 25ns pc propagation check
-# Sign extention check signed 
-# Failed at 35ns Read port 1 rf
-# Read and write on the same port 
-# Init values of register files are not zeros 
-# ** Note: $stop    : /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/testbench_subunits/tb_decode_stage.sv(87)
-#    Time: 35 ns  Iteration: 3  Instance: /tb_decode_stage/test
-# Break in Module test_decode at /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/testbench_subunits/tb_decode_stage.sv line 87
-run 10ns
-run 10ns
-# Failed at 55ns Read port 1 rf
-# Failed at 55ns Read port 1 rf
-# Error in writing in the register file 
-# ** Note: $stop    : /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/testbench_subunits/tb_decode_stage.sv(106)
-#    Time: 55 ns  Iteration: 2  Instance: /tb_decode_stage/test
-# Break in Module test_decode at /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/testbench_subunits/tb_decode_stage.sv line 106
-run 100ns
-# Random read and write 
-# Failed at 75ns Read port 1 rf
-# Failed at 85ns Read port 1 rf
-# Failed at 105ns Read port 1 rf
-# Failed at 115ns Read port 1 rf
-# Failed at 125ns Read port 1 rf
-# Failed at 135ns Read port 1 rf
-# Decode stage has passed the testbench 
-# ** Note: $finish    : /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/testbench_subunits/tb_decode_stage.sv(134)
-#    Time: 135 ns  Iteration: 2  Instance: /tb_decode_stage/test
-# 1
-# Break in Module test_decode at /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/testbench_subunits/tb_decode_stage.sv line 134
-# End time: 23:57:26 on Aug 01,2020, Elapsed time: 1:36:49
-# Errors: 0, Warnings: 2
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ns  Iteration: 0  Instance: /multiplier_tb/dut1/stage_i(7)/middle_stages/MUXi
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ns  Iteration: 0  Instance: /multiplier_tb/dut1/stage_i(7)/middle_stages/MUXi
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ns  Iteration: 0  Instance: /multiplier_tb/dut1/stage_i(7)/middle_stages/MUXi
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ns  Iteration: 0  Instance: /multiplier_tb/dut1/stage_i(7)/middle_stages/MUXi
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ns  Iteration: 0  Instance: /multiplier_tb/dut1/stage_i(7)/middle_stages/MUXi
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ns  Iteration: 0  Instance: /multiplier_tb/dut1/stage_i(7)/middle_stages/MUXi
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ns  Iteration: 0  Instance: /multiplier_tb/dut1/stage_i(7)/middle_stages/MUXi
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ns  Iteration: 0  Instance: /multiplier_tb/dut1/stage_i(7)/middle_stages/MUXi
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ns  Iteration: 0  Instance: /multiplier_tb/dut1/stage_i(6)/middle_stages/MUXi
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ns  Iteration: 0  Instance: /multiplier_tb/dut1/stage_i(6)/middle_stages/MUXi
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ns  Iteration: 0  Instance: /multiplier_tb/dut1/stage_i(6)/middle_stages/MUXi
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ns  Iteration: 0  Instance: /multiplier_tb/dut1/stage_i(6)/middle_stages/MUXi
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ns  Iteration: 0  Instance: /multiplier_tb/dut1/stage_i(6)/middle_stages/MUXi
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ns  Iteration: 0  Instance: /multiplier_tb/dut1/stage_i(6)/middle_stages/MUXi
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ns  Iteration: 0  Instance: /multiplier_tb/dut1/stage_i(6)/middle_stages/MUXi
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ns  Iteration: 0  Instance: /multiplier_tb/dut1/stage_i(6)/middle_stages/MUXi
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ns  Iteration: 0  Instance: /multiplier_tb/dut1/stage_i(5)/middle_stages/MUXi
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ns  Iteration: 0  Instance: /multiplier_tb/dut1/stage_i(5)/middle_stages/MUXi
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ns  Iteration: 0  Instance: /multiplier_tb/dut1/stage_i(5)/middle_stages/MUXi
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ns  Iteration: 0  Instance: /multiplier_tb/dut1/stage_i(5)/middle_stages/MUXi
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ns  Iteration: 0  Instance: /multiplier_tb/dut1/stage_i(5)/middle_stages/MUXi
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ns  Iteration: 0  Instance: /multiplier_tb/dut1/stage_i(5)/middle_stages/MUXi
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ns  Iteration: 0  Instance: /multiplier_tb/dut1/stage_i(5)/middle_stages/MUXi
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ns  Iteration: 0  Instance: /multiplier_tb/dut1/stage_i(5)/middle_stages/MUXi
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ns  Iteration: 0  Instance: /multiplier_tb/dut1/stage_i(4)/middle_stages/MUXi
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ns  Iteration: 0  Instance: /multiplier_tb/dut1/stage_i(4)/middle_stages/MUXi
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ns  Iteration: 0  Instance: /multiplier_tb/dut1/stage_i(4)/middle_stages/MUXi
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ns  Iteration: 0  Instance: /multiplier_tb/dut1/stage_i(4)/middle_stages/MUXi
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ns  Iteration: 0  Instance: /multiplier_tb/dut1/stage_i(4)/middle_stages/MUXi
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ns  Iteration: 0  Instance: /multiplier_tb/dut1/stage_i(4)/middle_stages/MUXi
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ns  Iteration: 0  Instance: /multiplier_tb/dut1/stage_i(4)/middle_stages/MUXi
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ns  Iteration: 0  Instance: /multiplier_tb/dut1/stage_i(4)/middle_stages/MUXi
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ns  Iteration: 0  Instance: /multiplier_tb/dut1/stage_i(3)/middle_stages/MUXi
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ns  Iteration: 0  Instance: /multiplier_tb/dut1/stage_i(3)/middle_stages/MUXi
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ns  Iteration: 0  Instance: /multiplier_tb/dut1/stage_i(3)/middle_stages/MUXi
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ns  Iteration: 0  Instance: /multiplier_tb/dut1/stage_i(3)/middle_stages/MUXi
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ns  Iteration: 0  Instance: /multiplier_tb/dut1/stage_i(3)/middle_stages/MUXi
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ns  Iteration: 0  Instance: /multiplier_tb/dut1/stage_i(3)/middle_stages/MUXi
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ns  Iteration: 0  Instance: /multiplier_tb/dut1/stage_i(3)/middle_stages/MUXi
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ns  Iteration: 0  Instance: /multiplier_tb/dut1/stage_i(3)/middle_stages/MUXi
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ns  Iteration: 0  Instance: /multiplier_tb/dut1/stage_i(2)/middle_stages/MUXi
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ns  Iteration: 0  Instance: /multiplier_tb/dut1/stage_i(2)/middle_stages/MUXi
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ns  Iteration: 0  Instance: /multiplier_tb/dut1/stage_i(2)/middle_stages/MUXi
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ns  Iteration: 0  Instance: /multiplier_tb/dut1/stage_i(2)/middle_stages/MUXi
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ns  Iteration: 0  Instance: /multiplier_tb/dut1/stage_i(2)/middle_stages/MUXi
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ns  Iteration: 0  Instance: /multiplier_tb/dut1/stage_i(2)/middle_stages/MUXi
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ns  Iteration: 0  Instance: /multiplier_tb/dut1/stage_i(2)/middle_stages/MUXi
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ns  Iteration: 0  Instance: /multiplier_tb/dut1/stage_i(2)/middle_stages/MUXi
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ns  Iteration: 0  Instance: /multiplier_tb/dut1/stage_i(1)/middle_stages/MUXi
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ns  Iteration: 0  Instance: /multiplier_tb/dut1/stage_i(1)/middle_stages/MUXi
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ns  Iteration: 0  Instance: /multiplier_tb/dut1/stage_i(1)/middle_stages/MUXi
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ns  Iteration: 0  Instance: /multiplier_tb/dut1/stage_i(1)/middle_stages/MUXi
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ns  Iteration: 0  Instance: /multiplier_tb/dut1/stage_i(1)/middle_stages/MUXi
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ns  Iteration: 0  Instance: /multiplier_tb/dut1/stage_i(1)/middle_stages/MUXi
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ns  Iteration: 0  Instance: /multiplier_tb/dut1/stage_i(1)/middle_stages/MUXi
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ns  Iteration: 0  Instance: /multiplier_tb/dut1/stage_i(1)/middle_stages/MUXi
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ns  Iteration: 0  Instance: /multiplier_tb/dut1/stage_i(0)/stage_1/MUX0
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ns  Iteration: 0  Instance: /multiplier_tb/dut1/stage_i(0)/stage_1/MUX0
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ns  Iteration: 0  Instance: /multiplier_tb/dut1/stage_i(0)/stage_1/MUX0
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ns  Iteration: 0  Instance: /multiplier_tb/dut1/stage_i(0)/stage_1/MUX0
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ns  Iteration: 0  Instance: /multiplier_tb/dut1/stage_i(0)/stage_1/MUX0
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ns  Iteration: 0  Instance: /multiplier_tb/dut1/stage_i(0)/stage_1/MUX0
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ns  Iteration: 0  Instance: /multiplier_tb/dut1/stage_i(0)/stage_1/MUX0
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ns  Iteration: 0  Instance: /multiplier_tb/dut1/stage_i(0)/stage_1/MUX0
+run 10ms
+# Causality operation skipped due to absence of debug database file
+# End time: 00:13:50 on Aug 07,2020, Elapsed time: 0:09:40
+# Errors: 0, Warnings: 66
