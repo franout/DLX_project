@@ -24,7 +24,7 @@
 `define  DRAM_ADDRESS_SIZE 16
 
 
-typedef enum  {
+ enum  {
 	ADD, SUB, MULT, BITAND, BITOR, BITXOR, FUNCLSL, FUNCLSR, FUNCRL, FUNCRR
 } TYPE_OP_sv;
 

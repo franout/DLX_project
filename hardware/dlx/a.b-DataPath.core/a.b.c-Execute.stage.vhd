@@ -61,7 +61,7 @@ architecture structural of execute_stage is
 	end component check_branch_logic;
 	signal rstn   : std_logic;
 	signal branch_taken: std_logic_vector(0 downto 0);
-	signal data_to_mux_a,data_to_mux_b   : std_logic_vector(N-1 downto 0);
+	signal data_to_mux_a,data_to_mux_b   : std_logic_vector(N*2-1 downto 0);
 	signal opb,opa                       : std_logic_vector(N-1 downto 0);
 	signal alu_out                       : std_logic_vector(N-1 downto 0);
 begin
