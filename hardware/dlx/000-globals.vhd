@@ -6,7 +6,7 @@
 -- Author      : Francesco Angione <s262620@studenti.polito.it> franout@github.com
 -- Company     : Politecnico di Torino, Italy
 -- Created     : Wed Jul 22 22:56:54 2020
--- Last update : Thu Aug  6 20:40:50 2020
+-- Last update : Thu Aug  6 22:27:16 2020
 -- Platform    : Default Part Number
 -- Standard    : VHDL-2008 
 --------------------------------------------------------------------------------
@@ -51,6 +51,8 @@ package globals is
 
         -- definition for data
         constant data_size : integer := 32;
+        -- definition for register file 
+        constant register_in_rf : integer := 32;
 
 
 
