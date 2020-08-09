@@ -6,7 +6,7 @@
 -- Author      : Francesco Angione <s262620@studenti.polito.it> franout@github.com
 -- Company     : Politecnico di Torino, Italy
 -- Created     : Wed Jul 22 22:56:54 2020
--- Last update : Sun Aug  9 16:00:44 2020
+-- Last update : Sun Aug  9 16:51:56 2020
 -- Platform    : Default Part Number
 -- Standard    : VHDL-2008 
 --------------------------------------------------------------------------------
@@ -41,7 +41,7 @@ package globals is
         --------------------------------------------------------------------------------
 
         -- definition for instruction 
-        constant endianess                     : string  := "big";
+        constant endianess                     : string  := "big"; -- for memory access
         constant instruction_size              : integer := 32;
         constant opcode_length                 : integer := 6;  -- length in the instruction 
         constant register_address_field_length : integer := 5;  -- length in the instruction 

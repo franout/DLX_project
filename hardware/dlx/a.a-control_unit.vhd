@@ -6,7 +6,7 @@
 -- Author      : Francesco Angione <s262620@studenti.polito.it> franout@github.com
 -- Company     : Politecnico di Torino, Italy
 -- Created     : Thu Jul 23 15:49:45 2020
--- Last update : Sun Aug  9 16:19:48 2020
+-- Last update : Sun Aug  9 16:56:44 2020
 -- Platform    : Default Part Number
 -- Standard    : VHDL-2008 
 --------------------------------------------------------------------------------
@@ -43,9 +43,12 @@ entity control_unit is
     address_rf_write : out std_logic_vector(f_log2(RF_REGS)-1 downto 0);
     compute_sext     : out std_logic;
     -- for execute stage
-    alu_op_type     : out std_logic_vector(3 downto 0); --TYPE_OP_ALU ; for compatibility with sv
-    sel_val_a       : out std_logic_vector(0 downto 0 );
-    sel_val_b       : out std_logic_vector(0 downto 0 );
+    alu_op_type : out std_logic_vector(3 downto 0); --TYPE_OP_ALU ; for compatibility with sv
+    sel_val_a   : out std_logic_vector(0 downto 0 );
+    sel_val_b   : out std_logic_vector(0 downto 0 );
+    -- from execute stage
+    alu_cin         : in  std_logic;
+    alu_overflow    : in  std_logic;
     evaluate_branch : out std_logic;
     -- for memory stage
     dram_enable_cu : out std_logic;
@@ -84,7 +87,7 @@ begin
 
 
 
- type mem_array is array (integer range 0 to MICROCODE_MEM_SIZE - 1) of std_logic_vector(CW_SIZE - 1 downto 0);
+  type mem_array is array (integer range 0 to MICROCODE_MEM_SIZE - 1) of std_logic_vector(CW_SIZE - 1 downto 0);
   signal cw_mem : mem_array := ("111100010000111", -- R type: IS IT CORRECT?
       "000000000000000",
       "111011111001100", -- J (0X02) instruction encoding corresponds to the address to this ROM

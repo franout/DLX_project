@@ -7,7 +7,7 @@
 // Author : Angione Francesco s262620@studenti.polito.it franout@Github.com
 // File   : tb_execute_stage.sv
 // Create : 2020-07-27 15:17:03
-// Revise : 2020-08-09 16:27:36
+// Revise : 2020-08-09 17:06:13
 // Editor : sublime text3, tab size (4)
 // Description: 
 // -----------------------------------------------------------------------------
@@ -108,6 +108,7 @@ initial begin
 			$display("Error in check zero logic-> False",);
 			$stop();
 		end
+		evaluate_branch=0;
 		$display("Checking ALU operations: ADD",);
 		opb=3;
 		opa=3;
@@ -128,6 +129,7 @@ initial begin
 		sel_val_a=0;
 		sel_val_b=0;
 		alu_operation=current_operation.next();
+		current_operation=current_operation.next();
 		`ifndef VIVADO_SIM
 		##2;
 		`else 
@@ -139,16 +141,139 @@ initial begin
 			$stop();
 		end
 		$display("Checking ALU operations: MUL",);
-		$display("Checking ALU operations: BITAND",);
-		$display("Checking ALU operations: BITOR",);
-		$display("Checking ALU operations: BITXOR",);
-		$display("Checking ALU operations: FYNCLSL",);
-		$display("Checking ALU operations: FUNCLSR",);
+		opb=3;
+		opa=3;
+		sel_val_a=0;
+		sel_val_b=0;
+		alu_operation=current_operation.next();
+		current_operation=current_operation.next();
 		`ifndef VIVADO_SIM
-			##1;
+		##2;
 		`else 
-			repeat(2)@(posedge clk);
+			repeat(4)@(posedge clk);
 		`endif
+		if(alu_out!==(opa*opb))begin 
+			$display("Alu MUltiplication is wrong -> Expected: %d Actual: %d",opa*opb ,alu_out );
+			$stop();
+		end
+		$display("Checking ALU operations: BITAND",);
+		opb=3;
+		opa=3;
+		sel_val_a=0;
+		sel_val_b=0;
+		alu_operation=current_operation.next();
+		current_operation=current_operation.next();
+		`ifndef VIVADO_SIM
+		##2;
+		`else 
+			repeat(4)@(posedge clk);
+		`endif
+		if(alu_out!==(opa&opb))begin 
+			$display("Alu And is wrong -> Expected: %d Actual: %d",opa&opb ,alu_out );
+
+			$stop();
+		end
+		$display("Checking ALU operations: BITOR",);
+		opb=3;
+		opa=3;
+		sel_val_a=0;
+		sel_val_b=0;
+		alu_operation=current_operation.next();
+		current_operation=current_operation.next();
+		`ifndef VIVADO_SIM
+		##2;
+		`else 
+			repeat(4)@(posedge clk);
+		`endif
+		if(alu_out!==(opa|opb))begin 
+			$display("Alu Or is wrong -> Expected: %d Actual: %d",opa|opb ,alu_out );
+
+			$stop();
+		end
+		$display("Checking ALU operations: BITXOR",);
+		opb=3;
+		opa=3;
+		sel_val_a=0;
+		sel_val_b=0;
+		alu_operation=current_operation.next();
+		current_operation=current_operation.next();
+		`ifndef VIVADO_SIM
+		##2;
+		`else 
+			repeat(4)@(posedge clk);
+		`endif
+		if(alu_out!==(opa^opb))begin 
+			$display("Alu Exor is wrong -> Expected: %d Actual: %d",opa^opb ,alu_out );
+
+			$stop();
+		end
+		$display("Checking ALU operations: FUNCLSL",);
+		opb=3;
+		opa=3;
+		sel_val_a=0;
+		sel_val_b=0;
+		alu_operation=current_operation.next();
+		current_operation=current_operation.next();
+		`ifndef VIVADO_SIM
+		##2;
+		`else 
+			repeat(4)@(posedge clk);
+		`endif
+		if(alu_out!==(opa<<opb))begin 
+			$display("Alu shift left is wrong -> Expected: %d Actual: %d",opa<<opb ,alu_out );
+			$stop();
+		end
+		$display("Checking ALU operations: FUNCLSR",);
+		opb=3;
+		opa=3;
+		sel_val_a=0;
+		sel_val_b=0;
+		alu_operation=current_operation.next();
+		current_operation=current_operation.next();
+		`ifndef VIVADO_SIM
+		##2;
+		`else 
+			repeat(4)@(posedge clk);
+		`endif
+		if(alu_out!==(opa>>opb))begin 
+			$display("Alu Shift right is wrong -> Expected: %d Actual: %d",opa>>opb ,alu_out );
+
+			$stop();
+		end
+			$display("Checking ALU operations: FUNCRL",);
+		opb=3;
+		opa=3;
+		sel_val_a=0;
+		sel_val_b=0;
+		alu_operation=current_operation.next();
+		current_operation=current_operation.next();
+		`ifndef VIVADO_SIM
+		##2;
+		`else 
+			repeat(4)@(posedge clk);
+		`endif
+		if(alu_out!==(opa<<opb))begin 
+			$display("Alu rotate left is wrong -> Expected: %d Actual: %d",opa<<opb ,alu_out );
+
+			$stop();
+		end
+		$display("Checking ALU operations: FUNCRR",);
+		opb=3;
+		opa=3;
+		sel_val_a=0;
+		sel_val_b=0;
+		alu_operation=current_operation.next();
+		current_operation=current_operation.next();
+		`ifndef VIVADO_SIM
+		##2;
+		`else 
+			repeat(4)@(posedge clk);
+		`endif
+		if(alu_out!==('h60000000))begin 
+			$display("Alu rotate right is wrong -> Expected: %d Actual: %d",opa>>opb ,alu_out );
+
+			$stop();
+		end
 		$display("Execute stage has passed the testbench",);
 		$finish;
 end
@@ -186,7 +311,7 @@ localparam clock_period= 10ns;
   	property pc_forwarded;
   		@(test_clk)
   			disable iff (!rst && !sel_val_a) // not a jump addition 
-  			(new_prog_counter_val_exe) |-> $changed(prog_counter_forwaded);
+  			$changed(new_prog_counter_val_exe) |-> $changed(prog_counter_forwaded);
   	endproperty;
 
   	property write_value_propagation;
@@ -225,7 +350,8 @@ localparam clock_period= 10ns;
 			// to/from control unit
 			.alu_op_type(alu_op_type),   
 			.sel_val_a(sel_val_a),       
-			.sel_val_b(sel_val_b),       
+			.sel_val_b(sel_val_b), 
+			/*add check for cin and overflow TODO*/      
 			.evaluate_branch(evaluate_branch) 
 		);
 		

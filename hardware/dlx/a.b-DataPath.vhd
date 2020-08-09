@@ -6,7 +6,7 @@
 -- Author      : Francesco Angione <s262620@studenti.polito.it> franout@github.com
 -- Company     : Politecnico di Torino, Italy
 -- Created     : Wed Jul 22 22:58:34 2020
--- Last update : Sun Aug  9 16:20:11 2020
+-- Last update : Sun Aug  9 16:59:27 2020
 -- Platform    : Default Part Number
 -- Standard    : VHDL-2008 
 --------------------------------------------------------------------------------
@@ -29,13 +29,13 @@ entity DATAPATH is
 		PC_SIZE : integer := 32  -- Program Counter Size
 	);
 	port (
-		clk     : in std_logic;
-		rst     : in std_logic;
+		clk : in std_logic;
+		rst : in std_logic;
 		-- iram interface
 		IRAM_ADDRESS : out std_logic_vector( iram_address_size- 1 downto 0);
-		IRAM_ENABLE : out std_logic;
-		IRAM_READY  : in  std_logic;
-		IRAM_DATA   : in  std_logic_vector(IR_SIZE-1 downto 0);
+		IRAM_ENABLE  : out std_logic;
+		IRAM_READY   : in  std_logic;
+		IRAM_DATA    : in  std_logic_vector(IR_SIZE-1 downto 0);
 		-- dram interface
 		DRAM_ADDRESS      : out   std_logic_vector(dram_address_size-1 downto 0);
 		DRAM_ENABLE       : out   std_logic;
@@ -44,27 +44,30 @@ entity DATAPATH is
 		DRAM_DATA         : inout std_logic_vector(data_size-1 downto 0);
 		-- control unit interface, signals from/to control unit 
 		-- for fetch stage
-		iram_enable_cu	: in std_logic;
-		iram_ready_cu	: out std_logic;
+		iram_enable_cu         : in  std_logic;
+		iram_ready_cu          : out std_logic;
 		curr_instruction_to_cu : out std_logic_vector(PC_SIZE-1 downto 0);
 		-- for decode stage
-		enable_rf      : in std_logic;  
-		read_rf_p1     : in std_logic;  
-		read_rf_p2     : in std_logic;  
-		write_rf       : in std_logic;  
+		enable_rf        : in std_logic;
+		read_rf_p1       : in std_logic;
+		read_rf_p2       : in std_logic;
+		write_rf         : in std_logic;
 		address_rf_write : in std_logic_vector(f_log2(RF_REGS)-1 downto 0);
-		compute_sext  : in std_logic;
+		compute_sext     : in std_logic;
 		-- for execute stage
-		alu_op_type: in std_logic_vector(3 downto 0); --TYPE_OP_ALU ; for compatibility with sv
-		sel_val_a  : in std_logic_vector(0 downto 0 );
-		sel_val_b  : in std_logic_vector(0 downto 0 );
+		alu_op_type     : in std_logic_vector(3 downto 0); --TYPE_OP_ALU ; for compatibility with sv
+		sel_val_a       : in std_logic_vector(0 downto 0 );
+		sel_val_b       : in std_logic_vector(0 downto 0 );
 		evaluate_branch : in std_logic;
+		-- from execute stage
+		alu_cin      : in std_logic;
+		alu_overflow : out std_logic;
 		-- for memory stage
-		dram_enable_cu: in  std_logic;
-		dram_r_nw_cu  : in  std_logic;
-		dram_ready_cu : out std_logic; 
+		dram_enable_cu : in  std_logic;
+		dram_r_nw_cu   : in  std_logic;
+		dram_ready_cu  : out std_logic;
 		-- for write back stage   
-		select_wb: in std_logic_vector(0 downto 0)
+		select_wb : in std_logic_vector(0 downto 0)
 
 	);
 end entity DATAPATH;
@@ -149,10 +152,12 @@ architecture structural of DATAPATH is
 			alu_output_val        : out std_logic_vector(N-1 downto 0);
 			value_to_mem          : out std_logic_vector(N-1 downto 0);
 			-- to/from control unit
-			alu_op_type     : in std_logic_vector(3 downto 0); --TYPE_OP_ALU ; for compatibility with sv
-			sel_val_a       : in std_logic_vector(0 downto 0);
-			sel_val_b       : in std_logic_vector(0 downto 0);
-			evaluate_branch : in std_logic
+			alu_op_type     : in  std_logic_vector(3 downto 0); --TYPE_OP_ALU ; for compatibility with sv
+			sel_val_a       : in  std_logic_vector(0 downto 0);
+			sel_val_b       : in  std_logic_vector(0 downto 0);
+			cin: in std_logic;
+			overflow   : out std_logic;
+			evaluate_branch : in  std_logic
 		);
 	end component execute_stage;
 
@@ -206,21 +211,21 @@ architecture structural of DATAPATH is
 	end component write_back_stage;
 
 	-- interconnection signal declarations
-	signal new_pc_value_mem_stage_i		:std_logic_vector(PC_SIZE-1 downto 0); 				
-	signal new_pc_value					:std_logic_vector(PC_SIZE-1 downto 0);	
-	signal new_pc_value_decode			:std_logic_vector(PC_SIZE-1 downto 0);			
-	signal curr_instruction_i			:std_logic_vector(IR_SIZE-1 downto 0);			
-	signal val_a_i						:std_logic_vector(N-1 downto 0);
-	signal new_prog_counter_val_exe_i	:std_logic_vector(PC_SIZE-1 downto 0);					
-	signal val_b_i						:std_logic_vector(N-1 downto 0);
-	signal val_immediate_i				:std_logic_vector(N-1 downto 0);		
-	signal update_reg_value_i			:std_logic_vector(N-1 downto 0);			
-	signal branch_condition_i			:std_logic_vector(0 downto 0);			
-	signal prog_counter_forwaded_i		:std_logic_vector(PC_SIZE-1 downto 0);				
-	signal alu_output_val_i				:std_logic_vector(N-1 downto 0);		
-	signal value_to_mem_i				:std_logic_vector(N-1 downto 0);		
-	signal data_from_memory_i			:std_logic_vector(N-1 downto 0);			
-	signal data_from_alu_i				:std_logic_vector(N-1 downto 0);		
+	signal new_pc_value_mem_stage_i   : std_logic_vector(PC_SIZE-1 downto 0);
+	signal new_pc_value               : std_logic_vector(PC_SIZE-1 downto 0);
+	signal new_pc_value_decode        : std_logic_vector(PC_SIZE-1 downto 0);
+	signal curr_instruction_i         : std_logic_vector(IR_SIZE-1 downto 0);
+	signal val_a_i                    : std_logic_vector(N-1 downto 0);
+	signal new_prog_counter_val_exe_i : std_logic_vector(PC_SIZE-1 downto 0);
+	signal val_b_i                    : std_logic_vector(N-1 downto 0);
+	signal val_immediate_i            : std_logic_vector(N-1 downto 0);
+	signal update_reg_value_i         : std_logic_vector(N-1 downto 0);
+	signal branch_condition_i         : std_logic_vector(0 downto 0);
+	signal prog_counter_forwaded_i    : std_logic_vector(PC_SIZE-1 downto 0);
+	signal alu_output_val_i           : std_logic_vector(N-1 downto 0);
+	signal value_to_mem_i             : std_logic_vector(N-1 downto 0);
+	signal data_from_memory_i         : std_logic_vector(N-1 downto 0);
+	signal data_from_alu_i            : std_logic_vector(N-1 downto 0);
 begin
 
 
@@ -236,24 +241,24 @@ begin
 			PC_SIZE => PC_SIZE
 		)
 		port map (
-			clk =>clk ,
-			rst =>rst ,
+			clk => clk ,
+			rst => rst ,
 			--from  memory stage
-			new_pc_value_mem_stage =>new_pc_value_mem_stage_i,
+			new_pc_value_mem_stage => new_pc_value_mem_stage_i,
 			-- to decode stage
 			new_pc_value => new_pc_value_decode,
 			-- IRAM interface
-			IRAM_ADDRESS =>IRAM_ADDRESS,
-			IRAM_ENABLE  =>IRAM_ENABLE ,
-			IRAM_READY   =>IRAM_READY  ,
-			IRAM_DATA    =>IRAM_DATA   ,
+			IRAM_ADDRESS => IRAM_ADDRESS,
+			IRAM_ENABLE  => IRAM_ENABLE ,
+			IRAM_READY   => IRAM_READY ,
+			IRAM_DATA    => IRAM_DATA ,
 			-- to/from control unit
-			curr_instruction=> curr_instruction_i,
-			iram_enable_cu   =>iram_enable_cu,
-			iram_ready_cu    =>iram_ready_cu 
+			curr_instruction => curr_instruction_i,
+			iram_enable_cu   => iram_enable_cu,
+			iram_ready_cu    => iram_ready_cu
 		);
 
-		curr_instruction_to_cu<=curr_instruction_i;
+	curr_instruction_to_cu <= curr_instruction_i;
 	-- decode stage
 	--• Instruction decode/register fetch(ID) cycle: Decode the instruction and access the register
 	--file (RF) to read the registers. The outputs of the general-purpose registers are read into
@@ -270,25 +275,25 @@ begin
 			PC_SIZE => PC_SIZE
 		)
 		port map (
-			clk =>clk,
-			rst =>rst,
+			clk => clk,
+			rst => rst,
 			-- from fetch stage
-			new_prog_counter_val =>new_pc_value_decode,
-			instruction_reg     =>curr_instruction_i,
+			new_prog_counter_val => new_pc_value_decode,
+			instruction_reg      => curr_instruction_i,
 			-- to execute stage
-			val_a                    => val_a_i                    ,
+			val_a                    => val_a_i ,
 			new_prog_counter_val_exe => new_prog_counter_val_exe_i ,
-			val_b                    => val_b_i                    ,
-			val_immediate            => val_immediate_i            ,
+			val_b                    => val_b_i ,
+			val_immediate            => val_immediate_i ,
 			-- from write back stage
 			update_reg_value => update_reg_value_i,
 			-- from / to control unit
-			enable_rf        =>enable_rf        ,
-			read_rf_p1       =>read_rf_p1       ,
-			read_rf_p2       =>read_rf_p2       ,
-			write_rf         =>write_rf         ,
-			address_rf_write =>address_rf_write ,
-			compute_sext     =>compute_sext     
+			enable_rf        => enable_rf ,
+			read_rf_p1       => read_rf_p1 ,
+			read_rf_p2       => read_rf_p2 ,
+			write_rf         => write_rf ,
+			address_rf_write => address_rf_write ,
+			compute_sext     => compute_sext
 		);
 
 	--execute stage
@@ -307,20 +312,22 @@ begin
 			clk => clk ,
 			rst => rst ,
 			-- from decode stage
-			val_a                   =>val_a_i,
-			val_b                   =>val_b_i,
-			val_immediate           =>val_immediate_i,
-			new_prog_counter_val_exe =>new_prog_counter_val_exe_i,
+			val_a                    => val_a_i,
+			val_b                    => val_b_i,
+			val_immediate            => val_immediate_i,
+			new_prog_counter_val_exe => new_prog_counter_val_exe_i,
 			-- to memory stage
-			branch_condition      =>branch_condition_i		,
-			prog_counter_forwaded =>prog_counter_forwaded_i ,
-			alu_output_val        =>alu_output_val_i 		,
-			value_to_mem          =>value_to_mem_i			,
+			branch_condition      => branch_condition_i ,
+			prog_counter_forwaded => prog_counter_forwaded_i ,
+			alu_output_val        => alu_output_val_i ,
+			value_to_mem          => value_to_mem_i ,
 			-- to/from control unit
-			alu_op_type     =>alu_op_type     ,
-			sel_val_a       =>sel_val_a       ,
-			sel_val_b       =>sel_val_b       ,
-			evaluate_branch =>evaluate_branch 
+			alu_op_type     => alu_op_type ,
+			sel_val_a       => sel_val_a ,
+			sel_val_b       => sel_val_b ,
+			cin             => alu_cin,
+			overflow        => alu_overflow,
+			evaluate_branch => evaluate_branch
 		);
 
 	-- memory stage
@@ -335,29 +342,29 @@ begin
 			PC_SIZE => PC_SIZE
 		)
 		port map (
-			clk =>clk ,
-			rst =>rst ,
+			clk => clk ,
+			rst => rst ,
 			-- from fetch stage  it is actually from execute stage case it has been delayed for synch the pipeline
-			new_pc_value =>prog_counter_forwaded_i,
+			new_pc_value => prog_counter_forwaded_i,
 			-- to fetch stage
-			new_pc_value_branch =>new_pc_value_mem_stage_i,
+			new_pc_value_branch => new_pc_value_mem_stage_i,
 			-- from execute stage
-			select_pc       =>branch_condition_i, -- selection signal for the new value of the PC
-			alu_output_val =>alu_output_val_i,
-			value_to_mem  =>value_to_mem_i,
+			select_pc      => branch_condition_i, -- selection signal for the new value of the PC
+			alu_output_val => alu_output_val_i,
+			value_to_mem   => value_to_mem_i,
 			-- to write back stage
-			data_from_memory=>data_from_memory_i,
-			data_from_alu   =>data_from_alu_i	,
+			data_from_memory => data_from_memory_i,
+			data_from_alu    => data_from_alu_i ,
 			-- control signals from CU
-			dram_enable_cu =>dram_enable_cu ,
-			dram_r_nw_cu   =>dram_r_nw_cu   ,
-			dram_ready_cu  =>dram_ready_cu  ,
+			dram_enable_cu => dram_enable_cu ,
+			dram_r_nw_cu   => dram_r_nw_cu ,
+			dram_ready_cu  => dram_ready_cu ,
 			-- DRAM INTERFACES 
-			DRAM_ADDRESS      =>DRAM_ADDRESS      ,
-			DRAM_ENABLE       =>DRAM_ENABLE       ,
-			DRAM_READNOTWRITE =>DRAM_READNOTWRITE ,
-			DRAM_READY        =>DRAM_READY        ,
-			DRAM_DATA         =>DRAM_DATA         
+			DRAM_ADDRESS      => DRAM_ADDRESS ,
+			DRAM_ENABLE       => DRAM_ENABLE ,
+			DRAM_READNOTWRITE => DRAM_READNOTWRITE ,
+			DRAM_READY        => DRAM_READY ,
+			DRAM_DATA         => DRAM_DATA
 		);
 
 
@@ -375,11 +382,11 @@ begin
 		)
 		port map (
 			-- datapath, from memory stage
-			data_from_memory =>data_from_memory_i,
-			data_from_alu    =>data_from_alu_i,
-			data_to_rf      =>update_reg_value_i, -- to decode stage
-			                                                       -- control signals from cu
-			select_wb=>select_wb
+			data_from_memory => data_from_memory_i,
+			data_from_alu    => data_from_alu_i,
+			data_to_rf       => update_reg_value_i, -- to decode stage
+			                                        -- control signals from cu
+			select_wb => select_wb
 		);
 
 
