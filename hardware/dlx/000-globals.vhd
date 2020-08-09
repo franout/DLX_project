@@ -6,7 +6,7 @@
 -- Author      : Francesco Angione <s262620@studenti.polito.it> franout@github.com
 -- Company     : Politecnico di Torino, Italy
 -- Created     : Wed Jul 22 22:56:54 2020
--- Last update : Thu Aug  6 22:27:16 2020
+-- Last update : Sun Aug  9 16:00:44 2020
 -- Platform    : Default Part Number
 -- Standard    : VHDL-2008 
 --------------------------------------------------------------------------------
@@ -64,7 +64,7 @@ package globals is
 
 
         -- from lab defined in alu_types.vhd package
-        type TYPE_OP is (ADD, SUB, MULT, BITAND, BITOR, BITXOR, FUNCLSL, FUNCLSR, FUNCRL, FUNCRR);
+        type TYPE_OP_ALU is (ADD, SUB, MULT, BITAND, BITOR, BITXOR, FUNCLSL, FUNCLSR, FUNCRL, FUNCRR);
 
         -- see also implemented_instruction.svh in ./test_bench
         type instruction is (
@@ -79,7 +79,7 @@ package globals is
         constant FUNC_SIZE    : integer := 11; -- FUNC field size
         constant ADD_REG_SIZE : integer := 5;  -- # of bits used for addressing the registers for both an I-Type or R-Type instruction 
         constant instr_length : integer := 32; -- number of bits for an instruction 
-
+        constant tot_cu_sign : integer := 32;  -- number of total signoal (I/O) of control unit
 
         -- R-TYPE -> register to register operation 
         -- I-TYPE -> register and an immediate of ALU operation or load/store memory operatins 

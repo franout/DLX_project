@@ -6,7 +6,7 @@
 -- Author      : Francesco Angione <s262620@studenti.polito.it> franout@github.com
 -- Company     : Politecnico di Torino, Italy
 -- Created     : Wed Jul 22 22:58:15 2020
--- Last update : Thu Aug  6 22:48:45 2020
+-- Last update : Sun Aug  9 16:19:39 2020
 -- Platform    : Default Part Number
 -- Standard    : VHDL-2008 
 --------------------------------------------------------------------------------
@@ -79,7 +79,7 @@ architecture dlx_rtl of DLX is
       address_rf_write : out std_logic_vector(f_log2(RF_REGS)-1 downto 0);
       compute_sext     : out std_logic;
       -- for execute stage
-      alu_op_type     : out TYPE_OP;
+    alu_op_type     : out std_logic_vector(3 downto 0); --TYPE_OP_ALU ; for compatibility with sv
       sel_val_a       : out std_logic_vector(0 downto 0 );
       sel_val_b       : out std_logic_vector(0 downto 0 );
       evaluate_branch : out std_logic;
@@ -88,7 +88,7 @@ architecture dlx_rtl of DLX is
       dram_r_nw_cu   : out std_logic;
       dram_ready_cu  : in  std_logic;
       -- for write back stage   
-      select_wb : out std_logic_vector(0 downto 0);
+      select_wb : out std_logic_vector(0 downto 0)
       -- simulation debug signals
       --synthesis_translate off
       ;
@@ -136,7 +136,7 @@ architecture dlx_rtl of DLX is
       address_rf_write : in std_logic_vector(f_log2(RF_REGS)-1 downto 0);
       compute_sext     : in std_logic;
       -- for execute stage
-      alu_op_type     : in TYPE_OP;
+       alu_op_type     : in std_logic_vector(3 downto 0); --TYPE_OP_ALU ; for compatibility with sv
       sel_val_a       : in std_logic_vector(0 downto 0 );
       sel_val_b       : in std_logic_vector(0 downto 0 );
       evaluate_branch : in std_logic;
@@ -155,13 +155,14 @@ architecture dlx_rtl of DLX is
   -- Internconnection Signals Declaration
   ----------------------------------------------------------------
   signal iram_ready_cu_i,iram_enable_cu_i,
-  compute_sext_i,write_rf_i,evaluate_branch_i,
-  select_wb_i,dram_ready_cu_i,dram_r_nw_cu_i,
+  compute_sext_i,write_rf_i,evaluate_branch_i
+  ,dram_ready_cu_i,dram_r_nw_cu_i,rstn,enable_rf_i,read_rf_p1_i,read_rf_p2_i,
   dram_enable_cu_i                : std_logic;
   signal curr_instruction_to_cu_i : std_logic_vector(PC_SIZE-1 downto 0);
-  signal address_rf_write_i       : std_logic_vector(f_log2(RF_REGS)-1 downto 0);
-  signal sel_val_a_i,sel_val_b_i  : std_logic_vector(0 downto 0);
-  signal alu_op_type_i            : TYPE_OP;
+  signal address_rf_write_i       : std_logic_vector(f_log2(register_in_rf)-1 downto 0);
+  signal sel_val_a_i,sel_val_b_i ,select_wb_i : std_logic_vector(0 downto 0);
+  signal    alu_op_type_i: std_logic_vector(3 downto 0); --TYPE_OP_ALU ; for compatibility with sv
+
 
 
 
@@ -173,10 +174,10 @@ begin -- DLX
     generic map (
       PC_SIZE => PC_SIZE,
       RF_REGS => register_in_rf,
-      FUNC_SIZE     =>,
-      OP_CODE_SIZE  =>,
-      IR_SIZE       =>,
-      CW_SIZE       =>
+      FUNC_SIZE     =>FUNC_SIZE,
+      OP_CODE_SIZE  =>OP_CODE_SIZE,
+      IR_SIZE       =>instr_length,
+      CW_SIZE       => tot_cu_sign
     )
     port map (
       clk                    => clk,

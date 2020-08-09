@@ -6,7 +6,7 @@
 -- Author      : Francesco Angione <s262620@studenti.polito.it> franout@github.com
 -- Company     : Politecnico di Torino, Italy
 -- Created     : Wed Jul 22 22:56:15 2020
--- Last update : Sat Jul 25 15:26:08 2020
+-- Last update : Sat Aug  8 15:46:44 2020
 -- Platform    : Default Part Number
 -- Standard    : VHDL-2008 
 --------------------------------------------------------------------------------
@@ -22,6 +22,7 @@ library ieee;
 use ieee.std_logic_1164.all;
 use work.globals.all;
 use work.constants.all; -- for avoiding compilation error 
+use work.alu_types.all;
 
 package global_components is
 	-- dummy alu declaration

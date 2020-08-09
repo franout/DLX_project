@@ -6,7 +6,7 @@
 -- Author      : Francesco Angione <s262620@studenti.polito.it> franout@github.com
 -- Company     : Politecnico di Torino, Italy
 -- Created     : Wed Jul 22 22:58:34 2020
--- Last update : Thu Aug  6 21:36:07 2020
+-- Last update : Sun Aug  9 16:20:11 2020
 -- Platform    : Default Part Number
 -- Standard    : VHDL-2008 
 --------------------------------------------------------------------------------
@@ -55,7 +55,7 @@ entity DATAPATH is
 		address_rf_write : in std_logic_vector(f_log2(RF_REGS)-1 downto 0);
 		compute_sext  : in std_logic;
 		-- for execute stage
-		alu_op_type: in TYPE_OP;
+		alu_op_type: in std_logic_vector(3 downto 0); --TYPE_OP_ALU ; for compatibility with sv
 		sel_val_a  : in std_logic_vector(0 downto 0 );
 		sel_val_b  : in std_logic_vector(0 downto 0 );
 		evaluate_branch : in std_logic;
@@ -149,7 +149,7 @@ architecture structural of DATAPATH is
 			alu_output_val        : out std_logic_vector(N-1 downto 0);
 			value_to_mem          : out std_logic_vector(N-1 downto 0);
 			-- to/from control unit
-			alu_op_type     : in TYPE_OP;
+			alu_op_type     : in std_logic_vector(3 downto 0); --TYPE_OP_ALU ; for compatibility with sv
 			sel_val_a       : in std_logic_vector(0 downto 0);
 			sel_val_b       : in std_logic_vector(0 downto 0);
 			evaluate_branch : in std_logic

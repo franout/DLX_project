@@ -14,6 +14,9 @@
 `ifndef  __GLOBAL_DEFS__SVH
 `define  __GLOBAL_DEFS__SVH
 
+
+
+
 `define  NUMBIT 32 // number of bits for the architecture
 `define  RF_REGS 32 // number of regisster in the register file
 `define  IRAM_WORD_SIZE 32
@@ -23,12 +26,7 @@
 `define  DRAM_SIZE 2**16-1
 `define  DRAM_ADDRESS_SIZE 16
 
-
- enum  {
-	ADD, SUB, MULT, BITAND, BITOR, BITXOR, FUNCLSL, FUNCLSR, FUNCRL, FUNCRR
-} TYPE_OP_sv;
-
-
+typedef enum  bit [3:0]{ADD, SUB, MULT, BITAND, BITOR, BITXOR, FUNCLSL, FUNCLSR, FUNCRL, FUNCRR} TYPE_OP_ALU_sv ; // error in importing the enum from vhdl
 
 
 // uncomment using vivado simulator 'cause some sv system call are not supported from vivavo simulator

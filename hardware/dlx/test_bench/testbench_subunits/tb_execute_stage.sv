@@ -7,7 +7,7 @@
 // Author : Angione Francesco s262620@studenti.polito.it franout@Github.com
 // File   : tb_execute_stage.sv
 // Create : 2020-07-27 15:17:03
-// Revise : 2020-08-06 20:41:08
+// Revise : 2020-08-09 16:27:36
 // Editor : sublime text3, tab size (4)
 // Description: 
 // -----------------------------------------------------------------------------
@@ -17,38 +17,55 @@
 
 
 // input val are implicit
-program automatic test_execute(logic clk, 
+program automatic test_execute(input logic clk, 
 							output logic rst,
 							output logic [`NUMBIT-1:0]opa,
 							output logic [`NUMBIT-1:0]opb,
 							output logic [`NUMBIT-1:0]immediate,
 							output logic [`IRAM_WORD_SIZE-1:0]prog_counter,
-							output TYPE_OP_sv alu_operation,
+							output TYPE_OP_ALU_sv alu_operation, // automatic type
 							input logic [`NUMBIT-1:0]alu_out,
 							output logic [0:0] sel_val_a,
 							output logic [0:0] sel_val_b,
-							output logic  evaluate_branch
+							output logic  evaluate_branch,
+							input logic jump_prediction
 							);
-
+`ifndef  VIVADO_SIM
 default clocking test_clk_prog @(posedge clk);
 endclocking // test_clk_prog
+`endif
 
+TYPE_OP_ALU_sv current_operation;
 
 initial begin 
 		rst=0;
+		current_operation.first();
 		$display("@%0dns Starting Program",$time);
 		$display("Starting testbench for Execute stage",);
-		##1;
+		`ifndef VIVADO_SIM
+			##1;
+		`else 
+			repeat(2)@(posedge clk);
+		`endif
 		$display("Reset",);
 		rst=0;
-		##2;
+		`ifndef VIVADO_SIM
+			##2;
+		`else 
+			repeat(4)@(posedge clk);
+		`endif
 		$display("Checking PC increment",);
+		rst=1;
 		prog_counter=1;
 		opa=0;
 		opb=3;
 		sel_val_a=1;
 		sel_val_b=0;
-		##1;
+		`ifndef VIVADO_SIM
+			##2;
+		`else 
+			repeat(4)@(posedge clk);
+		`endif
 		if(alu_out!==4) begin 
 			$display("error in pc increment");
 			$stop();
@@ -59,23 +76,79 @@ initial begin
 		immediate=5;
 		sel_val_a=0;
 		sel_val_b=1;
-		##1;
+		`ifndef VIVADO_SIM
+			##1;
+		`else 
+			repeat(2)@(posedge clk);
+		`endif	
 		if(alu_out!==5) begin 
 			$display("error in addition with immediate");
 			$stop();
 		end
 		$display("Checking zero condition for branch jump evalutation",);
-
+		opa=0;
+		evaluate_branch=1;
+		`ifndef VIVADO_SIM
+		##2;
+		`else 
+			repeat(4)@(posedge clk);
+		`endif
+		if(jump_prediction!==1)begin 
+			$display("Error in check zero logic-> TRuE",);
+			$stop();
+		end
+		opa=321;
+		evaluate_branch=1;
+		`ifndef VIVADO_SIM
+		##2;
+		`else 
+			repeat(4)@(posedge clk);
+		`endif
+		if(jump_prediction!==0)begin 
+			$display("Error in check zero logic-> False",);
+			$stop();
+		end
 		$display("Checking ALU operations: ADD",);
+		opb=3;
+		opa=3;
+		sel_val_a=0;
+		sel_val_b=0;
+		`ifndef VIVADO_SIM
+		##2;
+		`else 
+			repeat(4)@(posedge clk);
+		`endif
+		if(alu_out!==(opa+opb))begin 
+			$display("Alu addition is wrong -> Expected: %d Actual: %d",opa+opb ,alu_out );
+			$stop();
+		end
 		$display("Checking ALU operations: SUB",);
+		opb=3;
+		opa=3;
+		sel_val_a=0;
+		sel_val_b=0;
+		alu_operation=current_operation.next();
+		`ifndef VIVADO_SIM
+		##2;
+		`else 
+			repeat(4)@(posedge clk);
+		`endif
+		if(alu_out!==(opa-opb))begin 
+			$display("Alu subtraction is wrong -> Expected: %d Actual: %d",opa-opb ,alu_out );
+
+			$stop();
+		end
 		$display("Checking ALU operations: MUL",);
 		$display("Checking ALU operations: BITAND",);
 		$display("Checking ALU operations: BITOR",);
 		$display("Checking ALU operations: BITXOR",);
 		$display("Checking ALU operations: FYNCLSL",);
 		$display("Checking ALU operations: FUNCLSR",);
-
-		##1;
+		`ifndef VIVADO_SIM
+			##1;
+		`else 
+			repeat(2)@(posedge clk);
+		`endif
 		$display("Execute stage has passed the testbench",);
 		$finish;
 end
@@ -90,28 +163,30 @@ localparam clock_period= 10ns;
 		clk = '0;
 		forever #(clock_period/2) clk = ~clk;
 	end
+
   	// Specify the default clocking
   	default clocking test_clk @ (posedge clk);
   	endclocking	// clock
-
 	// signal declaration 
 	logic rst;
-	wire [`NUMBIT-1:0]opa;
-	wire [`NUMBIT-1:0]opb;
-	wire [`NUMBIT-1:0]immediate;
-	wire [`IRAM_WORD_SIZE-1:0]prog_counter;
-	TYPE_OP_sv alu_operation;
-	wire [`NUMBIT-1:0]alu_output_va;
+	wire [`NUMBIT-1:0]val_a ,val_b;
+	wire [`NUMBIT-1:0]val_immediate;
+	wire [`IRAM_WORD_SIZE-1:0]new_prog_counter_val_exe;
+	TYPE_OP_ALU_sv alu_op_type;
+	wire [`NUMBIT-1:0]alu_output_val;
 	wire [0:0] sel_val_a;
 	wire [0:0] sel_val_b;       
 	wire evaluate_branch;
-		
+	logic branch_condition;
+	logic [`NUMBIT-1:0] value_to_mem;
+	logic [`NUMBIT-1:0]prog_counter_forwaded;
+
 
   	// property definition
   	property pc_forwarded;
   		@(test_clk)
-  			disable iff (!rst)
-  			$changed(new_prog_counter_val_exe) |-> $changed(prog_counter_forwaded);
+  			disable iff (!rst && !sel_val_a) // not a jump addition 
+  			(new_prog_counter_val_exe) |-> $changed(prog_counter_forwaded);
   	endproperty;
 
   	property write_value_propagation;
@@ -153,7 +228,8 @@ localparam clock_period= 10ns;
 			.sel_val_b(sel_val_b),       
 			.evaluate_branch(evaluate_branch) 
 		);
-	
+		
+
 	test_execute test(
 					.clk(clk),
 					.rst(rst),
@@ -165,6 +241,10 @@ localparam clock_period= 10ns;
 					.alu_operation(alu_op_type),
 					.sel_val_a(sel_val_a),       
 					.sel_val_b(sel_val_b),       
-					.evaluate_branch(evaluate_branch)
+					.evaluate_branch(evaluate_branch),
+					.jump_prediction(branch_condition)
 					);
+
+
+
 endmodule
