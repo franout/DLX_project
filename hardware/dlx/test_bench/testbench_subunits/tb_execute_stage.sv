@@ -7,7 +7,7 @@
 // Author : Angione Francesco s262620@studenti.polito.it franout@Github.com
 // File   : tb_execute_stage.sv
 // Create : 2020-07-27 15:17:03
-// Revise : 2020-08-09 17:06:13
+// Revise : 2020-08-09 17:12:59
 // Editor : sublime text3, tab size (4)
 // Description: 
 // -----------------------------------------------------------------------------
@@ -305,9 +305,11 @@ localparam clock_period= 10ns;
 	logic branch_condition;
 	logic [`NUMBIT-1:0] value_to_mem;
 	logic [`NUMBIT-1:0]prog_counter_forwaded;
+	logic cin, overflow;
 
 
   	// property definition
+  		// TODO add property def for cin and overflow
   	property pc_forwarded;
   		@(test_clk)
   			disable iff (!rst && !sel_val_a) // not a jump addition 
@@ -351,7 +353,9 @@ localparam clock_period= 10ns;
 			.alu_op_type(alu_op_type),   
 			.sel_val_a(sel_val_a),       
 			.sel_val_b(sel_val_b), 
-			/*add check for cin and overflow TODO*/      
+			/*add check for cin and overflow TODO*/
+			.cin(cin) ,
+			.overflow(overflow),
 			.evaluate_branch(evaluate_branch) 
 		);
 		

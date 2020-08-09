@@ -7,7 +7,7 @@
 // Author : Angione Francesco s262620@studenti.polito.it franout@Github.com
 // File   : tb_datapath.sv
 // Create : 2020-07-27 15:16:24
-// Revise : 2020-08-06 19:12:03
+// Revise : 2020-08-09 17:22:56
 // Editor : sublime text3, tab size (4)
 // Description: 
 // -----------------------------------------------------------------------------
@@ -118,6 +118,9 @@ localparam clock_period= 10ns;
 		.sel_val_a(sel_val_a),
 		.sel_val_b(sel_val_b),
 		.evaluate_branch(evaluate_branch),
+		.alu_cin(cin),
+		// from exectute stage
+		.alu_overflow(overflow),
 		// for memory stage
 		.dram_enable_cu(dram_enable_cu),
 		.dram_r_nw_cu(dram_r_nw_cu),
@@ -125,7 +128,7 @@ localparam clock_period= 10ns;
 		// for write back stage   
 		.select_wb(select_wb)
 	);
-
+	
   	// test program 
   	test_datapath test(.rst(rst),.dram_if(dram_if),
   						.iram_if(iram_if));
