@@ -6,7 +6,7 @@
 -- Author      : Francesco Angione <s262620@studenti.polito.it> franout@github.com
 -- Company     : Politecnico di Torino, Italy
 -- Created     : Thu Jul 23 15:49:45 2020
--- Last update : Sun Aug  9 16:56:44 2020
+-- Last update : Sun Aug  9 18:41:57 2020
 -- Platform    : Default Part Number
 -- Standard    : VHDL-2008 
 --------------------------------------------------------------------------------
@@ -40,7 +40,7 @@ entity control_unit is
     read_rf_p1       : out std_logic;
     read_rf_p2       : out std_logic;
     write_rf         : out std_logic;
-    address_rf_write : out std_logic_vector(f_log2(RF_REGS)-1 downto 0);
+    rtype_itypen_i : out std_logic;
     compute_sext     : out std_logic;
     -- for execute stage
     alu_op_type : out std_logic_vector(3 downto 0); --TYPE_OP_ALU ; for compatibility with sv

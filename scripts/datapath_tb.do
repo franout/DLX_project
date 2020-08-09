@@ -9,7 +9,7 @@ add wave -noupdate /tb_datapath/enable_rf
 add wave -noupdate /tb_datapath/read_rf_p1
 add wave -noupdate /tb_datapath/read_rf_p2
 add wave -noupdate /tb_datapath/write_rf
-add wave -noupdate /tb_datapath/address_rf_write
+add wave -noupdate /tb_datapath/rtype_itypen
 add wave -noupdate /tb_datapath/compute_sext
 add wave -noupdate /tb_datapath/alu_op_type
 add wave -noupdate /tb_datapath/sel_val_a

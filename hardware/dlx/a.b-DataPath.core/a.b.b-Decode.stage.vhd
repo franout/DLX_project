@@ -6,7 +6,7 @@
 -- Author      : Francesco Angione <s262620@studenti.polito.it> franout@github.com
 -- Company     : Politecnico di Torino, Italy
 -- Created     : Wed Jul 22 22:59:52 2020
--- Last update : Mon Aug  3 17:37:33 2020
+-- Last update : Sun Aug  9 18:48:15 2020
 -- Platform    : Default Part Number
 -- Standard    : VHDL-2008 
 --------------------------------------------------------------------------------
@@ -44,12 +44,12 @@ entity decode_stage is
 		-- from write back stage
 		update_reg_value : in std_logic_vector(N-1 downto 0);
 		-- from / to control unit
-		enable_rf        : in std_logic;
-		read_rf_p1       : in std_logic;
-		read_rf_p2       : in std_logic;
-		write_rf         : in std_logic;
-		address_rf_write : in std_logic_vector(f_log2(RF_REGS)-1 downto 0);
-		compute_sext     : in std_logic-- signal for computing sign exention of 16bit immediate value
+		enable_rf    : in std_logic;
+		read_rf_p1   : in std_logic;
+		read_rf_p2   : in std_logic;
+		write_rf     : in std_logic;
+		rtype_itypen : in std_logic; -- =='1' rtype instrucion =='0' itype instructnions
+		compute_sext : in std_logic-- signal for computing sign exention of 16bit immediate value
 	) ;
 end entity ; -- decode_stage
 
@@ -68,9 +68,42 @@ architecture structural of decode_stage is
 	signal rstn                                         : std_logic;
 	signal val_reg_a_i,val_reg_b_i, val_reg_immediate_i : std_logic_vector(N-1 downto 0);
 	signal clk_immediate                                : std_logic;
+	signal instruction_reg_i,address_rf_write,del_reg_wb_2,del_reg_wb_1   : std_logic_vector(f_log2(RF_REGS)-1 downto 0);
 begin
 
 	rstn <= not(rst);
+
+		-- logic for getting the correct address depending on the current instruction ( if it is an I-type or R-type instruction)
+		instruction_reg_i<=instruction_reg(15 downto 11 ) when rtype_itypen ='1' else instruction_reg( 20 downto 16 );
+		-- delay registers for write back address
+		delay_reg_wb_1 : reg_nbit generic map (
+			N => f_log2(RF_REGS)
+		)
+		port map (
+			clk   => clk,
+			reset => rstn, -- reset is active high internally to the register
+			d     => instruction_reg_i,
+			Q     => del_reg_wb_1
+		);
+		delay_reg_wb_2 : reg_nbit generic map (
+			N => f_log2(RF_REGS)
+		)
+		port map (
+			clk   => clk,
+			reset => rstn, -- reset is active high internally to the register
+			d     => del_reg_wb_1,
+			Q     => del_reg_wb_2
+		);
+		delay_reg_wb_3 : reg_nbit generic map (
+			N => f_log2(RF_REGS)
+		)
+		port map (
+			clk   => clk,
+			reset => rstn, -- reset is active high internally to the register
+			d     => del_reg_wb_2,
+			Q     => address_rf_write
+		);
+
 
 	-- register file 
 	reg_file : register_file
@@ -85,9 +118,9 @@ begin
 			RD1     => read_rf_p1,
 			RD2     => read_rf_p2,
 			WR      => write_rf,
-			ADD_WR  => address_rf_write, -- TODO can add a two reg delay?
-			ADD_RD1 => instruction_reg(25 downto 21),--(6 to 10),
-			ADD_RD2 => instruction_reg(20 downto 16),--(11 to 15),
+			ADD_WR  => address_rf_write,
+			ADD_RD1 => instruction_reg(25 downto 21), --(6 to 10),
+			ADD_RD2 => instruction_reg(20 downto 16), --(11 to 15),
 			DATAIN  => update_reg_value,
 			OUT1    => val_reg_a_i,
 			OUT2    => val_reg_b_i
@@ -124,8 +157,8 @@ begin
 		)
 		port map (
 			val_to_exetend => instruction_reg(15 downto 0),--(0 to 16),
-			enable => compute_sext,
-			extended_val => val_reg_immediate_i
+			enable         => compute_sext,
+			extended_val   => val_reg_immediate_i
 		);
 
 

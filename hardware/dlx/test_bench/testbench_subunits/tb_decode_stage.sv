@@ -31,7 +31,8 @@ program automatic test_decode(
 						input logic [`NBIT-1:0]val_a,
 						input logic [`IRAM_WORD_SIZE-1:0]new_prog_counter_val_exe,
 						input logic [`NBIT-1:0]val_b,
-						input logic [`NBIT-1:0]val_immediate
+						input logic [`NBIT-1:0]val_immediate,
+						output logic rtype_itypen
 						);
   
 	// tmp data for bit reverse
@@ -41,12 +42,14 @@ program automatic test_decode(
 
 	integer i;
 
+`ifndef  VIVADO_SIM
 	default clocking test_clk @ (posedge clk);
   	endclocking	// clock
-
+`endif
 
 initial begin
 		$display("@%0dns Starting Program",$time);
+		rtype_itypen=1;
 		rst=0;
 		enable_rf=0;
 		address_rf_write=0;
@@ -58,16 +61,29 @@ initial begin
 		read_rf_p1=0;
 		write_rf=0;
 		$display("Starting testbench for decode stge",);
+		`ifndef  VIVADO_SIM
 		## 1;
+		`else 
+		repeat(2)@(posedge clk);
+		`endif
 		$display("Reset stage",);
 		rst=0;
-		##1 ;
+		`ifndef  VIVADO_SIM
+		## 1;
+		`else 
+		repeat(2)@(posedge clk);
+		`endif
 		$display("Sign extention check unsigned",);
 		rst=1;
 		compute_sext=1;
 		instruction_reg='h12340FFF;
+		`ifndef  VIVADO_SIM
 		new_prog_counter_val=$urandom();
-		##1 ;
+		## 1;
+		`else 
+		new_prog_counter_val=96523;
+		repeat(2)@(posedge clk);
+		`endif
 		if(val_immediate!=='h0fff) begin
 			$display("wrong sign extentions unsigned");
 			$stop();
@@ -75,8 +91,13 @@ initial begin
 		$display("Sign extention check signed",);
 		compute_sext=1;
 		instruction_reg='h12388FFF;
+		`ifndef  VIVADO_SIM
 		new_prog_counter_val=$urandom();
-		##1;
+		## 1;
+		`else 
+		new_prog_counter_val=7896;
+		repeat(2)@(posedge clk);
+		`endif
 		if(val_immediate!=='hffff8fff) begin 
 			$display("wrong signed sign extention");
 			$stop();
@@ -84,8 +105,12 @@ initial begin
 		instruction_reg=0;
 		enable_rf=1;
 		$display("Read and write on the same port",);
+		`ifndef  VIVADO_SIM
 		$urandom_range(0,31);
 		array=$urandom();
+		`else 
+		array=5;
+		`endif
 		register_index={<<{array}};
 		read_rf_p1=1;
 		read_rf_p2=1;
@@ -94,7 +119,11 @@ initial begin
 //   	instruction_reg[15:11]=register_index+1;
 		instruction_reg[25:21]=register_index; 
 	   	instruction_reg[20:16]=register_index+1;
-		##2;		
+		`ifndef  VIVADO_SIM
+		## 2;
+		`else 
+		repeat(4)@(posedge clk);
+		`endif		
 		if(val_a!==0 || val_b!==0) begin
 			$display("Init values of register files are not zeros",);
 			$stop();
@@ -104,17 +133,32 @@ initial begin
 		read_rf_p1=0;
 		read_rf_p2=0;
 		write_rf=1;
+	
+		`ifndef  VIVADO_SIM
 		array=$urandom();
+		`else 
+		array=3;
+		`endif
 		register_index={<<{array}};
 		address_rf_write=register_index;
+		instruction_reg[15:11]=address_rf_write;
 		instruction_reg[20:16]=register_index;
 		update_reg_value=159753;
-		##1;
+		`ifndef  VIVADO_SIM
+		## 3;
+		`else 
+		repeat(6)@(posedge clk);
+		`endif
 		// read again 
 		read_rf_p1=1;
 		write_rf=0;
 		register_index=address_rf_write;
-		##2;
+		instruction_reg[20:16]=register_index;
+		`ifndef  VIVADO_SIM
+		## 2;
+		`else 
+		repeat(4)@(posedge clk);
+		`endif
 		if(val_a!==159753)begin
 			$display("Error in writing in the register file",);
 			$stop();
@@ -125,26 +169,46 @@ initial begin
 			if(i%2==0) begin
 				write_rf=0;
 				read_rf_p1=1;
-				read_rf_p2=1;
+				read_rf_p2=1;	
+				`ifndef  VIVADO_SIM
 				array=$urandom();
+				`else 
+				array=i;
+				`endif
 				register_index={<<{array}};
 				instruction_reg[10:6]=register_index; // check indexes 
 				instruction_reg[15:11]=register_index+1;	
-				##2;
+				`ifndef  VIVADO_SIM
+				## 2;
+				`else 
+				repeat(4)@(posedge clk);
+				`endif
 			end else begin 
 				write_rf=1;
 				read_rf_p1=0;
 				read_rf_p2=0;
+				`ifndef  VIVADO_SIM
 				array=$urandom();
+				`else 
+				array=i;
+				`endif
 				register_index={<<{array}};
 				address_rf_write=register_index;
 				instruction_reg[20:16]=register_index;
 				update_reg_value=159753;
-				##1;
+				`ifndef  VIVADO_SIM
+				## 1;
+				`else 
+				repeat(2)@(posedge clk);
+				`endif
 			end 
 			
 		end
-		## 3;
+		`ifndef  VIVADO_SIM
+		## 1;
+		`else 
+		repeat(2)@(posedge clk);
+		`endif
 		$display("Decode stage has passed the testbench",);
 		$finish;
 end 	
@@ -178,6 +242,7 @@ localparam clock_period= 10ns;
 	wire enable_rf;
 	wire read_rf_p1;
 	wire read_rf_p2;
+	wire rtype_itypen;
 	wire write_rf;
 	wire [5-1:0]address_rf_write; // # regs is fixed at 32
 	wire compute_sext; // msb is for signed or not 
@@ -218,10 +283,15 @@ localparam clock_period= 10ns;
 	  			read_port(read_rf_p2, val_b);
   	endproperty;
 
+  	sequence write_rf_seq;
+  		rtype_itypen ##3 write_rf;
+  	endsequence;
+
   	property write_in_rf;
   		@(test_clk)
   			disable iff(!rst || !enable_rf || compute_sext)
-  				write_rf |=> address_rf_write;
+  				//write_rf |=> address_rf_write;
+  				rtype_itypen |-> write_rf_seq;
   	endproperty;
 
 
@@ -265,9 +335,11 @@ localparam clock_period= 10ns;
 		.read_rf_p1(read_rf_p1),
 		.read_rf_p2(read_rf_p2),
 		.write_rf(write_rf),
-		.address_rf_write(address_rf_write),
+		.rtype_itypen(rtype_itypen),
 		.compute_sext(compute_sext) // signal for computing sign exention of 16bit immediate value
   		);
+
+
 
   	// instanatiate the test_program
   	test_decode test(
@@ -285,7 +357,8 @@ localparam clock_period= 10ns;
 				.val_a(val_a),
 				.new_prog_counter_val_exe(new_prog_counter_val_exe),
 				.val_b(val_b),
-				.val_immediate(val_immediate)
+				.val_immediate(val_immediate),
+				.rtype_itypen(rtype_itypen)
   					);
 
 

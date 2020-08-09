@@ -6,7 +6,7 @@
 -- Author      : Francesco Angione <s262620@studenti.polito.it> franout@github.com
 -- Company     : Politecnico di Torino, Italy
 -- Created     : Wed Jul 22 22:58:15 2020
--- Last update : Sun Aug  9 16:59:59 2020
+-- Last update : Sun Aug  9 18:41:42 2020
 -- Platform    : Default Part Number
 -- Standard    : VHDL-2008 
 --------------------------------------------------------------------------------
@@ -76,7 +76,7 @@ architecture dlx_rtl of DLX is
       read_rf_p1       : out std_logic;
       read_rf_p2       : out std_logic;
       write_rf         : out std_logic;
-      address_rf_write : out std_logic_vector(f_log2(RF_REGS)-1 downto 0);
+      rtype_itypen : out std_logic; -- =='1' rtype instrucion =='0' itype instructnions
       compute_sext     : out std_logic;
       -- for execute stage
     alu_op_type     : out std_logic_vector(3 downto 0); --TYPE_OP_ALU ; for compatibility with sv
@@ -136,7 +136,7 @@ architecture dlx_rtl of DLX is
       read_rf_p1       : in std_logic;
       read_rf_p2       : in std_logic;
       write_rf         : in std_logic;
-      address_rf_write : in std_logic_vector(f_log2(RF_REGS)-1 downto 0);
+      rtype_itypen : in std_logic; -- =='1' rtype instrucion =='0' itype instructnions
       compute_sext     : in std_logic;
       -- for execute stage
        alu_op_type     : in std_logic_vector(3 downto 0); --TYPE_OP_ALU ; for compatibility with sv
@@ -162,10 +162,9 @@ architecture dlx_rtl of DLX is
   ----------------------------------------------------------------
   signal iram_ready_cu_i,iram_enable_cu_i,
   compute_sext_i,write_rf_i,evaluate_branch_i,alu_cin_i,alu_overflow_i,
-  dram_ready_cu_i,dram_r_nw_cu_i,rstn,enable_rf_i,read_rf_p1_i,read_rf_p2_i,
+  dram_ready_cu_i,dram_r_nw_cu_i,rstn,enable_rf_i,read_rf_p1_i,read_rf_p2_i,rtype_itypen_i,
   dram_enable_cu_i                : std_logic;
   signal curr_instruction_to_cu_i : std_logic_vector(PC_SIZE-1 downto 0);
-  signal address_rf_write_i       : std_logic_vector(f_log2(register_in_rf)-1 downto 0);
   signal sel_val_a_i,sel_val_b_i ,select_wb_i : std_logic_vector(0 downto 0);
   signal    alu_op_type_i: std_logic_vector(3 downto 0); --TYPE_OP_ALU ; for compatibility with sv
 
@@ -196,7 +195,7 @@ begin -- DLX
       read_rf_p1       => read_rf_p1_i,
       read_rf_p2       => read_rf_p2_i,
       write_rf         => write_rf_i,
-      address_rf_write => address_rf_write_i, -- it may be removed
+      rtype_itypen => rtype_itypen_i,
       compute_sext     => compute_sext_i,
       -- for execute stage
       alu_op_type     => alu_op_type_i ,
@@ -245,7 +244,7 @@ begin -- DLX
       read_rf_p1       => read_rf_p1_i,
       read_rf_p2       => read_rf_p2_i,
       write_rf         => write_rf_i,
-      address_rf_write => address_rf_write_i,
+      rtype_itypen => rtype_itypen_i,
       compute_sext     => compute_sext_i,
       -- for execute stage
       alu_op_type     => alu_op_type_i ,

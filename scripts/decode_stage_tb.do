@@ -13,7 +13,7 @@ add wave -noupdate /tb_decode_stage/enable_rf
 add wave -noupdate /tb_decode_stage/read_rf_p1
 add wave -noupdate /tb_decode_stage/read_rf_p2
 add wave -noupdate /tb_decode_stage/write_rf
-add wave -noupdate /tb_decode_stage/address_rf_write
+add wave -noupdate /tb_decode_stage/rtype_itypen
 add wave -noupdate /tb_decode_stage/compute_sext
 TreeUpdate [SetDefaultTree]
 WaveRestoreCursors {{Cursor 1} {10915 ps} 0}
