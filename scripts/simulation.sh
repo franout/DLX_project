@@ -25,6 +25,4 @@ vcom name
 
 echo "Starting simulation of dlx top level entity"
 ## need a do file and a waveform file
-vsim  -f simulation.tcl  -t 10 ps # from a script file 
-## add a list of all possible testpanch and print usage in case of help
-vsim -t 10ns work.dlx_testbench -do 
+vsim  -suppress 12110 -novopt work.tb_dlx -do ./../scripts/dlx_tb.do  -t 1 ps 
