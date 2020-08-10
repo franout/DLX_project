@@ -6,7 +6,7 @@
 -- Author      : Francesco Angione <s262620@studenti.polito.it> franout@github.com
 -- Company     : Politecnico di Torino, Italy
 -- Created     : Thu Jul 23 15:49:45 2020
--- Last update : Sun Aug  9 18:41:57 2020
+-- Last update : Tue Aug 11 00:02:18 2020
 -- Platform    : Default Part Number
 -- Standard    : VHDL-2008 
 --------------------------------------------------------------------------------
@@ -18,6 +18,7 @@
 library ieee ;
 use ieee.std_logic_1164.all ;
 use ieee.numeric_std.all ;
+use work.globals.all;
 
 entity control_unit is
   generic (
@@ -29,8 +30,8 @@ entity control_unit is
     CW_SIZE      : integer := 15  -- Control Word Size
   );
   port (
-    Clk : in std_logic;
-    Rst : in std_logic;
+    clk : in std_logic;
+    rst : in std_logic; -- active low
     -- for fetch stage
     iram_enable_cu         : out std_logic;
     iram_ready_cu          : in  std_logic;
@@ -47,7 +48,7 @@ entity control_unit is
     sel_val_a   : out std_logic_vector(0 downto 0 );
     sel_val_b   : out std_logic_vector(0 downto 0 );
     -- from execute stage
-    alu_cin         : in  std_logic;
+    alu_cin         : out  std_logic;
     alu_overflow    : in  std_logic;
     evaluate_branch : out std_logic;
     -- for memory stage
@@ -69,19 +70,28 @@ end entity control_unit;
 
 architecture behavioural of dlx_cu is
 
-  type state_t is (idle);
+  type state_t is (power_up,idle);
+
+  signal curr_state,next_state: state_t;
 
 begin
 
 
-  fsm : process( clk,Rst )
-    if (Rst=='0') then
-
+  reg_state : process( clk,Rst )
+  begin
+    if (rst=='0') then
+      curr_state<=power_up;
     elsif (rising_edge(clk)) then
-
+      curr_state<=next_state;
     end if;
-  end process ; -- fsm
+  end process reg_state;
 
+
+  cl: process()
+  begin 
+
+
+  end process cl;
 
   -- alu function generator process
 

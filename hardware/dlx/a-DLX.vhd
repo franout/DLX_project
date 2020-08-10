@@ -6,7 +6,7 @@
 -- Author      : Francesco Angione <s262620@studenti.polito.it> franout@github.com
 -- Company     : Politecnico di Torino, Italy
 -- Created     : Wed Jul 22 22:58:15 2020
--- Last update : Sun Aug  9 18:41:42 2020
+-- Last update : Tue Aug 11 00:02:15 2020
 -- Platform    : Default Part Number
 -- Standard    : VHDL-2008 
 --------------------------------------------------------------------------------
@@ -54,38 +54,38 @@ end DLX;
 
 architecture dlx_rtl of DLX is
 
- -- control unit
+  -- control unit
   component control_unit is
     generic (
-    PC_SIZE : integer := 32;
-      RF_REGS : integer := 32; -- number of register in register file
-      FUNC_SIZE          :     integer := 11;  -- Func Field Size for R-Type Ops
-      OP_CODE_SIZE       :     integer := 6;  -- Op Code Size
-      IR_SIZE            :     integer := 32;  -- Instruction Register Size    
-      CW_SIZE            :     integer := 15  -- Control Word Size
+      PC_SIZE      : integer := 32;
+      RF_REGS      : integer := 32; -- number of register in register file
+      FUNC_SIZE    : integer := 11; -- Func Field Size for R-Type Ops
+      OP_CODE_SIZE : integer := 6;  -- Op Code Size
+      IR_SIZE      : integer := 32; -- Instruction Register Size    
+      CW_SIZE      : integer := 15  -- Control Word Size
     );
     port (
-      Clk : in std_logic;
-      Rst : in std_logic;
-      -- for fetch stage
+      clk : in std_logic;
+      rst : in std_logic; -- active low 
+      --for fetch stage
       iram_enable_cu         : out std_logic;
       iram_ready_cu          : in  std_logic;
       curr_instruction_to_cu : in  std_logic_vector(PC_SIZE-1 downto 0);
       -- for decode stage
-      enable_rf        : out std_logic;
-      read_rf_p1       : out std_logic;
-      read_rf_p2       : out std_logic;
-      write_rf         : out std_logic;
+      enable_rf    : out std_logic;
+      read_rf_p1   : out std_logic;
+      read_rf_p2   : out std_logic;
+      write_rf     : out std_logic;
       rtype_itypen : out std_logic; -- =='1' rtype instrucion =='0' itype instructnions
-      compute_sext     : out std_logic;
+      compute_sext : out std_logic;
       -- for execute stage
-    alu_op_type     : out std_logic_vector(3 downto 0); --TYPE_OP_ALU ; for compatibility with sv
+      alu_op_type     : out std_logic_vector(3 downto 0); --TYPE_OP_ALU ; for compatibility with sv
       sel_val_a       : out std_logic_vector(0 downto 0 );
       sel_val_b       : out std_logic_vector(0 downto 0 );
       evaluate_branch : out std_logic;
-      alu_cin      : out std_logic;
-       -- from execute stage
-    alu_overflow : in std_logic;
+      alu_cin         : out std_logic;
+      -- from execute stage
+      alu_overflow : in std_logic;
       -- for memory stage
       dram_enable_cu : out std_logic;
       dram_r_nw_cu   : out std_logic;
@@ -132,20 +132,20 @@ architecture dlx_rtl of DLX is
       iram_ready_cu          : out std_logic;
       curr_instruction_to_cu : out std_logic_vector(PC_SIZE-1 downto 0);
       -- for decode stage
-      enable_rf        : in std_logic;
-      read_rf_p1       : in std_logic;
-      read_rf_p2       : in std_logic;
-      write_rf         : in std_logic;
+      enable_rf    : in std_logic;
+      read_rf_p1   : in std_logic;
+      read_rf_p2   : in std_logic;
+      write_rf     : in std_logic;
       rtype_itypen : in std_logic; -- =='1' rtype instrucion =='0' itype instructnions
-      compute_sext     : in std_logic;
+      compute_sext : in std_logic;
       -- for execute stage
-       alu_op_type     : in std_logic_vector(3 downto 0); --TYPE_OP_ALU ; for compatibility with sv
-      sel_val_a       : in std_logic_vector(0 downto 0 );
-      sel_val_b       : in std_logic_vector(0 downto 0 );
-      alu_cin      : in std_logic;
-          -- from execute stage
-    alu_overflow : out std_logic;
-      evaluate_branch : in std_logic;
+      alu_op_type : in std_logic_vector(3 downto 0); --TYPE_OP_ALU ; for compatibility with sv
+      sel_val_a   : in std_logic_vector(0 downto 0 );
+      sel_val_b   : in std_logic_vector(0 downto 0 );
+      alu_cin     : in std_logic;
+      -- from execute stage
+      alu_overflow    : out std_logic;
+      evaluate_branch : in  std_logic;
       -- for memory stage
       dram_enable_cu : in  std_logic;
       dram_r_nw_cu   : in  std_logic;
@@ -163,10 +163,10 @@ architecture dlx_rtl of DLX is
   signal iram_ready_cu_i,iram_enable_cu_i,
   compute_sext_i,write_rf_i,evaluate_branch_i,alu_cin_i,alu_overflow_i,
   dram_ready_cu_i,dram_r_nw_cu_i,rstn,enable_rf_i,read_rf_p1_i,read_rf_p2_i,rtype_itypen_i,
-  dram_enable_cu_i                : std_logic;
-  signal curr_instruction_to_cu_i : std_logic_vector(PC_SIZE-1 downto 0);
+  dram_enable_cu_i                            : std_logic;
+  signal curr_instruction_to_cu_i             : std_logic_vector(PC_SIZE-1 downto 0);
   signal sel_val_a_i,sel_val_b_i ,select_wb_i : std_logic_vector(0 downto 0);
-  signal    alu_op_type_i: std_logic_vector(3 downto 0); --TYPE_OP_ALU ; for compatibility with sv
+  signal alu_op_type_i                        : std_logic_vector(3 downto 0); --TYPE_OP_ALU ; for compatibility with sv
 
 
 
@@ -177,12 +177,12 @@ begin -- DLX
   -- Control Unit Instantiation
   cu_i : control_unit
     generic map (
-      PC_SIZE => PC_SIZE,
-      RF_REGS => register_in_rf,
-      FUNC_SIZE     =>FUNC_SIZE,
-      OP_CODE_SIZE  =>OP_CODE_SIZE,
-      IR_SIZE       =>instr_length,
-      CW_SIZE       => tot_cu_sign
+      PC_SIZE      => PC_SIZE,
+      RF_REGS      => register_in_rf,
+      FUNC_SIZE    => FUNC_SIZE,
+      OP_CODE_SIZE => OP_CODE_SIZE,
+      IR_SIZE      => instr_length,
+      CW_SIZE      => tot_cu_sign
     )
     port map (
       clk                    => clk,
@@ -191,20 +191,20 @@ begin -- DLX
       iram_ready_cu          => iram_ready_cu_i,
       curr_instruction_to_cu => curr_instruction_to_cu_i,
       -- for decode stage
-      enable_rf        => enable_rf_i,
-      read_rf_p1       => read_rf_p1_i,
-      read_rf_p2       => read_rf_p2_i,
-      write_rf         => write_rf_i,
+      enable_rf    => enable_rf_i,
+      read_rf_p1   => read_rf_p1_i,
+      read_rf_p2   => read_rf_p2_i,
+      write_rf     => write_rf_i,
       rtype_itypen => rtype_itypen_i,
-      compute_sext     => compute_sext_i,
+      compute_sext => compute_sext_i,
       -- for execute stage
       alu_op_type     => alu_op_type_i ,
       sel_val_a       => sel_val_a_i ,
       sel_val_b       => sel_val_b_i ,
       evaluate_branch => evaluate_branch_i,
-            -- from execute stage
-    alu_cin=>alu_cin_i,
-    alu_overflow=>alu_overflow_i,
+      -- from execute stage
+      alu_cin      => alu_cin_i,
+      alu_overflow => alu_overflow_i,
       -- for memory stage
       dram_enable_cu => dram_enable_cu_i,
       dram_r_nw_cu   => dram_r_nw_cu_i,
@@ -240,20 +240,20 @@ begin -- DLX
       iram_ready_cu          => iram_ready_cu_i,
       curr_instruction_to_cu => curr_instruction_to_cu_i,
       -- for decode stage
-      enable_rf        => enable_rf_i,
-      read_rf_p1       => read_rf_p1_i,
-      read_rf_p2       => read_rf_p2_i,
-      write_rf         => write_rf_i,
+      enable_rf    => enable_rf_i,
+      read_rf_p1   => read_rf_p1_i,
+      read_rf_p2   => read_rf_p2_i,
+      write_rf     => write_rf_i,
       rtype_itypen => rtype_itypen_i,
-      compute_sext     => compute_sext_i,
+      compute_sext => compute_sext_i,
       -- for execute stage
       alu_op_type     => alu_op_type_i ,
       sel_val_a       => sel_val_a_i ,
       sel_val_b       => sel_val_b_i ,
       evaluate_branch => evaluate_branch_i,
       -- from execute stage
-    alu_cin=>alu_cin_i,
-    alu_overflow=>alu_overflow_i,
+      alu_cin      => alu_cin_i,
+      alu_overflow => alu_overflow_i,
       -- for memory stage
       dram_enable_cu => dram_enable_cu_i,
       dram_r_nw_cu   => dram_r_nw_cu_i,
