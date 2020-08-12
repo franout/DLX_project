@@ -10,17 +10,19 @@ entity PG is
             g:	Out	std_logic_vector(NBIT-1 downto 0));
 end PG; 
 
-architecture BEHAVIORAL of PG is
 
+architecture BEHAVIORAL of PG is
+SIGNAL p_i : std_logic_vector(NBIT-1 DOWNTO 0);
 begin
 
-  p <= A xor B;
+  p_i <= A xor B;
+  p<=p_i;
   g(NBIT-1 downto 1) <= A(NBIT-1 downto 1) and B(NBIT-1 downto 1);
-  g(0) <= (A(0) and B(0)) or (p(0) and cin);
+  g(0) <= (A(0) and B(0)) or (p_i(0) and cin);
   
 end BEHAVIORAL;
 
-configuration CFG_PG_BEHAVIORAL of PG is	
+configuration CFG_PG_BEHAVIORAL of PG is  
   for BEHAVIORAL
   end for;
 end CFG_PG_BEHAVIORAL;
