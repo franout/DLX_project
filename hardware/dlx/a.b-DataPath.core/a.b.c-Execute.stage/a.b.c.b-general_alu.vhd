@@ -6,7 +6,7 @@
 -- Author      : Francesco Angione <s262620@studenti.polito.it> franout@github.com
 -- Company     : Politecnico di Torino, Italy
 -- Created     : Sat Aug  8 12:22:46 2020
--- Last update : Sat Aug  8 15:45:36 2020
+-- Last update : Wed Aug 12 23:17:21 2020
 -- Platform    : Default Part Number
 -- Standard    : VHDL-2008 
 --------------------------------------------------------------------------------
@@ -18,8 +18,8 @@
 library IEEE;
 use IEEE.std_logic_1164.all;
 use IEEE.numeric_std.all;
---use IEEE.std_logic_arith.all;
 use WORK.globals.all;
+use WORK.global_components.all;
 use WORK.constants.all;
 
 
@@ -35,17 +35,28 @@ end entity general_alu;
 architecture behavioural of general_alu is
   --  upper bound for rotate operations 
   constant logN : integer := f_log2(N);
-
+  signal adder_out: std_logic_vector(N-1 downto 0);
 begin
 
-  P_ALU : process (FUNC, DATA1, DATA2)
+-- defined in global_components
+p4_adder_lab: p4_adder generic map (
+ NBIT=>N 
+)
+port map (
+  a=>DATA1,
+  b=>DATA2,
+  cin=>cin,
+  cout=>overflow,
+  s=> adder_out
+);
 
-    -- complete all the requested functions
+-- todo HANDLE THE OVERFLOW
+  P_ALU : process (FUNC, DATA1, DATA2)
     variable tmp : std_logic_vector(N-1 downto 0);
   begin
     case FUNC is
-      when ADD    => OUTALU <= std_logic_vector(unsigned(data1)+unsigned(data2)) ; -- add p4 adder
-      when SUB    => OUTALU <= std_logic_vector(unsigned(data1)-unsigned(data2)) ;
+      when ADD    => OUTALU <= adder_out;
+      when SUB    => OUTALU <= std_logic_vector(unsigned(data1)-unsigned(data2)) ; -- we can use the p4 adder
       when MULT   => OUTALU <= std_logic_vector(unsigned(data1((N/2)-1 DOWNTO 0))*unsigned(data2((N/2)-1 DOWNTO 0))); -- add booth multiplier pipelined
       when BITAND => OUTALU <= DATA1 AND DATA2;
       when BITOR  => OUTALU <= DATA1 OR DATA2;
@@ -68,6 +79,7 @@ begin
         OUTALU <= tmp;
 
 
+-- remove the rotate for the basic version 
       when FUNCRL => tmp := data1;
         FOR i IN 0 to N-1 LOOP
           if (i < unsigned(data2(logN-1 downto 0))) then

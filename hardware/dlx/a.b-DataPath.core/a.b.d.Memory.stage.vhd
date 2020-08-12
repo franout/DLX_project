@@ -6,7 +6,7 @@
 -- Author      : Francesco Angione <s262620@studenti.polito.it> franout@github.com
 -- Company     : Politecnico di Torino, Italy
 -- Created     : Wed Jul 22 23:00:17 2020
--- Last update : Fri Jul 31 17:44:12 2020
+-- Last update : Wed Aug 12 23:25:30 2020
 -- Platform    : Default Part Number
 -- Standard    : VHDL-2008 
 --------------------------------------------------------------------------------
@@ -109,6 +109,6 @@ begin
 
 	data_ir <= DRAM_DATA when dram_r_nw_cu='1' ;
 
-	DRAM_DATA <= value_to_mem when dram_r_nw_cu='0' else (OTHERS => 'Z');
+	DRAM_DATA <= l2b_endian(value_to_mem) when dram_r_nw_cu='0' else (OTHERS => 'Z');
 
 end architecture ; -- structural
