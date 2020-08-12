@@ -6,7 +6,7 @@
 -- Author      : Francesco Angione <s262620@studenti.polito.it> franout@github.com
 -- Company     : Politecnico di Torino, Italy
 -- Created     : Thu Jul 23 15:49:45 2020
--- Last update : Tue Aug 11 00:02:18 2020
+-- Last update : Wed Aug 12 22:42:11 2020
 -- Platform    : Default Part Number
 -- Standard    : VHDL-2008 
 --------------------------------------------------------------------------------
@@ -19,6 +19,7 @@ library ieee ;
 use ieee.std_logic_1164.all ;
 use ieee.numeric_std.all ;
 use work.globals.all;
+use work.constants.all;
 
 entity control_unit is
   generic (
@@ -27,7 +28,7 @@ entity control_unit is
     FUNC_SIZE    : integer := 11; -- Func Field Size for R-Type Ops
     OP_CODE_SIZE : integer := 6;  -- Op Code Size
     IR_SIZE      : integer := 32; -- Instruction Register Size    
-    CW_SIZE      : integer := 15  -- Control Word Size
+    CW_SIZE      : integer := 13  -- Control Word Size
   );
   port (
     clk : in std_logic;
@@ -35,20 +36,20 @@ entity control_unit is
     -- for fetch stage
     iram_enable_cu         : out std_logic;
     iram_ready_cu          : in  std_logic;
-    curr_instruction_to_cu : in  std_logic_vector(PC_SIZE-1 downto 0);
+    curr_instruction_to_cu : in  std_logic_vector(IR_SIZE-1 downto 0);
     -- for decode stage
-    enable_rf        : out std_logic;
-    read_rf_p1       : out std_logic;
-    read_rf_p2       : out std_logic;
-    write_rf         : out std_logic;
+    enable_rf      : out std_logic;
+    read_rf_p1     : out std_logic;
+    read_rf_p2     : out std_logic;
+    write_rf       : out std_logic;
     rtype_itypen_i : out std_logic;
-    compute_sext     : out std_logic;
+    compute_sext   : out std_logic;
     -- for execute stage
     alu_op_type : out std_logic_vector(3 downto 0); --TYPE_OP_ALU ; for compatibility with sv
     sel_val_a   : out std_logic_vector(0 downto 0 );
     sel_val_b   : out std_logic_vector(0 downto 0 );
     -- from execute stage
-    alu_cin         : out  std_logic;
+    alu_cin         : out std_logic;
     alu_overflow    : in  std_logic;
     evaluate_branch : out std_logic;
     -- for memory stage
@@ -56,7 +57,7 @@ entity control_unit is
     dram_r_nw_cu   : out std_logic;
     dram_ready_cu  : in  std_logic;
     -- for write back stage   
-    select_wb : out std_logic_vector(0 downto 0);
+    select_wb : out std_logic_vector(0 downto 0)
     -- simulation debug signals
     --synthesis_translate off
     ;
@@ -67,52 +68,22 @@ entity control_unit is
 end entity control_unit;
 
 
+architecture behavioural of control_unit is
 
-architecture behavioural of dlx_cu is
+  type state_t is (hang_error,idle,fetch, add);
 
-  type state_t is (power_up,idle);
+  signal curr_state,next_state : state_t;
 
-  signal curr_state,next_state: state_t;
-
-begin
-
-
-  reg_state : process( clk,Rst )
-  begin
-    if (rst=='0') then
-      curr_state<=power_up;
-    elsif (rising_edge(clk)) then
-      curr_state<=next_state;
-    end if;
-  end process reg_state;
+  signal rstn;
+  signal cmd_word: std_logic_vector( CW_SIZE-1 downto 0); -- full control word 
+  signal cw1,cw2,cw3,cw4,cw5: std_logic_vector(CW_SIZE-1 downto 0); -- signal for delay control signal of cmd_word unuseful ones will be discarded by the synthesis process
 
 
-  cl: process()
-  begin 
-
-
-  end process cl;
-
-  -- alu function generator process
+  signal ir_opcode : std_logic_vector(OP_CODE_SIZE -1 downto 0); -- OpCode part of IR
+  signal ir_func   : std_logic_vector(FUNC_SIZE-1 downto 0);       -- Func part of IR when Rtype
 
 
 
-  type mem_array is array (integer range 0 to MICROCODE_MEM_SIZE - 1) of std_logic_vector(CW_SIZE - 1 downto 0);
-  signal cw_mem : mem_array := ("111100010000111", -- R type: IS IT CORRECT?
-      "000000000000000",
-      "111011111001100", -- J (0X02) instruction encoding corresponds to the address to this ROM
-      "000000000000000", -- JAL to be filled
-      "000000000000000", -- BEQZ to be filled
-      "000000000000000", -- BNEZ
-      "000000000000000", -- 
-      "000000000000000",
-      "000000000000000",  -- ADD i (0X08): FILL IT!!!
-      "000000000000000"); -- to be completed (enlarged and filled)
-
-
-  signal IR_opcode : std_logic_vector(OP_CODE_SIZE -1 downto 0); -- OpCode part of IR
-  signal IR_func   : std_logic_vector(FUNC_SIZE downto 0);       -- Func part of IR when Rtype
-  signal cw        : std_logic_vector(CW_SIZE - 1 downto 0);     -- full control word read from cw_mem
 
 
   signal aluOpcode_i : aluOp := NOP; -- ALUOP defined in package
@@ -120,52 +91,73 @@ begin
   signal aluOpcode2  : aluOp := NOP;
   signal aluOpcode3  : aluOp := NOP;
 
-  -- declarations for FSM implementation (to be completed whith alla states!)
-  type TYPE_STATE is (
-      reset, fetch,
-      dec1 .........
-      ... to be completed!
-    );
-  signal CURRENT_STATE : TYPE_STATE := reset;
-  signal NEXT_STATE    : TYPE_STATE := fetch;
+
+
+begin
+  rstn<=not(rst);
+  ir_opcode <= curr_instruction_to_cu(IR_SIZE-1 downto IR_SIZE-1-OP_CODE_SIZE);
+  ir_func <= curr_instruction_to_cu(FUNC_SIZE - 1 downto 0);
+
+    -- simulation debug signals
+    --synthesis_translate off
+    STATE_CU<= curr_state;
+    --synthesis_translate on
+
+
+  reg_state : process( clk,rst )
+  begin
+    if (rst='0') then-- active low
+      curr_state <= idle;
+    elsif (rising_edge(clk)) then
+      curr_state <= next_state;
+    end if;
+  end process reg_state;
 
 
 
 
-begin -- dlx_cu_rtl
+  cl_next_state : process(curr_state , iram_ready_cu ,curr_instruction_to_cu,alu_overflow,dram_ready_cu)
+  begin
 
-  IR_opcode(5 downto 0) <= IR_IN(31 downto 26);
-  IR_func(10 downto 0)  <= IR_IN(FUNC_SIZE - 1 downto 0);
+  case (curr_state) is
+    when idle => if (iram_ready_cu='1') then
+                  next_state<=fetch;
+                else
+                  next_state<=curr_state;
+                end if;
+    when fetch => next_state<=decode;
+    when decode=> case (ir_opcode) is
+                  when <choice_1> =>
+        
+                  when others =>
+                      null;
+                  end case;
 
-  cw <= cw_mem(conv_integer(IR_opcode));
+    when add => 
+    when hang_error=> next_state<=curr_state;
+    when others =>  next_state<=idle;
+  end case;
+  end process cl_next_state;
+
+  cl_cmd_word:process(curr_state)
+  begin
+    ------------------------------------------------------------------------------
+  -- default signals assignment
+  cmd_word<=(OTHERS=>'0');
+  ------------------------------------------------------------------------------
+  case (curr_state) is
+    when idle => cmd_word<=(OTHERS=>'0');
+    when fetch=> cmd_word<=x"20000";
+    when decode=> cmd_word<=
+    when add=>
+      
+    when others =>
+      null;
+  end case;
+  end process cl_cmd_word;
 
 
-  -- stage one control signals
-  IR_LATCH_EN  <= cw1(CW_SIZE - 1);
-  NPC_LATCH_EN <= cw1(CW_SIZE - 2);
-
-  -- stage two control signals
-  RegA_LATCH_EN   <= cw2(CW_SIZE - 3);
-  RegB_LATCH_EN   <= cw2(CW_SIZE - 4);
-  RegIMM_LATCH_EN <= cw2(CW_SIZE - 5);
-
-  -- stage three control signals
-  MUXA_SEL      <= cw3(CW_SIZE - 6);
-  MUXB_SEL      <= cw3(CW_SIZE - 7);
-  ALU_OUTREG_EN <= cw3(CW_SIZE - 8);
-  EQ_COND       <= cw3(CW_SIZE - 9);
-
-  -- stage four control signals
-  DRAM_WE      <= cw4(CW_SIZE - 10);
-  LMD_LATCH_EN <= cw4(CW_SIZE - 11);
-  JUMP_EN      <= cw4(CW_SIZE - 12);
-  PC_LATCH_EN  <= cw4(CW_SIZE - 13);
-
-  -- stage five control signals
-  WB_MUX_SEL <= cw5(CW_SIZE - 14);
-  RF_WE      <= cw5(CW_SIZE - 15);
-
-
+  -- alu function generator process
   -- purpose: Generation of ALU OpCode
   -- type   : combinational
   -- inputs : IR_i
@@ -190,59 +182,80 @@ begin -- dlx_cu_rtl
   end process ALU_OP_CODE_P;
 
 
-  -----------------------------------------------------
-  -- FSM
-  -- This is a very simplified starting point for a fsm
-  -- up to you to complete it and to improve it
-  -----------------------------------------------------
+--------------------------------------------------------------------------------
+-- command word distribution signals 
+    -- for fetch stage
+    iram_enable_cu <= cw1(CW_SIZE -1);
+    -- for decode stage
+    enable_rf      <= cw2(CW_SIZE-2);
+    read_rf_p1     <= cw2(CW_SIZE-3);
+    read_rf_p2     <= cw2(CW_SIZE-4);
+    rtype_itypen_i <= cw2(CW_SIZE-5);
+    compute_sext   <= cw2(CW_SIZE-6);
+    -- for execute stage
+    sel_val_a  (0) <= cw3 (CW_SIZE-7);
+    sel_val_b  (0) <= cw3 (CW_SIZE-8);
+    alu_cin         <= cw3(CW_SIZE-9);
+    evaluate_branch <= cw3(CW_SIZE-10);
+    -- for memory stage
+    dram_enable_cu <= cw4(CW_SIZE-11);
+    dram_r_nw_cu   <= cw4(CW_SIZE-12);
+    -- for write back stage   
+    select_wb(0)<= cw5(CW_SIZE-13);
+    write_rf <= cw5(CW_SIZE-14)
+
+-- delay register for command word
+    f_reg : reg_nbit generic map (
+      N => CW_SIZE
+    )
+    port map (
+      clk   => clk,
+      reset => rstn, -- reset is active high internally to the register
+      d     => cmd_word,
+      Q     => cw1
+    );
+
+d_reg : reg_nbit generic map (
+      N => CW_SIZE
+    )
+    port map (
+      clk   => clk,
+      reset => rstn, -- reset is active high internally to the register
+      d     => cw1,
+      Q     => cw2
+    );
+
+e_reg : reg_nbit generic map (
+      N => CW_SIZE
+    )
+    port map (
+      clk   => clk,
+      reset => rstn, -- reset is active high internally to the register
+      d     => cw2,
+      Q     => cw3
+    );
+
+m_reg : reg_nbit generic map (
+      N => CW_SIZE
+    )
+    port map (
+      clk   => clk,
+      reset => rstn, -- reset is active high internally to the register
+      d     => cw3,
+      Q     => cw4
+    );
+
+wb_reg : reg_nbit generic map (
+      N => CW_SIZE
+    )
+    port map (
+     clk   => clk,
+      reset => rstn, -- reset is active high internally to the register
+      d     => cw4,
+      Q     => cw5
+    );
 
 
-  P_OPC : process(Clk, Rst)
-  begin
-    if Rst='0' then
-      CURRENT_STATE <= reset;
-    elsif (Clk ='1' and Clk'EVENT) then
-      CURRENT_STATE <= NEXT_STATE;
-    end if;
-  end process P_OPC;
-
-  P_NEXT_STATE : process(CURRENT_STATE, OpCode)
-  begin
-    --NEXT_STATE <= CURRENT_STATE;
-    case CURRENT_STATE is
-      when reset =>
-        NEXT_STATE <= fetch;
-      when fetch =>
-        if OpCode = TO BE COMPLETED!!! then
-          NEXT_STATE <= dec1;
-        elsif
-        ----
-        ----
-        ----
-        end if;
-      when dec1 =>
-
-        --- TO BE COMPLETED
-
-    end case;
-  end process P_NEXT_STATE;
-
-  P_OUTPUTS : process(CURRENT_STATE)
-  begin
-    --O <= '0';
-    case CURRENT_STATE is
-      when reset  => cw <= "000000000000000";
-      when fetch  => cw <= "110000000000000";
-      when dec101 => cw <= TO BE COMPLETED
-      -- TO BE COMPLETED
-      --
-      --
-      --
-      when others => cw <= "000000000000000"; -- error        
-    end case;
-  end process P_OUTPUTS;
-
-
-end architecture ; -- arch
+end architecture behavioural;
 
 

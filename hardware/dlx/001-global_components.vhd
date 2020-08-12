@@ -6,7 +6,7 @@
 -- Author      : Francesco Angione <s262620@studenti.polito.it> franout@github.com
 -- Company     : Politecnico di Torino, Italy
 -- Created     : Wed Jul 22 22:56:15 2020
--- Last update : Sat Aug  8 15:46:44 2020
+-- Last update : Wed Aug 12 22:53:35 2020
 -- Platform    : Default Part Number
 -- Standard    : VHDL-2008 
 --------------------------------------------------------------------------------
@@ -110,9 +110,9 @@ package global_components is
       GENERIC ( NBIT: integer :=8 ); -- number of bits for the adder
        PORT( a,b: IN std_logic_vector(NBIT -1 DOWNTO 0 );
                 cin: IN std_logic;
-               s:OUT std_logic_vector(NBIT-1 DOWNTO 0));
-
-	END component p4_adder;
+               s:OUT std_logic_vector(NBIT-1 DOWNTO 0);
+                cout: OUT std_logic);
+    END component p4_adder;
 
 	-- mux 2x1 on nbit 
 	component   mux21_nbit IS

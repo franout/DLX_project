@@ -6,7 +6,7 @@
 -- Author      : Francesco Angione <s262620@studenti.polito.it> franout@github.com
 -- Company     : Politecnico di Torino, Italy
 -- Created     : Wed Jul 22 22:58:15 2020
--- Last update : Tue Aug 11 00:02:15 2020
+-- Last update : Wed Aug 12 22:55:10 2020
 -- Platform    : Default Part Number
 -- Standard    : VHDL-2008 
 --------------------------------------------------------------------------------
@@ -97,14 +97,10 @@ architecture dlx_rtl of DLX is
       ;
       STATE_CU : out std_logic_vector(f_log2(tot_state)-1 downto 0)
       --synthesis_translate on
-
     );
   end component control_unit;
 
-
-
   -- Datapath 
-
   component DATAPATH is
     generic (
       N       : integer := 32;

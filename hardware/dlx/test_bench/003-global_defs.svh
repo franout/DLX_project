@@ -9,13 +9,10 @@
 // Create : 2020-07-27 17:47:25
 // Revise : 2020-07-27 17:47:25
 // Editor : sublime text3, tab size (4)
-// Description: util global definisiton (mirror of 000-globals.vhd)
+// Description: util global definition (mirror of 000-globals.vhd)
 // -----------------------------------------------------------------------------
 `ifndef  __GLOBAL_DEFS__SVH
 `define  __GLOBAL_DEFS__SVH
-
-
-
 
 `define  NUMBIT 32 // number of bits for the architecture
 `define  RF_REGS 32 // number of regisster in the register file

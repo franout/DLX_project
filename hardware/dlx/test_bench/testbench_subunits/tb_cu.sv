@@ -9,7 +9,7 @@
 // Create : 2020-07-27 15:16:34
 // Revise : 2020-08-11 00:01:51
 // Editor : sublime text3, tab size (4)
-// Description: 
+// Description:  trivial test bench for checking the synchronization of comand signals
 // -----------------------------------------------------------------------------
 `timescale 1ns/1ps
 `include "../003-global_defs.svh"
@@ -38,7 +38,7 @@ initial begin
 		`else 
 		repeat(2)@ (posedge clk);
 		`endif
-		
+
 				
 
 		`ifndef  VIVADO_SIM
