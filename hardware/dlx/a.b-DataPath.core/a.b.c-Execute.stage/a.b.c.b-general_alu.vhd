@@ -91,7 +91,7 @@ begin
 
   P_ALU: process (FUNC, DATA1, DATA2,adder_out,dataout_mul,cout)
     variable tmp                               : std_logic_vector(N-1 downto 0);
-    variable check_mul_logic,check_mul_logic_2 : std_logic := '1';
+    variable check_mul_logic,check_mul_logic2 : std_logic := '1';
   begin
     case FUNC is
       when ADD => DATA2_I <= DATA2;
@@ -130,7 +130,7 @@ begin
         data2_mul <= DATA2((N/2)-1 downto 0);
         OUTALU    <= dataout_mul;
         -- exception if using multiplication between bitwidth > 16
-        for i in N-1 downto N/2 : loop
+        for i in N-1 downto N/2  loop
           check_mul_logic := not(data1_mul(i)) and check_mul_logic and not(data2_mul(i));
         end loop ;
         if(check_mul_logic='0') then
@@ -142,9 +142,9 @@ begin
         --zero detect logic 
         for i in N/2-1 downto 0 loop
           check_mul_logic   := check_mul_logic and data1_mul(i);
-          check_mul_logic_2 := check_mul_logic2 and data2_mul(i);
+          check_mul_logic2 := check_mul_logic2 and data2_mul(i);
         end loop ;
-        if(check_mul_logic_2='0' || check_mul_logic='0' ) then
+        if(check_mul_logic2='0' or  check_mul_logic='0' ) then
           zero_mul_detect <= '1';
         else
           zero_mul_detect <= '0';

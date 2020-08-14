@@ -6,7 +6,7 @@
 -- Author      : Francesco Angione <s262620@studenti.polito.it> franout@github.com
 -- Company     : Politecnico di Torino, Italy
 -- Created     : Wed Jul 22 22:58:15 2020
--- Last update : Thu Aug 13 16:05:56 2020
+-- Last update : Fri Aug 14 15:26:56 2020
 -- Platform    : Default Part Number
 -- Standard    : VHDL-2008 
 --------------------------------------------------------------------------------
@@ -36,13 +36,17 @@ entity DLX is
     IRAM_ADDRESS : out std_logic_vector( iram_address_size- 1 downto 0);
     IRAM_ENABLE  : out std_logic;
     IRAM_READY   : in  std_logic;
-    IRAM_DATA    : in  std_logic_vector(instruction_size-1 downto 0);
+    IRAM_DATA    : in  std_logic_vector(instr_length-1 downto 0);
     -- Data memory Interface
     DRAM_ADDRESS      : out   std_logic_vector(dram_address_size-1 downto 0);
     DRAM_ENABLE       : out   std_logic;
     DRAM_READNOTWRITE : out   std_logic;
     DRAM_READY        : in    std_logic;
-    DRAM_DATA         : inout std_logic_vector(data_size-1 downto 0)
+    DRAM_DATA         : inout std_logic_vector(data_size-1 downto 0);
+    ----------------------------------------------------------------------------
+    -- cpu status signals in case of exception or hang --------------------------
+    ----------------------------------------------------------------------------
+    cpu_status        : out std_logic_vector(1 downto 0)
     -- simulation debug signals
     --synthesis_translate off
     ;
@@ -92,7 +96,9 @@ architecture dlx_rtl of DLX is
       dram_r_nw_cu   : out std_logic;
       dram_ready_cu  : in  std_logic;
       -- for write back stage   
-      select_wb : out std_logic_vector(0 downto 0)
+      select_wb : out std_logic_vector(0 downto 0);
+      -- cpu status 
+      cpu_status: out std_logic_vector(1 downto 0)
       -- simulation debug signals
       --synthesis_translate off
       ;
@@ -209,7 +215,14 @@ begin -- DLX
       dram_r_nw_cu   => dram_r_nw_cu_i,
       dram_ready_cu  => dram_ready_cu_i,
       -- for write back stage   
-      select_wb => select_wb_i
+      select_wb => select_wb_i,
+      cpu_status  =>  cpu_status
+      -- simulation debug signals
+      --synthesis_translate off
+      ,
+      STATE_CU  => STATE_CU
+      --synthesis_translate on
+
     );
 
     -- Datapath instantiation 

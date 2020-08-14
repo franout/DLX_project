@@ -1,3 +1,20 @@
+--------------------------------------------------------------------------------
+-- Title       : bootmultiplier pipeline
+-- Project     : DLX for Microelectronic Systems
+--------------------------------------------------------------------------------
+-- File        : a.b.c.c-boothmul_pipelined.vhd
+-- Author      : Francesco Angione <s262620@studenti.polito.it> franout@github.com
+-- Company     : Politecnico di Torino, Italy
+-- Created     : Fri Aug 14 15:51:09 2020
+-- Last update : Fri Aug 14 15:58:48 2020
+-- Platform    : Default Part Number
+-- Standard    : VHDL-2008 
+--------------------------------------------------------------------------------
+-- Copyright (c) 2020 Politecnico di Torino, Italy
+-------------------------------------------------------------------------------
+-- Description: Pipelined version of booth's (algorithm) multiplier from labs
+--------------------------------------------------------------------------------
+
 LIBRARY ieee;
 USE ieee.std_logic_1164.ALL;
 USE ieee.numeric_std.ALL;
@@ -63,6 +80,10 @@ END COMPONENT adder;
     signal mux0_sel_in : std_logic_vector(2 downto 0) := "000";
     signal sig0 : std_logic_vector((2*N)-1 downto 0) := (OTHERS => '0');
 
+    -- for pipeline
+    type multiplicand_pip_t is array(0 to numMux*2-1) of std_logic_vector(N-1 downto 0);
+    signal multiplicand_pip:  multiplicand_pip_t;
+
 
 BEGIN
 
@@ -83,11 +104,9 @@ BEGIN
         end generate stage_1;
 
         middle_stages:if(i/=0 ) generate
-            -- pipelined regs from global_components package 
-            pip_del_reg_i: reg_nbit generic map ( N =>   ) port map (clk  => clk,rst => rst,d  => ,Q => );
-
+          
             -- generate encoder
-            ENCi : encoder  port map (y => multiplicand((i*2)+1 downto (i*2)-1), sel => encoder_out(i));
+            ENCi : encoder  port map (y => multiplicand_pip(i+1)((i*2)+1 downto (i*2)-1), sel => encoder_out(i));
             -- generate mux inputs
             muxes_in(i)(0 to 8*(N+1+(i*2)) - 1) <= sig0(N+(i*2) downto 0) & (muxes_in(i-1)((N+1+((i-1)*2)) to (2*(N+1+((i-1)*2)))-1) & "00") & (muxes_in(i-1)((2*(N+1+((i-1)*2))) to (3*(N+1+((i-1)*2)))-1) & "00") & sig0(N+(i*2) downto 0) & sig0(N+(i*2) downto 0) & sig0(N+(i*2) downto 0) &  muxes_in(i-1)(6*(N+1+((i-1)*2)) to 7*(N+1+((i-1)*2))-1) & "00" & muxes_in(i-1)(7*(N+1+((i-1)*2)) to 8*(N+1+((i-1)*2))-1) & "00";
             -- generate mux
@@ -100,10 +119,16 @@ BEGIN
             gen_adds: if ( i /= 1) generate
                 sum_B_in(i)(N+(2*i) downto 0) <= sum_out(i-1)(N+(2*(i-1))) & sum_out(i-1)(N+(2*(i-1))) & sum_out(i-1)(N+(2*(i-1)) downto 0);
 				addi_gen: if (i /= numMux-1) generate
+                          -- pipelined regs from global_components package 
+                           -- pip_del_reg_i: reg_nbit generic map ( N =>   ) port map (clk  => clk,rst => rst,d  => ,Q => );
+
 			                ADDi : adder generic map(NBIT => (N+1+(2*i))) port map ( A => mux_out(i)(N+(2*i) downto 0), B => sum_B_in(i)(N+(2*i) downto 0), Cin => '0', S => sum_out(i)(N+1+(2*i) downto 0));
 				end generate addi_gen;
 			     last_add: if (i = numMux-1) generate
 							-- consider carry out
+                              -- pipelined regs from global_components package 
+                            --pip_del_reg_i: reg_nbit generic map ( N =>   ) port map (clk  => clk,rst => rst,d  => ,Q => );
+
 							sum_B_in(i)(N+(2*i) downto 0) <= sum_out(i-1)(N+(2*(i-1))) & sum_out(i-1)(N+(2*(i-1))) & sum_out(i-1)(N+(2*(i-1)) downto 0);
 			                ADDn : adder generic map(NBIT => (N+1+(2*i))) port map ( A => mux_out(i)(N+(2*i) downto 0), B => sum_B_in(i)(N+(2*i) downto 0), Cin => '0', S => sum_out(i)(N+1+(2*i) downto 0));
 				end generate last_add;
@@ -111,17 +136,23 @@ BEGIN
 
         end generate middle_stages;
     end generate stage_i;
--- TODO pipeline the middle stages
-    --pip_del_reg_i : reg_nbit
-    --    generic map (
-    --        n => 
-    --    )
-    --    port map (
-    --        clk   => clk,
-    --        reset => rst,
-    --        d     => ,
-    --        Q     => 
-    --    )--;
+
+    ---------------------------------------------------------------------------- 
+    -- delay register for second operand for encoder ---------------------------
+    ----------------------------------------------------------------------------
+
+    delay_reg_p : for i in 0 to numMux-1 generate
+        no_delay : if (<condition>) generate
+               
+         else generate
+         
+         end generate no_delay;
+         delay_reg_p_i: if (i>0 and i<numMux-1) generate
+            pip_del_reg_i: reg_nbit generic map ( N => N  ) port map (clk  => clk,reset => rst,d  => multiplicand_pip(i),Q =>multiplicand_pip(i+1) );
+        end generate delay_reg_p_i;
+            
+    end generate ; -- delay_reg_p
+
 
 
      -- result from the final stage to the output of the entity 

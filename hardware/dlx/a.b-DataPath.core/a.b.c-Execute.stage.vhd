@@ -6,7 +6,7 @@
 -- Author      : Francesco Angione <s262620@studenti.polito.it> franout@github.com
 -- Company     : Politecnico di Torino, Italy
 -- Created     : Wed Jul 22 23:00:04 2020
--- Last update : Fri Aug 14 12:36:51 2020
+-- Last update : Fri Aug 14 13:25:19 2020
 -- Platform    : Default Part Number
 -- Standard    : VHDL-2008 
 --------------------------------------------------------------------------------
@@ -46,8 +46,10 @@ entity execute_stage is
 		sel_val_b       : in  std_logic_vector(0 downto 0);
 		cin :in std_logic;
 		overflow   : out std_logic;
+		-- exception control logic for multiplication 
+    	zero_mul_detect  : out std_logic;
+    	mul_exeception   : out std_logic;
 		evaluate_branch : in  std_logic
-
 	) ;
 end entity ; -- execute_stage
 
@@ -59,6 +61,9 @@ architecture structural of execute_stage is
 		);
 		port (
 			clk,rst: in std_logic;
+			-- exception control logic 
+    		zero_mul_detect  : out std_logic;
+    		mul_exeception   : out std_logic;
 			FUNC         : IN  TYPE_OP_ALU;
 			DATA1, DATA2 : IN  std_logic_vector(N-1 downto 0);
 			signed_notsigned: in std_logic;
@@ -156,6 +161,9 @@ begin
 		port map (
 			clk=>clk,
 			rst=>rstn,
+			-- exception control logic 
+    		zero_mul_detect  => zero_mul_detect,
+    		mul_exeception  => mul_exeception,
 			FUNC     => alu_op_type_i,
 			DATA1    => opa,
 			DATA2    => opb,

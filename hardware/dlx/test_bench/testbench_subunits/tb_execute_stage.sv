@@ -7,7 +7,7 @@
 // Author : Angione Francesco s262620@studenti.polito.it franout@Github.com
 // File   : tb_execute_stage.sv
 // Create : 2020-07-27 15:17:03
-// Revise : 2020-08-14 12:33:00
+// Revise : 2020-08-14 13:21:48
 // Editor : sublime text3, tab size (4)
 // Description: 
 // -----------------------------------------------------------------------------
@@ -307,7 +307,7 @@ localparam clock_period= 10ns;
 	logic branch_condition;
 	logic [`NUMBIT-1:0] value_to_mem;
 	logic [`NUMBIT-1:0]prog_counter_forwaded;
-	logic cin, overflow;
+	logic cin, overflow,zero_mul_detect, mul_exeception;
 
 	assign cin= '0;
   	// property definition
@@ -358,9 +358,13 @@ localparam clock_period= 10ns;
 			/*add check for cin and overflow TODO*/
 			.cin(cin) ,
 			.overflow(overflow),
+			.zero_mul_detect(zero_mul_detect) ,
+    		.mul_exeception(mul_exeception)  ,
 			.evaluate_branch(evaluate_branch) 
 		);
 		
+
+
 
 	test_execute test(
 					.clk(clk),
