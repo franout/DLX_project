@@ -3,13 +3,12 @@ use ieee.std_logic_1164.all;
 
 entity PG is 
     generic ( NBIT : Natural := 8);
-	Port (	A:	In	std_logic_vector(NBIT-1 downto 0);
-            B:	In	std_logic_vector(NBIT-1 downto 0);
-	    cin : In std_logic;
-            p:	Out	std_logic_vector(NBIT-1 downto 0);
-            g:	Out	std_logic_vector(NBIT-1 downto 0));
+  Port (  A:  In  std_logic_vector(NBIT-1 downto 0);
+            B:  In  std_logic_vector(NBIT-1 downto 0);
+      cin : In std_logic;
+            p:  Out std_logic_vector(NBIT-1 downto 0);
+            g:  Out std_logic_vector(NBIT-1 downto 0));
 end PG; 
-
 
 architecture BEHAVIORAL of PG is
 SIGNAL p_i : std_logic_vector(NBIT-1 DOWNTO 0);

@@ -2,12 +2,12 @@ library ieee;
 use ieee.std_logic_1164.all; 
 
 entity PGSB is 
-	Port (	P_in_ik:	    In	std_logic;
-            P_in_kj:	    In	std_logic;
-            G_in_ik:	In	std_logic;
-            G_in_kj:	In	std_logic;
-            G_out:	Out	std_logic;
-            P_out:	Out	std_logic);
+  Port (  P_in_ik:      In  std_logic;
+            P_in_kj:      In  std_logic;
+            G_in_ik:  In  std_logic;
+            G_in_kj:  In  std_logic;
+            G_out:  Out std_logic;
+            P_out:  Out std_logic);
 end PGSB; 
 
 architecture BEHAVIORAL of PGSB is
@@ -19,7 +19,7 @@ begin
   
 end BEHAVIORAL;
 
-configuration CFG_PGSB_BEHAVIORAL of PGSB is	
+configuration CFG_PGSB_BEHAVIORAL of PGSB is  
   for BEHAVIORAL
   end for;
 end CFG_PGSB_BEHAVIORAL;
