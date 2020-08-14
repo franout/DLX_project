@@ -7,7 +7,7 @@
 // Author : Angione Francesco s262620@studenti.polito.it franout@Github.com
 // File   : tb_execute_stage.sv
 // Create : 2020-07-27 15:17:03
-// Revise : 2020-08-14 11:26:00
+// Revise : 2020-08-14 12:33:00
 // Editor : sublime text3, tab size (4)
 // Description: 
 // -----------------------------------------------------------------------------
@@ -36,7 +36,7 @@ endclocking // test_clk_prog
 `endif
 
 TYPE_OP_ALU_sv current_operation;
-
+// TODO need to update
 initial begin 
 		rst=0;
 		current_operation.first();

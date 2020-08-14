@@ -6,7 +6,7 @@
 -- Author      : Francesco Angione <s262620@studenti.polito.it> franout@github.com
 -- Company     : Politecnico di Torino, Italy
 -- Created     : Sat Aug  8 12:22:46 2020
--- Last update : Fri Aug 14 12:06:03 2020
+-- Last update : Fri Aug 14 13:14:07 2020
 -- Platform    : Default Part Number
 -- Standard    : VHDL-2008 
 --------------------------------------------------------------------------------
@@ -24,8 +24,14 @@ use WORK.constants.all;
 
 
 entity general_alu is
-  generic (N  :    integer := 32);
-  port ( FUNC : IN TYPE_OP_ALU;
+  generic (N : integer := 32);
+  port (
+    -- signal for pipelined booth multipliers
+    clk,rst : in std_logic;
+    -- exception control logic 
+    zero_mul_detect  : out std_logic;
+    mul_exeception   : out std_logic;
+    FUNC             : IN  TYPE_OP_ALU;
     DATA1, DATA2     : IN  std_logic_vector(N-1 downto 0);
     cin              : in  std_logic;
     signed_notsigned : in  std_logic;
@@ -40,6 +46,7 @@ architecture behavioural of general_alu is
       N : integer := 32
     );
     port (
+      clk,rst                  : in  std_logic;
       multiplier, multiplicand : IN  std_logic_vector(N-1 DOWNTO 0);
       result                   : OUT std_logic_vector(2*N-1 DOWNTO 0)
     );
@@ -70,9 +77,11 @@ begin
 
   boothmul_pipelined_i : boothmul_pipelined
     generic map (
-      N => N
+      N => N/2
     )
     port map (
+      clk          => clk,
+      rst          => rst,
       multiplier   => data1_mul ,
       multiplicand => data2_mul,
       result       => dataout_mul
@@ -80,8 +89,9 @@ begin
 
 
 
-  P_ALU        : process (FUNC, DATA1, DATA2,adder_out,dataout_mul,cout)
-    variable tmp : std_logic_vector(N-1 downto 0);
+  P_ALU: process (FUNC, DATA1, DATA2,adder_out,dataout_mul,cout)
+    variable tmp                               : std_logic_vector(N-1 downto 0);
+    variable check_mul_logic,check_mul_logic_2 : std_logic := '1';
   begin
     case FUNC is
       when ADD => DATA2_I <= DATA2;
@@ -119,6 +129,26 @@ begin
         data1_mul <= DATA1((N/2)-1 DOWNTO 0);
         data2_mul <= DATA2((N/2)-1 downto 0);
         OUTALU    <= dataout_mul;
+        -- exception if using multiplication between bitwidth > 16
+        for i in N-1 downto N/2 : loop
+          check_mul_logic := not(data1_mul(i)) and check_mul_logic and not(data2_mul(i));
+        end loop ;
+        if(check_mul_logic='0') then
+          mul_exeception <= '1';
+        else
+          mul_exeception <= '0';
+        end if;
+        -- if not exception keep continuing check 
+        --zero detect logic 
+        for i in N/2-1 downto 0 loop
+          check_mul_logic   := check_mul_logic and data1_mul(i);
+          check_mul_logic_2 := check_mul_logic2 and data2_mul(i);
+        end loop ;
+        if(check_mul_logic_2='0' || check_mul_logic='0' ) then
+          zero_mul_detect <= '1';
+        else
+          zero_mul_detect <= '0';
+        end if;
       when BITAND => OUTALU <= DATA1 AND DATA2;
       when BITOR  => OUTALU <= DATA1 OR DATA2;
       when BITXOR => OUTALU <= DATA1 XOR DATA2;
@@ -138,27 +168,6 @@ begin
           end if;
         END LOOP;
         OUTALU <= tmp;
-
-      -- remove the rotate for the basic version 
-      --      when FUNCRL => tmp := data1;
-      --        FOR i IN 0 to N-1 LOOP
-      --          if (i < unsigned(data2(logN-1 downto 0))) then
-      --            tmp := tmp(N-2 downto 0) & tmp(N-1);
-      --
-      --          end if;
-      --        END LOOP;
-      --        OUTALU <= tmp;
-      --
-      --
-      --      when FUNCRR =>
-      --        tmp := data1;
-      --        FOR i IN 0 to N-1 LOOP
-      --          if (i < unsigned(data2(logN-1 downto 0))) then
-      --            tmp := tmp(0) & tmp(N-1 downto 1);
-      --          end if;
-      --        END LOOP;
-      --        OUTALU <= tmp;
-      --
       when others => null;
     end case;
   end process P_ALU;

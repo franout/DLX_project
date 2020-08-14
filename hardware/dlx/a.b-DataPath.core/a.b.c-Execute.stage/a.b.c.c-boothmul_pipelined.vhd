@@ -2,11 +2,13 @@ LIBRARY ieee;
 USE ieee.std_logic_1164.ALL;
 USE ieee.numeric_std.ALL;
 USE work.constants.ALL;
+use work.global_components.all;
 
 -- top level entity of the booth multiplier
 ENTITY boothmul_pipelined IS
             GENERIC(N: integer:=32);
-            PORT( multiplier, multiplicand:IN std_logic_vector(N-1 DOWNTO 0);
+            PORT(clk,rst: in std_logic;
+             multiplier, multiplicand:IN std_logic_vector(N-1 DOWNTO 0);
                    result: OUT std_logic_vector(2*N-1 DOWNTO 0));
 END ENTITY boothmul_pipelined;
 
@@ -81,6 +83,9 @@ BEGIN
         end generate stage_1;
 
         middle_stages:if(i/=0 ) generate
+            -- pipelined regs from global_components package 
+            pip_del_reg_i: reg_nbit generic map ( N =>   ) port map (clk  => clk,rst => rst,d  => ,Q => );
+
             -- generate encoder
             ENCi : encoder  port map (y => multiplicand((i*2)+1 downto (i*2)-1), sel => encoder_out(i));
             -- generate mux inputs
@@ -97,7 +102,7 @@ BEGIN
 				addi_gen: if (i /= numMux-1) generate
 			                ADDi : adder generic map(NBIT => (N+1+(2*i))) port map ( A => mux_out(i)(N+(2*i) downto 0), B => sum_B_in(i)(N+(2*i) downto 0), Cin => '0', S => sum_out(i)(N+1+(2*i) downto 0));
 				end generate addi_gen;
-				last_add: if (i = numMux-1) generate
+			     last_add: if (i = numMux-1) generate
 							-- consider carry out
 							sum_B_in(i)(N+(2*i) downto 0) <= sum_out(i-1)(N+(2*(i-1))) & sum_out(i-1)(N+(2*(i-1))) & sum_out(i-1)(N+(2*(i-1)) downto 0);
 			                ADDn : adder generic map(NBIT => (N+1+(2*i))) port map ( A => mux_out(i)(N+(2*i) downto 0), B => sum_B_in(i)(N+(2*i) downto 0), Cin => '0', S => sum_out(i)(N+1+(2*i) downto 0));
@@ -107,6 +112,18 @@ BEGIN
         end generate middle_stages;
     end generate stage_i;
 -- TODO pipeline the middle stages
+    --pip_del_reg_i : reg_nbit
+    --    generic map (
+    --        n => 
+    --    )
+    --    port map (
+    --        clk   => clk,
+    --        reset => rst,
+    --        d     => ,
+    --        Q     => 
+    --    )--;
+
+
      -- result from the final stage to the output of the entity 
     result <= sum_out(numMux-1);
 

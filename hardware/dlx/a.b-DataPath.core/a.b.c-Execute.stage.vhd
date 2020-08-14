@@ -6,7 +6,7 @@
 -- Author      : Francesco Angione <s262620@studenti.polito.it> franout@github.com
 -- Company     : Politecnico di Torino, Italy
 -- Created     : Wed Jul 22 23:00:04 2020
--- Last update : Thu Aug 13 16:48:21 2020
+-- Last update : Fri Aug 14 12:36:51 2020
 -- Platform    : Default Part Number
 -- Standard    : VHDL-2008 
 --------------------------------------------------------------------------------
@@ -58,6 +58,7 @@ architecture structural of execute_stage is
 			N : integer := 32
 		);
 		port (
+			clk,rst: in std_logic;
 			FUNC         : IN  TYPE_OP_ALU;
 			DATA1, DATA2 : IN  std_logic_vector(N-1 downto 0);
 			signed_notsigned: in std_logic;
@@ -147,14 +148,14 @@ begin
 		BITXOR              WHEN alu_op_type=x"5" else
 		FUNCLSL             WHEN alu_op_type=x"6" else
 		FUNCLSR             WHEN alu_op_type=x"7" else
-		FUNCRL              WHEN alu_op_type=x"8" else
-		FUNCRR              WHEN alu_op_type=x"9" else
 		ADD ; --(OTHERS=>'0');
 	general_alu_i : general_alu
 		generic map (
 			N => N
 		)
 		port map (
+			clk=>clk,
+			rst=>rstn,
 			FUNC     => alu_op_type_i,
 			DATA1    => opa,
 			DATA2    => opb,
