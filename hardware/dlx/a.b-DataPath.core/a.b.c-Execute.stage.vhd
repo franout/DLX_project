@@ -6,7 +6,7 @@
 -- Author      : Francesco Angione <s262620@studenti.polito.it> franout@github.com
 -- Company     : Politecnico di Torino, Italy
 -- Created     : Wed Jul 22 23:00:04 2020
--- Last update : Sun Aug  9 16:58:36 2020
+-- Last update : Thu Aug 13 16:48:21 2020
 -- Platform    : Default Part Number
 -- Standard    : VHDL-2008 
 --------------------------------------------------------------------------------
@@ -29,7 +29,7 @@ entity execute_stage is
 	port (
 		clk : in std_logic;
 		rst : in std_logic; -- active low 
-		                    -- from decode stage
+		-- from decode stage
 		val_a                    : in std_logic_vector(N-1 downto 0);
 		val_b                    : in std_logic_vector(N-1 downto 0);
 		val_immediate            : in std_logic_vector(N-1 downto 0);
@@ -40,6 +40,7 @@ entity execute_stage is
 		alu_output_val        : out std_logic_vector(N-1 downto 0);
 		value_to_mem          : out std_logic_vector(N-1 downto 0);
 		-- to/from control unit
+		signed_notsigned: in std_logic;
 		alu_op_type     : in  std_logic_vector(3 downto 0); --TYPE_OP_ALU ; for compatibility with sv
 		sel_val_a       : in  std_logic_vector(0 downto 0);
 		sel_val_b       : in  std_logic_vector(0 downto 0);
@@ -59,6 +60,7 @@ architecture structural of execute_stage is
 		port (
 			FUNC         : IN  TYPE_OP_ALU;
 			DATA1, DATA2 : IN  std_logic_vector(N-1 downto 0);
+			signed_notsigned: in std_logic;
 			cin          : in  std_logic;
 			overflow     : out std_logic;
 			OUTALU       : OUT std_logic_vector(N-1 downto 0)
@@ -158,7 +160,8 @@ begin
 			DATA2    => opb,
 			cin      => cin,
 			overflow => overflow,
-			OUTALU   => alu_out
+			OUTALU   => alu_out,
+			signed_notsigned=> signed_notsigned
 		);
 
 

@@ -25,7 +25,7 @@
 
 `define CU_STATES 10
 
-typedef enum {power_up, idle ,} cu_state_t;
+typedef enum {power_up, idle } cu_state_t;
 
 typedef enum  bit [3:0]{ADD, SUB, MULT, BITAND, BITOR, BITXOR, FUNCLSL, FUNCLSR, FUNCRL, FUNCRR} TYPE_OP_ALU_sv ; // error in importing the enum from vhdl
 

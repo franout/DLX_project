@@ -7,7 +7,7 @@
 // Author : Angione Francesco s262620@studenti.polito.it franout@Github.com
 // File   : tb_dlx.sv
 // Create : 2020-07-21 19:00:18
-// Revise : 2020-08-06 19:10:02
+// Revise : 2020-08-13 17:28:42
 // Editor : sublime text3, tab size (4)
 // Description: 
 // -----------------------------------------------------------------------------
@@ -123,13 +123,6 @@ module tb_dlx ();
 	// check process for the instructions
 	// use monitor
 
-	// dump wave
-	initial begin
-		if ( $test$plusargs("fsdb") ) begin
-			$fsdbDumpfile("tb_dlx.fsdb");
-			$fsdbDumpvars(0, "tb_dlx", "+mda", "+functions");
-		end
-	end
 
 
 endmodule

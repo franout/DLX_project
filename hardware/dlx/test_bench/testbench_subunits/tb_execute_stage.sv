@@ -7,7 +7,7 @@
 // Author : Angione Francesco s262620@studenti.polito.it franout@Github.com
 // File   : tb_execute_stage.sv
 // Create : 2020-07-27 15:17:03
-// Revise : 2020-08-09 17:12:59
+// Revise : 2020-08-14 11:26:00
 // Editor : sublime text3, tab size (4)
 // Description: 
 // -----------------------------------------------------------------------------
@@ -240,7 +240,8 @@ initial begin
 
 			$stop();
 		end
-			$display("Checking ALU operations: FUNCRL",);
+		/* not supported 
+		$display("Checking ALU operations: FUNCRL",);
 		opb=3;
 		opa=3;
 		sel_val_a=0;
@@ -274,6 +275,7 @@ initial begin
 
 			$stop();
 		end
+		*/
 		$display("Execute stage has passed the testbench",);
 		$finish;
 end
@@ -307,7 +309,7 @@ localparam clock_period= 10ns;
 	logic [`NUMBIT-1:0]prog_counter_forwaded;
 	logic cin, overflow;
 
-
+	assign cin= '0;
   	// property definition
   		// TODO add property def for cin and overflow
   	property pc_forwarded;
@@ -375,6 +377,7 @@ localparam clock_period= 10ns;
 					.jump_prediction(branch_condition)
 					);
 
-
+// TODO upgrate to test signed unsigned operation and all the other arithmetic operation 
+// including the pipelined boothmultiplier (8cc of latency)
 
 endmodule

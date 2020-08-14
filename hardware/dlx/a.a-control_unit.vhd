@@ -6,7 +6,7 @@
 -- Author      : Francesco Angione <s262620@studenti.polito.it> franout@github.com
 -- Company     : Politecnico di Torino, Italy
 -- Created     : Thu Jul 23 15:49:45 2020
--- Last update : Wed Aug 12 22:42:11 2020
+-- Last update : Fri Aug 14 10:53:18 2020
 -- Platform    : Default Part Number
 -- Standard    : VHDL-2008 
 --------------------------------------------------------------------------------
@@ -20,6 +20,7 @@ use ieee.std_logic_1164.all ;
 use ieee.numeric_std.all ;
 use work.globals.all;
 use work.constants.all;
+use work.global_components.all;
 
 entity control_unit is
   generic (
@@ -28,7 +29,7 @@ entity control_unit is
     FUNC_SIZE    : integer := 11; -- Func Field Size for R-Type Ops
     OP_CODE_SIZE : integer := 6;  -- Op Code Size
     IR_SIZE      : integer := 32; -- Instruction Register Size    
-    CW_SIZE      : integer := 13  -- Control Word Size
+    CW_SIZE      : integer := 14  -- Control Word Size
   );
   port (
     clk : in std_logic;
@@ -48,10 +49,11 @@ entity control_unit is
     alu_op_type : out std_logic_vector(3 downto 0); --TYPE_OP_ALU ; for compatibility with sv
     sel_val_a   : out std_logic_vector(0 downto 0 );
     sel_val_b   : out std_logic_vector(0 downto 0 );
-    -- from execute stage
+    signed_notsigned: out std_logic;
     alu_cin         : out std_logic;
-    alu_overflow    : in  std_logic;
     evaluate_branch : out std_logic;
+    -- from execute stage
+    alu_overflow    : in  std_logic;
     -- for memory stage
     dram_enable_cu : out std_logic;
     dram_r_nw_cu   : out std_logic;
@@ -70,11 +72,11 @@ end entity control_unit;
 
 architecture behavioural of control_unit is
 
-  type state_t is (hang_error,idle,fetch, add);
+  type state_t is (hang_error,idle,fetch, decode);
 
   signal curr_state,next_state : state_t;
 
-  signal rstn;
+  signal rstn: std_logic;
   signal cmd_word: std_logic_vector( CW_SIZE-1 downto 0); -- full control word 
   signal cw1,cw2,cw3,cw4,cw5: std_logic_vector(CW_SIZE-1 downto 0); -- signal for delay control signal of cmd_word unuseful ones will be discarded by the synthesis process
 
@@ -84,12 +86,8 @@ architecture behavioural of control_unit is
 
 
 
+  -- add a status register for possible overflow or write to forbidden registers
 
-
-  signal aluOpcode_i : aluOp := NOP; -- ALUOP defined in package
-  signal aluOpcode1  : aluOp := NOP;
-  signal aluOpcode2  : aluOp := NOP;
-  signal aluOpcode3  : aluOp := NOP;
 
 
 
@@ -116,9 +114,12 @@ begin
 
 
 
-  cl_next_state : process(curr_state , iram_ready_cu ,curr_instruction_to_cu,alu_overflow,dram_ready_cu)
+  cl : process(curr_state , iram_ready_cu ,curr_instruction_to_cu,alu_overflow,dram_ready_cu)
   begin
-
+      ------------------------------------------------------------------------------
+  -- default signals assignment
+  cmd_word<=(OTHERS=>'0');
+  ---------------------------------------------------------------------------------
   case (curr_state) is
     when idle => if (iram_ready_cu='1') then
                   next_state<=fetch;
@@ -126,44 +127,67 @@ begin
                   next_state<=curr_state;
                 end if;
     when fetch => next_state<=decode;
-    when decode=> case (ir_opcode) is
-                  when <choice_1> =>
-        
-                  when others =>
-                      null;
-                  end case;
-
-    when add => 
+                  cmd_word<=x"4000";
+    when decode=>   
+                  if(iram_ready_cu='1') then 
+                    next_state<=decode;
+                    case (ir_opcode) is
+                    when i_add =>
+                        cmd_word<=x"7c13"; --111 1100 0001 0011
+                        -- add control for not writing to r0 
+                        if(ir_)then 
+                          next_state<=hang_error;
+                        end if;
+                    when i_addi=> -- asserty yhe ityep signal 
+                    when i_and =>
+                    when i_andi=>
+                    when i_beqz=>
+                    when i_benz=>
+                    when i_j=>
+                    when i_jal=>
+                    when i_lw=>
+                    when i_nop=>
+                    when i_or=>
+                    when i_ori=>
+                    when i_sgl=>
+                    when i_sgei=>
+                    when i_sle=>
+                    when i_slei=>
+                    when i_sll=>
+                    when i_slli=>
+                    when i_sne=>
+                    when i_snei=>
+                    when i_srl=>
+                    when i_srli=>
+                    when i_sub=>
+                    when i_subi=>
+                    when i_sw=>
+                    when i_xor=>
+                    when i_xori=>
+                    when others =>
+                        cmd_word<=(OTHERS=>'0');
+                    end case;
+                    
+                  else 
+                  next_state<=hang_error;
+                  end if;
     when hang_error=> next_state<=curr_state;
     when others =>  next_state<=idle;
   end case;
-  end process cl_next_state;
-
-  cl_cmd_word:process(curr_state)
-  begin
-    ------------------------------------------------------------------------------
-  -- default signals assignment
-  cmd_word<=(OTHERS=>'0');
-  ------------------------------------------------------------------------------
-  case (curr_state) is
-    when idle => cmd_word<=(OTHERS=>'0');
-    when fetch=> cmd_word<=x"20000";
-    when decode=> cmd_word<=
-    when add=>
-      
-    when others =>
-      null;
-  end case;
-  end process cl_cmd_word;
+  end process cl;
 
 
   -- alu function generator process
-  -- purpose: Generation of ALU OpCode
-  -- type   : combinational
-  -- inputs : IR_i
-  -- outputs: aluOpcode
-  ALU_OP_CODE_P : process (IR_opcode, IR_func)
+  ALU_OP_CODE_P : process (ir_opcode, ir_func)
   begin -- process ALU_OP_CODE_P
+    case (ir_opcode) is
+      when i_add =>
+
+        
+      when others =>
+        null;
+    end case;
+
     case conv_integer(unsigned(IR_opcode)) is
       -- case of R type requires analysis of FUNC
       when 0 =>
@@ -197,12 +221,13 @@ begin
     sel_val_b  (0) <= cw3 (CW_SIZE-8);
     alu_cin         <= cw3(CW_SIZE-9);
     evaluate_branch <= cw3(CW_SIZE-10);
+    signed_notsigned<=cw3(CW_SIZE-11);
     -- for memory stage
-    dram_enable_cu <= cw4(CW_SIZE-11);
-    dram_r_nw_cu   <= cw4(CW_SIZE-12);
+    dram_enable_cu <= cw4(CW_SIZE-12);
+    dram_r_nw_cu   <= cw4(CW_SIZE-13);
     -- for write back stage   
-    select_wb(0)<= cw5(CW_SIZE-13);
-    write_rf <= cw5(CW_SIZE-14)
+    select_wb(0)<= cw5(CW_SIZE-14);
+    write_rf <= cw5(CW_SIZE-15);
 
 -- delay register for command word
     f_reg : reg_nbit generic map (

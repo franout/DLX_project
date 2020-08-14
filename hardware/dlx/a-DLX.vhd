@@ -6,7 +6,7 @@
 -- Author      : Francesco Angione <s262620@studenti.polito.it> franout@github.com
 -- Company     : Politecnico di Torino, Italy
 -- Created     : Wed Jul 22 22:58:15 2020
--- Last update : Wed Aug 12 22:55:10 2020
+-- Last update : Thu Aug 13 16:05:56 2020
 -- Platform    : Default Part Number
 -- Standard    : VHDL-2008 
 --------------------------------------------------------------------------------
@@ -84,6 +84,7 @@ architecture dlx_rtl of DLX is
       sel_val_b       : out std_logic_vector(0 downto 0 );
       evaluate_branch : out std_logic;
       alu_cin         : out std_logic;
+      signed_notsigned: out std_logic;
       -- from execute stage
       alu_overflow : in std_logic;
       -- for memory stage
@@ -139,9 +140,10 @@ architecture dlx_rtl of DLX is
       sel_val_a   : in std_logic_vector(0 downto 0 );
       sel_val_b   : in std_logic_vector(0 downto 0 );
       alu_cin     : in std_logic;
+      signed_notsigned: in std_logic;
+      evaluate_branch : in  std_logic;
       -- from execute stage
       alu_overflow    : out std_logic;
-      evaluate_branch : in  std_logic;
       -- for memory stage
       dram_enable_cu : in  std_logic;
       dram_r_nw_cu   : in  std_logic;
@@ -156,7 +158,7 @@ architecture dlx_rtl of DLX is
   ----------------------------------------------------------------
   -- Internconnection Signals Declaration
   ----------------------------------------------------------------
-  signal iram_ready_cu_i,iram_enable_cu_i,
+  signal iram_ready_cu_i,iram_enable_cu_i,signed_notsigned_i,
   compute_sext_i,write_rf_i,evaluate_branch_i,alu_cin_i,alu_overflow_i,
   dram_ready_cu_i,dram_r_nw_cu_i,rstn,enable_rf_i,read_rf_p1_i,read_rf_p2_i,rtype_itypen_i,
   dram_enable_cu_i                            : std_logic;
@@ -198,6 +200,7 @@ begin -- DLX
       sel_val_a       => sel_val_a_i ,
       sel_val_b       => sel_val_b_i ,
       evaluate_branch => evaluate_branch_i,
+      signed_notsigned => signed_notsigned_i,
       -- from execute stage
       alu_cin      => alu_cin_i,
       alu_overflow => alu_overflow_i,
@@ -247,6 +250,7 @@ begin -- DLX
       sel_val_a       => sel_val_a_i ,
       sel_val_b       => sel_val_b_i ,
       evaluate_branch => evaluate_branch_i,
+      signed_notsigned => signed_notsigned_i,
       -- from execute stage
       alu_cin      => alu_cin_i,
       alu_overflow => alu_overflow_i,

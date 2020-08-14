@@ -6,7 +6,7 @@
 -- Author      : Francesco Angione <s262620@studenti.polito.it> franout@github.com
 -- Company     : Politecnico di Torino, Italy
 -- Created     : Wed Jul 22 22:58:34 2020
--- Last update : Sun Aug  9 18:35:23 2020
+-- Last update : Thu Aug 13 16:04:53 2020
 -- Platform    : Default Part Number
 -- Standard    : VHDL-2008 
 --------------------------------------------------------------------------------
@@ -58,9 +58,10 @@ entity DATAPATH is
 		alu_op_type     : in std_logic_vector(3 downto 0); --TYPE_OP_ALU ; for compatibility with sv
 		sel_val_a       : in std_logic_vector(0 downto 0 );
 		sel_val_b       : in std_logic_vector(0 downto 0 );
+		signed_notsigned: in std_logic;
 		evaluate_branch : in std_logic;
-		-- from execute stage
 		alu_cin      : in std_logic;
+		-- from execute stage
 		alu_overflow : out std_logic;
 		-- for memory stage
 		dram_enable_cu : in  std_logic;
@@ -152,6 +153,7 @@ architecture structural of DATAPATH is
 			alu_output_val        : out std_logic_vector(N-1 downto 0);
 			value_to_mem          : out std_logic_vector(N-1 downto 0);
 			-- to/from control unit
+			signed_notsigned: in std_logic;
 			alu_op_type     : in  std_logic_vector(3 downto 0); --TYPE_OP_ALU ; for compatibility with sv
 			sel_val_a       : in  std_logic_vector(0 downto 0);
 			sel_val_b       : in  std_logic_vector(0 downto 0);
@@ -327,7 +329,8 @@ begin
 			sel_val_b       => sel_val_b ,
 			cin             => alu_cin,
 			overflow        => alu_overflow,
-			evaluate_branch => evaluate_branch
+			evaluate_branch => evaluate_branch,
+			signed_notsigned=>signed_notsigned
 		);
 
 	-- memory stage

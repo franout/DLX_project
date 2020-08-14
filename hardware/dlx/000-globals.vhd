@@ -6,7 +6,7 @@
 -- Author      : Francesco Angione <s262620@studenti.polito.it> franout@github.com
 -- Company     : Politecnico di Torino, Italy
 -- Created     : Wed Jul 22 22:56:54 2020
--- Last update : Sun Aug  9 16:51:56 2020
+-- Last update : Fri Aug 14 11:17:45 2020
 -- Platform    : Default Part Number
 -- Standard    : VHDL-2008 
 --------------------------------------------------------------------------------
@@ -42,19 +42,20 @@ package globals is
 
         -- definition for instruction 
         constant endianess                     : string  := "big"; -- for memory access
-        constant instruction_size              : integer := 32;
+        constant instr_length : integer := 32; -- number of bits for an instruction 
         constant opcode_length                 : integer := 6;  -- length in the instruction 
         constant register_address_field_length : integer := 5;  -- length in the instruction 
         constant immediate_length              : integer := 16; --  for I-type instructions
         constant alu_function_length           : integer := 11; -- for R-type instructions
         constant jump_address_length           : integer := 26; -- for J-type instruction  
+        constant OP_CODE_SIZE : integer := 6;  -- OPCODE field size
+        constant FUNC_SIZE    : integer := 11; -- FUNC field size
+        constant tot_cu_sign : integer := 32;  -- number of total signoal (I/O) of control unit
 
         -- definition for data
         constant data_size : integer := 32;
         -- definition for register file 
         constant register_in_rf : integer := 32;
-
-
 
         -- definition for memories size
         constant dram_size         : integer := 2**16;
@@ -64,22 +65,20 @@ package globals is
 
 
         -- from lab defined in alu_types.vhd package
-        type TYPE_OP_ALU is (ADD, SUB, MULT, BITAND, BITOR, BITXOR, FUNCLSL, FUNCLSR, FUNCRL, FUNCRR);
+        type TYPE_OP_ALU is (ADD, SUB, MULT, BITAND, BITOR, BITXOR, FUNCLSL, FUNCLSR);
 
         -- see also implemented_instruction.svh in ./test_bench
         type instruction is (
-                addition
+                i_add,i_addi ,i_and  ,i_andi ,i_beqz ,i_benz ,i_j ,i_jal ,i_lw ,i_nop ,i_or 
+                ,i_ori ,i_sgl ,i_sgei ,i_sle ,i_slei ,i_sll ,i_slli ,i_sne ,i_snei ,i_srl ,
+                i_srli ,i_sub ,i_subi ,i_sw ,i_xor ,i_xori
+
             );
+        attribute encoding: std_logic_vector(OP_CODE_SIZE-1 downto 0);
+        attribute encoding of i_add[return instruction] : literal is b"10"&x"0";
 
+        -- todo
 
-
-        -- from lab 
-        -- Control unit input sizes
-        constant OP_CODE_SIZE : integer := 6;  -- OPCODE field size
-        constant FUNC_SIZE    : integer := 11; -- FUNC field size
-        constant ADD_REG_SIZE : integer := 5;  -- # of bits used for addressing the registers for both an I-Type or R-Type instruction 
-        constant instr_length : integer := 32; -- number of bits for an instruction 
-        constant tot_cu_sign : integer := 32;  -- number of total signoal (I/O) of control unit
 
         -- R-TYPE -> register to register operation 
         -- I-TYPE -> register and an immediate of ALU operation or load/store memory operatins 
