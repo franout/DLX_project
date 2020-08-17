@@ -6,7 +6,7 @@
 -- Author      : Francesco Angione <s262620@studenti.polito.it> franout@github.com
 -- Company     : Politecnico di Torino, Italy
 -- Created     : Sat Aug  8 12:22:46 2020
--- Last update : Fri Aug 14 13:14:07 2020
+-- Last update : Mon Aug 17 11:41:56 2020
 -- Platform    : Default Part Number
 -- Standard    : VHDL-2008 
 --------------------------------------------------------------------------------
@@ -128,7 +128,6 @@ begin
       when MULT => -- using the booth multiplier ( a pipelined version of the lab's one) 
         data1_mul <= DATA1((N/2)-1 DOWNTO 0);
         data2_mul <= DATA2((N/2)-1 downto 0);
-        OUTALU    <= dataout_mul;
         -- exception if using multiplication between bitwidth > 16
         for i in N-1 downto N/2  loop
           check_mul_logic := not(data1_mul(i)) and check_mul_logic and not(data2_mul(i));
@@ -146,8 +145,10 @@ begin
         end loop ;
         if(check_mul_logic2='0' or  check_mul_logic='0' ) then
           zero_mul_detect <= '1';
+          OUTALU    <= (OTHERS=>'0');
         else
           zero_mul_detect <= '0';
+          OUTALU    <= dataout_mul;
         end if;
       when BITAND => OUTALU <= DATA1 AND DATA2;
       when BITOR  => OUTALU <= DATA1 OR DATA2;

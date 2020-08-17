@@ -7,7 +7,7 @@
 // Author : Angione Francesco s262620@studenti.polito.it franout@Github.com
 // File   : tb_execute_stage.sv
 // Create : 2020-07-27 15:17:03
-// Revise : 2020-08-14 13:21:48
+// Revise : 2020-08-17 11:36:41
 // Editor : sublime text3, tab size (4)
 // Description: 
 // -----------------------------------------------------------------------------
@@ -148,9 +148,9 @@ initial begin
 		alu_operation=current_operation.next();
 		current_operation=current_operation.next();
 		`ifndef VIVADO_SIM
-		##2;
+		##8;
 		`else 
-			repeat(4)@(posedge clk);
+			repeat(16)@(posedge clk);
 		`endif
 		if(alu_out!==(opa*opb))begin 
 			$display("Alu MUltiplication is wrong -> Expected: %d Actual: %d",opa*opb ,alu_out );
