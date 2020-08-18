@@ -40,6 +40,8 @@ begin
 				tmp := tmp and not(input_val(i));
 			end loop ; -- check_logic
 			decision <= tmp;
+		else 
+			decision<='0';
 		end if;
 	end process ; -- logic
 

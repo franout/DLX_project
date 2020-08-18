@@ -70,6 +70,15 @@ endtask : check_overflow
 TYPE_OP_ALU_sv current_operation;
 initial begin 
 		rst=0;
+		opa=0;
+		opb=0;
+		immediate=0;
+		prog_counter=0;
+		sel_val_a=0;
+		sel_val_b=0;
+		evaluate_branch=0;
+		carry_in=0;
+		signed_notsigned=0;
 		current_operation.first();
 		$display("@%0dns Starting Program",$time);
 		$display("Starting testbench for Execute stage",);
@@ -133,6 +142,7 @@ initial begin
 			$display("Error in check zero logic-> TRuE",);
 			$stop();
 		end
+
 		opa=321;
 		evaluate_branch=1;
 		`ifndef VIVADO_SIM
@@ -207,7 +217,7 @@ initial begin
 		`else 
 			repeat(2)@(posedge clk);
 		`endif
-		if(zero_mul_detect!==0)begin 
+		if(zero_mul_detect!==1)begin 
 			$display("Alu MUltiplication is wrong ! no zero detected on second operand" );
 			$stop();
 		end
@@ -221,7 +231,7 @@ initial begin
 		`else 
 			repeat(2)@(posedge clk);
 		`endif
-		if(zero_mul_detect!==0)begin 
+		if(zero_mul_detect!==1)begin 
 			$display("Alu MUltiplication is wrong ! no zero detected on first operand" );
 			$stop();
 		end
@@ -340,6 +350,8 @@ initial begin
 		$display("Checking overflow assertion on addition unsigned",);
 		opb='1;
 		opa=1;
+		alu_operation=ADD;
+		current_operation=ADD;
 		carry_in=0;
 		signed_notsigned=0;
 		sel_val_a=0;
@@ -394,12 +406,13 @@ localparam clock_period= 10ns;
   	// Specify the default clocking
   	default clocking test_clk @ (posedge clk);
   	endclocking	// clock
+
 	// signal declaration 
 	logic rst;
 	wire [`NUMBIT-1:0]val_a ,val_b;
 	wire [`NUMBIT-1:0]val_immediate;
 	wire [`IRAM_WORD_SIZE-1:0]new_prog_counter_val_exe;
-	`ifndef VIVADO_SIM
+	`ifdef VIVADO_SIM
 		TYPE_OP_ALU_sv alu_op_type;
 	`else 
 		wire [3:0] alu_op_type;
@@ -416,8 +429,8 @@ localparam clock_period= 10ns;
   	// property definition
   	property pc_forwarded;
   		@(test_clk)
-  			disable iff (!rst && !sel_val_a) // not a jump addition 
-  			$changed(new_prog_counter_val_exe) |-> $changed(prog_counter_forwaded);
+  			disable iff (!rst ) 
+  			$changed(new_prog_counter_val_exe) |-> prog_counter_forwaded;
   	endproperty;
 
   	property write_value_propagation;
@@ -429,7 +442,7 @@ localparam clock_period= 10ns;
   	property branch_propagation;
   		@(test_clk)
   			disable iff(!rst || !evaluate_branch)
-  			$changed(val_a) |-> $changed(branch_condition);
+  			$changed(val_a) |-> branch_condition;
   	endproperty;
 
   	// properrty instantiation

@@ -109,9 +109,7 @@ begin
         end if;
 
       when SUB =>                     -- addition between the two complement 
-        if(signed_notsigned='0') then -- not signed transform second operand in 2complement
-          DATA2_I <= not(DATA2);      -- +1 from cin (from CU)
-        end if;
+         DATA2_I <= not(DATA2);      -- +1 from cin (from CU)
         OUTALU <= adder_out;
 
         if(signed_notsigned='1')then
@@ -130,7 +128,7 @@ begin
         data2_mul <= DATA2((N/2)-1 downto 0);
         -- exception if using multiplication between bitwidth > 16
         for i in N-1 downto N/2  loop
-          check_mul_logic := not(data1_mul(i)) and check_mul_logic and not(data2_mul(i));
+          check_mul_logic := not(data1(i)) and check_mul_logic and not(data2(i));
         end loop ;
         if(check_mul_logic='0') then
           mul_exeception <= '1';
@@ -139,11 +137,13 @@ begin
         end if;
         -- if not exception keep continuing check 
         --zero detect logic 
+		check_mul_logic:='1';
+		check_mul_logic2:='1';
         for i in N/2-1 downto 0 loop
-          check_mul_logic   := check_mul_logic and data1_mul(i);
-          check_mul_logic2 := check_mul_logic2 and data2_mul(i);
+          check_mul_logic   := check_mul_logic and not(data1(i));
+          check_mul_logic2 := check_mul_logic2 and not(data2(i));
         end loop ;
-        if(check_mul_logic2='0' or  check_mul_logic='0' ) then
+        if(check_mul_logic2='1' or  check_mul_logic='1' ) then
           zero_mul_detect <= '1';
           OUTALU    <= (OTHERS=>'0');
         else
@@ -169,7 +169,11 @@ begin
           end if;
         END LOOP;
         OUTALU <= tmp;
-      when others => null;
+      when others => 
+			OUTALU<=(OTHERS=>'0');
+			overflow<='0';
+			zero_mul_detect<='0';
+		    mul_exeception <='0';
     end case;
   end process P_ALU;
 
