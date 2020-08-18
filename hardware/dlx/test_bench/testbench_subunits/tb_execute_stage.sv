@@ -7,7 +7,7 @@
 // Author : Angione Francesco s262620@studenti.polito.it franout@Github.com
 // File   : tb_execute_stage.sv
 // Create : 2020-07-27 15:17:03
-// Revise : 2020-08-17 11:36:41
+// Revise : 2020-08-18 17:28:00
 // Editor : sublime text3, tab size (4)
 // Description: 
 // -----------------------------------------------------------------------------
@@ -28,15 +28,46 @@ program automatic test_execute(input logic clk,
 							output logic [0:0] sel_val_a,
 							output logic [0:0] sel_val_b,
 							output logic  evaluate_branch,
-							input logic jump_prediction
+							input logic jump_prediction,
+							output logic carry_in,
+							input logic overflow,
+							input logic zero_mul_detect,
+							input logic mul_exeception,
+							output logic signed_notsigned
 							);
 `ifndef  VIVADO_SIM
 default clocking test_clk_prog @(posedge clk);
 endclocking // test_clk_prog
 `endif
 
+task automatic check_overflow(input logic overflow, 
+					input logic signed_notsigned,
+					input logic[`NUMBIT-1:0] opa, 
+					input logic [`NUMBIT-1:0] opb,
+					input logic [`NUMBIT-1:0] s);
+
+	automatic logic [`NUMBIT:0]tmp= opa+opb; // automatic i.e. every time the task is called the tmp value is refreshed
+
+	if (signed_notsigned) begin
+		if(opa[`NUMBIT-1]!==opb[`NUMBIT-1])begin 
+			if(s[`NUMBIT-1]!==opa[`NUMBIT-1])begin 
+				if(overflow!==1)begin 
+					$display("Overflow signal not correctly generated in signed computation",);
+					$stop();
+				end
+			end
+		end 
+	end else begin
+		if(tmp[`NUMBIT]!==overflow)begin
+			$display("Overflow signal not correctly generated in unsigned computation",);
+			$stop();
+		end
+	end 
+	
+endtask : check_overflow
+
+
 TYPE_OP_ALU_sv current_operation;
-// TODO need to update
 initial begin 
 		rst=0;
 		current_operation.first();
@@ -57,6 +88,8 @@ initial begin
 		$display("Checking PC increment",);
 		rst=1;
 		prog_counter=1;
+		signed_notsigned=1;
+		carry_in=0;
 		opa=0;
 		opb=3;
 		sel_val_a=1;
@@ -68,11 +101,14 @@ initial begin
 		`endif
 		if(alu_out!==4) begin 
 			$display("error in pc increment");
+			check_overflow(overflow,signed_notsigned,opa,opb,alu_out);
 			$stop();
 		end
 		$display("Checking addition with immediate value",);
 		prog_counter=2;
 		opb=3;
+		signed_notsigned=1;
+		carry_in=0;
 		immediate=5;
 		sel_val_a=0;
 		sel_val_b=1;
@@ -112,6 +148,8 @@ initial begin
 		$display("Checking ALU operations: ADD",);
 		opb=3;
 		opa=3;
+		carry_in=0;
+		signed_notsigned=0;
 		sel_val_a=0;
 		sel_val_b=0;
 		`ifndef VIVADO_SIM
@@ -121,11 +159,14 @@ initial begin
 		`endif
 		if(alu_out!==(opa+opb))begin 
 			$display("Alu addition is wrong -> Expected: %d Actual: %d",opa+opb ,alu_out );
+			check_overflow(overflow,signed_notsigned,opa,opb,alu_out);
 			$stop();
 		end
 		$display("Checking ALU operations: SUB",);
 		opb=3;
 		opa=3;
+		signed_notsigned=1;
+		carry_in=1;
 		sel_val_a=0;
 		sel_val_b=0;
 		alu_operation=current_operation.next();
@@ -137,10 +178,10 @@ initial begin
 		`endif
 		if(alu_out!==(opa-opb))begin 
 			$display("Alu subtraction is wrong -> Expected: %d Actual: %d",opa-opb ,alu_out );
-
+			check_overflow(overflow,signed_notsigned,opa,opb,alu_out);
 			$stop();
 		end
-		$display("Checking ALU operations: MUL",);
+		$display("Checking ALU operations: MUL using pipelined version of boothmultiplier",);
 		opb=3;
 		opa=3;
 		sel_val_a=0;
@@ -153,7 +194,63 @@ initial begin
 			repeat(16)@(posedge clk);
 		`endif
 		if(alu_out!==(opa*opb))begin 
-			$display("Alu MUltiplication is wrong -> Expected: %d Actual: %d",opa*opb ,alu_out );
+			$display("Alu MUltiplication is wrong after 8cc -> Expected: %d Actual: %d",opa*opb ,alu_out );
+			$stop();
+		end
+		$display("Checking zero detection of multiplication",);
+		opb=0;
+		opa=3;
+		sel_val_a=0;
+		sel_val_b=0;
+		`ifndef VIVADO_SIM
+		##1;
+		`else 
+			repeat(2)@(posedge clk);
+		`endif
+		if(zero_mul_detect!==0)begin 
+			$display("Alu MUltiplication is wrong ! no zero detected on second operand" );
+			$stop();
+		end
+		$display("Checking zero detection of multiplication",);
+		opb=4;
+		opa=0;
+		sel_val_a=0;
+		sel_val_b=0;
+		`ifndef VIVADO_SIM
+		##1;
+		`else 
+			repeat(2)@(posedge clk);
+		`endif
+		if(zero_mul_detect!==0)begin 
+			$display("Alu MUltiplication is wrong ! no zero detected on first operand" );
+			$stop();
+		end
+		
+		$display("Checking exception detection of multiplication-> operand bigger than 16 bit( upper 16 bits must be zeros)",);
+		opb='1;
+		opa=3;
+		sel_val_a=0;
+		sel_val_b=0;
+		`ifndef VIVADO_SIM
+		##1;
+		`else 
+			repeat(2)@(posedge clk);
+		`endif
+		if(zero_mul_detect!==0)begin 
+			$display("Alu MUltiplication is wrong ! no exception detected on second operand" );
+			$stop();
+		end
+		opb=4;
+		opa='h2;
+		sel_val_a=0;
+		sel_val_b=0;
+		`ifndef VIVADO_SIM
+		##1;
+		`else 
+			repeat(2)@(posedge clk);
+		`endif
+		if(zero_mul_detect!==0)begin 
+			$display("Alu MUltiplication is wrong ! no exception detected on first operand" );
 			$stop();
 		end
 		$display("Checking ALU operations: BITAND",);
@@ -240,45 +337,48 @@ initial begin
 
 			$stop();
 		end
-		/* not supported 
-		$display("Checking ALU operations: FUNCRL",);
-		opb=3;
-		opa=3;
+		$display("Checking overflow assertion on addition unsigned",);
+		opb='1;
+		opa=1;
+		carry_in=0;
+		signed_notsigned=0;
 		sel_val_a=0;
 		sel_val_b=0;
-		alu_operation=current_operation.next();
-		current_operation=current_operation.next();
 		`ifndef VIVADO_SIM
 		##2;
 		`else 
 			repeat(4)@(posedge clk);
 		`endif
-		if(alu_out!==(opa<<opb))begin 
-			$display("Alu rotate left is wrong -> Expected: %d Actual: %d",opa<<opb ,alu_out );
-
+		if(alu_out!==(opa+opb))begin 
+			$display("Alu addition is wrong -> Expected: %d Actual: %d",opa+opb ,alu_out );
+			check_overflow(overflow,signed_notsigned,opa,opb,alu_out);
 			$stop();
 		end
-		$display("Checking ALU operations: FUNCRR",);
-		opb=3;
-		opa=3;
+		$display("Checking overflow assertion on addition signed",);
+		opb='1;
+		opa=2147483646;
+		carry_in=0;
+		signed_notsigned=1;
 		sel_val_a=0;
 		sel_val_b=0;
-		alu_operation=current_operation.next();
-		current_operation=current_operation.next();
 		`ifndef VIVADO_SIM
 		##2;
 		`else 
 			repeat(4)@(posedge clk);
 		`endif
-		if(alu_out!==('h60000000))begin 
-			$display("Alu rotate right is wrong -> Expected: %d Actual: %d",opa>>opb ,alu_out );
-
+		if(alu_out!==(opa+opb))begin 
+			$display("Alu addition is wrong -> Expected: %d Actual: %d",opa+opb ,alu_out );
+			check_overflow(overflow,signed_notsigned,opa,opb,alu_out);
 			$stop();
 		end
-		*/
+
+
+
 		$display("Execute stage has passed the testbench",);
 		$finish;
 end
+
+
 
 endprogram : test_execute
 
@@ -313,9 +413,7 @@ localparam clock_period= 10ns;
 	logic [`NUMBIT-1:0]prog_counter_forwaded;
 	logic cin, overflow,zero_mul_detect, mul_exeception,signed_notsigned;
 
-	assign cin= '0;
   	// property definition
-  		// TODO add property def for cin and overflow
   	property pc_forwarded;
   		@(test_clk)
   			disable iff (!rst && !sel_val_a) // not a jump addition 
@@ -332,7 +430,8 @@ localparam clock_period= 10ns;
   		@(test_clk)
   			disable iff(!rst || !evaluate_branch)
   			$changed(val_a) |-> $changed(branch_condition);
-  	endproperty;	
+  	endproperty;
+
   	// properrty instantiation
 	pc_forwarded_check: assert property (pc_forwarded) else $display("Error in propagation of PC value @%0dns",$time());
 	write_value_propagation_check: assert property (write_value_propagation) else $display("Error in propagation of value to write to memory @%0dns",$time());
@@ -359,7 +458,6 @@ localparam clock_period= 10ns;
 			.alu_op_type(alu_op_type),   
 			.sel_val_a(sel_val_a),       
 			.sel_val_b(sel_val_b), 
-			/*add check for cin and overflow TODO*/
 			.signed_notsigned(signed_notsigned),
 			.cin(cin) ,
 			.overflow(overflow),
@@ -383,7 +481,12 @@ localparam clock_period= 10ns;
 					.sel_val_a(sel_val_a),       
 					.sel_val_b(sel_val_b),       
 					.evaluate_branch(evaluate_branch),
-					.jump_prediction(branch_condition)
+					.jump_prediction(branch_condition),
+					.signed_notsigned(signed_notsigned),
+					.carry_in(cin) ,
+					.overflow(overflow),
+					.zero_mul_detect(zero_mul_detect) ,
+		    		.mul_exeception(mul_exeception)  
 					);
 
 // TODO upgrate to test signed unsigned operation and all the other arithmetic operation 

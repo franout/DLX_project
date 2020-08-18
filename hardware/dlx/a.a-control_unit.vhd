@@ -6,7 +6,7 @@
 -- Author      : Francesco Angione <s262620@studenti.polito.it> franout@github.com
 -- Company     : Politecnico di Torino, Italy
 -- Created     : Thu Jul 23 15:49:45 2020
--- Last update : Fri Aug 14 10:53:18 2020
+-- Last update : Tue Aug 18 17:23:02 2020
 -- Platform    : Default Part Number
 -- Standard    : VHDL-2008 
 --------------------------------------------------------------------------------
@@ -54,6 +54,9 @@ entity control_unit is
     evaluate_branch : out std_logic;
     -- from execute stage
     alu_overflow    : in  std_logic;
+    -- exception control logic for multiplication 
+    zero_mul_detect  : in std_logic;
+    mul_exeception   : in std_logic;
     -- for memory stage
     dram_enable_cu : out std_logic;
     dram_r_nw_cu   : out std_logic;
@@ -280,7 +283,7 @@ wb_reg : reg_nbit generic map (
       Q     => cw5
     );
 
-
+-- TODO logic for checking the excetpio form the alu
 end architecture behavioural;
 
 

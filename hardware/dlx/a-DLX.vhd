@@ -6,7 +6,7 @@
 -- Author      : Francesco Angione <s262620@studenti.polito.it> franout@github.com
 -- Company     : Politecnico di Torino, Italy
 -- Created     : Wed Jul 22 22:58:15 2020
--- Last update : Fri Aug 14 15:26:56 2020
+-- Last update : Tue Aug 18 17:22:38 2020
 -- Platform    : Default Part Number
 -- Standard    : VHDL-2008 
 --------------------------------------------------------------------------------
@@ -91,6 +91,9 @@ architecture dlx_rtl of DLX is
       signed_notsigned: out std_logic;
       -- from execute stage
       alu_overflow : in std_logic;
+      -- exception control logic for multiplication 
+      zero_mul_detect  : in std_logic;
+      mul_exeception   : in std_logic;
       -- for memory stage
       dram_enable_cu : out std_logic;
       dram_r_nw_cu   : out std_logic;
@@ -150,6 +153,9 @@ architecture dlx_rtl of DLX is
       evaluate_branch : in  std_logic;
       -- from execute stage
       alu_overflow    : out std_logic;
+      -- exception control logic for multiplication 
+      zero_mul_detect  : out std_logic;
+      mul_exeception   : out std_logic;
       -- for memory stage
       dram_enable_cu : in  std_logic;
       dram_r_nw_cu   : in  std_logic;
@@ -165,7 +171,8 @@ architecture dlx_rtl of DLX is
   -- Internconnection Signals Declaration
   ----------------------------------------------------------------
   signal iram_ready_cu_i,iram_enable_cu_i,signed_notsigned_i,
-  compute_sext_i,write_rf_i,evaluate_branch_i,alu_cin_i,alu_overflow_i,
+  compute_sext_i,write_rf_i,evaluate_branch_i,alu_cin_i,
+  alu_overflow_i,zero_mul_detect_i,mul_exeception_i,
   dram_ready_cu_i,dram_r_nw_cu_i,rstn,enable_rf_i,read_rf_p1_i,read_rf_p2_i,rtype_itypen_i,
   dram_enable_cu_i                            : std_logic;
   signal curr_instruction_to_cu_i             : std_logic_vector(PC_SIZE-1 downto 0);
@@ -267,6 +274,8 @@ begin -- DLX
       -- from execute stage
       alu_cin      => alu_cin_i,
       alu_overflow => alu_overflow_i,
+      zero_mul_detect =>  zero_mul_detect_i,
+      mul_exeception =>  mul_exeception_i,
       -- for memory stage
       dram_enable_cu => dram_enable_cu_i,
       dram_r_nw_cu   => dram_r_nw_cu_i,

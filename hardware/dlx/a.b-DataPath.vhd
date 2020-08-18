@@ -6,7 +6,7 @@
 -- Author      : Francesco Angione <s262620@studenti.polito.it> franout@github.com
 -- Company     : Politecnico di Torino, Italy
 -- Created     : Wed Jul 22 22:58:34 2020
--- Last update : Thu Aug 13 16:04:53 2020
+-- Last update : Tue Aug 18 17:23:39 2020
 -- Platform    : Default Part Number
 -- Standard    : VHDL-2008 
 --------------------------------------------------------------------------------
@@ -63,6 +63,9 @@ entity DATAPATH is
 		alu_cin      : in std_logic;
 		-- from execute stage
 		alu_overflow : out std_logic;
+		-- exception control logic for multiplication 
+    	zero_mul_detect  : out std_logic;
+    	mul_exeception   : out std_logic;
 		-- for memory stage
 		dram_enable_cu : in  std_logic;
 		dram_r_nw_cu   : in  std_logic;
@@ -159,7 +162,10 @@ architecture structural of DATAPATH is
 			sel_val_b       : in  std_logic_vector(0 downto 0);
 			cin: in std_logic;
 			overflow   : out std_logic;
-			evaluate_branch : in  std_logic
+			evaluate_branch : in  std_logic;
+			-- exception control logic for multiplication 
+    		zero_mul_detect  : out std_logic;
+    		mul_exeception   : out std_logic
 		);
 	end component execute_stage;
 
@@ -330,8 +336,10 @@ begin
 			cin             => alu_cin,
 			overflow        => alu_overflow,
 			evaluate_branch => evaluate_branch,
-			signed_notsigned=>signed_notsigned
-		);
+			signed_notsigned=>signed_notsigned,
+			zero_mul_detect => zero_mul_detect,
+			mul_exeception => mul_exeception
+			);
 
 	-- memory stage
 	--a load, data return from memory and is placed in the LMD (Load Memory Data) register.
