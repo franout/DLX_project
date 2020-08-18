@@ -80,8 +80,14 @@ vcom -2008 -check_synthesis ${path_to_file}a.b-DataPath.core/a.b.c-Execute.stage
 vcom -2008 -check_synthesis ${path_to_file}a.b-DataPath.core/a.b.d.Memory.stage.vhd 
 vcom -2008 -check_synthesis ${path_to_file}a.b-DataPath.core/a.b.b-Decode.stage/a.b.b.a-sign_extension.vhd 
 vcom -2008 -check_synthesis ${path_to_file}a.b-DataPath.core/a.b.c-Execute.stage/a.b.c.a-check_branch_logic.vhd 
-vcom -2008 -check_synthesis ${path_to_file}a.b-DataPath.core/a.b.c.b-general_alu.vhd 
+vcom -2008 -check_synthesis ${path_to_file}a.b-DataPath.core/a.b.c-Execute.stage/a.b.c.b-general_alu.vhd 
+vcom -2008 -check_synthesis ${path_to_file}a.b-DataPath.core/a.b.c-Execute.stage/a.b.c.c-boothmul_pipelined.vhd 
+vcom -2008 -check_synthesis ${path_to_file}a.b-DataPath.core/a.b.c-Execute.stage/a.b.c.c-boothmul_pipelined.core/a.b.c.a-mux.vhd
+vcom -2008 -check_synthesis ${path_to_file}a.b-DataPath.core/a.b.c-Execute.stage/a.b.c.c-boothmul_pipelined.core/a.b.c.b-adder.vhd
+vcom -2008 -check_synthesis ${path_to_file}a.b-DataPath.core/a.b.c-Execute.stage/a.b.c.c-boothmul_pipelined.core/a.b.c.c-complement2.vhd
+vcom -2008 -check_synthesis ${path_to_file}a.b-DataPath.core/a.b.c-Execute.stage/a.b.c.c-boothmul_pipelined.core/a.b.c.d-encoder.vhd
 vcom -2008 -check_synthesis ${path_to_file}a.a-control_unit.vhd 
+vcom -2008 -check_synthesis ${path_to_file}a.DLX.vhd 
 
 echo "Compiling testbenches subunits"
 vlog -incr ${path_to_file}test_bench/test_bench_subunits/tb_writeback_stage.sv 
@@ -118,9 +124,3 @@ vism -suppress 12110 -novopt work.tb_cu -do ./scripts/cu_tb.do
 echo "[PASS] -> Regression test passed , you can safely execute the simulation.sh script for testing the DLX top level entity"
 rm -rf work 
 exit
-
-
-
-
-
-
