@@ -42,7 +42,13 @@ END COMPONENT mult_gm;
 begin
 
   -- clock gen process
-  clk <= not clk after 1ns/2;
+clk_process: process
+begin 
+clk<='1';
+wait for 0.5 ns;
+clk<='0';
+wait for 0.5 ns;
+end process clk_process;
 
 
 
@@ -68,9 +74,8 @@ dut1: boothmul_pipelined GENERIC MAP(N=>numBit)
 
     	    -- cycle for operand B
     		NumCOL:for j in 0 to (2**numBit)-1 loop
-		    wait for 1 ns;
 		    B_mp_i <= std_logic_vector(unsigned(B_mp_i)+"01");
-			WAIT for 8 ns; -- 8 cc
+			WAIT for 12 ns; 
     	    ASSERT signed(Y_mp_i)=signed(Y_mp_i1)  REPORT "wrong multiplication" SEVERITY WARNING;
 
 		end loop NumCOL ;
