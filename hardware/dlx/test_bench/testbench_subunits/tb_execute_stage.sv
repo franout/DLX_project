@@ -299,7 +299,11 @@ localparam clock_period= 10ns;
 	wire [`NUMBIT-1:0]val_a ,val_b;
 	wire [`NUMBIT-1:0]val_immediate;
 	wire [`IRAM_WORD_SIZE-1:0]new_prog_counter_val_exe;
-	TYPE_OP_ALU_sv alu_op_type;
+	`ifndef VIVADO_SIM
+		TYPE_OP_ALU_sv alu_op_type;
+	`else 
+		wire [3:0] alu_op_type;
+	`endif
 	wire [`NUMBIT-1:0]alu_output_val;
 	wire [0:0] sel_val_a;
 	wire [0:0] sel_val_b;       
@@ -307,7 +311,7 @@ localparam clock_period= 10ns;
 	logic branch_condition;
 	logic [`NUMBIT-1:0] value_to_mem;
 	logic [`NUMBIT-1:0]prog_counter_forwaded;
-	logic cin, overflow,zero_mul_detect, mul_exeception;
+	logic cin, overflow,zero_mul_detect, mul_exeception,signed_notsigned;
 
 	assign cin= '0;
   	// property definition
@@ -356,6 +360,7 @@ localparam clock_period= 10ns;
 			.sel_val_a(sel_val_a),       
 			.sel_val_b(sel_val_b), 
 			/*add check for cin and overflow TODO*/
+			.signed_notsigned(signed_notsigned),
 			.cin(cin) ,
 			.overflow(overflow),
 			.zero_mul_detect(zero_mul_detect) ,

@@ -31,7 +31,7 @@ typedef enum  bit [3:0]{ADD, SUB, MULT, BITAND, BITOR, BITXOR, FUNCLSL, FUNCLSR,
 
 
 // uncomment using vivado simulator 'cause some sv system call are not supported from vivavo simulator
-`define VIVADO_SIM 1 // comment using questa sim simulator
+//`define VIVADO_SIM 1 // comment using questa sim simulator
 
 `endif // __GLOBAL_DEFS__SVH
 
