@@ -1,6 +1,9 @@
 #!/usr/bin/bash
 echo "Starting synthesis setup"
-cd ../project/
+cd ..
+export path_to_file="./hardware/dlx/"
+cd project/
+
 
 if [ -d "./synthesis" ] ;then 
 	cp -r ./synthesis ./synthesis.old
@@ -9,6 +12,8 @@ if [ -d "./synthesis" ] ;then
 fi
 mkdir synthesis
 cd synthesis 
+mkdir report
+mkdir output_netlist
 cp ../../scripts/.synopsys_dc.setup .
 setsynopsys
 mkdir work 

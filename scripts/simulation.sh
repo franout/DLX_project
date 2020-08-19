@@ -1,7 +1,14 @@
 #!/usr/bin/bash
 
+path_to_file="./hardware/dlx/"
 ## using questasim 
 source /software/scripts/init_questa10.7c 
+
+if [ -z $1 ]; then
+	echo "usage ./simulation.sh sbst.asm"
+	exit(-1)
+fi
+
 
 path_to_hex_test_program = $1
 if [ -z "$path_to_hex_test_program" ] ; then
@@ -26,7 +33,6 @@ vcom -2008 -check_synthesis ${path_to_file}001-global_components.vhd
 # vcom for vhdl-2008 and drc for synthesis (basic)
 
 echo "Compiling labs units"
-vcom -2008 -check_synthesis ${path_to_file}global_components.package/wrf.vhd 
 vcom -2008 -check_synthesis ${path_to_file}global_components.package/adder.vhd 
 vcom -2008 -check_synthesis ${path_to_file}global_components.package/alu.vhd 
 vcom -2008 -check_synthesis ${path_to_file}global_components.package/alu_type.vhd 
@@ -38,10 +44,7 @@ vcom -2008 -check_synthesis ${path_to_file}global_components.package/encoder.vhd
 vcom -2008 -check_synthesis ${path_to_file}global_components.package/fa.vhd 
 vcom -2008 -check_synthesis ${path_to_file}global_components.package/fd.vhd 
 vcom -2008 -check_synthesis ${path_to_file}global_components.package/gsb.vhd 
-vcom -2008 -check_synthesis ${path_to_file}global_components.package/mult_gm.vhd 
 vcom -2008 -check_synthesis ${path_to_file}global_components.package/mux.vhd 
-vcom -2008 -check_synthesis ${path_to_file}global_components.package/mux21.vhd 
-vcom -2008 -check_synthesis ${path_to_file}global_components.package/mux21_nbit.vhd 
 vcom -2008 -check_synthesis ${path_to_file}global_components.package/p4_adder.vhd 
 vcom -2008 -check_synthesis ${path_to_file}global_components.package/pgsb.vhd 
 vcom -2008 -check_synthesis ${path_to_file}global_components.package/rca.vhd 
