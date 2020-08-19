@@ -7,7 +7,7 @@
 // Author : Angione Francesco s262620@studenti.polito.it franout@Github.com
 // File   : tb_dlx.sv
 // Create : 2020-07-21 19:00:18
-// Revise : 2020-08-13 17:28:42
+// Revise : 2020-08-19 22:34:14
 // Editor : sublime text3, tab size (4)
 // Description: 
 // -----------------------------------------------------------------------------
@@ -63,7 +63,7 @@ module tb_dlx ();
 
 	// Instruction memory
 	// instantiate the interface
-	romem_interface #(.ADDRESS_SIZE(`IRAM_ADDRESS_SIZE),
+	mem_interface #(.ADDRESS_SIZE(`IRAM_ADDRESS_SIZE),
 		.WORD_SIZE(`IRAM_WORD_SIZE)) 
 	iram_if (clk);
 
@@ -76,7 +76,7 @@ module tb_dlx ();
 	(.mif(iram_if));
 	
 
-	rwmem_interface #(.ADDRESS_SIZE(`DRAM_ADDRESS_SIZE),
+	mem_interface #(.ADDRESS_SIZE(`DRAM_ADDRESS_SIZE),
 			.WORD_SIZE(`DRAM_WORD_SIZE))
 	dram_if (clk);
 	// Data memory
@@ -92,7 +92,7 @@ module tb_dlx ();
 	//DLX top level entity
 	DLX #(
     .IR_SIZE(`IRAM_WORD_SIZE),
-    .PC_SIZE(`DRAM_WORD_SIZE)
+    .PC_SIZE(`IRAM_ADDRESS_SIZE)
   ) dlx_uut (
   	// verbose assignmento of the interfaces signals 
   	// Inputs

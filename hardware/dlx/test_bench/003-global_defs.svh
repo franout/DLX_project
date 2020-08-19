@@ -23,9 +23,19 @@
 `define  DRAM_SIZE 2**16-1
 `define  DRAM_ADDRESS_SIZE 16
 
-`define CU_STATES 10
+`define CU_STATES 4
 
-typedef enum {power_up, idle } cu_state_t;
+`define  ENDIANESS                      "big"; // for memory access
+`define  OPCODE_LENGTH                  6  // length in the instruction 
+`define  REGISTER_ADDRESS_FIELD_LENGTH  5  // length in the instruction 
+`define  IMMEDIATE_LENGTH               16 //  for I-type instructions
+`define  ALU_FUNCTION_LENGTH            11 // for R-type instructions
+`define  JUMP_ADDRESS_LENGTH            26 // for J-type instruction  
+`define  OP_CODE_SIZE  6  // OPCODE field size
+`define  FUNC_SIZE      11 // FUNC field size
+`define  TOT_CU_SIGN  32  // number of total signoal (I/O) of control unit
+
+typedef enum bit[$clog2(`CU_STATES)-1:0]{hang_error,idle,fetch, decode } cu_state_t;
 
 typedef enum  bit [3:0]{ADD, SUB, MULT, BITAND, BITOR, BITXOR, FUNCLSL, FUNCLSR, FUNCRL, FUNCRR} TYPE_OP_ALU_sv ; // error in importing the enum from vhdl
 

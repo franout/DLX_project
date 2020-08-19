@@ -6,7 +6,7 @@
 -- Author      : Francesco Angione <s262620@studenti.polito.it> franout@github.com
 -- Company     : Politecnico di Torino, Italy
 -- Created     : Wed Jul 22 22:56:54 2020
--- Last update : Fri Aug 14 12:28:12 2020
+-- Last update : Wed Aug 19 22:52:05 2020
 -- Platform    : Default Part Number
 -- Standard    : VHDL-2008 
 --------------------------------------------------------------------------------
@@ -36,7 +36,7 @@ package globals is
         --------------------------------------------------------------------------------
         -- for debug purpuses
         --synthesis_translate off
-        constant tot_state : integer := 1;
+        constant tot_state : integer := 4;
         --synthesis_translate on
         --------------------------------------------------------------------------------
 
@@ -50,7 +50,7 @@ package globals is
         constant jump_address_length           : integer := 26; -- for J-type instruction  
         constant OP_CODE_SIZE : integer := 6;  -- OPCODE field size
         constant FUNC_SIZE    : integer := 11; -- FUNC field size
-        constant tot_cu_sign : integer := 32;  -- number of total signoal (I/O) of control unit
+        constant tot_cu_sign : integer := 19;  -- number of total signoal (I/O) of control unit
 
         -- definition for data
         constant data_size : integer := 32;
@@ -77,6 +77,11 @@ package globals is
             );
         attribute encoding: std_logic_vector(OP_CODE_SIZE-1 downto 0);
         attribute encoding of i_add[return instruction] : literal is b"10"&x"0";
+        attribute encoding of i_addi[return instruction] : literal is b"00"&x"8";
+
+        attribute encoding of i_nop[return instruction] : literal is b"01"&x"5";
+
+        attribute encoding of i_j[return instruction] : literal is b"00"&x"2";
         -- TODO add all the encodings of the instruction basic version 
 
 

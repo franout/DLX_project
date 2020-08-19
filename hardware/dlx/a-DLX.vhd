@@ -6,7 +6,7 @@
 -- Author      : Francesco Angione <s262620@studenti.polito.it> franout@github.com
 -- Company     : Politecnico di Torino, Italy
 -- Created     : Wed Jul 22 22:58:15 2020
--- Last update : Tue Aug 18 17:22:38 2020
+-- Last update : Wed Aug 19 22:19:29 2020
 -- Platform    : Default Part Number
 -- Standard    : VHDL-2008 
 --------------------------------------------------------------------------------
@@ -47,10 +47,29 @@ entity DLX is
     -- cpu status signals in case of exception or hang --------------------------
     ----------------------------------------------------------------------------
     cpu_status        : out std_logic_vector(1 downto 0)
-    -- simulation debug signals
+    -- simulation debug signals and verification purposes
     --synthesis_translate off
     ;
-    STATE_CU : out std_logic_vector(f_log2(tot_state)-1 downto 0)
+    STATE_CU : out std_logic_vector(f_log2(tot_state)-1 downto 0);
+    -- all the control unit signals
+    DEBUG_iram_ready_cu: out std_logic;
+    DEBUG_iram_enable_cu: out std_logic;
+    DEBUG_signed_notsigned: out std_logic;
+    DEBUG_compute_sext: out std_logic;
+    DEBUG_write_rf: out std_logic;
+    DEBUG_evaluate_branch: out std_logic;
+    DEBUG_alu_cin: out std_logic;
+    DEBUG_alu_overflow: out std_logic;
+    DEBUG_zero_mul_detect: out std_logic;
+    DEBUG_mul_exeception: out std_logic;
+    DEBUG_dram_ready_cu: out std_logic;
+    DEBUG_dram_r_nw_cu: out std_logic;
+    DEBUG_rstn: out std_logic;
+    DEBUG_enable_rf: out std_logic;
+    DEBUG_read_rf_p1: out std_logic;
+    DEBUG_read_rf_p2: out std_logic;
+    DEBUG_rtype_itypen: out std_logic;
+    DEBUG_dram_enable_cu: out std_logic
   --synthesis_translate on
   );
 end DLX;
@@ -284,7 +303,26 @@ begin -- DLX
       select_wb => select_wb_i
     );
 
+ --synthesis_translate off
+ DEBUG_iram_ready_cu<=iram_ready_cu_i;
+ DEBUG_iram_enable_cu<=iram_enable_cu_i;
+ DEBUG_signed_notsigned<=signed_notsigned_i;
+ DEBUG_compute_sext<=compute_sext_i;
+ DEBUG_write_rf<=write_rf_i;
+ DEBUG_evaluate_branch<=evaluate_branch_i;
+ DEBUG_alu_cin<=alu_cin_i;
+ DEBUG_alu_overflow<=alu_overflow_i;
+ DEBUG_zero_mul_detect<=zero_mul_detect_i;
+ DEBUG_mul_exeception<=mul_exeception_i;
+ DEBUG_dram_ready_cu<=dram_ready_cu_i;
+ DEBUG_dram_r_nw_cu<=dram_r_nw_cu_i;
+ DEBUG_rstn<=rstn;
+ DEBUG_enable_rf<=enable_rf_i;
+ DEBUG_read_rf_p1<=read_rf_p1_i;
+ DEBUG_read_rf_p2<=read_rf_p2_i;
+ DEBUG_rtype_itypen<=rtype_itypen_i;
+ DEBUG_dram_enable_cu <=dram_enable_cu_i;
 
-
+  --synthesis_translate on
 
 end dlx_rtl;

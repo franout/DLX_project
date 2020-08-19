@@ -16,9 +16,12 @@
 
 
 
-enum byte {
-	nop
-} instructions;
+enum bit[5:0] {
+	i_add=6'h20,
+	i_addi=6'h08,
+	i_nop=6'h15,
+	i_j=6'h02,
+} instructions_opcode;
 
 
 //General instructions
