@@ -24,6 +24,7 @@ program automatic test_prog (input logic clk, input logic rst,
 	endclocking 
 	`endif
 instructions_opcode current_opcode;
+instructions_regtype_opcode current_opcode_alu_fun;
 
 initial begin 
 		$display("@%0dns Starting Program",$time);
@@ -41,51 +42,34 @@ initial begin
 		`else 
 		repeat(2)@ (posedge clk);
 		`endif
+        current_opcode=instructions_opcode.first();
+        $display("Looping over all instructions",);
+        for (; current_opcode !== instructions_opcode.last(); ) begin
+            
+            if(current_opcode===i_regtype)then 
+                $display("Looping over all regtype instructions",);
+                current_opcode_alu_fun=instructions_regtype_opcode.first();
+
+                for (;current_opcode_alu_fun!==instructions_regtype_opcode.last() ; ) begin
+                    /* code */
+
+                    current_opcode_alu_fun=current_opcode_alu_fun.next();
+                end
+                // execute last instruction
+
+            end else begin 
 
 
-    /*
 
-          when i_add =>
-                        cmd_word<=x"7c13"; --111 1100 0001 0011
-                        --  control for not writing to r0 
-                        if(curr_instruction_to_cu(15 downto 11)=(OTHERS=>'0')  )then -- check destination error
-                         --rtype_itypen ='1' 
-                          next_state<=hang_error;
-                        end if;
-                    when i_addi=> 
-                         cmd_word<=x"";
-                         if(curr_instruction_to_cu(20 downto 16)=(OTHERS=>'0') )then -- check destination error
-                         --rtype_itypen ='0' 
-                          next_state<=hang_error;
-                        end if;
-                    when i_and =>
-                    when i_andi=>
-                    when i_beqz=>
-                    when i_benz=>
-                    when i_j=>
-                    when i_jal=>
-                    when i_lw=>
-                    when i_nop=>
-                    when i_or=>
-                    when i_ori=>
-                    when i_sgl=>
-                    when i_sgei=>
-                    when i_sle=>
-                    when i_slei=>
-                    when i_sll=>
-                    when i_slli=>
-                    when i_sne=>
-                    when i_snei=>
-                    when i_srl=>
-                    when i_srli=>
-                    when i_sub=>
-                    when i_subi=>
-                    when i_sw=>
-                    when i_xor=>
-                    when i_xori=>
-                    when i_mul=>
-				
-      */
+            end if;
+
+
+            current_opcode=current_opcode.next(); //update instruction
+        end
+
+
+        // execute last instruction 
+   
 		`ifndef  VIVADO_SIM
 		##1;
 		`else 
@@ -108,9 +92,42 @@ localparam clock_period= 10ns;
   	// Specify the default clocking
   	default clocking test_clk @ (posedge clk);
   	endclocking	// clock
-  	logic [$clog2(`CU_STATES)-1:0]STATE_CU;
 
+
+    logic  rst;
+    logic iram_enable_cu;
+    logic iram_ready_cu;
+    logic curr_instruction_to_cu;
+    logic enable_rf;
+    logic read_rf_p1;
+    logic read_rf_p2;
+    logic write_rf;
+    logic rtype_itypen_i;
+    logic compute_sext;
+    logic alu_op_type;
+    logic sel_val_a;
+    logic sel_val_b;
+    logic alu_cin;
+    logic alu_overflow;
+    logic evaluate_branch;
+    logic zero_mul_detect;
+    logic mul_exeception;
+    logic dram_enable_cu;
+    logic dram_r_nw_cu;
+    logic dram_ready_cu;
+    logic select_wb;
+
+  	logic [$clog2(`CU_STATES)-1:0]STATE_CU;
+    logic [7:0] csr;
   	// property definition
+    property check_logic_mul_exception;
+
+    endproperty check_logic_mul_exception;
+
+
+    property multiplication_stall;
+
+    endproperty multiplication_stall;
 
   	// property instantiation
 
@@ -121,7 +138,7 @@ localparam clock_period= 10ns;
     .FUNC_SIZE    (`FUNC_SIZE), // Func Field Size for R-Type Ops
     .OP_CODE_SIZE (`OP_CODE_SIZE), // Op Code Size
     .IR_SIZE      (`IRAM_WORD_SIZE), // Instruction Register Size    
-    .CW_SIZE      (`)  // Control Word Size
+    .CW_SIZE      (`TOT_CU_SIGN)  // Control Word Size
   ) uut 
    (
     .clk(clk),
@@ -157,7 +174,8 @@ localparam clock_period= 10ns;
     // simulation debug signals
     //synthesis_translate off
     ,
-    .STATE_CU(STATE_CU)
+    .STATE_CU(STATE_CU),
+    .csr(csr)
     //synthesis_translate on
   );
 

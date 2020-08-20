@@ -33,7 +33,7 @@
 `define  JUMP_ADDRESS_LENGTH            26 // for J-type instruction  
 `define  OP_CODE_SIZE  6  // OPCODE field size
 `define  FUNC_SIZE      11 // FUNC field size
-`define  TOT_CU_SIGN  32  // number of total signoal (I/O) of control unit
+`define  TOT_CU_SIGN  19  // number of total signoal (I/O) of control unit
 
 typedef enum bit[$clog2(`CU_STATES)-1:0]{hang_error,idle,fetch, decode } cu_state_t;
 

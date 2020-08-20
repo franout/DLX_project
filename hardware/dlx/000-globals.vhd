@@ -6,7 +6,7 @@
 -- Author      : Francesco Angione <s262620@studenti.polito.it> franout@github.com
 -- Company     : Politecnico di Torino, Italy
 -- Created     : Wed Jul 22 22:56:54 2020
--- Last update : Wed Aug 19 22:52:05 2020
+-- Last update : Thu Aug 20 19:09:38 2020
 -- Platform    : Default Part Number
 -- Standard    : VHDL-2008 
 --------------------------------------------------------------------------------
@@ -70,22 +70,41 @@ package globals is
 
         -- see also implemented_instruction.svh in ./test_bench
         type instruction is (
-                i_add,i_addi ,i_and  ,i_andi ,i_beqz ,i_benz ,i_j ,i_jal ,i_lw ,i_nop ,i_or 
-                ,i_ori ,i_sgl ,i_sgei ,i_sle ,i_slei ,i_sll ,i_slli ,i_sne ,i_snei ,i_srl ,
+                i_regtype,i_add,i_addi ,i_mul,i_and  ,i_andi ,i_beqz ,i_benz ,i_j ,i_jal ,i_lw ,i_nop ,i_or 
+                ,i_ori ,i_sge ,i_sgei ,i_sle ,i_slei ,i_sll ,i_slli ,i_sne ,i_snei ,i_srl ,
                 i_srli ,i_sub ,i_subi ,i_sw ,i_xor ,i_xori
 
             );
         attribute encoding: std_logic_vector(OP_CODE_SIZE-1 downto 0);
+        attribute encoding of i_regtype[return instruction] : literal is b"00"&x"0";
         attribute encoding of i_add[return instruction] : literal is b"10"&x"0";
         attribute encoding of i_addi[return instruction] : literal is b"00"&x"8";
-
-        attribute encoding of i_nop[return instruction] : literal is b"01"&x"5";
-
+        attribute encoding of i_mul[return instruction] : literal is b"11"&x"f";
+        attribute encoding of i_and[return instruction] : literal is b"10"&x"4";
+        attribute encoding of i_andi[return instruction] : literal is b"00"&x"c";
+        attribute encoding of i_beqz[return instruction] : literal is b"00"&x"4";
+        attribute encoding of i_benz[return instruction] : literal is b"00"&x"5";
         attribute encoding of i_j[return instruction] : literal is b"00"&x"2";
-        -- TODO add all the encodings of the instruction basic version 
-
-
-
+        attribute encoding of i_jal[return instruction] : literal is b"00"&x"3";
+        attribute encoding of i_lw[return instruction] : literal is b"10"&x"3";
+        attribute encoding of i_nop[return instruction] : literal is b"01"&x"5";
+        attribute encoding of i_or[return instruction] : literal is b"10"&x"5";
+        attribute encoding of i_ori[return instruction] : literal is b"00"&x"d";
+        attribute encoding of i_sge[return instruction] : literal is b"10"&x"d";
+        attribute encoding of i_sgei[return instruction] : literal is b"01"&x"d";
+        attribute encoding of i_sle[return instruction] : literal is b"10"&x"c";
+        attribute encoding of i_slei[return instruction] : literal is b"01"&x"c";
+        attribute encoding of i_sll[return instruction] : literal is b"00"&x"4";
+        attribute encoding of i_slli[return instruction] : literal is b"01"&x"4";
+        attribute encoding of i_sne[return instruction] : literal is b"10"&x"9";
+        attribute encoding of i_snei[return instruction] : literal is b"01"&x"9";
+        attribute encoding of i_srl[return instruction] : literal is b"00"&x"6";
+        attribute encoding of i_srli[return instruction] : literal is b"10"&x"6";
+        attribute encoding of i_sub[return instruction] : literal is b"10"&x"2";
+        attribute encoding of i_subi[return instruction] : literal is b"00"&x"a";
+        attribute encoding of i_sw[return instruction] : literal is b"10"&x"b";
+        attribute encoding of i_xor[return instruction] : literal is b"10"&x"6";
+        attribute encoding of i_xori[return instruction] : literal is b"00"&x"e";
 
         end globals;
 
