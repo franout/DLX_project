@@ -38,14 +38,14 @@ sub printusageandexit {
 };
 
 &GetOptions ("debug" => \$debug,
-	     "o=s" => \$exefile,
-	     "executable=s" => \$exefile,
-	     "sym=s" => \$symfile,
-	     "list=s" => \$listfile,
-	     "init=s" => \$startlabel,
-	     "X=s" => \$asmfile,
-	     "help" => \&printusageandexit,
-	    );
+       "o=s" => \$exefile,
+       "executable=s" => \$exefile,
+       "sym=s" => \$symfile,
+       "list=s" => \$listfile,
+       "init=s" => \$startlabel,
+       "X=s" => \$asmfile,
+       "help" => \&printusageandexit,
+      );
 
 &printusageandexit if ($#ARGV != 0);
 
@@ -86,6 +86,7 @@ if ($srcfile =~ /^(.*)\.dlx$/) {
   "sgtu"  => "r,0x3b",
   "sleu"  => "r,0x3c",
   "sgeu"  => "r,0x3d",
+  "imul" => "r,0x3f",
 # Floating-point instructions
   "addf"  => "f,0x00",
   "subf"  => "f,0x01",
@@ -163,24 +164,22 @@ if ($srcfile =~ /^(.*)\.dlx$/) {
   "sgtui" => "i,0x3b",
   "sleui" => "i,0x3c",
   "sgeui" => "i,0x3d",
-  ## for stopping dlx to fetch from memory
-  "halt" => "n,0x3f"
 );
 %specialreg = ("pc" => 0,
-	       "ir31" => 2,
-	       "isr" => 3,
-	       "iar" => 4,
-	       "status" => 5,
-	       "cause" => 6,
-	       "intrvec" => 8,
-	       "fault" => 9,
-	       "ptbase" => 16,
-	       "ptsize" => 17,
-	       "ptbits" => 18,
-	       "tlbentry" => 20,
-	       "tlbvaddr" => 21,
-	       "tlbpaddr" => 22,
-	      );
+         "ir31" => 2,
+         "isr" => 3,
+         "iar" => 4,
+         "status" => 5,
+         "cause" => 6,
+         "intrvec" => 8,
+         "fault" => 9,
+         "ptbase" => 16,
+         "ptsize" => 17,
+         "ptbits" => 18,
+         "tlbentry" => 20,
+         "tlbvaddr" => 21,
+         "tlbpaddr" => 22,
+        );
 
 # Do pass one.  In this pass, we just figure out label values.  To allow
 # for relocation as late as possible, both text and data labels are
@@ -216,19 +215,19 @@ for ($pass = 1; $pass <= 2; $pass++) {
     if ($asmfile ne "") {
       printf ASM "start:%08x %08x ", $startloc, $endaddr;
       printf (ASM "%08x %08x %08x %08x\n", $start{"t"},
-	      $maxtaddr-$start{"t"}, $start{"d"}, $maxdaddr-$start{"d"});
+        $maxtaddr-$start{"t"}, $start{"d"}, $maxdaddr-$start{"d"});
     }
     if ($listfile ne "") {
       open (LISTING, ">$listfile") or
-	die "Couldn't open $listfile for output.";
+  die "Couldn't open $listfile for output.";
       printf LISTING "%5s  %8s\t%8s\n", "line", "address", "contents";
     }
     if ($exefile ne "") {
       $executable = "\x00" x $endaddr;
       $hdr = pack ("L*", $exemagic, $endaddr, $startloc,
-		   $start{"t"}, $maxtaddr-$start{"t"},
-		   $start{"d"}, $maxdaddr-$start{"d"},
-		   $start{"b"}, $bsslen);
+       $start{"t"}, $maxtaddr-$start{"t"},
+       $start{"d"}, $maxdaddr-$start{"d"},
+       $start{"b"}, $bsslen);
       # substr ($executable, 0, length ($hdr), $hdr);
     }
   }
@@ -249,7 +248,7 @@ line:
     # skip comments
     if (/^\;/) {
       if (($pass == 2) and ($listfile ne "")) {
-	printf LISTING "%5d  %20s%s\n", $lineno, "", $curline;
+  printf LISTING "%5d  %20s%s\n", $lineno, "", $curline;
       }
       next line;
     }
@@ -262,20 +261,20 @@ line:
     print STDERR "Op is '$op'\n" if ($debug);
     if ($op =~ /^([a-zA-Z0-9_]+)\:$/) {
       if ($pass == 1) {
-	# set label value
-	$val{$1} = $addr{$section};
+  # set label value
+  $val{$1} = $addr{$section};
       }
     } elsif (/^[a-zA-Z]+/) {
       if ($pass == 1) {
-	if ($section eq "d") {
-	  warn "Instructions not allowed in data segment " .
-	    "(at line $lineno)\n";
-	  $error = 1;
-	}
+  if ($section eq "d") {
+    warn "Instructions not allowed in data segment " .
+      "(at line $lineno)\n";
+    $error = 1;
+  }
       } else {
-	# Handle instructions for second pass.  This means outputting
-	# the correct code.
-	$out = pack ("N", &forminstr ($_));
+  # Handle instructions for second pass.  This means outputting
+  # the correct code.
+  $out = pack ("N", &forminstr ($_));
       }
       $addr{$section} += 4;
     } elsif (/^\.(text|data)/) {
@@ -284,14 +283,14 @@ line:
       ($section, $tmp) = split (/\s+/, $_, 3);
       $section = substr($section, 1, 1);
       if ($tmp ne "") {
-	if ($tmp =~ /^0/) {
-	  $addr{$section} = oct ($tmp);
-	} else {
-	  $addr{$section} = $tmp;
-	}
-	if ($start{$section} == -1) {
-	  $start{$section} = $addr{$section};
-	}
+  if ($tmp =~ /^0/) {
+    $addr{$section} = oct ($tmp);
+  } else {
+    $addr{$section} = $tmp;
+  }
+  if ($start{$section} == -1) {
+    $start{$section} = $addr{$section};
+  }
       }
       print "Section $section now at $addr{$section}.\n" if ($debug);
     } elsif (/^\.(proc|endproc|global)/) {
@@ -301,9 +300,9 @@ line:
       ($op, $n, $rest) = split (/\s+/, $_, 3);
       print "SPACE: line is '$_' op = $op, n = $n, rest = $rest\n" if ($debug);
       if ($section eq "t") {
-	warn ".space can't be used in the text segment " .
-	  "(at line $lineno)!\n";
-	$error = 1;
+  warn ".space can't be used in the text segment " .
+    "(at line $lineno)!\n";
+  $error = 1;
       }
       $addr{$section} += $n;
     } elsif (/^\.ascii(z?)/) {
@@ -317,9 +316,9 @@ line:
       my @args = split (/\s*,\s*/);
       $args[0] =~ s/\.[a-z]+\s+//;
       if ($tp =~ /byte|word/) {
-	for ($i = 0; $i <= $#args; $i++) {
-	  $args[$i] = &getimm ($args[$i]);
-	}
+  for ($i = 0; $i <= $#args; $i++) {
+    $args[$i] = &getimm ($args[$i]);
+  }
       }
       $out = pack ("C*", @args) if ($tp eq "byte");
       $out = pack ("N*", @args) if ($tp eq "word");
@@ -334,42 +333,42 @@ line:
       # correctly aligned, and align to the next possible point if
       # it's not aligned.
       if (($addr{$section} & $mask) != 0) {
-	$addr{$section} += $mask;
-	$addr{$section} &= ~$mask;
-	# Force the next line to include an address at the start
-	$prevaddr = $addr{$section};
+  $addr{$section} += $mask;
+  $addr{$section} &= ~$mask;
+  # Force the next line to include an address at the start
+  $prevaddr = $addr{$section};
       }
     }
     if ($pass == 2) {
       if ($out ne "") {
-	# Output the current value
-	if ($asmfile ne "") {
-	  if ($curaddr != ($prevaddr + 4)) {
-	    printf (ASM "%08x", $curaddr);
-	  }
-	  my $data = unpack ("H*", $out);
-	  my $j;
-	  for ($j = 0; $j < length ($data); $j += 8) {
-	    print ASM ":" . substr ($data,$j,8) . "\n";
-	  }
-	  $prevaddr = $curaddr;
-	}
-	if ($exefile ne "") {
-	  substr ($executable, $curaddr, length ($out), $out);
-	}
+  # Output the current value
+  if ($asmfile ne "") {
+    if ($curaddr != ($prevaddr + 4)) {
+      printf (ASM "%08x", $curaddr);
+    }
+    my $data = unpack ("H*", $out);
+    my $j;
+    for ($j = 0; $j < length ($data); $j += 8) {
+      print ASM ":" . substr ($data,$j,8) . "\n";
+    }
+    $prevaddr = $curaddr;
+  }
+  if ($exefile ne "") {
+    substr ($executable, $curaddr, length ($out), $out);
+  }
       }
       if ($listfile ne "") {
-	# Generate the list of numbers to output
-	my $data = unpack ("H*", $out);
-	my $i = $curaddr;
-	my $j;
-	$data = " " if ($data eq "");
-	for ($j = 0; $j < length ($data); $j += 8) {
-	  printf (LISTING "%5d  %08x  %-8s\t%s\n", $lineno,
-		  $i, substr ($data, $j, 8), $curline);
-	  $i += 4;
-	  $curline = "";
-	}
+  # Generate the list of numbers to output
+  my $data = unpack ("H*", $out);
+  my $i = $curaddr;
+  my $j;
+  $data = " " if ($data eq "");
+  for ($j = 0; $j < length ($data); $j += 8) {
+    printf (LISTING "%5d  %08x  %-8s\t%s\n", $lineno,
+      $i, substr ($data, $j, 8), $curline);
+    $i += 4;
+    $curline = "";
+  }
       }
     }
   }
@@ -420,12 +419,12 @@ sub getimm {
     if ($p[$i] =~ /^[_a-zA-Z]/) {
       # Look up value in symbol table, and replace it
       if (! defined ($val{$p[$i]})) {
-	if ($pass != 1) {
-	  warn "Undefined symbol: $p[$i]\n";
-	}
-	$p[$i] = 0;
+  if ($pass != 1) {
+    warn "Undefined symbol: $p[$i]\n";
+  }
+  $p[$i] = 0;
       } else {
-	$p[$i] = $val{$p[$i]};
+  $p[$i] = $val{$p[$i]};
       }
     }
   }
@@ -507,10 +506,10 @@ sub forminstr {
     if ($itype eq "b") {
       $src1 = &getreg ($a[1]);
       $dst = &getimm ($a[2]);
-    } else {	# b0 - branches w/o operands
+    } else {  # b0 - branches w/o operands
       $src1 = 0;
       $dst = &getimm ($a[1]);
-	   }
+     }
     $dst -= $addr{t} + 4;
     $out = ($op << 26) | ($src1 << 21) | ($dst & 0xffff);
   } elsif ($itype eq "j") {
