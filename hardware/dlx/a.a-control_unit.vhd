@@ -6,7 +6,7 @@
 -- Author      : Francesco Angione <s262620@studenti.polito.it> franout@github.com
 -- Company     : Politecnico di Torino, Italy
 -- Created     : Thu Jul 23 15:49:45 2020
--- Last update : Thu Aug 20 19:58:07 2020
+-- Last update : Fri Aug 21 17:21:03 2020
 -- Platform    : Default Part Number
 -- Standard    : VHDL-2008 
 --------------------------------------------------------------------------------
@@ -29,7 +29,7 @@ entity control_unit is
     FUNC_SIZE    : integer := 11; -- Func Field Size for R-Type Ops
     OP_CODE_SIZE : integer := 6;  -- Op Code Size
     IR_SIZE      : integer := 32; -- Instruction Register Size    
-    CW_SIZE      : integer := 19  -- Control Word Size
+    CW_SIZE      : integer := 20  -- Control Word Size
   );
   port (
     clk : in std_logic;
@@ -39,8 +39,8 @@ entity control_unit is
     iram_ready_cu          : in  std_logic;
     curr_instruction_to_cu : in  std_logic_vector(IR_SIZE-1 downto 0);
     -- for decode stage
-    enable_rf    : out std_logic;
-    read_rf_p1   : out std_logic;
+    enable_rf    : out std_logic; -- used as enable for sign26 extention when equal to 0
+    read_rf_p1   : out std_logic; -- if read_rf_p1/2 are both zero it is a jal instruction write address -> 31
     read_rf_p2   : out std_logic;
     write_rf     : out std_logic;
     rtype_itypen : out std_logic;
@@ -51,7 +51,7 @@ entity control_unit is
     sel_val_b        : out std_logic_vector(0 downto 0 );
     signed_notsigned : out std_logic;
     alu_cin          : out std_logic;
-    evaluate_branch  : out std_logic;
+    evaluate_branch  : out std_logic_vector(1 downto 0); -- msb for evaluate branch negated(!=0) lsb for evaluate branch (==0)
     -- from execute stage
     alu_overflow : in std_logic;
     -- exception control logic for multiplication 
@@ -93,7 +93,10 @@ architecture behavioural of control_unit is
   -- a status register for possible overflow or write to forbidden registers
   signal csr_reg,next_value_csr : std_logic_vector(7 downto 0);
 
-
+  -- constant signal assignement
+  constant feth_cmd : std_logic_vector(CW_SIZE-1-4 downto 0) := x"7000"; 
+  constant ireg_cmd : std_logic_vector(CW_SIZE-1-4 downto 0) :=  x"f713"; 
+  constant imm_cmd : std_logic_vector(CW_SIZE-1-4 downto 0) := x"e513"; 
 
 begin
   ir_opcode <= curr_instruction_to_cu(IR_SIZE-1 downto IR_SIZE-1-OP_CODE_SIZE);
@@ -135,13 +138,13 @@ begin
         next_state <= curr_state;
         end if;
       when fetch => next_state <= decode;
-        cmd_word                 <= x"4000";
+        cmd_word                 <= feth_cmd;
       when decode =>
         if(iram_ready_cu='1') then
           next_state <= decode;
           case (ir_opcode) is
             when i_regtype'encoding =>
-              cmd_word <= x"7c13";
+              cmd_word <=ireg_cmd;
 
               -- alu function generator
               case (ir_func) is
@@ -167,7 +170,7 @@ begin
               end if;
             when i_addi'encoding       =>
               cmd_alu_op_type <= (OTHERS => '0');
-              cmd_word        <= x"70b3";
+              cmd_word        <= imm_cmd;
               -- check if r0 is a dest address 
               if(unsigned(curr_instruction_to_cu(15 downto 11))=0) then
                 next_state                 <= hang_error;
@@ -175,41 +178,100 @@ begin
               end if;
             when i_andi'encoding =>
               cmd_alu_op_type <= x"3";
-              cmd_word        <= x"70b3";
+              cmd_word        <= imm_cmd;
               -- check if r0 is a dest address 
               if(unsigned(curr_instruction_to_cu(15 downto 11))=0) then
                 next_state                 <= hang_error;
                 next_value_csr(7 downto 3) <= (OTHERS => '1');
               end if;
             when i_beqz'encoding =>
-            when i_benz'encoding =>
+                  cmd_alu_op_type<=x"0"; -- addition of pc +4 + immediate16
+                  cmw_word<=x"e533";--==0
+           when i_benz'encoding =>
+                  cmd_alu_op_type<=x"0"; -- addition of pc +4 + immediate16
+                 cmw_word<=x"e553"; --!=0
             when i_j'encoding    =>
+                  cmd_alu_op_type<=x"0"; -- addition of pc +4 + immediate26
+                  cmd_word<=x"8310";
             when i_jal'encoding  =>
+                -- R31 <-- PC + 4; PC <-- PC + imm26 + 4
+                cmd_alu_op_type<=x"0"; -- addition of pc + immediate26+4
+                cmd_word<=x"c313";
             when i_lw'encoding   =>
+                cmd_alu_op_type<=x"0"; -- addition of rs1 + imeediate16
+                cmd_word<=x"e51d";
+            when i_sw'encoding   =>
+                cmd_alu_op_type<=x"0";
+                cmd_word<=x"e517"; -- write to memory
             when i_nop'encoding  =>
-              cmd_word <= x"4000";
+                  cmd_word <= x"8000";
             when i_ori'encoding =>
               cmd_alu_op_type <= x"4";
-              cmd_word        <= x"70b3";
+              cmd_word        <= imm_cmd;
               -- check if r0 is a dest address 
               if(unsigned(curr_instruction_to_cu(15 downto 11))=0) then
                 next_state                 <= hang_error;
                 next_value_csr(7 downto 3) <= (OTHERS => '1');
               end if;
-            when i_sgei'encoding =>
-            when i_slei'encoding =>
-            when i_slli'encoding =>
-              cmd_alu_op_type <= x"6";
-              cmd_word        <= x"70b3";
+            when i_sge'encoding =>
+              cmd_alu_op_type <= x"8"; -- >=
+              cmd_word        <= ireg_cmd;
+              -- check if r0 is a dest address 
+              if(unsigned(curr_instruction_to_cu(10 downto 6))=0) then
+                next_state                 <= hang_error;
+                next_value_csr(7 downto 3) <= (OTHERS => '1');
+              end if;
+            when i_sgei'encoding =>   
+              cmd_alu_op_type <= x"8"; -- >=
+              cmd_word        <= imm_cmd;
               -- check if r0 is a dest address 
               if(unsigned(curr_instruction_to_cu(15 downto 11))=0) then
+                next_state                 <= hang_error;
+                next_value_csr(7 downto 3) <= (OTHERS => '1');
+              end if;
+            when i_sle'encoding =>
+              cmd_alu_op_type <= x"9"; -- <=
+              cmd_word        <= ireg_cmd;
+              -- check if r0 is a dest address 
+              if(unsigned(curr_instruction_to_cu(10 downto 6))=0) then
+                next_state                 <= hang_error;
+                next_value_csr(7 downto 3) <= (OTHERS => '1');
+              end if;
+            when i_slei'encoding =>
+              cmd_alu_op_type <= x"9"; -- <=
+              cmd_word        <= imm_cmd;
+              -- check if r0 is a dest address 
+              if(unsigned(curr_instruction_to_cu(15 downto 11))=0) then
+                next_state                 <= hang_error;
+                next_value_csr(7 downto 3) <= (OTHERS => '1');
+              end if;
+            when i_sne'encoding =>
+              cmd_alu_op_type <= x"a"; -- !=
+              cmd_word        <= ireg_cmd;
+              -- check if r0 is a dest address 
+              if(unsigned(curr_instruction_to_cu(10 downto 6))=0) then
                 next_state                 <= hang_error;
                 next_value_csr(7 downto 3) <= (OTHERS => '1');
               end if;
             when i_snei'encoding =>
+              cmd_alu_op_type <= x"a"; -- !=
+              cmd_word        <= imm_cmd;
+              -- check if r0 is a dest address 
+              if(unsigned(curr_instruction_to_cu(15 downto 11))=0) then
+                next_state                 <= hang_error;
+                next_value_csr(7 downto 3) <= (OTHERS => '1');
+              end if;
+            when i_slli'encoding =>
+              cmd_alu_op_type <= x"6";
+              cmd_word        <=imm_cmd;
+              -- check if r0 is a dest address 
+              if(unsigned(curr_instruction_to_cu(15 downto 11))=0) then
+                next_state                 <= hang_error;
+                next_value_csr(7 downto 3) <= (OTHERS => '1');
+              end if;
             when i_srli'encoding =>
               cmd_alu_op_type <= x"7";
-              cmd_word        <= x"70b3";
+              cmd_word        <= imm_cmd;
               -- check if r0 is a dest address 
               if(unsigned(curr_instruction_to_cu(15 downto 11))=0) then
                 next_state                 <= hang_error;
@@ -217,16 +279,15 @@ begin
               end if;
             when i_subi'encoding =>
               cmd_alu_op_type <= x"1";
-              cmd_word        <= x"70b3";
+              cmd_word        <= imm_cmd;
               -- check if r0 is a dest address 
               if(unsigned(curr_instruction_to_cu(15 downto 11))=0) then
                 next_state                 <= hang_error;
                 next_value_csr(7 downto 3) <= (OTHERS => '1');
               end if;
-            when i_sw'encoding   =>
             when i_xori'encoding =>
               cmd_alu_op_type <= x"5";
-              cmd_word        <= x"70b3";
+              cmd_word        <= imm_cmd;
               -- check if r0 is a dest address 
               if(unsigned(curr_instruction_to_cu(15 downto 11))=0) then
                 next_state                 <= hang_error;
@@ -279,15 +340,16 @@ begin
   sel_val_a (0)    <= cw3 (CW_SIZE-7);
   sel_val_b (0)    <= cw3 (CW_SIZE-8);
   alu_cin          <= cw3(CW_SIZE-9);
-  evaluate_branch  <= cw3(CW_SIZE-10);
-  signed_notsigned <= cw3(CW_SIZE-11);
+  evaluate_branch(1)  <= cw3(CW_SIZE-10); --!=0
+  evaluate_branch(0)  <= cw3(CW_SIZE-11);-- ==0
+  signed_notsigned <= cw3(CW_SIZE-12);
   alu_op_type      <= cw3(3 downto 0); -- it is better to cancatenate it at the end
                                        -- for memory stage
-  dram_enable_cu <= cw4(CW_SIZE-12);
-  dram_r_nw_cu   <= cw4(CW_SIZE-13);
+  dram_enable_cu <= cw4(CW_SIZE-13);
+  dram_r_nw_cu   <= cw4(CW_SIZE-14);
   -- for write back stage   
-  select_wb(0) <= cw5(CW_SIZE-14);
-  write_rf     <= cw5(CW_SIZE-15);
+  select_wb(0) <= cw5(CW_SIZE-15);
+  write_rf     <= cw5(CW_SIZE-16);
 
     -- delay register for command word
     f_reg : reg_nbit generic map (

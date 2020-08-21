@@ -6,7 +6,7 @@
 -- Author      : Francesco Angione <s262620@studenti.polito.it> franout@github.com
 -- Company     : Politecnico di Torino, Italy
 -- Created     : Wed Jul 22 23:00:04 2020
--- Last update : Fri Aug 14 13:25:19 2020
+-- Last update : Fri Aug 21 17:25:50 2020
 -- Platform    : Default Part Number
 -- Standard    : VHDL-2008 
 --------------------------------------------------------------------------------
@@ -153,6 +153,9 @@ begin
 		BITXOR              WHEN alu_op_type=x"5" else
 		FUNCLSL             WHEN alu_op_type=x"6" else
 		FUNCLSR             WHEN alu_op_type=x"7" else
+		GE 					WHEN alu_op_type=x"8" else
+		LE 					WHEN alu_op_type=x"9" else
+		NE 					WHEN alu_op_type=x"a" else
 		ADD ; --(OTHERS=>'0');
 	general_alu_i : general_alu
 		generic map (
