@@ -36,7 +36,7 @@ enum bit[5:0] {
    i_srli= 6'h26,
    i_subi=6'h0a,
    i_sw= 6'h2b,
-   i_xori=6'h0e,
+   i_xori=6'h0e
 } instructions_opcode;
 
 enum bit[5:0] {
@@ -47,8 +47,19 @@ enum bit[5:0] {
    i_srl= 6'h06,
    i_sub= 6'h22,
    i_xor= 6'h26,
-   i_mul=6'h3f,
+   i_mul=6'h3f
 } instructions_regtype_opcode; // in the function field
+
+/*for printing instruction name*/
+virtual class enum_wrap_instruction#(type T);
+  static function string name(T obj);
+    return obj.name();
+  endfunction
+endclass
+
+    $display("ENUM without variable: %s", enum_wrap#(numbers_t)::name(THREE));
+  end
+endprogram
 
 //General instructions
 /*j j,0x02  jal j,0x03  beqz b,0x04  bnez b,0x05  bfpt b0,0x06 bfpf b0,0x07  addi i,0x08 

@@ -6,7 +6,7 @@
 -- Author      : Francesco Angione <s262620@studenti.polito.it> franout@github.com
 -- Company     : Politecnico di Torino, Italy
 -- Created     : Wed Jul 22 22:58:34 2020
--- Last update : Tue Aug 18 17:23:39 2020
+-- Last update : Fri Aug 21 19:45:48 2020
 -- Platform    : Default Part Number
 -- Standard    : VHDL-2008 
 --------------------------------------------------------------------------------
@@ -59,7 +59,7 @@ entity DATAPATH is
 		sel_val_a       : in std_logic_vector(0 downto 0 );
 		sel_val_b       : in std_logic_vector(0 downto 0 );
 		signed_notsigned: in std_logic;
-		evaluate_branch : in std_logic;
+      evaluate_branch  : in std_logic_vector(1 downto 0);
 		alu_cin      : in std_logic;
 		-- from execute stage
 		alu_overflow : out std_logic;
@@ -162,7 +162,7 @@ architecture structural of DATAPATH is
 			sel_val_b       : in  std_logic_vector(0 downto 0);
 			cin: in std_logic;
 			overflow   : out std_logic;
-			evaluate_branch : in  std_logic;
+			evaluate_branch : in  std_logic_vector(1 downto 0);
 			-- exception control logic for multiplication 
     		zero_mul_detect  : out std_logic;
     		mul_exeception   : out std_logic

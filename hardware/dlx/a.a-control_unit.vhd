@@ -6,7 +6,7 @@
 -- Author      : Francesco Angione <s262620@studenti.polito.it> franout@github.com
 -- Company     : Politecnico di Torino, Italy
 -- Created     : Thu Jul 23 15:49:45 2020
--- Last update : Fri Aug 21 17:21:03 2020
+-- Last update : Fri Aug 21 19:44:26 2020
 -- Platform    : Default Part Number
 -- Standard    : VHDL-2008 
 --------------------------------------------------------------------------------
@@ -42,7 +42,7 @@ entity control_unit is
     enable_rf    : out std_logic; -- used as enable for sign26 extention when equal to 0
     read_rf_p1   : out std_logic; -- if read_rf_p1/2 are both zero it is a jal instruction write address -> 31
     read_rf_p2   : out std_logic;
-    write_rf     : out std_logic;
+
     rtype_itypen : out std_logic;
     compute_sext : out std_logic;
     -- for execute stage
@@ -61,13 +61,14 @@ entity control_unit is
     dram_enable_cu : out std_logic;
     dram_r_nw_cu   : out std_logic;
     dram_ready_cu  : in  std_logic;
-    -- for write back stage   
+    -- for write back stage  
+    write_rf     : out std_logic;
     select_wb : out std_logic_vector(0 downto 0)
     -- simulation debug signals
     --synthesis_translate off
     ;
     STATE_CU : out std_logic_vector(f_log2(tot_state)-1 downto 0);
-    csr: out std_logic_vector(7 downto 0)
+    csr      : out std_logic_vector(7 downto 0)
     --synthesis_translate on
 
   );
@@ -89,14 +90,14 @@ architecture behavioural of control_unit is
   signal ir_opcode : std_logic_vector(OP_CODE_SIZE -1 downto 0); -- OpCode part of IR
   signal ir_func   : std_logic_vector(FUNC_SIZE-1 downto 0);     -- Func part of IR when Rtype
 
-
-  -- a status register for possible overflow or write to forbidden registers
+  signal counter_mul,next_val_counter_mul : std_logic_vector(2 downto 0); -- 3 bit coutner for stall in mul instruction 
+                                                                          -- a status register for possible overflow or write to forbidden registers
   signal csr_reg,next_value_csr : std_logic_vector(7 downto 0);
 
   -- constant signal assignement
-  constant feth_cmd : std_logic_vector(CW_SIZE-1-4 downto 0) := x"7000"; 
-  constant ireg_cmd : std_logic_vector(CW_SIZE-1-4 downto 0) :=  x"f713"; 
-  constant imm_cmd : std_logic_vector(CW_SIZE-1-4 downto 0) := x"e513"; 
+  constant feth_cmd : std_logic_vector(CW_SIZE-1-4 downto 0) := x"8000";
+  constant ireg_cmd : std_logic_vector(CW_SIZE-1-4 downto 0) := x"f713";
+  constant imm_cmd  : std_logic_vector(CW_SIZE-1-4 downto 0) := x"e513";
 
 begin
   ir_opcode <= curr_instruction_to_cu(IR_SIZE-1 downto IR_SIZE-1-OP_CODE_SIZE);
@@ -105,31 +106,33 @@ begin
   -- simulation debug signals
   --synthesis_translate off
   STATE_CU <= std_logic_vector(to_unsigned(state_t'POS(curr_state),f_log2(tot_state) )); -- cast for being compliant with sv
-  csr<= csr_reg;
+  csr      <= csr_reg;
   --synthesis_translate on
 
 
   reg_state : process( clk,rst )
   begin
     if (rst='0') then-- active low
-      curr_state <= idle;
-      csr_reg    <= (OTHERS => '0');
+      curr_state  <= idle;
+      csr_reg     <= (OTHERS => '0');
+      counter_mul <= (OTHERS => '0');
     elsif (rising_edge(clk)) then
-      curr_state <= next_state;
-      csr_reg    <= next_value_csr;
+      curr_state  <= next_state;
+      csr_reg     <= next_value_csr;
+      counter_mul <= next_val_counter_mul;
     end if;
   end process reg_state;
 
 
 
 
-  cl : process(curr_state , iram_ready_cu ,curr_instruction_to_cu,dram_ready_cu,ir_opcode,ir_func)
+  cl : process(curr_state , iram_ready_cu ,curr_instruction_to_cu,dram_ready_cu,ir_opcode,ir_func,counter_mul,csr_reg)
   begin
     ------------------------------------------------------------------------------
     -- default signals assignment
-    cmd_word <= (OTHERS => '0');
+    cmd_word                   <= (OTHERS => '0');
     next_value_csr(7 downto 3) <= (OTHERS => '0');
-    cmd_alu_op_type<=(OTHERS=>'0');
+    cmd_alu_op_type            <= (OTHERS => '0');
     ---------------------------------------------------------------------------------
     case (curr_state) is
       when idle => if (iram_ready_cu='1') then
@@ -144,15 +147,29 @@ begin
           next_state <= decode;
           case (ir_opcode) is
             when i_regtype'encoding =>
-              cmd_word <=ireg_cmd;
+              cmd_word <= ireg_cmd;
 
               -- alu function generator
               case (ir_func) is
                 -- see encoding in execute stage
                 when i_sub'encoding => cmd_alu_op_type <= x"1";
                 when i_mul'encoding =>
-                                       cmd_alu_op_type <= x"2";
-                                       -- TODO add  astall of 8 cc and a check in case of zero
+                  cmd_alu_op_type <= x"2";
+                  -- stall of 8 cc and a check in case of zero counter goes to 6 since the other 2 cc are include in the pipeline
+                  if(unsigned(counter_mul)<6) then
+                    -- check if there are some exception in the mul
+                    if(csr_reg(2)='1' or csr_reg(1)='1') then
+                      -- execptio or zero mul stop stall
+                      cmd_word             <= ireg_cmd;
+                      next_val_counter_mul <= (OTHERS => '0');
+                    else                               -- otherwise do not fetch 
+                      cmd_word             <= x"e713"; --  x"f713"
+                      next_val_counter_mul <= std_logic_vector(unsigned(counter_mul)+1);
+                    end if;
+                  else
+                    cmd_word             <= ireg_cmd ;
+                    next_val_counter_mul <= (OTHERS => '0');
+                  end if;
                 when i_and'encoding => cmd_alu_op_type <= x"3";
                 when i_or'encoding  => cmd_alu_op_type <= x"4";
                 when i_xor'encoding => cmd_alu_op_type <= x"5";
@@ -185,26 +202,26 @@ begin
                 next_value_csr(7 downto 3) <= (OTHERS => '1');
               end if;
             when i_beqz'encoding =>
-                  cmd_alu_op_type<=x"0"; -- addition of pc +4 + immediate16
-                  cmw_word<=x"e533";--==0
-           when i_benz'encoding =>
-                  cmd_alu_op_type<=x"0"; -- addition of pc +4 + immediate16
-                 cmw_word<=x"e553"; --!=0
-            when i_j'encoding    =>
-                  cmd_alu_op_type<=x"0"; -- addition of pc +4 + immediate26
-                  cmd_word<=x"8310";
-            when i_jal'encoding  =>
-                -- R31 <-- PC + 4; PC <-- PC + imm26 + 4
-                cmd_alu_op_type<=x"0"; -- addition of pc + immediate26+4
-                cmd_word<=x"c313";
-            when i_lw'encoding   =>
-                cmd_alu_op_type<=x"0"; -- addition of rs1 + imeediate16
-                cmd_word<=x"e51d";
-            when i_sw'encoding   =>
-                cmd_alu_op_type<=x"0";
-                cmd_word<=x"e517"; -- write to memory
-            when i_nop'encoding  =>
-                  cmd_word <= x"8000";
+              cmd_alu_op_type <= x"0";    -- addition of pc +4 + immediate16
+              cmd_word        <= x"e533"; --==0
+            when i_benz'encoding =>
+              cmd_alu_op_type <= x"0";    -- addition of pc +4 + immediate16
+              cmd_word        <= x"e553"; --!=0
+            when i_j'encoding =>
+              cmd_alu_op_type <= x"0"; -- addition of pc +4 + immediate26
+              cmd_word        <= x"8310";
+            when i_jal'encoding =>
+              -- R31 <-- PC + 4; PC <-- PC + imm26 + 4
+              cmd_alu_op_type <= x"0"; -- addition of pc + immediate26+4
+              cmd_word        <= x"c313";
+            when i_lw'encoding =>
+              cmd_alu_op_type <= x"0"; -- addition of rs1 + imeediate16
+              cmd_word        <= x"e51d";
+            when i_sw'encoding =>
+              cmd_alu_op_type <= x"0";
+              cmd_word        <= x"e517"; -- write to memory
+            when i_nop'encoding =>
+              cmd_word <= x"8000";
             when i_ori'encoding =>
               cmd_alu_op_type <= x"4";
               cmd_word        <= imm_cmd;
@@ -221,7 +238,7 @@ begin
                 next_state                 <= hang_error;
                 next_value_csr(7 downto 3) <= (OTHERS => '1');
               end if;
-            when i_sgei'encoding =>   
+            when i_sgei'encoding =>
               cmd_alu_op_type <= x"8"; -- >=
               cmd_word        <= imm_cmd;
               -- check if r0 is a dest address 
@@ -263,7 +280,7 @@ begin
               end if;
             when i_slli'encoding =>
               cmd_alu_op_type <= x"6";
-              cmd_word        <=imm_cmd;
+              cmd_word        <= imm_cmd;
               -- check if r0 is a dest address 
               if(unsigned(curr_instruction_to_cu(15 downto 11))=0) then
                 next_state                 <= hang_error;
@@ -299,7 +316,7 @@ begin
 
         else -- iram not ready
           next_value_csr(7 downto 3) <= "10000";
-          next_state <= hang_error;
+          next_state                 <= hang_error;
         end if;
       when hang_error => next_state <= curr_state;
       when others     => cmd_word   <= (OTHERS => '0');
@@ -312,7 +329,7 @@ begin
 
 
   --   check logic for multiplication
-  mul_exception:process (cw3(3 downto 0), zero_mul_detect,mul_exeception)
+  mul_exception : process (cw3(3 downto 0), zero_mul_detect,mul_exeception)
   begin
     if(cmd_alu_op_type=x"2") then -- only in the multiplication 
       next_value_csr(2 downto 1) <= zero_mul_detect & mul_exeception;
@@ -331,20 +348,20 @@ begin
   -- for fetch stage
   iram_enable_cu <= cw1(CW_SIZE -1);
   -- for decode stage
-  enable_rf      <= cw2(CW_SIZE-2);
-  read_rf_p1     <= cw2(CW_SIZE-3);
-  read_rf_p2     <= cw2(CW_SIZE-4);
+  enable_rf    <= cw2(CW_SIZE-2);
+  read_rf_p1   <= cw2(CW_SIZE-3);
+  read_rf_p2   <= cw2(CW_SIZE-4);
   rtype_itypen <= cw2(CW_SIZE-5);
-  compute_sext   <= cw2(CW_SIZE-6);
+  compute_sext <= cw2(CW_SIZE-6);
   -- for execute stage
-  sel_val_a (0)    <= cw3 (CW_SIZE-7);
-  sel_val_b (0)    <= cw3 (CW_SIZE-8);
-  alu_cin          <= cw3(CW_SIZE-9);
-  evaluate_branch(1)  <= cw3(CW_SIZE-10); --!=0
-  evaluate_branch(0)  <= cw3(CW_SIZE-11);-- ==0
-  signed_notsigned <= cw3(CW_SIZE-12);
-  alu_op_type      <= cw3(3 downto 0); -- it is better to cancatenate it at the end
-                                       -- for memory stage
+  sel_val_a (0)      <= cw3 (CW_SIZE-7);
+  sel_val_b (0)      <= cw3 (CW_SIZE-8);
+  alu_cin            <= cw3(CW_SIZE-9);
+  evaluate_branch(1) <= cw3(CW_SIZE-10); --!=0
+  evaluate_branch(0) <= cw3(CW_SIZE-11); -- ==0
+  signed_notsigned   <= cw3(CW_SIZE-12);
+  alu_op_type        <= cw3(3 downto 0); -- it is better to cancatenate it at the end
+                                         -- for memory stage
   dram_enable_cu <= cw4(CW_SIZE-13);
   dram_r_nw_cu   <= cw4(CW_SIZE-14);
   -- for write back stage   

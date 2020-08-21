@@ -6,7 +6,7 @@
 -- Author      : Francesco Angione <s262620@studenti.polito.it> franout@github.com
 -- Company     : Politecnico di Torino, Italy
 -- Created     : Wed Jul 22 22:56:54 2020
--- Last update : Fri Aug 21 16:44:43 2020
+-- Last update : Fri Aug 21 18:52:14 2020
 -- Platform    : Default Part Number
 -- Standard    : VHDL-2008 
 --------------------------------------------------------------------------------
@@ -66,7 +66,7 @@ package globals is
         -- R-TYPE -> register to register operation 
         -- I-TYPE -> register and an immediate of ALU operation or load/store memory operatins 
         -- from lab defined in alu_types.vhd package
-        type TYPE_OP_ALU is (ADD, SUB, MULT, BITAND, BITOR, BITXOR, FUNCLSL, FUNCLSR);
+        type TYPE_OP_ALU is (ADD, SUB, MULT, BITAND, BITOR, BITXOR, FUNCLSL, FUNCLSR,GE,LE,NE);
 
         -- see also implemented_instruction.svh in ./test_bench
         type instruction is (

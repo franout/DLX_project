@@ -6,7 +6,7 @@
 -- Author      : Francesco Angione <s262620@studenti.polito.it> franout@github.com
 -- Company     : Politecnico di Torino, Italy
 -- Created     : Wed Jul 22 22:58:15 2020
--- Last update : Wed Aug 19 22:19:29 2020
+-- Last update : Fri Aug 21 19:51:31 2020
 -- Platform    : Default Part Number
 -- Standard    : VHDL-2008 
 --------------------------------------------------------------------------------
@@ -46,30 +46,32 @@ entity DLX is
     ----------------------------------------------------------------------------
     -- cpu status signals in case of exception or hang --------------------------
     ----------------------------------------------------------------------------
-    cpu_status        : out std_logic_vector(1 downto 0)
+    cpu_status : out std_logic_vector(1 downto 0)
     -- simulation debug signals and verification purposes
     --synthesis_translate off
     ;
     STATE_CU : out std_logic_vector(f_log2(tot_state)-1 downto 0);
+    csr      : out std_logic_vector(7 downto 0);
     -- all the control unit signals
-    DEBUG_iram_ready_cu: out std_logic;
-    DEBUG_iram_enable_cu: out std_logic;
-    DEBUG_signed_notsigned: out std_logic;
-    DEBUG_compute_sext: out std_logic;
-    DEBUG_write_rf: out std_logic;
-    DEBUG_evaluate_branch: out std_logic;
-    DEBUG_alu_cin: out std_logic;
-    DEBUG_alu_overflow: out std_logic;
-    DEBUG_zero_mul_detect: out std_logic;
-    DEBUG_mul_exeception: out std_logic;
-    DEBUG_dram_ready_cu: out std_logic;
-    DEBUG_dram_r_nw_cu: out std_logic;
-    DEBUG_rstn: out std_logic;
-    DEBUG_enable_rf: out std_logic;
-    DEBUG_read_rf_p1: out std_logic;
-    DEBUG_read_rf_p2: out std_logic;
-    DEBUG_rtype_itypen: out std_logic;
-    DEBUG_dram_enable_cu: out std_logic
+    -- used for system verilog verification 
+    DEBUG_iram_ready_cu    : out std_logic;
+    DEBUG_iram_enable_cu   : out std_logic;
+    DEBUG_signed_notsigned : out std_logic;
+    DEBUG_compute_sext     : out std_logic;
+    DEBUG_write_rf         : out std_logic;
+    DEBUG_evaluate_branch  : out std_logic_vector(1 downto 0);
+    DEBUG_alu_cin          : out std_logic;
+    DEBUG_alu_overflow     : out std_logic;
+    DEBUG_zero_mul_detect  : out std_logic;
+    DEBUG_mul_exeception   : out std_logic;
+    DEBUG_dram_ready_cu    : out std_logic;
+    DEBUG_dram_r_nw_cu     : out std_logic;
+    DEBUG_rstn             : out std_logic;
+    DEBUG_enable_rf        : out std_logic;
+    DEBUG_read_rf_p1       : out std_logic;
+    DEBUG_read_rf_p2       : out std_logic;
+    DEBUG_rtype_itypen     : out std_logic;
+    DEBUG_dram_enable_cu   : out std_logic
   --synthesis_translate on
   );
 end DLX;
@@ -89,43 +91,43 @@ architecture dlx_rtl of DLX is
     );
     port (
       clk : in std_logic;
-      rst : in std_logic; -- active low 
-      --for fetch stage
+      rst : in std_logic; -- active low
+                          -- for fetch stage
       iram_enable_cu         : out std_logic;
       iram_ready_cu          : in  std_logic;
-      curr_instruction_to_cu : in  std_logic_vector(PC_SIZE-1 downto 0);
+      curr_instruction_to_cu : in  std_logic_vector(IR_SIZE-1 downto 0);
       -- for decode stage
-      enable_rf    : out std_logic;
-      read_rf_p1   : out std_logic;
-      read_rf_p2   : out std_logic;
-      write_rf     : out std_logic;
-      rtype_itypen : out std_logic; -- =='1' rtype instrucion =='0' itype instructnions
+      enable_rf  : out std_logic; -- used as enable for sign26 extention when equal to 0
+      read_rf_p1 : out std_logic; -- if read_rf_p1/2 are both zero it is a jal instruction write address -> 31
+      read_rf_p2 : out std_logic;
+
+      rtype_itypen : out std_logic;
       compute_sext : out std_logic;
       -- for execute stage
-      alu_op_type     : out std_logic_vector(3 downto 0); --TYPE_OP_ALU ; for compatibility with sv
-      sel_val_a       : out std_logic_vector(0 downto 0 );
-      sel_val_b       : out std_logic_vector(0 downto 0 );
-      evaluate_branch : out std_logic;
-      alu_cin         : out std_logic;
-      signed_notsigned: out std_logic;
-      -- from execute stage
+      alu_op_type      : out std_logic_vector(3 downto 0); --TYPE_OP_ALU ; for compatibility with sv
+      sel_val_a        : out std_logic_vector(0 downto 0 );
+      sel_val_b        : out std_logic_vector(0 downto 0 );
+      signed_notsigned : out std_logic;
+      alu_cin          : out std_logic;
+      evaluate_branch  : out std_logic_vector(1 downto 0); -- msb for evaluate branch negated(!=0) lsb for evaluate branch (==0)
+                                                           -- from execute stage
       alu_overflow : in std_logic;
       -- exception control logic for multiplication 
-      zero_mul_detect  : in std_logic;
-      mul_exeception   : in std_logic;
+      zero_mul_detect : in std_logic;
+      mul_exeception  : in std_logic;
       -- for memory stage
       dram_enable_cu : out std_logic;
       dram_r_nw_cu   : out std_logic;
       dram_ready_cu  : in  std_logic;
-      -- for write back stage   
-      select_wb : out std_logic_vector(0 downto 0);
-      -- cpu status 
-      cpu_status: out std_logic_vector(1 downto 0)
+      -- for write back stage  
+      write_rf  : out std_logic;
+      select_wb : out std_logic_vector(0 downto 0)
       -- simulation debug signals
       --synthesis_translate off
       ;
-      STATE_CU : out std_logic_vector(f_log2(tot_state)-1 downto 0)
-      --synthesis_translate on
+      STATE_CU : out std_logic_vector(f_log2(tot_state)-1 downto 0);
+      csr      : out std_logic_vector(7 downto 0)
+    --synthesis_translate on
     );
   end component control_unit;
 
@@ -164,17 +166,17 @@ architecture dlx_rtl of DLX is
       rtype_itypen : in std_logic; -- =='1' rtype instrucion =='0' itype instructnions
       compute_sext : in std_logic;
       -- for execute stage
-      alu_op_type : in std_logic_vector(3 downto 0); --TYPE_OP_ALU ; for compatibility with sv
-      sel_val_a   : in std_logic_vector(0 downto 0 );
-      sel_val_b   : in std_logic_vector(0 downto 0 );
-      alu_cin     : in std_logic;
-      signed_notsigned: in std_logic;
-      evaluate_branch : in  std_logic;
+      alu_op_type      : in std_logic_vector(3 downto 0); --TYPE_OP_ALU ; for compatibility with sv
+      sel_val_a        : in std_logic_vector(0 downto 0 );
+      sel_val_b        : in std_logic_vector(0 downto 0 );
+      alu_cin          : in std_logic;
+      signed_notsigned : in std_logic;
+      evaluate_branch  : in std_logic_vector(1 downto 0);
       -- from execute stage
-      alu_overflow    : out std_logic;
+      alu_overflow : out std_logic;
       -- exception control logic for multiplication 
-      zero_mul_detect  : out std_logic;
-      mul_exeception   : out std_logic;
+      zero_mul_detect : out std_logic;
+      mul_exeception  : out std_logic;
       -- for memory stage
       dram_enable_cu : in  std_logic;
       dram_r_nw_cu   : in  std_logic;
@@ -190,10 +192,11 @@ architecture dlx_rtl of DLX is
   -- Internconnection Signals Declaration
   ----------------------------------------------------------------
   signal iram_ready_cu_i,iram_enable_cu_i,signed_notsigned_i,
-  compute_sext_i,write_rf_i,evaluate_branch_i,alu_cin_i,
+  compute_sext_i,write_rf_i,alu_cin_i,
   alu_overflow_i,zero_mul_detect_i,mul_exeception_i,
   dram_ready_cu_i,dram_r_nw_cu_i,rstn,enable_rf_i,read_rf_p1_i,read_rf_p2_i,rtype_itypen_i,
   dram_enable_cu_i                            : std_logic;
+  signal evaluate_branch_i                    : std_logic_vector(1 downto 0);
   signal curr_instruction_to_cu_i             : std_logic_vector(PC_SIZE-1 downto 0);
   signal sel_val_a_i,sel_val_b_i ,select_wb_i : std_logic_vector(0 downto 0);
   signal alu_op_type_i                        : std_logic_vector(3 downto 0); --TYPE_OP_ALU ; for compatibility with sv
@@ -228,25 +231,27 @@ begin -- DLX
       rtype_itypen => rtype_itypen_i,
       compute_sext => compute_sext_i,
       -- for execute stage
-      alu_op_type     => alu_op_type_i ,
-      sel_val_a       => sel_val_a_i ,
-      sel_val_b       => sel_val_b_i ,
-      evaluate_branch => evaluate_branch_i,
+      alu_op_type      => alu_op_type_i ,
+      sel_val_a        => sel_val_a_i ,
+      sel_val_b        => sel_val_b_i ,
+      evaluate_branch  => evaluate_branch_i,
       signed_notsigned => signed_notsigned_i,
       -- from execute stage
       alu_cin      => alu_cin_i,
       alu_overflow => alu_overflow_i,
+      zero_mul_detect  =>  zero_mul_detect_i,
+      mul_exeception    =>  mul_exeception_i,
       -- for memory stage
       dram_enable_cu => dram_enable_cu_i,
       dram_r_nw_cu   => dram_r_nw_cu_i,
       dram_ready_cu  => dram_ready_cu_i,
       -- for write back stage   
-      select_wb => select_wb_i,
-      cpu_status  =>  cpu_status
+      select_wb  => select_wb_i
       -- simulation debug signals
       --synthesis_translate off
       ,
-      STATE_CU  => STATE_CU
+      STATE_CU => STATE_CU,
+      csr      => csr
       --synthesis_translate on
 
     );
@@ -285,16 +290,16 @@ begin -- DLX
       rtype_itypen => rtype_itypen_i,
       compute_sext => compute_sext_i,
       -- for execute stage
-      alu_op_type     => alu_op_type_i ,
-      sel_val_a       => sel_val_a_i ,
-      sel_val_b       => sel_val_b_i ,
-      evaluate_branch => evaluate_branch_i,
+      alu_op_type      => alu_op_type_i ,
+      sel_val_a        => sel_val_a_i ,
+      sel_val_b        => sel_val_b_i ,
+      evaluate_branch  => evaluate_branch_i,
       signed_notsigned => signed_notsigned_i,
       -- from execute stage
-      alu_cin      => alu_cin_i,
-      alu_overflow => alu_overflow_i,
-      zero_mul_detect =>  zero_mul_detect_i,
-      mul_exeception =>  mul_exeception_i,
+      alu_cin         => alu_cin_i,
+      alu_overflow    => alu_overflow_i,
+      zero_mul_detect => zero_mul_detect_i,
+      mul_exeception  => mul_exeception_i,
       -- for memory stage
       dram_enable_cu => dram_enable_cu_i,
       dram_r_nw_cu   => dram_r_nw_cu_i,
@@ -303,25 +308,25 @@ begin -- DLX
       select_wb => select_wb_i
     );
 
- --synthesis_translate off
- DEBUG_iram_ready_cu<=iram_ready_cu_i;
- DEBUG_iram_enable_cu<=iram_enable_cu_i;
- DEBUG_signed_notsigned<=signed_notsigned_i;
- DEBUG_compute_sext<=compute_sext_i;
- DEBUG_write_rf<=write_rf_i;
- DEBUG_evaluate_branch<=evaluate_branch_i;
- DEBUG_alu_cin<=alu_cin_i;
- DEBUG_alu_overflow<=alu_overflow_i;
- DEBUG_zero_mul_detect<=zero_mul_detect_i;
- DEBUG_mul_exeception<=mul_exeception_i;
- DEBUG_dram_ready_cu<=dram_ready_cu_i;
- DEBUG_dram_r_nw_cu<=dram_r_nw_cu_i;
- DEBUG_rstn<=rstn;
- DEBUG_enable_rf<=enable_rf_i;
- DEBUG_read_rf_p1<=read_rf_p1_i;
- DEBUG_read_rf_p2<=read_rf_p2_i;
- DEBUG_rtype_itypen<=rtype_itypen_i;
- DEBUG_dram_enable_cu <=dram_enable_cu_i;
+  --synthesis_translate off
+  DEBUG_iram_ready_cu    <= iram_ready_cu_i;
+  DEBUG_iram_enable_cu   <= iram_enable_cu_i;
+  DEBUG_signed_notsigned <= signed_notsigned_i;
+  DEBUG_compute_sext     <= compute_sext_i;
+  DEBUG_write_rf         <= write_rf_i;
+  DEBUG_evaluate_branch  <= evaluate_branch_i;
+  DEBUG_alu_cin          <= alu_cin_i;
+  DEBUG_alu_overflow     <= alu_overflow_i;
+  DEBUG_zero_mul_detect  <= zero_mul_detect_i;
+  DEBUG_mul_exeception   <= mul_exeception_i;
+  DEBUG_dram_ready_cu    <= dram_ready_cu_i;
+  DEBUG_dram_r_nw_cu     <= dram_r_nw_cu_i;
+  DEBUG_rstn             <= rstn;
+  DEBUG_enable_rf        <= enable_rf_i;
+  DEBUG_read_rf_p1       <= read_rf_p1_i;
+  DEBUG_read_rf_p2       <= read_rf_p2_i;
+  DEBUG_rtype_itypen     <= rtype_itypen_i;
+  DEBUG_dram_enable_cu   <= dram_enable_cu_i;
 
   --synthesis_translate on
 
