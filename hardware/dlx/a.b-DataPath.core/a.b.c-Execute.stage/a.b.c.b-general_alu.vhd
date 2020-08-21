@@ -6,7 +6,7 @@
 -- Author      : Francesco Angione <s262620@studenti.polito.it> franout@github.com
 -- Company     : Politecnico di Torino, Italy
 -- Created     : Sat Aug  8 12:22:46 2020
--- Last update : Mon Aug 17 11:41:56 2020
+-- Last update : Fri Aug 21 21:46:18 2020
 -- Platform    : Default Part Number
 -- Standard    : VHDL-2008 
 --------------------------------------------------------------------------------
@@ -156,7 +156,7 @@ begin
 
       when FUNCLSL => tmp := data1;
         FOR i IN 0 to N-1 LOOP
-          if (i < unsigned(data2)) then
+          if (i < unsigned(data2(5 downto 0))) then
             tmp := tmp(N-2 downto 0) & '0';
           end if;
         END LOOP;
@@ -164,11 +164,29 @@ begin
 
       when FUNCLSR => tmp := data1;
         FOR i IN 0 to N-1 LOOP
-          if (i < to_integer(unsigned(data2))) then
+          if (i < to_integer(unsigned(data2(5 downto 0)))) then
             tmp := '0' & tmp(N-1 downto 1);
           end if;
         END LOOP;
         OUTALU <= tmp;
+      when GE=> 
+          if (signed(data1)>= signed(data2))then
+            OUTALU<=(OTHERS=>'0')&'1';
+          else 
+            OUTALU<=(OTHERS=>'0');
+          end if;
+      when LE=> 
+          if (signed(data1)<= signed(data2))then
+            OUTALU<=(OTHERS=>'0')&'1';
+          else 
+            OUTALU<=(OTHERS=>'0');
+          end if;
+      when NE=> 
+          if (signed(data1)/= signed(data2))then
+            OUTALU<=(OTHERS=>'0')&'1';
+          else 
+            OUTALU<=(OTHERS=>'0');
+          end if;
       when others => 
 			OUTALU<=(OTHERS=>'0');
 			overflow<='0';

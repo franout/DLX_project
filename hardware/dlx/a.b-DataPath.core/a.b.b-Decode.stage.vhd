@@ -6,7 +6,7 @@
 -- Author      : Francesco Angione <s262620@studenti.polito.it> franout@github.com
 -- Company     : Politecnico di Torino, Italy
 -- Created     : Wed Jul 22 22:59:52 2020
--- Last update : Sun Aug  9 18:48:15 2020
+-- Last update : Fri Aug 21 22:36:35 2020
 -- Platform    : Default Part Number
 -- Standard    : VHDL-2008 
 --------------------------------------------------------------------------------
@@ -65,10 +65,12 @@ architecture structural of decode_stage is
 			extended_val   : out std_logic_vector(N-1 downto 0)
 		);
 	end component sign_extension;
-	signal rstn                                         : std_logic;
-	signal val_reg_a_i,val_reg_b_i, val_reg_immediate_i : std_logic_vector(N-1 downto 0);
-	signal clk_immediate                                : std_logic;
+	signal rstn,sel_immediate                                         : std_logic;
+	signal val_reg_a_i,val_reg_b_i : std_logic_vector(N-1 downto 0);
+	signal val_reg_immediate, val_reg_immediate_i ,val_reg_immediate_j: std_logic_vector(N-1 downto 0);
+	signal clk_immediate,enable_sign_extension_logic                          : std_logic;
 	signal instruction_reg_i,address_rf_write,del_reg_wb_2,del_reg_wb_1   : std_logic_vector(f_log2(RF_REGS)-1 downto 0);
+	signal data_to_mux: std_logic_vector(N*2-1 downto 0);
 begin
 
 	rstn <= not(rst);
@@ -152,8 +154,9 @@ begin
 
 
 		-- sign exted logic check only the last bit of the immediate value and extend ( it work for both signed and unsigned)
-		sign_extension_logic_i : sign_extension generic map (
-			N => N
+		sign_extension_logic_immediate : sign_extension generic map (
+			N => N, 
+			STARTING_BIT=>N/2
 		)
 		port map (
 			val_to_exetend => instruction_reg(15 downto 0),--(0 to 16),
@@ -161,6 +164,32 @@ begin
 			extended_val   => val_reg_immediate_i
 		);
 
+		enable_sign_extension_logic<= not(enable_rf) or ( not(read_rf_p1 or not(read_rf_p2)));
+
+		sign_extension_logic_jump: sign_extension generic map (
+			N => N, 
+			STARTING_BIT=>26
+		)
+		 port map (
+			val_to_exetend => instruction_reg(26 downto 0),--(0 to 26),
+			enable         =>enable_sign_extension_logic ,
+			extended_val   => val_reg_immediate_j
+		);
+
+
+		-- mux for immediate reg
+		data_to_mux <= val_reg_immediate_i & val_reg_immediate_j;
+		sel_immediate<= '1' when compute_sext ='0' else '0' ; -- default decision is the extend of a immediate16 ,
+		-- when compute_sext='0' => enable_sign_extensio_logic for jump (immediate26extenstion ) is active
+		immediate_reg_mux : MUX_zbit_nbit generic map (
+			N => N,
+			Z => 1 -- log2 of number of input signals
+		)
+		port map (
+			inputs =>data_to_mux , --- sel =0 , sel =1 
+			sel    => sel_immediate,
+			y      => val_reg_immediate
+		);
 
 
 
@@ -173,7 +202,7 @@ begin
 		port map (
 			clk   => clk_immediate,
 			reset => rstn, -- reset is active high internally to the register
-			d     => val_reg_immediate_i,
+			d     => val_reg_immediate,
 			Q     => val_immediate
 		);
 

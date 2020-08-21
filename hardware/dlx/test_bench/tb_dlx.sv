@@ -7,7 +7,7 @@
 // Author : Angione Francesco s262620@studenti.polito.it franout@Github.com
 // File   : tb_dlx.sv
 // Create : 2020-07-21 19:00:18
-// Revise : 2020-08-19 22:34:14
+// Revise : 2020-08-21 20:02:24
 // Editor : sublime text3, tab size (4)
 // Description: 
 // -----------------------------------------------------------------------------
@@ -24,6 +24,8 @@ module tb_dlx ();
 	localparam PATH_TO_DMEM_FINAL="";
 	localparam PATH_TO_DMEM="";
 	localparam PATH_TO_IMEM="";
+
+	// if path to dmem does not exist add an initialization of memory with random data 
 
 
 	logic rst_n;

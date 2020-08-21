@@ -6,7 +6,7 @@
 -- Author      : Francesco Angione <s262620@studenti.polito.it> franout@github.com
 -- Company     : Politecnico di Torino, Italy
 -- Created     : Wed Jul 22 22:58:34 2020
--- Last update : Fri Aug 21 19:45:48 2020
+-- Last update : Fri Aug 21 22:49:41 2020
 -- Platform    : Default Part Number
 -- Standard    : VHDL-2008 
 --------------------------------------------------------------------------------
@@ -48,24 +48,24 @@ entity DATAPATH is
 		iram_ready_cu          : out std_logic;
 		curr_instruction_to_cu : out std_logic_vector(PC_SIZE-1 downto 0);
 		-- for decode stage
-		enable_rf        : in std_logic;
-		read_rf_p1       : in std_logic;
-		read_rf_p2       : in std_logic;
-		write_rf         : in std_logic;
+		enable_rf    : in std_logic;
+		read_rf_p1   : in std_logic;
+		read_rf_p2   : in std_logic;
+		write_rf     : in std_logic;
 		rtype_itypen : in std_logic; -- =='1' rtype instrucion =='0' itype instructnions
-		compute_sext     : in std_logic;
+		compute_sext : in std_logic;
 		-- for execute stage
-		alu_op_type     : in std_logic_vector(3 downto 0); --TYPE_OP_ALU ; for compatibility with sv
-		sel_val_a       : in std_logic_vector(0 downto 0 );
-		sel_val_b       : in std_logic_vector(0 downto 0 );
-		signed_notsigned: in std_logic;
-      evaluate_branch  : in std_logic_vector(1 downto 0);
-		alu_cin      : in std_logic;
+		alu_op_type      : in std_logic_vector(3 downto 0); --TYPE_OP_ALU ; for compatibility with sv
+		sel_val_a        : in std_logic_vector(0 downto 0 );
+		sel_val_b        : in std_logic_vector(0 downto 0 );
+		signed_notsigned : in std_logic;
+		evaluate_branch  : in std_logic_vector(1 downto 0);
+		alu_cin          : in std_logic;
 		-- from execute stage
 		alu_overflow : out std_logic;
 		-- exception control logic for multiplication 
-    	zero_mul_detect  : out std_logic;
-    	mul_exeception   : out std_logic;
+		zero_mul_detect : out std_logic;
+		mul_exeception  : out std_logic;
 		-- for memory stage
 		dram_enable_cu : in  std_logic;
 		dram_r_nw_cu   : in  std_logic;
@@ -127,12 +127,12 @@ architecture structural of DATAPATH is
 			-- from write back stage
 			update_reg_value : in std_logic_vector(N-1 downto 0);
 			-- from / to control unit
-			enable_rf        : in std_logic;
-			read_rf_p1       : in std_logic;
-			read_rf_p2       : in std_logic;
-			write_rf         : in std_logic;
+			enable_rf    : in std_logic;
+			read_rf_p1   : in std_logic;
+			read_rf_p2   : in std_logic;
+			write_rf     : in std_logic;
 			rtype_itypen : in std_logic; -- =='1' rtype instrucion =='0' itype instructnions
-			compute_sext     : in std_logic-- signal for computing sign exention of 16bit immediate value
+			compute_sext : in std_logic  -- signal for computing sign exention of 16bit immediate value
 		);
 	end component decode_stage;
 
@@ -156,16 +156,16 @@ architecture structural of DATAPATH is
 			alu_output_val        : out std_logic_vector(N-1 downto 0);
 			value_to_mem          : out std_logic_vector(N-1 downto 0);
 			-- to/from control unit
-			signed_notsigned: in std_logic;
-			alu_op_type     : in  std_logic_vector(3 downto 0); --TYPE_OP_ALU ; for compatibility with sv
-			sel_val_a       : in  std_logic_vector(0 downto 0);
-			sel_val_b       : in  std_logic_vector(0 downto 0);
-			cin: in std_logic;
-			overflow   : out std_logic;
-			evaluate_branch : in  std_logic_vector(1 downto 0);
+			signed_notsigned : in  std_logic;
+			alu_op_type      : in  std_logic_vector(3 downto 0); --TYPE_OP_ALU ; for compatibility with sv
+			sel_val_a        : in  std_logic_vector(0 downto 0);
+			sel_val_b        : in  std_logic_vector(0 downto 0);
+			cin              : in  std_logic;
+			overflow         : out std_logic;
+			evaluate_branch  : in  std_logic_vector(1 downto 0);
 			-- exception control logic for multiplication 
-    		zero_mul_detect  : out std_logic;
-    		mul_exeception   : out std_logic
+			zero_mul_detect : out std_logic;
+			mul_exeception  : out std_logic
 		);
 	end component execute_stage;
 
@@ -296,12 +296,12 @@ begin
 			-- from write back stage
 			update_reg_value => update_reg_value_i,
 			-- from / to control unit
-			enable_rf        => enable_rf ,
-			read_rf_p1       => read_rf_p1 ,
-			read_rf_p2       => read_rf_p2 ,
-			write_rf         => write_rf ,
-			rtype_itypen =>rtype_itypen,
-			compute_sext     => compute_sext
+			enable_rf    => enable_rf ,
+			read_rf_p1   => read_rf_p1 ,
+			read_rf_p2   => read_rf_p2 ,
+			write_rf     => write_rf ,
+			rtype_itypen => rtype_itypen,
+			compute_sext => compute_sext
 		);
 
 	--execute stage
@@ -330,16 +330,16 @@ begin
 			alu_output_val        => alu_output_val_i ,
 			value_to_mem          => value_to_mem_i ,
 			-- to/from control unit
-			alu_op_type     => alu_op_type ,
-			sel_val_a       => sel_val_a ,
-			sel_val_b       => sel_val_b ,
-			cin             => alu_cin,
-			overflow        => alu_overflow,
-			evaluate_branch => evaluate_branch,
-			signed_notsigned=>signed_notsigned,
-			zero_mul_detect => zero_mul_detect,
-			mul_exeception => mul_exeception
-			);
+			alu_op_type      => alu_op_type ,
+			sel_val_a        => sel_val_a ,
+			sel_val_b        => sel_val_b ,
+			cin              => alu_cin,
+			overflow         => alu_overflow,
+			evaluate_branch  => evaluate_branch,
+			signed_notsigned => signed_notsigned,
+			zero_mul_detect  => zero_mul_detect,
+			mul_exeception   => mul_exeception
+		);
 
 	-- memory stage
 	--a load, data return from memory and is placed in the LMD (Load Memory Data) register.

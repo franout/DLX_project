@@ -39,14 +39,21 @@ begin
                 if(ENABLE = '1') then
                     if(RD1 = '1') then
                         OUT1 <= REGISTERS(to_integer(unsigned(ADD_RD1)));
+                    else 
+                        OUT1<=(OTHERS=>'0');
                     end if;
                     if(RD2 = '1') then
                         OUT2 <= REGISTERS(to_integer(unsigned(ADD_RD2)));
+                    else 
+                        OUT2<=(OTHERS=>'0');
                     end if;
                     if(WR = '1') then
                         REGISTERS(to_integer(unsigned(ADD_WR))) <= DATAIN;
                     end if;
-            
+                else
+                -- added after lab for being compliant with dlx isa also else condition in read p1 and p2
+                    OUT1<=(OTHERS=>'0');
+                    OUT2<=(OTHERS=>'0');
                 end if;
             end if;
         end if;

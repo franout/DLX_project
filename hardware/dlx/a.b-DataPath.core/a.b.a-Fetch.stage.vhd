@@ -6,7 +6,7 @@
 -- Author      : Francesco Angione <s262620@studenti.polito.it> franout@github.com
 -- Company     : Politecnico di Torino, Italy
 -- Created     : Wed Jul 22 22:59:30 2020
--- Last update : Mon Aug  3 17:37:19 2020
+-- Last update : Fri Aug 21 22:09:48 2020
 -- Platform    : Default Part Number
 -- Standard    : VHDL-2008 
 --------------------------------------------------------------------------------
@@ -72,7 +72,7 @@ begin
 
 
 	-- logic for incremenentig the program counter 
-	new_program_counter_val <= std_logic_vector(unsigned(program_counter_val)+4);
+	new_program_counter_val <= std_logic_vector(unsigned(program_counter_val)+4) when IRAM_ENABLE='1' else program_counter_val;
 
 	-- New Program counter
 	new_program_counter : reg_nbit
