@@ -10,87 +10,124 @@
 ;;;;;;;;;; ALU verificiation ;;;;;;;;;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; test -->add! sequential fashion
+lw r2,40(r0)
+lw r3,40(r0)
+nop
 add r1,r2,r3
 nop
-nop
-nop
+sw 40(r0),r1
 nop
 nop
 ;; test -->addi! and pipeline withot dependancies
-add r1,r2,r3
-add r1,r2,r3
-addi r4,r5,4
+add r1,r0,r0
 nop
 nop
+addi r4,r1,#1
+nop
+nop
+lw r4,50(r0)
+lw r5,54(r0)
 nop
 ;; test -->and!
-and r6,r4,r4 
+and r6,r4,r5
+nop
 ;; test -->andi!
 andi r7,r4,#256
-
+nop
 ;; test -->or!
-or r8,r9,r10
+or r6,r4,r5
 ;; test -->ori!
-ori r8,r9,#10
+ori r7,r4,#10
+nop
+nop
+lw r12,30(r7)
+lw r13,40(r6)
+nop
 ;; test -->sub!
 sub r11,r12,r13
+nop
 ;; test -->subi!
-sub r11,r12,#13
+nop
+sw 40(r3),r11
+nop
+lw r15,0(r0)
+lw r16,4(r0)
+nop
+nop
+subi r14,r12,#13
 ;; test -->xor!
-xor r14,r15,r16
+nop
+xor r17,r15,r16
 ;; test -->xori!
-xor r14,r15,#11
+nop
+xor r18,r15,#11
 ;; test integer mul
-imul r17,r18,r19
+; data already placed in memory 
+lw r20,128(0) ; dram.txt line 32
+lw r21,132(0) ; dram.txt line 33
+nop
+nop
+imul r22,r21,r22
+nop
+nop
+sw 40(r3),r22
 
 ;; add loop of addition for checking the result of mult
-
-
-sub ; subtract the two resuls
-bne  ,equal
+loop:
+add r1,r21,r0
 nop
-equal:
+subi r22,r22,#1
+nop
+bnez r22,loop
 
 ;; test -->j!
 j forward
 nop
 forward:
 ;; test -->beqz!
-beqz r1,true1
+beqz r0,true1
 false1:
+sw 40(r3),r22
 true1:
-;; test -->bnez!
-bnez r1,true
-false:
-true:
-;; test -->jal!
-jal there
-there:
-;; test -->lw!
-lw r5,0(r4)
 ;; test -->sge!
 slei r1,r2,r5
+nop
 ;; test -->sgei!
-slei r1,r2,#89
+sgei r1,r2,#89
+nop
 ;; test -->sle!
 slei r1,r2,r9
+nop
 ;; test -->slei!
 slei r1,r2,#56
+nop
+;; test -->sne!
+snei r4 ,r0 ,r0
+;; test -->snei!
+snei r6 ,r5 ,#89
+
+sw 80(r3),r22
+lw r3,128(0) ; dram.txt line 32
+lw r2,132(0) ; dram.txt line 33
+nop
 ;; test -->sll!
 sll r1,r2,r3
+nop
 ;; test -->slli!
-sll r1,r2,#12
-;; test -->sne!
-snei r4 ,r5 ,r7
-;; test -->snei!
-snei r4 ,r5 ,#89
-;; test -->srl!
-srl r4,r5,r6
-;; test -->srli!
-srli r8,r9,#10
-;; test -->sw!
-;sw r4,60(r3)
+slli r4,r2,#3
+nop
 
+;; test -->srl!
+srl r5,r3,r2
+;; test -->srli!
+srli r6,r3,#15
+
+;; test -->jal!
+jal end
+nop
+nop
+nop
+nop
 end: j end ; infinite loop
 
 
