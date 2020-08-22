@@ -7,7 +7,7 @@
 // Author : Angione Francesco s262620@studenti.polito.it franout@Github.com
 // File   : tb_fetch_stage.sv
 // Create : 2020-07-27 15:18:55
-// Revise : 2020-08-01 19:06:48
+// Revise : 2020-08-22 15:15:31
 // Editor : sublime text3, tab size (4)
 // Description: 
 // -----------------------------------------------------------------------------
@@ -64,6 +64,18 @@ output logic iram_enable_cu);
 			$stop();
 		end
 		##1;
+		// check the non increment of pc
+		iram_enable_cu=0;
+		##1;
+		if(new_pc_value!=12)begin
+			$display("@%0dns ---> wrong generated new program counter value it has been incremente while it should be frozen",$time);
+			$stop();
+		end
+		##1;
+		if(new_pc_value!=12)begin
+			$display("@%0dns ---> wrong generated new program counter value it has been incremente while it should be frozen",$time);
+			$stop();
+		end
 		$display("Fetch stage has passed the testbench",);
 		$finish;
 	end

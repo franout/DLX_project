@@ -6,7 +6,7 @@
 -- Author      : Francesco Angione <s262620@studenti.polito.it> franout@github.com
 -- Company     : Politecnico di Torino, Italy
 -- Created     : Wed Jul 22 22:59:52 2020
--- Last update : Fri Aug 21 22:36:35 2020
+-- Last update : Sat Aug 22 15:38:09 2020
 -- Platform    : Default Part Number
 -- Standard    : VHDL-2008 
 --------------------------------------------------------------------------------
@@ -164,7 +164,8 @@ begin
 			extended_val   => val_reg_immediate_i
 		);
 
-		enable_sign_extension_logic<= not(enable_rf) or ( not(read_rf_p1 or not(read_rf_p2)));
+		 --for distinguish between j and jal ( jal requires to write the return address in r31)
+		enable_sign_extension_logic<= (not(enable_rf) or ( not(read_rf_p1) and  not(read_rf_p2)))) and compute_sext;
 
 		sign_extension_logic_jump: sign_extension generic map (
 			N => N, 

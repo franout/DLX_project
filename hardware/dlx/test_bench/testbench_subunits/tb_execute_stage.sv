@@ -7,7 +7,7 @@
 // Author : Angione Francesco s262620@studenti.polito.it franout@Github.com
 // File   : tb_execute_stage.sv
 // Create : 2020-07-27 15:17:03
-// Revise : 2020-08-18 17:28:00
+// Revise : 2020-08-22 15:30:32
 // Editor : sublime text3, tab size (4)
 // Description: 
 // -----------------------------------------------------------------------------
@@ -27,7 +27,7 @@ program automatic test_execute(input logic clk,
 							input logic [`NUMBIT-1:0]alu_out,
 							output logic [0:0] sel_val_a,
 							output logic [0:0] sel_val_b,
-							output logic  evaluate_branch,
+							output logic [1:0] evaluate_branch,
 							input logic jump_prediction,
 							output logic carry_in,
 							input logic overflow,
@@ -130,9 +130,9 @@ initial begin
 			$display("error in addition with immediate");
 			$stop();
 		end
-		$display("Checking zero condition for branch jump evalutation",);
+		$display("Checking zero condition == for branch jump evalutation",);
 		opa=0;
-		evaluate_branch=1;
+		evaluate_branch=2'b01; // ==0
 		`ifndef VIVADO_SIM
 		##2;
 		`else 
@@ -144,7 +144,31 @@ initial begin
 		end
 
 		opa=321;
-		evaluate_branch=1;
+		evaluate_branch=2'b01;
+		`ifndef VIVADO_SIM
+		##2;
+		`else 
+			repeat(4)@(posedge clk);
+		`endif
+		if(jump_prediction!==0)begin 
+			$display("Error in check zero logic-> False",);
+			$stop();
+		end
+		$display("Checking zero condition != for branch jump evalutation",);
+		opa=0;
+		evaluate_branch=2'b10; // !=0
+		`ifndef VIVADO_SIM
+		##2;
+		`else 
+			repeat(4)@(posedge clk);
+		`endif
+		if(jump_prediction!==0)begin 
+			$display("Error in check zero logic-> TRuE",);
+			$stop();
+		end
+
+		opa=321;
+		evaluate_branch=2'b10;
 		`ifndef VIVADO_SIM
 		##2;
 		`else 
@@ -326,8 +350,8 @@ initial begin
 		`else 
 			repeat(4)@(posedge clk);
 		`endif
-		if(alu_out!==(opa<<opb))begin 
-			$display("Alu shift left is wrong -> Expected: %d Actual: %d",opa<<opb ,alu_out );
+		if(alu_out!==(opa<<opb[5:0]))begin 
+			$display("Alu shift left is wrong -> Expected: %d Actual: %d",opa<<(opb[5:0]) ,alu_out );
 			$stop();
 		end
 		$display("Checking ALU operations: FUNCLSR",);
@@ -342,8 +366,42 @@ initial begin
 		`else 
 			repeat(4)@(posedge clk);
 		`endif
-		if(alu_out!==(opa>>opb))begin 
-			$display("Alu Shift right is wrong -> Expected: %d Actual: %d",opa>>opb ,alu_out );
+		if(alu_out!==(opa>>opb[5:0]))begin 
+			$display("Alu Shift right is wrong -> Expected: %d Actual: %d",(opa>>opb[5:0]) ,alu_out );
+
+			$stop();
+		end
+
+		$display("Checking ALU operations: FUNCLSL bitwidth >5",);
+		opa=3;
+		opb=2**6+1; // only shift by one position considering the first 5 bits
+		sel_val_a=0;
+		sel_val_b=0;
+		alu_operation=current_operation.next();
+		current_operation=current_operation.next();
+		`ifndef VIVADO_SIM
+		##2;
+		`else 
+			repeat(4)@(posedge clk);
+		`endif
+		if(alu_out!==(opa<<opb[5:0]))begin 
+			$display("Alu shift left is wrong -> Expected: %d Actual: %d",opa<<(opb[5:0]) ,alu_out );
+			$stop();
+		end
+		$display("Checking ALU operations: FUNCLSR  bitwidth >5",);
+		opb=2**6+1; // only shift by one position considering the first 5 bits
+		opa=3;
+		sel_val_a=0;
+		sel_val_b=0;
+		alu_operation=current_operation.next();
+		current_operation=current_operation.next();
+		`ifndef VIVADO_SIM
+		##2;
+		`else 
+			repeat(4)@(posedge clk);
+		`endif
+		if(alu_out!==(opa>>opb[5:0]))begin 
+			$display("Alu Shift right is wrong -> Expected: %d Actual: %d",(opa>>opb[5:0]) ,alu_out );
 
 			$stop();
 		end
@@ -383,6 +441,103 @@ initial begin
 			check_overflow(overflow,signed_notsigned,opa,opb,alu_out);
 			$stop();
 		end
+		$display("Checking GE >= instruction",);
+		opb=4;
+		opa=3;
+		sel_val_a=0;
+		sel_val_b=0;
+		alu_operation=GE;
+		current_operation=GE;
+		`ifndef VIVADO_SIM
+		##2;
+		`else 
+			repeat(4)@(posedge clk);
+		`endif
+		if(alu_out!==(opa >= opb ? 1:0 ))begin 
+			$display("Alu ge  is wrong -> Expected: %d Actual: %d",(opa >= opb ? 1:0 ),alu_out );
+			$stop();
+		end
+		opb=3;
+		opa=4;
+		sel_val_a=0;
+		sel_val_b=0;
+		alu_operation=GE;
+		current_operation=GE;
+		`ifndef VIVADO_SIM
+		##2;
+		`else 
+			repeat(4)@(posedge clk);
+		`endif
+		if(alu_out!==(opa >= opb ? 1:0 ))begin 
+			$display("Alu ge  is wrong -> Expected: %d Actual: %d",(opa >= opb ? 1:0 ),alu_out );
+			$stop();
+		end
+
+
+
+		$display("Checking LE >= instruction",);
+		opb=4;
+		opa=3;
+		sel_val_a=0;
+		sel_val_b=0;
+		alu_operation=LE;
+		current_operation=LE;
+		`ifndef VIVADO_SIM
+		##2;
+		`else 
+			repeat(4)@(posedge clk);
+		`endif
+		if(alu_out!==(opa <= opb ? 1:0 ))begin 
+			$display("Alu LE  is wrong -> Expected: %d Actual: %d",(opa <= opb ? 1:0 ),alu_out );
+			$stop();
+		end
+		opb=3;
+		opa=4;
+		sel_val_a=0;
+		sel_val_b=0;
+		alu_operation=LE;
+		current_operation=LE;
+		`ifndef VIVADO_SIM
+		##2;
+		`else 
+			repeat(4)@(posedge clk);
+		`endif
+		if(alu_out!==(opa <= opb ? 1:0 ))begin 
+			$display("Alu LE  is wrong -> Expected: %d Actual: %d",(opa <= opb ? 1:0 ),alu_out );
+			$stop();
+		end
+
+		$display("Checking nE >= instruction",);
+		opb=4;
+		opa=3;
+		sel_val_a=0;
+		sel_val_b=0;
+		alu_operation=NE;
+		current_operation=NE;
+		`ifndef VIVADO_SIM
+		##2;
+		`else 
+			repeat(4)@(posedge clk);
+		`endif
+		if(alu_out!==(opa === opb ? 1:0 ))begin 
+			$display("Alu NE  is wrong -> Expected: %d Actual: %d",(opa === opb ? 1:0 ),alu_out );
+			$stop();
+		end
+		opb=3;
+		opa=3;
+		sel_val_a=0;
+		sel_val_b=0;
+		alu_operation=LE;
+		current_operation=LE;
+		`ifndef VIVADO_SIM
+		##2;
+		`else 
+			repeat(4)@(posedge clk);
+		`endif
+		if(alu_out!==(opa === opb ? 1:0 ))begin 
+			$display("Alu NE  is wrong -> Expected: %d Actual: %d",(opa === opb ? 1:0 ),alu_out );
+			$stop();
+		end
 
 
 
@@ -420,7 +575,7 @@ localparam clock_period= 10ns;
 	wire [`NUMBIT-1:0]alu_output_val;
 	wire [0:0] sel_val_a;
 	wire [0:0] sel_val_b;       
-	wire evaluate_branch;
+	wire [1:0]evaluate_branch;
 	logic branch_condition;
 	logic [`NUMBIT-1:0] value_to_mem;
 	logic [`NUMBIT-1:0]prog_counter_forwaded;
@@ -441,7 +596,7 @@ localparam clock_period= 10ns;
 
   	property branch_propagation;
   		@(test_clk)
-  			disable iff(!rst || !evaluate_branch)
+  			disable iff(!rst || !evaluate_branch[0] || !evaluate_branch[1])
   			$changed(val_a) |-> branch_condition;
   	endproperty;
 
@@ -501,8 +656,5 @@ localparam clock_period= 10ns;
 					.zero_mul_detect(zero_mul_detect) ,
 		    		.mul_exeception(mul_exeception)  
 					);
-
-// TODO upgrate to test signed unsigned operation and all the other arithmetic operation 
-// including the pipelined boothmultiplier (8cc of latency)
 
 endmodule

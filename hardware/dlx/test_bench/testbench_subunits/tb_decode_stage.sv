@@ -60,7 +60,7 @@ initial begin
 		read_rf_p2=0;
 		read_rf_p1=0;
 		write_rf=0;
-		$display("Starting testbench for decode stge",);
+		$display("Starting testbench for decode stage",);
 		`ifndef  VIVADO_SIM
 		## 1;
 		`else 
@@ -73,7 +73,19 @@ initial begin
 		`else 
 		repeat(2)@(posedge clk);
 		`endif
-		$display("Sign extention check unsigned",);
+		$display("Check when enable_rf is zero output is zero",);
+		rst=1;
+		enable_rf=0;
+		`ifndef  VIVADO_SIM
+		## 1;
+		`else 
+		repeat(2)@(posedge clk);
+		`endif
+		if(val_a!==0)begin
+			$display("Error in init values of reg file",);
+			$stop();
+		end 
+		$display("Sign extention check unsigned immediate16",);
 		rst=1;
 		compute_sext=1;
 		instruction_reg='h12340FFF;
@@ -85,10 +97,10 @@ initial begin
 		repeat(2)@(posedge clk);
 		`endif
 		if(val_immediate!=='h0fff) begin
-			$display("wrong sign extentions unsigned");
+			$display("wrong sign extentions unsigned immediate16");
 			$stop();
 		end
-		$display("Sign extention check signed",);
+		$display("Sign extention check signed immediate16",);
 		compute_sext=1;
 		instruction_reg='h12388FFF;
 		`ifndef  VIVADO_SIM
@@ -99,10 +111,81 @@ initial begin
 		repeat(2)@(posedge clk);
 		`endif
 		if(val_immediate!=='hffff8fff) begin 
-			$display("wrong signed sign extention");
+			$display("wrong signed sign extention immediate16");
 			$stop();
 		end
 		instruction_reg=0;
+
+		$display("Sign extention check unsigned immediate26 j instruction ",);
+		rst=1;
+		compute_sext=0;
+		enable_rf=0;
+		read_rf_p1=0;
+		read_rf_p2=0;
+		instruction_reg='h12340FFF;
+		`ifndef  VIVADO_SIM
+		new_prog_counter_val=$urandom();
+		## 1;
+		`else 
+		new_prog_counter_val=96523;
+		repeat(2)@(posedge clk);
+		`endif
+		if(val_immediate!=='h02340FFF) begin
+			$display("wrong sign extentions unsigned immediate26 j instruction");
+			$stop();
+		end
+		$display("Sign extention check signed immediate26 j instruction",);
+		compute_sext=1;
+		instruction_reg='h18388FFF;
+		`ifndef  VIVADO_SIM
+		new_prog_counter_val=$urandom();
+		## 1;
+		`else 
+		new_prog_counter_val=7896;
+		repeat(2)@(posedge clk);
+		`endif
+		if(val_immediate!=='hf8388FFF) begin 
+			$display("wrong signed sign extention immediate26 j instruction");
+			$stop();
+		end
+		instruction_reg=0;
+
+
+		$display("Sign extention check unsigned immediate26 jal instruction ",);
+		rst=1;
+		compute_sext=0;
+		enable_rf=1;
+		read_rf_p1=0;
+		read_rf_p2=0;
+		instruction_reg='h12340FFF;
+		`ifndef  VIVADO_SIM
+		new_prog_counter_val=$urandom();
+		## 1;
+		`else 
+		new_prog_counter_val=96523;
+		repeat(2)@(posedge clk);
+		`endif
+		if(val_immediate!=='h02340FFF) begin
+			$display("wrong sign extentions unsigned immediate26 jal instruction");
+			$stop();
+		end
+		$display("Sign extention check signed immediate26 jal instruction",);
+		compute_sext=1;
+		instruction_reg='h18388FFF;
+		`ifndef  VIVADO_SIM
+		new_prog_counter_val=$urandom();
+		## 1;
+		`else 
+		new_prog_counter_val=7896;
+		repeat(2)@(posedge clk);
+		`endif
+		if(val_immediate!=='hf8388FFF) begin 
+			$display("wrong signed sign extention immediate26 jal instruction");
+			$stop();
+		end
+		instruction_reg=0;
+		
+
 		enable_rf=1;
 		$display("Read and write on the same port",);
 		`ifndef  VIVADO_SIM
