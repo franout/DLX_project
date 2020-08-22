@@ -18,8 +18,10 @@ Microelectronic System course (MsC in Embedded Systems Engineering)  @ Polythecn
 - [Setup](#setup)
 - [Architecture](#architecture)
 - [Software](#software)
+- [Simulation](#simulation)
+- [Synthesis](#synthesis)
+- [Layout](#layout)
 - [Tests](#tests)
-- [Documentation](#documentation)
 - [License](#license)
 
 
@@ -55,13 +57,26 @@ For creating creating the hex dump file to be used in the simulation (loaded in 
 ```shell
   $ ./software/assembler.sh {ASM_FILE_PATH}
   ```
+The produced hexadecimal file should be copied in the memories folder.
 
-## Documentation
-*- IN PROGRESS*
+Moreover, in the memories folder it is present also a python script for generating random data suitable for the DRAM.
+```shell
+  $ ./hardware/dlx/test_bench/memories/generate_random_values_dram.py
+  ```
+## Simulation  
+
+## Synthesis 
+
+## Layout
+
 
 ## Tests 
-For testing the microprocessor refers to the testbench in System Verilog.
-*coming soon*
+For functionally verify the microprocessor refers to the testbench in System Verilog. 
+They are divided for each stage and control unit for regression test
+```shell
+  $ ./scripts/regression_test.sh
+  ```
+While there will be a final testbench for the DLX top level entity
 ## Useful Link 
 
 Reach out to me at one of the following places!
