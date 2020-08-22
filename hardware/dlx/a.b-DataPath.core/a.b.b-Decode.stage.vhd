@@ -77,8 +77,12 @@ begin
 
 	rstn <= not(rst);
 
-		-- logic for getting the correct address depending on the current instruction ( if it is an I-type or R-type instruction)
-		instruction_reg_i<=instruction_reg(15 downto 11 ) when rtype_itypen ='1' else instruction_reg( 20 downto 16 );
+		-- logic for getting the correct address for write back stage
+		-- depending on the current instruction ( if it is an I-type or R-type instruction)
+		-- special case for jal instruction where the address is fixeed at 31
+		instruction_reg_i<=instruction_reg(15 downto 11 ) when rtype_itypen ='1' and enable_sign_extension_logic='0' else  
+						   instruction_reg( 20 downto 16 ) when rtype_itypen='0' and enable_sign_extension_logic='0' else 
+							('1' & x"f") ; -- write return address in r31
 		-- delay registers for write back address
 		delay_reg_wb_1 : reg_nbit generic map (
 			N => f_log2(RF_REGS)

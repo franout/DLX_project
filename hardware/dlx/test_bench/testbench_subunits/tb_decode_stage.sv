@@ -355,13 +355,13 @@ localparam clock_period= 10ns;
  
   	property read_p1;
   		@(test_clk)
-  			disable iff(!rst|| !enable_rf || compute_sext || !read_rf_p1 || val_a===0)
+  			disable iff(!rst|| !enable_rf || compute_sext )
 			read_port(read_rf_p1 ,val_a);
   	endproperty;
 
   	property read_p2;
   		@(test_clk)
-  			disable iff(!rst|| !enable_rf || compute_sext || !read_rf_p2)
+  			disable iff(!rst|| !enable_rf || compute_sext )
 	  			read_port(read_rf_p2, val_b);
   	endproperty;
 

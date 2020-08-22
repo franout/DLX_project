@@ -8,12 +8,14 @@ QuestaSim-64 vlog 10.7c Compiler 2018.08 Aug 17 2018
 Top level modules:
 	tb_memories
 
-} {} {}} /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/testbench_subunits/tb_writeback_stage.sv {1 {vlog -work work -vopt -sv -stats=none /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/testbench_subunits/tb_writeback_stage.sv
+} {} {}} /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/testbench_subunits/tb_decode_stage.sv {1 {vlog -work work -vopt -sv -stats=none /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/testbench_subunits/tb_decode_stage.sv
 QuestaSim-64 vlog 10.7c Compiler 2018.08 Aug 17 2018
--- Compiling module tb_writeback_stage
+-- Compiling package tb_decode_stage_sv_unit
+-- Compiling program test_decode
+-- Compiling module tb_decode_stage
 
 Top level modules:
-	tb_writeback_stage
+	tb_decode_stage
 
 } {} {}} /home/ms20.50/Desktop/DLX_project/hardware/dlx/001-global_components.vhd {1 {vcom -work work -2008 -explicit -check_synthesis -vopt -stats=none /home/ms20.50/Desktop/DLX_project/hardware/dlx/001-global_components.vhd
 QuestaSim-64 vcom 10.7c Compiler 2018.08 Aug 17 2018
@@ -27,14 +29,12 @@ QuestaSim-64 vcom 10.7c Compiler 2018.08 Aug 17 2018
 -- Compiling package body global_components
 -- Loading package global_components
 
-} {} {}} /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/testbench_subunits/tb_decode_stage.sv {1 {vlog -work work -vopt -sv -stats=none /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/testbench_subunits/tb_decode_stage.sv
+} {} {}} /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/testbench_subunits/tb_writeback_stage.sv {1 {vlog -work work -vopt -sv -stats=none /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/testbench_subunits/tb_writeback_stage.sv
 QuestaSim-64 vlog 10.7c Compiler 2018.08 Aug 17 2018
--- Compiling package tb_decode_stage_sv_unit
--- Compiling program test_decode
--- Compiling module tb_decode_stage
+-- Compiling module tb_writeback_stage
 
 Top level modules:
-	tb_decode_stage
+	tb_writeback_stage
 
 } {} {}} /home/ms20.50/Desktop/DLX_project/hardware/dlx/a.a-control_unit.vhd {0 {vcom -work work -2002 -explicit -vopt -stats=none /home/ms20.50/Desktop/DLX_project/hardware/dlx/a.a-control_unit.vhd
 QuestaSim-64 vcom 10.7c Compiler 2018.08 Aug 17 2018
@@ -48,94 +48,39 @@ QuestaSim-64 vcom 10.7c Compiler 2018.08 Aug 17 2018
 -- Loading package global_components
 -- Compiling entity control_unit
 -- Compiling architecture behavioural of control_unit
-** Error: /home/ms20.50/Desktop/DLX_project/hardware/dlx/a.a-control_unit.vhd(104): Signal "curr_state" is type state_t; expecting type ieee.std_logic_1164.STD_LOGIC_VECTOR.
-** Error (suppressible): /home/ms20.50/Desktop/DLX_project/hardware/dlx/a.a-control_unit.vhd(137): (vcom-1014) Array type case expression must be of a locally static subtype.
-** Error: /home/ms20.50/Desktop/DLX_project/hardware/dlx/a.a-control_unit.vhd(138): Enumeration literal "i_add" is type work.globals.instruction; expecting type ieee.std_logic_1164.STD_LOGIC_VECTOR.
-** Error: /home/ms20.50/Desktop/DLX_project/hardware/dlx/a.a-control_unit.vhd(141): near "ir_": Identifier may not end with an underline.
-** Error: /home/ms20.50/Desktop/DLX_project/hardware/dlx/a.a-control_unit.vhd(141): (vcom-1136) Unknown identifier "ir_".
-** Error: /home/ms20.50/Desktop/DLX_project/hardware/dlx/a.a-control_unit.vhd(144): Enumeration literal "i_addi" is type work.globals.instruction; expecting type ieee.std_logic_1164.STD_LOGIC_VECTOR.
-** Error: /home/ms20.50/Desktop/DLX_project/hardware/dlx/a.a-control_unit.vhd(145): Enumeration literal "i_and" is type work.globals.instruction; expecting type ieee.std_logic_1164.STD_LOGIC_VECTOR.
-** Error: /home/ms20.50/Desktop/DLX_project/hardware/dlx/a.a-control_unit.vhd(146): Enumeration literal "i_andi" is type work.globals.instruction; expecting type ieee.std_logic_1164.STD_LOGIC_VECTOR.
-** Error: /home/ms20.50/Desktop/DLX_project/hardware/dlx/a.a-control_unit.vhd(147): Enumeration literal "i_beqz" is type work.globals.instruction; expecting type ieee.std_logic_1164.STD_LOGIC_VECTOR.
-** Error: /home/ms20.50/Desktop/DLX_project/hardware/dlx/a.a-control_unit.vhd(148): Enumeration literal "i_benz" is type work.globals.instruction; expecting type ieee.std_logic_1164.STD_LOGIC_VECTOR.
-** Error: /home/ms20.50/Desktop/DLX_project/hardware/dlx/a.a-control_unit.vhd(149): Enumeration literal "i_j" is type work.globals.instruction; expecting type ieee.std_logic_1164.STD_LOGIC_VECTOR.
-** Error: /home/ms20.50/Desktop/DLX_project/hardware/dlx/a.a-control_unit.vhd(150): Enumeration literal "i_jal" is type work.globals.instruction; expecting type ieee.std_logic_1164.STD_LOGIC_VECTOR.
-** Error: /home/ms20.50/Desktop/DLX_project/hardware/dlx/a.a-control_unit.vhd(151): Enumeration literal "i_lw" is type work.globals.instruction; expecting type ieee.std_logic_1164.STD_LOGIC_VECTOR.
-** Error: /home/ms20.50/Desktop/DLX_project/hardware/dlx/a.a-control_unit.vhd(152): Enumeration literal "i_nop" is type work.globals.instruction; expecting type ieee.std_logic_1164.STD_LOGIC_VECTOR.
-** Error: /home/ms20.50/Desktop/DLX_project/hardware/dlx/a.a-control_unit.vhd(153): Enumeration literal "i_or" is type work.globals.instruction; expecting type ieee.std_logic_1164.STD_LOGIC_VECTOR.
-** Error: /home/ms20.50/Desktop/DLX_project/hardware/dlx/a.a-control_unit.vhd(154): Enumeration literal "i_ori" is type work.globals.instruction; expecting type ieee.std_logic_1164.STD_LOGIC_VECTOR.
-** Error: /home/ms20.50/Desktop/DLX_project/hardware/dlx/a.a-control_unit.vhd(155): Enumeration literal "i_sgl" is type work.globals.instruction; expecting type ieee.std_logic_1164.STD_LOGIC_VECTOR.
-** Error: /home/ms20.50/Desktop/DLX_project/hardware/dlx/a.a-control_unit.vhd(156): Enumeration literal "i_sgei" is type work.globals.instruction; expecting type ieee.std_logic_1164.STD_LOGIC_VECTOR.
-** Error: /home/ms20.50/Desktop/DLX_project/hardware/dlx/a.a-control_unit.vhd(157): Enumeration literal "i_sle" is type work.globals.instruction; expecting type ieee.std_logic_1164.STD_LOGIC_VECTOR.
-** Error: /home/ms20.50/Desktop/DLX_project/hardware/dlx/a.a-control_unit.vhd(158): Enumeration literal "i_slei" is type work.globals.instruction; expecting type ieee.std_logic_1164.STD_LOGIC_VECTOR.
-** Error: /home/ms20.50/Desktop/DLX_project/hardware/dlx/a.a-control_unit.vhd(159): Enumeration literal "i_sll" is type work.globals.instruction; expecting type ieee.std_logic_1164.STD_LOGIC_VECTOR.
-** Error: /home/ms20.50/Desktop/DLX_project/hardware/dlx/a.a-control_unit.vhd(160): Enumeration literal "i_slli" is type work.globals.instruction; expecting type ieee.std_logic_1164.STD_LOGIC_VECTOR.
-** Error: /home/ms20.50/Desktop/DLX_project/hardware/dlx/a.a-control_unit.vhd(161): Enumeration literal "i_sne" is type work.globals.instruction; expecting type ieee.std_logic_1164.STD_LOGIC_VECTOR.
-** Error: /home/ms20.50/Desktop/DLX_project/hardware/dlx/a.a-control_unit.vhd(162): Enumeration literal "i_snei" is type work.globals.instruction; expecting type ieee.std_logic_1164.STD_LOGIC_VECTOR.
-** Error: /home/ms20.50/Desktop/DLX_project/hardware/dlx/a.a-control_unit.vhd(163): Enumeration literal "i_srl" is type work.globals.instruction; expecting type ieee.std_logic_1164.STD_LOGIC_VECTOR.
-** Error: /home/ms20.50/Desktop/DLX_project/hardware/dlx/a.a-control_unit.vhd(164): Enumeration literal "i_srli" is type work.globals.instruction; expecting type ieee.std_logic_1164.STD_LOGIC_VECTOR.
-** Error: /home/ms20.50/Desktop/DLX_project/hardware/dlx/a.a-control_unit.vhd(165): Enumeration literal "i_sub" is type work.globals.instruction; expecting type ieee.std_logic_1164.STD_LOGIC_VECTOR.
-** Error: /home/ms20.50/Desktop/DLX_project/hardware/dlx/a.a-control_unit.vhd(166): Enumeration literal "i_subi" is type work.globals.instruction; expecting type ieee.std_logic_1164.STD_LOGIC_VECTOR.
-** Error: /home/ms20.50/Desktop/DLX_project/hardware/dlx/a.a-control_unit.vhd(167): Enumeration literal "i_sw" is type work.globals.instruction; expecting type ieee.std_logic_1164.STD_LOGIC_VECTOR.
-** Error: /home/ms20.50/Desktop/DLX_project/hardware/dlx/a.a-control_unit.vhd(168): Enumeration literal "i_xor" is type work.globals.instruction; expecting type ieee.std_logic_1164.STD_LOGIC_VECTOR.
-** Error: /home/ms20.50/Desktop/DLX_project/hardware/dlx/a.a-control_unit.vhd(169): Enumeration literal "i_xori" is type work.globals.instruction; expecting type ieee.std_logic_1164.STD_LOGIC_VECTOR.
-** Error (suppressible): /home/ms20.50/Desktop/DLX_project/hardware/dlx/a.a-control_unit.vhd(186): (vcom-1014) Array type case expression must be of a locally static subtype.
-** Error: /home/ms20.50/Desktop/DLX_project/hardware/dlx/a.a-control_unit.vhd(187): Enumeration literal "i_add" is type work.globals.instruction; expecting type ieee.std_logic_1164.STD_LOGIC_VECTOR.
-** Error: /home/ms20.50/Desktop/DLX_project/hardware/dlx/a.a-control_unit.vhd(194): (vcom-1136) Unknown identifier "conv_integer".
-** Error: /home/ms20.50/Desktop/DLX_project/hardware/dlx/a.a-control_unit.vhd(196): Integer literal 0 is not of type (error).
-** Error: /home/ms20.50/Desktop/DLX_project/hardware/dlx/a.a-control_unit.vhd(197): (vcom-1136) Unknown identifier "conv_integer".
-** Error: /home/ms20.50/Desktop/DLX_project/hardware/dlx/a.a-control_unit.vhd(198): Integer literal 4 is not of type (error).
-** Error: /home/ms20.50/Desktop/DLX_project/hardware/dlx/a.a-control_unit.vhd(198): Illegal target for signal assignment.
-** Error: /home/ms20.50/Desktop/DLX_project/hardware/dlx/a.a-control_unit.vhd(198): (vcom-1136) Unknown identifier "aluOpcode_i".
-** Error: /home/ms20.50/Desktop/DLX_project/hardware/dlx/a.a-control_unit.vhd(199): Integer literal 6 is not of type (error).
-** Error: /home/ms20.50/Desktop/DLX_project/hardware/dlx/a.a-control_unit.vhd(199): Illegal target for signal assignment.
-** Error: /home/ms20.50/Desktop/DLX_project/hardware/dlx/a.a-control_unit.vhd(199): (vcom-1136) Unknown identifier "aluOpcode_i".
-** Error: /home/ms20.50/Desktop/DLX_project/hardware/dlx/a.a-control_unit.vhd(201): Illegal target for signal assignment.
-** Error: /home/ms20.50/Desktop/DLX_project/hardware/dlx/a.a-control_unit.vhd(201): (vcom-1136) Unknown identifier "aluOpcode_i".
-** Error: /home/ms20.50/Desktop/DLX_project/hardware/dlx/a.a-control_unit.vhd(203): Integer literal 2 is not of type (error).
-** Error: /home/ms20.50/Desktop/DLX_project/hardware/dlx/a.a-control_unit.vhd(203): Illegal target for signal assignment.
-** Error: /home/ms20.50/Desktop/DLX_project/hardware/dlx/a.a-control_unit.vhd(203): (vcom-1136) Unknown identifier "aluOpcode_i".
-** Error: /home/ms20.50/Desktop/DLX_project/hardware/dlx/a.a-control_unit.vhd(204): Integer literal 3 is not of type (error).
-** Error: /home/ms20.50/Desktop/DLX_project/hardware/dlx/a.a-control_unit.vhd(204): Illegal target for signal assignment.
-** Error: /home/ms20.50/Desktop/DLX_project/hardware/dlx/a.a-control_unit.vhd(204): (vcom-1136) Unknown identifier "aluOpcode_i".
-** Error: /home/ms20.50/Desktop/DLX_project/hardware/dlx/a.a-control_unit.vhd(205): Integer literal 8 is not of type (error).
-** Error: /home/ms20.50/Desktop/DLX_project/hardware/dlx/a.a-control_unit.vhd(205): Illegal target for signal assignment.
-** Error: /home/ms20.50/Desktop/DLX_project/hardware/dlx/a.a-control_unit.vhd(205): (vcom-1136) Unknown identifier "aluOpcode_i".
-** Error: /home/ms20.50/Desktop/DLX_project/hardware/dlx/a.a-control_unit.vhd(207): Illegal target for signal assignment.
-** Error: /home/ms20.50/Desktop/DLX_project/hardware/dlx/a.a-control_unit.vhd(207): (vcom-1136) Unknown identifier "aluOpcode_i".
-** Warning: /home/ms20.50/Desktop/DLX_project/hardware/dlx/a.a-control_unit.vhd(137): (vcom-1345) Case statement choices cannot be checked for coverage.
-** Warning: /home/ms20.50/Desktop/DLX_project/hardware/dlx/a.a-control_unit.vhd(138): (vcom-1323) Case statement choice is not being checked for array length.
-** Warning: /home/ms20.50/Desktop/DLX_project/hardware/dlx/a.a-control_unit.vhd(144): (vcom-1323) Case statement choice is not being checked for array length.
-** Warning: /home/ms20.50/Desktop/DLX_project/hardware/dlx/a.a-control_unit.vhd(145): (vcom-1323) Case statement choice is not being checked for array length.
-** Warning: /home/ms20.50/Desktop/DLX_project/hardware/dlx/a.a-control_unit.vhd(146): (vcom-1323) Case statement choice is not being checked for array length.
-** Warning: /home/ms20.50/Desktop/DLX_project/hardware/dlx/a.a-control_unit.vhd(147): (vcom-1323) Case statement choice is not being checked for array length.
-** Warning: /home/ms20.50/Desktop/DLX_project/hardware/dlx/a.a-control_unit.vhd(148): (vcom-1323) Case statement choice is not being checked for array length.
-** Warning: /home/ms20.50/Desktop/DLX_project/hardware/dlx/a.a-control_unit.vhd(149): (vcom-1323) Case statement choice is not being checked for array length.
-** Warning: /home/ms20.50/Desktop/DLX_project/hardware/dlx/a.a-control_unit.vhd(150): (vcom-1323) Case statement choice is not being checked for array length.
-** Warning: /home/ms20.50/Desktop/DLX_project/hardware/dlx/a.a-control_unit.vhd(151): (vcom-1323) Case statement choice is not being checked for array length.
-** Warning: /home/ms20.50/Desktop/DLX_project/hardware/dlx/a.a-control_unit.vhd(152): (vcom-1323) Case statement choice is not being checked for array length.
-** Warning: /home/ms20.50/Desktop/DLX_project/hardware/dlx/a.a-control_unit.vhd(153): (vcom-1323) Case statement choice is not being checked for array length.
-** Warning: /home/ms20.50/Desktop/DLX_project/hardware/dlx/a.a-control_unit.vhd(154): (vcom-1323) Case statement choice is not being checked for array length.
-** Warning: /home/ms20.50/Desktop/DLX_project/hardware/dlx/a.a-control_unit.vhd(155): (vcom-1323) Case statement choice is not being checked for array length.
-** Warning: /home/ms20.50/Desktop/DLX_project/hardware/dlx/a.a-control_unit.vhd(156): (vcom-1323) Case statement choice is not being checked for array length.
-** Warning: /home/ms20.50/Desktop/DLX_project/hardware/dlx/a.a-control_unit.vhd(157): (vcom-1323) Case statement choice is not being checked for array length.
-** Warning: /home/ms20.50/Desktop/DLX_project/hardware/dlx/a.a-control_unit.vhd(158): (vcom-1323) Case statement choice is not being checked for array length.
-** Warning: /home/ms20.50/Desktop/DLX_project/hardware/dlx/a.a-control_unit.vhd(159): (vcom-1323) Case statement choice is not being checked for array length.
-** Warning: /home/ms20.50/Desktop/DLX_project/hardware/dlx/a.a-control_unit.vhd(160): (vcom-1323) Case statement choice is not being checked for array length.
-** Warning: /home/ms20.50/Desktop/DLX_project/hardware/dlx/a.a-control_unit.vhd(161): (vcom-1323) Case statement choice is not being checked for array length.
-** Warning: /home/ms20.50/Desktop/DLX_project/hardware/dlx/a.a-control_unit.vhd(162): (vcom-1323) Case statement choice is not being checked for array length.
-** Warning: /home/ms20.50/Desktop/DLX_project/hardware/dlx/a.a-control_unit.vhd(163): (vcom-1323) Case statement choice is not being checked for array length.
-** Warning: /home/ms20.50/Desktop/DLX_project/hardware/dlx/a.a-control_unit.vhd(164): (vcom-1323) Case statement choice is not being checked for array length.
-** Warning: /home/ms20.50/Desktop/DLX_project/hardware/dlx/a.a-control_unit.vhd(165): (vcom-1323) Case statement choice is not being checked for array length.
-** Warning: /home/ms20.50/Desktop/DLX_project/hardware/dlx/a.a-control_unit.vhd(166): (vcom-1323) Case statement choice is not being checked for array length.
-** Warning: /home/ms20.50/Desktop/DLX_project/hardware/dlx/a.a-control_unit.vhd(167): (vcom-1323) Case statement choice is not being checked for array length.
-** Warning: /home/ms20.50/Desktop/DLX_project/hardware/dlx/a.a-control_unit.vhd(168): (vcom-1323) Case statement choice is not being checked for array length.
-** Warning: /home/ms20.50/Desktop/DLX_project/hardware/dlx/a.a-control_unit.vhd(169): (vcom-1323) Case statement choice is not being checked for array length.
-** Warning: /home/ms20.50/Desktop/DLX_project/hardware/dlx/a.a-control_unit.vhd(186): (vcom-1345) Case statement choices cannot be checked for coverage.
-** Warning: /home/ms20.50/Desktop/DLX_project/hardware/dlx/a.a-control_unit.vhd(187): (vcom-1323) Case statement choice is not being checked for array length.
-** Note: /home/ms20.50/Desktop/DLX_project/hardware/dlx/a.a-control_unit.vhd(287): VHDL Compiler exiting
+** Error (suppressible): /home/ms20.50/Desktop/DLX_project/hardware/dlx/a.a-control_unit.vhd(148): (vcom-1014) Array type case expression must be of a locally static subtype.
+** Error (suppressible): /home/ms20.50/Desktop/DLX_project/hardware/dlx/a.a-control_unit.vhd(153): (vcom-1014) Array type case expression must be of a locally static subtype.
+** Warning: /home/ms20.50/Desktop/DLX_project/hardware/dlx/a.a-control_unit.vhd(149): (vcom-1323) Case statement choice is not being checked for uniqueness.
+** Warning: /home/ms20.50/Desktop/DLX_project/hardware/dlx/a.a-control_unit.vhd(188): (vcom-1323) Case statement choice is not being checked for uniqueness.
+** Warning: /home/ms20.50/Desktop/DLX_project/hardware/dlx/a.a-control_unit.vhd(196): (vcom-1323) Case statement choice is not being checked for uniqueness.
+** Warning: /home/ms20.50/Desktop/DLX_project/hardware/dlx/a.a-control_unit.vhd(204): (vcom-1323) Case statement choice is not being checked for uniqueness.
+** Warning: /home/ms20.50/Desktop/DLX_project/hardware/dlx/a.a-control_unit.vhd(207): (vcom-1323) Case statement choice is not being checked for uniqueness.
+** Warning: /home/ms20.50/Desktop/DLX_project/hardware/dlx/a.a-control_unit.vhd(210): (vcom-1323) Case statement choice is not being checked for uniqueness.
+** Warning: /home/ms20.50/Desktop/DLX_project/hardware/dlx/a.a-control_unit.vhd(213): (vcom-1323) Case statement choice is not being checked for uniqueness.
+** Warning: /home/ms20.50/Desktop/DLX_project/hardware/dlx/a.a-control_unit.vhd(217): (vcom-1323) Case statement choice is not being checked for uniqueness.
+** Warning: /home/ms20.50/Desktop/DLX_project/hardware/dlx/a.a-control_unit.vhd(220): (vcom-1323) Case statement choice is not being checked for uniqueness.
+** Warning: /home/ms20.50/Desktop/DLX_project/hardware/dlx/a.a-control_unit.vhd(223): (vcom-1323) Case statement choice is not being checked for uniqueness.
+** Warning: /home/ms20.50/Desktop/DLX_project/hardware/dlx/a.a-control_unit.vhd(225): (vcom-1323) Case statement choice is not being checked for uniqueness.
+** Warning: /home/ms20.50/Desktop/DLX_project/hardware/dlx/a.a-control_unit.vhd(233): (vcom-1323) Case statement choice is not being checked for uniqueness.
+** Warning: /home/ms20.50/Desktop/DLX_project/hardware/dlx/a.a-control_unit.vhd(241): (vcom-1323) Case statement choice is not being checked for uniqueness.
+** Warning: /home/ms20.50/Desktop/DLX_project/hardware/dlx/a.a-control_unit.vhd(249): (vcom-1323) Case statement choice is not being checked for uniqueness.
+** Warning: /home/ms20.50/Desktop/DLX_project/hardware/dlx/a.a-control_unit.vhd(257): (vcom-1323) Case statement choice is not being checked for uniqueness.
+** Warning: /home/ms20.50/Desktop/DLX_project/hardware/dlx/a.a-control_unit.vhd(265): (vcom-1323) Case statement choice is not being checked for uniqueness.
+** Warning: /home/ms20.50/Desktop/DLX_project/hardware/dlx/a.a-control_unit.vhd(273): (vcom-1323) Case statement choice is not being checked for uniqueness.
+** Warning: /home/ms20.50/Desktop/DLX_project/hardware/dlx/a.a-control_unit.vhd(281): (vcom-1323) Case statement choice is not being checked for uniqueness.
+** Warning: /home/ms20.50/Desktop/DLX_project/hardware/dlx/a.a-control_unit.vhd(289): (vcom-1323) Case statement choice is not being checked for uniqueness.
+** Warning: /home/ms20.50/Desktop/DLX_project/hardware/dlx/a.a-control_unit.vhd(297): (vcom-1323) Case statement choice is not being checked for uniqueness.
+** Warning: /home/ms20.50/Desktop/DLX_project/hardware/dlx/a.a-control_unit.vhd(305): (vcom-1323) Case statement choice is not being checked for uniqueness.
+** Warning: /home/ms20.50/Desktop/DLX_project/hardware/dlx/a.a-control_unit.vhd(155): (vcom-1323) Case statement choice is not being checked for uniqueness.
+** Warning: /home/ms20.50/Desktop/DLX_project/hardware/dlx/a.a-control_unit.vhd(156): (vcom-1323) Case statement choice is not being checked for uniqueness.
+** Warning: /home/ms20.50/Desktop/DLX_project/hardware/dlx/a.a-control_unit.vhd(173): (vcom-1323) Case statement choice is not being checked for uniqueness.
+** Warning: /home/ms20.50/Desktop/DLX_project/hardware/dlx/a.a-control_unit.vhd(174): (vcom-1323) Case statement choice is not being checked for uniqueness.
+** Warning: /home/ms20.50/Desktop/DLX_project/hardware/dlx/a.a-control_unit.vhd(175): (vcom-1323) Case statement choice is not being checked for uniqueness.
+** Warning: /home/ms20.50/Desktop/DLX_project/hardware/dlx/a.a-control_unit.vhd(176): (vcom-1323) Case statement choice is not being checked for uniqueness.
+** Warning: /home/ms20.50/Desktop/DLX_project/hardware/dlx/a.a-control_unit.vhd(177): (vcom-1323) Case statement choice is not being checked for uniqueness.
+** Note: /home/ms20.50/Desktop/DLX_project/hardware/dlx/a.a-control_unit.vhd(423): VHDL Compiler exiting
 
-} {13.0 14.0 15.0 44.0 45.0 68.0} {}} /home/ms20.50/Desktop/DLX_project/hardware/dlx/a.b-DataPath.core/a.b.c-Execute.stage/a.b.c.c-boothmul_pipelined.core/a.b.c.b-adder.vhd {1 {vcom -work work -2002 -explicit -vopt -stats=none /home/ms20.50/Desktop/DLX_project/hardware/dlx/a.b-DataPath.core/a.b.c-Execute.stage/a.b.c.c-boothmul_pipelined.core/a.b.c.b-adder.vhd
+} {} {}} /home/ms20.50/Desktop/DLX_project/hardware/dlx/a.b-DataPath.core/a.b.c-Execute.stage/a.b.c.c-boothmul_pipelined.core/a.b.c.b-adder.vhd {1 {vcom -work work -2002 -explicit -vopt -stats=none /home/ms20.50/Desktop/DLX_project/hardware/dlx/a.b-DataPath.core/a.b.c-Execute.stage/a.b.c.c-boothmul_pipelined.core/a.b.c.b-adder.vhd
 QuestaSim-64 vcom 10.7c Compiler 2018.08 Aug 17 2018
 -- Loading package STANDARD
 -- Loading package TEXTIO
@@ -161,7 +106,22 @@ QuestaSim-64 vcom 10.7c Compiler 2018.08 Aug 17 2018
 -- Loading configuration cfg_fd_pippo
 -- Loading configuration cfg_fd_pluto
 
-} {} {}} /home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/sum_gen.vhd {2 {vcom -work work -2008 -explicit -vopt -stats=none /home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/sum_gen.vhd
+} {} {}} /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/testbench_subunits/tb_multiplier_pip.vhd {1 {vcom -work work -2002 -explicit -vopt -stats=none /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/testbench_subunits/tb_multiplier_pip.vhd
+QuestaSim-64 vcom 10.7c Compiler 2018.08 Aug 17 2018
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package NUMERIC_STD
+-- Loading package CONSTANTS
+-- Compiling entity tb_multiplier_pip
+-- Compiling architecture TEST of tb_multiplier_pip
+
+} {} {}} /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/testbench_subunits/tb_cu.sv {0 {vlog -work work -vopt -sv -stats=none /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/testbench_subunits/tb_cu.sv
+QuestaSim-64 vlog 10.7c Compiler 2018.08 Aug 17 2018
+** Error: (vlog-13069) /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/testbench_subunits/tb_cu.sv(193): near ";": syntax error, unexpected ';'.
+** Error: /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/testbench_subunits/tb_cu.sv(193): (vlog-13205) Syntax error found in the scope following 'multiplication_stall'. Is there a missing '::'?
+
+} {3.0 5.0} {}} /home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/sum_gen.vhd {2 {vcom -work work -2008 -explicit -vopt -stats=none /home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/sum_gen.vhd
 QuestaSim-64 vcom 10.7c Compiler 2018.08 Aug 17 2018
 -- Loading package STANDARD
 -- Loading package TEXTIO
@@ -177,33 +137,6 @@ QuestaSim-64 vcom 10.7c Compiler 2018.08 Aug 17 2018
 -- Loading configuration cfg_csb_structural
 ** Warning: /home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/sum_gen.vhd(40): (vcom-1263) Component configuration "all : CSB" applies to no component instantiation statements.
 
-} {} {}} /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/testbench_subunits/tb_cu.sv {0 {vlog -work work -vopt -sv -stats=none /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/testbench_subunits/tb_cu.sv
-QuestaSim-64 vlog 10.7c Compiler 2018.08 Aug 17 2018
-** Warning: /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/testbench_subunits/tb_cu.sv(53): (vlog-2283) Extra semicolon in $unit (global) scope.
-** Error: (vlog-13069) /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/testbench_subunits/tb_cu.sv(120): near ")": syntax error, unexpected ')', expecting .* or '.'.
-
-} {4.0 5.0} {}} /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/testbench_subunits/tb_multiplier_pip.vhd {1 {vcom -work work -2002 -explicit -vopt -stats=none /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/testbench_subunits/tb_multiplier_pip.vhd
-QuestaSim-64 vcom 10.7c Compiler 2018.08 Aug 17 2018
--- Loading package STANDARD
--- Loading package TEXTIO
--- Loading package std_logic_1164
--- Loading package NUMERIC_STD
--- Loading package CONSTANTS
--- Compiling entity tb_multiplier_pip
--- Compiling architecture TEST of tb_multiplier_pip
-
-} {} {}} /home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/adder.vhd {1 {vcom -work work -2008 -explicit -vopt -stats=none /home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/adder.vhd
-QuestaSim-64 vcom 10.7c Compiler 2018.08 Aug 17 2018
--- Loading package STANDARD
--- Loading package TEXTIO
--- Loading package std_logic_1164
--- Loading package NUMERIC_STD
--- Compiling entity adder
--- Compiling architecture beh of adder
--- Compiling configuration CFG_ADDER_BEH
--- Loading entity adder
--- Loading architecture beh of adder
-
 } {} {}} /home/ms20.50/Desktop/DLX_project/hardware/dlx/a.b-DataPath.core/a.b.c-Execute.stage.vhd {1 {vcom -work work -2002 -explicit -vopt -stats=none /home/ms20.50/Desktop/DLX_project/hardware/dlx/a.b-DataPath.core/a.b.c-Execute.stage.vhd
 QuestaSim-64 vcom 10.7c Compiler 2018.08 Aug 17 2018
 -- Loading package STANDARD
@@ -216,6 +149,18 @@ QuestaSim-64 vcom 10.7c Compiler 2018.08 Aug 17 2018
 -- Loading package global_components
 -- Compiling entity execute_stage
 -- Compiling architecture structural of execute_stage
+
+} {} {}} /home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/adder.vhd {1 {vcom -work work -2008 -explicit -vopt -stats=none /home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/adder.vhd
+QuestaSim-64 vcom 10.7c Compiler 2018.08 Aug 17 2018
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package NUMERIC_STD
+-- Compiling entity adder
+-- Compiling architecture beh of adder
+-- Compiling configuration CFG_ADDER_BEH
+-- Loading entity adder
+-- Loading architecture beh of adder
 
 } {} {}} /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/tb_dlx.sv {1 {vlog -work work -vopt -sv -stats=none /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/tb_dlx.sv
 QuestaSim-64 vlog 10.7c Compiler 2018.08 Aug 17 2018
@@ -703,7 +648,7 @@ QuestaSim-64 vlog 10.7c Compiler 2018.08 Aug 17 2018
 Top level modules:
 	--none--
 
-} {} {}} /home/ms20.50/Desktop/DLX_project/hardware/dlx/a-DLX.vhd {0 {vcom -work work -2002 -explicit -vopt -stats=none /home/ms20.50/Desktop/DLX_project/hardware/dlx/a-DLX.vhd
+} {} {}} /home/ms20.50/Desktop/DLX_project/hardware/dlx/a-DLX.vhd {1 {vcom -work work -2002 -explicit -vopt -stats=none /home/ms20.50/Desktop/DLX_project/hardware/dlx/a-DLX.vhd
 QuestaSim-64 vcom 10.7c Compiler 2018.08 Aug 17 2018
 -- Loading package STANDARD
 -- Loading package TEXTIO
@@ -712,11 +657,23 @@ QuestaSim-64 vcom 10.7c Compiler 2018.08 Aug 17 2018
 -- Loading package globals
 -- Compiling entity DLX
 -- Compiling architecture dlx_rtl of DLX
-** Error: /home/ms20.50/Desktop/DLX_project/hardware/dlx/a-DLX.vhd(233): (vcom-1035) Formal port "zero_mul_detect" has OPEN or no actual associated with it.
-** Error: /home/ms20.50/Desktop/DLX_project/hardware/dlx/a-DLX.vhd(233): (vcom-1035) Formal port "mul_exeception" has OPEN or no actual associated with it.
-** Note: /home/ms20.50/Desktop/DLX_project/hardware/dlx/a-DLX.vhd(290): VHDL Compiler exiting
 
-} {10.0 12.0} {}} /home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/mux21_nbit.vhd {1 {vcom -work work -2008 -explicit -vopt -stats=none /home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/mux21_nbit.vhd
+} {} {}} /home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/stcg.vhd {1 {vcom -work work -2008 -explicit -vopt -stats=none /home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/stcg.vhd
+QuestaSim-64 vcom 10.7c Compiler 2018.08 Aug 17 2018
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package CONSTANTS
+-- Compiling entity STCG
+-- Compiling architecture STRUCTURAL of STCG
+-- Compiling configuration CFG_STCG_STRUCTURAL
+-- Loading entity STCG
+-- Loading architecture STRUCTURAL of STCG
+-- Loading entity PG
+-- Loading entity PGSB
+-- Loading entity GSB
+
+} {} {}} /home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/mux21_nbit.vhd {1 {vcom -work work -2008 -explicit -vopt -stats=none /home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/mux21_nbit.vhd
 QuestaSim-64 vcom 10.7c Compiler 2018.08 Aug 17 2018
 -- Loading package STANDARD
 -- Loading package TEXTIO
@@ -734,21 +691,6 @@ QuestaSim-64 vcom 10.7c Compiler 2018.08 Aug 17 2018
 -- Loading architecture struc of mux21_nbit
 -- Loading entity MUX21
 -- Loading configuration cfg_mux21_behavioral_2
-
-} {} {}} /home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/stcg.vhd {1 {vcom -work work -2008 -explicit -vopt -stats=none /home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/stcg.vhd
-QuestaSim-64 vcom 10.7c Compiler 2018.08 Aug 17 2018
--- Loading package STANDARD
--- Loading package TEXTIO
--- Loading package std_logic_1164
--- Loading package CONSTANTS
--- Compiling entity STCG
--- Compiling architecture STRUCTURAL of STCG
--- Compiling configuration CFG_STCG_STRUCTURAL
--- Loading entity STCG
--- Loading architecture STRUCTURAL of STCG
--- Loading entity PG
--- Loading entity PGSB
--- Loading entity GSB
 
 } {} {}} /home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/mux.vhd {1 {vcom -work work -2008 -explicit -vopt -stats=none /home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/mux.vhd
 QuestaSim-64 vcom 10.7c Compiler 2018.08 Aug 17 2018
@@ -808,6 +750,19 @@ QuestaSim-64 vcom 10.7c Compiler 2018.08 Aug 17 2018
 -- Loading entity PG
 -- Loading architecture BEHAVIORAL of PG
 
+} {} {}} /home/ms20.50/Desktop/DLX_project/hardware/dlx/a.b-DataPath.core/a.b.c-Execute.stage/a.b.c.c-boothmul_pipelined.core/a.b.c.a-mux.vhd {1 {vcom -work work -2002 -explicit -vopt -stats=none /home/ms20.50/Desktop/DLX_project/hardware/dlx/a.b-DataPath.core/a.b.c-Execute.stage/a.b.c.c-boothmul_pipelined.core/a.b.c.a-mux.vhd
+QuestaSim-64 vcom 10.7c Compiler 2018.08 Aug 17 2018
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package NUMERIC_STD
+-- Loading package CONSTANTS
+-- Compiling entity MUX_zbit_nbit
+-- Compiling architecture beh of mux_zbit_nbit
+-- Compiling configuration CFG_MUX_BEH
+-- Loading entity MUX_zbit_nbit
+-- Loading architecture beh of mux_zbit_nbit
+
 } {} {}} /home/ms20.50/Desktop/DLX_project/hardware/dlx/a.b-DataPath.core/a.b.d.Memory.stage.vhd {1 {vcom -work work -2002 -explicit -vopt -stats=none /home/ms20.50/Desktop/DLX_project/hardware/dlx/a.b-DataPath.core/a.b.d.Memory.stage.vhd
 QuestaSim-64 vcom 10.7c Compiler 2018.08 Aug 17 2018
 -- Loading package STANDARD
@@ -821,18 +776,17 @@ QuestaSim-64 vcom 10.7c Compiler 2018.08 Aug 17 2018
 -- Compiling entity memory_stage
 -- Compiling architecture structural of memory_stage
 
-} {} {}} /home/ms20.50/Desktop/DLX_project/hardware/dlx/a.b-DataPath.core/a.b.c-Execute.stage/a.b.c.c-boothmul_pipelined.core/a.b.c.a-mux.vhd {1 {vcom -work work -2002 -explicit -vopt -stats=none /home/ms20.50/Desktop/DLX_project/hardware/dlx/a.b-DataPath.core/a.b.c-Execute.stage/a.b.c.c-boothmul_pipelined.core/a.b.c.a-mux.vhd
+} {} {}} /home/ms20.50/Desktop/DLX_project/hardware/dlx/a.b-DataPath.core/a.b.c-Execute.stage/a.b.c.c-boothmul_pipelined.core/a.b.c.d-encoder.vhd {1 {vcom -work work -2002 -explicit -vopt -stats=none /home/ms20.50/Desktop/DLX_project/hardware/dlx/a.b-DataPath.core/a.b.c-Execute.stage/a.b.c.c-boothmul_pipelined.core/a.b.c.d-encoder.vhd
 QuestaSim-64 vcom 10.7c Compiler 2018.08 Aug 17 2018
 -- Loading package STANDARD
 -- Loading package TEXTIO
 -- Loading package std_logic_1164
 -- Loading package NUMERIC_STD
--- Loading package CONSTANTS
--- Compiling entity MUX_zbit_nbit
--- Compiling architecture beh of mux_zbit_nbit
--- Compiling configuration CFG_MUX_BEH
--- Loading entity MUX_zbit_nbit
--- Loading architecture beh of mux_zbit_nbit
+-- Compiling entity encoder
+-- Compiling architecture beh of encoder
+-- Compiling configuration CFG_ENCODER_BEH
+-- Loading entity encoder
+-- Loading architecture beh of encoder
 
 } {} {}} /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/testbench_subunits_labs/tb_stcg.vhd {1 {vcom -work work -2002 -explicit -vopt -stats=none /home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/testbench_subunits_labs/tb_stcg.vhd
 QuestaSim-64 vcom 10.7c Compiler 2018.08 Aug 17 2018
@@ -847,62 +801,6 @@ QuestaSim-64 vcom 10.7c Compiler 2018.08 Aug 17 2018
 -- Loading architecture test of tb_stcg
 -- Loading entity STCG
 -- Loading configuration cfg_stcg_structural
-
-} {} {}} /home/ms20.50/Desktop/DLX_project/hardware/dlx/a.b-DataPath.core/a.b.c-Execute.stage/a.b.c.c-boothmul_pipelined.core/a.b.c.d-encoder.vhd {1 {vcom -work work -2002 -explicit -vopt -stats=none /home/ms20.50/Desktop/DLX_project/hardware/dlx/a.b-DataPath.core/a.b.c-Execute.stage/a.b.c.c-boothmul_pipelined.core/a.b.c.d-encoder.vhd
-QuestaSim-64 vcom 10.7c Compiler 2018.08 Aug 17 2018
--- Loading package STANDARD
--- Loading package TEXTIO
--- Loading package std_logic_1164
--- Loading package NUMERIC_STD
--- Compiling entity encoder
--- Compiling architecture beh of encoder
--- Compiling configuration CFG_ENCODER_BEH
--- Loading entity encoder
--- Loading architecture beh of encoder
-
-} {} {}} /home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/fd.vhd {1 {vcom -work work -2008 -explicit -vopt -stats=none /home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/fd.vhd
-QuestaSim-64 vcom 10.7c Compiler 2018.08 Aug 17 2018
--- Loading package STANDARD
--- Loading package TEXTIO
--- Loading package std_logic_1164
--- Compiling entity FD
--- Compiling architecture PIPPO of FD
--- Compiling architecture PLUTO of FD
--- Loading entity FD
--- Compiling configuration CFG_FD_PIPPO
--- Loading entity FD
--- Loading architecture PIPPO of FD
--- Compiling configuration CFG_FD_PLUTO
--- Loading entity FD
--- Loading architecture PLUTO of FD
-
-} {} {}} /home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/boothmul.vhd {1 {vcom -work work -2008 -explicit -vopt -stats=none /home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/boothmul.vhd
-QuestaSim-64 vcom 10.7c Compiler 2018.08 Aug 17 2018
--- Loading package STANDARD
--- Loading package TEXTIO
--- Loading package std_logic_1164
--- Loading package NUMERIC_STD
--- Loading package CONSTANTS
--- Compiling entity boothmul
--- Compiling architecture struc of boothmul
--- Compiling configuration CFG_BOOTHMUL_struc
--- Loading entity boothmul
--- Loading architecture struc of boothmul
--- Loading entity complement2
--- Loading entity encoder
--- Loading entity MUX_zbit_nbit
--- Loading entity adder
-
-} {} {}} /home/ms20.50/Desktop/DLX_project/hardware/dlx/000-globals.vhd {2 {vcom -work work -2008 -explicit -check_synthesis -vopt -stats=none /home/ms20.50/Desktop/DLX_project/hardware/dlx/000-globals.vhd
-QuestaSim-64 vcom 10.7c Compiler 2018.08 Aug 17 2018
--- Loading package STANDARD
--- Loading package TEXTIO
--- Loading package std_logic_1164
--- Loading package CONSTANTS
--- Compiling package globals
-** Warning: /home/ms20.50/Desktop/DLX_project/hardware/dlx/000-globals.vhd(78): (vcom-1426) Subtype indication found where type mark is required.
--- Compiling package body globals
--- Loading package globals
 
 } {} {}} /home/ms20.50/Desktop/DLX_project/hardware/dlx/a.b-DataPath.core/a.b.c-Execute.stage/a.b.c.c-boothmul_pipelined.vhd {1 {vcom -work work -2002 -explicit -vopt -stats=none /home/ms20.50/Desktop/DLX_project/hardware/dlx/a.b-DataPath.core/a.b.c-Execute.stage/a.b.c.c-boothmul_pipelined.vhd
 QuestaSim-64 vcom 10.7c Compiler 2018.08 Aug 17 2018
@@ -924,5 +822,38 @@ QuestaSim-64 vcom 10.7c Compiler 2018.08 Aug 17 2018
 -- Loading entity MUX_zbit_nbit
 -- Loading entity reg_nbit
 -- Loading entity adder
+
+} {} {}} /home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/boothmul.vhd {1 {vcom -work work -2008 -explicit -vopt -stats=none /home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/boothmul.vhd
+QuestaSim-64 vcom 10.7c Compiler 2018.08 Aug 17 2018
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package NUMERIC_STD
+-- Loading package CONSTANTS
+-- Compiling entity boothmul
+-- Compiling architecture struc of boothmul
+-- Compiling configuration CFG_BOOTHMUL_struc
+-- Loading entity boothmul
+-- Loading architecture struc of boothmul
+-- Loading entity complement2
+-- Loading entity encoder
+-- Loading entity MUX_zbit_nbit
+-- Loading entity adder
+
+} {} {}} /home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/fd.vhd {1 {vcom -work work -2008 -explicit -vopt -stats=none /home/ms20.50/Desktop/DLX_project/hardware/dlx/global_components.package/fd.vhd
+QuestaSim-64 vcom 10.7c Compiler 2018.08 Aug 17 2018
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Compiling entity FD
+-- Compiling architecture PIPPO of FD
+-- Compiling architecture PLUTO of FD
+-- Loading entity FD
+-- Compiling configuration CFG_FD_PIPPO
+-- Loading entity FD
+-- Loading architecture PIPPO of FD
+-- Compiling configuration CFG_FD_PLUTO
+-- Loading entity FD
+-- Loading architecture PLUTO of FD
 
 } {} {}}

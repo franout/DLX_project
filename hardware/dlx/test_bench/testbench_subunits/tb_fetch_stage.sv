@@ -26,7 +26,7 @@ output logic iram_enable_cu);
 	initial begin  
 		$display("@%0dns Starting Program",$time);
       	iram_if.rst=1;
-		$display("Starting testbench for fetch stge",);
+		$display("Starting testbench for fetch stage",);
 		## 1;
 		$display("Memory reset",);
 		iram_if.rst=0;
@@ -54,7 +54,7 @@ output logic iram_enable_cu);
 			$stop();
 		end
 		##1;
-		if(curr_instruction!=983040)begin
+		if(curr_instruction!=15728640)begin
 			$display("@%0dns ---> wrong generated address",$time);
 			$stop();
 		end
@@ -63,17 +63,16 @@ output logic iram_enable_cu);
 			$display("@%0dns ---> wrong generated new program counter value",$time);
 			$stop();
 		end
-		##1;
 		// check the non increment of pc
 		iram_enable_cu=0;
 		##1;
-		if(new_pc_value!=16)begin
+		if(new_pc_value!=12)begin
 			$display("@%0dns ---> wrong generated new program counter value it has been incremente while it should be frozen",$time);
 			$stop();
 		end
 		iram_enable_cu=0;
 		##1;
-		if(new_pc_value!=16)begin
+		if(new_pc_value!=12)begin
 			$display("@%0dns ---> wrong generated new program counter value it has been incremente while it should be frozen",$time);
 			$stop();
 		end
@@ -101,7 +100,7 @@ module tb_fetch_stage ();
 //  	logic [`IRAM_ADDRESS_SIZE-1:0]new_pc_value_mem_stage;
   	logic [`IRAM_ADDRESS_SIZE-1:0]new_pc_value; // forward this 
   	logic [`IRAM_WORD_SIZE-1:0]curr_instruction;
-	logic iram_enable_cu;
+	logic iram_enable_cu,iram_ready_cu;
 
   	//property definitions
   	property generated_address(int min , int max);
@@ -111,13 +110,13 @@ module tb_fetch_stage ();
 
   	property enable_propagate;
   		@ (test_clk)
-  		iram_enable_cu |=> iram_if.ENABLE; // it propagates directly to the ram
+  		iram_enable_cu |=> iram_enable_cu===iram_if.ENABLE; // it propagates directly to the ram
   	endproperty
 
 
   	// instantiaiton of property
-  	address_range_check_property : assert property (generated_address(0,2**(`IRAM_ADDRESS_SIZE )-1));
-  	enable_propagate_check: assert property (enable_propagate);
+  	address_range_check_property : assert property (generated_address(0,2**(`IRAM_ADDRESS_SIZE )-1)) else $display("error in address ");
+  	enable_propagate_check: assert property (enable_propagate) else $display("Errror in propagate enable @%d",$time());
 
   	// iram memory interface
 	mem_interface #(.ADDRESS_SIZE(`IRAM_ADDRESS_SIZE),
@@ -151,7 +150,8 @@ module tb_fetch_stage ();
 		.IRAM_DATA    (iram_if.DATA),
 		// to/from control unit
 		.curr_instruction(curr_instruction),
-		.iram_enable_cu(iram_enable_cu)
+		.iram_enable_cu(iram_enable_cu),
+		.iram_ready_cu (iram_ready_cu )
 	);
 
 // test program 

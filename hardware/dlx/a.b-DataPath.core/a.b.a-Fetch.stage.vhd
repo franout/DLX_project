@@ -72,7 +72,7 @@ begin
 
 
 	-- logic for incremenentig the program counter 
-	new_program_counter_val <= std_logic_vector(unsigned(program_counter_val)+4) when iram_enable_cu='1' else program_counter_val;
+	new_program_counter_val <= std_logic_vector(unsigned(program_counter_val)+0) when iram_enable_cu='0' else std_logic_vector(unsigned(program_counter_val)+4);
 
 	-- New Program counter
 	new_program_counter : reg_nbit
@@ -103,7 +103,7 @@ iram_reversed<=b2l_endian(IRAM_DATA);
 	curr_instruction <= instruction_reg_val; -- it has to go to the CU and part of it to the register file in the decode stage
 
 	IRAM_ENABLE <= iram_enable_cu; -- forward memory enable
-
+	iram_ready_cu <= IRAM_READY; -- forward to control unit 
 	IRAM_ADDRESS <= program_counter_val when iram_enable_cu='1' else
 		(OTHERS => 'Z');
 

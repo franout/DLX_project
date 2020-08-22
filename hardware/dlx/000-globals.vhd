@@ -117,23 +117,31 @@ package globals is
             function b2l_endian (a : in std_logic_vector)
                 return std_logic_vector is
                 variable result : std_logic_vector(a'RANGE);
-                alias aa        : std_logic_vector(a'REVERSE_RANGE) is a;
+				constant cNumBytes : natural := a'length / 8;
+
             begin
-                for i in aa'RANGE loop
-                    result(i) := aa(i);
-                end loop ;
+      			for i in 0 to cNumBytes-1 loop
+ 				     for j in 7 downto 0 loop
+				        result(8*i + j) :=a(8*(cNumBytes-1-i) + j);
+				     end loop;  -- j
+			    end loop;  -- i
+
                 return result;
             end; -- function b2l_endian
 
-            -- function for transforming from little endian to big endian
+
+            -- function for transforming from little endian to big endian  it is actually the same function
             function l2b_endian(a : in std_logic_vector)
                 return std_logic_vector is
                 variable result : std_logic_vector(a'RANGE);
-                alias aa        : std_logic_vector(a'REVERSE_RANGE) is a;
+                constant cNumBytes : natural := a'length / 8;
             begin
-                for i in aa'RANGE loop
-                    result(i) := aa(i);
-                end loop ;
+         		for i in 0 to cNumBytes-1 loop
+ 				    for j in 7 downto 0 loop
+				        result(8*i + j) :=a(8*(cNumBytes-1-i) + j);
+				     end loop;  -- j
+			    end loop;  -- i
+
                 return result;
             end; -- function l2b_endian
 
