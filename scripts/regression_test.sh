@@ -13,6 +13,8 @@ echo "Starting regression functional tests "
 vlib ./work # it also creates the folder
 echo "Simulation ready to go!"
 echo "Start hierarchical compilation" 
+vcom -2008 -check_synthesis ${path_to_file}global_components.package/constants.vhd
+vcom -2008 -check_synthesis ${path_to_file}global_components.package/alu_type.vhd 
 vcom -2008 -check_synthesis ${path_to_file}000-globals.vhd
 vcom -2008 -check_synthesis ${path_to_file}001-global_components.vhd 
 # vlog for verilog -incr(mental) compilation
@@ -22,10 +24,8 @@ echo "Compiling labs units"
 vcom -2008 -check_synthesis ${path_to_file}global_components.package/wrf.vhd 
 vcom -2008 -check_synthesis ${path_to_file}global_components.package/adder.vhd 
 vcom -2008 -check_synthesis ${path_to_file}global_components.package/alu.vhd 
-vcom -2008 -check_synthesis ${path_to_file}global_components.package/alu_type.vhd 
 vcom -2008 -check_synthesis ${path_to_file}global_components.package/boothmul.vhd 
-vcom -2008 -check_synthesis ${path_to_file}global_components.package/complement2.vhd 
-vcom -2008 -check_synthesis ${path_to_file}global_components.package/constants.vhd 
+vcom -2008 -check_synthesis ${path_to_file}global_components.package/complement2.vhd  
 vcom -2008 -check_synthesis ${path_to_file}global_components.package/csb.vhd 
 vcom -2008 -check_synthesis ${path_to_file}global_components.package/encoder.vhd 
 vcom -2008 -check_synthesis ${path_to_file}global_components.package/fa.vhd 
@@ -104,22 +104,20 @@ echo "####---> Starting regression test for every units <---####"
 echo "##########################################################"
 
 echo "Starting simulation of memory units"
-vism -suppress 12110 -novopt work.tb_memories -do ./scripts/memories_tb.do
+vsim -suppress 12110 -novopt work.tb_memories -do ./scripts/memories_tb.do
 echo "Starting simulation of fetch back stage unit" 
 #suppress warning using the -novopt
-vism -suppress 12110 -novopt work.tb_fetch_stage -do ./scripts/fetch_stage_tb.do
+vsim -suppress 12110 -novopt work.tb_fetch_stage -do ./scripts/fetch_stage_tb.do
 echo "Starting simulation of decode back stage unit"
-vism -suppress 12110 -novopt work.tb_decode_stage -do ./scripts/decode_stage_tb.do
+vsim -suppress 12110 -novopt work.tb_decode_stage -do ./scripts/decode_stage_tb.do
 echo "Starting simulation of execute back stage unit"
-vism -suppress 12110 -novopt work.tb_execute_stage -do ./scripts/execute_stage_tb.do
+vsim -suppress 12110 -novopt work.tb_execute_stage -do ./scripts/execute_stage_tb.do
 echo "Starting simulation of memory back stage unit"
-vism -suppress 12110 -novopt work.tb_memory_stage -do ./scripts/memory_stage_tb.do
+vsim -suppress 12110 -novopt work.tb_memory_stage -do ./scripts/memory_stage_tb.do
 echo "Starting simulation of write back stage unit"
-vism -suppress 12110 -novopt work.tb_writeback_stage -do ./scripts/writeback_stage_tb.do
-echo "Starting simulation of datapath stage unit"
-vism -suppress 12110 -novopt work.tb_datapath -do ./scripts/datapath_tb.do
+vsim -suppress 12110 -novopt work.tb_writeback_stage -do ./scripts/writeback_stage_tb.do
 echo "Starting simulation of cu stage unit"
-vism -suppress 12110 -novopt work.tb_cu -do ./scripts/cu_tb.do
+vsim -suppress 12110 -novopt work.tb_cu -do ./scripts/cu_tb.do
 
 echo "[PASS] -> Regression test passed , you can safely execute the simulation.sh script for testing the DLX top level entity"
 rm -rf work 
