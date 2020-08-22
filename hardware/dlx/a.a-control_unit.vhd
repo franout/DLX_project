@@ -26,8 +26,6 @@ entity control_unit is
   generic (
     PC_SIZE      : integer := 32;
     RF_REGS      : integer := 32; -- number of register in register file
-    FUNC_SIZE    : integer := 11; -- Func Field Size for R-Type Ops
-    OP_CODE_SIZE : integer := 6;  -- Op Code Size
     IR_SIZE      : integer := 32; -- Instruction Register Size    
     CW_SIZE      : integer := 20  -- Control Word Size
   );
@@ -87,7 +85,7 @@ architecture behavioural of control_unit is
   signal cw1,cw2,cw3,cw4,cw5 : std_logic_vector(CW_SIZE-1 downto 0); -- signal for delay control signal of cmd_word unuseful ones will be discarded by the synthesis process
   signal cmd_alu_op_type     : std_logic_vector(3 downto 0);         --- signal to be delayed for the alu
 
-  signal ir_opcode : std_logic_vector(OP_CODE_SIZE -1 downto 0); -- OpCode part of IR
+  signal ir_opcode : std_logic_vector(OP_CODE_SIZE-1 downto 0); -- OpCode part of IR
   signal ir_func   : std_logic_vector(FUNC_SIZE-1 downto 0);     -- Func part of IR when Rtype
 
   signal counter_mul,next_val_counter_mul : std_logic_vector(2 downto 0); -- 3 bit coutner for stall in mul instruction 
@@ -95,12 +93,12 @@ architecture behavioural of control_unit is
   signal csr_reg,next_value_csr : std_logic_vector(7 downto 0);
 
   -- constant signal assignement
-  constant feth_cmd : std_logic_vector(CW_SIZE-1-4 downto 0) := x"8000";
-  constant ireg_cmd : std_logic_vector(CW_SIZE-1-4 downto 0) := x"f713";
-  constant imm_cmd  : std_logic_vector(CW_SIZE-1-4 downto 0) := x"e513";
+  constant feth_cmd : std_logic_vector(CW_SIZE-4 downto 0) := x"8000";
+  constant ireg_cmd : std_logic_vector(CW_SIZE-4 downto 0) := x"f713";
+  constant imm_cmd  : std_logic_vector(CW_SIZE-4 downto 0) := x"e513";
 
 begin
-  ir_opcode <= curr_instruction_to_cu(IR_SIZE-1 downto IR_SIZE-1-OP_CODE_SIZE);
+  ir_opcode <= curr_instruction_to_cu(IR_SIZE-1 downto IR_SIZE-OP_CODE_SIZE);
   ir_func   <= curr_instruction_to_cu(FUNC_SIZE - 1 downto 0);
 
   -- simulation debug signals
@@ -150,7 +148,7 @@ begin
               cmd_word <= ireg_cmd;
 
               -- alu function generator
-              case (ir_func) is
+              case (ir_func(5 downto 0)) is -- upper bits are unused in this configuration
                 -- see encoding in execute stage
                 when i_sub'encoding => cmd_alu_op_type <= x"1";
                 when i_mul'encoding =>

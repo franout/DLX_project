@@ -42,7 +42,7 @@ modport ro (input ADDRESS, ENABLE, rst,clk , output DATA_READY, DATA); // read o
 endinterface
 */
 
-program test_memory(mem_interface.ro iram_if , mem_interface.rw dram_if);
+program test_memories(mem_interface.ro iram_if , mem_interface.rw dram_if);
 integer i;
 integer read_data;
 integer write_data;
@@ -125,7 +125,7 @@ initial begin
 assign read_data= dram_if.READNOTWRITE && dram_if.ENABLE?dram_if.INOUT_DATA  :0;
 assign dram_if.INOUT_DATA = ~dram_if.READNOTWRITE && dram_if.ENABLE? write_data: 'Z;
 
-endprogram: test_memory
+endprogram: test_memories
 
 
 module tb_memories ();
@@ -196,7 +196,7 @@ module tb_memories ();
 
 
 // instantiate the program for testing the memories
-test_memory test_ram(
+test_memories test_ram(
 		.iram_if(iram_if),
 		.dram_if(dram_if));
 

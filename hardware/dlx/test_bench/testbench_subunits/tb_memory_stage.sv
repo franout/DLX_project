@@ -81,7 +81,7 @@ program automatic test_memory( mem_interface.rw dram_if,
 		dram_r_nw_cu=1;
 		alu_output_val=4; // it contains the address
 		dram_enable_cu=1;
-		##2;
+		##1;
 		##1;  //this is for loadin in lmd reg
 		if(data_from_memory!==156)begin
 			$display("Error in reading memory",);

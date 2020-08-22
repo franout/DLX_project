@@ -49,13 +49,13 @@ initial begin
 		`endif
         //initialize seed for random register
         $urandom_range(0,31);
-        current_opcode=instructions_opcode.first();
+        current_opcode=current_opcode.first();
         $display("Looping over all instructions",);
-        for (; current_opcode !== instructions_opcode.last(); ) begin
+        for (; current_opcode !== current_opcode.last(); ) begin
             
             if(current_opcode===i_regtype)begin 
                 $display("Looping over all regtype instructions",);
-                current_opcode_alu_fun=instructions_regtype_opcode.first();
+                current_opcode_alu_fun= current_opcode_alu_fun.first();
                 rs1=$urandom();
                 rs2=$urandom();
                 rd=$urandom();
@@ -66,7 +66,7 @@ initial begin
                 instruction_to_cu[`IRAM_WORD_SIZE-`OP_CODE_SIZE-1:`IRAM_WORD_SIZE-`OP_CODE_SIZE-5]=rs1;
                 instruction_to_cu[`IRAM_WORD_SIZE-`OP_CODE_SIZE-5-1:`IRAM_WORD_SIZE-`OP_CODE_SIZE-10]=rs2;
                 instruction_to_cu[`IRAM_WORD_SIZE-`OP_CODE_SIZE-10-1:`IRAM_WORD_SIZE-`OP_CODE_SIZE-15]=rd;
-                for (;current_opcode_alu_fun!==instructions_regtype_opcode.last() ; ) begin
+                for (;current_opcode_alu_fun!==current_opcode_alu_fun.last() ; ) begin
                         //alu function
                         instruction_to_cu[`FUNC_SIZE-1:0]={5'd0,current_opcode_alu_fun};
                         `ifndef  VIVADO_SIM
@@ -167,8 +167,8 @@ localparam clock_period= 10ns;
     logic rtype_itypen_i;
     logic compute_sext;
     wire [3:0]alu_op_type;
-    logic sel_val_a;
-    logic sel_val_b;
+    logic [0:0]sel_val_a;
+    logic [0:0]sel_val_b;
     logic alu_cin;
     logic alu_overflow;
     logic [1:0]evaluate_branch;
@@ -178,7 +178,7 @@ localparam clock_period= 10ns;
     logic dram_r_nw_cu;
     logic dram_ready_cu;
     logic [0:0]select_wb;
-
+	logic  signed_notsigned;
   	logic [$clog2(`CU_STATES)-1:0]STATE_CU;
     logic [7:0] csr;
 
@@ -189,148 +189,174 @@ localparam clock_period= 10ns;
     property multiplication_stall;
         @(test_clk)
             disable iff(!rst || !zero_mul_detect || !mul_exeception )
-               alu_op_type==MULT |-> !iram_enable_cu[*6];// no fetching for 6 cc
-    endproperty multiplication_stall;
+				(alu_op_type==MULT) |-> !iram_enable_cu[*6];// no fetching for 6 cc
+    endproperty;
 
   /* sequence for reg type instructions*/
     sequence ireg_decode;
         ##1  enable_rf && read_rf_p1 && read_rf_p2 && rtype_itypen_i && !compute_sext;
-    endsequence ireg_decode;
+    endsequence ;
 
     sequence ireg_execute;
-        ##1 !sel_val_a(0) && !sel_val_b(0) && !alu_cin && !evaluate_branch(1) && !evaluate_branch(0) && signed_notsigned ;
-    endsequence ireg_execute;
+        ##1 !sel_val_a[0] && !sel_val_b[0] && !alu_cin && !evaluate_branch[1] && !evaluate_branch[0] && signed_notsigned ;
+    endsequence;
 
     sequence ireg_memory;
         ##1 !dram_enable_cu ;
-    endsequence ireg_memory;
+    endsequence ;
 
     sequence ireg_wb;
-        ##1 write_rf && select_wb(0);
-    endsequence ireg_wb;
+        ##1 write_rf && select_wb[0];
+    endsequence ;
 /*sequence for immediate instruction */
     sequence itype_decode;
         ##1  enable_rf && read_rf_p1 && !read_rf_p2 && !rtype_itypen_i && compute_sext;
-    endsequence ireg_decode;
+    endsequence ;
 
     sequence itype_execute;
-        ##1 !sel_val_a(0) && sel_val_b(0) && !alu_cin && !evaluate_branch(1) && !evaluate_branch(0) && signed_notsigned ;
-    endsequence ireg_execute;
+        ##1 !sel_val_a[0] && sel_val_b[0] && !alu_cin && !evaluate_branch[1] && !evaluate_branch[0] && signed_notsigned ;
+    endsequence ;
 
     sequence itype_memory;
         ##1 !dram_enable_cu ;
-    endsequence ireg_memory;
+    endsequence ;
 
     sequence itype_wb;
-        ##1 write_rf && select_wb(0);
-    endsequence ireg_wb;
+        ##1 write_rf && select_wb[0];
+    endsequence ;
 /*sequnce for lw*/
     sequence lw_decode;
         ##1  enable_rf && read_rf_p1 && !read_rf_p2 && !rtype_itypen_i && compute_sext;
-    endsequence ireg_decode;
+    endsequence ;
 
     sequence lw_execute;
-        ##1 sel_val_a(0) && sel_val_b(0) && !alu_cin && !evaluate_branch(1) && !evaluate_branch(0) && signed_notsigned ;
-    endsequence ireg_execute;
+        ##1 sel_val_a[0] && sel_val_b[0] && !alu_cin && !evaluate_branch[1] && !evaluate_branch[0] && signed_notsigned ;
+    endsequence ;
 
     sequence lw_memory;
         ##1 dram_enable_cu  && dram_r_nw_cu;
-    endsequence ireg_memory;
+    endsequence ;
 
     sequence lw_wb;
-        ##1 write_rf && !select_wb(0);
-    endsequence ireg_wb;
+        ##1 write_rf && !select_wb[0];
+    endsequence ;
 
 /*sequnce for sw*/
     sequence sw_decode;
         ##1  enable_rf && read_rf_p1 && !read_rf_p2 && !rtype_itypen_i && compute_sext;
-    endsequence ireg_decode;
+    endsequence;
 
     sequence sw_execute;
-        ##1 sel_val_a(0) && sel_val_b(0) && !alu_cin && !evaluate_branch(1) && !evaluate_branch(0) && signed_notsigned ;
-    endsequence ireg_execute;
+        ##1 sel_val_a[0] && sel_val_b[0] && !alu_cin && !evaluate_branch[1] && !evaluate_branch[0] && signed_notsigned ;
+    endsequence ;
 
     sequence sw_memory;
         ##1 dram_enable_cu  && !dram_r_nw_cu;
-    endsequence ireg_memory;
+    endsequence ;
 
     sequence sw_wb;
         ##1 !write_rf ;
-    endsequence ireg_wb;
+    endsequence ;
 
 /*sequnce for b*/
     sequence b_decode;
         ##1  enable_rf && read_rf_p1 && !read_rf_p2 && !rtype_itypen_i && !compute_sext;
-    endsequence ireg_decode;
+    endsequence ;
 
-    sequence b_execute(type_b);
-        if(type_b===i_beqz)
-            ##1 sel_val_a(0) && sel_val_b(0) && !alu_cin && !evaluate_branch(1) && evaluate_branch(0) && signed_notsigned ;
-        else // i_benz
-            ##1 sel_val_a(0) && sel_val_b(0) && !alu_cin && evaluate_branch(1) && !evaluate_branch(0) && signed_notsigned ;
-    endsequence ireg_execute;
+    sequence beqz_execute;
+   
+            ##1 sel_val_a[0] && sel_val_b[0] && !alu_cin && !evaluate_branch[1] && evaluate_branch[0] && signed_notsigned ;
+        
+    endsequence ;
 
+	sequence benz_execute;
+		 // i_benz
+            ##1 sel_val_a[0] && sel_val_b[0] && !alu_cin && evaluate_branch[1] && !evaluate_branch[0] && signed_notsigned ;
+	endsequence;
     sequence b_memory;
         ##1 !dram_enable_cu  ;
-    endsequence ireg_memory;
+    endsequence ;
 
     sequence b_wb;
         ##1 !write_rf ;
-    endsequence ireg_wb;
+    endsequence;
  /*sequence for jump instruction*/
     sequence ijump_decode;
         ##1  enable_rf && !read_rf_p1 && !read_rf_p2 && !rtype_itypen_i && compute_sext;
-    endsequence ireg_decode;
+    endsequence ;
 
     sequence ijump_execute;
-        ##1 sel_val_a(0) && sel_val_b(0) && !alu_cin && !evaluate_branch(1) && !evaluate_branch(0) && signed_notsigned ;
-    endsequence ireg_execute;
+        ##1 sel_val_a[0] && sel_val_b[0] && !alu_cin && !evaluate_branch[1] && !evaluate_branch[0] && signed_notsigned ;
+    endsequence ;
 
     sequence ijump_memory;
         ##1 !dram_enable_cu ;
-    endsequence ireg_memory;
+    endsequence ;
 
     sequence ijump_wb;
-        ##1 write_rf && select_wb(0);
-    endsequence ireg_wb;
+        ##1 write_rf && select_wb[0];
+    endsequence ;
 
 
 
-    property instruction_check;
+    property instruction_check_ireg;
         @(test_clk)
         // iram enable cu is for the fetch stage
-        disable iff (!rst )
-           if (curr_instruction_to_cu[`IRAM_WORD_SIZE-1:`IRAM_WORD_SIZE-`OP_CODE_SIZE]===0)
+        disable iff (!rst || curr_instruction_to_cu[`IRAM_WORD_SIZE-1:`IRAM_WORD_SIZE-`OP_CODE_SIZE]!==0)
             // reg type
-           iram_enable_cu |-> (ireg_decode  && ireg_execute && ireg_memory && ireg_wb); 
-            else if (curr_instruction_to_cu[`IRAM_WORD_SIZE-1:`IRAM_WORD_SIZE-`OP_CODE_SIZE]===i_j ||
-                curr_instruction_to_cu[`IRAM_WORD_SIZE-1:`IRAM_WORD_SIZE-`OP_CODE_SIZE]===i_jal ) // jump 
-                iram_enable_cu |-> (ijump_decode  && ijump_execute && ijump_memory && ijump_wb);
-            else if (curr_instruction_to_cu[`IRAM_WORD_SIZE-1:`IRAM_WORD_SIZE-`OP_CODE_SIZE]===i_lw) // lw
-                iram_enable_cu |-> (lw_decode  && lw_execute && lw_memory && lw_wb);
-            else if(curr_instruction_to_cu[`IRAM_WORD_SIZE-1:`IRAM_WORD_SIZE-`OP_CODE_SIZE]===i_sw) // sw
-                iram_enable_cu |-> (sw_decode  && sw_execute && sw_memory && sw_wb);
-            else if (curr_instruction_to_cu[`IRAM_WORD_SIZE-1:`IRAM_WORD_SIZE-`OP_CODE_SIZE]===i_beqz || 
-            curr_instruction_to_cu[`IRAM_WORD_SIZE-1:`IRAM_WORD_SIZE-`OP_CODE_SIZE]===i_benz) // beqz or benz
-                iram_enable_cu |-> (b_decode  && b_execute(curr_instruction_to_cu[`IRAM_WORD_SIZE-1:`IRAM_WORD_SIZE-`OP_CODE_SIZE]) 
-                        && b_memory && b_wb);
-            else // itype
-                iram_enable_cu |-> (itype_decode  && itype_execute && itype_memory && itype_wb);
-            
+           iram_enable_cu |-> (ireg_decode  and ireg_execute and ireg_memory and ireg_wb); 
     endproperty;
 
+	property instruction_check_jump;
+		@(test_clk)
+			disable iff(!rst || curr_instruction_to_cu[`IRAM_WORD_SIZE-1:`IRAM_WORD_SIZE-`OP_CODE_SIZE]!==i_j ||
+                curr_instruction_to_cu[`IRAM_WORD_SIZE-1:`IRAM_WORD_SIZE-`OP_CODE_SIZE]!==i_jal  )
+				iram_enable_cu |-> (ijump_decode and ijump_execute and ijump_memory and ijump_wb);
+	endproperty;
 
-  	// property instantiation
-    instruction_check_property : assert property (instruction_check)
+    property instruction_check_lw;
+				@(test_clk)
+			disable iff(!rst || curr_instruction_to_cu[`IRAM_WORD_SIZE-1:`IRAM_WORD_SIZE-`OP_CODE_SIZE]!==i_lw)
+				                iram_enable_cu |-> (lw_decode and lw_execute and lw_memory and lw_wb);
+	endproperty;
+
+
+	property instruction_check_sw;
+		@(test_clk)
+			disable iff(!rst || curr_instruction_to_cu[`IRAM_WORD_SIZE-1:`IRAM_WORD_SIZE-`OP_CODE_SIZE]!==i_sw)
+			                iram_enable_cu |-> (sw_decode and sw_execute and sw_memory and sw_wb);
+	endproperty;
+
+
+	property instruction_check_b;
+			@(test_clk)
+			disable iff(!rst ||curr_instruction_to_cu[`IRAM_WORD_SIZE-1:`IRAM_WORD_SIZE-`OP_CODE_SIZE]!==i_beqz || 
+            curr_instruction_to_cu[`IRAM_WORD_SIZE-1:`IRAM_WORD_SIZE-`OP_CODE_SIZE]!==i_benz)
+					if (curr_instruction_to_cu[`IRAM_WORD_SIZE-1:`IRAM_WORD_SIZE-`OP_CODE_SIZE]===i_beqz )
+				         iram_enable_cu |-> (b_decode and beqz_execute and b_memory and b_wb)
+					else
+				         iram_enable_cu |-> (b_decode and benz_execute and b_memory and b_wb);
+	endproperty;
+
+     property instruction_check_i;
+		@(test_clk)
+			disable iff(!rst)
+                iram_enable_cu |-> (itype_decode and itype_execute and itype_memory and itype_wb); // itype
+	endproperty;
+
+            
+
+
+
+  	// property instantiation TODO 
+   /* instruction_check_property : assert property (instruction_check)
      else $display("Error @%d on instruction %s",$time(),
         enum_wrap_instruction#(instructions_opcode)::name(curr_instruction_to_cu[`IRAM_WORD_SIZE-1:`IRAM_WORD_SIZE-`OP_CODE_SIZE]));;
-
+*/
   	// unit under test instantiation
   control_unit  #(
     .PC_SIZE      (`IRAM_ADDRESS_SIZE),
     .RF_REGS      (`RF_REGS), // number of register in register file
-    .FUNC_SIZE    (`FUNC_SIZE), // Func Field Size for R-Type Ops
-    .OP_CODE_SIZE (`OP_CODE_SIZE), // Op Code Size
     .IR_SIZE      (`IRAM_WORD_SIZE), // Instruction Register Size    
     .CW_SIZE      (`TOT_CU_SIGN)  // Control Word Size
   ) uut 
@@ -346,7 +372,7 @@ localparam clock_period= 10ns;
     .read_rf_p1(read_rf_p1), //out
     .read_rf_p2(read_rf_p2), //out
     .write_rf(write_rf), //out
-    .rtype_itypen_i(rtype_itypen_i), //out
+    .rtype_itypen(rtype_itypen_i), //out
     .compute_sext(compute_sext), //out
     // for execute stage
     .alu_op_type(alu_op_type), //TYPE_OP_ALU ; for compatibility with sv // out
@@ -356,6 +382,7 @@ localparam clock_period= 10ns;
     .alu_cin(alu_cin), // in 
     .alu_overflow(alu_overflow), // out 
     .evaluate_branch(evaluate_branch), // in 
+	.signed_notsigned( signed_notsigned),// out
     // exception control logic for multiplication 
     .zero_mul_detect(zero_mul_detect),//in
     .mul_exeception(mul_exeception),//in

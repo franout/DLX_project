@@ -72,7 +72,8 @@ task refresh_file;
 endtask : refresh_file
 
 
-always_ff @(posedge memif.clk) begin : proc_ram
+//always_ff @(posedge memif.clk) begin : proc_ram
+always_comb begin : proc_ram
 	if(!memif.rst) begin
 		// fill up the memory with the init file
 		

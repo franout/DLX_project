@@ -37,7 +37,7 @@ program automatic test_decode(
   
 	// tmp data for bit reverse
   	 //bit [7:0] array[8] ;// array of 8 8 bit values
-  	 bit [4:0] array ; // we just need to reverse the address of the registers use {<<{array}} and then mask properly the integer value
+  	bit [4:0] array ; // we just need to reverse the address of the registers use {<<{array}} and then mask properly the integer value
 	integer register_index;		 // {<<8{array}}; 
 
 	integer i;
@@ -193,7 +193,7 @@ initial begin
 		`else 
 		array=5;
 		`endif
-		register_index={<<{array}};
+		register_index=array;//{<<{array}};
 		read_rf_p1=1;
 		read_rf_p2=1;
 		// it is a reg to reg ops
@@ -221,7 +221,7 @@ initial begin
 		`else 
 		array=3;
 		`endif
-		register_index={<<{array}};
+		register_index=array;//{<<{array}};
 		address_rf_write=register_index;
 		instruction_reg[15:11]=address_rf_write;
 		instruction_reg[20:16]=register_index;
@@ -257,7 +257,7 @@ initial begin
 				`else 
 				array=i;
 				`endif
-				register_index={<<{array}};
+				register_index=array;//{<<{array}};
 				instruction_reg[10:6]=register_index; // check indexes 
 				instruction_reg[15:11]=register_index+1;	
 				`ifndef  VIVADO_SIM
@@ -274,7 +274,7 @@ initial begin
 				`else 
 				array=i;
 				`endif
-				register_index={<<{array}};
+				register_index=array;//{<<{array}};
 				address_rf_write=register_index;
 				instruction_reg[20:16]=register_index;
 				update_reg_value=159753;

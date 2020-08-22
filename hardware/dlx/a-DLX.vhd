@@ -84,8 +84,6 @@ architecture dlx_rtl of DLX is
     generic (
       PC_SIZE      : integer := 32;
       RF_REGS      : integer := 32; -- number of register in register file
-      FUNC_SIZE    : integer := 11; -- Func Field Size for R-Type Ops
-      OP_CODE_SIZE : integer := 6;  -- Op Code Size
       IR_SIZE      : integer := 32; -- Instruction Register Size    
       CW_SIZE      : integer := 15  -- Control Word Size
     );
@@ -212,8 +210,6 @@ begin -- DLX
     generic map (
       PC_SIZE      => PC_SIZE,
       RF_REGS      => register_in_rf,
-      FUNC_SIZE    => FUNC_SIZE,
-      OP_CODE_SIZE => OP_CODE_SIZE,
       IR_SIZE      => instr_length,
       CW_SIZE      => tot_cu_sign
     )
