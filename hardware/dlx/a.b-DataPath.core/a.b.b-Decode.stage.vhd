@@ -57,20 +57,22 @@ architecture structural of decode_stage is
 
 	component sign_extension is
 		generic (
-			N : integer := 32
+			N : integer := 32;
+			STARTING_BIT: integer := 16
 		);
 		port (
-			val_to_exetend : in  std_logic_vector(N/2-1 downto 0);
+			val_to_exetend : in  std_logic_vector(STARTING_BIT-1 downto 0);
 			enable         : in  std_logic;
 			extended_val   : out std_logic_vector(N-1 downto 0)
 		);
 	end component sign_extension;
-	signal rstn,sel_immediate                                         : std_logic;
+	signal rstn                                         : std_logic;
 	signal val_reg_a_i,val_reg_b_i : std_logic_vector(N-1 downto 0);
 	signal val_reg_immediate, val_reg_immediate_i ,val_reg_immediate_j: std_logic_vector(N-1 downto 0);
 	signal clk_immediate,enable_sign_extension_logic                          : std_logic;
 	signal instruction_reg_i,address_rf_write,del_reg_wb_2,del_reg_wb_1   : std_logic_vector(f_log2(RF_REGS)-1 downto 0);
 	signal data_to_mux: std_logic_vector(N*2-1 downto 0);
+	signal sel_immediate: std_logic_vector(0 downto 0);
 begin
 
 	rstn <= not(rst);
@@ -165,14 +167,14 @@ begin
 		);
 
 		 --for distinguish between j and jal ( jal requires to write the return address in r31)
-		enable_sign_extension_logic<= (not(enable_rf) or ( not(read_rf_p1) and  not(read_rf_p2)))) and compute_sext;
+		enable_sign_extension_logic<= (not(enable_rf) or ( not(read_rf_p1) and  not(read_rf_p2))) and not(compute_sext);
 
 		sign_extension_logic_jump: sign_extension generic map (
 			N => N, 
 			STARTING_BIT=>26
 		)
 		 port map (
-			val_to_exetend => instruction_reg(26 downto 0),--(0 to 26),
+			val_to_exetend => instruction_reg(25 downto 0),--(0 to 26),
 			enable         =>enable_sign_extension_logic ,
 			extended_val   => val_reg_immediate_j
 		);
@@ -180,7 +182,7 @@ begin
 
 		-- mux for immediate reg
 		data_to_mux <= val_reg_immediate_i & val_reg_immediate_j;
-		sel_immediate<= '1' when compute_sext ='0' else '0' ; -- default decision is the extend of a immediate16 ,
+		sel_immediate(0)<= '1' when compute_sext ='0' else '0' ; -- default decision is the extend of a immediate16 ,
 		-- when compute_sext='0' => enable_sign_extensio_logic for jump (immediate26extenstion ) is active
 		immediate_reg_mux : MUX_zbit_nbit generic map (
 			N => N,
@@ -196,7 +198,7 @@ begin
 
 
 	-- register for immediate value
-	clk_immediate <= clk and compute_sext; --clock gate;
+	clk_immediate <= clk and ( sel_immediate(0) or compute_sext) ; --clock gate;
 		reg_immediate : reg_nbit generic map (
 			N => N
 		)

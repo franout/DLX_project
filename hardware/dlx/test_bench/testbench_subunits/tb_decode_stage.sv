@@ -122,7 +122,7 @@ initial begin
 		enable_rf=0;
 		read_rf_p1=0;
 		read_rf_p2=0;
-		instruction_reg='h12340FFF;
+		instruction_reg='h11340FFF;
 		`ifndef  VIVADO_SIM
 		new_prog_counter_val=$urandom();
 		## 1;
@@ -130,13 +130,13 @@ initial begin
 		new_prog_counter_val=96523;
 		repeat(2)@(posedge clk);
 		`endif
-		if(val_immediate!=='h02340FFF) begin
+		if(val_immediate!=='h01340FFF) begin
 			$display("wrong sign extentions unsigned immediate26 j instruction");
 			$stop();
 		end
 		$display("Sign extention check signed immediate26 j instruction",);
-		compute_sext=1;
-		instruction_reg='h18388FFF;
+		compute_sext=0;
+		instruction_reg='h12388FFF;
 		`ifndef  VIVADO_SIM
 		new_prog_counter_val=$urandom();
 		## 1;
@@ -144,7 +144,7 @@ initial begin
 		new_prog_counter_val=7896;
 		repeat(2)@(posedge clk);
 		`endif
-		if(val_immediate!=='hf8388FFF) begin 
+		if(val_immediate!=='hfe388FFF) begin 
 			$display("wrong signed sign extention immediate26 j instruction");
 			$stop();
 		end
@@ -157,7 +157,7 @@ initial begin
 		enable_rf=1;
 		read_rf_p1=0;
 		read_rf_p2=0;
-		instruction_reg='h12340FFF;
+		instruction_reg='h11340FFF;
 		`ifndef  VIVADO_SIM
 		new_prog_counter_val=$urandom();
 		## 1;
@@ -165,13 +165,12 @@ initial begin
 		new_prog_counter_val=96523;
 		repeat(2)@(posedge clk);
 		`endif
-		if(val_immediate!=='h02340FFF) begin
+		if(val_immediate!=='h01340FFF) begin
 			$display("wrong sign extentions unsigned immediate26 jal instruction");
 			$stop();
 		end
 		$display("Sign extention check signed immediate26 jal instruction",);
-		compute_sext=1;
-		instruction_reg='h18388FFF;
+		instruction_reg='h12388FFF;
 		`ifndef  VIVADO_SIM
 		new_prog_counter_val=$urandom();
 		## 1;
@@ -179,7 +178,7 @@ initial begin
 		new_prog_counter_val=7896;
 		repeat(2)@(posedge clk);
 		`endif
-		if(val_immediate!=='hf8388FFF) begin 
+		if(val_immediate!=='hfe388FFF) begin 
 			$display("wrong signed sign extention immediate26 jal instruction");
 			$stop();
 		end
@@ -351,18 +350,18 @@ localparam clock_period= 10ns;
 
   	// read and output on the same port
 	sequence read_port(port_num, val);
-		port_num ##1 val;
+		port_num ##1  $changed(val) ;
 	endsequence;
  
   	property read_p1;
   		@(test_clk)
-  			disable iff(!rst|| !enable_rf || compute_sext)
+  			disable iff(!rst|| !enable_rf || compute_sext || !read_rf_p1 || val_a===0)
 			read_port(read_rf_p1 ,val_a);
   	endproperty;
 
   	property read_p2;
   		@(test_clk)
-  			disable iff(!rst|| !enable_rf || compute_sext)
+  			disable iff(!rst|| !enable_rf || compute_sext || !read_rf_p2)
 	  			read_port(read_rf_p2, val_b);
   	endproperty;
 

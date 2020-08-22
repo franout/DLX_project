@@ -72,7 +72,7 @@ begin
 
 
 	-- logic for incremenentig the program counter 
-	new_program_counter_val <= std_logic_vector(unsigned(program_counter_val)+4) when IRAM_ENABLE='1' else program_counter_val;
+	new_program_counter_val <= std_logic_vector(unsigned(program_counter_val)+4) when iram_enable_cu='1' else program_counter_val;
 
 	-- New Program counter
 	new_program_counter : reg_nbit

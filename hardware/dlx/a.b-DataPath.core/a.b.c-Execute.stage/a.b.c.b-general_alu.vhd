@@ -59,6 +59,8 @@ architecture behavioural of general_alu is
   signal data1_mul,data2_mul : std_logic_vector(N/2-1 downto 0);
   signal dataout_mul         : std_logic_vector(N-1 downto 0);
   signal cout                : std_logic;
+
+	constant zero_concat : std_logic_vector(N-1 downto 0):=(OTHERS=>'0');
 begin
 
     -- defined in global_components 
@@ -171,19 +173,19 @@ begin
         OUTALU <= tmp;
       when GE=> 
           if (signed(data1)>= signed(data2))then
-            OUTALU<=(OTHERS=>'0')&'1';
+            OUTALU<=zero_concat(N-1 downto 1)&'1';
           else 
             OUTALU<=(OTHERS=>'0');
           end if;
       when LE=> 
           if (signed(data1)<= signed(data2))then
-            OUTALU<=(OTHERS=>'0')&'1';
+            OUTALU<=zero_concat(N-1 downto 1)&'1';
           else 
             OUTALU<=(OTHERS=>'0');
           end if;
       when NE=> 
           if (signed(data1)/= signed(data2))then
-            OUTALU<=(OTHERS=>'0')&'1';
+            OUTALU<=zero_concat(N-1 downto 1)&'1';
           else 
             OUTALU<=(OTHERS=>'0');
           end if;

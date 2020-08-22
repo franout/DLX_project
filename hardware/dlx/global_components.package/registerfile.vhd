@@ -35,6 +35,8 @@ begin
         if(clk'event and clk='1') then
             if(RESET = '1') then
                 REGISTERS <= (OTHERS => (OTHERS => '0'));
+                OUT1<=(OTHERS=>'0');
+                OUT2<=(OTHERS=>'0');
             else
                 if(ENABLE = '1') then
                     if(RD1 = '1') then

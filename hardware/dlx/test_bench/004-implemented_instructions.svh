@@ -57,9 +57,7 @@ virtual class enum_wrap_instruction#(type T);
   endfunction
 endclass
 
-    $display("ENUM without variable: %s", enum_wrap#(numbers_t)::name(THREE));
-  end
-endprogram
+
 
 //General instructions
 /*j j,0x02  jal j,0x03  beqz b,0x04  bnez b,0x05  bfpt b0,0x06 bfpf b0,0x07  addi i,0x08 

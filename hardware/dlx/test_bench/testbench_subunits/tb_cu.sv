@@ -188,8 +188,8 @@ localparam clock_period= 10ns;
   	// property definition
     property multiplication_stall;
         @(test_clk)
-            disable iff(!rst || !zero_mul_detect || !mul_exeception || alu_op_type!=MULT)
-               alu_op_type |->!iram_enable_cu[*6];// no fetching for 6 cc
+            disable iff(!rst || !zero_mul_detect || !mul_exeception )
+               alu_op_type==MULT |-> !iram_enable_cu[*6];// no fetching for 6 cc
     endproperty multiplication_stall;
 
   /* sequence for reg type instructions*/

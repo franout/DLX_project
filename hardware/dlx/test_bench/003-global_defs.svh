@@ -37,7 +37,17 @@
 
 typedef enum bit[$clog2(`CU_STATES)-1:0]{hang_error,idle,fetch, decode } cu_state_t;
 
-typedef enum  bit [3:0]{ADD, SUB, MULT, BITAND, BITOR, BITXOR, FUNCLSL, FUNCLSR, GE,LE,NE} TYPE_OP_ALU_sv ; // error in importing the enum from vhdl
+typedef enum  bit [3:0]{ADD=4'h0, 
+						SUB=4'h1, 
+						MULT=4'h2,
+						BITAND=4'h3,
+						BITOR=4'h4,
+						BITXOR=4'h5,
+						FUNCLSL=4'h6, 
+						FUNCLSR=4'h7, 
+						GE=4'h8,
+						LE=4'h9,
+						NE=4'ha} TYPE_OP_ALU_sv ; // cause error in importing the enum from vhdl
 
 
 // uncomment using vivado simulator 'cause some sv system call are not supported from vivavo simulator

@@ -104,7 +104,7 @@ begin
 		);
 
 		-- forward check logic when checking ==0 otherwise it is gonna be the negated result of check zero logic for !==0
-		branch_taken_reg_q<= branch_taken(0) when evaluate_branch(1)='0' else not(branch_taken(0));
+		branch_taken_reg_q(0)<= branch_taken(0) when evaluate_branch(1)='0' else not(branch_taken(0));
 
 		-- condition register delay
 		condition_delay_reg : reg_nbit generic map (

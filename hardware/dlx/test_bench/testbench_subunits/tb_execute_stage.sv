@@ -162,7 +162,7 @@ initial begin
 		`else 
 			repeat(4)@(posedge clk);
 		`endif
-		if(jump_prediction!==0)begin 
+		if(jump_prediction!==1)begin 
 			$display("Error in check zero logic-> TRuE",);
 			$stop();
 		end
@@ -174,7 +174,7 @@ initial begin
 		`else 
 			repeat(4)@(posedge clk);
 		`endif
-		if(jump_prediction!==0)begin 
+		if(jump_prediction!==1)begin 
 			$display("Error in check zero logic-> False",);
 			$stop();
 		end
@@ -354,6 +354,21 @@ initial begin
 			$display("Alu shift left is wrong -> Expected: %d Actual: %d",opa<<(opb[5:0]) ,alu_out );
 			$stop();
 		end
+		$display("Checking ALU operations: FUNCLSL bitwidth >5",);
+		opa=3;
+		opb=2**6+1; // only shift by one position considering the first 5 bits
+		sel_val_a=0;
+		sel_val_b=0;
+		`ifndef VIVADO_SIM
+		##2;
+		`else 
+			repeat(4)@(posedge clk);
+		`endif
+		if(alu_out!==(opa<<opb[5:0]))begin 
+			$display("Alu shift left is wrong -> Expected: %d Actual: %d",opa<<(opb[5:0]) ,alu_out );
+			$stop();
+		end
+
 		$display("Checking ALU operations: FUNCLSR",);
 		opb=3;
 		opa=3;
@@ -371,30 +386,11 @@ initial begin
 
 			$stop();
 		end
-
-		$display("Checking ALU operations: FUNCLSL bitwidth >5",);
-		opa=3;
-		opb=2**6+1; // only shift by one position considering the first 5 bits
-		sel_val_a=0;
-		sel_val_b=0;
-		alu_operation=current_operation.next();
-		current_operation=current_operation.next();
-		`ifndef VIVADO_SIM
-		##2;
-		`else 
-			repeat(4)@(posedge clk);
-		`endif
-		if(alu_out!==(opa<<opb[5:0]))begin 
-			$display("Alu shift left is wrong -> Expected: %d Actual: %d",opa<<(opb[5:0]) ,alu_out );
-			$stop();
-		end
 		$display("Checking ALU operations: FUNCLSR  bitwidth >5",);
 		opb=2**6+1; // only shift by one position considering the first 5 bits
 		opa=3;
 		sel_val_a=0;
 		sel_val_b=0;
-		alu_operation=current_operation.next();
-		current_operation=current_operation.next();
 		`ifndef VIVADO_SIM
 		##2;
 		`else 
@@ -507,7 +503,7 @@ initial begin
 			$stop();
 		end
 
-		$display("Checking nE >= instruction",);
+		$display("Checking NE != instruction",);
 		opb=4;
 		opa=3;
 		sel_val_a=0;
@@ -519,7 +515,7 @@ initial begin
 		`else 
 			repeat(4)@(posedge clk);
 		`endif
-		if(alu_out!==(opa === opb ? 1:0 ))begin 
+		if(alu_out!==(opa !== opb ? 1:0 ))begin 
 			$display("Alu NE  is wrong -> Expected: %d Actual: %d",(opa === opb ? 1:0 ),alu_out );
 			$stop();
 		end
@@ -527,15 +523,15 @@ initial begin
 		opa=3;
 		sel_val_a=0;
 		sel_val_b=0;
-		alu_operation=LE;
-		current_operation=LE;
+		alu_operation=NE;
+		current_operation=NE;
 		`ifndef VIVADO_SIM
 		##2;
 		`else 
 			repeat(4)@(posedge clk);
 		`endif
-		if(alu_out!==(opa === opb ? 1:0 ))begin 
-			$display("Alu NE  is wrong -> Expected: %d Actual: %d",(opa === opb ? 1:0 ),alu_out );
+		if(alu_out!==(opa !== opb ? 1:0 ))begin 
+			$display("Alu NE  is wrong -> Expected: %d Actual: %d",(opa !== opb ? 1:0 ),alu_out );
 			$stop();
 		end
 

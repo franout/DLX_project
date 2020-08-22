@@ -54,7 +54,7 @@ output logic iram_enable_cu);
 			$stop();
 		end
 		##1;
-		if(curr_instruction!=61440)begin
+		if(curr_instruction!=983040)begin
 			$display("@%0dns ---> wrong generated address",$time);
 			$stop();
 		end
@@ -67,12 +67,13 @@ output logic iram_enable_cu);
 		// check the non increment of pc
 		iram_enable_cu=0;
 		##1;
-		if(new_pc_value!=12)begin
+		if(new_pc_value!=16)begin
 			$display("@%0dns ---> wrong generated new program counter value it has been incremente while it should be frozen",$time);
 			$stop();
 		end
+		iram_enable_cu=0;
 		##1;
-		if(new_pc_value!=12)begin
+		if(new_pc_value!=16)begin
 			$display("@%0dns ---> wrong generated new program counter value it has been incremente while it should be frozen",$time);
 			$stop();
 		end
@@ -150,7 +151,7 @@ module tb_fetch_stage ();
 		.IRAM_DATA    (iram_if.DATA),
 		// to/from control unit
 		.curr_instruction(curr_instruction),
-		.iram_enable_cu (iram_enable_cu)
+		.iram_enable_cu(iram_enable_cu)
 	);
 
 // test program 
