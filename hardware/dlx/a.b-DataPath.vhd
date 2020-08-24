@@ -54,6 +54,7 @@ entity DATAPATH is
 		write_rf     : in std_logic;
 		rtype_itypen : in std_logic; -- =='1' rtype instrucion =='0' itype instructnions
 		compute_sext : in std_logic;
+		jump_sext    : in std_logic;
 		-- for execute stage
 		alu_op_type      : in std_logic_vector(3 downto 0); --TYPE_OP_ALU ; for compatibility with sv
 		sel_val_a        : in std_logic_vector(0 downto 0 );
@@ -132,6 +133,7 @@ architecture structural of DATAPATH is
 			read_rf_p2   : in std_logic;
 			write_rf     : in std_logic;
 			rtype_itypen : in std_logic; -- =='1' rtype instrucion =='0' itype instructnions
+			jump_sext 	 : in std_logic; -- signla for computing sign extentions of 26immediate values in jump insutrctions
 			compute_sext : in std_logic  -- signal for computing sign exention of 16bit immediate value
 		);
 	end component decode_stage;
@@ -301,6 +303,7 @@ begin
 			read_rf_p2   => read_rf_p2 ,
 			write_rf     => write_rf ,
 			rtype_itypen => rtype_itypen,
+			jump_sext=>jump_sext,
 			compute_sext => compute_sext
 		);
 

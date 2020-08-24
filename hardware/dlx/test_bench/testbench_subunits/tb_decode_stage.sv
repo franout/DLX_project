@@ -19,6 +19,7 @@
 program automatic test_decode(
 						input logic clk,
 						output logic rst,
+						output logic jump_sext,
 						output logic [`IRAM_WORD_SIZE-1:0]instruction_reg,
 						output logic [`IRAM_WORD_SIZE-1:0]new_prog_counter_val,
 						output logic [`NBIT-1:0]update_reg_value,
@@ -51,6 +52,7 @@ initial begin
 		$display("@%0dns Starting Program",$time);
 		rtype_itypen=1;
 		rst=0;
+		jump_sext=0;
 		enable_rf=0;
 		address_rf_write=0;
 		update_reg_value=0;
@@ -119,6 +121,7 @@ initial begin
 		$display("Sign extention check unsigned immediate26 j instruction ",);
 		rst=1;
 		compute_sext=0;
+		jump_sext=1;
 		enable_rf=0;
 		read_rf_p1=0;
 		read_rf_p2=0;
@@ -186,10 +189,10 @@ initial begin
 		
 
 		enable_rf=1;
+		jump_sext=0;
 		$display("Read and write on the same port",);
 		`ifndef  VIVADO_SIM
-		$urandom_range(0,31);
-		array=$urandom();
+		array=$urandom_range(0,31);
 		`else 
 		array=5;
 		`endif
@@ -214,10 +217,10 @@ initial begin
 		// write
 		read_rf_p1=0;
 		read_rf_p2=0;
-		write_rf=1;
+
 	
 		`ifndef  VIVADO_SIM
-		array=$urandom();
+		array=$urandom_range(0,31);
 		`else 
 		array=3;
 		`endif
@@ -228,14 +231,18 @@ initial begin
 		update_reg_value=159753;
 		`ifndef  VIVADO_SIM
 		## 3;
+		write_rf=1;
+		##1;
 		`else 
 		repeat(6)@(posedge clk);
+		write_rf=1;
+		repeat(2)@(posedge clk);
 		`endif
 		// read again 
 		read_rf_p1=1;
 		write_rf=0;
 		register_index=address_rf_write;
-		instruction_reg[20:16]=register_index;
+		instruction_reg[25:21]=register_index;
 		`ifndef  VIVADO_SIM
 		## 2;
 		`else 
@@ -247,13 +254,13 @@ initial begin
 		end
 		$display("Random read and write",);
 		for ( i=0;i<4;i++) begin
-			register_index=$urandom();
+			register_index=$urandom_range(0,31);
 			if(i%2==0) begin
 				write_rf=0;
 				read_rf_p1=1;
 				read_rf_p2=1;	
 				`ifndef  VIVADO_SIM
-				array=$urandom();
+				array=$urandom_range(0,31);
 				`else 
 				array=i;
 				`endif
@@ -270,7 +277,7 @@ initial begin
 				read_rf_p1=0;
 				read_rf_p2=0;
 				`ifndef  VIVADO_SIM
-				array=$urandom();
+				array=$urandom_range(0,31);
 				`else 
 				array=i;
 				`endif
@@ -286,6 +293,52 @@ initial begin
 			end 
 			
 		end
+
+		$display("itype instruction read and write");
+		rtype_itypen=0;
+		enable_rf=1;
+		jump_sext=0;
+		$display("Read and write on the same port",);
+		// write
+		read_rf_p1=0;
+		read_rf_p2=0;
+
+	
+		`ifndef  VIVADO_SIM
+		array=$urandom_range(0,31);
+		`else 
+		array=3;
+		`endif
+		register_index=array;//{<<{array}};
+		address_rf_write=register_index;
+		instruction_reg[20:16]=address_rf_write;
+		update_reg_value=159753;
+		`ifndef  VIVADO_SIM
+		## 3;
+		write_rf=1;
+		##1;
+		`else 
+		repeat(6)@(posedge clk);
+		write_rf=1;
+		repeat(2)@(posedge clk);
+		`endif
+		// read again 
+		read_rf_p1=1;
+		write_rf=0;
+		register_index=address_rf_write;
+		instruction_reg[25:21]=register_index;
+		`ifndef  VIVADO_SIM
+		## 2;
+		`else 
+		repeat(4)@(posedge clk);
+		`endif
+		if(val_a!==159753)begin
+			$display("Error in writing in the register file with itype instruction",);
+			$stop();
+		end
+
+
+
 		`ifndef  VIVADO_SIM
 		## 1;
 		`else 
@@ -326,6 +379,7 @@ localparam clock_period= 10ns;
 	wire read_rf_p2;
 	wire rtype_itypen;
 	wire write_rf;
+	wire jump_sext;
 	wire [5-1:0]address_rf_write; // # regs is fixed at 32
 	wire compute_sext; // msb is for signed or not 
 
@@ -337,43 +391,51 @@ localparam clock_period= 10ns;
 
   	property address_equality;
   	int v_a; 
+	if(rtype_itypen)
+     (!$stable(address_rf_write), v_a = address_rf_write) |=> (v_a==(instruction_reg[15:11]>>4))
+  	else
      (!$stable(address_rf_write), v_a = address_rf_write) |=> (v_a==(instruction_reg[20:16]>>4));
-  		  			
   	endproperty;
 
   	// address  it is the same for the rf and ir
   	property address_equal_rf_ir;
   		@(test_clk) 
-			disable iff(!rst || !enable_rf )
-  		write_rf |=> (  address_equality and address_range(0,31) ); // address equals to the ones in the IR , check also the range
-  	endproperty;
+			disable iff(!rst || !enable_rf  )
+		if(!$changed(address_rf_write) || !$changed(instruction_reg))
+	  		write_rf |=> (  address_equality and address_range(0,31) ) // address equals to the ones in the IR , check also the range
+	  endproperty;
 
   	// read and output on the same port
 	sequence read_port(port_num, val);
-		port_num ##1  $changed(val) ;
+
+		port_num ##1 (val===0 ? $stable(val) : $changed(val) );
 	endsequence;
  
   	property read_p1;
   		@(test_clk)
-  			disable iff(!rst|| !enable_rf || compute_sext )
-			read_port(read_rf_p1 ,val_a);
+  			disable iff(!rst|| !enable_rf || compute_sext || jump_sext || !read_rf_p1)
+			if($changed(instruction_reg[25:21] ) )
+						read_port(read_rf_p1 ,val_a)
+			
   	endproperty;
 
   	property read_p2;
   		@(test_clk)
-  			disable iff(!rst|| !enable_rf || compute_sext )
-	  			read_port(read_rf_p2, val_b);
+  			disable iff(!rst|| !enable_rf || compute_sext || jump_sext || !read_rf_p2)
+			if($changed(instruction_reg[20:16] ))
+	  			read_port(read_rf_p2, val_b)
+			
   	endproperty;
 
   	sequence write_rf_seq;
-  		rtype_itypen ##3 write_rf;
+  		$changed(address_rf_write) ##3 write_rf ;
   	endsequence;
 
   	property write_in_rf;
   		@(test_clk)
-  			disable iff(!rst || !enable_rf || compute_sext)
+  			disable iff(!rst || !enable_rf || compute_sext || jump_sext)
   				//write_rf |=> address_rf_write;
-  				rtype_itypen |-> write_rf_seq;
+  				$changed(address_rf_write) |-> write_rf_seq;
   	endproperty;
 
 
@@ -418,6 +480,7 @@ localparam clock_period= 10ns;
 		.read_rf_p2(read_rf_p2),
 		.write_rf(write_rf),
 		.rtype_itypen(rtype_itypen),
+		.jump_sext(jump_sext),
 		.compute_sext(compute_sext) // signal for computing sign exention of 16bit immediate value
   		);
 
@@ -440,6 +503,7 @@ localparam clock_period= 10ns;
 				.new_prog_counter_val_exe(new_prog_counter_val_exe),
 				.val_b(val_b),
 				.val_immediate(val_immediate),
+				.jump_sext(jump_sext),
 				.rtype_itypen(rtype_itypen)
   					);
 

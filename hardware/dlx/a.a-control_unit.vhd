@@ -43,6 +43,7 @@ entity control_unit is
 
     rtype_itypen : out std_logic;
     compute_sext : out std_logic;
+	jump_sext    : out std_logic;
     -- for execute stage
     alu_op_type      : out std_logic_vector(3 downto 0); --TYPE_OP_ALU ; for compatibility with sv
     sel_val_a        : out std_logic_vector(0 downto 0 );

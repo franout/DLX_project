@@ -58,6 +58,7 @@ entity DLX is
     DEBUG_iram_enable_cu   : out std_logic;
     DEBUG_signed_notsigned : out std_logic;
     DEBUG_compute_sext     : out std_logic;
+    DEBUG_jump_sext        : out std_logic;
     DEBUG_write_rf         : out std_logic;
     DEBUG_evaluate_branch  : out std_logic_vector(1 downto 0);
     DEBUG_alu_cin          : out std_logic;
@@ -101,6 +102,7 @@ architecture dlx_rtl of DLX is
 
       rtype_itypen : out std_logic;
       compute_sext : out std_logic;
+	  jump_sext    : out std_logic;
       -- for execute stage
       alu_op_type      : out std_logic_vector(3 downto 0); --TYPE_OP_ALU ; for compatibility with sv
       sel_val_a        : out std_logic_vector(0 downto 0 );
@@ -162,6 +164,7 @@ architecture dlx_rtl of DLX is
       read_rf_p2   : in std_logic;
       write_rf     : in std_logic;
       rtype_itypen : in std_logic; -- =='1' rtype instrucion =='0' itype instructnions
+	  jump_sext    : in std_logic;
       compute_sext : in std_logic;
       -- for execute stage
       alu_op_type      : in std_logic_vector(3 downto 0); --TYPE_OP_ALU ; for compatibility with sv
@@ -190,7 +193,7 @@ architecture dlx_rtl of DLX is
   -- Internconnection Signals Declaration
   ----------------------------------------------------------------
   signal iram_ready_cu_i,iram_enable_cu_i,signed_notsigned_i,
-  compute_sext_i,write_rf_i,alu_cin_i,
+  compute_sext_i,write_rf_i,alu_cin_i,jump_sext_i,
   alu_overflow_i,zero_mul_detect_i,mul_exeception_i,
   dram_ready_cu_i,dram_r_nw_cu_i,rstn,enable_rf_i,read_rf_p1_i,read_rf_p2_i,rtype_itypen_i,
   dram_enable_cu_i                            : std_logic;
@@ -225,6 +228,7 @@ begin -- DLX
       read_rf_p2   => read_rf_p2_i,
       write_rf     => write_rf_i,
       rtype_itypen => rtype_itypen_i,
+	  jump_sext=> jump_sext_i,
       compute_sext => compute_sext_i,
       -- for execute stage
       alu_op_type      => alu_op_type_i ,
@@ -283,6 +287,7 @@ begin -- DLX
       read_rf_p1   => read_rf_p1_i,
       read_rf_p2   => read_rf_p2_i,
       write_rf     => write_rf_i,
+	  jump_sext=> jump_sext_i,
       rtype_itypen => rtype_itypen_i,
       compute_sext => compute_sext_i,
       -- for execute stage
@@ -309,6 +314,7 @@ begin -- DLX
   DEBUG_iram_enable_cu   <= iram_enable_cu_i;
   DEBUG_signed_notsigned <= signed_notsigned_i;
   DEBUG_compute_sext     <= compute_sext_i;
+  DEBUG_jump_sext        <= jump_sext_i;
   DEBUG_write_rf         <= write_rf_i;
   DEBUG_evaluate_branch  <= evaluate_branch_i;
   DEBUG_alu_cin          <= alu_cin_i;

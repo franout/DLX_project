@@ -49,6 +49,7 @@ entity decode_stage is
 		read_rf_p2   : in std_logic;
 		write_rf     : in std_logic;
 		rtype_itypen : in std_logic; -- =='1' rtype instrucion =='0' itype instructnions
+		jump_sext 	 : in std_logic; -- signla for computing sign extentions of 26immediate values in jump insutrctions
 		compute_sext : in std_logic-- signal for computing sign exention of 16bit immediate value
 	) ;
 end entity ; -- decode_stage
@@ -171,7 +172,7 @@ begin
 		);
 
 		 --for distinguish between j and jal ( jal requires to write the return address in r31)
-		enable_sign_extension_logic<= (not(enable_rf) or ( not(read_rf_p1) and  not(read_rf_p2))) and not(compute_sext);
+		enable_sign_extension_logic<= jump_sext and(not(enable_rf) or ( not(read_rf_p1) and  not(read_rf_p2))) and not(compute_sext);
 
 		sign_extension_logic_jump: sign_extension generic map (
 			N => N, 
@@ -202,7 +203,7 @@ begin
 
 
 	-- register for immediate value
-	clk_immediate <= clk and ( sel_immediate(0) or compute_sext) ; --clock gate;
+	clk_immediate <= clk and ( enable_sign_extension_logic or compute_sext) ; --clock gate;
 		reg_immediate : reg_nbit generic map (
 			N => N
 		)

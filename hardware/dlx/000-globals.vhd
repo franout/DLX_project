@@ -75,6 +75,7 @@ package globals is
                 i_srli ,i_sub ,i_subi ,i_sw ,i_xor ,i_xori
 
             );
+
         attribute encoding: std_logic_vector(OP_CODE_SIZE-1 downto 0);
         attribute encoding of i_regtype[return instruction] : literal is b"00"&x"0";
         attribute encoding of i_add[return instruction] : literal is b"10"&x"0";
