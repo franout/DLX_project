@@ -15,6 +15,7 @@ add wave -noupdate /tb_decode_stage/read_rf_p2
 add wave -noupdate /tb_decode_stage/write_rf
 add wave -noupdate /tb_decode_stage/rtype_itypen
 add wave -noupdate /tb_decode_stage/compute_sext
+add wave -noupdate /tb_decode_stage/jump_sext
 TreeUpdate [SetDefaultTree]
 WaveRestoreCursors {{Cursor 1} {10915 ps} 0}
 quietly wave cursor active 1
