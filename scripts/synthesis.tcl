@@ -9,51 +9,52 @@ set company "Microelectronic Systems @ Polito"
 ## path_to_file variable comes from bash script
 
 
-
+analyze -library WORK -format vhdl "$env(path_to_file)000-globals.vhd"
+analyze -library WORK -format vhdl "$env(path_to_file)001-global_components.vhd"
 
 puts "Compiling labs units"
 analyze -library WORK -format vhdl  "$env(path_to_file)global_components.package/wrf.vhd" 
-analyze -library WORK -format vhdl {$env(path_to_file)global_components.package/adder.vhd }
-analyze -library WORK -format vhdl {$env(path_to_file)global_components.package/alu.vhd }
-analyze -library WORK -format vhdl {$env(path_to_file)global_components.package/alu_type.vhd }
-analyze -library WORK -format vhdl {$env(path_to_file)global_components.package/boothmul.vhd }
-analyze -library WORK -format vhdl {$env(path_to_file)global_components.package/complement2.vhd }
-analyze -library WORK -format vhdl {$env(path_to_file)global_components.package/constants.vhd }
-analyze -library WORK -format vhdl {$env(path_to_file)global_components.package/csb.vhd }
-analyze -library WORK -format vhdl {$env(path_to_file)global_components.package/encoder.vhd }
-analyze -library WORK -format vhdl {$env(path_to_file)global_components.package/fa.vhd }
-analyze -library WORK -format vhdl {$env(path_to_file)global_components.package/fd.vhd }
-analyze -library WORK -format vhdl {$env(path_to_file)global_components.package/gsb.vhd }
-analyze -library WORK -format vhdl {$env(path_to_file)global_components.package/mult_gm.vhd }
-analyze -library WORK -format vhdl {$env(path_to_file)global_components.package/mux.vhd }
-analyze -library WORK -format vhdl {$env(path_to_file)global_components.package/mux21.vhd }
-analyze -library WORK -format vhdl {$env(path_to_file)global_components.package/mux21_nbit.vhd }
-analyze -library WORK -format vhdl {$env(path_to_file)global_components.package/p4_adder.vhd }
-analyze -library WORK -format vhdl {$env(path_to_file)global_components.package/pgsb.vhd }
-analyze -library WORK -format vhdl {$env(path_to_file)global_components.package/rca.vhd }
-analyze -library WORK -format vhdl {$env(path_to_file)global_components.package/reg_nbit.vhd }
-analyze -library WORK -format vhdl {$env(path_to_file)global_components.package/registerfile.vhd }
-analyze -library WORK -format vhdl {$env(path_to_file)global_components.package/stcg.vhd }
-analyze -library WORK -format vhdl {$env(path_to_file)global_components.package/sum_gen.vhd }
-analyze -library WORK -format vhdl {$env(path_to_file)global_components.package/pg.vhd}
+analyze -library WORK -format vhdl "$env(path_to_file)global_components.package/adder.vhd "
+analyze -library WORK -format vhdl "$env(path_to_file)global_components.package/alu.vhd "
+analyze -library WORK -format vhdl "$env(path_to_file)global_components.package/alu_type.vhd "
+analyze -library WORK -format vhdl "$env(path_to_file)global_components.package/boothmul.vhd "
+analyze -library WORK -format vhdl "$env(path_to_file)global_components.package/complement2.vhd "
+analyze -library WORK -format vhdl "$env(path_to_file)global_components.package/constants.vhd "
+analyze -library WORK -format vhdl "$env(path_to_file)global_components.package/csb.vhd "
+analyze -library WORK -format vhdl "$env(path_to_file)global_components.package/encoder.vhd "
+analyze -library WORK -format vhdl "$env(path_to_file)global_components.package/fa.vhd "
+analyze -library WORK -format vhdl "$env(path_to_file)global_components.package/fd.vhd "
+analyze -library WORK -format vhdl "$env(path_to_file)global_components.package/gsb.vhd "
+analyze -library WORK -format vhdl "$env(path_to_file)global_components.package/mult_gm.vhd "
+analyze -library WORK -format vhdl "$env(path_to_file)global_components.package/mux.vhd "
+analyze -library WORK -format vhdl "$env(path_to_file)global_components.package/mux21.vhd "
+analyze -library WORK -format vhdl "$env(path_to_file)global_components.package/mux21_nbit.vhd "
+analyze -library WORK -format vhdl "$env(path_to_file)global_components.package/p4_adder.vhd "
+analyze -library WORK -format vhdl "$env(path_to_file)global_components.package/pgsb.vhd "
+analyze -library WORK -format vhdl "$env(path_to_file)global_components.package/rca.vhd "
+analyze -library WORK -format vhdl "$env(path_to_file)global_components.package/reg_nbit.vhd "
+analyze -library WORK -format vhdl "$env(path_to_file)global_components.package/registerfile.vhd "
+analyze -library WORK -format vhdl "$env(path_to_file)global_components.package/stcg.vhd "
+analyze -library WORK -format vhdl "$env(path_to_file)global_components.package/sum_gen.vhd "
+analyze -library WORK -format vhdl "$env(path_to_file)global_components.package/pg.vhd"
 
 puts "Compiling stages,control unit and datapath"
-analyze -library WORK -format vhdl {$env(path_to_file)a.b-DataPath.vhd }
-analyze -library WORK -format vhdl {$env(path_to_file)a.b-DataPath.core/a.b.e-Write_back.stage.vhd }
-analyze -library WORK -format vhdl {$env(path_to_file)a.b-DataPath.core/a.b.a-Fetch.stage.vhd }
-analyze -library WORK -format vhdl {$env(path_to_file)a.b-DataPath.core/a.b.b-Decode.stage.vhd }
-analyze -library WORK -format vhdl {$env(path_to_file)a.b-DataPath.core/a.b.c-Execute.stage.vhd }
-analyze -library WORK -format vhdl {$env(path_to_file)a.b-DataPath.core/a.b.d.Memory.stage.vhd }
-analyze -library WORK -format vhdl {$env(path_to_file)a.b-DataPath.core/a.b.b-Decode.stage/a.b.b.a-sign_extension.vhd }
-analyze -library WORK -format vhdl {$env(path_to_file)a.b-DataPath.core/a.b.c-Execute.stage/a.b.c.a-check_branch_logic.vhd }
-analyze -library WORK -format vhdl {$env(path_to_file)a.b-DataPath.core/a.b.c-Execute.stage/a.b.c.b-general_alu.vhd }
-analyze -library WORK -format vhdl {$env(path_to_file)a.b-DataPath.core/a.b.c-Execute.stage/a.b.c.c-boothmul_pipelined.vhd }
-analyze -library WORK -format vhdl {$env(path_to_file)a.b-DataPath.core/a.b.c-Execute.stage/a.b.c.c-boothmul_pipelined.core/a.b.c.a-mux.vhd}
-analyze -library WORK -format vhdl {$env(path_to_file)a.b-DataPath.core/a.b.c-Execute.stage/a.b.c.c-boothmul_pipelined.core/a.b.c.b-adder.vhd}
-analyze -library WORK -format vhdl {$env(path_to_file)a.b-DataPath.core/a.b.c-Execute.stage/a.b.c.c-boothmul_pipelined.core/a.b.c.c-complement2.vhd}
-analyze -library WORK -format vhdl {$env(path_to_file)a.b-DataPath.core/a.b.c-Execute.stage/a.b.c.c-boothmul_pipelined.core/a.b.c.d-encoder.vhd}
-analyze -library WORK -format vhdl {$env(path_to_file)a.a-control_unit.vhd }
-analyze -library WORK -format vhdl {$env(path_to_file)a.DLX.vhd }
+analyze -library WORK -format vhdl "$env(path_to_file)a.b-DataPath.vhd "
+analyze -library WORK -format vhdl "$env(path_to_file)a.b-DataPath.core/a.b.e-Write_back.stage.vhd "
+analyze -library WORK -format vhdl "$env(path_to_file)a.b-DataPath.core/a.b.a-Fetch.stage.vhd "
+analyze -library WORK -format vhdl "$env(path_to_file)a.b-DataPath.core/a.b.b-Decode.stage.vhd "
+analyze -library WORK -format vhdl "$env(path_to_file)a.b-DataPath.core/a.b.c-Execute.stage.vhd "
+analyze -library WORK -format vhdl "$env(path_to_file)a.b-DataPath.core/a.b.d.Memory.stage.vhd "
+analyze -library WORK -format vhdl "$env(path_to_file)a.b-DataPath.core/a.b.b-Decode.stage/a.b.b.a-sign_extension.vhd "
+analyze -library WORK -format vhdl "$env(path_to_file)a.b-DataPath.core/a.b.c-Execute.stage/a.b.c.a-check_branch_logic.vhd "
+analyze -library WORK -format vhdl "$env(path_to_file)a.b-DataPath.core/a.b.c-Execute.stage/a.b.c.b-general_alu.vhd "
+analyze -library WORK -format vhdl "$env(path_to_file)a.b-DataPath.core/a.b.c-Execute.stage/a.b.c.c-boothmul_pipelined.vhd "
+analyze -library WORK -format vhdl "$env(path_to_file)a.b-DataPath.core/a.b.c-Execute.stage/a.b.c.c-boothmul_pipelined.core/a.b.c.a-mux.vhd"
+analyze -library WORK -format vhdl "$env(path_to_file)a.b-DataPath.core/a.b.c-Execute.stage/a.b.c.c-boothmul_pipelined.core/a.b.c.b-adder.vhd"
+analyze -library WORK -format vhdl "$env(path_to_file)a.b-DataPath.core/a.b.c-Execute.stage/a.b.c.c-boothmul_pipelined.core/a.b.c.c-complement2.vhd"
+analyze -library WORK -format vhdl "$env(path_to_file)a.b-DataPath.core/a.b.c-Execute.stage/a.b.c.c-boothmul_pipelined.core/a.b.c.d-encoder.vhd"
+analyze -library WORK -format vhdl "$env(path_to_file)a.a-control_unit.vhd "
+analyze -library WORK -format vhdl "$env(path_to_file)a.DLX.vhd "
 
 
 ###########################################################
