@@ -33,26 +33,27 @@ vcom -2008 -check_synthesis ${path_to_file}001-global_components.vhd
 # vcom for vhdl-2008 and drc for synthesis (basic)
 
 echo "Compiling labs units"
-vcom -2008 -check_synthesis ${path_to_file}global_components.package/adder.vhd 
-vcom -2008 -check_synthesis ${path_to_file}global_components.package/alu.vhd 
-vcom -2008 -check_synthesis ${path_to_file}global_components.package/alu_type.vhd 
-vcom -2008 -check_synthesis ${path_to_file}global_components.package/boothmul.vhd 
-vcom -2008 -check_synthesis ${path_to_file}global_components.package/complement2.vhd 
-vcom -2008 -check_synthesis ${path_to_file}global_components.package/constants.vhd 
-vcom -2008 -check_synthesis ${path_to_file}global_components.package/csb.vhd 
-vcom -2008 -check_synthesis ${path_to_file}global_components.package/encoder.vhd 
-vcom -2008 -check_synthesis ${path_to_file}global_components.package/fa.vhd 
-vcom -2008 -check_synthesis ${path_to_file}global_components.package/fd.vhd 
-vcom -2008 -check_synthesis ${path_to_file}global_components.package/gsb.vhd 
-vcom -2008 -check_synthesis ${path_to_file}global_components.package/mux.vhd 
-vcom -2008 -check_synthesis ${path_to_file}global_components.package/p4_adder.vhd 
-vcom -2008 -check_synthesis ${path_to_file}global_components.package/pgsb.vhd 
-vcom -2008 -check_synthesis ${path_to_file}global_components.package/rca.vhd 
-vcom -2008 -check_synthesis ${path_to_file}global_components.package/reg_nbit.vhd 
-vcom -2008 -check_synthesis ${path_to_file}global_components.package/registerfile.vhd 
-vcom -2008 -check_synthesis ${path_to_file}global_components.package/stcg.vhd 
-vcom -2008 -check_synthesis ${path_to_file}global_components.package/sum_gen.vhd 
-vcom -2008 -check_synthesis ${path_to_file}global_components.package/pg.vhd
+vcom -2008 -check_synthesis -autoorder ${path_to_file}global_components.package/*.vhd
+#vcom -2008 -check_synthesis ${path_to_file}global_components.package/adder.vhd 
+#vcom -2008 -check_synthesis ${path_to_file}global_components.package/alu.vhd 
+#vcom -2008 -check_synthesis ${path_to_file}global_components.package/alu_type.vhd 
+#vcom -2008 -check_synthesis ${path_to_file}global_components.package/boothmul.vhd 
+#vcom -2008 -check_synthesis ${path_to_file}global_components.package/complement2.vhd 
+#vcom -2008 -check_synthesis ${path_to_file}global_components.package/constants.vhd 
+#vcom -2008 -check_synthesis ${path_to_file}global_components.package/csb.vhd 
+#vcom -2008 -check_synthesis ${path_to_file}global_components.package/encoder.vhd 
+#vcom -2008 -check_synthesis ${path_to_file}global_components.package/fa.vhd 
+#vcom -2008 -check_synthesis ${path_to_file}global_components.package/fd.vhd 
+#vcom -2008 -check_synthesis ${path_to_file}global_components.package/gsb.vhd 
+#vcom -2008 -check_synthesis ${path_to_file}global_components.package/mux.vhd 
+#vcom -2008 -check_synthesis ${path_to_file}global_components.package/p4_adder.vhd 
+#vcom -2008 -check_synthesis ${path_to_file}global_components.package/pgsb.vhd 
+#vcom -2008 -check_synthesis ${path_to_file}global_components.package/rca.vhd 
+#vcom -2008 -check_synthesis ${path_to_file}global_components.package/reg_nbit.vhd 
+#vcom -2008 -check_synthesis ${path_to_file}global_components.package/registerfile.vhd 
+#vcom -2008 -check_synthesis ${path_to_file}global_components.package/stcg.vhd 
+#vcom -2008 -check_synthesis ${path_to_file}global_components.package/sum_gen.vhd 
+#vcom -2008 -check_synthesis ${path_to_file}global_components.package/pg.vhd
 
 
 echo "Compilig memories"
@@ -80,7 +81,7 @@ vcom -2008 -check_synthesis ${path_to_file}a.b-DataPath.core/a.b.c-Execute.stage
 vcom -2008 -check_synthesis ${path_to_file}a.b-DataPath.core/a.b.c-Execute.stage/a.b.c.c-boothmul_pipelined.core/a.b.c.c-complement2.vhd
 vcom -2008 -check_synthesis ${path_to_file}a.b-DataPath.core/a.b.c-Execute.stage/a.b.c.c-boothmul_pipelined.core/a.b.c.d-encoder.vhd
 vcom -2008 -check_synthesis ${path_to_file}a.a-control_unit.vhd 
-vcom -2008 -check_synthesis ${path_to_file}a.DLX.vhd 
+vcom -2008 -check_synthesis ${path_to_file}a-DLX.vhd 
 
 
 echo "Starting simulation of dlx top level entity"
