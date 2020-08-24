@@ -71,7 +71,6 @@ imul r22,r21,r22
 nop
 nop
 sw 40(r3),r22
-
 ;; add loop of addition for checking the result of mult
 loop:
 add r1,r21,r0
@@ -128,6 +127,7 @@ nop
 nop
 nop
 nop
-end: j end ; infinite loop
+end: 
+j end ; infinite loop
 
 
