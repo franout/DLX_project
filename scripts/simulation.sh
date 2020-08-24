@@ -6,34 +6,36 @@ source /software/scripts/init_questa10.7c
 
 if [ -z $1 ]; then
 	echo "usage ./simulation.sh sbst.asm"
-	exit(-1)
+	exit
 fi
 
+path_to_hex_test_program="$1"
 
-path_to_hex_test_program = $1
-if [ -z "$path_to_hex_test_program" ] ; then
+if [ ! -f $path_to_hex_test_program ] ; then
 	echo "Input software file for IRAM not defined"
-	exit(-1)
+	exit
 fi
+
+echo "Moving the hex files into the memories folders"
+cp "$path_to_hex_test_program" ../"$path_to_file"test_bench/memories/
+
 echo "Starting initialization of simulation environment"
-setmentor
 cd ..
 if [ -d "./work" ] ;then 
 	rm -rf work
 fi
-echo "Moving the hex files into the memories folders"
-cp "$path_to_hex_test_program" ./test_bench/memories/
 
 vlib ./work # it also creates the folder
 echo "Simulation ready to go!"
 echo "Start hierarchical compilation"
+echo "Compiling labs units"
+vcom -2008 -check_synthesis -autoorder ${path_to_file}global_components.package/*.vhd
 vcom -2008 -check_synthesis ${path_to_file}000-globals.vhd
 vcom -2008 -check_synthesis ${path_to_file}001-global_components.vhd 
 # vlog for verilog -incr(mental) compilation
 # vcom for vhdl-2008 and drc for synthesis (basic)
 
-echo "Compiling labs units"
-vcom -2008 -check_synthesis -autoorder ${path_to_file}global_components.package/*.vhd
+
 #vcom -2008 -check_synthesis ${path_to_file}global_components.package/adder.vhd 
 #vcom -2008 -check_synthesis ${path_to_file}global_components.package/alu.vhd 
 #vcom -2008 -check_synthesis ${path_to_file}global_components.package/alu_type.vhd 
@@ -87,3 +89,5 @@ vcom -2008 -check_synthesis ${path_to_file}a-DLX.vhd
 echo "Starting simulation of dlx top level entity"
 ## need a do file and a waveform file
 vsim  -suppress 12110 -novopt work.tb_dlx -do ./../scripts/dlx_tb.do  
+
+rm -rf ./work

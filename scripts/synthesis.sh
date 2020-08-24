@@ -1,7 +1,7 @@
 #!/usr/bin/bash
 echo "Starting synthesis setup"
 cd ..
-export path_to_file="./hardware/dlx/"
+export path_to_file=$PWD"/hardware/dlx/"
 cd project/
 
 
@@ -14,8 +14,9 @@ mkdir synthesis
 cd synthesis 
 mkdir report
 mkdir output_netlist
-cp ../../scripts/.synopsys_dc.setup .
-setsynopsys
+cp ../../scripts/.synopsys_dc.setup ./
+cp ../../scripts/synthesis.tcl ./
+source /software/scripts/init_synopsys_64.11
 mkdir work 
 echo "Startig Design Vision executing synthesis.tcl script"
-design_vision -f synthesis.tcl
+design_vision -f synthesis.tcl -no_gui

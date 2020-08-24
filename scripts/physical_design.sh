@@ -17,7 +17,7 @@ cd ./physical_design
 mkdir report 
 mkdir output_netlist
 
-setinnovus
+source /software/scripts/init_innovus17.11
 # launch innovus 
 echo "Startig Innovus executing physical_design.tcl script"
 innovus -files physical_design.tcl -no_gui

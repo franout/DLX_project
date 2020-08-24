@@ -6,9 +6,13 @@ set designer "Franout - Francesco Angione"
 set company "Microelectronic Systems @ Polito"
 ## maybe for vhdl2008 support 
 #set_property file_type {VHDL 2008} [get_files  {{D:/uni/2018-2019/Microelectronic systems/dlx_project/hardware/dlx/global_components.package/pg.vhd}}]
+## path_to_file variable comes from bash script
+
+
+
 
 puts "Compiling labs units"
-analyze -library WORK -format vhdl {$env(path_to_file)global_components.package/wrf.vhd }
+analyze -library WORK -format vhdl  "$env(path_to_file)global_components.package/wrf.vhd" 
 analyze -library WORK -format vhdl {$env(path_to_file)global_components.package/adder.vhd }
 analyze -library WORK -format vhdl {$env(path_to_file)global_components.package/alu.vhd }
 analyze -library WORK -format vhdl {$env(path_to_file)global_components.package/alu_type.vhd }
