@@ -33,8 +33,10 @@ initial begin
         rs1=0;
         rs2=0;
         rd=0;
+		instruction_to_cu[`IRAM_WORD_SIZE-1:`IRAM_WORD_SIZE-`OP_CODE_SIZE]=i_nop;
+		instruction_to_cu[`IRAM_WORD_SIZE-`OP_CODE_SIZE-1:0]=0;
 		$display("Starting testbench for Control unit",);
-		rst=1;
+		rst=0;
 		`ifndef  VIVADO_SIM
 		##1;
 		`else 
@@ -47,8 +49,8 @@ initial begin
 		`else 
 		repeat(2)@ (posedge clk);
 		`endif
+		rst=1;
         //initialize seed for random register
-        $urandom_range(0,31);
         current_opcode=current_opcode.first();
         $display("Looping over all instructions",);
         for (; current_opcode !== current_opcode.last(); ) begin
@@ -56,12 +58,12 @@ initial begin
             if(current_opcode===i_regtype)begin 
                 $display("Looping over all regtype instructions",);
                 current_opcode_alu_fun= current_opcode_alu_fun.first();
-                rs1=$urandom();
-                rs2=$urandom();
-                rd=$urandom();
+                rs1=$urandom_range(0,10);
+                rs2=$urandom_range(11,21);
+                rd= $urandom_range(22,31);
                 // compose instruction 
                 // opcode
-                instruction_to_cu[`IRAM_WORD_SIZE-1:`IRAM_WORD_SIZE-`OP_CODE_SIZE]='0;
+				instruction_to_cu[`IRAM_WORD_SIZE-1:`IRAM_WORD_SIZE-`OP_CODE_SIZE]='0;
                 // registers
                 instruction_to_cu[`IRAM_WORD_SIZE-`OP_CODE_SIZE-1:`IRAM_WORD_SIZE-`OP_CODE_SIZE-5]=rs1;
                 instruction_to_cu[`IRAM_WORD_SIZE-`OP_CODE_SIZE-5-1:`IRAM_WORD_SIZE-`OP_CODE_SIZE-10]=rs2;
@@ -86,7 +88,6 @@ initial begin
             end else if(current_opcode===i_j || current_opcode===i_jal) begin  // jump type
                 instruction_to_cu[`IRAM_WORD_SIZE-1:`IRAM_WORD_SIZE-`OP_CODE_SIZE]=current_opcode;
                 instruction_to_cu[`IRAM_WORD_SIZE-`OP_CODE_SIZE-1:0]= $urandom_range(0,2**26-1);
-                $urandom_range(0,31); // restore register randomization range
                 `ifndef  VIVADO_SIM
                 ##5;
                 `else 
@@ -98,7 +99,6 @@ initial begin
                 instruction_to_cu[`IRAM_WORD_SIZE-`OP_CODE_SIZE-1:`IRAM_WORD_SIZE-`OP_CODE_SIZE-5]=rs1;
                 instruction_to_cu[`IRAM_WORD_SIZE-`OP_CODE_SIZE-5-1:`IRAM_WORD_SIZE-`OP_CODE_SIZE-10]=rd;
                 instruction_to_cu[`IRAM_WORD_SIZE-`OP_CODE_SIZE-10:0]=$urandom_range(0,2**16-1);
-                $urandom_range(0,31); // restore register randomization range
                 `ifndef  VIVADO_SIM
                 ##5;
                 `else 
@@ -111,7 +111,6 @@ initial begin
         if(current_opcode===i_j || current_opcode===i_jal) begin  // jump type
             instruction_to_cu[`IRAM_WORD_SIZE-1:`IRAM_WORD_SIZE-`OP_CODE_SIZE]=current_opcode;
             instruction_to_cu[`IRAM_WORD_SIZE-`OP_CODE_SIZE-1:0]= $urandom_range(0,2**26-1);
-            $urandom_range(0,31); // restore register randomization range
             `ifndef  VIVADO_SIM
             ##5;
             `else 
@@ -123,7 +122,6 @@ initial begin
             instruction_to_cu[`IRAM_WORD_SIZE-`OP_CODE_SIZE-1:`IRAM_WORD_SIZE-`OP_CODE_SIZE-5]=rs1;
             instruction_to_cu[`IRAM_WORD_SIZE-`OP_CODE_SIZE-5-1:`IRAM_WORD_SIZE-`OP_CODE_SIZE-10]=rd;
             instruction_to_cu[`IRAM_WORD_SIZE-`OP_CODE_SIZE-10:0]=$urandom_range(0,2**16-1);
-            $urandom_range(0,31); // restore register randomization range
             `ifndef  VIVADO_SIM
             ##5;
             `else 
@@ -180,9 +178,11 @@ localparam clock_period= 10ns;
     logic dram_ready_cu;
     logic [0:0]select_wb;
 	logic  signed_notsigned;
-  	logic [$clog2(`CU_STATES)-1:0]STATE_CU;
+	logic [$clog2(`CU_STATES)-1:0] STATE_CU_i;
+ 	cu_state_t [$clog2(`CU_STATES)-1:0] STATE_CU;
     logic [7:0] csr;
 
+	assign STATE_CU=cu_state_t'(STATE_CU_i);
     assign iram_ready_cu=1;
     assign dram_ready_cu=1;
 
@@ -356,12 +356,14 @@ localparam clock_period= 10ns;
     instructions_opcode imm_instru,jump_instr,lw_instr,sw_instr,b_instr;
     // cast from bit to typedef of instruction 
     always_comb begin : proc_cast   
-        $cast(ireg_instr,curr_instruction_to_cu[`OP_CODE_SIZE-1:0]);
-        $cast(imm_instru,curr_instruction_to_cu[`IRAM_WORD_SIZE-1:`IRAM_WORD_SIZE-`OP_CODE_SIZE]);
-        $cast(jump_instr,curr_instruction_to_cu[`IRAM_WORD_SIZE-1:`IRAM_WORD_SIZE-`OP_CODE_SIZE]);
-        $cast(lw_instr,curr_instruction_to_cu[`IRAM_WORD_SIZE-1:`IRAM_WORD_SIZE-`OP_CODE_SIZE]);
-        $cast(sw_instr,curr_instruction_to_cu[`IRAM_WORD_SIZE-1:`IRAM_WORD_SIZE-`OP_CODE_SIZE]);
-        $cast(b_instr,curr_instruction_to_cu[`IRAM_WORD_SIZE-1:`IRAM_WORD_SIZE-`OP_CODE_SIZE]);
+		// type_t'(x) cast x to type_t
+		ireg_instr=instructions_regtype_opcode'(curr_instruction_to_cu[`OP_CODE_SIZE-1:0]);
+		imm_instru=instructions_opcode'(curr_instruction_to_cu[`IRAM_WORD_SIZE-1:`IRAM_WORD_SIZE-`OP_CODE_SIZE]);
+		jump_instr=instructions_opcode'(curr_instruction_to_cu[`IRAM_WORD_SIZE-1:`IRAM_WORD_SIZE-`OP_CODE_SIZE]);
+		lw_instr=instructions_opcode'(curr_instruction_to_cu[`IRAM_WORD_SIZE-1:`IRAM_WORD_SIZE-`OP_CODE_SIZE]);
+		sw_instr=instructions_opcode'(curr_instruction_to_cu[`IRAM_WORD_SIZE-1:`IRAM_WORD_SIZE-`OP_CODE_SIZE]);
+		b_instr=instructions_opcode'(curr_instruction_to_cu[`IRAM_WORD_SIZE-1:`IRAM_WORD_SIZE-`OP_CODE_SIZE]);
+		
     end        
 
 
@@ -387,6 +389,10 @@ localparam clock_period= 10ns;
             enum_wrap_instruction#(instructions_opcode)::name(b_instr)); 
     multiplication_stall_check_property : assert property(multiplication_stall) 
         else $display("Error @%d on mul instruction, stall has failed",$time());
+
+		assign alu_overflow='0;
+		assign zero_mul_detect='0;
+		assign mul_exeception='0;
 
   // unit under test instantiation
   control_unit  #(
@@ -431,7 +437,7 @@ localparam clock_period= 10ns;
     // simulation debug signals
     //synthesis_translate off
     ,
-    .STATE_CU(STATE_CU),
+    .STATE_CU(STATE_CU_i),
     .csr(csr)
     //synthesis_translate on
   );

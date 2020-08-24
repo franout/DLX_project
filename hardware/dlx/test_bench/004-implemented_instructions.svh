@@ -14,9 +14,9 @@
 `ifndef __implemented_instructions__svh
 `define __implemented_instructions__svh
 
+typedef bit[5:0] bit_instr;
 
-
-typedef enum bit[5:0] {
+typedef enum bit_instr {
    i_regtype=6'h00,
 	i_addi= 6'h08,
    i_andi= 6'h0c,
@@ -39,7 +39,7 @@ typedef enum bit[5:0] {
    i_xori=6'h0e
 } instructions_opcode;
 
-typedef enum bit[5:0] {
+typedef enum bit_instr {
    i_add=6'h20,
    i_and=  6'h24,
    i_or= 6'h25,

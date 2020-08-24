@@ -36,7 +36,7 @@ package globals is
         --------------------------------------------------------------------------------
         -- for debug purpuses
         --synthesis_translate off
-        constant tot_state : integer := 4;
+        constant tot_state : integer := 3;
         --synthesis_translate on
         --------------------------------------------------------------------------------
 

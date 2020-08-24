@@ -23,7 +23,7 @@
 `define  DRAM_SIZE 2**16-1
 `define  DRAM_ADDRESS_SIZE 16
 
-`define CU_STATES 4
+`define CU_STATES 3
 
 `define  ENDIANESS                      "big"; // for memory access
 `define  OPCODE_LENGTH                  6  // length in the instruction 
@@ -35,7 +35,7 @@
 `define  FUNC_SIZE      11 // FUNC field size
 `define  TOT_CU_SIGN  21  // number of total signoal (I/O) of control unit
 
-typedef enum bit[$clog2(`CU_STATES)-1:0]{hang_error,idle,fetch, decode } cu_state_t;
+typedef enum bit[$clog2(`CU_STATES)-1:0]{hang_error,fetch, decode } cu_state_t;
 
 typedef enum  bit [3:0]{ADD=4'h0, 
 						SUB=4'h1, 

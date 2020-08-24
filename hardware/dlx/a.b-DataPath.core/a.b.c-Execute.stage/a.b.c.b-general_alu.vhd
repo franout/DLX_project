@@ -91,7 +91,7 @@ begin
 
 
 
-  P_ALU: process (FUNC, DATA1, DATA2,adder_out,dataout_mul,cout)
+  P_ALU: process (FUNC, DATA1, DATA2,adder_out,dataout_mul,cout,signed_notsigned)
     variable tmp                               : std_logic_vector(N-1 downto 0);
     variable check_mul_logic,check_mul_logic2 : std_logic := '1';
   begin

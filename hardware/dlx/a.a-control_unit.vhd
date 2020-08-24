@@ -76,7 +76,7 @@ end entity control_unit;
 
 architecture behavioural of control_unit is
 
-  type state_t is (hang_error,idle,fetch, decode);
+  type state_t is (hang_error,fetch, decode);
 
   signal curr_state,next_state : state_t;
 
@@ -94,9 +94,9 @@ architecture behavioural of control_unit is
   signal csr_reg,next_value_csr : std_logic_vector(7 downto 0);
 
   -- constant signal assignement
-  constant feth_cmd : std_logic_vector(CW_SIZE-4 downto 0) := '1'&x"0000";
-  constant ireg_cmd : std_logic_vector(CW_SIZE-4 downto 0) := '1'&x"f013";
-  constant imm_cmd  : std_logic_vector(CW_SIZE-4 downto 0) := '1'&x"a913";
+  constant feth_cmd : std_logic_vector(CW_SIZE-4-1 downto 0) := '1'&x"0000";
+  constant ireg_cmd : std_logic_vector(CW_SIZE-4-1 downto 0) := '1'&x"f013";
+  constant imm_cmd  : std_logic_vector(CW_SIZE-4-1 downto 0) := '1'&x"a913";
 
 begin
   ir_opcode <= curr_instruction_to_cu(IR_SIZE-1 downto IR_SIZE-OP_CODE_SIZE);
@@ -112,7 +112,7 @@ begin
   reg_state : process( clk,rst )
   begin
     if (rst='0') then-- active low
-      curr_state  <= idle;
+      curr_state  <= fetch;
       csr_reg     <= (OTHERS => '0');
       counter_mul <= (OTHERS => '0');
     elsif (rising_edge(clk)) then
@@ -125,20 +125,14 @@ begin
 
 
 
-  cl : process(curr_state , iram_ready_cu ,curr_instruction_to_cu,dram_ready_cu,ir_opcode,ir_func,counter_mul,csr_reg)
+  cl : process(curr_state , iram_ready_cu ,curr_instruction_to_cu,ir_opcode,ir_func,counter_mul,csr_reg)
   begin
     ------------------------------------------------------------------------------
     -- default signals assignment
     cmd_word                   <= (OTHERS => '0');
-    next_value_csr(7 downto 3) <= (OTHERS => '0');
     cmd_alu_op_type            <= (OTHERS => '0');
     ---------------------------------------------------------------------------------
     case (curr_state) is
-      when idle => if (iram_ready_cu='1') then
-        next_state <= fetch;
-      else
-        next_state <= curr_state;
-        end if;
       when fetch => next_state <= decode;
         cmd_word                 <= feth_cmd;
       when decode =>
@@ -319,7 +313,7 @@ begin
         end if;
       when hang_error => next_state <= curr_state;
       when others     => cmd_word   <= (OTHERS => '0');
-        next_state <= idle;
+        next_state <= fetch;
     end case;
   end process cl;
 
@@ -330,7 +324,7 @@ begin
   --   check logic for multiplication
   mul_exception : process (cw3(3 downto 0), zero_mul_detect,mul_exeception)
   begin
-    if(cmd_alu_op_type=x"2") then -- only in the multiplication 
+    if(cw3=x"2") then -- only in the multiplication 
       next_value_csr(2 downto 1) <= zero_mul_detect & mul_exeception;
     else
       next_value_csr(2 downto 1) <= "00";
