@@ -1,5 +1,6 @@
 #!/usr/bin/bash
 
+echo "Boot regression test"
 path_to_file="./hardware/dlx/"
 
 echo "Starting initialization of simulation environment"
