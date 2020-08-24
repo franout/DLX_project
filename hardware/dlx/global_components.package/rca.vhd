@@ -43,25 +43,7 @@ begin
 end STRUCTURAL;
 
 
-architecture BEHAVIORAL of RCA is
-begin
-    
-    process(A,B, Ci)
-      variable sum : std_logic_vector(NBIT downto 0);
-      variable Ci_ext : std_logic_vector(NBIT downto 0) := (OTHERS => '0');
-    begin
-      Ci_ext(0) := Ci;
-      sum := (("0"&A) + ("0"&B) + Ci_ext);
-      if(sum(0) = 'X') then
-          S <= (OTHERS => '0');
-          Co <= '0';
-        else
-          S <= sum(NBIT-1 downto 0) after DRCAS;
-          Co <= sum(NBIT) after DRCAC;
-        end if;
-      end process;
-                
-end BEHAVIORAL;
+
 
 configuration CFG_RCA_STRUCTURAL of RCA is
     for STRUCTURAL 
@@ -73,7 +55,3 @@ configuration CFG_RCA_STRUCTURAL of RCA is
                       end for;
               end CFG_RCA_STRUCTURAL;
 
-configuration CFG_RCA_BEHAVIORAL of RCA is
-    for BEHAVIORAL 
-        end for;
-end CFG_RCA_BEHAVIORAL;

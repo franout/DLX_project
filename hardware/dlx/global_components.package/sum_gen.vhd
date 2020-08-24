@@ -35,10 +35,10 @@ begin
 
 end STRUCTURAL;
 
-configuration CFG_SUM_GEN_STRUCTURAL of SUM_GEN is
-    for STRUCTURAL
-        for all : CSB
-            use configuration WORK.CFG_CSB_STRUCTURAL;
-        end for;
-    end for;
-end CFG_SUM_GEN_STRUCTURAL;
+--configuration CFG_SUM_GEN_STRUCTURAL of SUM_GEN is
+--    for STRUCTURAL
+--        for all : CSB
+--            use configuration WORK.CFG_CSB_STRUCTURAL;
+--        end for;
+--    end for;
+--end CFG_SUM_GEN_STRUCTURAL;

@@ -16,7 +16,8 @@ mkdir report
 mkdir output_netlist
 cp ../../scripts/.synopsys_dc.setup ./
 cp ../../scripts/synthesis.tcl ./
-source /software/scripts/init_synopsys_64.11
+source /software/scripts/init_synopsys_64.18
 mkdir work 
 echo "Startig Design Vision executing synthesis.tcl script"
 design_vision -f synthesis.tcl -no_gui
+

@@ -7,8 +7,8 @@ set company "Microelectronic Systems @ Polito"
 ## maybe for vhdl2008 support 
 #set_property file_type {VHDL 2008} [get_files  {{D:/uni/2018-2019/Microelectronic systems/dlx_project/hardware/dlx/global_components.package/pg.vhd}}]
 ## path_to_file variable comes from bash script
-
-
+analyze -library WORK -format vhdl "$env(path_to_file)global_components.package/constants.vhd "
+analyze -library WORK -format vhdl "$env(path_to_file)global_components.package/alu_type.vhd "
 analyze -library WORK -format vhdl "$env(path_to_file)000-globals.vhd"
 analyze -library WORK -format vhdl "$env(path_to_file)001-global_components.vhd"
 
@@ -16,11 +16,8 @@ puts "Compiling labs units"
 analyze -library WORK -format vhdl  "$env(path_to_file)global_components.package/wrf.vhd" 
 analyze -library WORK -format vhdl "$env(path_to_file)global_components.package/adder.vhd "
 analyze -library WORK -format vhdl "$env(path_to_file)global_components.package/alu.vhd "
-analyze -library WORK -format vhdl "$env(path_to_file)global_components.package/alu_type.vhd "
 analyze -library WORK -format vhdl "$env(path_to_file)global_components.package/boothmul.vhd "
 analyze -library WORK -format vhdl "$env(path_to_file)global_components.package/complement2.vhd "
-analyze -library WORK -format vhdl "$env(path_to_file)global_components.package/constants.vhd "
-analyze -library WORK -format vhdl "$env(path_to_file)global_components.package/csb.vhd "
 analyze -library WORK -format vhdl "$env(path_to_file)global_components.package/encoder.vhd "
 analyze -library WORK -format vhdl "$env(path_to_file)global_components.package/fa.vhd "
 analyze -library WORK -format vhdl "$env(path_to_file)global_components.package/fd.vhd "
@@ -32,6 +29,7 @@ analyze -library WORK -format vhdl "$env(path_to_file)global_components.package/
 analyze -library WORK -format vhdl "$env(path_to_file)global_components.package/p4_adder.vhd "
 analyze -library WORK -format vhdl "$env(path_to_file)global_components.package/pgsb.vhd "
 analyze -library WORK -format vhdl "$env(path_to_file)global_components.package/rca.vhd "
+analyze -library WORK -format vhdl "$env(path_to_file)global_components.package/csb.vhd "
 analyze -library WORK -format vhdl "$env(path_to_file)global_components.package/reg_nbit.vhd "
 analyze -library WORK -format vhdl "$env(path_to_file)global_components.package/registerfile.vhd "
 analyze -library WORK -format vhdl "$env(path_to_file)global_components.package/stcg.vhd "
@@ -54,15 +52,16 @@ analyze -library WORK -format vhdl "$env(path_to_file)a.b-DataPath.core/a.b.c-Ex
 analyze -library WORK -format vhdl "$env(path_to_file)a.b-DataPath.core/a.b.c-Execute.stage/a.b.c.c-boothmul_pipelined.core/a.b.c.c-complement2.vhd"
 analyze -library WORK -format vhdl "$env(path_to_file)a.b-DataPath.core/a.b.c-Execute.stage/a.b.c.c-boothmul_pipelined.core/a.b.c.d-encoder.vhd"
 analyze -library WORK -format vhdl "$env(path_to_file)a.a-control_unit.vhd "
-analyze -library WORK -format vhdl "$env(path_to_file)a.DLX.vhd "
+analyze -autoread -library WORK -format vhdl "$env(path_to_file)a-DLX.vhd "
 
 
 ###########################################################
 ################ elaborating the top entity ###############
 ###########################################################
+
 puts "Elaborating top level entity"
-elaborate DLX -architecture dlx_rtl -library WORK -parameters " IR_SIZE=32 PC_SIZE =32 "
-current_design "dlx_irsize32_pcsize32"
+elaborate -update dlx -architecture dlx_rtl -library WORK -parameters "IR_SIZE=32,PC_SIZE=32"
+current_design "DLX_IR_SIZE32_PC_SIZE32"
 ##########################################
 # first compilation, without constraints #
 puts "Synthesis without constraints"
@@ -199,3 +198,5 @@ report_power > ./report/power_report_dlx_irsize32_pcsize32_opt_1_minarea.rpt
 write -hierarchy -format ddc -output ./output_netlist/dlx_irsize32_pcsize32_topt_1_minarea.ddc
 write -hierarchy -format vhdl -output ./output_netlist/dlx_irsize32_pcsize32_topt_1_minarea.vhdl
 write -hierarchy -format verilog -output ./output_netlist/dlx_irsize32_pcsize32_topt_1_minarea.v
+
+exit

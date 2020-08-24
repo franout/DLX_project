@@ -46,7 +46,6 @@ entity DLX is
     ----------------------------------------------------------------------------
     -- cpu status signals in case of exception or hang --------------------------
     ----------------------------------------------------------------------------
-    cpu_status : out std_logic_vector(1 downto 0)
     -- simulation debug signals and verification purposes
     --synthesis_translate off
     ;
