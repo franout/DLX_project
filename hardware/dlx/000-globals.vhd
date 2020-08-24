@@ -6,7 +6,7 @@
 -- Author      : Francesco Angione <s262620@studenti.polito.it> franout@github.com
 -- Company     : Politecnico di Torino, Italy
 -- Created     : Wed Jul 22 22:56:54 2020
--- Last update : Fri Aug 21 18:52:14 2020
+-- Last update : Mon Aug 24 16:49:55 2020
 -- Platform    : Default Part Number
 -- Standard    : VHDL-2008 
 --------------------------------------------------------------------------------
@@ -50,7 +50,7 @@ package globals is
         constant jump_address_length           : integer := 26; -- for J-type instruction  
         constant OP_CODE_SIZE : integer := 6;  -- OPCODE field size
         constant FUNC_SIZE    : integer := 11; -- FUNC field size
-        constant tot_cu_sign : integer := 20;  -- number of total signoal (I/O) of control unit
+        constant tot_cu_sign : integer := 21;  -- number of total signoal (I/O) of control unit
 
         -- definition for data
         constant data_size : integer := 32;

@@ -6,7 +6,7 @@
 -- Author      : Francesco Angione <s262620@studenti.polito.it> franout@github.com
 -- Company     : Politecnico di Torino, Italy
 -- Created     : Thu Jul 23 15:49:45 2020
--- Last update : Fri Aug 21 19:44:26 2020
+-- Last update : Mon Aug 24 17:17:17 2020
 -- Platform    : Default Part Number
 -- Standard    : VHDL-2008 
 --------------------------------------------------------------------------------
@@ -24,10 +24,10 @@ use work.global_components.all;
 
 entity control_unit is
   generic (
-    PC_SIZE      : integer := 32;
-    RF_REGS      : integer := 32; -- number of register in register file
-    IR_SIZE      : integer := 32; -- Instruction Register Size    
-    CW_SIZE      : integer := 20  -- Control Word Size
+    PC_SIZE : integer := 32;
+    RF_REGS : integer := 32; -- number of register in register file
+    IR_SIZE : integer := 32; -- Instruction Register Size    
+    CW_SIZE : integer := 21  -- Control Word Size
   );
   port (
     clk : in std_logic;
@@ -37,13 +37,13 @@ entity control_unit is
     iram_ready_cu          : in  std_logic;
     curr_instruction_to_cu : in  std_logic_vector(IR_SIZE-1 downto 0);
     -- for decode stage
-    enable_rf    : out std_logic; -- used as enable for sign26 extention when equal to 0
-    read_rf_p1   : out std_logic; -- if read_rf_p1/2 are both zero it is a jal instruction write address -> 31
-    read_rf_p2   : out std_logic;
+    enable_rf  : out std_logic; -- used as enable for sign26 extention when equal to 0
+    read_rf_p1 : out std_logic; -- if read_rf_p1/2 are both zero it is a jal instruction write address -> 31
+    read_rf_p2 : out std_logic;
 
     rtype_itypen : out std_logic;
     compute_sext : out std_logic;
-	jump_sext    : out std_logic;
+    jump_sext    : out std_logic;
     -- for execute stage
     alu_op_type      : out std_logic_vector(3 downto 0); --TYPE_OP_ALU ; for compatibility with sv
     sel_val_a        : out std_logic_vector(0 downto 0 );
@@ -51,7 +51,7 @@ entity control_unit is
     signed_notsigned : out std_logic;
     alu_cin          : out std_logic;
     evaluate_branch  : out std_logic_vector(1 downto 0); -- msb for evaluate branch negated(!=0) lsb for evaluate branch (==0)
-    -- from execute stage
+                                                         -- from execute stage
     alu_overflow : in std_logic;
     -- exception control logic for multiplication 
     zero_mul_detect : in std_logic;
@@ -61,7 +61,7 @@ entity control_unit is
     dram_r_nw_cu   : out std_logic;
     dram_ready_cu  : in  std_logic;
     -- for write back stage  
-    write_rf     : out std_logic;
+    write_rf  : out std_logic;
     select_wb : out std_logic_vector(0 downto 0)
     -- simulation debug signals
     --synthesis_translate off
@@ -87,16 +87,16 @@ architecture behavioural of control_unit is
   signal cmd_alu_op_type     : std_logic_vector(3 downto 0);         --- signal to be delayed for the alu
 
   signal ir_opcode : std_logic_vector(OP_CODE_SIZE-1 downto 0); -- OpCode part of IR
-  signal ir_func   : std_logic_vector(FUNC_SIZE-1 downto 0);     -- Func part of IR when Rtype
+  signal ir_func   : std_logic_vector(FUNC_SIZE-1 downto 0);    -- Func part of IR when Rtype
 
   signal counter_mul,next_val_counter_mul : std_logic_vector(2 downto 0); -- 3 bit coutner for stall in mul instruction 
                                                                           -- a status register for possible overflow or write to forbidden registers
   signal csr_reg,next_value_csr : std_logic_vector(7 downto 0);
 
   -- constant signal assignement
-  constant feth_cmd : std_logic_vector(CW_SIZE-4 downto 0) := x"8000";
-  constant ireg_cmd : std_logic_vector(CW_SIZE-4 downto 0) := x"f713";
-  constant imm_cmd  : std_logic_vector(CW_SIZE-4 downto 0) := x"e513";
+  constant feth_cmd : std_logic_vector(CW_SIZE-4 downto 0) := '1'&x"0000";
+  constant ireg_cmd : std_logic_vector(CW_SIZE-4 downto 0) := '1'&x"f013";
+  constant imm_cmd  : std_logic_vector(CW_SIZE-4 downto 0) := '1'&x"a913";
 
 begin
   ir_opcode <= curr_instruction_to_cu(IR_SIZE-1 downto IR_SIZE-OP_CODE_SIZE);
@@ -150,7 +150,7 @@ begin
 
               -- alu function generator
               case (ir_func(5 downto 0)) is -- upper bits are unused in this configuration
-                -- see encoding in execute stage
+                                            -- see encoding in execute stage
                 when i_sub'encoding => cmd_alu_op_type <= x"1";
                 when i_mul'encoding =>
                   cmd_alu_op_type <= x"2";
@@ -162,7 +162,7 @@ begin
                       cmd_word             <= ireg_cmd;
                       next_val_counter_mul <= (OTHERS => '0');
                     else                               -- otherwise do not fetch 
-                      cmd_word             <= x"e713"; --  x"f713"
+                      cmd_word             <= '0' & x"1010";
                       next_val_counter_mul <= std_logic_vector(unsigned(counter_mul)+1);
                     end if;
                   else
@@ -202,25 +202,25 @@ begin
               end if;
             when i_beqz'encoding =>
               cmd_alu_op_type <= x"0";    -- addition of pc +4 + immediate16
-              cmd_word        <= x"e533"; --==0
+              cmd_word        <= '1'&x"cb30"; --==0
             when i_benz'encoding =>
               cmd_alu_op_type <= x"0";    -- addition of pc +4 + immediate16
-              cmd_word        <= x"e553"; --!=0
+              cmd_word        <= '1'&x"cb50"; --!=0
             when i_j'encoding =>
               cmd_alu_op_type <= x"0"; -- addition of pc +4 + immediate26
-              cmd_word        <= x"8310";
+              cmd_word        <= '1'&x"0b30";
             when i_jal'encoding =>
               -- R31 <-- PC + 4; PC <-- PC + imm26 + 4
               cmd_alu_op_type <= x"0"; -- addition of pc + immediate26+4
-              cmd_word        <= x"c313";
+              cmd_word        <= '1'&x"8713";
             when i_lw'encoding =>
               cmd_alu_op_type <= x"0"; -- addition of rs1 + imeediate16
-              cmd_word        <= x"e51d";
+              cmd_word        <= '1'&x"c91c";
             when i_sw'encoding =>
               cmd_alu_op_type <= x"0";
-              cmd_word        <= x"e517"; -- write to memory
+              cmd_word        <= '1'&x"e918"; -- write to memory
             when i_nop'encoding =>
-              cmd_word <= x"8000";
+              cmd_word <= '1'&x"0000";
             when i_ori'encoding =>
               cmd_alu_op_type <= x"4";
               cmd_word        <= imm_cmd;
@@ -352,20 +352,21 @@ begin
   read_rf_p2   <= cw2(CW_SIZE-4);
   rtype_itypen <= cw2(CW_SIZE-5);
   compute_sext <= cw2(CW_SIZE-6);
+  jump_sext   <= cw2(CW_SIZE-7);
   -- for execute stage
-  sel_val_a (0)      <= cw3 (CW_SIZE-7);
-  sel_val_b (0)      <= cw3 (CW_SIZE-8);
-  alu_cin            <= cw3(CW_SIZE-9);
-  evaluate_branch(1) <= cw3(CW_SIZE-10); --!=0
-  evaluate_branch(0) <= cw3(CW_SIZE-11); -- ==0
-  signed_notsigned   <= cw3(CW_SIZE-12);
+  sel_val_a (0)      <= cw3 (CW_SIZE-8);
+  sel_val_b (0)      <= cw3 (CW_SIZE-9);
+  alu_cin            <= cw3(CW_SIZE-10);
+  evaluate_branch(1) <= cw3(CW_SIZE-11); --!=0
+  evaluate_branch(0) <= cw3(CW_SIZE-12); -- ==0
+  signed_notsigned   <= cw3(CW_SIZE-13);
   alu_op_type        <= cw3(3 downto 0); -- it is better to cancatenate it at the end
                                          -- for memory stage
-  dram_enable_cu <= cw4(CW_SIZE-13);
-  dram_r_nw_cu   <= cw4(CW_SIZE-14);
+  dram_enable_cu <= cw4(CW_SIZE-14);
+  dram_r_nw_cu   <= cw4(CW_SIZE-15);
   -- for write back stage   
-  select_wb(0) <= cw5(CW_SIZE-15);
-  write_rf     <= cw5(CW_SIZE-16);
+  select_wb(0) <= cw5(CW_SIZE-16);
+  write_rf     <= cw5(CW_SIZE-17);
 
     -- delay register for command word
     f_reg : reg_nbit generic map (

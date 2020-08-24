@@ -166,6 +166,7 @@ localparam clock_period= 10ns;
     logic write_rf;
     logic rtype_itypen_i;
     logic compute_sext;
+    logic jump_sext;
     wire [3:0]alu_op_type;
     logic [0:0]sel_val_a;
     logic [0:0]sel_val_b;
@@ -189,12 +190,12 @@ localparam clock_period= 10ns;
     property multiplication_stall;
         @(test_clk)
             disable iff(!rst || !zero_mul_detect || !mul_exeception )
-				(alu_op_type==MULT) |-> !iram_enable_cu[*6];// no fetching for 6 cc
+				(alu_op_type===MULT) |-> !iram_enable_cu[*6];// no fetching for 6 cc
     endproperty;
 
   /* sequence for reg type instructions*/
     sequence ireg_decode;
-        ##1  enable_rf && read_rf_p1 && read_rf_p2 && rtype_itypen_i && !compute_sext;
+        ##1  enable_rf && read_rf_p1 && read_rf_p2 && rtype_itypen_i && !compute_sext && !jump_sext;
     endsequence ;
 
     sequence ireg_execute;
@@ -210,7 +211,7 @@ localparam clock_period= 10ns;
     endsequence ;
 /*sequence for immediate instruction */
     sequence itype_decode;
-        ##1  enable_rf && read_rf_p1 && !read_rf_p2 && !rtype_itypen_i && compute_sext;
+        ##1  enable_rf && read_rf_p1 && !read_rf_p2 && !rtype_itypen_i && compute_sext && !jump_sext;
     endsequence ;
 
     sequence itype_execute;
@@ -226,7 +227,7 @@ localparam clock_period= 10ns;
     endsequence ;
 /*sequnce for lw*/
     sequence lw_decode;
-        ##1  enable_rf && read_rf_p1 && !read_rf_p2 && !rtype_itypen_i && compute_sext;
+        ##1  enable_rf && read_rf_p1 && !read_rf_p2 && !rtype_itypen_i && compute_sext && !jump_sext;
     endsequence ;
 
     sequence lw_execute;
@@ -243,7 +244,7 @@ localparam clock_period= 10ns;
 
 /*sequnce for sw*/
     sequence sw_decode;
-        ##1  enable_rf && read_rf_p1 && !read_rf_p2 && !rtype_itypen_i && compute_sext;
+        ##1  enable_rf && read_rf_p1 && !read_rf_p2 && !rtype_itypen_i && compute_sext && !jump_sext;
     endsequence;
 
     sequence sw_execute;
@@ -260,7 +261,7 @@ localparam clock_period= 10ns;
 
 /*sequnce for b*/
     sequence b_decode;
-        ##1  enable_rf && read_rf_p1 && !read_rf_p2 && !rtype_itypen_i && !compute_sext;
+        ##1  enable_rf && read_rf_p1 && !read_rf_p2 && !rtype_itypen_i && !compute_sext && !jump_sext;
     endsequence ;
 
     sequence beqz_execute;
@@ -282,8 +283,12 @@ localparam clock_period= 10ns;
     endsequence;
  /*sequence for jump instruction*/
     sequence ijump_decode;
-        ##1  enable_rf && !read_rf_p1 && !read_rf_p2 && !rtype_itypen_i && compute_sext;
+        ##1  !enable_rf && !read_rf_p1 && !read_rf_p2 && !rtype_itypen_i && !compute_sext &&  jump_sext;
     endsequence ;
+
+    sequence ijumpal_decode;
+        ##1 enable_rf && !read_rf_p1 && !read_rf_p2 && !rtype_itypen_i && !compute_sext && jump_sext;
+    endsequence;
 
     sequence ijump_execute;
         ##1 sel_val_a[0] && sel_val_b[0] && !alu_cin && !evaluate_branch[1] && !evaluate_branch[0] && signed_notsigned ;
@@ -311,7 +316,10 @@ localparam clock_period= 10ns;
 		@(test_clk)
 			disable iff(!rst || curr_instruction_to_cu[`IRAM_WORD_SIZE-1:`IRAM_WORD_SIZE-`OP_CODE_SIZE]!==i_j ||
                 curr_instruction_to_cu[`IRAM_WORD_SIZE-1:`IRAM_WORD_SIZE-`OP_CODE_SIZE]!==i_jal  )
-				iram_enable_cu |-> (ijump_decode and ijump_execute and ijump_memory and ijump_wb);
+            if (curr_instruction_to_cu[`IRAM_WORD_SIZE-1:`IRAM_WORD_SIZE-`OP_CODE_SIZE]===i_jal )
+				iram_enable_cu |-> (ijumpal_decode and ijump_execute and ijump_memory and ijump_wb)
+            else
+                iram_enable_cu |-> (ijump_decode and ijump_execute and ijump_memory and ijump_wb)
 	endproperty;
 
     property instruction_check_lw;
@@ -330,7 +338,7 @@ localparam clock_period= 10ns;
 
 	property instruction_check_b;
 			@(test_clk)
-			disable iff(!rst ||curr_instruction_to_cu[`IRAM_WORD_SIZE-1:`IRAM_WORD_SIZE-`OP_CODE_SIZE]!==i_beqz || 
+			disable iff(!rst || curr_instruction_to_cu[`IRAM_WORD_SIZE-1:`IRAM_WORD_SIZE-`OP_CODE_SIZE]!==i_beqz || 
             curr_instruction_to_cu[`IRAM_WORD_SIZE-1:`IRAM_WORD_SIZE-`OP_CODE_SIZE]!==i_benz)
 					if (curr_instruction_to_cu[`IRAM_WORD_SIZE-1:`IRAM_WORD_SIZE-`OP_CODE_SIZE]===i_beqz )
 				         iram_enable_cu |-> (b_decode and beqz_execute and b_memory and b_wb)
@@ -344,16 +352,43 @@ localparam clock_period= 10ns;
                 iram_enable_cu |-> (itype_decode and itype_execute and itype_memory and itype_wb); // itype
 	endproperty;
 
-            
+    instructions_regtype_opcode ireg_instr;
+    instructions_opcode imm_instru,jump_instr,lw_instr,sw_instr,b_instr;
+    // cast from bit to typedef of instruction 
+    always_comb begin : proc_cast   
+        $cast(ireg_instr,curr_instruction_to_cu[`OP_CODE_SIZE-1:0]);
+        $cast(imm_instru,curr_instruction_to_cu[`IRAM_WORD_SIZE-1:`IRAM_WORD_SIZE-`OP_CODE_SIZE]);
+        $cast(jump_instr,curr_instruction_to_cu[`IRAM_WORD_SIZE-1:`IRAM_WORD_SIZE-`OP_CODE_SIZE]);
+        $cast(lw_instr,curr_instruction_to_cu[`IRAM_WORD_SIZE-1:`IRAM_WORD_SIZE-`OP_CODE_SIZE]);
+        $cast(sw_instr,curr_instruction_to_cu[`IRAM_WORD_SIZE-1:`IRAM_WORD_SIZE-`OP_CODE_SIZE]);
+        $cast(b_instr,curr_instruction_to_cu[`IRAM_WORD_SIZE-1:`IRAM_WORD_SIZE-`OP_CODE_SIZE]);
+    end        
 
 
 
-  	// property instantiation TODO 
-   /* instruction_check_property : assert property (instruction_check)
-     else $display("Error @%d on instruction %s",$time(),
-        enum_wrap_instruction#(instructions_opcode)::name(curr_instruction_to_cu[`IRAM_WORD_SIZE-1:`IRAM_WORD_SIZE-`OP_CODE_SIZE]));;
-*/
-  	// unit under test instantiation
+  	// property instantiation  
+    instruction_check_property_ireg : assert property (instruction_check_ireg)
+        else $display("Error @%d on instruction %s",$time(),
+            enum_wrap_instruction#(instructions_regtype_opcode)::name(ireg_instr));
+    instruction_check_property_i : assert property(instruction_check_i)
+        else $display("Error @%d on instruction %s",$time(), 
+            enum_wrap_instruction#(instructions_opcode)::name(imm_instru));
+    instruction_check_property_jump : assert property(instruction_check_jump)
+        else $display("Error @%d on instruction %s",$time(), 
+            enum_wrap_instruction#(instructions_opcode)::name(jump_instr));
+    instruction_check_property_lw : assert property(instruction_check_lw) 
+        else $display("Error @%d on instruction %s",$time(),
+            enum_wrap_instruction#(instructions_opcode)::name(lw_instr));
+    instruction_check_property_sw : assert property(instruction_check_sw) 
+        else $display("Error @%d on instruction %s",$time(),
+            enum_wrap_instruction#(instructions_opcode)::name(sw_instr));
+    instruction_check_property_b : assert property(instruction_check_b) 
+        else $display("Error @%d on instruction %s",$time(), 
+            enum_wrap_instruction#(instructions_opcode)::name(b_instr)); 
+    multiplication_stall_check_property : assert property(multiplication_stall) 
+        else $display("Error @%d on mul instruction, stall has failed",$time());
+
+  // unit under test instantiation
   control_unit  #(
     .PC_SIZE      (`IRAM_ADDRESS_SIZE),
     .RF_REGS      (`RF_REGS), // number of register in register file
@@ -374,6 +409,7 @@ localparam clock_period= 10ns;
     .write_rf(write_rf), //out
     .rtype_itypen(rtype_itypen_i), //out
     .compute_sext(compute_sext), //out
+    .jump_sext(jump_sext), //out
     // for execute stage
     .alu_op_type(alu_op_type), //TYPE_OP_ALU ; for compatibility with sv // out
     .sel_val_a(sel_val_a),  // out 
