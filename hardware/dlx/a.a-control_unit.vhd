@@ -6,7 +6,7 @@
 -- Author      : Francesco Angione <s262620@studenti.polito.it> franout@github.com
 -- Company     : Politecnico di Torino, Italy
 -- Created     : Thu Jul 23 15:49:45 2020
--- Last update : Tue Aug 25 17:31:15 2020
+-- Last update : Tue Aug 25 19:42:09 2020
 -- Platform    : Default Part Number
 -- Standard    : VHDL-2008 
 --------------------------------------------------------------------------------
@@ -87,7 +87,7 @@ architecture behavioural of control_unit is
   signal cmd_alu_op_type     : std_logic_vector(3 downto 0);         --- signal to be delayed for the alu
 
   signal ir_opcode : std_logic_vector(OP_CODE_SIZE-1 downto 0); -- OpCode part of IR
-  signal ir_func   : std_logic_vector(OP_CODE_SIZE-1 downto 0);    -- Func part of IR when Rtype
+  signal ir_func   : std_logic_vector(OP_CODE_SIZE-1 downto 0); -- Func part of IR when Rtype
 
   signal counter_mul,next_val_counter_mul : std_logic_vector(2 downto 0); -- 3 bit coutner for stall in mul instruction 
                                                                           -- a status register for possible overflow or write to forbidden registers
@@ -95,8 +95,8 @@ architecture behavioural of control_unit is
 
   -- constant signal assignement
   constant fetch_cmd : std_logic_vector(CW_SIZE-4-1 downto 0) := '1'&x"0000";
-  constant ireg_cmd : std_logic_vector(CW_SIZE-4-1 downto 0) := '1'&x"f013";
-  constant imm_cmd  : std_logic_vector(CW_SIZE-4-1 downto 0) := '1'&x"a913";
+  constant ireg_cmd  : std_logic_vector(CW_SIZE-4-1 downto 0) := '1'&x"f013";
+  constant imm_cmd   : std_logic_vector(CW_SIZE-4-1 downto 0) := '1'&x"a913";
 
 begin
 
@@ -109,7 +109,7 @@ begin
   csr      <= csr_reg;
   --synthesis_translate on
 
-  rstn<= not(rst); -- for command delayer register
+  rstn <= not(rst); -- for command delayer register
   reg_state : process( clk,rst )
   begin
     if (rst='0') then-- active low
@@ -128,27 +128,27 @@ begin
   begin
     ------------------------------------------------------------------------------
     -- default signals assignment
-    cmd_word                   <= (OTHERS => '0');
-    cmd_alu_op_type            <= (OTHERS => '0');
-	next_value_csr			   <= (OTHERS => '0');
-	next_val_counter_mul 	   <= (OTHERS => '0');
+    cmd_word             <= (OTHERS => '0');
+    cmd_alu_op_type      <= (OTHERS => '0');
+    next_value_csr       <= (OTHERS => '0');
+    next_val_counter_mul <= (OTHERS => '0');
     ---------------------------------------------------------------------------------
     case (curr_state) is
       when fetch => next_state <= decode;
-        cmd_word                 <= fetch_cmd;
+        cmd_word <= fetch_cmd;
       when decode =>
         if(iram_ready_cu='1') then
           next_state <= decode;
           case (ir_opcode) is
-            when i_regtype'encoding =>
+            when i_regtype =>
               cmd_word <= ireg_cmd;
 
               -- alu function generator
               case (ir_func) is -- upper bits are unused in this configuration
-                                            -- see encoding in execute stage
-                when i_sub'encoding_func => cmd_alu_op_type <= x"1";
-											cmd_word<='1'&x"f093"; --set carry iN
-                when i_mul'encoding_func =>
+                                -- see encoding in execute stage
+                when i_sub => cmd_alu_op_type <= x"1";
+                  cmd_word <= '1'&x"f093"; --set carry iN
+                when i_mul =>
                   cmd_alu_op_type <= x"2";
                   -- stall of 8 cc and a check in case of zero counter goes to 6 since the other 2 cc are include in the pipeline
                   if(unsigned(counter_mul)<6) then
@@ -157,7 +157,7 @@ begin
                       -- execptio or zero mul stop stall
                       cmd_word             <= ireg_cmd;
                       next_val_counter_mul <= (OTHERS => '0');
-                    else                               -- otherwise do not fetch 
+                    else -- otherwise do not fetch 
                       cmd_word             <= '0' & x"1010";
                       next_val_counter_mul <= std_logic_vector(unsigned(counter_mul)+1);
                     end if;
@@ -165,14 +165,14 @@ begin
                     cmd_word             <= ireg_cmd ;
                     next_val_counter_mul <= (OTHERS => '0');
                   end if;
-                when i_and'encoding_func => cmd_alu_op_type <= x"3";
-                when i_or'encoding_func  => cmd_alu_op_type <= x"4";
-                when i_xor'encoding_func => cmd_alu_op_type <= x"5";
-                when i_sll'encoding_func => cmd_alu_op_type <= x"6";
-                when i_srl'encoding_func => cmd_alu_op_type <= x"7";
-    	        when i_sge'encoding_func => cmd_alu_op_type <= x"8"; -- >=
-	            when i_sle'encoding_func => cmd_alu_op_type <= x"9"; -- <=
-				when i_sne'encoding_func => cmd_alu_op_type <= x"a";
+                when i_and => cmd_alu_op_type <= x"3";
+                when i_or  => cmd_alu_op_type <= x"4";
+                when i_xor => cmd_alu_op_type <= x"5";
+                when i_sll => cmd_alu_op_type <= x"6";
+                when i_srl => cmd_alu_op_type <= x"7";
+                when i_sge => cmd_alu_op_type <= x"8"; -- >=
+                when i_sle => cmd_alu_op_type <= x"9"; -- <=
+                when i_sne => cmd_alu_op_type <= x"a";
                 -- addition i_add
                 when others =>
                   cmd_alu_op_type <= (OTHERS => '0');
@@ -182,28 +182,28 @@ begin
                 next_state                 <= hang_error;
                 next_value_csr(7 downto 3) <= (OTHERS => '1');
               end if;
-            when i_beqz'encoding =>
-              cmd_alu_op_type <= x"0";    -- addition of pc +4 + immediate16
+            when i_beqz =>
+              cmd_alu_op_type <= x"0";        -- addition of pc +4 + immediate16
               cmd_word        <= '1'&x"cb30"; --==0
-            when i_benz'encoding =>
-              cmd_alu_op_type <= x"0";    -- addition of pc +4 + immediate16
+            when i_benz =>
+              cmd_alu_op_type <= x"0";        -- addition of pc +4 + immediate16
               cmd_word        <= '1'&x"cb50"; --!=0
-            when i_j'encoding =>
+            when i_j =>
               cmd_alu_op_type <= x"0"; -- addition of pc +4 + immediate26
               cmd_word        <= '1'&x"0b30";
-            when i_jal'encoding =>
+            when i_jal =>
               -- R31 <-- PC + 4; PC <-- PC + imm26 + 4
               cmd_alu_op_type <= x"0"; -- addition of pc + immediate26+4
               cmd_word        <= '1'&x"8713";
-            when i_lw'encoding =>
+            when i_lw =>
               cmd_alu_op_type <= x"0"; -- addition of rs1 + imeediate16
               cmd_word        <= '1'&x"c91c";
-            when i_sw'encoding =>
+            when i_sw =>
               cmd_alu_op_type <= x"0";
               cmd_word        <= '1'&x"e918"; -- write to memory
-            when i_nop'encoding =>
+            when i_nop =>
               cmd_word <= '1'&x"0000";
-            when i_addi'encoding       =>
+            when i_addi =>
               cmd_alu_op_type <= (OTHERS => '0');
               cmd_word        <= imm_cmd;
               -- check if r0 is a dest address 
@@ -211,7 +211,7 @@ begin
                 next_state                 <= hang_error;
                 next_value_csr(7 downto 3) <= (OTHERS => '1');
               end if;
-            when i_andi'encoding =>
+            when i_andi =>
               cmd_alu_op_type <= x"3";
               cmd_word        <= imm_cmd;
               -- check if r0 is a dest address 
@@ -219,7 +219,7 @@ begin
                 next_state                 <= hang_error;
                 next_value_csr(7 downto 3) <= (OTHERS => '1');
               end if;
-            when i_ori'encoding =>
+            when i_ori =>
               cmd_alu_op_type <= x"4";
               cmd_word        <= imm_cmd;
               -- check if r0 is a dest address 
@@ -227,7 +227,7 @@ begin
                 next_state                 <= hang_error;
                 next_value_csr(7 downto 3) <= (OTHERS => '1');
               end if;
-            when i_sgei'encoding =>
+            when i_sgei =>
               cmd_alu_op_type <= x"8"; -- >=
               cmd_word        <= imm_cmd;
               -- check if r0 is a dest address 
@@ -235,7 +235,7 @@ begin
                 next_state                 <= hang_error;
                 next_value_csr(7 downto 3) <= (OTHERS => '1');
               end if;
-            when i_slei'encoding =>
+            when i_slei =>
               cmd_alu_op_type <= x"9"; -- <=
               cmd_word        <= imm_cmd;
               -- check if r0 is a dest address 
@@ -243,7 +243,7 @@ begin
                 next_state                 <= hang_error;
                 next_value_csr(7 downto 3) <= (OTHERS => '1');
               end if;
-            when i_snei'encoding =>
+            when i_snei =>
               cmd_alu_op_type <= x"a"; -- !=
               cmd_word        <= imm_cmd;
               -- check if r0 is a dest address 
@@ -251,7 +251,7 @@ begin
                 next_state                 <= hang_error;
                 next_value_csr(7 downto 3) <= (OTHERS => '1');
               end if;
-            when i_slli'encoding =>
+            when i_slli =>
               cmd_alu_op_type <= x"6";
               cmd_word        <= imm_cmd;
               -- check if r0 is a dest address 
@@ -259,7 +259,7 @@ begin
                 next_state                 <= hang_error;
                 next_value_csr(7 downto 3) <= (OTHERS => '1');
               end if;
-            when i_srli'encoding =>
+            when i_srli =>
               cmd_alu_op_type <= x"7";
               cmd_word        <= imm_cmd;
               -- check if r0 is a dest address 
@@ -267,7 +267,7 @@ begin
                 next_state                 <= hang_error;
                 next_value_csr(7 downto 3) <= (OTHERS => '1');
               end if;
-            when i_subi'encoding =>
+            when i_subi =>
               cmd_alu_op_type <= x"1";
               cmd_word        <= '1' &x"a993";
               -- check if r0 is a dest address 
@@ -275,7 +275,7 @@ begin
                 next_state                 <= hang_error;
                 next_value_csr(7 downto 3) <= (OTHERS => '1');
               end if;
-            when i_xori'encoding =>
+            when i_xori =>
               cmd_alu_op_type <= x"5";
               cmd_word        <= imm_cmd;
               -- check if r0 is a dest address 
@@ -326,7 +326,7 @@ begin
   read_rf_p2   <= cw2(CW_SIZE-4);
   rtype_itypen <= cw2(CW_SIZE-5);
   compute_sext <= cw2(CW_SIZE-6);
-  jump_sext   <= cw2(CW_SIZE-7);
+  jump_sext    <= cw2(CW_SIZE-7);
   -- for execute stage
   sel_val_a (0)      <= cw3 (CW_SIZE-8);
   sel_val_b (0)      <= cw3 (CW_SIZE-9);
@@ -342,16 +342,16 @@ begin
   select_wb(0) <= cw5(CW_SIZE-16);
   write_rf     <= cw5(CW_SIZE-17);
 
-    -- delay register for command word
---    f_reg : reg_nbit generic map (
---      N => CW_SIZE
---    )
---    port map (
---      clk   => clk,
---      reset => rstn, -- reset is active high internally to the register
---      d     => cmd_word_to_reg,
---      Q     => cw1
---    );
+  -- delay register for command word
+  --    f_reg : reg_nbit generic map (
+  --      N => CW_SIZE
+  --    )
+  --    port map (
+  --      clk   => clk,
+  --      reset => rstn, -- reset is active high internally to the register
+  --      d     => cmd_word_to_reg,
+  --      Q     => cw1
+  --    );
 
     d_reg : reg_nbit generic map (
       N => CW_SIZE
