@@ -16,7 +16,7 @@
 `include "../004-implemented_instructions.svh"
 
 
-program automatic test_prog (input logic clk, output logic rst,
+program automatic test_prog (input logic clk, output logic rst, output logic zero_mul_detect,
                              output logic[`IRAM_WORD_SIZE-1:0] instruction_to_cu);
 
 	`ifndef  VIVADO_SIM
@@ -32,6 +32,7 @@ integer rs1,rs2,rd;
 
 initial begin 
 		$display("@%0dns Starting Program",$time);
+		zero_mul_detect=0;
         rs1=0;
         rs2=0;
         rd=0;
@@ -145,13 +146,32 @@ initial begin
             `else 
             repeat(10)@ (posedge clk);
             `endif
-        end ;
+        end 
 
-
+		$display("Checking behaviour of cu with integer multiplication zero detect");
+		current_opcode=i_regtype;
+		current_opcode_alu_fun=i_mul;
+		// opcode - rs1 - rs2 -rd - func 
+		instruction_to_cu={{`OP_CODE_SIZE{1'b0}},5'd3,5'd2,5'd1,i_mul};
+		`ifndef  VIVADO_SIM
+		##3;
+		`else 
+		repeat(6)@ (posedge clk);
+		`endif
+		zero_mul_detect=1;
 		`ifndef  VIVADO_SIM
 		##1;
 		`else 
 		repeat(2)@ (posedge clk);
+		`endif
+		$display("coming out from the imul stall");
+		zero_mul_detect=0;
+		current_opcode=i_nop;
+		instruction_to_cu={current_opcode,26'd0};
+		`ifndef  VIVADO_SIM
+		##5;
+		`else 
+		repeat(10)@ (posedge clk);
 		`endif
 		$display("Control unit has passed the testbench",);
 		$finish;
@@ -183,7 +203,8 @@ localparam clock_period= 10ns;
     logic rtype_itypen_i;
     logic compute_sext;
     logic jump_sext;
-    wire [3:0]alu_op_type;
+    wire [3:0]alu_op_type_i;
+	TYPE_OP_ALU_sv alu_op_type;
     logic [0:0]sel_val_a;
     logic [0:0]sel_val_b;
     logic alu_cin;
@@ -201,6 +222,7 @@ localparam clock_period= 10ns;
     logic [7:0] csr;
 
 	assign STATE_CU=cu_state_t'(STATE_CU_i);
+	assign alu_op_type=TYPE_OP_ALU_sv'(alu_op_type_i);
     assign iram_ready_cu=1;
     assign dram_ready_cu=1;
 
@@ -216,8 +238,8 @@ localparam clock_period= 10ns;
         ##1  enable_rf && read_rf_p1 && read_rf_p2 && rtype_itypen_i && !compute_sext && !jump_sext;
     endsequence ;
 
-    sequence ireg_execute;
-        ##1 !sel_val_a[0] && !sel_val_b[0] && !alu_cin && !evaluate_branch[1] && !evaluate_branch[0] && signed_notsigned ;
+    sequence ireg_execute(cin);
+        ##1 !sel_val_a[0] && !sel_val_b[0] && (alu_cin===cin) && !evaluate_branch[1] && !evaluate_branch[0] && signed_notsigned ;
     endsequence;
 
     sequence ireg_memory;
@@ -320,54 +342,53 @@ localparam clock_period= 10ns;
         ##1 write_rf && select_wb[0];
     endsequence ;
 
-
-
     property instruction_check_ireg;
         @(test_clk)
         // iram enable cu is for the fetch stage
-        disable iff (!rst || curr_instruction_to_cu[`IRAM_WORD_SIZE-1:`IRAM_WORD_SIZE-`OP_CODE_SIZE]!==0)
+        disable iff (!rst || ireg_instr!==0)
             // reg type
-           iram_enable_cu |=> (ireg_decode  and ireg_execute and ireg_memory and ireg_wb); 
+			if(ireg_instr===i_sub)
+				iram_enable_cu |-> ireg_decode |-> ireg_execute(1) |-> ireg_memory |-> ireg_wb
+			else
+				iram_enable_cu |-> ireg_decode |-> ireg_execute(0) |-> ireg_memory |-> ireg_wb
     endproperty;
 
 	property instruction_check_jump;
 		@(test_clk)
-			disable iff(!rst || curr_instruction_to_cu[`IRAM_WORD_SIZE-1:`IRAM_WORD_SIZE-`OP_CODE_SIZE]!==i_j ||
-                curr_instruction_to_cu[`IRAM_WORD_SIZE-1:`IRAM_WORD_SIZE-`OP_CODE_SIZE]!==i_jal  )
-            if (curr_instruction_to_cu[`IRAM_WORD_SIZE-1:`IRAM_WORD_SIZE-`OP_CODE_SIZE]===i_jal )
-				iram_enable_cu |-> (ijumpal_decode and ijump_execute and ijump_memory and ijump_wb)
+			disable iff(!rst || jump_instr!==i_j || jump_instr!==i_jal  )
+            if (jump_instr===i_jal )
+				iram_enable_cu |-> ijumpal_decode |->  ijump_execute |-> ijump_memory |->  ijump_wb
             else
-                iram_enable_cu |-> (ijump_decode and ijump_execute and ijump_memory and ijump_wb)
+                iram_enable_cu |-> ijump_decode |->  ijump_execute |->  ijump_memory |->  ijump_wb;
 	endproperty;
 
     property instruction_check_lw;
 				@(test_clk)
-			disable iff(!rst || curr_instruction_to_cu[`IRAM_WORD_SIZE-1:`IRAM_WORD_SIZE-`OP_CODE_SIZE]!==i_lw)
-				                iram_enable_cu |-> (lw_decode and lw_execute and lw_memory and lw_wb);
+			disable iff(!rst || lw_instr!==i_lw)
+				                iram_enable_cu |-> lw_decode |->  lw_execute |-> lw_memory |->  lw_wb;
 	endproperty;
 
 
 	property instruction_check_sw;
 		@(test_clk)
-			disable iff(!rst || curr_instruction_to_cu[`IRAM_WORD_SIZE-1:`IRAM_WORD_SIZE-`OP_CODE_SIZE]!==i_sw)
-			                iram_enable_cu |-> (sw_decode and sw_execute and sw_memory and sw_wb);
+			disable iff(!rst || sw_instr!==i_sw)
+			    iram_enable_cu |-> sw_decode |->  sw_execute |->  sw_memory |->  sw_wb;
 	endproperty;
 
 
 	property instruction_check_b;
 			@(test_clk)
-			disable iff(!rst || curr_instruction_to_cu[`IRAM_WORD_SIZE-1:`IRAM_WORD_SIZE-`OP_CODE_SIZE]!==i_beqz || 
-            curr_instruction_to_cu[`IRAM_WORD_SIZE-1:`IRAM_WORD_SIZE-`OP_CODE_SIZE]!==i_benz)
+			disable iff(!rst || b_instr!==i_beqz || b_instr!==i_benz)
 					if (curr_instruction_to_cu[`IRAM_WORD_SIZE-1:`IRAM_WORD_SIZE-`OP_CODE_SIZE]===i_beqz )
-				         iram_enable_cu |-> (b_decode and beqz_execute and b_memory and b_wb)
+				         iram_enable_cu |-> b_decode |->  beqz_execute |->  b_memory |->  b_wb
 					else
-				         iram_enable_cu |-> (b_decode and benz_execute and b_memory and b_wb);
+				         iram_enable_cu |-> b_decode |->  benz_execute |->  b_memory |->  b_wb;
 	endproperty;
 
      property instruction_check_i;
 		@(test_clk)
-			disable iff(!rst)
-                iram_enable_cu |-> (itype_decode and itype_execute and itype_memory and itype_wb); // itype
+			disable iff(!rst || imm_instru===i_regtype)
+                iram_enable_cu |-> itype_decode |->  itype_execute |->  itype_memory |->  itype_wb; // itype
 	endproperty;
 
     instructions_regtype_opcode ireg_instr;
@@ -384,7 +405,11 @@ localparam clock_period= 10ns;
 		
     end        
 
-
+	property status;
+		@(test_clk) 
+			disable iff(!rst)
+			STATE_CU!==hang_error ;
+	endproperty;
 
   	// property instantiation  
     instruction_check_property_ireg : assert property (instruction_check_ireg)
@@ -441,9 +466,13 @@ localparam clock_period= 10ns;
 			$display("Error @%d on mul instruction, stall has failed",$time());
 			$fatal();
 			end	
-			
+	status_check_property : assert property(status)
+		else 
+			begin 
+			$display("errro in control unit @%d",$time());
+			$fatal();
+			end		
 		assign alu_overflow='0;
-		assign zero_mul_detect='0;
 		assign mul_exeception='0;
 
   // unit under test instantiation
@@ -469,7 +498,7 @@ localparam clock_period= 10ns;
     .compute_sext(compute_sext), //out
     .jump_sext(jump_sext), //out
     // for execute stage
-    .alu_op_type(alu_op_type), //TYPE_OP_ALU ; for compatibility with sv // out
+    .alu_op_type(alu_op_type_i), //TYPE_OP_ALU ; for compatibility with sv // out
     .sel_val_a(sel_val_a),  // out 
     .sel_val_b(sel_val_b), // out 
     // from execute stage
@@ -498,6 +527,7 @@ localparam clock_period= 10ns;
   	test_prog test_control_unit(
   					.clk(clk),
   					.rst(rst),
+					.zero_mul_detect(zero_mul_detect),
 		            .instruction_to_cu(curr_instruction_to_cu)
   					);
 

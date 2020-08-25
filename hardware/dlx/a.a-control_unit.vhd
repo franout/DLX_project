@@ -131,6 +131,7 @@ begin
     cmd_word                   <= (OTHERS => '0');
     cmd_alu_op_type            <= (OTHERS => '0');
 	next_value_csr			   <= (OTHERS => '0');
+	next_val_counter_mul 	   <= (OTHERS => '0');
     ---------------------------------------------------------------------------------
     case (curr_state) is
       when fetch => next_state <= decode;
@@ -146,7 +147,7 @@ begin
               case (ir_func(OP_CODE_SIZE-1 downto 0)) is -- upper bits are unused in this configuration
                                             -- see encoding in execute stage
                 when i_sub'encoding_func => cmd_alu_op_type <= x"1";
-											cmd_word(CW_SIZE-10)<='1'; --set carry iN
+											cmd_word<='1'&x"f093"; --set carry iN
                 when i_mul'encoding_func =>
                   cmd_alu_op_type <= x"2";
                   -- stall of 8 cc and a check in case of zero counter goes to 6 since the other 2 cc are include in the pipeline
@@ -268,8 +269,7 @@ begin
               end if;
             when i_subi'encoding =>
               cmd_alu_op_type <= x"1";
-              cmd_word        <= imm_cmd;
-   			  cmd_word(CW_SIZE-10)<='1'; --set carry iN
+              cmd_word        <= '1' &x"a993";
               -- check if r0 is a dest address 
               if(unsigned(curr_instruction_to_cu(20 downto 16))=0) then
                 next_state                 <= hang_error;

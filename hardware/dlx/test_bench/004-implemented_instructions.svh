@@ -16,9 +16,10 @@
 
 typedef bit[5:0] bit_instr;
 
+
 typedef enum bit_instr {
    i_regtype=6'h00,
-	i_addi= 6'h08,
+   i_addi= 6'h08,
    i_andi= 6'h0c,
    i_beqz= 6'h04,
    i_benz= 6'h05,
@@ -26,12 +27,9 @@ typedef enum bit_instr {
    i_jal= 6'h03,
    i_lw= 6'h23,
    i_nop=6'h15,
-   i_sge= 6'h2d,
    i_sgei= 6'h1d,
-   i_sle= 6'h2c,
    i_slei= 6'h1c,
    i_slli= 6'h14,
-   i_sne= 6'h29,
    i_snei= 6'h19,
    i_srli= 6'h26,
    i_subi=6'h0a,
@@ -47,6 +45,9 @@ typedef enum bit_instr {
    i_srl= 6'h06,
    i_sub= 6'h22,
    i_xor= 6'h26,
+   i_sne= 6'h29,
+   i_sle= 6'h2c,
+   i_sge= 6'h2d,
    i_mul=6'h3f
 } instructions_regtype_opcode; // in the function field
 
