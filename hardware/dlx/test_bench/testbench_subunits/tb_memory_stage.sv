@@ -156,7 +156,7 @@ module tb_memory_stage ();
 		.FILE_PATH     ("/home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/test_mem_out.txt"), // it should update the existing file
 		.FILE_PATH_INIT("/home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/test_mem.txt"),
 		.WORD_SIZE     (`DRAM_WORD_SIZE),
-		.ADDRESS_SIZE  (`DRAM_ADDRESS_SIZE),
+		.ADDRESS_SIZE  (`DRAM_ADDRESS_SIZE/2),
 		.DATA_DELAY    (2))
 	dram ( .memif(dram_if));
 

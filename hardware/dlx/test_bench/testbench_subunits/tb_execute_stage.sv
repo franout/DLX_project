@@ -79,7 +79,7 @@ initial begin
 		evaluate_branch=0;
 		carry_in=0;
 		signed_notsigned=0;
-		current_operation.first();
+		current_operation=current_operation.first();
 		$display("@%0dns Starting Program",$time);
 		$display("Starting testbench for Execute stage",);
 		`ifndef VIVADO_SIM
@@ -581,7 +581,7 @@ localparam clock_period= 10ns;
   	property pc_forwarded;
   		@(test_clk)
   			disable iff (!rst ) 
-  			$changed(new_prog_counter_val_exe) |-> prog_counter_forwaded;
+  			$changed(new_prog_counter_val_exe) |=> (prog_counter_forwaded===new_prog_counter_val_exe);
   	endproperty;
 
   	property write_value_propagation;
