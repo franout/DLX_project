@@ -85,6 +85,8 @@ vcom -2008 -check_synthesis ${path_to_file}a.b-DataPath.core/a.b.c-Execute.stage
 vcom -2008 -check_synthesis ${path_to_file}a.a-control_unit.vhd 
 vcom -2008 -check_synthesis ${path_to_file}a-DLX.vhd 
 
+echo "Compiling top level testbench for DLX"
+vlog -incr ${path_to_file}test_bench/tb_dlx.sv
 
 echo "Starting simulation of dlx top level entity"
 ## need a do file and a waveform file
