@@ -119,7 +119,7 @@ initial begin
 			end
 			// ready signal is checked by the property
 		end
-		#100  $display("@%0dns Terminating simulation", $time);
+		#100  $display("@%0dns Terminating simulation Memories has passed the testbench", $time);
 		$finish();
     end
 assign read_data= dram_if.READNOTWRITE && dram_if.ENABLE?dram_if.INOUT_DATA  :0;
@@ -165,9 +165,8 @@ module tb_memories ();
   		cover: it monitors the propertty for the sake of coverage 
   	*/
 
-  	address_range_check_property_iram : assert property (address_rangei(0,2**(`IRAM_ADDRESS_SIZE )));
-
-  	address_range_check_property_dram : assert property (address_ranged(0,2**(`DRAM_ADDRESS_SIZE )));
+  	address_range_check_property_iram : assert property (address_rangei(0,2**(`IRAM_ADDRESS_SIZE/2 )));
+  	address_range_check_property_dram : assert property (address_ranged(0,2**(`DRAM_ADDRESS_SIZE/2 )));
 
 	// instantiate the interface
 	mem_interface #(.ADDRESS_SIZE(`DRAM_ADDRESS_SIZE),
@@ -181,7 +180,7 @@ module tb_memories ();
 	// instantiate the dut and connect the interface
 	romem #(.FILE_PATH   ("/home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/test_mem.txt"),
 		.WORD_SIZE   (`IRAM_WORD_SIZE),
-		.ADDRESS_SIZE(`IRAM_ADDRESS_SIZE),
+		.ADDRESS_SIZE(`IRAM_ADDRESS_SIZE/2),
 		.DATA_DELAY  (2)) 
 		iram_uut
 	(.mif(iram_if.ro));
@@ -190,7 +189,7 @@ module tb_memories ();
 		.FILE_PATH     ("/home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/test_mem_out.txt"), // it should update the existing file
 		.FILE_PATH_INIT("/home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/test_mem.txt"),
 		.WORD_SIZE     (`DRAM_WORD_SIZE),
-		.ADDRESS_SIZE  (`DRAM_ADDRESS_SIZE),
+		.ADDRESS_SIZE  (`DRAM_ADDRESS_SIZE/2),
 		.DATA_DELAY    (2))
 	dram_uut ( .memif(dram_if.rw));
 

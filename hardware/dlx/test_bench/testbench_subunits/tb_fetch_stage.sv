@@ -115,8 +115,14 @@ module tb_fetch_stage ();
 
 
   	// instantiaiton of property
-  	address_range_check_property : assert property (generated_address(0,2**(`IRAM_ADDRESS_SIZE )-1)) else $display("error in address ");
-  	enable_propagate_check: assert property (enable_propagate) else $display("Errror in propagate enable @%d",$time());
+  	address_range_check_property : assert property (generated_address(0,2**(`IRAM_ADDRESS_SIZE )-1)) 
+			else begin 
+			$display("error in address ");
+			$fatal(); end 
+  	enable_propagate_check: assert property (enable_propagate) 
+			else begin
+			 $display("Errror in propagate enable @%d",$time());
+			$fatal(); end 
 
   	// iram memory interface
 	mem_interface #(.ADDRESS_SIZE(`IRAM_ADDRESS_SIZE),

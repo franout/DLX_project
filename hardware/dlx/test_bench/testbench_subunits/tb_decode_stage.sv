@@ -448,11 +448,27 @@ localparam clock_period= 10ns;
 
   	/// properties instantiations
 
-  	pc_propagation_check: assert  property (pc_propagation) else $display("Failed at %0dns pc propagation check",$time());
-  	address_equal_rf_ir_check: assert  property (address_equal_rf_ir) else $display("Failed at %0dns address equal in IR and write RF",$time());
-  	read_p1_check: assert property  (read_p1)else $display("Failed at %0dns Read port 1 rf",$time());
-  	read_p2_check: assert property  (read_p2)else $display("Failed at %0dns Read port 2 rf",$time());
-  	write_rf_check: assert property  (write_in_rf)else $display("Failed at %0dns Write port rf",$time());
+  	pc_propagation_check: assert  property (pc_propagation) else 
+					begin 
+					$display("Failed at %0dns pc propagation check",$time());
+					$fatal();
+					end
+  	address_equal_rf_ir_check: assert  property (address_equal_rf_ir) else
+					begin 				
+					 $display("Failed at %0dns address equal in IR and write RF",$time());
+					$fatal(); end
+  	read_p1_check: assert property  (read_p1)else
+					begin 				
+					 $display("Failed at %0dns Read port 1 rf",$time());
+					$fatal(); end
+  	read_p2_check: assert property  (read_p2)else 
+					begin 			
+					 $display("Failed at %0dns Read port 2 rf",$time());
+					$fatal(); end 
+  	write_rf_check: assert property  (write_in_rf)else 
+					begin 			
+					$display("Failed at %0dns Write port rf",$time());
+					$fatal(); end 
 
   	// instantiate the uut
   	decode_stage #(

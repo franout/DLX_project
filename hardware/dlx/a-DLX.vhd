@@ -42,7 +42,7 @@ entity DLX is
     DRAM_ENABLE       : out   std_logic;
     DRAM_READNOTWRITE : out   std_logic;
     DRAM_READY        : in    std_logic;
-    DRAM_DATA         : inout std_logic_vector(data_size-1 downto 0);
+    DRAM_DATA         : inout std_logic_vector(data_size-1 downto 0)
     ----------------------------------------------------------------------------
     -- cpu status signals in case of exception or hang --------------------------
     ----------------------------------------------------------------------------

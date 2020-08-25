@@ -596,10 +596,19 @@ localparam clock_period= 10ns;
   			$changed(val_a) |-> branch_condition;
   	endproperty;
 
-  	// properrty instantiation
-	pc_forwarded_check: assert property (pc_forwarded) else $display("Error in propagation of PC value @%0dns",$time());
-	write_value_propagation_check: assert property (write_value_propagation) else $display("Error in propagation of value to write to memory @%0dns",$time());
-	branch_propagation_check: assert property (branch_propagation) else $display("Error in propagating the branch decision @%0dns",$time());
+  	// property instantiation
+	pc_forwarded_check: assert property (pc_forwarded) 
+			else begin 
+			 $display("Error in propagation of PC value @%0dns",$time());
+			$fatal(); end 
+	write_value_propagation_check: assert property (write_value_propagation) 
+			else begin 
+			$display("Error in propagation of value to write to memory @%0dns",$time());
+			$fatal(); end 
+	branch_propagation_check: assert property (branch_propagation) 
+			else begin 
+			$display("Error in propagating the branch decision @%0dns",$time());
+			$fatal(); end
 
 	// unit under test
 	execute_stage #(

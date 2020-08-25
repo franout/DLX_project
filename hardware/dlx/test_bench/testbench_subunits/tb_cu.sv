@@ -28,6 +28,8 @@ instructions_regtype_opcode current_opcode_alu_fun;
 
 integer rs1,rs2,rd;
 
+
+
 initial begin 
 		$display("@%0dns Starting Program",$time);
         rs1=0;
@@ -54,13 +56,12 @@ initial begin
         current_opcode=current_opcode.first();
         $display("Looping over all instructions",);
         for (; current_opcode !== current_opcode.last(); ) begin
-            
+			    rs1=$urandom_range(0,10);
+                rs2=$urandom_range(11,21);
+                rd= $urandom_range(22,31);            
             if(current_opcode===i_regtype)begin 
                 $display("Looping over all regtype instructions",);
                 current_opcode_alu_fun= current_opcode_alu_fun.first();
-                rs1=$urandom_range(0,10);
-                rs2=$urandom_range(11,21);
-                rd= $urandom_range(22,31);
                 // compose instruction 
                 // opcode
 				instruction_to_cu[`IRAM_WORD_SIZE-1:`IRAM_WORD_SIZE-`OP_CODE_SIZE]='0;
@@ -72,19 +73,36 @@ initial begin
                         //alu function
                         instruction_to_cu[`FUNC_SIZE-1:0]={5'd0,current_opcode_alu_fun};
                         `ifndef  VIVADO_SIM
+						if(current_opcode_alu_fun===MULT) begin
+						##8;
+						end else begin 
                         ##5;
+						end
                         `else 
-                        repeat(10)@ (posedge clk);
+						if(current_opcode_alu_fun===MULT) begin
+                        repeat(16)@ (posedge clk);
+						end else begin 
+						repeat(10)@ (posedge clk);
+						end
                         `endif
                     current_opcode_alu_fun=current_opcode_alu_fun.next();
                 end
                 // execute last instruction
                 instruction_to_cu[`FUNC_SIZE-1:0]={5'd0,current_opcode_alu_fun};
-                `ifndef  VIVADO_SIM
+               `ifndef  VIVADO_SIM
+				if(current_opcode_alu_fun===MULT) begin
+				##8;
+				end else begin 
                 ##5;
+				end
                 `else 
-                repeat(10)@ (posedge clk);
-                `endif
+				if(current_opcode_alu_fun===MULT) begin
+                    repeat(16)@ (posedge clk);
+				end else begin 
+					repeat(10)@ (posedge clk);
+				end
+                 `endif
+				current_opcode_alu_fun=instructions_regtype_opcode'(0);// default value
             end else if(current_opcode===i_j || current_opcode===i_jal) begin  // jump type
                 instruction_to_cu[`IRAM_WORD_SIZE-1:`IRAM_WORD_SIZE-`OP_CODE_SIZE]=current_opcode;
                 instruction_to_cu[`IRAM_WORD_SIZE-`OP_CODE_SIZE-1:0]= $urandom_range(0,2**26-1);
@@ -179,7 +197,7 @@ localparam clock_period= 10ns;
     logic [0:0]select_wb;
 	logic  signed_notsigned;
 	logic [$clog2(`CU_STATES)-1:0] STATE_CU_i;
- 	cu_state_t [$clog2(`CU_STATES)-1:0] STATE_CU;
+ 	cu_state_t  STATE_CU;
     logic [7:0] csr;
 
 	assign STATE_CU=cu_state_t'(STATE_CU_i);
@@ -370,26 +388,60 @@ localparam clock_period= 10ns;
 
   	// property instantiation  
     instruction_check_property_ireg : assert property (instruction_check_ireg)
-        else $display("Error @%d on instruction %s",$time(),
+        else 
+			begin 
+			$display("Error @%d on instruction %s",$time(),
             enum_wrap_instruction#(instructions_regtype_opcode)::name(ireg_instr));
+			$fatal();
+			end	
+			
     instruction_check_property_i : assert property(instruction_check_i)
-        else $display("Error @%d on instruction %s",$time(), 
+        else 
+			begin 		
+			 $display("Error @%d on instruction %s",$time(), 
             enum_wrap_instruction#(instructions_opcode)::name(imm_instru));
+			$fatal();
+			end	
+			
     instruction_check_property_jump : assert property(instruction_check_jump)
-        else $display("Error @%d on instruction %s",$time(), 
+        else 
+			begin
+			$display("Error @%d on instruction %s",$time(), 
             enum_wrap_instruction#(instructions_opcode)::name(jump_instr));
+			$fatal();
+			end	
+			
     instruction_check_property_lw : assert property(instruction_check_lw) 
-        else $display("Error @%d on instruction %s",$time(),
+        else 
+			begin 
+			$display("Error @%d on instruction %s",$time(),
             enum_wrap_instruction#(instructions_opcode)::name(lw_instr));
+			$fatal();
+			end	
+			
     instruction_check_property_sw : assert property(instruction_check_sw) 
-        else $display("Error @%d on instruction %s",$time(),
+        else 
+			begin
+			$display("Error @%d on instruction %s",$time(),
             enum_wrap_instruction#(instructions_opcode)::name(sw_instr));
+			$fatal();
+			end	
+			
     instruction_check_property_b : assert property(instruction_check_b) 
-        else $display("Error @%d on instruction %s",$time(), 
+        else
+			begin
+			 $display("Error @%d on instruction %s",$time(), 
             enum_wrap_instruction#(instructions_opcode)::name(b_instr)); 
+			$fatal();
+			end	
+			
     multiplication_stall_check_property : assert property(multiplication_stall) 
-        else $display("Error @%d on mul instruction, stall has failed",$time());
-
+        else 
+			begin
+			$display("Error @%d on mul instruction, stall has failed",$time());
+			$fatal();
+			end	
+			
 		assign alu_overflow='0;
 		assign zero_mul_detect='0;
 		assign mul_exeception='0;
@@ -446,7 +498,7 @@ localparam clock_period= 10ns;
   	test_prog test_control_unit(
   					.clk(clk),
   					.rst(rst),
-            .instruction_to_cu(curr_instruction_to_cu)
+		            .instruction_to_cu(curr_instruction_to_cu)
   					);
 
 

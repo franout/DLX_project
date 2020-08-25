@@ -17,11 +17,11 @@
 `define  NUMBIT 32 // number of bits for the architecture
 `define  RF_REGS 32 // number of regisster in the register file
 `define  IRAM_WORD_SIZE 32
-`define  IRAM_SIZE 2**16-1
-`define  IRAM_ADDRESS_SIZE 16
+`define  IRAM_SIZE 2**32-1
+`define  IRAM_ADDRESS_SIZE 32
 `define  DRAM_WORD_SIZE 32
-`define  DRAM_SIZE 2**16-1
-`define  DRAM_ADDRESS_SIZE 16
+`define  DRAM_SIZE 2**32-1
+`define  DRAM_ADDRESS_SIZE 32
 
 `define CU_STATES 3
 

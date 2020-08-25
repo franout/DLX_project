@@ -137,8 +137,14 @@ module tb_memory_stage ();
 
 
   	// instantiaiton of property
-  	address_range_check_property : assert property (generated_address(0,2**(`IRAM_ADDRESS_SIZE )-1));
-  	enable_propagate_check: assert property (enable_propagate);
+  	address_range_check_property : assert property (generated_address(0,2**(`IRAM_ADDRESS_SIZE )-1)) 
+			else begin 
+			$display("wrong address @%d",$time());
+			$fatal(); end 
+  	enable_propagate_check: assert property (enable_propagate) 
+			else begin 
+			$display("wrong propagate @%d", $time());
+			$fatal(); end
 
   	// iram memory interface
 	mem_interface #(.ADDRESS_SIZE(`DRAM_ADDRESS_SIZE),
