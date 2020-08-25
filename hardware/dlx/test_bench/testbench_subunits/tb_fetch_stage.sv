@@ -54,7 +54,7 @@ output logic iram_enable_cu);
 			$stop();
 		end
 		##1;
-		if(curr_instruction!=15728640)begin
+		if(curr_instruction!==61440)begin
 			$display("@%0dns ---> wrong generated address",$time);
 			$stop();
 		end
@@ -132,7 +132,7 @@ module tb_fetch_stage ();
 	// instantiate the dut and connect the interface
 	romem #(.FILE_PATH   ("/home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/test_mem.txt"),
 		.WORD_SIZE   (`IRAM_WORD_SIZE),
-		.ADDRESS_SIZE(`IRAM_ADDRESS_SIZE),
+		.ADDRESS_SIZE(`IRAM_ADDRESS_SIZE/2),
 		.DATA_DELAY  (2)) 
 		iram
 	(.mif(iram_if));

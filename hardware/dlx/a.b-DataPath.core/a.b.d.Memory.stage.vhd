@@ -107,8 +107,8 @@ begin
 	dram_ready_cu     <= DRAM_READY;
 
 
-	data_ir <= b2l_endian(DRAM_DATA) when dram_r_nw_cu='1' ;
+	data_ir <= DRAM_DATA when dram_r_nw_cu='1' ;
 
-	DRAM_DATA <= l2b_endian(value_to_mem) when dram_r_nw_cu='0' else (OTHERS => 'Z');
+	DRAM_DATA <= value_to_mem when dram_r_nw_cu='0' else (OTHERS => 'Z');
 
 end architecture ; -- structural

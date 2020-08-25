@@ -327,7 +327,7 @@ localparam clock_period= 10ns;
         // iram enable cu is for the fetch stage
         disable iff (!rst || curr_instruction_to_cu[`IRAM_WORD_SIZE-1:`IRAM_WORD_SIZE-`OP_CODE_SIZE]!==0)
             // reg type
-           iram_enable_cu |-> (ireg_decode  and ireg_execute and ireg_memory and ireg_wb); 
+           iram_enable_cu |=> (ireg_decode  and ireg_execute and ireg_memory and ireg_wb); 
     endproperty;
 
 	property instruction_check_jump;

@@ -68,7 +68,7 @@ program automatic test_memory( mem_interface.rw dram_if,
 		dram_enable_cu=1;
 		##2;
 		##1;  //this is for loadin in lmd reg
-		if(data_from_memory!==251658240)begin
+		if(data_from_memory!==15)begin
 			$display("Error in reading memory",);
 			$stop();
 		end

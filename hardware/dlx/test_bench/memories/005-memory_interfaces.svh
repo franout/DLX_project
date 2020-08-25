@@ -12,9 +12,9 @@ interface mem_interface
  	 logic  [ADDRESS_SIZE-1:0] ADDRESS;
 	 logic  ENABLE;
 	 wire  DATA_READY;
-	 wire  [0:WORD_SIZE-1]DATA;
+	 wire  [WORD_SIZE-1:0]DATA;
 	 logic  READNOTWRITE;
-	 wire  [0:WORD_SIZE-1] INOUT_DATA;
+	 wire  [WORD_SIZE-1:0] INOUT_DATA;
 
     clocking ram_interface @(posedge clk);
        input   #1  ADDRESS,ENABLE; // sampled after 1 time resoltuon see `timescale

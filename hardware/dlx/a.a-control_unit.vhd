@@ -146,6 +146,7 @@ begin
               case (ir_func(OP_CODE_SIZE-1 downto 0)) is -- upper bits are unused in this configuration
                                             -- see encoding in execute stage
                 when i_sub'encoding_func => cmd_alu_op_type <= x"1";
+											cmd_word(CW_SIZE-10)<='1'; --set carry iN
                 when i_mul'encoding_func =>
                   cmd_alu_op_type <= x"2";
                   -- stall of 8 cc and a check in case of zero counter goes to 6 since the other 2 cc are include in the pipeline
@@ -268,6 +269,7 @@ begin
             when i_subi'encoding =>
               cmd_alu_op_type <= x"1";
               cmd_word        <= imm_cmd;
+   			  cmd_word(CW_SIZE-10)<='1'; --set carry iN
               -- check if r0 is a dest address 
               if(unsigned(curr_instruction_to_cu(20 downto 16))=0) then
                 next_state                 <= hang_error;
@@ -317,7 +319,7 @@ begin
   --------------------------------------------------------------------------------
   -- command word distribution signals 
   -- for fetch stage
-  iram_enable_cu <= cw1(CW_SIZE -1);
+  iram_enable_cu <= cmd_word_to_reg(CW_SIZE -1);
   -- for decode stage
   enable_rf    <= cw2(CW_SIZE-2);
   read_rf_p1   <= cw2(CW_SIZE-3);
@@ -341,15 +343,15 @@ begin
   write_rf     <= cw5(CW_SIZE-17);
 
     -- delay register for command word
-    f_reg : reg_nbit generic map (
-      N => CW_SIZE
-    )
-    port map (
-      clk   => clk,
-      reset => rstn, -- reset is active high internally to the register
-      d     => cmd_word_to_reg,
-      Q     => cw1
-    );
+--    f_reg : reg_nbit generic map (
+--      N => CW_SIZE
+--    )
+--    port map (
+--      clk   => clk,
+--      reset => rstn, -- reset is active high internally to the register
+--      d     => cmd_word_to_reg,
+--      Q     => cw1
+--    );
 
     d_reg : reg_nbit generic map (
       N => CW_SIZE
@@ -357,7 +359,7 @@ begin
     port map (
       clk   => clk,
       reset => rstn, -- reset is active high internally to the register
-      d     => cw1,
+      d     => cmd_word_to_reg,
       Q     => cw2
     );
 

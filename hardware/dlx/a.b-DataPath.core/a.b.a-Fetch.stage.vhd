@@ -51,7 +51,6 @@ architecture structural of fetch_stage is
 	signal new_program_counter_val : std_logic_vector(PC_SIZE-1 downto 0);
 	signal program_counter_val     : std_logic_vector(PC_SIZE-1 downto 0);
 	signal instruction_reg_val     : std_logic_vector(IR_SIZE-1 downto 0);
-	signal iram_reversed	       : std_logic_vector(IR_SIZE-1 downto 0);
 	signal restn                   : std_logic;
 begin
 
@@ -85,8 +84,8 @@ begin
 			d     => new_program_counter_val,
 			Q     => new_pc_value
 		);
--- transform from big endian format to little endian
-iram_reversed<=b2l_endian(IRAM_DATA);
+
+
 	-- Instruction register
 	instruction_reg : reg_nbit
 		generic map (
@@ -95,7 +94,7 @@ iram_reversed<=b2l_endian(IRAM_DATA);
 		port map (
 			clk   => clk,
 			reset => restn,
-			d     => iram_reversed,
+			d     => IRAM_DATA,
 			Q     => instruction_reg_val
 		);
 

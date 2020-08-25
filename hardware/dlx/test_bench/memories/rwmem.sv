@@ -27,9 +27,9 @@ module rwmem
 );
 
 /// internal signals
-logic [0:WORD_SIZE-1] ram [0:2**ADDRESS_SIZE-1];
-logic [0:WORD_SIZE-1] data_ir;
-logic [0:WORD_SIZE-1] data_iw;
+logic [WORD_SIZE-1:0] ram [0:2**ADDRESS_SIZE-1];
+logic [WORD_SIZE-1:0] data_ir;
+logic [WORD_SIZE-1:0] data_iw;
 logic valid;
 // for file operations
 // 1. Declare an integer variable to hold the file descriptor
@@ -88,7 +88,7 @@ always_comb begin : proc_ram
 		end
 		index=0;
 		// fill up the memory 
-		while (!$feof(fd)) begin
+		while (!$feof(fd) || (index >= 2**ADDRESS_SIZE-1)) begin
       	  dummy=$fgets(line, fd);
       	   ram[index]<=line.atohex();// save  and convert to hex value
       	   index=index+1;
@@ -101,8 +101,8 @@ always_comb begin : proc_ram
 			if(memif.READNOTWRITE) begin // read operation 
 				// byte selection
 				case (memif.ADDRESS[1:0])
-					2'b01: data_ir<=ram[memif.ADDRESS][WORD_SIZE-8:WORD_SIZE-1];// byte access
-					2'b10: data_ir<=ram[memif.ADDRESS][WORD_SIZE-16:WORD_SIZE-1];// half word access
+					2'b01: data_ir<=ram[memif.ADDRESS][8:0];// byte access
+					2'b10: data_ir<=ram[memif.ADDRESS][16:0];// half word access
 					default: data_ir<=ram[memif.ADDRESS];// word access 
 				endcase;
 				valid='b1;
@@ -110,8 +110,8 @@ always_comb begin : proc_ram
 				data_ir<='Z;
 				// byte selection
 				case (memif.ADDRESS[1:0])
-					2'b01: ram[memif.ADDRESS]<=data_iw[WORD_SIZE-8:WORD_SIZE-1];// byte access
-					2'b10: ram[memif.ADDRESS]<=data_iw[WORD_SIZE-16:WORD_SIZE-1];// half word access
+					2'b01: ram[memif.ADDRESS]<=data_iw[8:0];// byte access
+					2'b10: ram[memif.ADDRESS]<=data_iw[16:0];// half word access
 					default: ram[memif.ADDRESS]<=data_iw; // word access
 				endcase;
 				// refresh the content of the output file

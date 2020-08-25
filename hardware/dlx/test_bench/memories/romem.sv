@@ -29,8 +29,8 @@ DATA_DELAY	= 2			 	// Delay ( in # of clock cycles )
 );
 
 /// internal signals
-logic [0:WORD_SIZE-1]ram [0:2**ADDRESS_SIZE-1];
-logic [0:WORD_SIZE-1]data_out;
+logic [WORD_SIZE-1:0]ram [0:2**ADDRESS_SIZE-1];
+logic [WORD_SIZE-1:0]data_out;
 logic valid;
 
 // for file operations
