@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 import numpy as np
 
-address_size=19 # for 32 it is too long 
+address_size=16 # for 32 it is too long 
 
 f=open("dram.txt","w")
 for i in range(2**address_size):

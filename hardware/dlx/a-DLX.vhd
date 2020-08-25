@@ -47,7 +47,7 @@ entity DLX is
     -- cpu status signals in case of exception or hang --------------------------
     ----------------------------------------------------------------------------
     -- simulation debug signals and verification purposes
-    --synthesis_translate off
+  --synopsys translate_off
     ;
     STATE_CU : out std_logic_vector(f_log2(tot_state)-1 downto 0);
     csr      : out std_logic_vector(7 downto 0);
@@ -71,7 +71,7 @@ entity DLX is
     DEBUG_read_rf_p2       : out std_logic;
     DEBUG_rtype_itypen     : out std_logic;
     DEBUG_dram_enable_cu   : out std_logic
-  --synthesis_translate on
+  --synopsys translate_on
   );
 end DLX;
 
@@ -121,11 +121,11 @@ architecture dlx_rtl of DLX is
       write_rf  : out std_logic;
       select_wb : out std_logic_vector(0 downto 0)
       -- simulation debug signals
-      --synthesis_translate off
+  --synopsys translate_off
       ;
       STATE_CU : out std_logic_vector(f_log2(tot_state)-1 downto 0);
       csr      : out std_logic_vector(7 downto 0)
-    --synthesis_translate on
+    --synopsys translate_on
     );
   end component control_unit;
 
@@ -245,11 +245,11 @@ begin -- DLX
       -- for write back stage   
       select_wb  => select_wb_i
       -- simulation debug signals
-      --synthesis_translate off
+  --synopsys translate_off
       ,
       STATE_CU => STATE_CU,
       csr      => csr
-      --synthesis_translate on
+  --synopsys translate_on
 
     );
 
@@ -306,7 +306,7 @@ begin -- DLX
       select_wb => select_wb_i
     );
 
-  --synthesis_translate off
+  --synopsys translate_off
   DEBUG_iram_ready_cu    <= iram_ready_cu_i;
   DEBUG_iram_enable_cu   <= iram_enable_cu_i;
   DEBUG_signed_notsigned <= signed_notsigned_i;
@@ -326,6 +326,6 @@ begin -- DLX
   DEBUG_rtype_itypen     <= rtype_itypen_i;
   DEBUG_dram_enable_cu   <= dram_enable_cu_i;
 
-  --synthesis_translate on
+  --synopsys translate_on
 
 end dlx_rtl;

@@ -51,7 +51,8 @@ int dummy; // for removing simulation warning
  end
 
 
-always_ff @(posedge mif.clk) begin : proc_ram
+//always_ff @(posedge mif.clk) begin : proc_ram
+always_comb begin: proc_ram
 	if(!mif.rst) begin
 		// fill up the memory with the init file
 		

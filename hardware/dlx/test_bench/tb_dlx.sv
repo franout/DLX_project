@@ -12,7 +12,7 @@
 // Description: 
 // -----------------------------------------------------------------------------
 
-`timescale  1ns/1ps
+`timescale  1ns/1ns
 `include "./003-global_defs.svh"
 `include "./004-implemented_instructions.svh"
 `include "./memories/005-memory_interfaces.svh"
@@ -25,27 +25,22 @@ program automatic test_dlx_top(input logic clk, output logic rst,
 	default clocking test_clk_prog @( posedge clk);
 	endclocking
 
-	property end_seq;
-		@(test_clk_prog)
-			disable iff(!rst)
-			(current_instruction[`IRAM_WORD_SIZE-1:`IRAM_WORD_SIZE-`OP_CODE_SIZE]===i_j)[*10];
-	endproperty;
-
 	initial begin 
 		$display("@%0dns Starting Test Program in System Verilog",$time);
 		$display("Reset",);
 		rst=0;
 		##3;
 		rst=1;
-		##1;
 		$monitor("current instrution %h",current_instruction);
+		##100;
 		// wait for 10 cc -> reached the end of the program in IRAM
-		expect (end_seq) begin 
+		expect (@(test_clk_prog) 	(current_instruction[`IRAM_WORD_SIZE-1:`IRAM_WORD_SIZE-`OP_CODE_SIZE]===i_j)[*10] ) begin 
 			$display("Program in IRAM has ended",);
 			$finish();
 		end
 		else
 			$display("Something is wrong",);
+			##100;
 
 	end
 
@@ -58,7 +53,7 @@ module tb_dlx ();
 	logic rst;
 	logic clk;
 	logic [$clog2(`CU_STATES)-1:0] curr_state_debug_i;
- 	cu_state_t  curr_state_debug=cu_state_t'(curr_state_debug_i);
+ 	cu_state_t  curr_state_debug;
  	logic [7:0] csr;
  	logic DEBUG_iram_ready_cu;
 	logic DEBUG_iram_enable_cu;
@@ -79,6 +74,7 @@ module tb_dlx ();
 	logic DEBUG_rtype_itypen;
 	logic DEBUG_dram_enable_cu;
 
+	assign curr_state_debug=cu_state_t'(curr_state_debug_i);
 
 	initial begin
 		clk = '0;

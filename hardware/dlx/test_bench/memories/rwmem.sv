@@ -88,7 +88,7 @@ always_comb begin : proc_ram
 		end
 		index=0;
 		// fill up the memory 
-		while (!$feof(fd) || (index >= 2**ADDRESS_SIZE-1)) begin
+		while (!$feof(fd) && (index <2**ADDRESS_SIZE)) begin
       	  dummy=$fgets(line, fd);
       	   ram[index]<=line.atohex();// save  and convert to hex value
       	   index=index+1;

@@ -26,8 +26,7 @@ COMPONENT  STCG is
 end COMPONENT STCG;
 
 COMPONENT  SUM_GEN is 
-    generic (DSUM_GENS :    Time := 0 ns;
-             DSUM_GENC :    Time := 0 ns;
+    generic (
              NBIT  :    Natural := 32;
              NBLOCKS :  Natural := 4);
     Port (  A:  In  std_logic_vector((NBIT-1) downto 0);
@@ -45,7 +44,7 @@ BEGIN
 
 
 carry_select: stcg GENERIC MAP (NBIT=>NBIT,SDIST=>nbit_rca) PORT MAP(A=>a,B=>b,cin=>cin,Cout=>C_select);
-sums: sum_gen GENERIC MAP (DSUM_GENS=> 0 ns,DSUM_GENC=> 0 ns,NBIT=>NBIT,NBlocks=>nbit_rca ) PORT MAP(A=>a,B=>b,Ci=>c_select( NBIT-1 DOWNTO 0),S=>s);
+sums: sum_gen GENERIC MAP (NBIT=>NBIT,NBlocks=>nbit_rca ) PORT MAP(A=>a,B=>b,Ci=>c_select( NBIT-1 DOWNTO 0),S=>s);
 cout<=C_select(NBIT);
 
 END struc;

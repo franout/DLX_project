@@ -3,9 +3,7 @@ use ieee.std_logic_1164.all;
 use ieee.std_logic_unsigned.all;
 
 entity RCA is 
-    generic (DRCAS :  Time := 0 ns;
-                 DRCAC :  Time := 0 ns;
-                 NBIT  :  Natural := 8);
+    generic (NBIT  :  Natural := 8);
         Port (  A:  In  std_logic_vector(NBIT-1 downto 0);
                 B:  In  std_logic_vector(NBIT-1 downto 0);
                 Ci: In  std_logic;
@@ -19,8 +17,6 @@ architecture STRUCTURAL of RCA is
     signal CTMP : std_logic_vector(NBIT downto 0);
 
     component FA
-        generic (   DFAS :  Time := 0 ns;
-                    DFAC :  Time := 0 ns);
         Port (  A:  In  std_logic;
                 B:  In  std_logic;
                 Ci: In  std_logic;
@@ -36,7 +32,6 @@ begin
           
     ADDER1: for I in 1 to NBIT generate
         FAI : FA
-          generic map (DFAS => DRCAS, DFAC => DRCAC) 
       Port Map (A(I-1), B(I-1), CTMP(I-1), STMP(I-1), CTMP(I)); 
       end generate;
 

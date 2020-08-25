@@ -64,11 +64,11 @@ entity control_unit is
     write_rf  : out std_logic;
     select_wb : out std_logic_vector(0 downto 0)
     -- simulation debug signals
-    --synthesis_translate off
+  --synopsys translate_off
     ;
     STATE_CU : out std_logic_vector(f_log2(tot_state)-1 downto 0);
     csr      : out std_logic_vector(7 downto 0)
-    --synthesis_translate on
+  --synopsys translate_on
 
   );
 end entity control_unit;
@@ -104,10 +104,10 @@ begin
   ir_func   <= curr_instruction_to_cu(OP_CODE_SIZE - 1 downto 0);
 
   -- simulation debug signals
-  --synthesis_translate off
+  --synopsys translate_off
   STATE_CU <= std_logic_vector(to_unsigned(state_t'POS(curr_state),f_log2(tot_state) )); -- cast for being compliant with sv
   csr      <= csr_reg;
-  --synthesis_translate on
+  --synopsys translate_on
 
   rstn <= not(rst); -- for command delayer register
   reg_state : process( clk,rst )
@@ -130,7 +130,7 @@ begin
     -- default signals assignment
     cmd_word             <= (OTHERS => '0');
     cmd_alu_op_type      <= (OTHERS => '0');
-    next_value_csr       <= (OTHERS => '0');
+    next_value_csr (7 downto 3)<= (OTHERS => '0');
     next_val_counter_mul <= (OTHERS => '0');
     ---------------------------------------------------------------------------------
     case (curr_state) is
@@ -289,7 +289,8 @@ begin
 
         else -- iram not ready
           next_value_csr(7 downto 3) <= "10000";
-          next_state                 <= hang_error;
+          next_state                 <= fetch;
+          cmd_word <= fetch_cmd;
         end if;
       when hang_error => next_state <= curr_state;
       when others     => cmd_word   <= (OTHERS => '0');

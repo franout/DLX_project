@@ -79,42 +79,40 @@ package globals is
     --type ireg_instruction_funcode is(i_add,i_mul,i_and ,i_or,i_sge ,i_sle,i_sll ,i_sne,i_srl,i_sub,i_xor);
 
 
-    subtype encode_t_opcode is std_logic_vector(OP_CODE_SIZE-1 downto 0);
+
 
     -- for being complaint with synthesis
-    constant i_regtype : encode_t_opcode := b"00"&x"0";
-
-    constant i_regtype : encode_t_opcode := b"00"&x"0";
-    constant i_addi    : encode_t_opcode := b"00"&x"8";
-    constant i_andi    : encode_t_opcode := b"00"&x"c";
-    constant i_beqz    : encode_t_opcode := b"00"&x"4";
-    constant i_benz    : encode_t_opcode := b"00"&x"5";
-    constant i_j       : encode_t_opcode := b"00"&x"2";
-    constant i_jal     : encode_t_opcode := b"00"&x"3";
-    constant i_lw      : encode_t_opcode := b"10"&x"3";
-    constant i_nop     : encode_t_opcode := b"01"&x"5";
-    constant i_ori     : encode_t_opcode := b"00"&x"d";
-    constant i_sgei    : encode_t_opcode := b"01"&x"d";
-    constant i_slei    : encode_t_opcode := b"01"&x"c";
-    constant i_slli    : encode_t_opcode := b"01"&x"4";
-    constant i_snei    : encode_t_opcode := b"01"&x"9";
-    constant i_srli    : encode_t_opcode := b"10"&x"6";
-    constant i_subi    : encode_t_opcode := b"00"&x"a";
-    constant i_sw      : encode_t_opcode := b"10"&x"b";
-    constant i_xori    : encode_t_opcode := b"00"&x"e";
+    constant i_regtype :     std_logic_vector(OP_CODE_SIZE-1 downto 0) := "00"&x"0";
+    constant i_addi    :     std_logic_vector(OP_CODE_SIZE-1 downto 0) := "00"&x"8";
+    constant i_andi    :     std_logic_vector(OP_CODE_SIZE-1 downto 0) := "00"&x"c";
+    constant i_beqz    :     std_logic_vector(OP_CODE_SIZE-1 downto 0):= "00"&x"4";
+    constant i_benz    :     std_logic_vector(OP_CODE_SIZE-1 downto 0) := "00"&x"5";
+    constant i_j       :     std_logic_vector(OP_CODE_SIZE-1 downto 0) := "00"&x"2";
+    constant i_jal     :    std_logic_vector(OP_CODE_SIZE-1 downto 0):= "00"&x"3";
+    constant i_lw      :     std_logic_vector(OP_CODE_SIZE-1 downto 0) := "10"&x"3";
+    constant i_nop     :     std_logic_vector(OP_CODE_SIZE-1 downto 0) := "01"&x"5";
+    constant i_ori     :     std_logic_vector(OP_CODE_SIZE-1 downto 0) := "00"&x"d";
+    constant i_sgei    :    std_logic_vector(OP_CODE_SIZE-1 downto 0) := "01"&x"d";
+    constant i_slei    :     std_logic_vector(OP_CODE_SIZE-1 downto 0) := "01"&x"c";
+    constant i_slli    :     std_logic_vector(OP_CODE_SIZE-1 downto 0) := "01"&x"4";
+    constant i_snei    :     std_logic_vector(OP_CODE_SIZE-1 downto 0) := "01"&x"9";
+    constant i_srli    :     std_logic_vector(OP_CODE_SIZE-1 downto 0) := "10"&x"6";
+    constant i_subi    :     std_logic_vector(OP_CODE_SIZE-1 downto 0) := "00"&x"a";
+    constant i_sw      :     std_logic_vector(OP_CODE_SIZE-1 downto 0) := "10"&x"b";
+    constant i_xori    :     std_logic_vector(OP_CODE_SIZE-1 downto 0) := "00"&x"e";
 
     --- function opcode definition
-    constant i_add : encode_t_opcode := b"10"&x"0";
-    constant i_mul : encode_t_opcode := b"11"&x"f";
-    constant i_and : encode_t_opcode := b"10"&x"4";
-    constant i_or[ : encode_t_opcode := b"10"&x"5";
-    constant i_sge : encode_t_opcode := b"10"&x"d";
-    constant i_sle : encode_t_opcode := b"10"&x"c";
-    constant i_sll : encode_t_opcode := b"00"&x"4";
-    constant i_sne : encode_t_opcode := b"10"&x"9";
-    constant i_srl : encode_t_opcode := b"00"&x"6";
-    constant i_sub : encode_t_opcode := b"10"&x"2";
-    constant i_xor : encode_t_opcode := b"10"&x"6";
+    constant i_add :     std_logic_vector(OP_CODE_SIZE-1 downto 0) := "10"&x"0";
+    constant i_mul :     std_logic_vector(OP_CODE_SIZE-1 downto 0) := "11"&x"f";
+    constant i_and :     std_logic_vector(OP_CODE_SIZE-1 downto 0) := "10"&x"4";
+    constant i_or :     std_logic_vector(OP_CODE_SIZE-1 downto 0) := "10"&x"5";
+    constant i_sge :     std_logic_vector(OP_CODE_SIZE-1 downto 0) := "10"&x"d";
+    constant i_sle :     std_logic_vector(OP_CODE_SIZE-1 downto 0) := "10"&x"c";
+    constant i_sll :     std_logic_vector(OP_CODE_SIZE-1 downto 0) := "00"&x"4";
+    constant i_sne :     std_logic_vector(OP_CODE_SIZE-1 downto 0) := "10"&x"9";
+    constant i_srl :     std_logic_vector(OP_CODE_SIZE-1 downto 0) := "00"&x"6";
+    constant i_sub :     std_logic_vector(OP_CODE_SIZE-1 downto 0) := "10"&x"2";
+    constant i_xor :     std_logic_vector(OP_CODE_SIZE-1 downto 0) := "10"&x"6";
 
 end globals;
 

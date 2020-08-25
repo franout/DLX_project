@@ -5,8 +5,7 @@ use ieee.std_logic_unsigned.all;
 
 -- carry select block 
 entity CSB is 
-    generic (DCSBS : 	Time := 0 ns;
-             DCSBC : 	Time := 0 ns;
+    generic (
              NBIT  : 	Natural := 8);
     Port (  A:	In	std_logic_vector((NBIT-1) downto 0);
             B:	In	std_logic_vector((NBIT-1) downto 0);

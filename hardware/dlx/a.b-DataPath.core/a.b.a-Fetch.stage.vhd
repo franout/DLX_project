@@ -33,7 +33,8 @@ entity fetch_stage is
 		new_pc_value_mem_stage : in std_logic_vector(PC_SIZE-1 downto 0);
 		-- to decode stage
 		new_pc_value : out std_logic_vector(PC_SIZE-1 downto 0);
-		-- IRAM interface
+		-- IRAM interface{Iram interface}
+
 		IRAM_ADDRESS : out std_logic_vector( iram_address_size- 1 downto 0); -- the current PC value 
 		IRAM_ENABLE  : out std_logic;                                        -- from control unit
 		IRAM_READY   : in  std_logic;                                        -- to the control unit 
