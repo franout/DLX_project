@@ -1,6 +1,6 @@
 # ignore all the work folders
 
 ./project/simulation/work/
-./project/synthesis/
+./project/synthesis/work/
 ./work/
 *.bak
