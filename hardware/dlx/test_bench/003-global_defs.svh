@@ -53,6 +53,12 @@ typedef enum  bit [3:0]{ADD=4'h0,
 // uncomment using vivado simulator 'cause some sv system call are not supported from vivavo simulator
 //`define VIVADO_SIM 1 // comment using questa sim simulator
 
+
+// iram and dram content path
+`define PATH_TO_DMEM_FINAL "/home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/dram_out.txt"
+`define PATH_TO_DMEM "/home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/dram.txt"
+`define PATH_TO_IMEM "/home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/sbst_dump.txt"
+
 `endif // __GLOBAL_DEFS__SVH
 
 

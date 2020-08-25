@@ -79,10 +79,11 @@ package globals is
 
 
 		subtype encode_t_opcode is  std_logic_vector(OP_CODE_SIZE-1 downto 0);
+		
+		-- for being complaint with synthesis
+		constant i_regtype: encode_t_opcode:= b"00"&x"0";
 
-        attribute encoding: encode_t_opcode;
-		attribute encoding_func:encode_t_opcode;
-        attribute encoding of i_regtype[return instruction] : literal is b"00"&x"0";
+        attribute encoding of i_regtype[return instruction] : literal  is b"00"&x"0";
         attribute encoding of i_addi[return instruction] : literal is b"00"&x"8";
         attribute encoding of i_andi[return instruction] : literal is b"00"&x"c";
         attribute encoding of i_beqz[return instruction] : literal is b"00"&x"4";

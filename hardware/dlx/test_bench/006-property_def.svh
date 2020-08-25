@@ -14,6 +14,8 @@
 `ifndef __PROPERTY_DEF_SVH
 `define __PROPERTY_DEF_SVH
 
+`include "./003-global_defs.svh"
+`include "./004-implemented_instructions.svh"
 
   	// property definition
     property multiplication_stall;
@@ -183,7 +185,7 @@
     instructions_regtype_opcode ireg_instr;
     instructions_opcode imm_instru,jump_instr,lw_instr,sw_instr,b_instr;
     // cast from bit to typedef of instruction 
-    always_comb begin : proc_cast   
+/*    always_comb begin : proc_cast   
 		// type_t'(x) cast x to type_t
 		ireg_instr=instructions_regtype_opcode'(curr_instruction_to_cu[`OP_CODE_SIZE-1:0]);
 		imm_instru=instructions_opcode'(curr_instruction_to_cu[`IRAM_WORD_SIZE-1:`IRAM_WORD_SIZE-`OP_CODE_SIZE]);
@@ -192,7 +194,7 @@
 		sw_instr=instructions_opcode'(curr_instruction_to_cu[`IRAM_WORD_SIZE-1:`IRAM_WORD_SIZE-`OP_CODE_SIZE]);
 		b_instr=instructions_opcode'(curr_instruction_to_cu[`IRAM_WORD_SIZE-1:`IRAM_WORD_SIZE-`OP_CODE_SIZE]);
 		
-    end        
+    end        */
 
 	property status;
 		@(test_clk) 

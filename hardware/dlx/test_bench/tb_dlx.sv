@@ -13,10 +13,10 @@
 // -----------------------------------------------------------------------------
 
 `timescale  1ns/1ps
-`include "003-global_defs.svh"
-`include "004-implemented_instructions.svh"
+`include "./003-global_defs.svh"
+`include "./004-implemented_instructions.svh"
 `include "./memories/005-memory_interfaces.svh"
-`include "006-property_def.svh"
+`include "./006-property_def.svh"
 
 program automatic test_dlx_top(input logic clk, output logic rst,
  						input logic [`IRAM_WORD_SIZE-1:0] current_instruction);
@@ -25,11 +25,11 @@ program automatic test_dlx_top(input logic clk, output logic rst,
 	default clocking test_clk_prog @( posedge clk);
 	endclocking
 
-	sequence end_seq;
+	property end_seq;
 		@(test_clk_prog)
 			disable iff(!rst)
 			(current_instruction[`IRAM_WORD_SIZE-1:`IRAM_WORD_SIZE-`OP_CODE_SIZE]===i_j)[*10];
-	endsequence;
+	endproperty;
 
 	initial begin 
 		$display("@%0dns Starting Test Program in System Verilog",$time);
@@ -38,10 +38,12 @@ program automatic test_dlx_top(input logic clk, output logic rst,
 		##3;
 		rst=1;
 		##1;
+		$monitor("current instrution %h",current_instruction);
 		// wait for 10 cc -> reached the end of the program in IRAM
-		expect (end_seq)
+		expect (end_seq) begin 
 			$display("Program in IRAM has ended",);
-			$finish;
+			$finish();
+		end
 		else
 			$display("Something is wrong",);
 
@@ -52,13 +54,11 @@ endprogram : test_dlx_top
 module tb_dlx ();
 	localparam clock_period= 10ns;
 	// it needs the absolute path
-	localparam PATH_TO_DMEM_FINAL="./memories/dram.txt";
-	localparam PATH_TO_DMEM="./memories/dram.txt";
-	localparam PATH_TO_IMEM="./memories/sbst_dump.txt";
 
-	logic rst_n;
+	logic rst;
 	logic clk;
- 	cu_state_t  curr_state_debug;
+	logic [$clog2(`CU_STATES)-1:0] curr_state_debug_i;
+ 	cu_state_t  curr_state_debug=cu_state_t'(curr_state_debug_i);
  	logic [7:0] csr;
  	logic DEBUG_iram_ready_cu;
 	logic DEBUG_iram_enable_cu;
@@ -66,14 +66,13 @@ module tb_dlx ();
 	logic DEBUG_compute_sext;
 	logic DEBUG_jump_sext;
 	logic DEBUG_write_rf;
-	logic DEBUG_evaluate_branch;
+	logic [1:0]DEBUG_evaluate_branch;
 	logic DEBUG_alu_cin;
 	logic DEBUG_alu_overflow;
 	logic DEBUG_zero_mul_detect;
 	logic DEBUG_mul_exeception;
 	logic DEBUG_dram_ready_cu;
 	logic DEBUG_dram_r_nw_cu;
-	logic DEBUG_rstn;
 	logic DEBUG_enable_rf;
 	logic DEBUG_read_rf_p1;
 	logic DEBUG_read_rf_p2;
@@ -104,28 +103,29 @@ module tb_dlx ();
 	// instantiate the interface
 	mem_interface #(.ADDRESS_SIZE(`IRAM_ADDRESS_SIZE),
 		.WORD_SIZE(`IRAM_WORD_SIZE)) 
-	iram_if (clk);
+	iram_if (.clk(clk));
 
 	// instantiate the dut and connect the interface
-	romem #(.FILE_PATH   (PATH_TO_IMEM),
+	romem #(.FILE_PATH   (`PATH_TO_IMEM),
 		.WORD_SIZE   (`IRAM_WORD_SIZE),
 		.ADDRESS_SIZE(`IRAM_ADDRESS_SIZE/2),
 		.DATA_DELAY  (2)) 
 		iram
-	(.mif(iram_if));
-	
+	(.mif(iram_if.ro));
+
+
 
 	mem_interface #(.ADDRESS_SIZE(`DRAM_ADDRESS_SIZE),
 			.WORD_SIZE(`DRAM_WORD_SIZE))
-	dram_if (clk);
+	dram_if (.clk(clk));
 	// Data memory
 	rwmem #(
-		.FILE_PATH     (PATH_TO_DMEM_FINAL),
-		.FILE_PATH_INIT(PATH_TO_DMEM),
+		.FILE_PATH     (`PATH_TO_DMEM_FINAL),
+		.FILE_PATH_INIT(`PATH_TO_DMEM),
 		.WORD_SIZE     (`DRAM_WORD_SIZE),
 		.ADDRESS_SIZE  (`DRAM_ADDRESS_SIZE/2),
 		.DATA_DELAY    (2))
-	dram ( .memif(dram_if));
+	dram ( .memif(dram_if.rw));
 	
 
 	//DLX top level entity
@@ -136,7 +136,7 @@ module tb_dlx ();
   	// verbose assignmento of the interfaces signals 
   	// Inputs
     .CLK 				(clk),
-    .RST 				(rst_n),
+    .RST 				(rst),
     // Instruction memory interface
     .IRAM_ADDRESS 		(iram_if.ADDRESS),
     .IRAM_ENABLE		(iram_if.ENABLE),
@@ -151,7 +151,7 @@ module tb_dlx ();
     // simulation debug signals
     //synthesis_translate off
     ,
-    .STATE_CU			(curr_state_debug),
+    .STATE_CU			(curr_state_debug_i),
     .csr                (csr),    
     //all the control unit signals
     //used for system verilog verification 
@@ -168,7 +168,6 @@ module tb_dlx ();
     .DEBUG_mul_exeception(DEBUG_mul_exeception),
     .DEBUG_dram_ready_cu(DEBUG_dram_ready_cu),
     .DEBUG_dram_r_nw_cu(DEBUG_dram_r_nw_cu),
-    .DEBUG_rstn(DEBUG_rstn),
     .DEBUG_enable_rf(DEBUG_enable_rf),
     .DEBUG_read_rf_p1(DEBUG_read_rf_p1),
     .DEBUG_read_rf_p2(DEBUG_read_rf_p2),
@@ -177,9 +176,13 @@ module tb_dlx ();
     //synthesis_translate on
   );
 
+//assign same reset signal to both interfaces
+assign iram_if.rst=rst;
+assign dram_if.rst=rst;
+
  test_dlx_top test_prog(.clk(clk),
  						.rst(rst),
- 						.current_instruction(IRAM.DATA));
+ 						.current_instruction(iram_if.DATA));
 endmodule
 
 

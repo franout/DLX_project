@@ -66,7 +66,6 @@ entity DLX is
     DEBUG_mul_exeception   : out std_logic;
     DEBUG_dram_ready_cu    : out std_logic;
     DEBUG_dram_r_nw_cu     : out std_logic;
-    DEBUG_rstn             : out std_logic;
     DEBUG_enable_rf        : out std_logic;
     DEBUG_read_rf_p1       : out std_logic;
     DEBUG_read_rf_p2       : out std_logic;
@@ -194,7 +193,7 @@ architecture dlx_rtl of DLX is
   signal iram_ready_cu_i,iram_enable_cu_i,signed_notsigned_i,
   compute_sext_i,write_rf_i,alu_cin_i,jump_sext_i,
   alu_overflow_i,zero_mul_detect_i,mul_exeception_i,
-  dram_ready_cu_i,dram_r_nw_cu_i,rstn,enable_rf_i,read_rf_p1_i,read_rf_p2_i,rtype_itypen_i,
+  dram_ready_cu_i,dram_r_nw_cu_i,enable_rf_i,read_rf_p1_i,read_rf_p2_i,rtype_itypen_i,
   dram_enable_cu_i                            : std_logic;
   signal evaluate_branch_i                    : std_logic_vector(1 downto 0);
   signal curr_instruction_to_cu_i             : std_logic_vector(PC_SIZE-1 downto 0);
@@ -206,7 +205,6 @@ architecture dlx_rtl of DLX is
 
 begin -- DLX
 
-  rstn <= not(rst);
   -- Control Unit Instantiation
   cu_i : control_unit
     generic map (
@@ -217,7 +215,7 @@ begin -- DLX
     )
     port map (
       clk                    => clk,
-      rst                    => rstn,
+      rst                    => rst,
       iram_enable_cu         => iram_enable_cu_i,
       iram_ready_cu          => iram_ready_cu_i,
       curr_instruction_to_cu => curr_instruction_to_cu_i,
@@ -322,7 +320,6 @@ begin -- DLX
   DEBUG_mul_exeception   <= mul_exeception_i;
   DEBUG_dram_ready_cu    <= dram_ready_cu_i;
   DEBUG_dram_r_nw_cu     <= dram_r_nw_cu_i;
-  DEBUG_rstn             <= rstn;
   DEBUG_enable_rf        <= enable_rf_i;
   DEBUG_read_rf_p1       <= read_rf_p1_i;
   DEBUG_read_rf_p2       <= read_rf_p2_i;
