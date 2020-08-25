@@ -6,7 +6,7 @@
 -- Author      : Francesco Angione <s262620@studenti.polito.it> franout@github.com
 -- Company     : Politecnico di Torino, Italy
 -- Created     : Thu Jul 23 15:49:45 2020
--- Last update : Mon Aug 24 17:17:17 2020
+-- Last update : Tue Aug 25 17:31:15 2020
 -- Platform    : Default Part Number
 -- Standard    : VHDL-2008 
 --------------------------------------------------------------------------------
@@ -87,7 +87,7 @@ architecture behavioural of control_unit is
   signal cmd_alu_op_type     : std_logic_vector(3 downto 0);         --- signal to be delayed for the alu
 
   signal ir_opcode : std_logic_vector(OP_CODE_SIZE-1 downto 0); -- OpCode part of IR
-  signal ir_func   : std_logic_vector(FUNC_SIZE-1 downto 0);    -- Func part of IR when Rtype
+  signal ir_func   : std_logic_vector(OP_CODE_SIZE-1 downto 0);    -- Func part of IR when Rtype
 
   signal counter_mul,next_val_counter_mul : std_logic_vector(2 downto 0); -- 3 bit coutner for stall in mul instruction 
                                                                           -- a status register for possible overflow or write to forbidden registers
@@ -101,7 +101,7 @@ architecture behavioural of control_unit is
 begin
 
   ir_opcode <= curr_instruction_to_cu(IR_SIZE-1 downto IR_SIZE-OP_CODE_SIZE);
-  ir_func   <= curr_instruction_to_cu(FUNC_SIZE - 1 downto 0);
+  ir_func   <= curr_instruction_to_cu(OP_CODE_SIZE - 1 downto 0);
 
   -- simulation debug signals
   --synthesis_translate off
@@ -144,7 +144,7 @@ begin
               cmd_word <= ireg_cmd;
 
               -- alu function generator
-              case (ir_func(OP_CODE_SIZE-1 downto 0)) is -- upper bits are unused in this configuration
+              case (ir_func) is -- upper bits are unused in this configuration
                                             -- see encoding in execute stage
                 when i_sub'encoding_func => cmd_alu_op_type <= x"1";
 											cmd_word<='1'&x"f093"; --set carry iN
