@@ -1,5 +1,6 @@
 
 puts "Configuring Innovus"
+setMultiCpuUsage 4
 set_global _enable_mmmc_by_default_flow      $CTE::mmmc_default
 suppressMessage ENCEXT-2799
 getDrawView
@@ -159,3 +160,5 @@ saveNetlist SUM.v
 all_hold_analysis_views 
 all_setup_analysis_views 
 write_sdf  -ideal_clock_network SUM.sdf
+
+exit

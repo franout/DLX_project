@@ -39,6 +39,13 @@ add wave -noupdate /tb_cu/jump_instr
 add wave -noupdate /tb_cu/lw_instr
 add wave -noupdate /tb_cu/sw_instr
 add wave -noupdate /tb_cu/b_instr
+add wave -noupdate -expand -group {Internal CU command word} /tb_cu/uut/cmd_word
+add wave -noupdate -expand -group {Internal CU command word} /tb_cu/uut/cmd_word_to_reg
+add wave -noupdate -expand -group {Internal CU command word} /tb_cu/uut/cw1
+add wave -noupdate -expand -group {Internal CU command word} /tb_cu/uut/cw2
+add wave -noupdate -expand -group {Internal CU command word} /tb_cu/uut/cw3
+add wave -noupdate -expand -group {Internal CU command word} /tb_cu/uut/cw4
+add wave -noupdate -expand -group {Internal CU command word} /tb_cu/uut/cw5
 TreeUpdate [SetDefaultTree]
 WaveRestoreCursors {{Cursor 1} {25000 ps} 0}
 quietly wave cursor active 1
@@ -56,5 +63,5 @@ configure wave -griddelta 40
 configure wave -timeline 0
 configure wave -timelineunits ps
 update
-WaveRestoreZoom {0 ps} {727126 ps}
+WaveRestoreZoom {0 ps} {84 ns}
 run 1500ns
