@@ -67,7 +67,7 @@ architecture structural of decode_stage is
 			extended_val   : out std_logic_vector(N-1 downto 0)
 		);
 	end component sign_extension;
-	signal rstn                                         : std_logic;
+	signal rstn,enable_rf_i                      : std_logic;
 	signal val_reg_a_i,val_reg_b_i : std_logic_vector(N-1 downto 0);
 	signal val_reg_immediate, val_reg_immediate_i ,val_reg_immediate_j: std_logic_vector(N-1 downto 0);
 	signal clk_immediate,enable_sign_extension_logic                          : std_logic;
@@ -113,7 +113,7 @@ begin
 			Q     => address_rf_write
 		);
 
-
+	enable_rf_i<= (enable_rf or ('1' and write_rf)) when address_rf_write='1'&x"f" else enable_rf; -- we only write in the r31 with the jump instruction
 	-- register file 
 	reg_file : register_file
 		generic map (
@@ -123,7 +123,7 @@ begin
 		port map (
 			CLK     => clk,
 			RESET   => rstn,
-			ENABLE  => enable_rf,
+			ENABLE  => enable_rf_i,
 			RD1     => read_rf_p1,
 			RD2     => read_rf_p2,
 			WR      => write_rf,

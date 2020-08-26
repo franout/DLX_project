@@ -21,12 +21,12 @@
     property multiplication_stall;
         @(test_dlx)
             disable iff(!rst || !DEBUG_zero_mul_detect || !DEBUG_mul_exeception )
-				(DEBUG_alu_op_type===MULT) |-> !DEBUG_iram_enable_cu[*6];// no fetching for 6 cc
+				(ireg_instr===i_mul) |-> !DEBUG_iram_enable_cu[*6];// no fetching for 6 cc
     endproperty;
 
   /* sequence for reg type instructions*/
     sequence ireg_decode;
-        ##1  DEBUG_enable_rf && DEBUG_read_rf_p1 && DEBUG_read_rf_p2 && DEBUG_rtype_itypen_i && !DEBUG_compute_sext && !DEBUG_jump_sext;
+        ##1  DEBUG_enable_rf && DEBUG_read_rf_p1 && DEBUG_read_rf_p2 && DEBUG_rtype_itypen && !DEBUG_compute_sext && !DEBUG_jump_sext;
     endsequence ;
 
     sequence ireg_execute(cin);
@@ -42,7 +42,7 @@
     endsequence ;
 /*sequence for immediate instruction */
     sequence itype_decode;
-        ##1  DEBUG_enable_rf && DEBUG_read_rf_p1 && !DEBUG_read_rf_p2 && !DEBUG_rtype_itypen_i && DEBUG_compute_sext && !DEBUG_jump_sext;
+        ##1  DEBUG_enable_rf && DEBUG_read_rf_p1 && !DEBUG_read_rf_p2 && !DEBUG_rtype_itypen && DEBUG_compute_sext && !DEBUG_jump_sext;
     endsequence ;
 
     sequence itype_execute;
@@ -58,7 +58,7 @@
     endsequence ;
 /*sequnce for lw*/
     sequence lw_decode;
-        ##1  DEBUG_enable_rf && DEBUG_read_rf_p1 && !DEBUG_read_rf_p2 && !DEBUG_rtype_itypen_i && DEBUG_compute_sext && !DEBUG_jump_sext;
+        ##1  DEBUG_enable_rf && DEBUG_read_rf_p1 && !DEBUG_read_rf_p2 && !DEBUG_rtype_itypen && DEBUG_compute_sext && !DEBUG_jump_sext;
     endsequence ;
 
     sequence lw_execute;
@@ -75,7 +75,7 @@
 
 /*sequnce for sw*/
     sequence sw_decode;
-        ##1  DEBUG_enable_rf && DEBUG_read_rf_p1 && !DEBUG_read_rf_p2 && !DEBUG_rtype_itypen_i && DEBUG_compute_sext && !DEBUG_jump_sext;
+        ##1  DEBUG_enable_rf && DEBUG_read_rf_p1 && !DEBUG_read_rf_p2 && !DEBUG_rtype_itypen && DEBUG_compute_sext && !DEBUG_jump_sext;
     endsequence;
 
     sequence sw_execute;
@@ -92,7 +92,7 @@
 
 /*sequnce for b*/
     sequence b_decode;
-        ##1  DEBUG_enable_rf && DEBUG_read_rf_p1 && !DEBUG_read_rf_p2 && !DEBUG_rtype_itypen_i && !DEBUG_compute_sext && !DEBUG_jump_sext;
+        ##1  DEBUG_enable_rf && DEBUG_read_rf_p1 && !DEBUG_read_rf_p2 && !DEBUG_rtype_itypen && !DEBUG_compute_sext && !DEBUG_jump_sext;
     endsequence ;
 
     sequence beqz_execute;
@@ -114,11 +114,11 @@
     endsequence;
  /*sequence for jump instruction*/
     sequence ijump_decode;
-        ##1  !DEBUG_enable_rf && !DEBUG_read_rf_p1 && !DEBUG_read_rf_p2 && !DEBUG_rtype_itypen_i && !DEBUG_compute_sext &&  DEBUG_jump_sext;
+        ##1  !DEBUG_enable_rf && !DEBUG_read_rf_p1 && !DEBUG_read_rf_p2 && !DEBUG_rtype_itypen && !DEBUG_compute_sext &&  DEBUG_jump_sext;
     endsequence ;
 
     sequence ijumpal_decode;
-        ##1 DEBUG_enable_rf && !DEBUG_read_rf_p1 && !DEBUG_read_rf_p2 && !DEBUG_rtype_itypen_i && !DEBUG_compute_sext && DEBUG_jump_sext;
+        ##1 DEBUG_enable_rf && !DEBUG_read_rf_p1 && !DEBUG_read_rf_p2 && !DEBUG_rtype_itypen && !DEBUG_compute_sext && DEBUG_jump_sext;
     endsequence;
 
     sequence ijump_execute;
@@ -170,7 +170,7 @@
 	property instruction_check_b;
 			@(test_dlx)
 			disable iff(!rst || b_instr!==i_beqz || b_instr!==i_benz)
-					if (curr_instruction_to_cu[`IRAM_WORD_SIZE-1:`IRAM_WORD_SIZE-`OP_CODE_SIZE]===i_beqz )
+					if (b_instr===i_beqz )
 				         DEBUG_iram_enable_cu |-> b_decode |->  beqz_execute |->  b_memory |->  b_wb
 					else
 				         DEBUG_iram_enable_cu |-> b_decode |->  benz_execute |->  b_memory |->  b_wb;

@@ -16,7 +16,7 @@
 `include "./003-global_defs.svh"
 `include "./004-implemented_instructions.svh"
 `include "./memories/005-memory_interfaces.svh"
-`include "./006-property_def.svh"
+
 
 program automatic test_dlx_top(input logic clk, output logic rst, input cu_state_t  curr_state,
  						input logic [`IRAM_WORD_SIZE-1:0] current_instruction);
@@ -109,6 +109,9 @@ module tb_dlx ();
 	logic DEBUG_read_rf_p2;
 	logic DEBUG_rtype_itypen;
 	logic DEBUG_dram_enable_cu;
+	logic [0:0]DEBUG_sel_val_a;
+	logic [0:0]DEBUG_sel_val_b;
+	logic [0:0]DEBUG_select_wb;
 
 	assign curr_state_debug=cu_state_t'(curr_state_debug_i);
 
@@ -129,7 +132,7 @@ module tb_dlx ();
 	end
 
 
-
+`include "./006-property_def.svh"
 	//////////////////////////////////////////////////////////////////////////////
 	///// instantiate property and coverage groupd defined in property_def.svh ///
 	//////////////////////////////////////////////////////////////////////////////
@@ -147,67 +150,22 @@ module tb_dlx ();
 		
     end        
 
-	property status;
-		@(test_clk) 
-			disable iff(!rst)
-			STATE_CU!==hang_error ;
-	endproperty;
+	
 
   	// property instantiation  
-    instruction_check_property_ireg : cover property (instruction_check_ireg)
-        else 
-			begin 
-			$display("Error @%d on instruction %s",$time(),
-            enum_wrap_instruction#(instructions_regtype_opcode)::name(ireg_instr));
-			$fatal();
-			end	
+    instruction_check_property_ireg : cover property (instruction_check_ireg);
+
+    instruction_check_property_i : cover property(instruction_check_i);
+
+    instruction_check_property_jump : cover property(instruction_check_jump);
+    
+    instruction_check_property_lw : cover property(instruction_check_lw) ;
+
+    instruction_check_property_sw : cover property(instruction_check_sw) ;
 			
-    instruction_check_property_i : cover property(instruction_check_i)
-        else 
-			begin 		
-			 $display("Error @%d on instruction %s",$time(), 
-            enum_wrap_instruction#(instructions_opcode)::name(imm_instru));
-			$fatal();
-			end	
-			
-    instruction_check_property_jump : cover property(instruction_check_jump)
-        else 
-			begin
-			$display("Error @%d on instruction %s",$time(), 
-            enum_wrap_instruction#(instructions_opcode)::name(jump_instr));
-			$fatal();
-			end	
-			
-    instruction_check_property_lw : cover property(instruction_check_lw) 
-        else 
-			begin 
-			$display("Error @%d on instruction %s",$time(),
-            enum_wrap_instruction#(instructions_opcode)::name(lw_instr));
-			$fatal();
-			end	
-			
-    instruction_check_property_sw : cover property(instruction_check_sw) 
-        else 
-			begin
-			$display("Error @%d on instruction %s",$time(),
-            enum_wrap_instruction#(instructions_opcode)::name(sw_instr));
-			$fatal();
-			end	
-			
-    instruction_check_property_b : cover property(instruction_check_b) 
-        else
-			begin
-			 $display("Error @%d on instruction %s",$time(), 
-            enum_wrap_instruction#(instructions_opcode)::name(b_instr)); 
-			$fatal();
-			end	
-			
-    multiplication_stall_check_property : cover property(multiplication_stall) 
-        else 
-			begin
-			$display("Error @%d on mul instruction, stall has failed",$time());
-			$fatal();
-			end	
+    instruction_check_property_b : cover property(instruction_check_b) ;
+		
+    multiplication_stall_check_property : cover property(multiplication_stall) ;
 
 	/////////////////////////////////////
 	// instantiate the components ///////
@@ -286,6 +244,9 @@ module tb_dlx ();
     .DEBUG_read_rf_p1(DEBUG_read_rf_p1),
     .DEBUG_read_rf_p2(DEBUG_read_rf_p2),
     .DEBUG_rtype_itypen(DEBUG_rtype_itypen),
+	.DEBUG_sel_val_a(DEBUG_sel_val_a),
+    .DEBUG_sel_val_b(DEBUG_sel_val_b),
+    .DEBUG_select_wb(DEBUG_select_wb),
     .DEBUG_dram_enable_cu(DEBUG_dram_enable_cu)
     //synthesis_translate on
   );

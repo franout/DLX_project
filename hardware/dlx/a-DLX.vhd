@@ -69,7 +69,10 @@ entity DLX is
     DEBUG_enable_rf        : out std_logic;
     DEBUG_read_rf_p1       : out std_logic;
     DEBUG_read_rf_p2       : out std_logic;
-    DEBUG_rtype_itypen     : out std_logic;
+    DEBUG_rtype_itypen     : out std_logic; 
+	DEBUG_sel_val_a        :out std_logic_vector(0 downto 0); 
+    DEBUG_sel_val_b        :out std_logic_vector(0 downto 0); 
+    DEBUG_select_wb           :out std_logic_vector(0 downto 0); 
     DEBUG_dram_enable_cu   : out std_logic
   --synopsys translate_on
   );
@@ -325,6 +328,9 @@ begin -- DLX
   DEBUG_read_rf_p2       <= read_rf_p2_i;
   DEBUG_rtype_itypen     <= rtype_itypen_i;
   DEBUG_dram_enable_cu   <= dram_enable_cu_i;
+  DEBUG_sel_val_a        <= sel_val_a_i ;
+  DEBUG_sel_val_b        <= sel_val_b_i ;
+    DEBUG_select_wb<= select_wb_i;
 
   --synopsys translate_on
 
