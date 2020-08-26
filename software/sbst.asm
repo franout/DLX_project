@@ -67,7 +67,7 @@ lw r20,128(0) ; dram.txt line 32
 lw r21,132(0) ; dram.txt line 33
 nop
 nop
-imul r22,r21,r22
+;imul r22,r21,r22
 nop
 nop
 sw 40(r3),r22
@@ -81,6 +81,10 @@ bnez r22,loop
 
 ;; test -->j!
 j forward
+nop
+nop
+nop
+nop
 nop
 forward:
 ;; test -->beqz!
@@ -127,7 +131,14 @@ nop
 nop
 nop
 nop
-end: 
-j end ; infinite loop
-
+nop
+nop
+nop
+end:
+nop
+nop
+nop
+nop
+nop
+nop
 
