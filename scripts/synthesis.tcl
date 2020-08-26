@@ -75,7 +75,7 @@ report_power > ./report/power_report_dlx_irsize32_pcsize32_nopt.rpt
 write -hierarchy -format ddc -output ./output_netlist/dlx_irsize32_pcsize32_nopt.ddc
 write -hierarchy -format vhdl -output ./output_netlist/dlx_irsize32_pcsize32_nopt.vhdl
 write -hierarchy -format verilog -output ./output_netlist/dlx_irsize32_pcsize32_nopt.v
-
+write_sdc ./output_netlist/dlx_irsize32_pcsize32_nopt.sdc
 
 puts "Synthesis push as much as possible the clock frequency i.e. until the slack is positive"
 # forces a combinational max delay of REQUIRED_TIME from each of the inputs
@@ -127,6 +127,7 @@ report_power > ./report/power_report_dlx_irsize32_pcsize32_opt_10.rpt
 write -hierarchy -format ddc -output ./output_netlist/dlx_irsize32_pcsize32_topt_10.ddc
 write -hierarchy -format vhdl -output ./output_netlist/dlx_irsize32_pcsize32_topt_10.vhdl
 write -hierarchy -format verilog -output ./output_netlist/dlx_irsize32_pcsize32_topt_10.v
+write_sdc ./output_netlist/dlx_irsize32_pcsize32_10.sdc
 
 
 #set a 1% lower required time( float )  than maxpath
@@ -199,5 +200,6 @@ report_power > ./report/power_report_dlx_irsize32_pcsize32_opt_1_minarea.rpt
 write -hierarchy -format ddc -output ./output_netlist/dlx_irsize32_pcsize32_topt_1_minarea.ddc
 write -hierarchy -format vhdl -output ./output_netlist/dlx_irsize32_pcsize32_topt_1_minarea.vhdl
 write -hierarchy -format verilog -output ./output_netlist/dlx_irsize32_pcsize32_topt_1_minarea.v
+write_sdc ./output_netlist/dlx_irsize32_pcsize32_1_minarea.sdc
 
 exit

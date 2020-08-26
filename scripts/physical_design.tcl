@@ -1,23 +1,30 @@
-
 puts "Configuring Innovus"
-setMultiCpuUsage 4
+setMultiCpuUsage -cpuAutoAdjust {true}
 set_global _enable_mmmc_by_default_flow      $CTE::mmmc_default
 suppressMessage ENCEXT-2799
-getDrawView
-loadWorkspace -name Physical
-win
+#loadWorkspace -name Physical
 set defHierChar /
 set delaycal_input_transition_delay 0.1ps
 set fpIsMaxIoHeight 0
-set init_gnd_net gnd
-set init_mmmc_file Default.view
+set init_gnd_net {gnd}
+set init_mmmc_file Default_nopt.view
 set init_oa_search_lib {}
-
-
-puts "Floorplanning Innovus"
-set init_pwr_net vdd
+set init_pwr_net {vdd}
 set init_verilog "$env(path_to_file_synthesis)/output_netlist/dlx_irsize32_pcsize32_nopt.v" 
 set init_lef_file /software/dk/nangate45/lef/NangateOpenCellLibrary.lef
+set lsgOCPGainMult 1.000000
+set LEF_DIR /software/dk/nangate45/lef
+set LEF_list [list ${LEF_DIR}/NangateOpenCellLibrary.lef]
+set init_lef_file "${LEF_list}"
+set LIB_DIR /software/dk/nangate45/liberty
+set MyTimingLibNom ${LIB_DIR}/NangateOpenCellLibrary_typical_ecsm_nowlm.lib
+set MyTimingLibSlow ${LIB_DIR}/NangateOpenCellLibrary_slow_ecsm.lib
+set MyTimingLibFast ${LIB_DIR}/NangateOpenCellLibrary_fast_ecsm.lib
+
+set MycapTable $LEF_DIR/captables/NCSU_FreePDK_45nm.capTbl
+
+puts "Floorplanning Innovus"
+
 init_design
 getIoFlowFlag
 setIoFlowFlag 0
@@ -45,7 +52,7 @@ set sprCreateIeStripeThreshold 1.0
 puts "Power planning and routing Innovus"
 
 setAddRingMode -ring_target default -extend_over_row 0 -ignore_rows 0 -avoid_short 0 -skip_crossing_trunks none -stacked_via_top_layer metal10 -stacked_via_bottom_layer metal1 -via_using_exact_crossover_size 1 -orthogonal_only true -skip_via_on_pin {  standardcell } -skip_via_on_wire_shape {  noshape }
-addRing -nets {} -type core_rings -follow core -layer {top metal1 bottom metal1 left metal2 right metal2} -width {top 1.8 bottom 1.8 left 1.8 right 1.8} -spacing {top 1.8 bottom 1.8 left 1.8 right 1.8} -offset {top 1.8 bottom 1.8 left 1.8 right 1.8} -center 0 -extend_corner {} -threshold 0 -jog_distance 0 -snap_wire_center_to_grid None
+#addRing -nets {} -type core_rings -follow core -layer {top metal1 bottom metal1 left metal2 right metal2} -width {top 1.8 bottom 1.8 left 1.8 right 1.8} -spacing {top 1.8 bottom 1.8 left 1.8 right 1.8} -offset {top 1.8 bottom 1.8 left 1.8 right 1.8} -center 0 -extend_corner {} -threshold 0 -jog_distance 0 -snap_wire_center_to_grid None
 setAddRingMode -ring_target default -extend_over_row 0 -ignore_rows 0 -avoid_short 0 -skip_crossing_trunks none -stacked_via_top_layer metal10 -stacked_via_bottom_layer metal1 -via_using_exact_crossover_size 1 -orthogonal_only true -skip_via_on_pin {  standardcell } -skip_via_on_wire_shape {  noshape }
 addRing -nets {gnd vdd} -type core_rings -follow core -layer {top metal9 bottom metal9 left metal10 right metal10} -width {top 0.8 bottom 0.8 left 0.8 right 0.8} -spacing {top 0.8 bottom 0.8 left 0.8 right 0.8} -offset {top 1.8 bottom 1.8 left 1.8 right 1.8} -center 1 -extend_corner {} -threshold 0 -jog_distance 0 -snap_wire_center_to_grid None
 set sprCreateIeRingOffset 1.0
@@ -117,16 +124,16 @@ setPinAssignMode -pinEditInBatch false
 
 setPinAssignMode -pinEditInBatch true
 editPin -fixOverlap 1 -spreadDirection clockwise -side Top -layer 1 -spreadType side -pin {{DRAM_ADDRESS[0]} {DRAM_ADDRESS[1]} {DRAM_ADDRESS[2]} {DRAM_ADDRESS[3]} {DRAM_ADDRESS[4]} {DRAM_ADDRESS[5]} {DRAM_ADDRESS[6]} {DRAM_ADDRESS[7]} {DRAM_ADDRESS[8]} {DRAM_ADDRESS[9]} {DRAM_ADDRESS[10]} {DRAM_ADDRESS[11]} {DRAM_ADDRESS[12]} {DRAM_ADDRESS[13]} {DRAM_ADDRESS[14]} {DRAM_ADDRESS[15]} {DRAM_ADDRESS[16]} {DRAM_ADDRESS[17]} {DRAM_ADDRESS[18]} {DRAM_ADDRESS[19]} {DRAM_ADDRESS[20]} {DRAM_ADDRESS[21]} {DRAM_ADDRESS[22]} {DRAM_ADDRESS[23]} {DRAM_ADDRESS[24]} {DRAM_ADDRESS[25]} {DRAM_ADDRESS[26]} {DRAM_ADDRESS[27]} {DRAM_ADDRESS[28]} {DRAM_ADDRESS[29]} {DRAM_ADDRESS[30]} {DRAM_ADDRESS[31]}}
-setPinAssignMode -pinEditInBatch true
+setPinAssignMode -pinEditInBatch false
 
 setPinAssignMode -pinEditInBatch true
 editPin -fixOverlap 1 -spreadDirection clockwise -side Top -layer 2 -spreadType side -pin {{DRAM_DATA[0]} {DRAM_DATA[1]} {DRAM_DATA[2]} {DRAM_DATA[3]} {DRAM_DATA[4]} {DRAM_DATA[5]} {DRAM_DATA[6]} {DRAM_DATA[7]} {DRAM_DATA[8]} {DRAM_DATA[9]} {DRAM_DATA[10]} {DRAM_DATA[11]} {DRAM_DATA[12]} {DRAM_DATA[13]} {DRAM_DATA[14]} {DRAM_DATA[15]} {DRAM_DATA[16]} {DRAM_DATA[17]} {DRAM_DATA[18]} {DRAM_DATA[19]} {DRAM_DATA[20]} {DRAM_DATA[21]} {DRAM_DATA[22]} {DRAM_DATA[23]} {DRAM_DATA[24]} {DRAM_DATA[25]} {DRAM_DATA[26]} {DRAM_DATA[27]} {DRAM_DATA[28]} {DRAM_DATA[29]} {DRAM_DATA[30]} {DRAM_DATA[31]}}
-setPinAssignMode -pinEditInBatch true
+setPinAssignMode -pinEditInBatch false
 
-#todo dram address dram data
 
 
 puts "Cell placing Innovus"
+placeDesign
 setOptMode -fixCap true -fixTran true -fixFanoutLoad false
 optDesign -postCTS
 optDesign -postCTS -hold
@@ -149,7 +156,6 @@ setOptMode -fixCap true -fixTran true -fixFanoutLoad false
 optDesign -postRoute
 optDesign -postRoute -hold
 saveDesign DLX_IR_SIZE32_PC_SIZE32_saved
-set_analysis_view -setup {default} -hold {default}
 reset_parasitics
 extractRC
 redirect -quiet {set honorDomain [getAnalysisMode -honorClockDomains]} > /dev/null
@@ -157,9 +163,6 @@ timeDesign -postRoute -pathReports -drvReports -slackReports -numPaths 50 -prefi
 get_time_unit
 report_timing -machine_readable -max_paths 10000 -max_slack 0.75 -path_exceptions all > DLX_IR_SIZE32_PC_SIZE32.mtarpt
 load_timing_debug_report -name default_report DLX_IR_SIZE32_PC_SIZE32.mtarpt
-
-
-
 
 puts "Verification"
 verifyConnectivity -type all -error 1000 -warning 50
@@ -189,8 +192,9 @@ all_hold_analysis_views
 all_setup_analysis_views 
 write_sdf  -ideal_clock_network DLX_IR_SIZE32_PC_SIZE32.sdf
 
+#TODO 
 puts "Starting with optimized design with a lower slack"
-set init_verilog "$env(path_to_file_synthesis)output_netlist/dlx_irsize32_pcsize32_topt_10.v.v"    
+set init_verilog "$env(path_to_file_synthesis)output_netlist/dlx_irsize32_pcsize32_topt_10.v"    
 puts "Starting with optimized design with a lower slack and area"
 set init_verilog "$env(path_to_file_synthesis)output_netlist/dlx_irsize32_pcsize32_topt_1_minarea.v"
 exit

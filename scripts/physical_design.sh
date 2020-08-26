@@ -2,7 +2,7 @@
 echo "Starting physical design"
 cd ..
 
-export path_to_file_synthesis=$PWD"./project/synthesis/"
+export path_to_file_synthesis=$PWD"/project/synthesis/"
 
 cd project/
 echo "Starting physical design setup"
@@ -15,6 +15,9 @@ fi
 mkdir ./physical_design
 cd ./physical_design
 cp ../../scripts/physical_design.tcl ./
+cp ../../scripts/Default_nopt.view ./
+cp ../../scripts/Default_10.view ./
+cp ../../scripts/Default_1_minarea.view ./
 mkdir report 
 mkdir output_netlist
 
