@@ -27,7 +27,7 @@ module rwmem
 );
 
 /// internal signals
-logic [WORD_SIZE-1:0] ram [0:2**ADDRESS_SIZE-1];
+logic [WORD_SIZE/4-1:0] ram [0:2**ADDRESS_SIZE*4-1];
 logic [WORD_SIZE-1:0] data_ir;
 logic [WORD_SIZE-1:0] data_iw;
 logic valid;
@@ -63,7 +63,7 @@ task refresh_file;
 		    `endif
 		end
 		// flush down the memory 
-		for(i=0;i<2**ADDRESS_SIZE-1;i=i+1)begin
+		for(i=0;i<2**ADDRESS_SIZE*4-1;i=i+1)begin
 			$fwrite(fd, "%8h\n", ram[i]);
 		end
 		// 3. Close the file descriptor
@@ -88,10 +88,10 @@ always_comb begin : proc_ram
 		end
 		index=0;
 		// fill up the memory 
-		while (!$feof(fd) && (index <2**ADDRESS_SIZE)) begin
+		while (!$feof(fd) && (index <2**ADDRESS_SIZE*4)) begin
       	  dummy=$fgets(line, fd);
-      	   ram[index]<=line.atohex();// save  and convert to hex value
-      	   index=index+1;
+      	   {ram[index],ram[index+1],ram[index+2],ram[index+3]}<=line.atohex();// save  and convert to hex value
+      	   index=index+4;
 	    end
     	// 3. Close the file descriptor
 		$fclose(fd);
@@ -101,18 +101,19 @@ always_comb begin : proc_ram
 			if(memif.READNOTWRITE) begin // read operation 
 				// byte selection
 				case (memif.ADDRESS[1:0])
-					2'b01: data_ir<=ram[memif.ADDRESS][8:0];// byte access
-					2'b10: data_ir<=ram[memif.ADDRESS][16:0];// half word access
-					default: data_ir<=ram[memif.ADDRESS];// word access 
+					2'b01: data_ir<={24'd0,ram[{memif.ADDRESS[ADDRESS_SIZE-1:2],2'b00}+3]};// byte access
+					2'b10: data_ir<={16'd0,ram[{memif.ADDRESS[ADDRESS_SIZE-1:2],2'b00}+2],ram[{memif.ADDRESS[ADDRESS_SIZE-1:2],2'b00}+3]};// half word access
+					default: data_ir<={ram[memif.ADDRESS],ram[{memif.ADDRESS[ADDRESS_SIZE-1:2],2'b00}+1],ram[{memif.ADDRESS[ADDRESS_SIZE-1:2],2'b00}+2],ram[{memif.ADDRESS[ADDRESS_SIZE-1:2],2'b00}+3]};// word access 
+						
 				endcase;
 				valid='b1;
 			end else begin  // write operation
 				data_ir<='Z;
 				// byte selection
 				case (memif.ADDRESS[1:0])
-					2'b01: ram[memif.ADDRESS]<=data_iw[8:0];// byte access
-					2'b10: ram[memif.ADDRESS]<=data_iw[16:0];// half word access
-					default: ram[memif.ADDRESS]<=data_iw; // word access
+					2'b01: ram[{memif.ADDRESS[ADDRESS_SIZE-1:2],2'b00}+3]<=data_iw[8:0];// byte access
+					2'b10: {ram[{memif.ADDRESS[ADDRESS_SIZE-1:2],2'b00}+2],ram[{memif.ADDRESS[ADDRESS_SIZE-1:2],2'b00}+3]}<=data_iw[16:0];// half word access
+					default: {ram[memif.ADDRESS],ram[{memif.ADDRESS[ADDRESS_SIZE-1:2],2'b00}+1],ram[{memif.ADDRESS[ADDRESS_SIZE-1:2],2'b00}+2],ram[{memif.ADDRESS[ADDRESS_SIZE-1:2],2'b00}+3]}<=data_iw; // word access
 				endcase;
 				// refresh the content of the output file
 				fork 

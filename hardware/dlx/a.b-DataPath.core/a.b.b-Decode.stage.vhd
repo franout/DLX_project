@@ -217,14 +217,15 @@ begin
 
 	-- delay register for new program counter 
 
-		delay_reg : reg_nbit generic map (
-			N => N
-		)
-		port map (
-			clk   => clk,
-			reset => rstn, -- reset is active high internally to the register
-			d     => new_prog_counter_val,
-			Q     => new_prog_counter_val_exe
-		);
+	--	delay_reg : reg_nbit generic map (
+		--	N => N
+--		)
+	--	port map (
+--			clk   => clk,
+	--		reset => rstn, -- reset is active high internally to the register
+--			d     => new_prog_counter_val,
+	--		Q     => new_prog_counter_val_exe
+		--);
+	new_prog_counter_val_exe<=new_prog_counter_val;
 
 end architecture ; -- structural

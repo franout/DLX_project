@@ -207,15 +207,15 @@ begin
 
 
 		-- delay register for pc
-		del_reg_pc : reg_nbit generic map (
-			N => N
-		)
-		port map (
-			clk   => clk,
-			reset => rstn, -- reset is active high internally to the register
-			d     => new_prog_counter_val_exe,
-			Q     => prog_counter_forwaded
-		);
-
+	--	del_reg_pc : reg_nbit generic map (
+		--	N => N
+--		)
+	---	port map (
+---			clk   => clk,
+--	-		reset => rstn, -- reset is active high internally to the register
+	--		d     => new_prog_counter_val_exe,
+		--	Q     => prog_counter_forwaded
+--		);
+	prog_counter_forwaded<=new_prog_counter_val_exe;
 
 end architecture ; -- structural

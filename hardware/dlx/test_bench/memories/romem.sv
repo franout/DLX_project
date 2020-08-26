@@ -29,7 +29,7 @@ DATA_DELAY	= 2			 	// Delay ( in # of clock cycles )
 );
 
 /// internal signals
-logic [WORD_SIZE-1:0]ram [0:2**ADDRESS_SIZE-1];
+logic [WORD_SIZE/4-1:0]ram [0:2**ADDRESS_SIZE*4-1];
 logic [WORD_SIZE-1:0]data_out;
 logic valid;
 
@@ -71,8 +71,8 @@ always_comb begin: proc_ram
 		// fill up the memory 
 		while (!$feof(fd)) begin
       	  dummy= $fgets(line, fd);
-      	   ram[index]<=line.atohex();// save  and convert to hex value
-      	   index=index+1;
+      	   {ram[index],ram[index+1],ram[index+2],ram[index+3]}<=line.atohex();// save  and convert to hex value
+      	   index=index+4;
 	    end
     	// 3. Close the file descriptor
 		$fclose(fd);
@@ -80,7 +80,7 @@ always_comb begin: proc_ram
 	end else begin
 		if (mif.ENABLE) begin
 			valid='b1;
-			data_out<=ram[mif.ADDRESS];
+			data_out<={ram[mif.ADDRESS],ram[mif.ADDRESS+1],ram[mif.ADDRESS+2],ram[mif.ADDRESS+3]};
 		end else begin 
 			// memory not enabled
 			data_out<='Z;

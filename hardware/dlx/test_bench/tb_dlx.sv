@@ -31,7 +31,16 @@ program automatic test_dlx_top(input logic clk, output logic rst,
 		rst=0;
 		##3;
 		rst=1;
-		$monitor("current instrution %h",current_instruction);
+		if (instructions_opcode'(current_instruction)===i_regtype ) begin 
+					$monitor("current instrution %h --> %s",current_instruction,  enum_wrap_instruction#(instructions_regtype_opcode)::name(instructions_regtype_opcode'(current_instruction[`OP_CODE_SIZE-1:0])));
+		end else begin 
+		$monitor("current instrution %h --> %s",current_instruction,   enum_wrap_instruction#(instructions_opcode)::name(instructions_opcode'(current_instruction[`IRAM_WORD_SIZE-1:`IRAM_WORD_SIZE-`OP_CODE_SIZE])));
+		end
+
+
+			
+
+
 		##100;
 		// wait for 10 cc -> reached the end of the program in IRAM
 		expect (@(test_clk_prog) 	(current_instruction[`IRAM_WORD_SIZE-1:`IRAM_WORD_SIZE-`OP_CODE_SIZE]===i_j)[*10] ) begin 

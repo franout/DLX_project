@@ -63,7 +63,7 @@ program automatic test_memory( mem_interface.rw dram_if,
 		##1;
 		$display("Starting memory accesses",);
 		// read
-		alu_output_val=1; // it contains the address
+		alu_output_val=4; // it contains the address
 		dram_r_nw_cu=1;
 		dram_enable_cu=1;
 		##2;

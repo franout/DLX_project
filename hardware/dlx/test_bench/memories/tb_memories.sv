@@ -96,7 +96,7 @@ initial begin
 		// write operations
 		dram_if.READNOTWRITE=0;
 		dram_if.ENABLE=1;
-		for (i=0;i<11;i=i+1)begin
+		for (i=0;i<16;i=i+4)begin
 			dram_if.ADDRESS=i;
 			//dram_if.INOUT_DATA=i;
 			write_data=i;
@@ -110,7 +110,7 @@ initial begin
 		// read operations
 		dram_if.ENABLE=1;
 		// opening the same file of the other memory
-		for (i=0;i<11;i=i+1)begin
+		for (i=0;i<16;i=i+4)begin
 			dram_if.ADDRESS=i;
 			##1;
 			if(read_data!==i) begin

@@ -54,7 +54,7 @@ output logic iram_enable_cu);
 			$stop();
 		end
 		##1;
-		if(curr_instruction!==61440)begin
+		if(curr_instruction!==15)begin
 			$display("@%0dns ---> wrong generated address",$time);
 			$stop();
 		end
