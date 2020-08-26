@@ -2,7 +2,7 @@
 echo "Starting physical design"
 cd ..
 
-export path_to_file_synthesis=$PWD"./project/synthesis"
+export path_to_file_synthesis=$PWD"./project/synthesis/"
 
 cd project/
 echo "Starting physical design setup"

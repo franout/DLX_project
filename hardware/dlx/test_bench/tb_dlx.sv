@@ -69,6 +69,7 @@ endsequence;
 		wait (end_seq.triggered)
 		if(end_seq.triggered) begin 
 			$display("Program in IRAM has ended @ %d",$time());
+			 $display("Total coverage %e",$get_coverage());
 			$finish();
 		end else begin 
 		##10; // execute 10 more cc
@@ -132,11 +133,81 @@ module tb_dlx ();
 	//////////////////////////////////////////////////////////////////////////////
 	///// instantiate property and coverage groupd defined in property_def.svh ///
 	//////////////////////////////////////////////////////////////////////////////
+ 	instructions_regtype_opcode ireg_instr;
+    instructions_opcode imm_instru,jump_instr,lw_instr,sw_instr,b_instr;
+    // cast from bit to typedef of instruction 
+    always_comb begin : proc_cast   
+		// type_t'(x) cast x to type_t
+		ireg_instr=instructions_regtype_opcode'(iram_if.DATA[`OP_CODE_SIZE-1:0]);
+		imm_instru=instructions_opcode'(iram_if.DATA[`IRAM_WORD_SIZE-1:`IRAM_WORD_SIZE-`OP_CODE_SIZE]);
+		jump_instr=instructions_opcode'(iram_if.DATA[`IRAM_WORD_SIZE-1:`IRAM_WORD_SIZE-`OP_CODE_SIZE]);
+		lw_instr=instructions_opcode'(iram_if.DATA[`IRAM_WORD_SIZE-1:`IRAM_WORD_SIZE-`OP_CODE_SIZE]);
+		sw_instr=instructions_opcode'(iram_if.DATA[`IRAM_WORD_SIZE-1:`IRAM_WORD_SIZE-`OP_CODE_SIZE]);
+		b_instr=instructions_opcode'(iram_if.DATA[`IRAM_WORD_SIZE-1:`IRAM_WORD_SIZE-`OP_CODE_SIZE]);
+		
+    end        
 
+	property status;
+		@(test_clk) 
+			disable iff(!rst)
+			STATE_CU!==hang_error ;
+	endproperty;
 
-
-
-
+  	// property instantiation  
+    instruction_check_property_ireg : cover property (instruction_check_ireg)
+        else 
+			begin 
+			$display("Error @%d on instruction %s",$time(),
+            enum_wrap_instruction#(instructions_regtype_opcode)::name(ireg_instr));
+			$fatal();
+			end	
+			
+    instruction_check_property_i : cover property(instruction_check_i)
+        else 
+			begin 		
+			 $display("Error @%d on instruction %s",$time(), 
+            enum_wrap_instruction#(instructions_opcode)::name(imm_instru));
+			$fatal();
+			end	
+			
+    instruction_check_property_jump : cover property(instruction_check_jump)
+        else 
+			begin
+			$display("Error @%d on instruction %s",$time(), 
+            enum_wrap_instruction#(instructions_opcode)::name(jump_instr));
+			$fatal();
+			end	
+			
+    instruction_check_property_lw : cover property(instruction_check_lw) 
+        else 
+			begin 
+			$display("Error @%d on instruction %s",$time(),
+            enum_wrap_instruction#(instructions_opcode)::name(lw_instr));
+			$fatal();
+			end	
+			
+    instruction_check_property_sw : cover property(instruction_check_sw) 
+        else 
+			begin
+			$display("Error @%d on instruction %s",$time(),
+            enum_wrap_instruction#(instructions_opcode)::name(sw_instr));
+			$fatal();
+			end	
+			
+    instruction_check_property_b : cover property(instruction_check_b) 
+        else
+			begin
+			 $display("Error @%d on instruction %s",$time(), 
+            enum_wrap_instruction#(instructions_opcode)::name(b_instr)); 
+			$fatal();
+			end	
+			
+    multiplication_stall_check_property : cover property(multiplication_stall) 
+        else 
+			begin
+			$display("Error @%d on mul instruction, stall has failed",$time());
+			$fatal();
+			end	
 
 	/////////////////////////////////////
 	// instantiate the components ///////
