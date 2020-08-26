@@ -91,15 +91,17 @@ begin
 
 		-- to write back stage 
 		-- delay register for data from alu
-		delay_regg : reg_nbit generic map (
-			N => N
-		)
-		port map (
-			clk   => clk,
-			reset => rstn, -- reset is active high internally to the register
-			d     => alu_output_val,
-			Q     => data_from_alu
-		);
+--		delay_regg : reg_nbit generic map (
+--			N => N
+--		)
+--		port map (
+--			clk   => clk,
+--			reset => rstn, -- reset is active high internally to the register
+--			d     => alu_output_val,
+--			Q     => data_from_alu
+--		);
+
+	data_from_alu<=alu_output_val;
 
 	DRAM_ADDRESS      <= alu_output_val( dram_address_size-1 downto 0 ); -- computed address, dllx is computing memory addresses on 32 bit. however 32 bit in sv for the memory cause an overflow so it is 16 bit address
 	DRAM_ENABLE       <= dram_enable_cu;

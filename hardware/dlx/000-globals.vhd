@@ -96,7 +96,7 @@ package globals is
     constant i_slei    :     std_logic_vector(OP_CODE_SIZE-1 downto 0) := "01"&x"c";
     constant i_slli    :     std_logic_vector(OP_CODE_SIZE-1 downto 0) := "01"&x"4";
     constant i_snei    :     std_logic_vector(OP_CODE_SIZE-1 downto 0) := "01"&x"9";
-    constant i_srli    :     std_logic_vector(OP_CODE_SIZE-1 downto 0) := "10"&x"6";
+    constant i_srli    :     std_logic_vector(OP_CODE_SIZE-1 downto 0) := "01"&x"6";
     constant i_subi    :     std_logic_vector(OP_CODE_SIZE-1 downto 0) := "00"&x"a";
     constant i_sw      :     std_logic_vector(OP_CODE_SIZE-1 downto 0) := "10"&x"b";
     constant i_xori    :     std_logic_vector(OP_CODE_SIZE-1 downto 0) := "00"&x"e";

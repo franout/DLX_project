@@ -12,18 +12,44 @@
 // Description: 
 // -----------------------------------------------------------------------------
 
-`timescale  1ns/1ns
+`timescale  1ns/1ps
 `include "./003-global_defs.svh"
 `include "./004-implemented_instructions.svh"
 `include "./memories/005-memory_interfaces.svh"
 `include "./006-property_def.svh"
 
-program automatic test_dlx_top(input logic clk, output logic rst,
+program automatic test_dlx_top(input logic clk, output logic rst, input cu_state_t  curr_state,
  						input logic [`IRAM_WORD_SIZE-1:0] current_instruction);
 
 
 	default clocking test_clk_prog @( posedge clk);
 	endclocking
+	
+	instructions_opcode current_opcode;
+	instructions_regtype_opcode current_opcode_func;
+
+  
+		// type_t'(x) cast x to type_t
+assign	current_opcode=instructions_opcode'(current_instruction[`IRAM_WORD_SIZE-1:`IRAM_WORD_SIZE-`OP_CODE_SIZE]);
+assign 	current_opcode_func= (instructions_regtype_opcode'(current_instruction[`OP_CODE_SIZE-1:0]));
+    
+
+sequence end_seq;
+	@(test_clk_prog)
+		(curr_state===hang_error)[*5];
+endsequence;
+
+
+	task automatic print_current_instruction (instructions_opcode opcode, instructions_regtype_opcode func);
+		begin 
+			if (opcode===i_regtype ) begin 
+				$display("current instrution opcode %h --> %s",current_instruction,  enum_wrap_instruction#(instructions_regtype_opcode)::name(func));
+			end else begin 
+				$display("current instrution %h --> %s",current_instruction,   enum_wrap_instruction#(instructions_opcode)::name(opcode));
+			end
+		end
+	endtask : print_current_instruction
+
 
 	initial begin 
 		$display("@%0dns Starting Test Program in System Verilog",$time);
@@ -31,27 +57,27 @@ program automatic test_dlx_top(input logic clk, output logic rst,
 		rst=0;
 		##3;
 		rst=1;
-		if (instructions_opcode'(current_instruction)===i_regtype ) begin 
-					$monitor("current instrution %h --> %s",current_instruction,  enum_wrap_instruction#(instructions_regtype_opcode)::name(instructions_regtype_opcode'(current_instruction[`OP_CODE_SIZE-1:0])));
-		end else begin 
-		$monitor("current instrution %h --> %s",current_instruction,   enum_wrap_instruction#(instructions_opcode)::name(instructions_opcode'(current_instruction[`IRAM_WORD_SIZE-1:`IRAM_WORD_SIZE-`OP_CODE_SIZE])));
-		end
-
-
-			
-
-
-		##100;
-		// wait for 10 cc -> reached the end of the program in IRAM
-		expect (@(test_clk_prog) 	(current_instruction[`IRAM_WORD_SIZE-1:`IRAM_WORD_SIZE-`OP_CODE_SIZE]===i_j)[*10] ) begin 
-			$display("Program in IRAM has ended",);
+		fork	
+			forever begin 
+				wait($changed(current_instruction))
+				print_current_instruction(current_opcode,current_opcode_func);
+				##2;
+			end
+		join_none
+	// wait unti the end of the program in iram
+	forever begin 
+		wait (end_seq.triggered)
+		if(end_seq.triggered) begin 
+			$display("Program in IRAM has ended @ %d",$time());
 			$finish();
-		end
-		else
-			$display("Something is wrong",);
-			##100;
-
+		end else begin 
+		##10; // execute 10 more cc
+		end 
 	end
+	end
+
+
+
 
 endprogram : test_dlx_top
 
@@ -100,6 +126,18 @@ module tb_dlx ();
 		$display("Starting simulated execution of the DLX",);
 		$display("Starting an amazing and very fancy testbench in System Verilog",);
 	end
+
+
+
+	//////////////////////////////////////////////////////////////////////////////
+	///// instantiate property and coverage groupd defined in property_def.svh ///
+	//////////////////////////////////////////////////////////////////////////////
+
+
+
+
+
+
 	/////////////////////////////////////
 	// instantiate the components ///////
 	/////////////////////////////////////
@@ -187,6 +225,7 @@ assign dram_if.rst=rst;
 
  test_dlx_top test_prog(.clk(clk),
  						.rst(rst),
+						.curr_state(curr_state_debug),
  						.current_instruction(iram_if.DATA));
 endmodule
 

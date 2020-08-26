@@ -11,6 +11,8 @@ add wave -noupdate -expand -group {Iram interface} /tb_dlx/iram_if/DATA
 add wave -noupdate -expand -group {Iram interface} /tb_dlx/iram_if/READNOTWRITE
 add wave -noupdate -expand -group {Iram interface} /tb_dlx/iram_if/INOUT_DATA
 add wave -noupdate -expand -group Instruction /tb_dlx/test_prog/current_instruction
+add wave -noupdate -expand -group Instruction /tb_dlx/test_prog/current_opcode
+add wave -noupdate /tb_dlx/test_prog/current_opcode_func
 add wave -noupdate -expand -group {Debug signal from CU} /tb_dlx/curr_state_debug
 add wave -noupdate -expand -group {Debug signal from CU} /tb_dlx/csr
 add wave -noupdate -expand -group {Debug signal from CU} -expand -group {Fetch stage} /tb_dlx/DEBUG_iram_ready_cu
@@ -40,7 +42,7 @@ add wave -noupdate -group {Dram interface} /tb_dlx/dram_if/DATA
 add wave -noupdate -group {Dram interface} /tb_dlx/dram_if/READNOTWRITE
 add wave -noupdate -group {Dram interface} /tb_dlx/dram_if/INOUT_DATA
 TreeUpdate [SetDefaultTree]
-WaveRestoreCursors {{Cursor 1} {34684 ps} 0}
+WaveRestoreCursors {{Cursor 1} {1797947 ps} 0}
 quietly wave cursor active 1
 configure wave -namecolwidth 229
 configure wave -valuecolwidth 100
@@ -56,4 +58,5 @@ configure wave -griddelta 40
 configure wave -timeline 0
 configure wave -timelineunits ps
 update
-WaveRestoreZoom {0 ps} {47250 ps}
+WaveRestoreZoom {1742968 ps} {1907032 ps}
+run 15000ns

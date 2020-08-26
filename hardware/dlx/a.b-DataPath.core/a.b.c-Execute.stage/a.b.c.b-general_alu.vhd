@@ -95,6 +95,9 @@ begin
     variable tmp                               : std_logic_vector(N-1 downto 0);
     variable check_mul_logic,check_mul_logic2 : std_logic := '1';
   begin
+	overflow<='0';
+	zero_mul_detect<='0';
+    mul_exeception <='0';
     case FUNC is
       when ADD => DATA2_I <= DATA2;
         OUTALU <= adder_out;
@@ -191,9 +194,6 @@ begin
           end if;
       when others => 
 			OUTALU<=(OTHERS=>'0');
-			overflow<='0';
-			zero_mul_detect<='0';
-		    mul_exeception <='0';
     end case;
   end process P_ALU;
 

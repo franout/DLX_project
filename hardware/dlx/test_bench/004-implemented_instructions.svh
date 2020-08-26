@@ -31,9 +31,10 @@ typedef enum bit_instr {
    i_slei= 6'h1c,
    i_slli= 6'h14,
    i_snei= 6'h19,
-   i_srli= 6'h26,
+   i_srli= 6'h16,
    i_subi=6'h0a,
    i_sw= 6'h2b,
+   i_ori=6'h0d,
    i_xori=6'h0e
 } instructions_opcode;
 

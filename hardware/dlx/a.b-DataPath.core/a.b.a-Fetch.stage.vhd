@@ -52,6 +52,7 @@ architecture structural of fetch_stage is
 	signal new_program_counter_val : std_logic_vector(PC_SIZE-1 downto 0);
 	signal program_counter_val     : std_logic_vector(PC_SIZE-1 downto 0);
 	signal instruction_reg_val     : std_logic_vector(IR_SIZE-1 downto 0);
+	signal 	curr_instruction_to_reg: std_logic_vector(IR_SIZE-1 downto 0);
 	signal restn                   : std_logic;
 begin
 
@@ -95,11 +96,12 @@ begin
 		port map (
 			clk   => clk,
 			reset => restn,
-			d     => IRAM_DATA,
+			d     => 	curr_instruction_to_reg,
 			Q     => instruction_reg_val
 		);
 
-
+	curr_instruction_to_reg<= IRAM_DATA when iram_enable_cu='1' else instruction_reg_val; -- looping on the stall
+	
 	curr_instruction <= instruction_reg_val; -- it has to go to the CU and part of it to the register file in the decode stage
 
 	IRAM_ENABLE <= iram_enable_cu; -- forward memory enable

@@ -92,7 +92,7 @@ architecture behavioural of control_unit is
   signal counter_mul,next_val_counter_mul : std_logic_vector(2 downto 0); -- 3 bit coutner for stall in mul instruction 
                                                                           -- a status register for possible overflow or write to forbidden registers
   signal csr_reg,next_value_csr : std_logic_vector(7 downto 0);
-
+  signal stall : std_logic:='0';
   -- constant signal assignement
   constant fetch_cmd : std_logic_vector(CW_SIZE-4-1 downto 0) := '1'&x"0000";
   constant ireg_cmd  : std_logic_vector(CW_SIZE-4-1 downto 0) := '1'&x"f013";
@@ -101,7 +101,7 @@ architecture behavioural of control_unit is
 begin
 
   ir_opcode <= curr_instruction_to_cu(IR_SIZE-1 downto IR_SIZE-OP_CODE_SIZE);
-  ir_func   <= curr_instruction_to_cu(OP_CODE_SIZE - 1 downto 0);
+  ir_func   <= curr_instruction_to_cu(OP_CODE_SIZE - 1 downto 0) ;
 
   -- simulation debug signals
   --synopsys translate_off
@@ -124,20 +124,22 @@ begin
   end process reg_state;
 
 
-  cl : process(curr_state , iram_ready_cu ,curr_instruction_to_cu,ir_opcode,ir_func,counter_mul,csr_reg)
+  cl : process(curr_state  ,curr_instruction_to_cu,ir_opcode,ir_func,counter_mul,csr_reg,stall)
   begin
     ------------------------------------------------------------------------------
     -- default signals assignment
     cmd_word             <= (OTHERS => '0');
     cmd_alu_op_type      <= (OTHERS => '0');
     next_value_csr (7 downto 3)<= (OTHERS => '0');
-    next_val_counter_mul <= (OTHERS => '0');
+	if(stall='0') then 
+	next_val_counter_mul <= (OTHERS => '0');
+	end if;
     ---------------------------------------------------------------------------------
     case (curr_state) is
       when fetch => next_state <= decode;
         cmd_word <= fetch_cmd;
       when decode =>
-        if(iram_ready_cu='1') then
+
           next_state <= decode;
           case (ir_opcode) is
             when i_regtype =>
@@ -148,7 +150,7 @@ begin
                                 -- see encoding in execute stage
                 when i_sub => cmd_alu_op_type <= x"1";
                   cmd_word <= '1'&x"f093"; --set carry iN
-                when i_mul =>
+                when i_mul  =>
                   cmd_alu_op_type <= x"2";
                   -- stall of 8 cc and a check in case of zero counter goes to 6 since the other 2 cc are include in the pipeline
                   if(unsigned(counter_mul)<6) then
@@ -157,13 +159,18 @@ begin
                       -- execptio or zero mul stop stall
                       cmd_word             <= ireg_cmd;
                       next_val_counter_mul <= (OTHERS => '0');
+						stall<='0';
                     else -- otherwise do not fetch 
-                      cmd_word             <= '0' & x"1010";
-                      next_val_counter_mul <= std_logic_vector(unsigned(counter_mul)+1);
+						if(stall='0') then                       
+						cmd_word             <= '0' & x"f013";
+							  stall<='1';
+						end if;
+                      next_val_counter_mul <= std_logic_vector(unsigned(counter_mul)+"01");
                     end if;
                   else
                     cmd_word             <= ireg_cmd ;
                     next_val_counter_mul <= (OTHERS => '0');
+					stall<='0';
                   end if;
                 when i_and => cmd_alu_op_type <= x"3";
                 when i_or  => cmd_alu_op_type <= x"4";
@@ -194,7 +201,7 @@ begin
             when i_jal =>
               -- R31 <-- PC + 4; PC <-- PC + imm26 + 4
               cmd_alu_op_type <= x"0"; -- addition of pc + immediate26+4
-              cmd_word        <= '1'&x"8713";
+              cmd_word        <= '1'&x"8733";
             when i_lw =>
               cmd_alu_op_type <= x"0"; -- addition of rs1 + imeediate16
               cmd_word        <= '1'&x"c91c";
@@ -284,14 +291,14 @@ begin
                 next_value_csr(7 downto 3) <= (OTHERS => '1');
               end if;
             when others =>
+				if(stall='1') then
+				next_state<=decode;
+			else
               next_state <= hang_error;
+			end if;
           end case;
 
-        else -- iram not ready
-          next_value_csr(7 downto 3) <= "10000";
-          next_state                 <= fetch;
-          cmd_word <= fetch_cmd;
-        end if;
+   
       when hang_error => next_state <= curr_state;
       when others     => cmd_word   <= (OTHERS => '0');
         next_state <= fetch;

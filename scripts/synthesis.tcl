@@ -83,7 +83,7 @@ puts "Synthesis push as much as possible the clock frequency i.e. until the slac
 # the first compilation step #
 # often this is the working clock period of your system #
 #set a 20% lower required time( float )  than maxpath
-set MAX_PATH_c [ get_timing_paths -delay_type max -nworst 1 -true -include_hierarchical_pins ]
+set MAX_PATH_c [ get_timing_paths -delay_type max -nworst 1  -include_hierarchical_pins ]
 
 #calculating the value of max_path in ns
 set mp_l [list]
@@ -100,7 +100,8 @@ set REQUIRED_TIME [ expr $mp_l*0.80 ]
 
 set_max_delay $REQUIRED_TIME -from [all_inputs] -to [all_outputs]
 # optimize
-compile_ultra -map_effort high
+# enable the scan insetion and evaluation of impact
+compile_ultra -scan 
 # save report
 report_timing > ./report/timing_report_dlx_irsize32_pcsize32_opt_20.rpt
 report_area > ./report/area_report_dlx_irsize32_pcsize32_opt_20.rpt
@@ -116,7 +117,7 @@ set REQUIRED_TIME [ expr $mp_l*0.90 ]
 
 set_max_delay $REQUIRED_TIME -from [all_inputs] -to [all_outputs]
 # optimize
-compile_ultra -map_effort high
+compile_ultra -scan
 # save report
 report_timing > ./report/timing_report_dlx_irsize32_pcsize32_opt_10.rpt
 report_area > ./report/area_report_dlx_irsize32_pcsize32_opt_10.rpt
@@ -133,7 +134,7 @@ set REQUIRED_TIME [ expr $mp_l*0.99 ]
 
 set_max_delay $REQUIRED_TIME -from [all_inputs] -to [all_outputs]
 # optimize
-compile_ultra -map_effort high
+compile_ultra -scan
 # save report
 report_timing > ./report/timing_report_dlx_irsize32_pcsize32_opt_1.rpt
 report_area > ./report/area_report_dlx_irsize32_pcsize32_opt_1.rpt
@@ -155,7 +156,7 @@ set REQUIRED_TIME [ expr $mp_l*0.80 ]
 
 set_max_delay $REQUIRED_TIME -from [all_inputs] -to [all_outputs]
 # optimize
-compile_ultra -map_effort high
+compile_ultra -scan
 # save report
 report_timing > ./report/timing_report_dlx_irsize32_pcsize32_opt_20_minarea.rpt
 report_area > ./report/area_report_dlx_irsize32_pcsize32_opt_20_minarea.rpt
@@ -171,7 +172,7 @@ set REQUIRED_TIME [ expr $mp_l*0.90 ]
 
 set_max_delay $REQUIRED_TIME -from [all_inputs] -to [all_outputs]
 # optimize
-compile_ultra -map_effort high
+compile_ultra -scan
 # save report
 report_timing > ./report/timing_report_dlx_irsize32_pcsize32_opt_10_minarea.rpt
 report_area > ./report/area_report_dlx_irsize32_pcsize32_opt_10_minarea.rpt
@@ -188,7 +189,7 @@ set REQUIRED_TIME [ expr $mp_l*0.99 ]
 
 set_max_delay $REQUIRED_TIME -from [all_inputs] -to [all_outputs]
 # optimize
-compile_ultra -map_effort high
+compile_ultra -scan
 # save report
 report_timing > ./report/timing_report_dlx_irsize32_pcsize32_opt_1_minarea.rpt
 report_area > ./report/area_report_dlx_irsize32_pcsize32_opt_1_minarea.rpt
