@@ -108,6 +108,7 @@ module tb_dlx ();
 	logic DEBUG_read_rf_p1;
 	logic DEBUG_read_rf_p2;
 	logic DEBUG_rtype_itypen;
+	logic DEBUG_update_pc_branch;
 	logic DEBUG_dram_enable_cu;
 	logic [0:0]DEBUG_sel_val_a;
 	logic [0:0]DEBUG_sel_val_b;
@@ -246,6 +247,7 @@ module tb_dlx ();
     .DEBUG_rtype_itypen(DEBUG_rtype_itypen),
 	.DEBUG_sel_val_a(DEBUG_sel_val_a),
     .DEBUG_sel_val_b(DEBUG_sel_val_b),
+	.DEBUG_update_pc_branch(DEBUG_update_pc_branch),
     .DEBUG_select_wb(DEBUG_select_wb),
     .DEBUG_dram_enable_cu(DEBUG_dram_enable_cu)
     //synthesis_translate on

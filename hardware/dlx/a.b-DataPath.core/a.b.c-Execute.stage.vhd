@@ -206,7 +206,7 @@ begin
 		);
 
 
-		-- delay register for pc
+		-- delay register for pc 
 	--	del_reg_pc : reg_nbit generic map (
 		--	N => N
 --		)

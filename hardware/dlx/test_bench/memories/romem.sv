@@ -51,8 +51,8 @@ int dummy; // for removing simulation warning
  end
 
 
-//always_ff @(posedge mif.clk) begin : proc_ram
-always_comb begin: proc_ram
+always_ff @(posedge mif.clk) begin : proc_ram
+//always_comb begin: proc_ram
 	if(!mif.rst) begin
 		// fill up the memory with the init file
 		
@@ -91,7 +91,7 @@ end
 
 
 assign mif.DATA_READY= mif.ENABLE?  valid:'0;
-assign mif.DATA= valid && mif.ENABLE ? data_out : 'Z;
+assign mif.DATA=  data_out;
 
 
 endmodule

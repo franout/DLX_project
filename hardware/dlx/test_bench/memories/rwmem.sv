@@ -72,8 +72,8 @@ task refresh_file;
 endtask : refresh_file
 
 
-//always_ff @(posedge memif.clk) begin : proc_ram
-always_comb begin : proc_ram
+always_ff @(posedge memif.clk) begin : proc_ram
+//always_comb begin : proc_ram
 	if(!memif.rst) begin
 		// fill up the memory with the init file
 		
@@ -100,25 +100,32 @@ always_comb begin : proc_ram
 		if (memif.ENABLE) begin
 			if(memif.READNOTWRITE) begin // read operation 
 				// byte selection
+				if(memif.ADDRESS >= 2**ADDRESS_SIZE*4-1) begin 
+						data_ir<='0;
+				end else begin 
 				case (memif.ADDRESS[1:0])
 					2'b01: data_ir<={24'd0,ram[{memif.ADDRESS[ADDRESS_SIZE-1:2],2'b00}+3]};// byte access
 					2'b10: data_ir<={16'd0,ram[{memif.ADDRESS[ADDRESS_SIZE-1:2],2'b00}+2],ram[{memif.ADDRESS[ADDRESS_SIZE-1:2],2'b00}+3]};// half word access
-					default: data_ir<={ram[memif.ADDRESS],ram[{memif.ADDRESS[ADDRESS_SIZE-1:2],2'b00}+1],ram[{memif.ADDRESS[ADDRESS_SIZE-1:2],2'b00}+2],ram[{memif.ADDRESS[ADDRESS_SIZE-1:2],2'b00}+3]};// word access 
+					default: data_ir<={ram[{memif.ADDRESS[ADDRESS_SIZE-1:2],2'b00}],ram[{memif.ADDRESS[ADDRESS_SIZE-1:2],2'b00}+1],ram[{memif.ADDRESS[ADDRESS_SIZE-1:2],2'b00}+2],ram[{memif.ADDRESS[ADDRESS_SIZE-1:2],2'b00}+3]};// word access 
 						
 				endcase;
+				end
 				valid='b1;
+				
 			end else begin  // write operation
 				data_ir<='Z;
+				if(memif.ADDRESS <= 2**ADDRESS_SIZE*4-1) begin 
 				// byte selection
 				case (memif.ADDRESS[1:0])
 					2'b01: ram[{memif.ADDRESS[ADDRESS_SIZE-1:2],2'b00}+3]<=data_iw[8:0];// byte access
 					2'b10: {ram[{memif.ADDRESS[ADDRESS_SIZE-1:2],2'b00}+2],ram[{memif.ADDRESS[ADDRESS_SIZE-1:2],2'b00}+3]}<=data_iw[16:0];// half word access
-					default: {ram[memif.ADDRESS],ram[{memif.ADDRESS[ADDRESS_SIZE-1:2],2'b00}+1],ram[{memif.ADDRESS[ADDRESS_SIZE-1:2],2'b00}+2],ram[{memif.ADDRESS[ADDRESS_SIZE-1:2],2'b00}+3]}<=data_iw; // word access
+					default: {ram[{memif.ADDRESS[ADDRESS_SIZE-1:2],2'b00}],ram[{memif.ADDRESS[ADDRESS_SIZE-1:2],2'b00}+1],ram[{memif.ADDRESS[ADDRESS_SIZE-1:2],2'b00}+2],ram[{memif.ADDRESS[ADDRESS_SIZE-1:2],2'b00}+3]}<=data_iw; // word access
 				endcase;
 				// refresh the content of the output file
 				fork 
 					refresh_file(FILE_PATH);
 				join_none
+				end
 				valid<='b1;
 			end 
 		end
@@ -127,8 +134,7 @@ end
 
 assign memif.DATA_READY= memif.ENABLE? valid: '0;
 
-
-assign data_iw= ~memif.READNOTWRITE && memif.ENABLE? memif.INOUT_DATA :'Z;
-assign memif.INOUT_DATA = memif.READNOTWRITE  && memif.ENABLE? data_ir :'Z;
+assign data_iw= ~memif.READNOTWRITE ?memif.INOUT_DATA :'Z;
+assign memif.INOUT_DATA = memif.READNOTWRITE? data_ir :'Z;
 
 endmodule : rwmem

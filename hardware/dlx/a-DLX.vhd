@@ -70,6 +70,7 @@ entity DLX is
     DEBUG_read_rf_p1       : out std_logic;
     DEBUG_read_rf_p2       : out std_logic;
     DEBUG_rtype_itypen     : out std_logic; 
+	DEBUG_update_pc_branch : out std_logic;
 	DEBUG_sel_val_a        :out std_logic_vector(0 downto 0); 
     DEBUG_sel_val_b        :out std_logic_vector(0 downto 0); 
     DEBUG_select_wb           :out std_logic_vector(0 downto 0); 
@@ -120,6 +121,7 @@ architecture dlx_rtl of DLX is
       dram_enable_cu : out std_logic;
       dram_r_nw_cu   : out std_logic;
       dram_ready_cu  : in  std_logic;
+      update_pc_branch: out std_logic;
       -- for write back stage  
       write_rf  : out std_logic;
       select_wb : out std_logic_vector(0 downto 0)
@@ -183,6 +185,7 @@ architecture dlx_rtl of DLX is
       dram_enable_cu : in  std_logic;
       dram_r_nw_cu   : in  std_logic;
       dram_ready_cu  : out std_logic;
+   	  update_pc_branch: in std_logic;
       -- for write back stage   
       select_wb : in std_logic_vector(0 downto 0)
 
@@ -194,7 +197,7 @@ architecture dlx_rtl of DLX is
   -- Internconnection Signals Declaration
   ----------------------------------------------------------------
   signal iram_ready_cu_i,iram_enable_cu_i,signed_notsigned_i,
-  compute_sext_i,write_rf_i,alu_cin_i,jump_sext_i,
+  compute_sext_i,write_rf_i,alu_cin_i,jump_sext_i,update_pc_branch_i,
   alu_overflow_i,zero_mul_detect_i,mul_exeception_i,
   dram_ready_cu_i,dram_r_nw_cu_i,enable_rf_i,read_rf_p1_i,read_rf_p2_i,rtype_itypen_i,
   dram_enable_cu_i                            : std_logic;
@@ -245,6 +248,7 @@ begin -- DLX
       dram_enable_cu => dram_enable_cu_i,
       dram_r_nw_cu   => dram_r_nw_cu_i,
       dram_ready_cu  => dram_ready_cu_i,
+	  update_pc_branch => update_pc_branch_i,
       -- for write back stage   
       select_wb  => select_wb_i
       -- simulation debug signals
@@ -305,6 +309,7 @@ begin -- DLX
       dram_enable_cu => dram_enable_cu_i,
       dram_r_nw_cu   => dram_r_nw_cu_i,
       dram_ready_cu  => dram_ready_cu_i,
+	  update_pc_branch => update_pc_branch_i,
       -- for write back stage   
       select_wb => select_wb_i
     );
@@ -328,6 +333,7 @@ begin -- DLX
   DEBUG_read_rf_p2       <= read_rf_p2_i;
   DEBUG_rtype_itypen     <= rtype_itypen_i;
   DEBUG_dram_enable_cu   <= dram_enable_cu_i;
+  DEBUG_update_pc_branch <= update_pc_branch_i;
   DEBUG_sel_val_a        <= sel_val_a_i ;
   DEBUG_sel_val_b        <= sel_val_b_i ;
     DEBUG_select_wb<= select_wb_i;

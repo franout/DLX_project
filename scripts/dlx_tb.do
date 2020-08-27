@@ -29,20 +29,24 @@ add wave -noupdate -expand -group {Debug signal from CU} -expand -group {Execute
 add wave -noupdate -expand -group {Debug signal from CU} -expand -group {Execute stage} /tb_dlx/DEBUG_alu_overflow
 add wave -noupdate -expand -group {Debug signal from CU} -expand -group {Execute stage} /tb_dlx/DEBUG_zero_mul_detect
 add wave -noupdate -expand -group {Debug signal from CU} -expand -group {Execute stage} /tb_dlx/DEBUG_mul_exeception
+add wave -noupdate -expand -group {Debug signal from CU} -expand -group {Execute stage} /tb_dlx/DEBUG_sel_val_b
+add wave -noupdate -expand -group {Debug signal from CU} -expand -group {Execute stage} /tb_dlx/DEBUG_sel_val_a
 add wave -noupdate -expand -group {Debug signal from CU} -expand -group {Memory stage} /tb_dlx/DEBUG_dram_ready_cu
+add wave -noupdate -expand -group {Debug signal from CU} -expand -group {Memory stage} /tb_dlx/DEBUG_update_pc_branch
 add wave -noupdate -expand -group {Debug signal from CU} -expand -group {Memory stage} /tb_dlx/DEBUG_dram_r_nw_cu
 add wave -noupdate -expand -group {Debug signal from CU} -expand -group {Memory stage} /tb_dlx/DEBUG_dram_enable_cu
 add wave -noupdate -expand -group {Debug signal from CU} -expand -group {Write back stage} /tb_dlx/DEBUG_write_rf
-add wave -noupdate -group {Dram interface} /tb_dlx/dram_if/clk
-add wave -noupdate -group {Dram interface} /tb_dlx/dram_if/rst
-add wave -noupdate -group {Dram interface} /tb_dlx/dram_if/ADDRESS
-add wave -noupdate -group {Dram interface} /tb_dlx/dram_if/ENABLE
-add wave -noupdate -group {Dram interface} /tb_dlx/dram_if/DATA_READY
-add wave -noupdate -group {Dram interface} /tb_dlx/dram_if/DATA
-add wave -noupdate -group {Dram interface} /tb_dlx/dram_if/READNOTWRITE
-add wave -noupdate -group {Dram interface} /tb_dlx/dram_if/INOUT_DATA
+add wave -noupdate -expand -group {Debug signal from CU} -expand -group {Write back stage} /tb_dlx/DEBUG_select_wb
+add wave -noupdate -expand -group {Dram interface} /tb_dlx/dram_if/clk
+add wave -noupdate -expand -group {Dram interface} /tb_dlx/dram_if/rst
+add wave -noupdate -expand -group {Dram interface} /tb_dlx/dram_if/ADDRESS
+add wave -noupdate -expand -group {Dram interface} /tb_dlx/dram_if/ENABLE
+add wave -noupdate -expand -group {Dram interface} /tb_dlx/dram_if/DATA_READY
+add wave -noupdate -expand -group {Dram interface} /tb_dlx/dram_if/DATA
+add wave -noupdate -expand -group {Dram interface} /tb_dlx/dram_if/READNOTWRITE
+add wave -noupdate -expand -group {Dram interface} /tb_dlx/dram_if/INOUT_DATA
 TreeUpdate [SetDefaultTree]
-WaveRestoreCursors {{Cursor 1} {1797947 ps} 0}
+WaveRestoreCursors {{Cursor 1} {1405000 ps} 0}
 quietly wave cursor active 1
 configure wave -namecolwidth 229
 configure wave -valuecolwidth 100
@@ -58,5 +62,5 @@ configure wave -griddelta 40
 configure wave -timeline 0
 configure wave -timelineunits ps
 update
-WaveRestoreZoom {1742968 ps} {1907032 ps}
-run 15000ns
+WaveRestoreZoom {1345729 ps} {1495246 ps}
+run -all

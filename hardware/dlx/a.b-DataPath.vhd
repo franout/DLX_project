@@ -71,6 +71,7 @@ entity DATAPATH is
 		dram_enable_cu : in  std_logic;
 		dram_r_nw_cu   : in  std_logic;
 		dram_ready_cu  : out std_logic;
+		update_pc_branch: in std_logic;
 		-- for write back stage   
 		select_wb : in std_logic_vector(0 downto 0)
 
@@ -92,8 +93,10 @@ architecture structural of DATAPATH is
 			rst : in std_logic;
 			--from  memory stage
 			new_pc_value_mem_stage : in std_logic_vector(PC_SIZE-1 downto 0);
+			branch_taken : in std_logic;
 			-- to decode stage
 			new_pc_value : out std_logic_vector(PC_SIZE-1 downto 0);
+
 			-- IRAM interface
 			IRAM_ADDRESS : out std_logic_vector( iram_address_size- 1 downto 0); -- the current PC value 
 			IRAM_ENABLE  : out std_logic;                                        -- from control unit
@@ -102,6 +105,7 @@ architecture structural of DATAPATH is
 			-- to/from control unit
 			curr_instruction : out std_logic_vector(IR_SIZE-1 downto 0);
 			iram_enable_cu   : in  std_logic;
+			update_pc_branch: in std_logic;
 			iram_ready_cu    : out std_logic
 		);
 	end component fetch_stage;
@@ -255,6 +259,7 @@ begin
 			rst => rst ,
 			--from  memory stage
 			new_pc_value_mem_stage => new_pc_value_mem_stage_i,
+				branch_taken => branch_condition_i(0),
 			-- to decode stage
 			new_pc_value => new_pc_value_decode,
 			-- IRAM interface
@@ -265,6 +270,7 @@ begin
 			-- to/from control unit
 			curr_instruction => curr_instruction_i,
 			iram_enable_cu   => iram_enable_cu,
+			update_pc_branch => update_pc_branch,
 			iram_ready_cu    => iram_ready_cu
 		);
 

@@ -74,6 +74,10 @@ architecture structural of decode_stage is
 	signal instruction_reg_i,address_rf_write,del_reg_wb_2,del_reg_wb_1   : std_logic_vector(f_log2(RF_REGS)-1 downto 0);
 	signal data_to_mux: std_logic_vector(N*2-1 downto 0);
 	signal sel_immediate: std_logic_vector(0 downto 0);
+
+	-- for delay pc in jal insturction
+	signal pc_delay1,pc_delay2,pc_delay3: std_logic_vector(N downto 0);
+	signal  reset_delay_pc:std_logic ;
 begin
 
 	rstn <= not(rst);
@@ -113,7 +117,7 @@ begin
 			Q     => address_rf_write
 		);
 
-	enable_rf_i<= (enable_rf or ('1' and write_rf)) when address_rf_write='1'&x"f" else enable_rf; -- we only write in the r31 with the jump instruction
+	enable_rf_i<= (enable_rf or write_rf); -- we only write in the r31 with the jump instruction
 	-- register file 
 	reg_file : register_file
 		generic map (
@@ -215,17 +219,31 @@ begin
 		);
 
 
-	-- delay register for new program counter 
+	-- delay register for new program counter for jal instruction 
 
-	--	delay_reg : reg_nbit generic map (
-		--	N => N
---		)
-	--	port map (
---			clk   => clk,
-	--		reset => rstn, -- reset is active high internally to the register
---			d     => new_prog_counter_val,
-	--		Q     => new_prog_counter_val_exe
-		--);
-	new_prog_counter_val_exe<=new_prog_counter_val;
+
+    reset_delay_pc<=rstn or ( not(jump_sext));
+	pc_delay1<= new_prog_counter_val & jump_sext;
+	delay_reg : reg_nbit generic map (
+	N => N +1 
+		)
+	port map (
+			clk   => clk,
+		reset => reset_delay_pc, -- reset is active high internally to the register
+			d     => pc_delay1,
+			Q     => pc_delay2
+		);
+	-- it actualy for the execute stage
+	delay_reg_2 : reg_nbit generic map (
+	N => N+1
+		)
+	port map (
+			clk   => clk,
+		reset => not(pc_delay2(0)), -- reset is active high internally to the register
+			d     => pc_delay2,
+			Q     => pc_delay3
+		);
+
+	new_prog_counter_val_exe<=new_prog_counter_val when pc_delay3(0)='0' else pc_delay3( N downto 1);
 
 end architecture ; -- structural

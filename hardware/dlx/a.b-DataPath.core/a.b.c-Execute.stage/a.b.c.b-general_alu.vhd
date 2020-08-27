@@ -58,7 +58,7 @@ architecture behavioural of general_alu is
   signal DATA2_I             : std_logic_vector(N-1 downto 0);
   signal data1_mul,data2_mul : std_logic_vector(N/2-1 downto 0);
   signal dataout_mul         : std_logic_vector(N-1 downto 0);
-  signal cout                : std_logic;
+  signal cout ,cout_i               : std_logic;
 
 	constant zero_concat : std_logic_vector(N-1 downto 0):=(OTHERS=>'0');
 begin
@@ -73,7 +73,7 @@ begin
       a    => DATA1,
       b    => DATA2_I,
       cin  => cin,
-      cout => cout,
+      cout => cout_i,
       s    => adder_out
     );
 
@@ -89,6 +89,11 @@ begin
       result       => dataout_mul
     );
 
+	-- latch for cout 
+	c_latch: process(cout_i)
+	begin 
+	cout<=cout_i;
+	end process c_latch;	
 
 
   P_ALU: process (FUNC, DATA1, DATA2,adder_out,dataout_mul,cout,signed_notsigned)

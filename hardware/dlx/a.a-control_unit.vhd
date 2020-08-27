@@ -27,7 +27,7 @@ entity control_unit is
     PC_SIZE : integer := 32;
     RF_REGS : integer := 32; -- number of register in register file
     IR_SIZE : integer := 32; -- Instruction Register Size    
-    CW_SIZE : integer := 21  -- Control Word Size
+    CW_SIZE : integer := 22  -- Control Word Size
   );
   port (
     clk : in std_logic;
@@ -60,6 +60,7 @@ entity control_unit is
     dram_enable_cu : out std_logic;
     dram_r_nw_cu   : out std_logic;
     dram_ready_cu  : in  std_logic;
+    update_pc_branch: out std_logic;
     -- for write back stage  
     write_rf  : out std_logic;
     select_wb : out std_logic_vector(0 downto 0)
@@ -94,9 +95,9 @@ architecture behavioural of control_unit is
   signal csr_reg,next_value_csr : std_logic_vector(7 downto 0);
   signal stall : std_logic:='0';
   -- constant signal assignement
-  constant fetch_cmd : std_logic_vector(CW_SIZE-4-1 downto 0) := '1'&x"0000";
-  constant ireg_cmd  : std_logic_vector(CW_SIZE-4-1 downto 0) := '1'&x"f013";
-  constant imm_cmd   : std_logic_vector(CW_SIZE-4-1 downto 0) := '1'&x"a913";
+  constant fetch_cmd : std_logic_vector(CW_SIZE-4-1 downto 0) := '1'&x"0000"&'0';
+  constant ireg_cmd  : std_logic_vector(CW_SIZE-4-1 downto 0) := '1'&x"f013"&'0';
+  constant imm_cmd   : std_logic_vector(CW_SIZE-4-1 downto 0) := '1'&x"a913"&'0';
 
 begin
 
@@ -140,7 +141,7 @@ begin
         cmd_word <= fetch_cmd;
       when decode =>
 
-          next_state <= decode;
+          next_state <= fetch;
           case (ir_opcode) is
             when i_regtype =>
               cmd_word <= ireg_cmd;
@@ -149,7 +150,7 @@ begin
               case (ir_func) is -- upper bits are unused in this configuration
                                 -- see encoding in execute stage
                 when i_sub => cmd_alu_op_type <= x"1";
-                  cmd_word <= '1'&x"f093"; --set carry iN
+                  cmd_word <= '1'&x"f093"&'0'; --set carry iN
                 when i_mul  =>
                   cmd_alu_op_type <= x"2";
                   -- stall of 8 cc and a check in case of zero counter goes to 6 since the other 2 cc are include in the pipeline
@@ -162,7 +163,7 @@ begin
 						stall<='0';
                     else -- otherwise do not fetch 
 						if(stall='0') then                       
-						cmd_word             <= '0' & x"f013";
+						cmd_word             <= '0' & x"f013"&'0';
 							  stall<='1';
 						end if;
                       next_val_counter_mul <= std_logic_vector(unsigned(counter_mul)+"01");
@@ -191,25 +192,25 @@ begin
               end if;
             when i_beqz =>
               cmd_alu_op_type <= x"0";        -- addition of pc +4 + immediate16
-              cmd_word        <= '1'&x"cb30"; --==0
+              cmd_word        <= '1'&x"cb30"&'0'; --==0
             when i_benz =>
               cmd_alu_op_type <= x"0";        -- addition of pc +4 + immediate16
-              cmd_word        <= '1'&x"cb50"; --!=0
+              cmd_word        <= '1'&x"cb50"&'0'; --!=0
             when i_j =>
               cmd_alu_op_type <= x"0"; -- addition of pc +4 + immediate26
-              cmd_word        <= '1'&x"0b30";
+              cmd_word        <= '0'&x"0750"&'1';
             when i_jal =>
               -- R31 <-- PC + 4; PC <-- PC + imm26 + 4
               cmd_alu_op_type <= x"0"; -- addition of pc + immediate26+4
-              cmd_word        <= '1'&x"8733";
+              cmd_word        <= '0'&x"8753"&'1';
             when i_lw =>
               cmd_alu_op_type <= x"0"; -- addition of rs1 + imeediate16
-              cmd_word        <= '1'&x"c91c";
+              cmd_word        <= '1'&x"c91d"&'0';
             when i_sw =>
               cmd_alu_op_type <= x"0";
-              cmd_word        <= '1'&x"e918"; -- write to memory
+              cmd_word        <= '1'&x"e918"&'0'; -- write to memory
             when i_nop =>
-              cmd_word <= '1'&x"0000";
+              cmd_word <= '1'&x"0000"&'0';
             when i_addi =>
               cmd_alu_op_type <= (OTHERS => '0');
               cmd_word        <= imm_cmd;
@@ -276,7 +277,7 @@ begin
               end if;
             when i_subi =>
               cmd_alu_op_type <= x"1";
-              cmd_word        <= '1' &x"a993";
+              cmd_word        <= '1' &x"a993"&'0';
               -- check if r0 is a dest address 
               if(unsigned(curr_instruction_to_cu(20 downto 16))=0) then
                 next_state                 <= hang_error;
@@ -291,11 +292,9 @@ begin
                 next_value_csr(7 downto 3) <= (OTHERS => '1');
               end if;
             when others =>
-				if(stall='1') then
 				next_state<=decode;
-			else
-              next_state <= hang_error;
-			end if;
+				-- do a nop
+		       cmd_word <= '1'&x"0000"&'0';
           end case;
 
    
@@ -329,37 +328,38 @@ begin
   -- for fetch stage
   iram_enable_cu <= cmd_word_to_reg(CW_SIZE -1);
   -- for decode stage
-  enable_rf    <= cw2(CW_SIZE-2);
-  read_rf_p1   <= cw2(CW_SIZE-3);
-  read_rf_p2   <= cw2(CW_SIZE-4);
-  rtype_itypen <= cw2(CW_SIZE-5);
-  compute_sext <= cw2(CW_SIZE-6);
-  jump_sext    <= cw2(CW_SIZE-7);
+  enable_rf    <= cw1(CW_SIZE-2);
+  read_rf_p1   <= cw1(CW_SIZE-3);
+  read_rf_p2   <= cw1(CW_SIZE-4);
+  rtype_itypen <= cw1(CW_SIZE-5);
+  compute_sext <= cw1(CW_SIZE-6);
+  jump_sext    <= cw1(CW_SIZE-7);
   -- for execute stage
-  sel_val_a (0)      <= cw3 (CW_SIZE-8);
-  sel_val_b (0)      <= cw3 (CW_SIZE-9);
-  alu_cin            <= cw3(CW_SIZE-10);
-  evaluate_branch(1) <= cw3(CW_SIZE-11); --!=0
-  evaluate_branch(0) <= cw3(CW_SIZE-12); -- ==0
-  signed_notsigned   <= cw3(CW_SIZE-13);
-  alu_op_type        <= cw3(3 downto 0); -- it is better to cancatenate it at the end
-                                         -- for memory stage
-  dram_enable_cu <= cw4(CW_SIZE-14);
-  dram_r_nw_cu   <= cw4(CW_SIZE-15);
+  sel_val_a (0)      <= cw2 (CW_SIZE-8);
+  sel_val_b (0)      <= cw2 (CW_SIZE-9);
+  alu_cin            <= cw2(CW_SIZE-10);
+  evaluate_branch(1) <= cw2(CW_SIZE-11); --!=0
+  evaluate_branch(0) <= cw2(CW_SIZE-12); -- ==0
+  signed_notsigned   <= cw2(CW_SIZE-13);
+  alu_op_type        <= cw2(3 downto 0); -- it is better to cancatenate it at the end
+  -- for memory stage
+  dram_enable_cu <= cw3(CW_SIZE-14);
+  dram_r_nw_cu   <= cw3(CW_SIZE-15);
+  update_pc_branch <= cw3(CW_SIZE -18);
   -- for write back stage   
-  select_wb(0) <= cw5(CW_SIZE-16);
-  write_rf     <= cw5(CW_SIZE-17);
+  select_wb(0) <= cw4(CW_SIZE-16);
+  write_rf     <= cw4(CW_SIZE-17);
 
   -- delay register for command word
-  --    f_reg : reg_nbit generic map (
-  --      N => CW_SIZE
-  --    )
-  --    port map (
-  --      clk   => clk,
-  --      reset => rstn, -- reset is active high internally to the register
-  --      d     => cmd_word_to_reg,
-  --      Q     => cw1
-  --    );
+      f_reg : reg_nbit generic map (
+        N => CW_SIZE
+      )
+      port map (
+        clk   => clk,
+        reset => rstn, -- reset is active high internally to the register
+        d     => cmd_word_to_reg,
+        Q     => cw1
+      );
 
     d_reg : reg_nbit generic map (
       N => CW_SIZE
@@ -367,7 +367,7 @@ begin
     port map (
       clk   => clk,
       reset => rstn, -- reset is active high internally to the register
-      d     => cmd_word_to_reg,
+      d     => cw1,
       Q     => cw2
     );
 
@@ -393,10 +393,10 @@ begin
 
     wb_reg : reg_nbit generic map (
       N => CW_SIZE
-    )
-    port map (
+  )
+ port map (
       clk   => clk,
-      reset => rstn, -- reset is active high internally to the register
+     reset => rstn, -- reset is active high internally to the register
       d     => cw4,
       Q     => cw5
     );

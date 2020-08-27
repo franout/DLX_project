@@ -50,7 +50,7 @@ package globals is
     constant jump_address_length           : integer := 26;    -- for J-type instruction  
     constant OP_CODE_SIZE                  : integer := 6;     -- OPCODE field size
     constant FUNC_SIZE                     : integer := 11;    -- FUNC field size
-    constant tot_cu_sign                   : integer := 21;    -- number of total signoal (I/O) of control unit
+    constant tot_cu_sign                   : integer := 22;    -- number of total signoal (I/O) of control unit
 
     -- definition for data
     constant data_size : integer := 32;
