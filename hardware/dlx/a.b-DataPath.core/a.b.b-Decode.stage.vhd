@@ -176,7 +176,7 @@ begin
 		);
 
 		 --for distinguish between j and jal ( jal requires to write the return address in r31)
-		enable_sign_extension_logic<= jump_sext and(not(enable_rf) or ( not(read_rf_p1) and  not(read_rf_p2))) and not(compute_sext);
+		enable_sign_extension_logic<= jump_sext and(not(enable_rf) or ( not(read_rf_p1) and  not(read_rf_p2))) and compute_sext;
 
 		sign_extension_logic_jump: sign_extension generic map (
 			N => N, 

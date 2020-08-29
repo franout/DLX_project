@@ -168,18 +168,15 @@ begin
                     -- check if there are some exception in the mul
                     if( csr_reg(1)='1'or csr_reg(2)='1' ) then --
                       -- execptio or zero mul stop stall
-                      cmd_word             <= ireg_cmd;
                       next_val_counter_mul <= (OTHERS => '0');
 						next_stall<='0';
                     else -- otherwise do not fetch 
 						if(stall='0') then                       
-						cmd_word             <= '0' & x"f013"&'0';-- TODO check 
 						next_stall<='1';
 						end if;
                       next_val_counter_mul <= std_logic_vector(unsigned(counter_mul)+"01");
                     end if;
                   else
-                    cmd_word             <= ireg_cmd ;
                     next_val_counter_mul <= (OTHERS => '0');
 					next_stall<='0';
                   end if;
@@ -208,11 +205,11 @@ begin
               cmd_word        <= '1'&x"cb50"&'1'; --!=0
             when i_j =>
               cmd_alu_op_type <= x"0"; -- addition of pc +4 + immediate26
-              cmd_word        <= '1'&x"0b30"&'1';
+              cmd_word        <= '1'&x"0f30"&'1';
             when i_jal =>
               -- R31 <-- PC + 4; PC <-- PC + imm26 + 4
               cmd_alu_op_type <= x"0"; -- addition of pc + immediate26+4
-              cmd_word        <= '1'&x"0b33"&'1';
+              cmd_word        <= '1'&x"0f33"&'1';
             when i_lw =>
               cmd_alu_op_type <= x"0"; -- addition of rs1 + imeediate16
               cmd_word        <= '1'&x"c91d"&'0';
@@ -304,8 +301,9 @@ begin
             when others =>
 				next_state<=decode;
 				-- do a nop
-		
+				if(stall='0')then 
 		       cmd_word <= '1'&x"0000"&'0';
+				end if;
           end case;   
       when hang_error => next_state <= curr_state;
       when others     => cmd_word   <= (OTHERS => '0');
@@ -335,9 +333,9 @@ begin
   --------------------------------------------------------------------------------
   -- command word distribution signals 
   -- for fetch stage
-  iram_enable_cu <= cmd_word_to_reg(CW_SIZE -1);
+  iram_enable_cu <= cmd_word_to_reg(CW_SIZE -1) when stall='0' else '0';-- do not fetch instruction in stall
   -- for decode stage
-  enable_rf    <= cmd_word_to_reg(CW_SIZE-2);
+  enable_rf    <= cmd_word_to_reg(CW_SIZE-2) ;
   read_rf_p1   <= cmd_word_to_reg(CW_SIZE-3);
   read_rf_p2   <= cmd_word_to_reg(CW_SIZE-4);
   rtype_itypen <= cmd_word_to_reg(CW_SIZE-5);

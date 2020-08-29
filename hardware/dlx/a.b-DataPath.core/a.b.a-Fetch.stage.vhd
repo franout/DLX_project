@@ -107,7 +107,7 @@ begin
 			Q     => instruction_reg_val
 		);
 
-	curr_instruction_to_reg<= IRAM_DATA when stall='0' else instruction_reg_val;
+	curr_instruction_to_reg<= IRAM_DATA ;
 	
 	curr_instruction <= instruction_reg_val; -- it has to go to the CU and part of it to the register file in the decode stage
 

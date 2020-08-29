@@ -90,6 +90,7 @@ vlog -incr ${path_to_file}test_bench/tb_dlx.sv
 
 echo "Starting simulation of dlx top level entity"
 ## need a do file and a waveform file
-vsim  -suppress 12110 -novopt work.tb_dlx -do ./scripts/dlx_tb.do  
+## suppress novopt error and metavalue warnings
+vsim  -suppress 12110 -suppress 8664 -novopt work.tb_dlx -do ./scripts/dlx_tb.do  
 
 rm -rf ./work
