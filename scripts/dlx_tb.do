@@ -8,8 +8,6 @@ add wave -noupdate -expand -group {Iram interface} /tb_dlx/iram_if/ADDRESS
 add wave -noupdate -expand -group {Iram interface} /tb_dlx/iram_if/ENABLE
 add wave -noupdate -expand -group {Iram interface} /tb_dlx/iram_if/DATA_READY
 add wave -noupdate -expand -group {Iram interface} /tb_dlx/iram_if/DATA
-add wave -noupdate -expand -group {Iram interface} /tb_dlx/iram_if/READNOTWRITE
-add wave -noupdate -expand -group {Iram interface} /tb_dlx/iram_if/INOUT_DATA
 add wave -noupdate -expand -group Instruction /tb_dlx/test_prog/current_instruction
 add wave -noupdate -expand -group Instruction /tb_dlx/test_prog/current_opcode
 add wave -noupdate /tb_dlx/test_prog/current_opcode_func
@@ -42,11 +40,10 @@ add wave -noupdate -expand -group {Dram interface} /tb_dlx/dram_if/rst
 add wave -noupdate -expand -group {Dram interface} /tb_dlx/dram_if/ADDRESS
 add wave -noupdate -expand -group {Dram interface} /tb_dlx/dram_if/ENABLE
 add wave -noupdate -expand -group {Dram interface} /tb_dlx/dram_if/DATA_READY
-add wave -noupdate -expand -group {Dram interface} /tb_dlx/dram_if/DATA
 add wave -noupdate -expand -group {Dram interface} /tb_dlx/dram_if/READNOTWRITE
 add wave -noupdate -expand -group {Dram interface} /tb_dlx/dram_if/INOUT_DATA
 TreeUpdate [SetDefaultTree]
-WaveRestoreCursors {{Cursor 1} {1405000 ps} 0}
+WaveRestoreCursors {{Cursor 1} {1645000 ps} 0}
 quietly wave cursor active 1
 configure wave -namecolwidth 229
 configure wave -valuecolwidth 100
@@ -62,5 +59,5 @@ configure wave -griddelta 40
 configure wave -timeline 0
 configure wave -timelineunits ps
 update
-WaveRestoreZoom {1345729 ps} {1495246 ps}
+WaveRestoreZoom {1536209 ps} {1753028 ps}
 run -all

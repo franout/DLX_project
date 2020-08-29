@@ -69,7 +69,7 @@ nop
 sw 150(r0);r17
 ;; test -->xori!
 nop
-xor r18,r15,#11
+xori r18,r15,#11
 nop
 sw 160(r0),r18
 ;; test integer mul
@@ -90,10 +90,12 @@ sw 40(r3),r22
 add r1,r0,r0
 ;; add loop of addition for checking the result of mult
 loop:
-add r1,r21,r0
+nop
+nop
+add r1,r21,r1
+nop
 nop
 subi r20,r20,#1
-nop
 bnez r20,loop
 nop
 nop
@@ -115,6 +117,13 @@ nop
 ;; test -->beqz!
 beqz r0,true1
 false1:
+nop
+nop
+nop
+add r1,r0,r0
+nop
+nop
+nop
 sw 40(r3),r22
 true1:
 ;; test -->sge!

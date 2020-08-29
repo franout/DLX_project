@@ -74,10 +74,10 @@ architecture structural of decode_stage is
 	signal instruction_reg_i,address_rf_write,del_reg_wb_2,del_reg_wb_1   : std_logic_vector(f_log2(RF_REGS)-1 downto 0);
 	signal data_to_mux: std_logic_vector(N*2-1 downto 0);
 	signal sel_immediate: std_logic_vector(0 downto 0);
-
+	signal update_reg_value_i :  std_logic_vector(N-1 downto 0);
 	-- for delay pc in jal insturction
 	signal pc_delay1,pc_delay2,pc_delay3: std_logic_vector(N downto 0);
-	signal  reset_delay_pc:std_logic ;
+	signal  reset_delay_pc,reset_delay_pc2:std_logic ;
 begin
 
 	rstn <= not(rst);
@@ -134,7 +134,7 @@ begin
 			ADD_WR  => address_rf_write,
 			ADD_RD1 => instruction_reg(25 downto 21), --(6 to 10),
 			ADD_RD2 => instruction_reg(20 downto 16), --(11 to 15),
-			DATAIN  => update_reg_value,
+			DATAIN  => update_reg_value_i,
 			OUT1    => val_reg_a_i,
 			OUT2    => val_reg_b_i
 		);
@@ -222,28 +222,31 @@ begin
 	-- delay register for new program counter for jal instruction 
 
 
-    reset_delay_pc<=rstn or ( not(jump_sext));
+
 	pc_delay1<= new_prog_counter_val & jump_sext;
-	delay_reg : reg_nbit generic map (
-	N => N +1 
+	pc_delay_reg1 : reg_nbit generic map (
+	N => N +1
 		)
 	port map (
 			clk   => clk,
-		reset => reset_delay_pc, -- reset is active high internally to the register
+		reset => rstn, -- reset is active high internally to the register
 			d     => pc_delay1,
 			Q     => pc_delay2
 		);
+	
 	-- it actualy for the execute stage
-	delay_reg_2 : reg_nbit generic map (
+	pc_delay_reg_2 : reg_nbit generic map (
 	N => N+1
 		)
 	port map (
 			clk   => clk,
-		reset => not(pc_delay2(0)), -- reset is active high internally to the register
+		reset =>rstn, -- reset is active high internally to the register
 			d     => pc_delay2,
 			Q     => pc_delay3
 		);
 
 	new_prog_counter_val_exe<=new_prog_counter_val when pc_delay3(0)='0' else pc_delay3( N downto 1);
 
+	-- mux between value from wb and pc for jal instr
+	update_reg_value_i<= pc_delay3( N downto 1) when  address_rf_write='1'&x"f" else update_reg_value;
 end architecture ; -- structural

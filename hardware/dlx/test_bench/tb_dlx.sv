@@ -36,7 +36,7 @@ assign 	current_opcode_func= (instructions_regtype_opcode'(current_instruction[`
 
 sequence end_seq;
 	@(test_clk_prog)
-		(curr_state===hang_error)[*5];
+		(current_instruction==='Z || current_instruction==='x)[*5];
 endsequence;
 
 

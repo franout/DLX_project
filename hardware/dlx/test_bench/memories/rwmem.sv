@@ -9,7 +9,7 @@
 // Create : 2020-07-21 19:00:09
 // Revise : 2020-08-06 19:20:08
 // Editor : sublime text3, tab size (4)
-// Description: 
+// Description: sample the address and the write value on posedge kick out the value read at negedge
 // -----------------------------------------------------------------------------
 `timescale 1ns/1ps
 
@@ -31,6 +31,8 @@ logic [WORD_SIZE/4-1:0] ram [0:2**ADDRESS_SIZE*4-1];
 logic [WORD_SIZE-1:0] data_ir;
 logic [WORD_SIZE-1:0] data_iw;
 logic valid;
+logic r_w;
+logic enable;
 // for file operations
 // 1. Declare an integer variable to hold the file descriptor
 int fd;
@@ -55,7 +57,7 @@ task refresh_file;
 		//$display("in the task");
 		fd = $fopen (FILE_PATH_TASK, "w");
 		if (fd) begin 
-		 $display("File was opened successfully : %0d", fd);
+		 $display("File was opened successfully : %0d --> Refreshing dram memory file", fd);
 		end else begin 
 			$display("Output File was NOT opened successfully : %0d", fd);
 		    `ifndef VIVADO_SIM
@@ -71,9 +73,8 @@ task refresh_file;
 		end
 endtask : refresh_file
 
-
-always_ff @(posedge memif.clk) begin : proc_ram
-//always_comb begin : proc_ram
+/* sample address and save into memory */
+always_ff @(posedge memif.clk or negedge memif.clk) begin : proc_ram_s
 	if(!memif.rst) begin
 		// fill up the memory with the init file
 		
@@ -96,10 +97,14 @@ always_ff @(posedge memif.clk) begin : proc_ram
     	// 3. Close the file descriptor
 		$fclose(fd);
 		valid<='b0;
+		r_w<='1;
+		enable<='0;
 	end else begin
 		if (memif.ENABLE) begin
-			if(memif.READNOTWRITE) begin // read operation 
+			if(memif.READNOTWRITE ) begin // read operation 
 				// byte selection
+				r_w<='1;
+				enable<='1;
 				if(memif.ADDRESS >= 2**ADDRESS_SIZE*4-1) begin 
 						data_ir<='0;
 				end else begin 
@@ -112,8 +117,10 @@ always_ff @(posedge memif.clk) begin : proc_ram
 				end
 				valid='b1;
 				
-			end else begin  // write operation
+			end else if (!memif.READNOTWRITE  )  begin  // write operation
 				data_ir<='Z;
+				enable<='1;
+					r_w<='0;
 				if(memif.ADDRESS <= 2**ADDRESS_SIZE*4-1) begin 
 				// byte selection
 				case (memif.ADDRESS[1:0])
@@ -128,13 +135,20 @@ always_ff @(posedge memif.clk) begin : proc_ram
 				end
 				valid<='b1;
 			end 
-		end
+		end else begin 
+			enable<='0;
+			valid<='0;
+			data_ir<='0;
+			r_w<='1;
+		end 
 	end
 end
 
-assign memif.DATA_READY= memif.ENABLE? valid: '0;
 
-assign data_iw= ~memif.READNOTWRITE ?memif.INOUT_DATA :'Z;
-assign memif.INOUT_DATA = memif.READNOTWRITE? data_ir :'Z;
+
+assign memif.DATA_READY=valid;
+
+assign data_iw= ~memif.READNOTWRITE  && memif.ENABLE ? memif.INOUT_DATA :'Z; // cause it sample directly when we have the address
+assign memif.INOUT_DATA = 	r_w && enable ? data_ir :'Z; // one cc of delay
 
 endmodule : rwmem

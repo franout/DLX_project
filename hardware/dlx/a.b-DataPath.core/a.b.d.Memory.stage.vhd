@@ -100,17 +100,17 @@ begin
 			d     => alu_output_val,
 			Q     => data_from_alu
 		);
+	
 
-
-	DRAM_ADDRESS( dram_address_size-1 downto 2)      <= alu_output_val( dram_address_size-1 downto 2); -- computed address, dllx is computing memory addresses on 32 bit. however 32 bit in sv for the memory cause an overflow so it is 16 bit address
+	DRAM_ADDRESS( dram_address_size-1 downto 2)      <= alu_output_val( dram_address_size-1 downto 2) when DRAM_ENABLE='1' else (OTHERS=>'Z'); -- computed address, dllx is computing memory addresses on 32 bit. however 32 bit in sv for the memory cause an overflow so it is 16 bit address
 	DRAM_ADDRESS (1 downto 0)<= (OTHERS=>'0'); -- for correct allignment of memory access
 	DRAM_ENABLE       <= dram_enable_cu;
 	DRAM_READNOTWRITE <= dram_r_nw_cu;
 	dram_ready_cu     <= DRAM_READY;
 
 
-	data_ir <= DRAM_DATA when dram_r_nw_cu='1' ;
+	data_ir <= DRAM_DATA when DRAM_READY='1' else (OTHERS=>'0');
 
-	DRAM_DATA <= value_to_mem when dram_r_nw_cu='0' else (OTHERS => 'Z');
+	DRAM_DATA <= value_to_mem when dram_r_nw_cu='0'and DRAM_ENABLE='1' else (OTHERS => 'Z');
 
 end architecture ; -- structural

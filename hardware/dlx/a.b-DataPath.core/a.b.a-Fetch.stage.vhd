@@ -44,6 +44,7 @@ entity fetch_stage is
 		curr_instruction : out std_logic_vector(IR_SIZE-1 downto 0);
 		iram_enable_cu   : in  std_logic;
 		update_pc_branch : in std_logic;
+		stall : in std_logic;
 		iram_ready_cu    : out std_logic
 	) ;
 end entity ; -- fetch_stage
@@ -106,7 +107,7 @@ begin
 			Q     => instruction_reg_val
 		);
 
-	curr_instruction_to_reg<= IRAM_DATA;
+	curr_instruction_to_reg<= IRAM_DATA when stall='0' else instruction_reg_val;
 	
 	curr_instruction <= instruction_reg_val; -- it has to go to the CU and part of it to the register file in the decode stage
 

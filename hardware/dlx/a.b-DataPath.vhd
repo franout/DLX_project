@@ -46,6 +46,7 @@ entity DATAPATH is
 		-- for fetch stage
 		iram_enable_cu         : in  std_logic;
 		iram_ready_cu          : out std_logic;
+		stall : in std_logic;
 		curr_instruction_to_cu : out std_logic_vector(PC_SIZE-1 downto 0);
 		-- for decode stage
 		enable_rf    : in std_logic;
@@ -106,6 +107,7 @@ architecture structural of DATAPATH is
 			curr_instruction : out std_logic_vector(IR_SIZE-1 downto 0);
 			iram_enable_cu   : in  std_logic;
 			update_pc_branch: in std_logic;
+			stall : in std_logic;
 			iram_ready_cu    : out std_logic
 		);
 	end component fetch_stage;
@@ -271,6 +273,7 @@ begin
 			curr_instruction => curr_instruction_i,
 			iram_enable_cu   => iram_enable_cu,
 			update_pc_branch => update_pc_branch,
+			stall => stall,
 			iram_ready_cu    => iram_ready_cu
 		);
 

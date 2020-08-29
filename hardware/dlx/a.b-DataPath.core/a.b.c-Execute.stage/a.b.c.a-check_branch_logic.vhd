@@ -35,6 +35,7 @@ begin
 	logic        : process( input_val,enable )
 		variable tmp : std_logic := '1';
 	begin
+		tmp:='1';
 		if(enable='1') then
 			check_logic : for i in 0 to N-1 loop
 				tmp := tmp and not(input_val(i));

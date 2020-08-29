@@ -97,6 +97,7 @@ architecture dlx_rtl of DLX is
       iram_enable_cu         : out std_logic;
       iram_ready_cu          : in  std_logic;
       curr_instruction_to_cu : in  std_logic_vector(IR_SIZE-1 downto 0);
+	  stall_pip : out std_logic;
       -- for decode stage
       enable_rf  : out std_logic; -- used as enable for sign26 extention when equal to 0
       read_rf_p1 : out std_logic; -- if read_rf_p1/2 are both zero it is a jal instruction write address -> 31
@@ -160,6 +161,7 @@ architecture dlx_rtl of DLX is
       -- for fetch stage
       iram_enable_cu         : in  std_logic;
       iram_ready_cu          : out std_logic;
+      stall : in std_logic;
       curr_instruction_to_cu : out std_logic_vector(PC_SIZE-1 downto 0);
       -- for decode stage
       enable_rf    : in std_logic;
@@ -198,7 +200,7 @@ architecture dlx_rtl of DLX is
   ----------------------------------------------------------------
   signal iram_ready_cu_i,iram_enable_cu_i,signed_notsigned_i,
   compute_sext_i,write_rf_i,alu_cin_i,jump_sext_i,update_pc_branch_i,
-  alu_overflow_i,zero_mul_detect_i,mul_exeception_i,
+  alu_overflow_i,zero_mul_detect_i,mul_exeception_i,stall_i,
   dram_ready_cu_i,dram_r_nw_cu_i,enable_rf_i,read_rf_p1_i,read_rf_p2_i,rtype_itypen_i,
   dram_enable_cu_i                            : std_logic;
   signal evaluate_branch_i                    : std_logic_vector(1 downto 0);
@@ -225,6 +227,7 @@ begin -- DLX
       iram_enable_cu         => iram_enable_cu_i,
       iram_ready_cu          => iram_ready_cu_i,
       curr_instruction_to_cu => curr_instruction_to_cu_i,
+	  stall_pip => stall_i,
       -- for decode stage
       enable_rf    => enable_rf_i,
       read_rf_p1   => read_rf_p1_i,
@@ -285,6 +288,7 @@ begin -- DLX
       -- for fetch stage
       iram_enable_cu         => iram_enable_cu_i,
       iram_ready_cu          => iram_ready_cu_i,
+      stall => stall_i,
       curr_instruction_to_cu => curr_instruction_to_cu_i,
       -- for decode stage
       enable_rf    => enable_rf_i,
