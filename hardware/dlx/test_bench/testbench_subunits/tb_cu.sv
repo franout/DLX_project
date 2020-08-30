@@ -227,15 +227,15 @@ localparam clock_period= 10ns;
     assign dram_ready_cu=1;
 
   	// property definition
-    property multiplication_stall;
-        @(test_clk)
-            disable iff(!rst || !zero_mul_detect || !mul_exeception )
-				(alu_op_type===MULT) |-> !iram_enable_cu[*6];// no fetching for 6 cc
-    endproperty;
+     property multiplication_stall;
+        @(test_dlx)
+            disable iff(!rst && !zero_mul_detect && !mul_exeception )
+                (ireg_instr===i_mul) |-> !iram_enable_cu[*9];// no fetching for 9 cc
+    endproperty; 
 
   /* sequence for reg type instructions*/
     sequence ireg_decode;
-        ##1  enable_rf && read_rf_p1 && read_rf_p2 && rtype_itypen_i && !compute_sext && !jump_sext;
+        ##1  enable_rf && read_rf_p1 && read_rf_p2 && rtype_itypen && !compute_sext && !jump_sext;
     endsequence ;
 
     sequence ireg_execute(cin);
@@ -251,11 +251,11 @@ localparam clock_period= 10ns;
     endsequence ;
 /*sequence for immediate instruction */
     sequence itype_decode;
-        ##1  enable_rf && read_rf_p1 && !read_rf_p2 && !rtype_itypen_i && compute_sext && !jump_sext;
+        ##1  enable_rf && read_rf_p1 && !read_rf_p2 && !rtype_itypen && compute_sext && !jump_sext;
     endsequence ;
 
     sequence itype_execute;
-        ##1 !sel_val_a[0] && sel_val_b[0] && !alu_cin && !evaluate_branch[1] && !evaluate_branch[0] && signed_notsigned ;
+        ##1 !sel_val_a[0] && sel_val_b[0]  && !evaluate_branch[1] && !evaluate_branch[0] && signed_notsigned ;
     endsequence ;
 
     sequence itype_memory;
@@ -267,11 +267,11 @@ localparam clock_period= 10ns;
     endsequence ;
 /*sequnce for lw*/
     sequence lw_decode;
-        ##1  enable_rf && read_rf_p1 && !read_rf_p2 && !rtype_itypen_i && compute_sext && !jump_sext;
+        ##1  enable_rf && read_rf_p1 && !read_rf_p2 && !rtype_itypen && compute_sext && !jump_sext;
     endsequence ;
 
     sequence lw_execute;
-        ##1 sel_val_a[0] && sel_val_b[0] && !alu_cin && !evaluate_branch[1] && !evaluate_branch[0] && signed_notsigned ;
+        ##1 !sel_val_a[0] && sel_val_b[0] && !alu_cin && !evaluate_branch[1] && !evaluate_branch[0] && signed_notsigned ;
     endsequence ;
 
     sequence lw_memory;
@@ -284,11 +284,11 @@ localparam clock_period= 10ns;
 
 /*sequnce for sw*/
     sequence sw_decode;
-        ##1  enable_rf && read_rf_p1 && !read_rf_p2 && !rtype_itypen_i && compute_sext && !jump_sext;
+        ##1  enable_rf && read_rf_p1 && read_rf_p2 && !rtype_itypen && compute_sext && !jump_sext;
     endsequence;
 
     sequence sw_execute;
-        ##1 sel_val_a[0] && sel_val_b[0] && !alu_cin && !evaluate_branch[1] && !evaluate_branch[0] && signed_notsigned ;
+        ##1 !sel_val_a[0] && sel_val_b[0] && !alu_cin && !evaluate_branch[1] && !evaluate_branch[0] && signed_notsigned ;
     endsequence ;
 
     sequence sw_memory;
@@ -301,7 +301,7 @@ localparam clock_period= 10ns;
 
 /*sequnce for b*/
     sequence b_decode;
-        ##1  enable_rf && read_rf_p1 && !read_rf_p2 && !rtype_itypen_i && !compute_sext && !jump_sext;
+        ##1  enable_rf && read_rf_p1 && !read_rf_p2 && !rtype_itypen && compute_sext && !jump_sext;
     endsequence ;
 
     sequence beqz_execute;
@@ -310,10 +310,10 @@ localparam clock_period= 10ns;
         
     endsequence ;
 
-	sequence benz_execute;
-		 // i_benz
+    sequence benz_execute;
+         // i_benz
             ##1 sel_val_a[0] && sel_val_b[0] && !alu_cin && evaluate_branch[1] && !evaluate_branch[0] && signed_notsigned ;
-	endsequence;
+    endsequence;
     sequence b_memory;
         ##1 !dram_enable_cu  ;
     endsequence ;
@@ -323,15 +323,15 @@ localparam clock_period= 10ns;
     endsequence;
  /*sequence for jump instruction*/
     sequence ijump_decode;
-        ##1  !enable_rf && !read_rf_p1 && !read_rf_p2 && !rtype_itypen_i && !compute_sext &&  jump_sext;
+        ##1  !enable_rf && !read_rf_p1 && !read_rf_p2 && !rtype_itypen && compute_sext &&  jump_sext;
     endsequence ;
 
     sequence ijumpal_decode;
-        ##1 enable_rf && !read_rf_p1 && !read_rf_p2 && !rtype_itypen_i && !compute_sext && jump_sext;
+        ##1 !enable_rf && !read_rf_p1 && !read_rf_p2 && !rtype_itypen && compute_sext && jump_sext;
     endsequence;
 
     sequence ijump_execute;
-        ##1 sel_val_a[0] && sel_val_b[0] && !alu_cin && !evaluate_branch[1] && !evaluate_branch[0] && signed_notsigned ;
+        ##1 sel_val_a[0] && sel_val_b[0] && !alu_cin && !evaluate_branch[1] && evaluate_branch[0] && signed_notsigned ;
     endsequence ;
 
     sequence ijump_memory;
@@ -339,13 +339,17 @@ localparam clock_period= 10ns;
     endsequence ;
 
     sequence ijump_wb;
+        ##1 !write_rf;
+    endsequence ;
+
+    sequence ijal_wb;
         ##1 write_rf && select_wb[0];
     endsequence ;
 
     property instruction_check_ireg;
         @(test_clk)
         // iram enable cu is for the fetch stage
-        disable iff (!rst || ireg_instr!==0)
+        disable iff (!rst && ireg_instr!==0 )
             // reg type
 			if(ireg_instr===i_sub)
 				iram_enable_cu |-> ireg_decode |-> ireg_execute(1) |-> ireg_memory |-> ireg_wb
@@ -355,7 +359,7 @@ localparam clock_period= 10ns;
 
 	property instruction_check_jump;
 		@(test_clk)
-			disable iff(!rst || jump_instr!==i_j || jump_instr!==i_jal  )
+			disable iff(!rst  && (jump_instr!==i_j|| jump_instr!==i_jal))
             if (jump_instr===i_jal )
 				iram_enable_cu |-> ijumpal_decode |->  ijump_execute |-> ijump_memory |->  ijump_wb
             else
@@ -364,21 +368,21 @@ localparam clock_period= 10ns;
 
     property instruction_check_lw;
 				@(test_clk)
-			disable iff(!rst || lw_instr!==i_lw)
+			disable iff(!rst  && lw_instr!==i_lw )
 				                iram_enable_cu |-> lw_decode |->  lw_execute |-> lw_memory |->  lw_wb;
 	endproperty;
 
 
 	property instruction_check_sw;
 		@(test_clk)
-			disable iff(!rst || sw_instr!==i_sw)
+			disable iff(!rst && sw_instr!==i_sw)
 			    iram_enable_cu |-> sw_decode |->  sw_execute |->  sw_memory |->  sw_wb;
 	endproperty;
 
 
 	property instruction_check_b;
 			@(test_clk)
-			disable iff(!rst || b_instr!==i_beqz || b_instr!==i_benz)
+			disable iff(!rst && ( b_instr!==i_beqz||b_instr!==i_benz ))
 					if (curr_instruction_to_cu[`IRAM_WORD_SIZE-1:`IRAM_WORD_SIZE-`OP_CODE_SIZE]===i_beqz )
 				         iram_enable_cu |-> b_decode |->  beqz_execute |->  b_memory |->  b_wb
 					else
@@ -387,7 +391,8 @@ localparam clock_period= 10ns;
 
      property instruction_check_i;
 		@(test_clk)
-			disable iff(!rst || imm_instru===i_regtype)
+			disable iff(!rst && ( b_instr!==i_beqz||b_instr!==i_benz )  && sw_instr!==i_sw  && sw_instr!==i_lw 
+                     && (jump_instr!==i_j|| jump_instr!==i_jal) && ireg_instr!==0)
                 iram_enable_cu |-> itype_decode |->  itype_execute |->  itype_memory |->  itype_wb; // itype
 	endproperty;
 

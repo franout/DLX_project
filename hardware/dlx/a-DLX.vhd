@@ -6,7 +6,7 @@
 -- Author      : Francesco Angione <s262620@studenti.polito.it> franout@github.com
 -- Company     : Politecnico di Torino, Italy
 -- Created     : Wed Jul 22 22:58:15 2020
--- Last update : Fri Aug 21 19:51:31 2020
+-- Last update : Sun Aug 30 22:58:05 2020
 -- Platform    : Default Part Number
 -- Standard    : VHDL-2008 
 --------------------------------------------------------------------------------
@@ -47,7 +47,7 @@ entity DLX is
     -- cpu status signals in case of exception or hang --------------------------
     ----------------------------------------------------------------------------
     -- simulation debug signals and verification purposes
-  --synopsys translate_off
+    --synopsys translate_off
     ;
     STATE_CU : out std_logic_vector(f_log2(tot_state)-1 downto 0);
     csr      : out std_logic_vector(7 downto 0);
@@ -69,11 +69,11 @@ entity DLX is
     DEBUG_enable_rf        : out std_logic;
     DEBUG_read_rf_p1       : out std_logic;
     DEBUG_read_rf_p2       : out std_logic;
-    DEBUG_rtype_itypen     : out std_logic; 
-	DEBUG_update_pc_branch : out std_logic;
-	DEBUG_sel_val_a        :out std_logic_vector(0 downto 0); 
-    DEBUG_sel_val_b        :out std_logic_vector(0 downto 0); 
-    DEBUG_select_wb           :out std_logic_vector(0 downto 0); 
+    DEBUG_rtype_itypen     : out std_logic;
+    DEBUG_update_pc_branch : out std_logic;
+    DEBUG_sel_val_a        : out std_logic_vector(0 downto 0);
+    DEBUG_sel_val_b        : out std_logic_vector(0 downto 0);
+    DEBUG_select_wb        : out std_logic_vector(0 downto 0);
     DEBUG_dram_enable_cu   : out std_logic
   --synopsys translate_on
   );
@@ -85,10 +85,10 @@ architecture dlx_rtl of DLX is
   -- control unit
   component control_unit is
     generic (
-      PC_SIZE      : integer := 32;
-      RF_REGS      : integer := 32; -- number of register in register file
-      IR_SIZE      : integer := 32; -- Instruction Register Size    
-      CW_SIZE      : integer := 15  -- Control Word Size
+      PC_SIZE : integer := 32;
+      RF_REGS : integer := 32; -- number of register in register file
+      IR_SIZE : integer := 32; -- Instruction Register Size    
+      CW_SIZE : integer := 15  -- Control Word Size
     );
     port (
       clk : in std_logic;
@@ -97,7 +97,7 @@ architecture dlx_rtl of DLX is
       iram_enable_cu         : out std_logic;
       iram_ready_cu          : in  std_logic;
       curr_instruction_to_cu : in  std_logic_vector(IR_SIZE-1 downto 0);
-	  stall_pip : out std_logic;
+      stall_pip              : out std_logic;
       -- for decode stage
       enable_rf  : out std_logic; -- used as enable for sign26 extention when equal to 0
       read_rf_p1 : out std_logic; -- if read_rf_p1/2 are both zero it is a jal instruction write address -> 31
@@ -105,7 +105,7 @@ architecture dlx_rtl of DLX is
 
       rtype_itypen : out std_logic;
       compute_sext : out std_logic;
-	  jump_sext    : out std_logic;
+      jump_sext    : out std_logic;
       -- for execute stage
       alu_op_type      : out std_logic_vector(3 downto 0); --TYPE_OP_ALU ; for compatibility with sv
       sel_val_a        : out std_logic_vector(0 downto 0 );
@@ -119,15 +119,15 @@ architecture dlx_rtl of DLX is
       zero_mul_detect : in std_logic;
       mul_exeception  : in std_logic;
       -- for memory stage
-      dram_enable_cu : out std_logic;
-      dram_r_nw_cu   : out std_logic;
-      dram_ready_cu  : in  std_logic;
-      update_pc_branch: out std_logic;
+      dram_enable_cu   : out std_logic;
+      dram_r_nw_cu     : out std_logic;
+      dram_ready_cu    : in  std_logic;
+      update_pc_branch : out std_logic;
       -- for write back stage  
       write_rf  : out std_logic;
       select_wb : out std_logic_vector(0 downto 0)
       -- simulation debug signals
-  --synopsys translate_off
+      --synopsys translate_off
       ;
       STATE_CU : out std_logic_vector(f_log2(tot_state)-1 downto 0);
       csr      : out std_logic_vector(7 downto 0)
@@ -161,7 +161,7 @@ architecture dlx_rtl of DLX is
       -- for fetch stage
       iram_enable_cu         : in  std_logic;
       iram_ready_cu          : out std_logic;
-      stall : in std_logic;
+      stall                  : in  std_logic;
       curr_instruction_to_cu : out std_logic_vector(PC_SIZE-1 downto 0);
       -- for decode stage
       enable_rf    : in std_logic;
@@ -169,7 +169,7 @@ architecture dlx_rtl of DLX is
       read_rf_p2   : in std_logic;
       write_rf     : in std_logic;
       rtype_itypen : in std_logic; -- =='1' rtype instrucion =='0' itype instructnions
-	  jump_sext    : in std_logic;
+      jump_sext    : in std_logic;
       compute_sext : in std_logic;
       -- for execute stage
       alu_op_type      : in std_logic_vector(3 downto 0); --TYPE_OP_ALU ; for compatibility with sv
@@ -184,10 +184,10 @@ architecture dlx_rtl of DLX is
       zero_mul_detect : out std_logic;
       mul_exeception  : out std_logic;
       -- for memory stage
-      dram_enable_cu : in  std_logic;
-      dram_r_nw_cu   : in  std_logic;
-      dram_ready_cu  : out std_logic;
-   	  update_pc_branch: in std_logic;
+      dram_enable_cu   : in  std_logic;
+      dram_r_nw_cu     : in  std_logic;
+      dram_ready_cu    : out std_logic;
+      update_pc_branch : in  std_logic;
       -- for write back stage   
       select_wb : in std_logic_vector(0 downto 0)
 
@@ -216,10 +216,10 @@ begin -- DLX
   -- Control Unit Instantiation
   cu_i : control_unit
     generic map (
-      PC_SIZE      => PC_SIZE,
-      RF_REGS      => register_in_rf,
-      IR_SIZE      => instr_length,
-      CW_SIZE      => tot_cu_sign
+      PC_SIZE => PC_SIZE,
+      RF_REGS => register_in_rf,
+      IR_SIZE => instr_length,
+      CW_SIZE => tot_cu_sign
     )
     port map (
       clk                    => clk,
@@ -227,14 +227,14 @@ begin -- DLX
       iram_enable_cu         => iram_enable_cu_i,
       iram_ready_cu          => iram_ready_cu_i,
       curr_instruction_to_cu => curr_instruction_to_cu_i,
-	  stall_pip => stall_i,
+      stall_pip              => stall_i,
       -- for decode stage
       enable_rf    => enable_rf_i,
       read_rf_p1   => read_rf_p1_i,
       read_rf_p2   => read_rf_p2_i,
       write_rf     => write_rf_i,
       rtype_itypen => rtype_itypen_i,
-	  jump_sext=> jump_sext_i,
+      jump_sext    => jump_sext_i,
       compute_sext => compute_sext_i,
       -- for execute stage
       alu_op_type      => alu_op_type_i ,
@@ -243,23 +243,23 @@ begin -- DLX
       evaluate_branch  => evaluate_branch_i,
       signed_notsigned => signed_notsigned_i,
       -- from execute stage
-      alu_cin      => alu_cin_i,
-      alu_overflow => alu_overflow_i,
-      zero_mul_detect  =>  zero_mul_detect_i,
-      mul_exeception    =>  mul_exeception_i,
+      alu_cin         => alu_cin_i,
+      alu_overflow    => alu_overflow_i,
+      zero_mul_detect => zero_mul_detect_i,
+      mul_exeception  => mul_exeception_i,
       -- for memory stage
-      dram_enable_cu => dram_enable_cu_i,
-      dram_r_nw_cu   => dram_r_nw_cu_i,
-      dram_ready_cu  => dram_ready_cu_i,
-	  update_pc_branch => update_pc_branch_i,
+      dram_enable_cu   => dram_enable_cu_i,
+      dram_r_nw_cu     => dram_r_nw_cu_i,
+      dram_ready_cu    => dram_ready_cu_i,
+      update_pc_branch => update_pc_branch_i,
       -- for write back stage   
-      select_wb  => select_wb_i
+      select_wb => select_wb_i
       -- simulation debug signals
-  --synopsys translate_off
+      --synopsys translate_off
       ,
       STATE_CU => STATE_CU,
       csr      => csr
-  --synopsys translate_on
+      --synopsys translate_on
 
     );
 
@@ -288,14 +288,14 @@ begin -- DLX
       -- for fetch stage
       iram_enable_cu         => iram_enable_cu_i,
       iram_ready_cu          => iram_ready_cu_i,
-      stall => stall_i,
+      stall                  => stall_i,
       curr_instruction_to_cu => curr_instruction_to_cu_i,
       -- for decode stage
       enable_rf    => enable_rf_i,
       read_rf_p1   => read_rf_p1_i,
       read_rf_p2   => read_rf_p2_i,
       write_rf     => write_rf_i,
-	  jump_sext=> jump_sext_i,
+      jump_sext    => jump_sext_i,
       rtype_itypen => rtype_itypen_i,
       compute_sext => compute_sext_i,
       -- for execute stage
@@ -310,10 +310,10 @@ begin -- DLX
       zero_mul_detect => zero_mul_detect_i,
       mul_exeception  => mul_exeception_i,
       -- for memory stage
-      dram_enable_cu => dram_enable_cu_i,
-      dram_r_nw_cu   => dram_r_nw_cu_i,
-      dram_ready_cu  => dram_ready_cu_i,
-	  update_pc_branch => update_pc_branch_i,
+      dram_enable_cu   => dram_enable_cu_i,
+      dram_r_nw_cu     => dram_r_nw_cu_i,
+      dram_ready_cu    => dram_ready_cu_i,
+      update_pc_branch => update_pc_branch_i,
       -- for write back stage   
       select_wb => select_wb_i
     );
@@ -340,7 +340,7 @@ begin -- DLX
   DEBUG_update_pc_branch <= update_pc_branch_i;
   DEBUG_sel_val_a        <= sel_val_a_i ;
   DEBUG_sel_val_b        <= sel_val_b_i ;
-    DEBUG_select_wb<= select_wb_i;
+  DEBUG_select_wb        <= select_wb_i;
 
   --synopsys translate_on
 

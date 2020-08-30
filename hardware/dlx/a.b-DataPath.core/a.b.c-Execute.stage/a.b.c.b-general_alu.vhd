@@ -6,7 +6,7 @@
 -- Author      : Francesco Angione <s262620@studenti.polito.it> franout@github.com
 -- Company     : Politecnico di Torino, Italy
 -- Created     : Sat Aug  8 12:22:46 2020
--- Last update : Fri Aug 21 21:46:18 2020
+-- Last update : Sun Aug 30 22:59:32 2020
 -- Platform    : Default Part Number
 -- Standard    : VHDL-2008 
 --------------------------------------------------------------------------------
@@ -58,9 +58,9 @@ architecture behavioural of general_alu is
   signal DATA2_I             : std_logic_vector(N-1 downto 0);
   signal data1_mul,data2_mul : std_logic_vector(N/2-1 downto 0);
   signal dataout_mul         : std_logic_vector(N-1 downto 0);
-  signal cout               : std_logic;
+  signal cout                : std_logic;
 
-	constant zero_concat : std_logic_vector(N-1 downto 0):=(OTHERS=>'0');
+  constant zero_concat : std_logic_vector(N-1 downto 0) := (OTHERS => '0');
 begin
 
     -- defined in global_components 
@@ -92,13 +92,13 @@ begin
 
 
 
-  P_ALU: process (FUNC, DATA1, DATA2,adder_out,dataout_mul,cout,signed_notsigned)
-    variable tmp                               : std_logic_vector(N-1 downto 0);
+  P_ALU                                     : process (FUNC, DATA1, DATA2,adder_out,dataout_mul,cout,signed_notsigned)
+    variable tmp                              : std_logic_vector(N-1 downto 0);
     variable check_mul_logic,check_mul_logic2 : std_logic := '1';
   begin
-	overflow<='0';
-	zero_mul_detect<='0';
-    mul_exeception <='0';
+    overflow        <= '0';
+    zero_mul_detect <= '0';
+    mul_exeception  <= '0';
     case FUNC is
       when ADD => DATA2_I <= DATA2;
         OUTALU <= adder_out;
@@ -114,9 +114,9 @@ begin
           overflow <= cout;
         end if;
 
-      when SUB =>                     -- addition between the two complement 
-         DATA2_I <= not(DATA2);      -- +1 from cin (from CU)
-        OUTALU <= adder_out;
+      when SUB =>              -- addition between the two complement 
+        DATA2_I <= not(DATA2); -- +1 from cin (from CU)
+        OUTALU  <= adder_out;
 
         if(signed_notsigned='1')then
           if(DATA1(N-1)/=DATA2(N-1)) then
@@ -133,7 +133,7 @@ begin
         data1_mul <= DATA1((N/2)-1 DOWNTO 0);
         data2_mul <= DATA2((N/2)-1 downto 0);
         -- exception if using multiplication between bitwidth > 16
-        for i in N-1 downto N/2  loop
+        for i in N-1 downto N/2 loop
           check_mul_logic := not(data1(i)) and check_mul_logic and not(data2(i));
         end loop ;
         if(check_mul_logic='0') then
@@ -143,18 +143,18 @@ begin
         end if;
         -- if not exception keep continuing check 
         --zero detect logic 
-		check_mul_logic:='1';
-		check_mul_logic2:='1';
+        check_mul_logic  := '1';
+        check_mul_logic2 := '1';
         for i in N/2-1 downto 0 loop
-          check_mul_logic   := check_mul_logic and not(data1(i));
+          check_mul_logic  := check_mul_logic and not(data1(i));
           check_mul_logic2 := check_mul_logic2 and not(data2(i));
         end loop ;
-        if(check_mul_logic2='1' or  check_mul_logic='1' ) then
+        if(check_mul_logic2='1' or check_mul_logic='1' ) then
           zero_mul_detect <= '1';
-          OUTALU    <= (OTHERS=>'0');
+          OUTALU          <= (OTHERS => '0');
         else
           zero_mul_detect <= '0';
-          OUTALU    <= dataout_mul;
+          OUTALU          <= dataout_mul;
         end if;
       when BITAND => OUTALU <= DATA1 AND DATA2;
       when BITOR  => OUTALU <= DATA1 OR DATA2;
@@ -175,26 +175,26 @@ begin
           end if;
         END LOOP;
         OUTALU <= tmp;
-      when GE=> 
-          if (signed(data1)>= signed(data2))then
-            OUTALU<=zero_concat(N-1 downto 1)&'1';
-          else 
-            OUTALU<=(OTHERS=>'0');
-          end if;
-      when LE=> 
-          if (signed(data1)<= signed(data2))then
-            OUTALU<=zero_concat(N-1 downto 1)&'1';
-          else 
-            OUTALU<=(OTHERS=>'0');
-          end if;
-      when NE=> 
-          if (signed(data1)/= signed(data2))then
-            OUTALU<=zero_concat(N-1 downto 1)&'1';
-          else 
-            OUTALU<=(OTHERS=>'0');
-          end if;
-      when others => 
-			OUTALU<=(OTHERS=>'0');
+      when GE =>
+        if (signed(data1)>= signed(data2))then
+          OUTALU <= zero_concat(N-1 downto 1)&'1';
+        else
+          OUTALU <= (OTHERS => '0');
+        end if;
+      when LE =>
+        if (signed(data1) <= signed(data2))then
+          OUTALU <= zero_concat(N-1 downto 1)&'1';
+        else
+          OUTALU <= (OTHERS => '0');
+        end if;
+      when NE =>
+        if (signed(data1)/= signed(data2))then
+          OUTALU <= zero_concat(N-1 downto 1)&'1';
+        else
+          OUTALU <= (OTHERS => '0');
+        end if;
+      when others       =>
+        OUTALU <= (OTHERS => '0');
     end case;
   end process P_ALU;
 

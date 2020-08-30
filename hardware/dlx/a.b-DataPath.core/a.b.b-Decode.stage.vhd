@@ -6,7 +6,7 @@
 -- Author      : Francesco Angione <s262620@studenti.polito.it> franout@github.com
 -- Company     : Politecnico di Torino, Italy
 -- Created     : Wed Jul 22 22:59:52 2020
--- Last update : Sat Aug 22 15:38:09 2020
+-- Last update : Sun Aug 30 22:58:59 2020
 -- Platform    : Default Part Number
 -- Standard    : VHDL-2008 
 --------------------------------------------------------------------------------
@@ -49,8 +49,8 @@ entity decode_stage is
 		read_rf_p2   : in std_logic;
 		write_rf     : in std_logic;
 		rtype_itypen : in std_logic; -- =='1' rtype instrucion =='0' itype instructnions
-		jump_sext 	 : in std_logic; -- signla for computing sign extentions of 26immediate values in jump insutrctions
-		compute_sext : in std_logic-- signal for computing sign exention of 16bit immediate value
+		jump_sext    : in std_logic; -- signla for computing sign extentions of 26immediate values in jump insutrctions
+		compute_sext : in std_logic  -- signal for computing sign exention of 16bit immediate value
 	) ;
 end entity ; -- decode_stage
 
@@ -58,8 +58,8 @@ architecture structural of decode_stage is
 
 	component sign_extension is
 		generic (
-			N : integer := 32;
-			STARTING_BIT: integer := 16
+			N            : integer := 32;
+			STARTING_BIT : integer := 16
 		);
 		port (
 			val_to_exetend : in  std_logic_vector(STARTING_BIT-1 downto 0);
@@ -67,28 +67,28 @@ architecture structural of decode_stage is
 			extended_val   : out std_logic_vector(N-1 downto 0)
 		);
 	end component sign_extension;
-	signal rstn,enable_rf_i                      : std_logic;
-	signal val_reg_a_i,val_reg_b_i : std_logic_vector(N-1 downto 0);
-	signal val_reg_immediate, val_reg_immediate_i ,val_reg_immediate_j: std_logic_vector(N-1 downto 0);
-	signal clk_immediate,enable_sign_extension_logic                          : std_logic;
-	signal instruction_reg_i,address_rf_write,del_reg_wb_2,del_reg_wb_1   : std_logic_vector(f_log2(RF_REGS)-1 downto 0);
-	signal data_to_mux: std_logic_vector(N*2-1 downto 0);
-	signal sel_immediate: std_logic_vector(0 downto 0);
-	signal update_reg_value_i :  std_logic_vector(N-1 downto 0);
+	signal rstn,enable_rf_i                                             : std_logic;
+	signal val_reg_a_i,val_reg_b_i                                      : std_logic_vector(N-1 downto 0);
+	signal val_reg_immediate, val_reg_immediate_i ,val_reg_immediate_j  : std_logic_vector(N-1 downto 0);
+	signal clk_immediate,enable_sign_extension_logic                    : std_logic;
+	signal instruction_reg_i,address_rf_write,del_reg_wb_2,del_reg_wb_1 : std_logic_vector(f_log2(RF_REGS)-1 downto 0);
+	signal data_to_mux                                                  : std_logic_vector(N*2-1 downto 0);
+	signal sel_immediate                                                : std_logic_vector(0 downto 0);
+	signal update_reg_value_i                                           : std_logic_vector(N-1 downto 0);
 	-- for delay pc in jal insturction
-	signal pc_delay1,pc_delay2,pc_delay3: std_logic_vector(N downto 0);
-	signal  reset_delay_pc,reset_delay_pc2:std_logic ;
+	signal pc_delay1,pc_delay2,pc_delay3  : std_logic_vector(N downto 0);
+	signal reset_delay_pc,reset_delay_pc2 : std_logic ;
 begin
 
 	rstn <= not(rst);
 
-		-- logic for getting the correct address for write back stage
-		-- depending on the current instruction ( if it is an I-type or R-type instruction)
-		-- special case for jal instruction where the address is fixeed at 31
-		instruction_reg_i<=instruction_reg(15 downto 11 ) when rtype_itypen ='1' and enable_sign_extension_logic='0' else  
-						   instruction_reg( 20 downto 16 ) when rtype_itypen='0' and enable_sign_extension_logic='0' else 
-							('1' & x"f") ; -- write return address in r31
-		-- delay registers for write back address
+	-- logic for getting the correct address for write back stage
+	-- depending on the current instruction ( if it is an I-type or R-type instruction)
+	-- special case for jal instruction where the address is fixeed at 31
+	instruction_reg_i <= instruction_reg(15 downto 11 ) when rtype_itypen ='1' and enable_sign_extension_logic='0' else
+		instruction_reg( 20 downto 16 )                    when rtype_itypen='0' and enable_sign_extension_logic='0' else
+		('1' & x"f") ; -- write return address in r31
+		               -- delay registers for write back address
 		delay_reg_wb_1 : reg_nbit generic map (
 			N => f_log2(RF_REGS)
 		)
@@ -117,8 +117,8 @@ begin
 			Q     => address_rf_write
 		);
 
-	enable_rf_i<= (enable_rf or write_rf); -- we only write in the r31 with the jump instruction
-	-- register file 
+	enable_rf_i <= (enable_rf or write_rf); -- we only write in the r31 with the jump instruction
+	                                        -- register file 
 	reg_file : register_file
 		generic map (
 			NBITREG => N,
@@ -166,8 +166,8 @@ begin
 
 		-- sign exted logic check only the last bit of the immediate value and extend ( it work for both signed and unsigned)
 		sign_extension_logic_immediate : sign_extension generic map (
-			N => N, 
-			STARTING_BIT=>N/2
+			N            => N,
+			STARTING_BIT => N/2
 		)
 		port map (
 			val_to_exetend => instruction_reg(15 downto 0),--(0 to 16),
@@ -175,30 +175,30 @@ begin
 			extended_val   => val_reg_immediate_i
 		);
 
-		 --for distinguish between j and jal ( jal requires to write the return address in r31)
-		enable_sign_extension_logic<= jump_sext and(not(enable_rf) or ( not(read_rf_p1) and  not(read_rf_p2))) and compute_sext;
+	--for distinguish between j and jal ( jal requires to write the return address in r31)
+	enable_sign_extension_logic <= jump_sext and(not(enable_rf) or ( not(read_rf_p1) and not(read_rf_p2))) and compute_sext;
 
-		sign_extension_logic_jump: sign_extension generic map (
-			N => N, 
-			STARTING_BIT=>26
+		sign_extension_logic_jump : sign_extension generic map (
+			N            => N,
+			STARTING_BIT => 26
 		)
-		 port map (
+		port map (
 			val_to_exetend => instruction_reg(25 downto 0),--(0 to 26),
-			enable         =>enable_sign_extension_logic ,
+			enable         => enable_sign_extension_logic ,
 			extended_val   => val_reg_immediate_j
 		);
 
 
-		-- mux for immediate reg
-		data_to_mux <= val_reg_immediate_i & val_reg_immediate_j;
-		sel_immediate(0)<= '1' when compute_sext ='0' else '0' ; -- default decision is the extend of a immediate16 ,
-		-- when compute_sext='0' => enable_sign_extensio_logic for jump (immediate26extenstion ) is active
+	-- mux for immediate reg
+	data_to_mux      <= val_reg_immediate_i & val_reg_immediate_j;
+	sel_immediate(0) <= '1' when compute_sext ='0' else '0' ; -- default decision is the extend of a immediate16 ,
+		                                                      -- when compute_sext='0' => enable_sign_extensio_logic for jump (immediate26extenstion ) is active
 		immediate_reg_mux : MUX_zbit_nbit generic map (
 			N => N,
 			Z => 1 -- log2 of number of input signals
 		)
 		port map (
-			inputs =>data_to_mux , --- sel =0 , sel =1 
+			inputs => data_to_mux , --- sel =0 , sel =1 
 			sel    => sel_immediate,
 			y      => val_reg_immediate
 		);
@@ -223,30 +223,30 @@ begin
 
 
 
-	pc_delay1<= new_prog_counter_val & jump_sext;
-	pc_delay_reg1 : reg_nbit generic map (
-	N => N +1
+	pc_delay1 <= new_prog_counter_val & jump_sext;
+		pc_delay_reg1 : reg_nbit generic map (
+			N => N +1
 		)
-	port map (
+		port map (
 			clk   => clk,
-		reset => rstn, -- reset is active high internally to the register
+			reset => rstn, -- reset is active high internally to the register
 			d     => pc_delay1,
 			Q     => pc_delay2
 		);
-	
-	-- it actualy for the execute stage
-	pc_delay_reg_2 : reg_nbit generic map (
-	N => N+1
+
+		-- it actualy for the execute stage
+		pc_delay_reg_2 : reg_nbit generic map (
+			N => N+1
 		)
-	port map (
+		port map (
 			clk   => clk,
-		reset =>rstn, -- reset is active high internally to the register
+			reset => rstn, -- reset is active high internally to the register
 			d     => pc_delay2,
 			Q     => pc_delay3
 		);
 
-	new_prog_counter_val_exe<=new_prog_counter_val when pc_delay3(0)='0' else pc_delay3( N downto 1);
+	new_prog_counter_val_exe <= new_prog_counter_val when pc_delay3(0)='0' else pc_delay3( N downto 1);
 
 	-- mux between value from wb and pc for jal instr
-	update_reg_value_i<= pc_delay3( N downto 1) when  address_rf_write='1'&x"f" else update_reg_value;
+	update_reg_value_i <= pc_delay3( N downto 1) when address_rf_write='1'&x"f" else update_reg_value;
 end architecture ; -- structural

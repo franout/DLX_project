@@ -6,7 +6,7 @@
 -- Author      : Francesco Angione <s262620@studenti.polito.it> franout@github.com
 -- Company     : Politecnico di Torino, Italy
 -- Created     : Wed Jul 22 23:00:04 2020
--- Last update : Fri Aug 21 22:49:38 2020
+-- Last update : Sun Aug 30 22:58:48 2020
 -- Platform    : Default Part Number
 -- Standard    : VHDL-2008 
 --------------------------------------------------------------------------------
@@ -83,17 +83,17 @@ architecture structural of execute_stage is
 			decision  : out std_logic
 		);
 	end component check_branch_logic;
-	signal rstn        ,evaluate_branch_enable                : std_logic;
-	signal branch_taken,branch_taken_reg_q                : std_logic_vector(0 downto 0);
-	signal data_to_mux_a,data_to_mux_b : std_logic_vector(N*2-1 downto 0);
-	signal opb,opa                     : std_logic_vector(N-1 downto 0);
-	signal alu_out                     : std_logic_vector(N-1 downto 0);
-	signal alu_op_type_i               : TYPE_OP_ALU;
+	signal rstn ,evaluate_branch_enable    : std_logic;
+	signal branch_taken,branch_taken_reg_q : std_logic_vector(0 downto 0);
+	signal data_to_mux_a,data_to_mux_b     : std_logic_vector(N*2-1 downto 0);
+	signal opb,opa                         : std_logic_vector(N-1 downto 0);
+	signal alu_out                         : std_logic_vector(N-1 downto 0);
+	signal alu_op_type_i                   : TYPE_OP_ALU;
 begin
 	rstn <= not(rst);
-		-- branches
-		-- zero check logic  
-		evaluate_branch_enable<= evaluate_branch(0) or evaluate_branch(1); -- activate the check branch logic in both cases (!==0 or ===0)
+	-- branches
+	-- zero check logic  
+	evaluate_branch_enable <= evaluate_branch(0) or evaluate_branch(1); -- activate the check branch logic in both cases (!==0 or ===0)
 		check_branch_logic_i : check_branch_logic generic map (
 			N => N
 		)
@@ -103,8 +103,8 @@ begin
 			decision  => branch_taken(0)
 		);
 
-		-- forward check logic when checking ==0 otherwise it is gonna be the negated result of check zero logic for !==0
-		branch_taken_reg_q(0)<= branch_taken(0) when evaluate_branch(1)='0' else not(branch_taken(0));
+	-- forward check logic when checking ==0 otherwise it is gonna be the negated result of check zero logic for !==0
+	branch_taken_reg_q(0) <= branch_taken(0) when evaluate_branch(1)='0' else not(branch_taken(0));
 
 		-- condition register delay
 		condition_delay_reg : reg_nbit generic map (
@@ -206,16 +206,16 @@ begin
 		);
 
 
-		-- delay register for pc 
+	-- delay register for pc 
 	--	del_reg_pc : reg_nbit generic map (
-		--	N => N
---		)
+	--	N => N
+	--		)
 	---	port map (
----			clk   => clk,
---	-		reset => rstn, -- reset is active high internally to the register
+	---			clk   => clk,
+	--	-		reset => rstn, -- reset is active high internally to the register
 	--		d     => new_prog_counter_val_exe,
-		--	Q     => prog_counter_forwaded
---		);
-	prog_counter_forwaded<=new_prog_counter_val_exe;
+	--	Q     => prog_counter_forwaded
+	--		);
+	prog_counter_forwaded <= new_prog_counter_val_exe;
 
 end architecture ; -- structural

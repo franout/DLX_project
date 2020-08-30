@@ -6,7 +6,7 @@
 -- Author      : Francesco Angione <s262620@studenti.polito.it> franout@github.com
 -- Company     : Politecnico di Torino, Italy
 -- Created     : Wed Jul 22 22:58:34 2020
--- Last update : Fri Aug 21 22:49:41 2020
+-- Last update : Sun Aug 30 22:57:54 2020
 -- Platform    : Default Part Number
 -- Standard    : VHDL-2008 
 --------------------------------------------------------------------------------
@@ -46,7 +46,7 @@ entity DATAPATH is
 		-- for fetch stage
 		iram_enable_cu         : in  std_logic;
 		iram_ready_cu          : out std_logic;
-		stall : in std_logic;
+		stall                  : in  std_logic;
 		curr_instruction_to_cu : out std_logic_vector(PC_SIZE-1 downto 0);
 		-- for decode stage
 		enable_rf    : in std_logic;
@@ -69,10 +69,10 @@ entity DATAPATH is
 		zero_mul_detect : out std_logic;
 		mul_exeception  : out std_logic;
 		-- for memory stage
-		dram_enable_cu : in  std_logic;
-		dram_r_nw_cu   : in  std_logic;
-		dram_ready_cu  : out std_logic;
-		update_pc_branch: in std_logic;
+		dram_enable_cu   : in  std_logic;
+		dram_r_nw_cu     : in  std_logic;
+		dram_ready_cu    : out std_logic;
+		update_pc_branch : in  std_logic;
 		-- for write back stage   
 		select_wb : in std_logic_vector(0 downto 0)
 
@@ -94,7 +94,7 @@ architecture structural of DATAPATH is
 			rst : in std_logic;
 			--from  memory stage
 			new_pc_value_mem_stage : in std_logic_vector(PC_SIZE-1 downto 0);
-			branch_taken : in std_logic;
+			branch_taken           : in std_logic;
 			-- to decode stage
 			new_pc_value : out std_logic_vector(PC_SIZE-1 downto 0);
 
@@ -106,8 +106,8 @@ architecture structural of DATAPATH is
 			-- to/from control unit
 			curr_instruction : out std_logic_vector(IR_SIZE-1 downto 0);
 			iram_enable_cu   : in  std_logic;
-			update_pc_branch: in std_logic;
-			stall : in std_logic;
+			update_pc_branch : in  std_logic;
+			stall            : in  std_logic;
 			iram_ready_cu    : out std_logic
 		);
 	end component fetch_stage;
@@ -139,7 +139,7 @@ architecture structural of DATAPATH is
 			read_rf_p2   : in std_logic;
 			write_rf     : in std_logic;
 			rtype_itypen : in std_logic; -- =='1' rtype instrucion =='0' itype instructnions
-			jump_sext 	 : in std_logic; -- signla for computing sign extentions of 26immediate values in jump insutrctions
+			jump_sext    : in std_logic; -- signla for computing sign extentions of 26immediate values in jump insutrctions
 			compute_sext : in std_logic  -- signal for computing sign exention of 16bit immediate value
 		);
 	end component decode_stage;
@@ -261,7 +261,7 @@ begin
 			rst => rst ,
 			--from  memory stage
 			new_pc_value_mem_stage => new_pc_value_mem_stage_i,
-				branch_taken => branch_condition_i(0),
+			branch_taken           => branch_condition_i(0),
 			-- to decode stage
 			new_pc_value => new_pc_value_decode,
 			-- IRAM interface
@@ -273,7 +273,7 @@ begin
 			curr_instruction => curr_instruction_i,
 			iram_enable_cu   => iram_enable_cu,
 			update_pc_branch => update_pc_branch,
-			stall => stall,
+			stall            => stall,
 			iram_ready_cu    => iram_ready_cu
 		);
 
@@ -312,7 +312,7 @@ begin
 			read_rf_p2   => read_rf_p2 ,
 			write_rf     => write_rf ,
 			rtype_itypen => rtype_itypen,
-			jump_sext=>jump_sext,
+			jump_sext    => jump_sext,
 			compute_sext => compute_sext
 		);
 

@@ -6,7 +6,7 @@
 -- Author      : Francesco Angione <s262620@studenti.polito.it> franout@github.com
 -- Company     : Politecnico di Torino, Italy
 -- Created     : Fri Aug 14 15:51:09 2020
--- Last update : Mon Aug 17 13:14:35 2020
+-- Last update : Sun Aug 30 22:59:30 2020
 -- Platform    : Default Part Number
 -- Standard    : VHDL-2008 
 --------------------------------------------------------------------------------
@@ -72,7 +72,7 @@ ARCHITECTURE struc OF boothmul_pipelined IS
 
     -- interconnection signals 
     signal in_mux_compleaA,in_mux_complea2A : in_mux_comple_stages_t             := (OTHERS => (OTHERS => '0'));
-    signal muxes_in,muxes_in_pip                         : t_muxes_in                         := (OTHERS => (OTHERS => '0'));
+    signal muxes_in,muxes_in_pip            : t_muxes_in                         := (OTHERS => (OTHERS => '0'));
     signal encoder_out                      : t_encoder_out                      := (OTHERS => (OTHERS => '0'));
     signal mux_out                          : t_mux_out                          := (OTHERS => ( OTHERS => '0'));
     signal sum_out,sum_out_pip, sum_B_in    : t_sum_out                          := (OTHERS => ( OTHERS => '0'));
@@ -96,7 +96,7 @@ BEGIN
             compl2_in_A(0)(N downto 0) <= multiplier(N-1) & multiplier;
                 minusA : complement2 GENERIC MAP(N => N+1) PORT MAP( value_in => compl2_in_A(0)(N downto 0), value_out => in_mux_compleaA(i)(N downto 0) );
             muxes_in(0)(0 to (8*N)+7) <= sig0(N downto 0) & multiplier(N-1) & multiplier & (multiplier(N-1 downto 0) & "0") & sig0(N downto 0) & sig0(N downto 0) & sig0(N downto 0) & in_mux_compleaA(i)(N-1 downto 0) & '0' & in_mux_compleaA(i)(N downto 0);
-            muxes_in_pip(0)<=muxes_in(0);
+            muxes_in_pip(0)           <= muxes_in(0);
             -- generate encoder
             mux0_sel_in <= multiplicand_pip(0)(1 downto 0)&'0';
                 ENC0 : encoder port map (y => mux0_sel_in, sel => encoder_out(0));
@@ -106,20 +106,20 @@ BEGIN
 
         middle_stages : if(i/=0 ) generate
 
-            -- generate encoder
+                -- generate encoder
                 ENCi : encoder port map (y => multiplicand_pip(i)((i*2)+1 downto (i*2)-1), sel => encoder_out(i));
             -- generate mux inputs delayers
             no_delay_mux : if (i<2) generate
-                muxes_in_pip(i)<=muxes_in(i); -- no delay for first two stages
+                muxes_in_pip(i) <= muxes_in(i); -- no delay for first two stages
             end generate no_delay_mux;
             reg_delay_mux_in : if (i>=2) generate
-                pip_del_reg_muxi : reg_nbit generic map ( N => 8*((2*N)-1)+1 ) port map (clk => clk,reset => rst,d => muxes_in(i),Q => muxes_in_pip(i) );
+                    pip_del_reg_muxi : reg_nbit generic map ( N => 8*((2*N)-1)+1 ) port map (clk => clk,reset => rst,d => muxes_in(i),Q => muxes_in_pip(i) );
             end generate reg_delay_mux_in;
             -- generate mux input
             muxes_in(i)(0 to 8*(N+1+(i*2)) - 1) <= sig0(N+(i*2) downto 0) & (muxes_in_pip(i-1)((N+1+((i-1)*2)) to (2*(N+1+((i-1)*2)))-1) & "00") & (muxes_in_pip(i-1)((2*(N+1+((i-1)*2))) to (3*(N+1+((i-1)*2)))-1) & "00") & sig0(N+(i*2) downto 0) & sig0(N+(i*2) downto 0) & sig0(N+(i*2) downto 0) & muxes_in_pip(i-1)(6*(N+1+((i-1)*2)) to 7*(N+1+((i-1)*2))-1) & "00" & muxes_in_pip(i-1)(7*(N+1+((i-1)*2)) to 8*(N+1+((i-1)*2))-1) & "00";
-            
-            -- generate mux
-            MUXi : mux_zbit_nbit generic map(N => N+1+(i*2), Z => 3) port map (inputs => muxes_in(i)(0 to 8*(N+1+(i*2)) - 1), SEL => encoder_out(i), y => mux_out(i)(N+(2*i) downto 0));
+
+                -- generate mux
+                MUXi : mux_zbit_nbit generic map(N => N+1+(i*2), Z => 3) port map (inputs => muxes_in(i)(0 to 8*(N+1+(i*2)) - 1), SEL => encoder_out(i), y => mux_out(i)(N+(2*i) downto 0));
             -- generate add 
             -- no pip register on input
             gen_add_1 : if (i = 1) generate
@@ -166,7 +166,7 @@ BEGIN
     ----------------------------------------------------------------------------
     multipliers_delay_reg_p : for i in 0 to numMux-1 generate
 
-        
+
     end generate multipliers_delay_reg_p;
 
     -- result from the final stage to the output of the entity 

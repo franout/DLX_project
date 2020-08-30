@@ -6,7 +6,7 @@
 -- Author      : Francesco Angione <s262620@studenti.polito.it> franout@github.com
 -- Company     : Politecnico di Torino, Italy
 -- Created     : Sat Aug  1 22:21:49 2020
--- Last update : Sat Aug  8 15:01:35 2020
+-- Last update : Sun Aug 30 22:59:23 2020
 -- Platform    : Default Part Number
 -- Standard    : VHDL-2008 
 --------------------------------------------------------------------------------
@@ -35,16 +35,16 @@ begin
 	logic        : process( input_val,enable )
 		variable tmp : std_logic := '1';
 	begin
-		tmp:='1';
+		tmp := '1';
 		if(enable='1') then
 			check_logic : for i in 0 to N-1 loop
 				tmp := tmp and not(input_val(i));
 			end loop ; -- check_logic
 			decision <= tmp;
-		else 
-			decision<='0';
+		else
+			decision <= '0';
 		end if;
 	end process ; -- logic
 
 end architecture behavioural;
-	
+

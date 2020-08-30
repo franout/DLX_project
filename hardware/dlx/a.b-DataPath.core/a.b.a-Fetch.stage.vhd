@@ -6,7 +6,7 @@
 -- Author      : Francesco Angione <s262620@studenti.polito.it> franout@github.com
 -- Company     : Politecnico di Torino, Italy
 -- Created     : Wed Jul 22 22:59:30 2020
--- Last update : Fri Aug 21 22:09:48 2020
+-- Last update : Sun Aug 30 22:59:03 2020
 -- Platform    : Default Part Number
 -- Standard    : VHDL-2008 
 --------------------------------------------------------------------------------
@@ -31,7 +31,7 @@ entity fetch_stage is
 		rst : in std_logic;
 		--from  memory stage
 		new_pc_value_mem_stage : in std_logic_vector(PC_SIZE-1 downto 0);
-		branch_taken : in std_logic;
+		branch_taken           : in std_logic;
 		-- to decode stage
 		new_pc_value : out std_logic_vector(PC_SIZE-1 downto 0);
 		-- IRAM interface{Iram interface}
@@ -43,8 +43,8 @@ entity fetch_stage is
 		-- to/from control unit
 		curr_instruction : out std_logic_vector(IR_SIZE-1 downto 0);
 		iram_enable_cu   : in  std_logic;
-		update_pc_branch : in std_logic;
-		stall : in std_logic;
+		update_pc_branch : in  std_logic;
+		stall            : in  std_logic;
 		iram_ready_cu    : out std_logic
 	) ;
 end entity ; -- fetch_stage
@@ -55,7 +55,7 @@ architecture structural of fetch_stage is
 	signal new_program_counter_val : std_logic_vector(PC_SIZE-1 downto 0);
 	signal program_counter_val     : std_logic_vector(PC_SIZE-1 downto 0);
 	signal instruction_reg_val     : std_logic_vector(IR_SIZE-1 downto 0);
-	signal 	curr_instruction_to_reg: std_logic_vector(IR_SIZE-1 downto 0);
+	signal curr_instruction_to_reg : std_logic_vector(IR_SIZE-1 downto 0);
 	signal restn                   : std_logic;
 begin
 
@@ -77,9 +77,9 @@ begin
 
 	-- logic for incremenentig the program counter 
 	new_program_counter_val <= --std_logic_vector(unsigned(program_counter_val)+0) when iram_enable_cu='0' and update_pc_branch='0' and branch_taken='0' 
-		 std_logic_vector(unsigned(new_pc_value_mem_stage)+4) when  update_pc_branch='1' or branch_taken='1'  else 
-		 std_logic_vector(unsigned(program_counter_val)+0) when iram_enable_cu='0' else
-		 std_logic_vector(unsigned(program_counter_val)+4);
+		std_logic_vector(unsigned(new_pc_value_mem_stage)+4) when update_pc_branch='1' or branch_taken='1' else
+		std_logic_vector(unsigned(program_counter_val)+0)    when iram_enable_cu='0' else
+		std_logic_vector(unsigned(program_counter_val)+4);
 
 	-- New Program counter
 	new_program_counter : reg_nbit
@@ -104,17 +104,17 @@ begin
 		port map (
 			clk   => clk,
 			reset => restn,
-			d     => 	curr_instruction_to_reg,
+			d     => curr_instruction_to_reg,
 			Q     => instruction_reg_val
 		);
 
-	curr_instruction_to_reg<= IRAM_DATA when stall='0' else instruction_reg_val ;
-	
+	curr_instruction_to_reg <= IRAM_DATA when stall='0' else instruction_reg_val ;
+
 	curr_instruction <= instruction_reg_val; -- it has to go to the CU and part of it to the register file in the decode stage
 
-	IRAM_ENABLE <= iram_enable_cu; -- forward memory enable
-	iram_ready_cu <= IRAM_READY; -- forward to control unit 
-	IRAM_ADDRESS <= program_counter_val ; --when iram_enable_cu='1' else
-		--		(OTHERS => 'Z');
+	IRAM_ENABLE   <= iram_enable_cu;       -- forward memory enable
+	iram_ready_cu <= IRAM_READY;           -- forward to control unit 
+	IRAM_ADDRESS  <= program_counter_val ; --when iram_enable_cu='1' else
+	                                 --		(OTHERS => 'Z');
 
 end architecture ; -- structural

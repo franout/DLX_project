@@ -6,7 +6,7 @@
 -- Author      : Francesco Angione <s262620@studenti.polito.it> franout@github.com
 -- Company     : Politecnico di Torino, Italy
 -- Created     : Sat Aug  1 22:29:22 2020
--- Last update : Fri Aug 21 22:22:56 2020
+-- Last update : Sun Aug 30 22:59:16 2020
 -- Platform    : Default Part Number
 -- Standard    : VHDL-2008 
 --------------------------------------------------------------------------------
@@ -18,8 +18,8 @@ library ieee ;
 use ieee.std_logic_1164.all ;
 entity sign_extension is
 	generic (
-		N : integer := 32;
-		STARTING_BIT: integer := 16
+		N            : integer := 32;
+		STARTING_BIT : integer := 16
 	);
 	port (
 		val_to_exetend : in  std_logic_vector(STARTING_BIT-1 downto 0);

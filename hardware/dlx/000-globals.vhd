@@ -6,7 +6,7 @@
 -- Author      : Francesco Angione <s262620@studenti.polito.it> franout@github.com
 -- Company     : Politecnico di Torino, Italy
 -- Created     : Wed Jul 22 22:56:54 2020
--- Last update : Tue Aug 25 19:40:38 2020
+-- Last update : Sun Aug 30 22:58:17 2020
 -- Platform    : Default Part Number
 -- Standard    : VHDL-2008 
 --------------------------------------------------------------------------------
@@ -82,37 +82,37 @@ package globals is
 
 
     -- for being complaint with synthesis
-    constant i_regtype :     std_logic_vector(OP_CODE_SIZE-1 downto 0) := "00"&x"0";
-    constant i_addi    :     std_logic_vector(OP_CODE_SIZE-1 downto 0) := "00"&x"8";
-    constant i_andi    :     std_logic_vector(OP_CODE_SIZE-1 downto 0) := "00"&x"c";
-    constant i_beqz    :     std_logic_vector(OP_CODE_SIZE-1 downto 0):= "00"&x"4";
-    constant i_benz    :     std_logic_vector(OP_CODE_SIZE-1 downto 0) := "00"&x"5";
-    constant i_j       :     std_logic_vector(OP_CODE_SIZE-1 downto 0) := "00"&x"2";
-    constant i_jal     :    std_logic_vector(OP_CODE_SIZE-1 downto 0):= "00"&x"3";
-    constant i_lw      :     std_logic_vector(OP_CODE_SIZE-1 downto 0) := "10"&x"3";
-    constant i_nop     :     std_logic_vector(OP_CODE_SIZE-1 downto 0) := "01"&x"5";
-    constant i_ori     :     std_logic_vector(OP_CODE_SIZE-1 downto 0) := "00"&x"d";
-    constant i_sgei    :    std_logic_vector(OP_CODE_SIZE-1 downto 0) := "01"&x"d";
-    constant i_slei    :     std_logic_vector(OP_CODE_SIZE-1 downto 0) := "01"&x"c";
-    constant i_slli    :     std_logic_vector(OP_CODE_SIZE-1 downto 0) := "01"&x"4";
-    constant i_snei    :     std_logic_vector(OP_CODE_SIZE-1 downto 0) := "01"&x"9";
-    constant i_srli    :     std_logic_vector(OP_CODE_SIZE-1 downto 0) := "01"&x"6";
-    constant i_subi    :     std_logic_vector(OP_CODE_SIZE-1 downto 0) := "00"&x"a";
-    constant i_sw      :     std_logic_vector(OP_CODE_SIZE-1 downto 0) := "10"&x"b";
-    constant i_xori    :     std_logic_vector(OP_CODE_SIZE-1 downto 0) := "00"&x"e";
+    constant i_regtype : std_logic_vector(OP_CODE_SIZE-1 downto 0) := "00"&x"0";
+    constant i_addi    : std_logic_vector(OP_CODE_SIZE-1 downto 0) := "00"&x"8";
+    constant i_andi    : std_logic_vector(OP_CODE_SIZE-1 downto 0) := "00"&x"c";
+    constant i_beqz    : std_logic_vector(OP_CODE_SIZE-1 downto 0) := "00"&x"4";
+    constant i_benz    : std_logic_vector(OP_CODE_SIZE-1 downto 0) := "00"&x"5";
+    constant i_j       : std_logic_vector(OP_CODE_SIZE-1 downto 0) := "00"&x"2";
+    constant i_jal     : std_logic_vector(OP_CODE_SIZE-1 downto 0) := "00"&x"3";
+    constant i_lw      : std_logic_vector(OP_CODE_SIZE-1 downto 0) := "10"&x"3";
+    constant i_nop     : std_logic_vector(OP_CODE_SIZE-1 downto 0) := "01"&x"5";
+    constant i_ori     : std_logic_vector(OP_CODE_SIZE-1 downto 0) := "00"&x"d";
+    constant i_sgei    : std_logic_vector(OP_CODE_SIZE-1 downto 0) := "01"&x"d";
+    constant i_slei    : std_logic_vector(OP_CODE_SIZE-1 downto 0) := "01"&x"c";
+    constant i_slli    : std_logic_vector(OP_CODE_SIZE-1 downto 0) := "01"&x"4";
+    constant i_snei    : std_logic_vector(OP_CODE_SIZE-1 downto 0) := "01"&x"9";
+    constant i_srli    : std_logic_vector(OP_CODE_SIZE-1 downto 0) := "01"&x"6";
+    constant i_subi    : std_logic_vector(OP_CODE_SIZE-1 downto 0) := "00"&x"a";
+    constant i_sw      : std_logic_vector(OP_CODE_SIZE-1 downto 0) := "10"&x"b";
+    constant i_xori    : std_logic_vector(OP_CODE_SIZE-1 downto 0) := "00"&x"e";
 
     --- function opcode definition
-    constant i_add :     std_logic_vector(OP_CODE_SIZE-1 downto 0) := "10"&x"0";
-    constant i_mul :     std_logic_vector(OP_CODE_SIZE-1 downto 0) := "11"&x"f";
-    constant i_and :     std_logic_vector(OP_CODE_SIZE-1 downto 0) := "10"&x"4";
-    constant i_or :     std_logic_vector(OP_CODE_SIZE-1 downto 0) := "10"&x"5";
-    constant i_sge :     std_logic_vector(OP_CODE_SIZE-1 downto 0) := "10"&x"d";
-    constant i_sle :     std_logic_vector(OP_CODE_SIZE-1 downto 0) := "10"&x"c";
-    constant i_sll :     std_logic_vector(OP_CODE_SIZE-1 downto 0) := "00"&x"4";
-    constant i_sne :     std_logic_vector(OP_CODE_SIZE-1 downto 0) := "10"&x"9";
-    constant i_srl :     std_logic_vector(OP_CODE_SIZE-1 downto 0) := "00"&x"6";
-    constant i_sub :     std_logic_vector(OP_CODE_SIZE-1 downto 0) := "10"&x"2";
-    constant i_xor :     std_logic_vector(OP_CODE_SIZE-1 downto 0) := "10"&x"6";
+    constant i_add : std_logic_vector(OP_CODE_SIZE-1 downto 0) := "10"&x"0";
+    constant i_mul : std_logic_vector(OP_CODE_SIZE-1 downto 0) := "11"&x"f";
+    constant i_and : std_logic_vector(OP_CODE_SIZE-1 downto 0) := "10"&x"4";
+    constant i_or  : std_logic_vector(OP_CODE_SIZE-1 downto 0) := "10"&x"5";
+    constant i_sge : std_logic_vector(OP_CODE_SIZE-1 downto 0) := "10"&x"d";
+    constant i_sle : std_logic_vector(OP_CODE_SIZE-1 downto 0) := "10"&x"c";
+    constant i_sll : std_logic_vector(OP_CODE_SIZE-1 downto 0) := "00"&x"4";
+    constant i_sne : std_logic_vector(OP_CODE_SIZE-1 downto 0) := "10"&x"9";
+    constant i_srl : std_logic_vector(OP_CODE_SIZE-1 downto 0) := "00"&x"6";
+    constant i_sub : std_logic_vector(OP_CODE_SIZE-1 downto 0) := "10"&x"2";
+    constant i_xor : std_logic_vector(OP_CODE_SIZE-1 downto 0) := "10"&x"6";
 
 end globals;
 
