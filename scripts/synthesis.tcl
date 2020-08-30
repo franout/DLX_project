@@ -58,12 +58,17 @@ analyze -autoread -library WORK -format vhdl "$env(path_to_file)a-DLX.vhd "
 ###########################################################
 ################ elaborating the top entity ###############
 ###########################################################
-
 puts "Elaborating top level entity"
 elaborate -update dlx -architecture dlx_rtl -library WORK -parameters "IR_SIZE=32,PC_SIZE=32"
 current_design "DLX_IR_SIZE32_PC_SIZE32"
+
+# define a clock name
+set clockName "clk"
+create_clock -name $clockName
+
 ##########################################
 # first compilation, without constraints #
+##########################################
 puts "Synthesis without constraints"
 compile 
 # reporting riming and power after the first synthesis without constraints #

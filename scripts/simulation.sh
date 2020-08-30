@@ -89,8 +89,16 @@ echo "Compiling top level testbench for DLX"
 vlog -incr ${path_to_file}test_bench/tb_dlx.sv
 
 echo "Starting simulation of dlx top level entity"
-## need a do file and a waveform file
 ## suppress novopt error and metavalue warnings
 vsim  -suppress 12110 -suppress 8664 -novopt work.tb_dlx -do ./scripts/dlx_tb.do  
 
+
+ehco "Do you want to see the DLX'tb with the Universal Verification Methodology architecture? y/n"
+read answer
+if [ answer=="y" ] ; then
+vlog -incr ${path_to_file}test_bench/tb_dlx_uvm.sv
+vsim  -suppress 12110 -suppress 8664 -novopt work.tb_dlx_uvm -do ./scripts/dlx_uvm_tb.do  
+else
+echo "Ok! you are missing a lot of fancy, amazing and astonishing things"
+fi
 rm -rf ./work
