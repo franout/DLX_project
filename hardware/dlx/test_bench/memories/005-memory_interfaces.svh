@@ -21,6 +21,26 @@ interface mem_interface
        output  #1  DATA_READY,DATA;
     endclocking
 
+    // automatic bind the cover points to the address
+		covergroup address_cov () @ (posedge ENABLE iff rst);
+		    addr : coverpoint ADDRESS {
+		       option.auto_bin_max = 10; // max number of bins
+		   }
+		 endgroup
+ 
+ 		// explicitly bind the coverpoitn
+      covergroup memory_rw @ (posedge READNOTWRITE or negedge READNOTWRITE);
+       read_write : coverpoint READNOTWRITE {
+        bins  read  = {0};
+        bins  write = {1};
+      }
+    endgroup
+    //=======
+    // instantiate cover group
+    
+    address_cov cov_address = new();
+    memory_rw cov_rw = new();
+
 modport rw (input ADDRESS, ENABLE, READNOTWRITE,rst,clk, inout INOUT_DATA, output DATA_READY); // read write memory interface
 modport ro (input ADDRESS, ENABLE, rst,clk , output DATA_READY, DATA); // read only memory interface
 

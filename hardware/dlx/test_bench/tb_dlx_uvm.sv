@@ -5,14 +5,12 @@
 // Copyright (c) 2014-2020 All rights reserved
 // -----------------------------------------------------------------------------
 // Author : Angione Francesco s262620@studenti.polito.it franout@Github.com
-// File   : tb_dlx.sv
-// Create : 2020-07-21 19:00:18
+// File   : tb_dlx_uvm.sv
+// Create : 2020-30-08 19:00:18
 // Revise : 2020-08-21 20:02:24
 // Editor : sublime text3, tab size (4)
 // Description:  top level test bench for DLX fuctional verification testing 
-//			 Simple architecture :
-//				  			- Driver : iram 
-//				  			- Monitor : dram and debug signals
+//						UVM architecture 
 // -----------------------------------------------------------------------------
 
 `timescale  1ns/1ps
