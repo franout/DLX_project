@@ -15,8 +15,7 @@ architecture TEST of TBCSB is
   end component;
 
   component CSB
-        generic ( DCSBS : Time := 0 ns;
-    	          DCSBC : Time := 0 ns;
+        generic (
                   NBIT : Natural := 8);
 	Port (	A:	In	std_logic_vector(5 downto 0);
 		B:	In	std_logic_vector(5 downto 0);
@@ -37,7 +36,7 @@ Begin
 
 -- Instanciate the ADDER without delay in the carry generation
   UADDER1: CSB 
-	   generic map (DCSBS => 0.02 ns, DCSBC => 0 ns, NBIT => 6) 
+	   generic map (NBIT => 6) 
 	   port map (A, B, Ci, S1);
   
 

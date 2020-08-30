@@ -71,8 +71,9 @@ output logic iram_enable_cu);
 			$stop();
 		end
 		iram_enable_cu=0;
+	// it is gonna be effective after 1 cc
 		##1;
-		if(new_pc_value!=12)begin
+		if(new_pc_value!=10)begin
 			$display("@%0dns ---> wrong generated new program counter value it has been incremente while it should be frozen",$time);
 			$stop();
 		end

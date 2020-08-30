@@ -24,22 +24,22 @@
 program automatic test_dlx_top(input logic clk, output logic rst, input cu_state_t  curr_state,
  						input logic [`IRAM_WORD_SIZE-1:0] current_instruction);
 
-
-	covergroup instruction_cover @($changed(current_instruction));
+// it may be encapsulated into a class which extends the covergroup class and implements manually all the methods ( new, sample, start and stop etc. )
+	covergroup instruction_cover with function sample( instructions_opcode opcode,   instructions_regtype_opcode func) ;
 	   	option.name         = "instruction_cover";
 	    option.comment      = "cover group for all the implemented instruction in 004-implemented_instructions.svh";
 	    option.per_instance = 1;
 	    option.goal         = 100;
 	    option.weight       = 90;
 	
-	instru_opcode: coverpoint current_opcode{
+	instru_opcode: coverpoint opcode{
 		bins regtype= {i_regtype};
 		bins immtype[] = {i_addi,i_andi,i_lw,i_nop,i_sgei,i_slei,i_slli,i_snei,i_srli,i_subi,i_sw,i_ori,i_xori};
 		bins jump[]={i_j, i_jal};
 		bins branch[]={i_beqz,i_benz}; // bnez beqz 
 	}
 	
-	instru_opcode_func: coverpoint current_opcode_func{
+	instru_opcode_func: coverpoint func{
 		bins alu_add = 		{i_add};
 		bins alu_and =	    {i_and};
 		bins alu_or =     {i_or};
@@ -54,10 +54,6 @@ program automatic test_dlx_top(input logic clk, output logic rst, input cu_state
 	
 	}	
 
-	 // cross code coverage between opcode and opcode function of instruction  count all the combinations
-	alu_function :cross opcode, opcode_func {
-	bins ireg_type_instruction = binsof(opcode_func) intersect {i_regtype};
-	}
 	
 	endgroup : instruction_cover
 
@@ -76,7 +72,7 @@ assign 	current_opcode_func= (instructions_regtype_opcode'(current_instruction[`
 
 sequence end_seq;
 	@(test_clk_prog)
-		(current_instruction==='Z || current_instruction==='x ||current_instruction===i_j)[*5];
+		((current_instruction==='Z || current_instruction==='x ||current_instruction===i_j)[*12]);
 endsequence;
 
 
@@ -107,7 +103,7 @@ endsequence;
 			forever begin 
 				wait($changed(current_instruction))
 				print_current_instruction(current_opcode,current_opcode_func);
-				cg_instruction.sample(); // sample the covergroup
+				cg_instruction.sample(current_opcode,current_opcode_func); // sample the covergroup
 				##2;
 			end
 		join_none
@@ -181,7 +177,6 @@ module tb_dlx ();
 		$display("Starting an amazing and very fancy testbench in System Verilog",);
 	end
 
-
 `include "./006-property_def.svh"
 	//////////////////////////////////////////////////////////////////////////////
 	///// instantiate property and coverage groupd defined in property_def.svh ///
@@ -214,22 +209,6 @@ module tb_dlx ();
     instruction_check_property_b : cover property(instruction_check_b) ;
 		
     multiplication_stall_check_property : cover property(multiplication_stall) ;
-
-    // cover group for state transition of control unit 
-	covergroup state_cover @( posedge clk iff rst );
-	   	state_cu : coverpoint curr_state_debug_i {
-	   	bins fetch_to_decode = (fetch => decode); // bins is binding the property with the transition from fetch to decode stage
-	   	bins decode_to_fetch = (decode => fetch );
-	   	}
-	endgroup : state_cover	
-
-
-	state_cover state_cg = new();
-
-	final begin 
-		//print the state coverage at the end of the simulation 
-		$display("Total coverage of instructions %e",state_cg.get_coverage());
-	end 
 
 	/////////////////////////////////////
 	// instantiate the components ///////

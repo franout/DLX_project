@@ -1,0 +1,23 @@
+
+DIRECTIVE COVERAGE:
+---------------------------------------------------------------------------------------------
+Name                                     Design Design   Lang File(Line)      Count Status    
+                                         Unit   UnitType                                      
+---------------------------------------------------------------------------------------------
+/tb_dlx/instruction_check_property_ireg  tb_dlx Verilog  SVA  ./hardware/dlx/test_bench/tb_dlx.sv(157)
+                                                                                  0 ZERO      
+/tb_dlx/instruction_check_property_i     tb_dlx Verilog  SVA  ./hardware/dlx/test_bench/tb_dlx.sv(159)
+                                                                                  0 ZERO      
+/tb_dlx/instruction_check_property_jump  tb_dlx Verilog  SVA  ./hardware/dlx/test_bench/tb_dlx.sv(161)
+                                                                                  0 ZERO      
+/tb_dlx/instruction_check_property_lw    tb_dlx Verilog  SVA  ./hardware/dlx/test_bench/tb_dlx.sv(163)
+                                                                                  0 ZERO      
+/tb_dlx/instruction_check_property_sw    tb_dlx Verilog  SVA  ./hardware/dlx/test_bench/tb_dlx.sv(165)
+                                                                                  0 ZERO      
+/tb_dlx/instruction_check_property_b     tb_dlx Verilog  SVA  ./hardware/dlx/test_bench/tb_dlx.sv(167)
+                                                                                  0 ZERO      
+/tb_dlx/multiplication_stall_check_property 
+                                         tb_dlx Verilog  SVA  ./hardware/dlx/test_bench/tb_dlx.sv(169)
+                                                                                  0 ZERO      
+
+TOTAL DIRECTIVE COVERAGE: 0.00%  COVERS: 7

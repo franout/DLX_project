@@ -120,7 +120,7 @@ initial begin
 
 		$display("Sign extention check unsigned immediate26 j instruction ",);
 		rst=1;
-		compute_sext=0;
+		compute_sext=1;
 		jump_sext=1;
 		enable_rf=0;
 		read_rf_p1=0;
@@ -156,7 +156,7 @@ initial begin
 
 		$display("Sign extention check unsigned immediate26 jal instruction ",);
 		rst=1;
-		compute_sext=0;
+		compute_sext=1;
 		enable_rf=1;
 		read_rf_p1=0;
 		read_rf_p2=0;

@@ -20,8 +20,8 @@
   	// property definition
     property multiplication_stall;
         @(test_dlx)
-            disable iff(!rst || !DEBUG_zero_mul_detect || !DEBUG_mul_exeception )
-				(ireg_instr===i_mul) |-> !DEBUG_iram_enable_cu[*6];// no fetching for 6 cc
+            disable iff(!rst && !DEBUG_zero_mul_detect && !DEBUG_mul_exeception )
+				(ireg_instr===i_mul) |-> !DEBUG_iram_enable_cu[*9];// no fetching for 9 cc
     endproperty;
 
   /* sequence for reg type instructions*/
@@ -46,7 +46,7 @@
     endsequence ;
 
     sequence itype_execute;
-        ##1 !DEBUG_sel_val_a[0] && DEBUG_sel_val_b[0] && !DEBUG_alu_cin && !DEBUG_evaluate_branch[1] && !DEBUG_evaluate_branch[0] && DEBUG_signed_notsigned ;
+        ##1 !DEBUG_sel_val_a[0] && DEBUG_sel_val_b[0]  && !DEBUG_evaluate_branch[1] && !DEBUG_evaluate_branch[0] && DEBUG_signed_notsigned ;
     endsequence ;
 
     sequence itype_memory;
@@ -62,7 +62,7 @@
     endsequence ;
 
     sequence lw_execute;
-        ##1 DEBUG_sel_val_a[0] && DEBUG_sel_val_b[0] && !DEBUG_alu_cin && !DEBUG_evaluate_branch[1] && !DEBUG_evaluate_branch[0] && DEBUG_signed_notsigned ;
+        ##1 !DEBUG_sel_val_a[0] && DEBUG_sel_val_b[0] && !DEBUG_alu_cin && !DEBUG_evaluate_branch[1] && !DEBUG_evaluate_branch[0] && DEBUG_signed_notsigned ;
     endsequence ;
 
     sequence lw_memory;
@@ -75,11 +75,11 @@
 
 /*sequnce for sw*/
     sequence sw_decode;
-        ##1  DEBUG_enable_rf && DEBUG_read_rf_p1 && !DEBUG_read_rf_p2 && !DEBUG_rtype_itypen && DEBUG_compute_sext && !DEBUG_jump_sext;
+        ##1  DEBUG_enable_rf && DEBUG_read_rf_p1 && DEBUG_read_rf_p2 && !DEBUG_rtype_itypen && DEBUG_compute_sext && !DEBUG_jump_sext;
     endsequence;
 
     sequence sw_execute;
-        ##1 DEBUG_sel_val_a[0] && DEBUG_sel_val_b[0] && !DEBUG_alu_cin && !DEBUG_evaluate_branch[1] && !DEBUG_evaluate_branch[0] && DEBUG_signed_notsigned ;
+        ##1 !DEBUG_sel_val_a[0] && DEBUG_sel_val_b[0] && !DEBUG_alu_cin && !DEBUG_evaluate_branch[1] && !DEBUG_evaluate_branch[0] && DEBUG_signed_notsigned ;
     endsequence ;
 
     sequence sw_memory;
@@ -92,7 +92,7 @@
 
 /*sequnce for b*/
     sequence b_decode;
-        ##1  DEBUG_enable_rf && DEBUG_read_rf_p1 && !DEBUG_read_rf_p2 && !DEBUG_rtype_itypen && !DEBUG_compute_sext && !DEBUG_jump_sext;
+        ##1  DEBUG_enable_rf && DEBUG_read_rf_p1 && !DEBUG_read_rf_p2 && !DEBUG_rtype_itypen && DEBUG_compute_sext && !DEBUG_jump_sext;
     endsequence ;
 
     sequence beqz_execute;
@@ -114,15 +114,15 @@
     endsequence;
  /*sequence for jump instruction*/
     sequence ijump_decode;
-        ##1  !DEBUG_enable_rf && !DEBUG_read_rf_p1 && !DEBUG_read_rf_p2 && !DEBUG_rtype_itypen && !DEBUG_compute_sext &&  DEBUG_jump_sext;
+        ##1  !DEBUG_enable_rf && !DEBUG_read_rf_p1 && !DEBUG_read_rf_p2 && !DEBUG_rtype_itypen && DEBUG_compute_sext &&  DEBUG_jump_sext;
     endsequence ;
 
     sequence ijumpal_decode;
-        ##1 DEBUG_enable_rf && !DEBUG_read_rf_p1 && !DEBUG_read_rf_p2 && !DEBUG_rtype_itypen && !DEBUG_compute_sext && DEBUG_jump_sext;
+        ##1 !DEBUG_enable_rf && !DEBUG_read_rf_p1 && !DEBUG_read_rf_p2 && !DEBUG_rtype_itypen && DEBUG_compute_sext && DEBUG_jump_sext;
     endsequence;
 
     sequence ijump_execute;
-        ##1 DEBUG_sel_val_a[0] && DEBUG_sel_val_b[0] && !DEBUG_alu_cin && !DEBUG_evaluate_branch[1] && !DEBUG_evaluate_branch[0] && DEBUG_signed_notsigned ;
+        ##1 DEBUG_sel_val_a[0] && DEBUG_sel_val_b[0] && !DEBUG_alu_cin && !DEBUG_evaluate_branch[1] && DEBUG_evaluate_branch[0] && DEBUG_signed_notsigned ;
     endsequence ;
 
     sequence ijump_memory;
@@ -130,13 +130,17 @@
     endsequence ;
 
     sequence ijump_wb;
+        ##1 !DEBUG_write_rf;
+    endsequence ;
+
+    sequence ijal_wb;
         ##1 DEBUG_write_rf && DEBUG_select_wb[0];
     endsequence ;
 
     property instruction_check_ireg;
         @(test_dlx)
         // iram enable cu is for the fetch stage
-        disable iff (!rst || ireg_instr!==0)
+        disable iff (!rst && ireg_instr!==0)
             // reg type
 			if(ireg_instr===i_sub)
 				DEBUG_iram_enable_cu |-> ireg_decode |-> ireg_execute(1) |-> ireg_memory |-> ireg_wb
@@ -146,31 +150,31 @@
 
 	property instruction_check_jump;
 		@(test_dlx)
-			disable iff(!rst || jump_instr!==i_j || jump_instr!==i_jal  )
+			disable iff(!rst && (jump_instr!==i_j|| jump_instr!==i_jal))
             if (jump_instr===i_jal )
-				DEBUG_iram_enable_cu |-> ijumpal_decode |->  ijump_execute |-> ijump_memory |->  ijump_wb
+				DEBUG_iram_enable_cu |-> ijumpal_decode |->  ijump_execute |-> ijump_memory |->  ijal_wb
             else
                 DEBUG_iram_enable_cu |-> ijump_decode |->  ijump_execute |->  ijump_memory |->  ijump_wb;
 	endproperty;
 
     property instruction_check_lw;
 				@(test_dlx)
-			disable iff(!rst || lw_instr!==i_lw)
-				                DEBUG_iram_enable_cu |-> lw_decode |->  lw_execute |-> lw_memory |->  lw_wb;
+			disable iff(!rst && lw_instr!==i_lw )
+				DEBUG_iram_enable_cu |-> lw_decode |->  lw_execute |-> lw_memory |->  lw_wb;
 	endproperty;
 
 
 	property instruction_check_sw;
 		@(test_dlx)
-			disable iff(!rst || sw_instr!==i_sw)
+			disable iff(!rst && sw_instr!==i_sw)
 			    DEBUG_iram_enable_cu |-> sw_decode |->  sw_execute |->  sw_memory |->  sw_wb;
 	endproperty;
 
 
 	property instruction_check_b;
 			@(test_dlx)
-			disable iff(!rst || b_instr!==i_beqz || b_instr!==i_benz)
-					if (b_instr===i_beqz )
+			disable iff(!rst && ( b_instr!==i_beqz||b_instr!==i_benz ))
+					if ( b_instr===i_beqz )
 				         DEBUG_iram_enable_cu |-> b_decode |->  beqz_execute |->  b_memory |->  b_wb
 					else
 				         DEBUG_iram_enable_cu |-> b_decode |->  benz_execute |->  b_memory |->  b_wb;
@@ -178,7 +182,8 @@
 
      property instruction_check_i;
 		@(test_dlx)
-			disable iff(!rst || imm_instru===i_regtype)
+			disable iff(!rst  && ( b_instr!==i_beqz||b_instr!==i_benz )  && sw_instr!==i_sw  && sw_instr!==i_lw 
+					 && (jump_instr!==i_j|| jump_instr!==i_jal) && ireg_instr!==0)
                 DEBUG_iram_enable_cu |-> itype_decode |->  itype_execute |->  itype_memory |->  itype_wb; // itype
 	endproperty;
 

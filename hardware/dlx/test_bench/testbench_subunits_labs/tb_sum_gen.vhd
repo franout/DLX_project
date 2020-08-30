@@ -15,8 +15,7 @@ architecture TEST of TBSUM_GEN is
   end component;
 
   component SUM_GEN
-        generic (DSUM_GENS : 	Time := 0 ns;
-             DSUM_GENC : 	Time := 0 ns;
+        generic (
              NBIT  : 	Natural := 32;
              NBLOCKS :  Natural := 4);
     Port (  A:	In	std_logic_vector((NBIT-1) downto 0);
@@ -36,7 +35,7 @@ Begin
 
 -- Instanciate the ADDER without delay in the carry generation
   UADDER1: SUM_GEN 
-	   generic map (DSUM_GENS => 0.02 ns, DSUM_GENC => 0 ns, NBIT => 6, NBLOCKS => 3) port map (A, B, Ci, S1);
+	   generic map ( NBIT => 6, NBLOCKS => 3) port map (A, B, Ci, S1);
   
 
 
@@ -84,10 +83,10 @@ Begin
 
 end TEST;
 
-configuration SUM_GENTEST of TBSUM_GEN is
-  for TEST
-    for UADDER1: SUM_GEN
-      use configuration WORK.CFG_SUM_GEN_STRUCTURAL;
-    end for;
-  end for;
-end SUM_GENTEST;
+--configuration SUM_GENTEST of TBSUM_GEN is
+--  for TEST
+--    for UADDER1: SUM_GEN
+--      use configuration WORK.CFG_SUM_GEN_STRUCTURAL;
+--    end for;
+--  end for;
+--end SUM_GENTEST;

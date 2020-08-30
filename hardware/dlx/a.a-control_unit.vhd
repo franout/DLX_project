@@ -85,14 +85,15 @@ architecture behavioural of control_unit is
   signal rstn                : std_logic;
   signal cmd_word            : std_logic_vector( CW_SIZE-1-4 downto 0); -- full control word 
   signal cmd_word_to_reg     : std_logic_vector(CW_SIZE-1 downto 0);
+  signal cw1_i,cw2_i,cw3_i   : std_logic_vector(CW_SIZE-1 downto 0); -- signals for handling the proper input signal to the various pipeline stages during stall 
   signal cw1,cw2,cw3,cw4,cw5 : std_logic_vector(CW_SIZE-1 downto 0); -- signal for delay control signal of cmd_word unuseful ones will be discarded by the synthesis process
   signal cmd_alu_op_type     : std_logic_vector(3 downto 0);         --- signal to be delayed for the alu
 
   signal ir_opcode : std_logic_vector(OP_CODE_SIZE-1 downto 0); -- OpCode part of IR
   signal ir_func   : std_logic_vector(OP_CODE_SIZE-1 downto 0); -- Func part of IR when Rtype
-
-  signal counter_mul,next_val_counter_mul : std_logic_vector(2 downto 0); -- 3 bit coutner for stall in mul instruction 
-                                                                          -- a status register for possible overflow or write to forbidden registers
+  signal force_write_back:std_logic;
+  signal counter_mul,next_val_counter_mul : std_logic_vector(3 downto 0); -- 3 bit coutner for stall in mul instruction 
+  -- a status register for possible overflow or write to forbidden registers
   signal csr_reg,next_value_csr : std_logic_vector(7 downto 0);
   signal stall ,next_stall: std_logic:='0';
   -- constant signal assignement
@@ -134,13 +135,12 @@ begin
   ir_opcode <= curr_instruction_to_cu(IR_SIZE-1 downto IR_SIZE-OP_CODE_SIZE);
   ir_func   <= curr_instruction_to_cu(OP_CODE_SIZE - 1 downto 0) ;
   
-
+	force_write_back<='0';
     ------------------------------------------------------------------------------
     -- default signals assignment
     cmd_word             <= (OTHERS => '0');
     --cmd_alu_op_type      <= (OTHERS => '0');
     next_value_csr (7 downto 3)<= (OTHERS => '0');
-	next_stall<='0';
 	if(stall='0') then 
 	next_val_counter_mul <= (OTHERS => '0');
 	end if;
@@ -161,24 +161,31 @@ begin
                 when i_sub => cmd_alu_op_type <= x"1";
                   cmd_word <= '1'&x"f093"&'0'; --set carry iN to one 
                 when i_mul  =>
-                  cmd_alu_op_type <= x"2";
+                  cmd_alu_op_type <= x"2";					
 				  next_state<= decode;
                   -- stall of 8 cc and a check in case of zero counter goes to 6 since the other 2 cc are include in the pipeline
-                  if(unsigned(counter_mul)<6) then
-                    -- check if there are some exception in the mul
-                    if( csr_reg(1)='1'or csr_reg(2)='1' ) then --
+                  if(unsigned(counter_mul)<10) then
+					cmd_word<='0'&x"f010"&'0'; -- it can actually stay active for only the first cycle                     
+					-- check if there are some exception in the mul
+                    if( (csr_reg(1)='1'or csr_reg(2)='1') and (unsigned(counter_mul)<2) ) then --
                       -- execptio or zero mul stop stall
                       next_val_counter_mul <= (OTHERS => '0');
 						next_stall<='0';
                     else -- otherwise do not fetch 
-						if(stall='0') then                       
-						next_stall<='1';
-						end if;
+		
                       next_val_counter_mul <= std_logic_vector(unsigned(counter_mul)+"01");
+					  if(unsigned(counter_mul)=9) then 
+							cmd_word<='1'&x"0000"&'0';-- start to fetch we need onyl to write back the result in the rf
+							next_stall<='0';
+					  elsif(stall='0') then                       
+						next_stall<='1';
+					  end if;
+
                     end if;
                   else
-                    next_val_counter_mul <= (OTHERS => '0');
-					next_stall<='0';
+                      next_val_counter_mul <= std_logic_vector(unsigned(counter_mul)+"01");
+					cmd_word<='1'&x"0000"&'0';
+					force_write_back<='1';
                   end if;
                 when i_and => cmd_alu_op_type <= x"3";
                 when i_or  => cmd_alu_op_type <= x"4";
@@ -198,7 +205,7 @@ begin
                 next_value_csr(7 downto 3) <= (OTHERS => '1');
               end if;
             when i_beqz => 
-              cmd_alu_op_type <= x"0";        -- addition of pc +4 + immediate16
+			  cmd_alu_op_type <= x"0";        -- addition of pc +4 + immediate16
               cmd_word        <= '1'&x"cb30"&'1'; --==0
             when i_benz => 
               cmd_alu_op_type <= x"0";        -- addition of pc +4 + immediate16
@@ -303,6 +310,8 @@ begin
 				-- do a nop
 				if(stall='0')then 
 		       cmd_word <= '1'&x"0000"&'0';
+				else 
+				cmd_word<=(OTHERS=>'0');
 				end if;
           end case;   
       when hang_error => next_state <= curr_state;
@@ -342,23 +351,23 @@ begin
   compute_sext <= cmd_word_to_reg(CW_SIZE-6);
   jump_sext    <= cmd_word_to_reg(CW_SIZE-7);
   -- for execute stage
-  sel_val_a (0)      <= cw1 (CW_SIZE-8);
-  sel_val_b (0)      <= cw1 (CW_SIZE-9);
-  alu_cin            <= cw1(CW_SIZE-10);
-  evaluate_branch(1) <= cw1(CW_SIZE-11); --!=0
-  evaluate_branch(0) <= cw1(CW_SIZE-12); -- ==0
-  signed_notsigned   <= cw1(CW_SIZE-13);
-  alu_op_type        <= cw1(3 downto 0); -- it is better to cancatenate it at the end
+  sel_val_a (0)      <= cw1 (CW_SIZE-8)when stall='0' else cmd_word_to_reg(CW_SIZE-8);
+  sel_val_b (0)      <= cw1 (CW_SIZE-9)when stall='0' else cmd_word_to_reg(CW_SIZE-9);
+  alu_cin            <= cw1(CW_SIZE-10)when stall='0' else cmd_word_to_reg(CW_SIZE-10);
+  evaluate_branch(1) <= cw1(CW_SIZE-11)when stall='0' else cmd_word_to_reg(CW_SIZE-11); --!=0
+  evaluate_branch(0) <= cw1(CW_SIZE-12)when stall='0' else cmd_word_to_reg(CW_SIZE-12); -- ==0
+  signed_notsigned   <= cw1(CW_SIZE-13)when stall='0' else cmd_word_to_reg(CW_SIZE-13);
+  alu_op_type        <= cw1(3 downto 0)when stall='0' else cmd_word_to_reg(3 downto 0); -- it is better to cancatenate it at the end
   -- for memory stage
-  dram_enable_cu <= cw2(CW_SIZE-14);
-  dram_r_nw_cu   <= cw2(CW_SIZE-15);
-  update_pc_branch <= cw2(CW_SIZE -18);
+  dram_enable_cu <= cw2(CW_SIZE-14)when stall='0' else cmd_word_to_reg(CW_SIZE-14);
+  dram_r_nw_cu   <= cw2(CW_SIZE-15)when stall='0' else cmd_word_to_reg(CW_SIZE-15);
+  update_pc_branch <= cw2(CW_SIZE -18)when stall='0' else cmd_word_to_reg(CW_SIZE-18);
   -- for write back stage   
-  select_wb(0) <= cw3(CW_SIZE-16);
-  write_rf     <= cw3(CW_SIZE-17);
+  select_wb(0) <= cw3(CW_SIZE-16) or force_write_back; -- it comes from a stall in the alu
+  write_rf     <= cw3(CW_SIZE-17) or force_write_back;
 
   -- delay register for command word
-      f_reg : reg_nbit generic map (
+      e_reg : reg_nbit generic map (
       N => CW_SIZE
   )
       port map (
@@ -368,25 +377,8 @@ begin
         Q     => cw1
      );
 
-    d_reg : reg_nbit generic map (
-      N => CW_SIZE
-    )
-    port map (
-      clk   => clk,
-      reset => rstn, -- reset is active high internally to the register
-      d     => cw1,
-      Q     => cw2
-    );
-
-    e_reg : reg_nbit generic map (
-      N => CW_SIZE
-    )
-    port map (
-      clk   => clk,
-      reset => rstn, -- reset is active high internally to the register
-      d     => cw2,
-      Q     => cw3
-    );
+	-- for handling the stall 
+		cw1_i <= cw1 when stall='0' else cw2;
 
     m_reg : reg_nbit generic map (
       N => CW_SIZE
@@ -394,19 +386,44 @@ begin
     port map (
       clk   => clk,
       reset => rstn, -- reset is active high internally to the register
-      d     => cw3,
-      Q     => cw4
+      d     => cw1_i,
+      Q     => cw2
     );
+
+		cw2_i <= cw2 when stall='0' else cw3;
+
 
     wb_reg : reg_nbit generic map (
       N => CW_SIZE
-  )
- port map (
+    )
+    port map (
       clk   => clk,
-     reset => rstn, -- reset is active high internally to the register
-      d     => cw4,
-      Q     => cw5
+      reset => rstn, -- reset is active high internally to the register
+      d     => cw2_i,
+      Q     => cw3
     );
+
+	cw3_i <= cw3 when stall='0' else cw4;
+
+--    m_reg : reg_nbit generic map (
+--      N => CW_SIZE
+--    )
+--    port map (
+--      clk   => clk,
+--      reset => rstn, -- reset is active high internally to the register
+--      d     => cw3,
+--      Q     => cw4
+--    );
+
+--    wb_reg : reg_nbit generic map (
+--      N => CW_SIZE
+--  )
+-- port map (
+--      clk   => clk,
+--     reset => rstn, -- reset is active high internally to the register
+---      d     => cw4,
+--      Q     => cw5
+--    );
 
 
 end architecture behavioural;

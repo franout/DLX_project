@@ -126,8 +126,9 @@ nop
 nop
 sw 40(r3),r22
 true1:
+nop
 ;; test -->sge!
-slei r1,r2,r5
+sge r1,r2,r5
 nop
 sw 180(r0),r1
 ;; test -->sgei!
@@ -135,7 +136,7 @@ sgei r1,r2,#89
 nop
 sw 190(r0),r1
 ;; test -->sle!
-slei r1,r2,r9
+sle r1,r2,r9
 nop
 sw 200(r0),r1
 ;; test -->slei!
@@ -143,7 +144,7 @@ slei r1,r2,#56
 nop
 sw 210(r0),r1
 ;; test -->sne!
-snei r4 ,r0 ,r0
+sne r4 ,r0 ,r0
 nop
 sw 220(r0),r4
 ;; test -->snei!

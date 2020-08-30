@@ -77,8 +77,9 @@ begin
 
 	-- logic for incremenentig the program counter 
 	new_program_counter_val <= --std_logic_vector(unsigned(program_counter_val)+0) when iram_enable_cu='0' and update_pc_branch='0' and branch_taken='0' 
-		 std_logic_vector(unsigned(new_pc_value_mem_stage)+4) when  update_pc_branch='1' or branch_taken='1' 
-		 else std_logic_vector(unsigned(program_counter_val)+4);
+		 std_logic_vector(unsigned(new_pc_value_mem_stage)+4) when  update_pc_branch='1' or branch_taken='1'  else 
+		 std_logic_vector(unsigned(program_counter_val)+0) when iram_enable_cu='0' else
+		 std_logic_vector(unsigned(program_counter_val)+4);
 
 	-- New Program counter
 	new_program_counter : reg_nbit
@@ -107,7 +108,7 @@ begin
 			Q     => instruction_reg_val
 		);
 
-	curr_instruction_to_reg<= IRAM_DATA ;
+	curr_instruction_to_reg<= IRAM_DATA when stall='0' else instruction_reg_val ;
 	
 	curr_instruction <= instruction_reg_val; -- it has to go to the CU and part of it to the register file in the decode stage
 
