@@ -1,0 +1,51 @@
+Information: Updating design information... (UID-85)
+Warning: Design 'DLX_IR_SIZE32_PC_SIZE32' contains 1 high-fanout nets. A fanout number of 1000 will be used for delay calculations involving these nets. (TIM-134)
+ 
+****************************************
+Report : timing
+        -path full
+        -delay max
+        -max_paths 1
+Design : DLX_IR_SIZE32_PC_SIZE32
+Version: O-2018.06-SP4
+Date   : Mon Aug 31 16:37:55 2020
+****************************************
+
+ # A fanout number of 1000 was used for high fanout net computations.
+
+Operating Conditions: typical   Library: NangateOpenCellLibrary
+Wire Load Model Mode: top
+
+  Startpoint: cu_i/curr_state_reg[0]
+              (rising edge-triggered flip-flop)
+  Endpoint: DRAM_DATA[31]
+            (output port clocked by clk)
+  Path Group: (none)
+  Path Type: max
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  DLX_IR_SIZE32_PC_SIZE32
+                     5K_hvratio_1_1        NangateOpenCellLibrary
+
+  Point                                                   Incr       Path
+  --------------------------------------------------------------------------
+  cu_i/curr_state_reg[0]/CK (DFFS_X1)                     0.00 #     0.00 r
+  cu_i/curr_state_reg[0]/Q (DFFS_X1)                      0.08       0.08 f
+  U4006/ZN (NOR2_X1)                                      0.10       0.18 r
+  U4013/ZN (NAND3_X1)                                     0.06       0.24 f
+  U3997/ZN (NOR4_X1)                                      0.16       0.40 r
+  U4016/ZN (INV_X1)                                       0.03       0.43 f
+  U4017/ZN (NOR2_X1)                                      0.06       0.50 r
+  U4018/ZN (OAI22_X1)                                     0.05       0.54 f
+  U4019/ZN (NAND2_X1)                                     0.12       0.66 r
+  U4020/Z (CLKBUF_X1)                                     0.16       0.82 r
+  datapath_i/memory_stage_dp/DRAM_DATA_tri[31]/Z (TBUF_X1)
+                                                          0.24       1.06 f
+  DRAM_DATA[31] (inout)                                   0.00       1.06 f
+  data arrival time                                                  1.06
+  --------------------------------------------------------------------------
+  (Path is unconstrained)
+
+
+1

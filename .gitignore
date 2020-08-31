@@ -2,5 +2,11 @@
 
 ./project/simulation/work/
 ./project/synthesis/work/
+./project/synthesis.old/
+./project/physical_design.old/
+./hardware/dlx/test_bench/memories/test_mem_out.txt
 ./work/
 *.bak
+*.log
+*.wlf
+transcript

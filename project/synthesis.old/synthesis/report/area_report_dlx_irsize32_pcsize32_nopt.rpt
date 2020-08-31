@@ -1,0 +1,30 @@
+ 
+****************************************
+Report : area
+Design : DLX_IR_SIZE32_PC_SIZE32
+Version: O-2018.06-SP4
+Date   : Mon Aug 31 16:25:06 2020
+****************************************
+
+Library(s) Used:
+
+    NangateOpenCellLibrary (File: /home/mariagrazia.graziano/do/libnangate/NangateOpenCellLibrary_typical_ecsm.db)
+
+Number of ports:                        20471
+Number of nets:                         32908
+Number of cells:                        16025
+Number of combinational cells:           9591
+Number of sequential cells:              3897
+Number of macros/black boxes:               0
+Number of buf/inv:                       3689
+Number of references:                       2
+
+Combinational area:              11672.080070
+Buf/Inv area:                     2204.873996
+Noncombinational area:           18364.108253
+Macro/Black Box area:                0.000000
+Net Interconnect area:      undefined  (Wire load has zero net area)
+
+Total cell area:                 30036.188322
+Total area:                 undefined
+1

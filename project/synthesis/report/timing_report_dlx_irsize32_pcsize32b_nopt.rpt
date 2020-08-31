@@ -1,0 +1,74 @@
+ 
+****************************************
+Report : timing
+        -path full
+        -delay max
+        -max_paths 1
+Design : DLX_IR_SIZE32_PC_SIZE32
+Version: O-2018.06-SP4
+Date   : Mon Aug 31 21:18:51 2020
+****************************************
+
+ # A fanout number of 1000 was used for high fanout net computations.
+
+Operating Conditions: typical   Library: NangateOpenCellLibrary
+Wire Load Model Mode: top
+
+  Startpoint: datapath_i/fetch_stage_dp/instruction_reg/D_I_30/Q_reg
+              (rising edge-triggered flip-flop)
+  Endpoint: DRAM_DATA[31]
+            (output port)
+  Path Group: (none)
+  Path Type: max
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  DLX_IR_SIZE32_PC_SIZE32
+                     5K_hvratio_1_1        NangateOpenCellLibrary
+
+  Point                                                   Incr       Path
+  --------------------------------------------------------------------------
+  datapath_i/fetch_stage_dp/instruction_reg/D_I_30/Q_reg/CK (DFFR_X1)
+                                                          0.00       0.00 r
+  datapath_i/fetch_stage_dp/instruction_reg/D_I_30/Q_reg/Q (DFFR_X1)
+                                                          0.13       0.13 r
+  datapath_i/fetch_stage_dp/instruction_reg/D_I_30/Q (FD_2090)
+                                                          0.00       0.13 r
+  datapath_i/fetch_stage_dp/instruction_reg/Q[30] (reg_nbit_n32_14)
+                                                          0.00       0.13 r
+  datapath_i/fetch_stage_dp/curr_instruction[30] (fetch_stage_IR_SIZE32_PC_SIZE32)
+                                                          0.00       0.13 r
+  datapath_i/curr_instruction_to_cu[30] (DATAPATH_N32_RF_REGS32_IR_SIZE32_PC_SIZE32)
+                                                          0.00       0.13 r
+  cu_i/curr_instruction_to_cu[30] (control_unit_PC_SIZE32_RF_REGS32_IR_SIZE32_CW_SIZE22)
+                                                          0.00       0.13 r
+  cu_i/U190/ZN (INV_X1)                                   0.04       0.17 f
+  cu_i/U189/ZN (NAND2_X1)                                 0.05       0.22 r
+  cu_i/U179/ZN (INV_X1)                                   0.03       0.25 f
+  cu_i/U114/ZN (AND4_X1)                                  0.05       0.30 f
+  cu_i/U112/ZN (NAND2_X1)                                 0.03       0.33 r
+  cu_i/U98/ZN (NOR2_X1)                                   0.03       0.36 f
+  cu_i/U97/ZN (INV_X1)                                    0.04       0.40 r
+  cu_i/U92/ZN (OAI21_X1)                                  0.04       0.44 f
+  cu_i/U42/Z (MUX2_X1)                                    0.08       0.52 f
+  cu_i/dram_enable_cu (control_unit_PC_SIZE32_RF_REGS32_IR_SIZE32_CW_SIZE22)
+                                                          0.00       0.52 f
+  datapath_i/dram_enable_cu (DATAPATH_N32_RF_REGS32_IR_SIZE32_PC_SIZE32)
+                                                          0.00       0.52 f
+  datapath_i/memory_stage_dp/dram_enable_cu (memory_stage_N32_PC_SIZE32)
+                                                          0.00       0.52 f
+  datapath_i/memory_stage_dp/U3/ZN (INV_X2)               0.13       0.64 r
+  datapath_i/memory_stage_dp/U4/ZN (OR2_X2)               0.16       0.81 r
+  datapath_i/memory_stage_dp/DRAM_DATA_tri[31]/Z (TBUF_X1)
+                                                          0.25       1.05 f
+  datapath_i/memory_stage_dp/DRAM_DATA[31] (memory_stage_N32_PC_SIZE32)
+                                                          0.00       1.05 f
+  datapath_i/DRAM_DATA[31] (DATAPATH_N32_RF_REGS32_IR_SIZE32_PC_SIZE32)
+                                                          0.00       1.05 f
+  DRAM_DATA[31] (inout)                                   0.00       1.06 f
+  data arrival time                                                  1.06
+  --------------------------------------------------------------------------
+  (Path is unconstrained)
+
+
+1
