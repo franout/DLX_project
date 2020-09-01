@@ -59,6 +59,36 @@ typedef enum  bit [3:0]{ADD=4'h0,
 `define PATH_TO_DMEM "/home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/dram.txt"
 `define PATH_TO_IMEM "/home/ms20.50/Desktop/DLX_project/hardware/dlx/test_bench/memories/sbst_dump.txt"
 
+
+
+// debug interfae for simulation purposes
+interface DEBUG_interface ();
+	logic iram_ready_cu;
+	logic iram_enable_cu;
+	logic signed_notsigned;
+	logic compute_sext;
+	logic jump_sext;
+	logic write_rf;
+	logic [1:0]evaluate_branch;
+	logic alu_cin;
+	logic alu_overflow;
+	logic zero_mul_detect;
+	logic mul_exeception;
+	logic dram_ready_cu;
+	logic dram_r_nw_cu;
+	logic enable_rf;
+	logic read_rf_p1;
+	logic read_rf_p2;
+	logic rtype_itypen;
+	logic [0:0]sel_val_a;
+	logic [0:0]sel_val_b;
+	logic update_pc_branch;
+	logic [0:0]select_wb;
+	logic dram_enable_cu;
+	logic [7:0] csr;
+	logic [$clog2(`CU_STATES)-1:0] curr_state_debug;
+endinterface
+
 `endif // __GLOBAL_DEFS__SVH
 
 
