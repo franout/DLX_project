@@ -64,11 +64,23 @@ Moreover, in the memories folder it is present also a python script for generati
   $ ./hardware/dlx/test_bench/memories/generate_random_values_dram.py
   ```
 ## Simulation  
-
+For exectuting the simulation of the DLX, it is necessary to execute:
+```shell
+  $ ./scripts/simulation.sh
+  ```
+  It will compile the needed files for executing the simulation. Moreover, there are two types of simulations, one with the Universal Verification Methodology architecture and the other one with the normal configuration (IRAM-DLX-DRAM).
 ## Synthesis 
-
+For executing the synthesis of the DLX:
+```shell
+  $ ./scripts/synthesis.sh
+  ```
+  It will execute different synthesis with different clocks (starting from unconstrained design) and area footprint. Moreover, it will be synthesized taking into account a possible Scan chain (DfT) for a further production phase.
 ## Layout
-
+For executing the physical design of the synthesized DLX:
+```shell
+  $ ./scripts/physical_design.sh gui/no_gui
+  ```
+It will execute the physical desing of differt design point ( for different clock values and area).
 
 ## Tests 
 For functionally verify the microprocessor refers to the testbench in System Verilog. 
@@ -76,7 +88,6 @@ They are divided for each stage and control unit for regression test
 ```shell
   $ ./scripts/regression_test.sh
   ```
-While there will be a final testbench for the DLX top level entity
 ## Useful Link 
 
 Reach out to me at one of the following places!
