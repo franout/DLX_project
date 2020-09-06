@@ -85,6 +85,12 @@ echo "##########################################################"
 echo "####---> Starting regression test for every units <---####"
 echo "##########################################################"
 
+
+if [ ! -z "$1"  ] ; then 
+echo "Starting simulation for $1"
+vsim -suppress 12110 -novopt work.tb_"$1" -do ./scripts/"$1"_tb.do
+
+else 
 echo "Starting simulation of memory units"
 vsim -suppress 12110 -novopt work.tb_memories -do ./scripts/memories_tb.do
 echo "Starting simulation of fetch  stage unit" 
@@ -100,7 +106,7 @@ echo "Starting simulation of write stage unit"
 vsim -suppress 12110 -novopt work.tb_writeback_stage -do ./scripts/writeback_stage_tb.do
 echo "Starting simulation of cu unit"
 vsim -suppress 12110 -novopt work.tb_cu -do ./scripts/cu_tb.do
-
+fi
 echo "[PASS] -> Regression test passed , you can safely execute the simulation.sh script for testing the DLX top level entity"
 rm -rf work 
 exit

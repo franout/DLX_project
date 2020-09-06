@@ -16,8 +16,12 @@
 `ifndef __DLX_TEST_SV
 `define __DLX_TEST_SV
 `include "../003-global_defs.svh"
-`include "./memories/005-memory_interfaces.svh"
+`include "../memories/005-memory_interfaces.svh"
+`include "dlx_env.sv"
 
+import uvm_pkg::*;
+`include <uvm_macros.svh>
+`include <uvm_pkg.sv>
 
 class test extends uvm_test;
   `uvm_component_utils(test)
@@ -51,7 +55,7 @@ class test extends uvm_test;
   endfunction
 
   virtual task run_phase(uvm_phase phase);
-    gen_item_seq seq = gen_item_seq::type_id::create("seq");
+    instruction_sequence seq = instruction_sequence::type_id::create("seq");
     phase.raise_objection(this);
     apply_reset();
 
@@ -66,6 +70,7 @@ class test extends uvm_test;
     seq.start(e0.a0.s0);
     #100; // execute 10 more cc
     end 
+  end
 
     phase.drop_objection(this);
     phase.print_topology(this);

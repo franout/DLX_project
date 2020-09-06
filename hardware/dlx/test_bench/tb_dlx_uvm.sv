@@ -18,8 +18,10 @@
 `include "./004-implemented_instructions.svh"
 `include "./memories/005-memory_interfaces.svh"
 
-
 import uvm_pkg::*;
+
+`include <uvm_macros.svh>
+`include <uvm_pkg.sv>
 
 // including uvm classes in a bottom up order
 `include "./uvm_class_def/dlx_sequencer.sv"
@@ -66,7 +68,7 @@ module tb_dlx_uvm ();
 	DEBUG_interface dbg_if ();
 
 	dlx_wrapper uut (.clk(clk),
-					.rst   (dbg_if.rst) // active low
+					.rst   (dbg_if.rst), // active low
 					.mif_ro(mif_ro),// memory interface clocked by clk
 					.mif_rw(mif_rw),// memory interface clocked by clk
 					.dbg_if(dbg_if));

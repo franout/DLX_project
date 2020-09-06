@@ -16,6 +16,12 @@
 `ifndef __DLX_SCOREBOARD_SV
 `define __DLX_SCOREBOARD_SV
 `include "../004-implemented_instructions.svh"
+`include "./dlx_sequencer.sv"
+`include "./dlx_monitor.sv"
+
+import uvm_pkg::*;
+`include <uvm_macros.svh>
+`include <uvm_pkg.sv>
 
 typedef struct {
 	/*instructions_opcode current_opcode;
@@ -27,27 +33,27 @@ typedef struct {
 class scoreboard extends uvm_scoreboard;
   `uvm_component_utils(scoreboard)
 
-   const int control_regtype;
-   const int control_immediate;
-   const int control_beqz;
-   const int control_benz;
-   const int control_j;
-   const int control_jal;
-   const int control_sw;
-   const int control_lw;
+   const integer unsigned control_regtype;
+   const integer unsigned control_immediate;
+   const integer unsigned control_beqz;
+   const integer unsigned control_benz;
+   const integer unsigned control_j;
+   const integer unsigned control_jal;
+   const integer unsigned control_sw;
+   const integer unsigned control_lw;
 
 
   function new(string name="scoreboard", uvm_component parent=null);
     super.new(name, parent);
-    // init constant values 
-    control_regtype=4161896448;
-	control_immediate=3541139456;
-	control_beqz=3819962368;
-	control_benz=3822059520;
-	control_j=2274492416;
-	control_jal=2274590720;
-	control_sw=4103602176;
-	control_lw=3835527168;
+    // init signatures
+    control_regtype=32'd4161896448;
+	control_immediate=32'd3541139456;
+	control_beqz=32'd3819962368;
+	control_benz=32'd3822059520;
+	control_j=32'd2274492416;
+	control_jal=32'd2274590720;
+	control_sw=32'd4103602176;
+	control_lw=32'd3835527168;
   endfunction
 
 
@@ -71,8 +77,8 @@ class scoreboard extends uvm_scoreboard;
   	// check debug signals 
   	if(item.get_opcode()===i_regtype) begin 
   		// check the general signals 
-  		if(item.get_signals()[31:15]!= ) begin  //compare with a signature 
-  			`uvm_error(get_type_name(), $sformatf("FAILED instruction: %s!",item.convert2str()), UVM_LOW)
+  		if(item.get_signals()!==control_regtype ) begin  //compare with a signature 
+  			`uvm_error(get_type_name(), $sformatf("FAILED instruction: %s!",item.convert2str()))
   			info_array_instr[item.get_current_instruction_name()].pass="no"; 
   		end else begin 	
 			`uvm_info(get_type_name(), $sformatf("PASSED instruction: %s!",item.convert2str()), UVM_LOW)
@@ -85,7 +91,7 @@ class scoreboard extends uvm_scoreboard;
   		case (tmp)
   			i_add: begin 
   				if(tmp!==check_tmp)begin 
-        			`uvm_error (get_type_name(),$sformatf("FAILED instruction: %s , wrong alu opcode add ! Actual : %d , Excpeted : %d",item.convert2str(),tmp , i_add), UVM_LOW)
+        			`uvm_error (get_type_name(),$sformatf("FAILED instruction: %s , wrong alu opcode add ! Actual : %d , Excpeted : %d",item.convert2str(),tmp , i_add))
         			info_array_instr[tmp.get_current_instruction_name()].pass="no";
   				end else begin 
   					`uvm_info(get_type_name(),  $sformatf("PASSED instruction: %s , correct alu opcode !",item.convert2str()), UVM_LOW)
@@ -94,7 +100,7 @@ class scoreboard extends uvm_scoreboard;
   			end
    			i_and  : begin 
   				if(tmp!==check_tmp)begin 
-        			`uvm_error (get_type_name(),$sformatf("FAILED instruction: %s , wrong alu opcode and ! Actual : %d , Excpeted : %d",item.convert2str(),tmp , i_and), UVM_LOW)
+        			`uvm_error (get_type_name(),$sformatf("FAILED instruction: %s , wrong alu opcode and ! Actual : %d , Excpeted : %d",item.convert2str(),tmp , i_and))
         			 info_array_instr[tmp.get_current_instruction_name()].pass="no";
   				end else begin 
   					`uvm_info(get_type_name(),  $sformatf("PASSED instruction: %s , correct alu opcode and!",item.convert2str()), UVM_LOW)
@@ -103,7 +109,7 @@ class scoreboard extends uvm_scoreboard;
    			end
    			i_or: begin 
   				if(tmp!==check_tmp)begin 
-        			`uvm_error (get_type_name(),$sformatf("FAILED instruction: %s , wrong alu opcode or ! Actual : %d , Excpeted : %d",item.convert2str(),tmp , i_or), UVM_LOW)
+        			`uvm_error (get_type_name(),$sformatf("FAILED instruction: %s , wrong alu opcode or ! Actual : %d , Excpeted : %d",item.convert2str(),tmp , i_or))
         			 info_array_instr[tmp.get_current_instruction_name()].pass="no";
   				end else begin 
   					`uvm_info(get_type_name(),  $sformatf("PASSED instruction: %s , correct alu opcode or!",item.convert2str()), UVM_LOW)
@@ -112,7 +118,7 @@ class scoreboard extends uvm_scoreboard;
    			end
    			i_sll : begin 
   				if(tmp!==check_tmp)begin 
-        			`uvm_error (get_type_name(),$sformatf("FAILED instruction: %s , wrong alu opcode sll ! Actual : %d , Excpeted : %d",item.convert2str(),tmp , i_sll), UVM_LOW)
+        			`uvm_error (get_type_name(),$sformatf("FAILED instruction: %s , wrong alu opcode sll ! Actual : %d , Excpeted : %d",item.convert2str(),tmp , i_sll))
         			 info_array_instr[tmp.get_current_instruction_name()].pass="no";
   				end else begin 
   					`uvm_info(get_type_name(),  $sformatf("PASSED instruction: %s , correct alu opcode sll!",item.convert2str()), UVM_LOW)
@@ -121,7 +127,7 @@ class scoreboard extends uvm_scoreboard;
    			end
    			i_srl : begin 
   				if(tmp!==check_tmp)begin 
-        			`uvm_error (get_type_name(),$sformatf("FAILED instruction: %s , wrong alu opcode srl ! Actual : %d , Excpeted : %d",item.convert2str(),tmp , i_srl), UVM_LOW)
+        			`uvm_error (get_type_name(),$sformatf("FAILED instruction: %s , wrong alu opcode srl ! Actual : %d , Excpeted : %d",item.convert2str(),tmp , i_srl))
         			 info_array_instr[tmp.get_current_instruction_name()].pass="no";
   				end else begin 
   					`uvm_info(get_type_name(),  $sformatf("PASSED instruction: %s , correct alu opcode srl!",item.convert2str()), UVM_LOW)
@@ -130,7 +136,7 @@ class scoreboard extends uvm_scoreboard;
    			end
    			i_sub : begin 
   				if(tmp!==check_tmp && item.get_carry_in()!==1 )begin 
-        			`uvm_error (get_type_name(),$sformatf("FAILED instruction: %s , wrong alu opcode sub ! Actual : %d , Excpeted : %d",item.convert2str(),tmp , i_sub), UVM_LOW)
+        			`uvm_error (get_type_name(),$sformatf("FAILED instruction: %s , wrong alu opcode sub ! Actual : %d , Excpeted : %d",item.convert2str(),tmp , i_sub))
         			 info_array_instr[tmp.get_current_instruction_name()].pass="no";
   				end else begin 
   					`uvm_info(get_type_name(),  $sformatf("PASSED instruction: %s , correct alu opcode sub!",item.convert2str()), UVM_LOW)
@@ -139,7 +145,7 @@ class scoreboard extends uvm_scoreboard;
    			end
    			i_xor : begin 
   				if(tmp!==check_tmp)begin 
-        			`uvm_error (get_type_name(),$sformatf("FAILED instruction: %s , wrong alu opcode xor ! Actual : %d , Excpeted : %d",item.convert2str(),tmp , i_xor), UVM_LOW)
+        			`uvm_error (get_type_name(),$sformatf("FAILED instruction: %s , wrong alu opcode xor ! Actual : %d , Excpeted : %d",item.convert2str(),tmp , i_xor))
         			 info_array_instr[tmp.get_current_instruction_name()].pass="no";
   				end else begin 
   					`uvm_info(get_type_name(),  $sformatf("PASSED instruction: %s , correct alu opcode xor!",item.convert2str()), UVM_LOW)
@@ -148,7 +154,7 @@ class scoreboard extends uvm_scoreboard;
    			end
    			i_sne : begin 
   				if(tmp!==check_tmp)begin 
-        			`uvm_error (get_type_name(),$sformatf("FAILED instruction: %s , wrong alu opcode sne ! Actual : %d , Excpeted : %d",item.convert2str(),tmp , i_sne), UVM_LOW)
+        			`uvm_error (get_type_name(),$sformatf("FAILED instruction: %s , wrong alu opcode sne ! Actual : %d , Excpeted : %d",item.convert2str(),tmp , i_sne))
         			 info_array_instr[tmp.get_current_instruction_name()].pass="no";
   				end else begin 
   					`uvm_info(get_type_name(),  $sformatf("PASSED instruction: %s , correct alu opcode sne!",item.convert2str()), UVM_LOW)
@@ -157,7 +163,7 @@ class scoreboard extends uvm_scoreboard;
    			end
    			i_sle : begin 
   				if(tmp!==check_tmp)begin 
-        			`uvm_error (get_type_name(),$sformatf("FAILED instruction: %s , wrong alu opcode sle ! Actual : %d , Excpeted : %d",item.convert2str(),tmp , i_sle), UVM_LOW)
+        			`uvm_error (get_type_name(),$sformatf("FAILED instruction: %s , wrong alu opcode sle ! Actual : %d , Excpeted : %d",item.convert2str(),tmp , i_sle))
         			 info_array_instr[tmp.get_current_instruction_name()].pass="no";
   				end else begin 
   					`uvm_info(get_type_name(),  $sformatf("PASSED instruction: %s , correct alu opcode sle !",item.convert2str()), UVM_LOW)
@@ -166,7 +172,7 @@ class scoreboard extends uvm_scoreboard;
    			end
    			i_sge : begin 
   				if(tmp!==check_tmp)begin 
-        			`uvm_error (get_type_name(),$sformatf("FAILED instruction: %s , wrong alu opcode sge ! Actual : %d , Excpeted : %d",item.convert2str(),tmp , i_sge), UVM_LOW)
+        			`uvm_error (get_type_name(),$sformatf("FAILED instruction: %s , wrong alu opcode sge ! Actual : %d , Excpeted : %d",item.convert2str(),tmp , i_sge))
         			 info_array_instr[tmp.get_current_instruction_name()].pass="no";
   				end else begin 
   					`uvm_info(get_type_name(),  $sformatf("PASSED instruction: %s , correct alu opcode sge!",item.convert2str()), UVM_LOW)
@@ -175,7 +181,7 @@ class scoreboard extends uvm_scoreboard;
    			end
    			i_mul: begin 
   				if(tmp!==check_tmp)begin 
-        			`uvm_error (get_type_name(),$sformatf("FAILED instruction: %s , wrong alu opcode mul ! Actual : %d , Excpeted : %d",item.convert2str(),tmp , i_mul), UVM_LOW)
+        			`uvm_error (get_type_name(),$sformatf("FAILED instruction: %s , wrong alu opcode mul ! Actual : %d , Excpeted : %d",item.convert2str(),tmp , i_mul))
         			 info_array_instr[tmp.get_current_instruction_name()].pass="no";
   				end else begin 
   					`uvm_info(get_type_name(),  $sformatf("PASSED instruction: %s , correct alu opcode mul!",item.convert2str()), UVM_LOW)
@@ -186,9 +192,9 @@ class scoreboard extends uvm_scoreboard;
   		endcase
   	end else if (item.get_opcode()===i_beqz ) begin 
 
-  		// check the general signals TODO
-  		if(item.get_signals()[31:13]!='h ) begin  //compare with a signature 
-  			`uvm_error(get_type_name(), $sformatf("FAILED instruction: %s!",item.convert2str()), UVM_LOW)
+  		// check the general signals 
+  		if(item.get_signals()!==control_beqz ) begin  //compare with a signature 
+  			`uvm_error(get_type_name(), $sformatf("FAILED instruction: %s!",item.convert2str()))
   			info_array_instr[item.get_current_instruction_name()].pass="no"; 
   		end else begin 	
 			`uvm_info(get_type_name(), $sformatf("PASSED instruction: %s!",item.convert2str()), UVM_LOW)
@@ -196,9 +202,9 @@ class scoreboard extends uvm_scoreboard;
   		end 
 
   	end else if( item.get_opcode()===i_benz) begin 
-  			// check the general signals TODO
-  		if(item.get_signals()[31:13]!='h ) begin  //compare with a signature 
-  			`uvm_error(get_type_name(), $sformatf("FAILED instruction: %s!",item.convert2str()), UVM_LOW)
+  			// check the general signals 
+  		if(item.get_signals()!==control_benz ) begin  //compare with a signature 
+  			`uvm_error(get_type_name(), $sformatf("FAILED instruction: %s!",item.convert2str()))
   			info_array_instr[item.get_current_instruction_name()].pass="no"; 
   		end else begin 	
 			`uvm_info(get_type_name(), $sformatf("PASSED instruction: %s!",item.convert2str()), UVM_LOW)
@@ -206,9 +212,9 @@ class scoreboard extends uvm_scoreboard;
   		end 
 
   	end else if (item.get_opcode()===i_j) begin 
-  			// check the general signals TODO
-  		if(item.get_signals()[31:13]!='h ) begin  //compare with a signature 
-  			`uvm_error(get_type_name(), $sformatf("FAILED instruction: %s!",item.convert2str()), UVM_LOW)
+  			// check the general signals 
+  		if(item.get_signals()!=control_j ) begin  //compare with a signature 
+  			`uvm_error(get_type_name(), $sformatf("FAILED instruction: %s!",item.convert2str()))
   			info_array_instr[item.get_current_instruction_name()].pass="no"; 
   		end else begin 	
 			`uvm_info(get_type_name(), $sformatf("PASSED instruction: %s!",item.convert2str()), UVM_LOW)
@@ -216,9 +222,9 @@ class scoreboard extends uvm_scoreboard;
   		end 
 
   	end else if(item.get_opcode()===i_jal) begin 
-	// check the general signals TODO
-  		if(item.get_signals()[31:13]!='h ) begin  //compare with a signature 
-  			`uvm_error(get_type_name(), $sformatf("FAILED instruction: %s!",item.convert2str()), UVM_LOW)
+	// check the general signals
+  		if(item.get_signals()!==control_jal) begin  //compare with a signature 
+  			`uvm_error(get_type_name(), $sformatf("FAILED instruction: %s!",item.convert2str()))
   			info_array_instr[item.get_current_instruction_name()].pass="no"; 
   		end else begin 	
 			`uvm_info(get_type_name(), $sformatf("PASSED instruction: %s!",item.convert2str()), UVM_LOW)
@@ -226,9 +232,9 @@ class scoreboard extends uvm_scoreboard;
   		end 
 
     end else if (item.get_opcode()===i_sw )
-	// check the general signals TODO
-  		if(item.get_signals()[31:13]!='h ) begin  //compare with a signature 
-  			`uvm_error(get_type_name(), $sformatf("FAILED instruction: %s!",item.convert2str()), UVM_LOW)
+	// check the general signals 
+  		if(item.get_signals()!==control_sw ) begin  //compare with a signature 
+  			`uvm_error(get_type_name(), $sformatf("FAILED instruction: %s!",item.convert2str()))
   			info_array_instr[item.get_current_instruction_name()].pass="no"; 
   		end else begin 	
 			`uvm_info(get_type_name(), $sformatf("PASSED instruction: %s!",item.convert2str()), UVM_LOW)
@@ -236,9 +242,9 @@ class scoreboard extends uvm_scoreboard;
   		end 
 
 	end else if (item.get_opcode()===i_lw) begin 
-	// check the general signals TODO
-  		if(item.get_signals()[31:13]!='h ) begin  //compare with a signature 
-  			`uvm_error(get_type_name(), $sformatf("FAILED instruction: %s!",item.convert2str()), UVM_LOW)
+	// check the general signals 
+  		if(item.get_signals()!== control_lw ) begin  //compare with a signature 
+  			`uvm_error(get_type_name(), $sformatf("FAILED instruction: %s!",item.convert2str()))
   			info_array_instr[item.get_current_instruction_name()].pass="no"; 
   		end else begin 	
 			`uvm_info(get_type_name(), $sformatf("PASSED instruction: %s!",item.convert2str()), UVM_LOW)
@@ -246,9 +252,9 @@ class scoreboard extends uvm_scoreboard;
   		end 
 
   	end else begin  // immediate
-	// check the general signals TODO
-  		if(item.get_signals()[31:13]!='h ) begin  //compare with a signature 
-  			`uvm_error(get_type_name(), $sformatf("FAILED instruction: %s!",item.convert2str()), UVM_LOW)
+	// check the general signals 
+  		if(item.get_signals()!==control_immediate ) begin  //compare with a signature 
+  			`uvm_error(get_type_name(), $sformatf("FAILED instruction: %s!",item.convert2str()))
   			info_array_instr[item.get_current_instruction_name()].pass="no"; 
   		end else begin 	
 			`uvm_info(get_type_name(), $sformatf("PASSED instruction: %s!",item.convert2str()), UVM_LOW)
@@ -261,7 +267,7 @@ class scoreboard extends uvm_scoreboard;
   		case (tmp)
   			i_addi : begin 
 		if(ADD!==check_tmp)begin 
-        			`uvm_error (get_type_name(),$sformatf("FAILED instruction: %s , wrong alu opcode addi ! Actual : %d , Excpeted : %d",item.convert2str(),tmp , ADD), UVM_LOW)
+        			`uvm_error (get_type_name(),$sformatf("FAILED instruction: %s , wrong alu opcode addi ! Actual : %d , Excpeted : %d",item.convert2str(),tmp , ADD))
         			info_array_instr[tmp.get_current_instruction_name()].pass="no";
   				end else begin 
   					`uvm_info(get_type_name(),  $sformatf("PASSED instruction: %s , correct alu opcode addi!",item.convert2str()), UVM_LOW)
@@ -270,7 +276,7 @@ class scoreboard extends uvm_scoreboard;
   			end 
    			i_andi : begin 
 		if(BITAND!==check_tmp)begin 
-        			`uvm_error (get_type_name(),$sformatf("FAILED instruction: %s , wrong alu opcode subi ! Actual : %d , Excpeted : %d",item.convert2str(),tmp , BITAND), UVM_LOW)
+        			`uvm_error (get_type_name(),$sformatf("FAILED instruction: %s , wrong alu opcode subi ! Actual : %d , Excpeted : %d",item.convert2str(),tmp , BITAND))
         			info_array_instr[tmp.get_current_instruction_name()].pass="no";
   				end else begin 
   					`uvm_info(get_type_name(),  $sformatf("PASSED instruction: %s , correct alu opcode subi!",item.convert2str()), UVM_LOW)
@@ -279,7 +285,7 @@ class scoreboard extends uvm_scoreboard;
    			end 
    			i_nop : begin 
 		if(ADD!==check_tmp)begin 
-        			`uvm_error (get_type_name(),$sformatf("FAILED instruction: %s , wrong alu opcode nop ! Actual : %d , Excpeted : %d",item.convert2str(),tmp , i_add), UVM_LOW)
+        			`uvm_error (get_type_name(),$sformatf("FAILED instruction: %s , wrong alu opcode nop ! Actual : %d , Excpeted : %d",item.convert2str(),tmp , i_add))
         			info_array_instr[tmp.get_current_instruction_name()].pass="no";
   				end else begin 
   					`uvm_info(get_type_name(),  $sformatf("PASSED instruction: %s , correct alu opcode nop!",item.convert2str()), UVM_LOW)
@@ -288,7 +294,7 @@ class scoreboard extends uvm_scoreboard;
    			end 
    			i_sgei : begin 
 		if(GE!==check_tmp)begin 
-        			`uvm_error (get_type_name(),$sformatf("FAILED instruction: %s , wrong alu opcode SGEI ! Actual : %d , Excpeted : %d",item.convert2str(),tmp , GE), UVM_LOW)
+        			`uvm_error (get_type_name(),$sformatf("FAILED instruction: %s , wrong alu opcode SGEI ! Actual : %d , Excpeted : %d",item.convert2str(),tmp , GE))
         			info_array_instr[tmp.get_current_instruction_name()].pass="no";
   				end else begin 
   					`uvm_info(get_type_name(),  $sformatf("PASSED instruction: %s , correct alu opcode SGEI!",item.convert2str()), UVM_LOW)
@@ -297,7 +303,7 @@ class scoreboard extends uvm_scoreboard;
    			end 
    			i_slei : begin 
 		if(LE!==check_tmp)begin 
-        			`uvm_error (get_type_name(),$sformatf("FAILED instruction: %s , wrong alu opcode SLEI ! Actual : %d , Excpeted : %d",item.convert2str(),tmp , LE), UVM_LOW)
+        			`uvm_error (get_type_name(),$sformatf("FAILED instruction: %s , wrong alu opcode SLEI ! Actual : %d , Excpeted : %d",item.convert2str(),tmp , LE))
         			info_array_instr[tmp.get_current_instruction_name()].pass="no";
   				end else begin 
   					`uvm_info(get_type_name(),  $sformatf("PASSED instruction: %s , correct alu opcode SLEI!",item.convert2str()), UVM_LOW)
@@ -306,7 +312,7 @@ class scoreboard extends uvm_scoreboard;
    			end 
    			i_slli : begin 
 		if(FUNCLSL!==check_tmp)begin 
-        			`uvm_error (get_type_name(),$sformatf("FAILED instruction: %s , wrong alu opcode SLLI ! Actual : %d , Excpeted : %d",item.convert2str(),tmp , FUNCLSL), UVM_LOW)
+        			`uvm_error (get_type_name(),$sformatf("FAILED instruction: %s , wrong alu opcode SLLI ! Actual : %d , Excpeted : %d",item.convert2str(),tmp , FUNCLSL))
         			info_array_instr[tmp.get_current_instruction_name()].pass="no";
   				end else begin 
   					`uvm_info(get_type_name(),  $sformatf("PASSED instruction: %s , correct alu opcode SLLI!",item.convert2str()), UVM_LOW)
@@ -315,7 +321,7 @@ class scoreboard extends uvm_scoreboard;
    			end 
    			i_snei : begin 
 		if(NE!==check_tmp)begin 
-        			`uvm_error (get_type_name(),$sformatf("FAILED instruction: %s , wrong alu opcode  SNEI ! Actual : %d , Excpeted : %d",item.convert2str(),tmp , NE), UVM_LOW)
+        			`uvm_error (get_type_name(),$sformatf("FAILED instruction: %s , wrong alu opcode  SNEI ! Actual : %d , Excpeted : %d",item.convert2str(),tmp , NE))
         			info_array_instr[tmp.get_current_instruction_name()].pass="no";
   				end else begin 
   					`uvm_info(get_type_name(),  $sformatf("PASSED instruction: %s , correct alu opcode SNEI !",item.convert2str()), UVM_LOW)
@@ -324,7 +330,7 @@ class scoreboard extends uvm_scoreboard;
    			end 
    			i_srli : begin 
 		if(FUNCLSR!==check_tmp)begin 
-        			`uvm_error (get_type_name(),$sformatf("FAILED instruction: %s , wrong alu opcode SRLI ! Actual : %d , Excpeted : %d",item.convert2str(),tmp , FUNCLSR), UVM_LOW)
+        			`uvm_error (get_type_name(),$sformatf("FAILED instruction: %s , wrong alu opcode SRLI ! Actual : %d , Excpeted : %d",item.convert2str(),tmp , FUNCLSR))
         			info_array_instr[tmp.get_current_instruction_name()].pass="no";
   				end else begin 
   					`uvm_info(get_type_name(),  $sformatf("PASSED instruction: %s , correct alu opcode SRLI!",item.convert2str()), UVM_LOW)
@@ -333,7 +339,7 @@ class scoreboard extends uvm_scoreboard;
    			end 
    			i_subi : begin 
 		if(SUB!==check_tmp && item.get_carry_in()!==1)begin 
-        			`uvm_error (get_type_name(),$sformatf("FAILED instruction: %s , wrong alu opcode SUBI ! Actual : %d , Excpeted : %d",item.convert2str(),tmp , SUB), UVM_LOW)
+        			`uvm_error (get_type_name(),$sformatf("FAILED instruction: %s , wrong alu opcode SUBI ! Actual : %d , Excpeted : %d",item.convert2str(),tmp , SUB))
         			info_array_instr[tmp.get_current_instruction_name()].pass="no";
   				end else begin 
   					`uvm_info(get_type_name(),  $sformatf("PASSED instruction: %s , correct alu opcode SUBI!",item.convert2str()), UVM_LOW)
@@ -342,7 +348,7 @@ class scoreboard extends uvm_scoreboard;
    			end 
    			i_ori : begin 
 		if(BITOR!==check_tmp)begin 
-        			`uvm_error (get_type_name(),$sformatf("FAILED instruction: %s , wrong alu opcode  ORI ! Actual : %d , Excpeted : %d",item.convert2str(),tmp , BITOR), UVM_LOW)
+        			`uvm_error (get_type_name(),$sformatf("FAILED instruction: %s , wrong alu opcode  ORI ! Actual : %d , Excpeted : %d",item.convert2str(),tmp , BITOR))
         			info_array_instr[tmp.get_current_instruction_name()].pass="no";
   				end else begin 
   					`uvm_info(get_type_name(),  $sformatf("PASSED instruction: %s , correct alu opcode ORI !",item.convert2str()), UVM_LOW)
@@ -351,7 +357,7 @@ class scoreboard extends uvm_scoreboard;
    			end 
    			i_xori : begin 
 		if(BITXOR!==check_tmp)begin 
-        			`uvm_error (get_type_name(),$sformatf("FAILED instruction: %s , wrong alu opcode XORI ! Actual : %d , Excpeted : %d",item.convert2str(),tmp , BITXOR), UVM_LOW)
+        			`uvm_error (get_type_name(),$sformatf("FAILED instruction: %s , wrong alu opcode XORI ! Actual : %d , Excpeted : %d",item.convert2str(),tmp , BITXOR))
         			info_array_instr[tmp.get_current_instruction_name()].pass="no";
   				end else begin 
   					`uvm_info(get_type_name(),  $sformatf("PASSED instruction: %s , correct alu opcode XORI!",item.convert2str()), UVM_LOW)
@@ -366,7 +372,8 @@ class scoreboard extends uvm_scoreboard;
 
 function all_instruction_checked ();
 	int check=1;
-	for (instruction_info i = info_array_instr.first(); !info_array_instr.exists(i); i=info_array_instr.next()) begin
+	instruction_info i = info_array_instr.first();
+	for (; !info_array_instr.exists(i); i=info_array_instr.next()) begin
 		if(i.executed_num<=0) begin 
 			check=0;
 		end 

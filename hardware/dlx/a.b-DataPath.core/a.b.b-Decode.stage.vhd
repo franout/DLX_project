@@ -191,7 +191,7 @@ begin
 
 	-- mux for immediate reg
 	data_to_mux      <= val_reg_immediate_i & val_reg_immediate_j;
-	sel_immediate(0) <= '1' when compute_sext ='0' else '0' ; -- default decision is the extend of a immediate16 ,
+	sel_immediate(0) <= '1' when jump_sext ='1' else '0' ; -- default decision is the extend of a immediate16 ,
 		                                                      -- when compute_sext='0' => enable_sign_extensio_logic for jump (immediate26extenstion ) is active
 		immediate_reg_mux : MUX_zbit_nbit generic map (
 			N => N,

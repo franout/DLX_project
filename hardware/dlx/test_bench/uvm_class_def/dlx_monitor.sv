@@ -15,9 +15,13 @@
 
 `ifndef __DLX_MONITOR_SV
 `define __DLX_MONITOR_SV
-`include "./memories/005-memory_interfaces.svh"
+`include "../memories/005-memory_interfaces.svh"
 `include "../003-global_defs.svh"
+`include "./dlx_sequencer.sv"
 
+import uvm_pkg::*;
+`include <uvm_macros.svh>
+`include <uvm_pkg.sv>
 
 class monitor extends uvm_monitor;
   `uvm_component_utils(monitor)

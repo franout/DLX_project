@@ -73,7 +73,7 @@ output logic iram_enable_cu);
 		iram_enable_cu=0;
 	// it is gonna be effective after 1 cc
 		##1;
-		if(new_pc_value!=10)begin
+		if(new_pc_value!=12)begin
 			$display("@%0dns ---> wrong generated new program counter value it has been incremente while it should be frozen",$time);
 			$stop();
 		end
@@ -102,6 +102,12 @@ module tb_fetch_stage ();
   	logic [`IRAM_ADDRESS_SIZE-1:0]new_pc_value; // forward this 
   	logic [`IRAM_WORD_SIZE-1:0]curr_instruction;
 	logic iram_enable_cu,iram_ready_cu;
+	logic update_pc_branch, branch_taken, stall;
+
+	// default assignments 
+	assign stall='0;
+	assign update_pc_branch='0;
+	assign branch_taken='0;
 
   	//property definitions
   	property generated_address(int min , int max);
@@ -147,6 +153,7 @@ module tb_fetch_stage ();
 		.clk(iram_if.clk),
 		.rst(iram_if.rst),
 		//from  memory stage
+		.branch_taken(branch_taken),
 		.new_pc_value_mem_stage(new_pc_value),
 		// to decode stage
 		.new_pc_value(new_pc_value),
@@ -158,6 +165,8 @@ module tb_fetch_stage ();
 		// to/from control unit
 		.curr_instruction(curr_instruction),
 		.iram_enable_cu(iram_enable_cu),
+		.stall(stall),
+		.update_pc_branch(update_pc_branch),
 		.iram_ready_cu (iram_ready_cu )
 	);
 

@@ -162,7 +162,7 @@ initial begin
 		`else 
 			repeat(4)@(posedge clk);
 		`endif
-		if(jump_prediction!==1)begin 
+		if(jump_prediction!==0)begin 
 			$display("Error in check zero logic-> TRuE",);
 			$stop();
 		end

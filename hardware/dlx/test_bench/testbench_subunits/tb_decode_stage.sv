@@ -138,7 +138,7 @@ initial begin
 			$stop();
 		end
 		$display("Sign extention check signed immediate26 j instruction",);
-		compute_sext=0;
+		compute_sext=1;
 		instruction_reg='h12388FFF;
 		`ifndef  VIVADO_SIM
 		new_prog_counter_val=$urandom();
@@ -157,6 +157,7 @@ initial begin
 		$display("Sign extention check unsigned immediate26 jal instruction ",);
 		rst=1;
 		compute_sext=1;
+		jump_sext=1;
 		enable_rf=1;
 		read_rf_p1=0;
 		read_rf_p2=0;

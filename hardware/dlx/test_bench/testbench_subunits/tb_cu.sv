@@ -74,14 +74,14 @@ initial begin
                         //alu function
                         instruction_to_cu[`FUNC_SIZE-1:0]={5'd0,current_opcode_alu_fun};
                         `ifndef  VIVADO_SIM
-						if(current_opcode_alu_fun===MULT) begin
-						##8;
+						if(current_opcode_alu_fun===i_mul) begin
+						##10;
 						end else begin 
                         ##5;
 						end
                         `else 
-						if(current_opcode_alu_fun===MULT) begin
-                        repeat(16)@ (posedge clk);
+						if(current_opcode_alu_fun===i_mul) begin
+                        repeat(20)@ (posedge clk);
 						end else begin 
 						repeat(10)@ (posedge clk);
 						end
@@ -92,13 +92,13 @@ initial begin
                 instruction_to_cu[`FUNC_SIZE-1:0]={5'd0,current_opcode_alu_fun};
                `ifndef  VIVADO_SIM
 				if(current_opcode_alu_fun===MULT) begin
-				##8;
+				##10;
 				end else begin 
                 ##5;
 				end
                 `else 
 				if(current_opcode_alu_fun===MULT) begin
-                    repeat(16)@ (posedge clk);
+                    repeat(10)@ (posedge clk);
 				end else begin 
 					repeat(10)@ (posedge clk);
 				end
@@ -148,24 +148,6 @@ initial begin
             `endif
         end 
 
-		$display("Checking behaviour of cu with integer multiplication zero detect");
-		current_opcode=i_regtype;
-		current_opcode_alu_fun=i_mul;
-		// opcode - rs1 - rs2 -rd - func 
-		instruction_to_cu={{`OP_CODE_SIZE{1'b0}},5'd3,5'd2,5'd1,i_mul};
-		`ifndef  VIVADO_SIM
-		##3;
-		`else 
-		repeat(6)@ (posedge clk);
-		`endif
-		zero_mul_detect=1;
-		`ifndef  VIVADO_SIM
-		##1;
-		`else 
-		repeat(2)@ (posedge clk);
-		`endif
-		$display("coming out from the imul stall");
-		zero_mul_detect=0;
 		current_opcode=i_nop;
 		instruction_to_cu={current_opcode,26'd0};
 		`ifndef  VIVADO_SIM
@@ -217,6 +199,8 @@ localparam clock_period= 10ns;
     logic dram_ready_cu;
     logic [0:0]select_wb;
 	logic  signed_notsigned;
+	logic stall;
+	logic update_pc_branch;
 	logic [$clog2(`CU_STATES)-1:0] STATE_CU_i;
  	cu_state_t  STATE_CU;
     logic [7:0] csr;
@@ -228,14 +212,14 @@ localparam clock_period= 10ns;
 
   	// property definition
      property multiplication_stall;
-        @(test_dlx)
-            disable iff(!rst && !zero_mul_detect && !mul_exeception )
+        @(test_clk)
+            disable iff(!rst && !zero_mul_detect && !mul_exeception && ireg_instr!==i_mul)
                 (ireg_instr===i_mul) |-> !iram_enable_cu[*9];// no fetching for 9 cc
     endproperty; 
 
   /* sequence for reg type instructions*/
     sequence ireg_decode;
-        ##1  enable_rf && read_rf_p1 && read_rf_p2 && rtype_itypen && !compute_sext && !jump_sext;
+        ##1  enable_rf && read_rf_p1 && read_rf_p2 && rtype_itypen_i && !compute_sext && !jump_sext;
     endsequence ;
 
     sequence ireg_execute(cin);
@@ -251,7 +235,7 @@ localparam clock_period= 10ns;
     endsequence ;
 /*sequence for immediate instruction */
     sequence itype_decode;
-        ##1  enable_rf && read_rf_p1 && !read_rf_p2 && !rtype_itypen && compute_sext && !jump_sext;
+        ##1  enable_rf && read_rf_p1 && !read_rf_p2 && !rtype_itypen_i && compute_sext && !jump_sext;
     endsequence ;
 
     sequence itype_execute;
@@ -267,7 +251,7 @@ localparam clock_period= 10ns;
     endsequence ;
 /*sequnce for lw*/
     sequence lw_decode;
-        ##1  enable_rf && read_rf_p1 && !read_rf_p2 && !rtype_itypen && compute_sext && !jump_sext;
+        ##1  enable_rf && read_rf_p1 && !read_rf_p2 && !rtype_itypen_i && compute_sext && !jump_sext;
     endsequence ;
 
     sequence lw_execute;
@@ -284,7 +268,7 @@ localparam clock_period= 10ns;
 
 /*sequnce for sw*/
     sequence sw_decode;
-        ##1  enable_rf && read_rf_p1 && read_rf_p2 && !rtype_itypen && compute_sext && !jump_sext;
+        ##1  enable_rf && read_rf_p1 && read_rf_p2 && !rtype_itypen_i && compute_sext && !jump_sext;
     endsequence;
 
     sequence sw_execute;
@@ -301,7 +285,7 @@ localparam clock_period= 10ns;
 
 /*sequnce for b*/
     sequence b_decode;
-        ##1  enable_rf && read_rf_p1 && !read_rf_p2 && !rtype_itypen && compute_sext && !jump_sext;
+        ##1  enable_rf && read_rf_p1 && !read_rf_p2 && !rtype_itypen_i && compute_sext && !jump_sext;
     endsequence ;
 
     sequence beqz_execute;
@@ -323,11 +307,11 @@ localparam clock_period= 10ns;
     endsequence;
  /*sequence for jump instruction*/
     sequence ijump_decode;
-        ##1  !enable_rf && !read_rf_p1 && !read_rf_p2 && !rtype_itypen && compute_sext &&  jump_sext;
+        ##1  !enable_rf && !read_rf_p1 && !read_rf_p2 && !rtype_itypen_i && compute_sext &&  jump_sext;
     endsequence ;
 
     sequence ijumpal_decode;
-        ##1 !enable_rf && !read_rf_p1 && !read_rf_p2 && !rtype_itypen && compute_sext && jump_sext;
+        ##1 !enable_rf && !read_rf_p1 && !read_rf_p2 && !rtype_itypen_i && compute_sext && jump_sext;
     endsequence;
 
     sequence ijump_execute;
@@ -493,6 +477,7 @@ localparam clock_period= 10ns;
     // for fetch stage
     .iram_enable_cu(iram_enable_cu), // out 
     .iram_ready_cu(iram_ready_cu), // in 
+	.stall_pip(stall),
     .curr_instruction_to_cu(curr_instruction_to_cu), // in 
     // for decode stage
     .enable_rf(enable_rf), //out
@@ -515,6 +500,7 @@ localparam clock_period= 10ns;
     .zero_mul_detect(zero_mul_detect),//in
     .mul_exeception(mul_exeception),//in
     // for memory stage
+	.update_pc_branch(update_pc_branch),
     .dram_enable_cu(dram_enable_cu), // out
     .dram_r_nw_cu(dram_r_nw_cu), // out
     .dram_ready_cu(dram_ready_cu), // in 

@@ -15,7 +15,14 @@
 
 `ifndef __DLX_ENV_SV
 `define __DLX_ENV_SV
+`include "./dlx_sequencer.sv"
+`include "./dlx_driver.sv"
+`include "./dlx_monitor.sv"
+`include "./dlx_scoreboard.sv"
 
+import uvm_pkg::*;
+`include <uvm_macros.svh>
+`include <uvm_pkg.sv>
 
 // it is better to put sequencer driver and monitor into a component called agent ( agegnt is protocol dependent and can be put into different verification environment )
 // active agent contains : sequencer, driver and monitor
@@ -37,12 +44,8 @@ class agent extends uvm_agent;
 
   virtual function void build_phase(uvm_phase phase);
     super.build_phase(phase);
-      // Get CFG obj from top to configure the agent
-      if (! uvm_config_db #(my_cfg) :: get (this, "", "m_cfg0", m_cfg0)) begin
-         `uvm_fatal (get_type_name (), "Didn't get CFG object ! Can't configure agent")
-      end
-      // If the agent is ACTIVE, then create monitor and sequencer, else create only monitor
-      if (m_cfg0.active == UVM_ACTIVE) begin
+// if agent is ACTIVE, then create monitor and sequencer, else create only monitor
+      if (get_is_active() == UVM_ACTIVE) begin
     	s0 = uvm_sequencer#(instruction_item)::type_id::create("s0", this);
     	d0 = driver::type_id::create("d0", this);
       end
@@ -55,7 +58,7 @@ class agent extends uvm_agent;
     super.connect_phase(phase);
     d0.seq_item_port.connect(s0.seq_item_export);
          // Assign interface handle in CFG bject to Driver and Monitor, if active
-      if (m_cfg0.active == UVM_ACTIVE)
+      if (get_is_active()get_is_active() == UVM_ACTIVE)
          m_drv0.mem_if = m_cfg0.mem_if;
       m_mon0.mem_if = m_cfg0.mem_if;
 
@@ -97,7 +100,7 @@ class env extends uvm_env;
 
 	function check_all_instruction ();
 		return sb0.all_instruction_checked();
-	endfunction : 
+	endfunction : check_all_instruction
 
 endclass
 

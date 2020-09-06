@@ -16,10 +16,14 @@
 
 `ifndef __DLX_DRIVER_SV
 `define __DLX_DRIVER_SV
-`include "./memories/005-memory_interfaces.svh"
+`include "../memories/005-memory_interfaces.svh"
+`include "./dlx_sequencer.sv"
+import uvm_pkg::*;
+`include <uvm_macros.svh>
+`include <uvm_pkg.sv>
 
 
-class driver extends uvm_driver #(reg_item);
+class driver extends uvm_driver #(instruction_item);
   `uvm_component_utils(driver)
   function new(string name = "driver", uvm_component parent=null);
     super.new(name, parent);
@@ -27,7 +31,7 @@ class driver extends uvm_driver #(reg_item);
 
   virtual mem_interface  iram_if;
   virtual mem_interface  dram_if;
-  sequence s0;
+  instruction_sequence s0;
 
   virtual function void build_phase(uvm_phase phase);
     super.build_phase(phase);
@@ -49,7 +53,7 @@ class driver extends uvm_driver #(reg_item);
     end
   endtask
 
-  virtual task drive_item(reg_item m_item);
+  virtual task drive_item(instruction_item m_item);
       @ (posedge iram_if.clk);
       while (!iram_if.ENABLE)  begin
         `uvm_info("DRV", "Wait until enable is high", UVM_LOW)

@@ -16,25 +16,25 @@
 `ifndef __DLX_SEQUENCER_SV
 `define __DLX_SEQUENCER_SV
 `include "../003-global_defs.svh"
+`include "../004-implemented_instructions.svh"
+import uvm_pkg::*;
 
-
-
-
-
+`include <uvm_macros.svh>
+`include <uvm_pkg.sv>
 
 
 class instruction_item extends uvm_sequence_item;
-  `uvm_object_utils(instruction_item)
-  bit[32-1:0]  signals ; 
-  bit [`IRAM_WORD_SIZE-1:0] current_instruction;
-  rand instructions_opcode current_opcode;
-  rand [5-1:0]bit rd;
-  rand [5-1:0]bit rs1;
-  rand [5-1:0]bit rs2;
-  rand [15:0]bit immediate;
-  rand  [25:0]bit jump_address;
-  rand instructions_regtype_opcode current_opcode_func;
 
+  bit[32-1:0] signals; 
+  bit[`IRAM_WORD_SIZE-1:0] current_instruction;
+  randc instructions_opcode current_opcode;
+  rand bit[5-1:0] rd;
+  rand bit[5-1:0] rs1;
+  rand bit[5-1:0] rs2;
+  rand bit[15:0] immediate;
+  rand bit[25:0] jump_address;
+  randc instructions_regtype_opcode current_opcode_func;
+  //`uvm_object_utils(instruction_item)
     constraint c1 { soft rd inside {[1:31]}; }
     constraint c2 { soft rs1 inside {[0:30]}; }
     constraint c3 { soft rs2 inside {[0:30]}; }
@@ -68,11 +68,11 @@ class instruction_item extends uvm_sequence_item;
 
   function get_opcode_func ();
   	return this.current_opcode_func;
-  endfunction : 
+  endfunction : get_opcode_func 
 
   function force_nop ();
   	this.current_opcode={i_nop,'0};
-  endfunction : force_nop;
+  endfunction : force_nop
 
   function new(string name = "instruction_item");
     super.new(name);
@@ -95,25 +95,25 @@ class instruction_item extends uvm_sequence_item;
    	 end else begin 
    	 	return enum_wrap_instruction#(instructions_opcode)::name(current_opcode);
    	 end 
-   endfunction
+   endfunction : get_current_instruction_name
 
 
    function get_signals ();
-	return this.signals;
+	return {this.signals[31:15], '0};
 endfunction : get_signals
 
 function get_carry_in ();
 	return this.signals[4];
-endfunction : 
+endfunction : get_carry_in
 
 
 function get_alu_op ();
 	return this.signals[3:0];
-endfunction : 
+endfunction : get_alu_op
 
 function set_signals (DEBUG_interface dbg_if,int cc_stage);
 	// depending on the current cc_state we sample different part of DEBUG interface
-	case (cc_state)
+	case (cc_stage)
 		1:begin // fetch 
 			this.signals[31]=dbg_if.iram_ready_cu;
 		end 
@@ -153,8 +153,8 @@ endfunction : set_signals
 endclass
 
 
-class sequence extends uvm_sequence;
-  `uvm_object_utils(sequence)
+class instruction_sequence extends uvm_sequence;
+  `uvm_object_utils(instruction_sequence)
 
   const int length_instr=30; //  number of instruciton to be executed
 
@@ -172,7 +172,7 @@ class sequence extends uvm_sequence;
 
 
   virtual task body();
-    for (int i = 0; i < num; i ++) begin
+    for (int i = 0; i < length_instr; i ++) begin
     	instruction_item m_item = instruction_item::type_id::create("instruction");
     	start_item(m_item);
     	m_item.randomize();
@@ -183,9 +183,9 @@ class sequence extends uvm_sequence;
       	m_item.force_nop();
       	finish_item(m_item);
     end
-    `uvm_info("SEQ", $sformatf("Done generation of %0d items", num), UVM_LOW)
+    `uvm_info("SEQ", $sformatf("Done generation of %0d items", length_instr), UVM_LOW)
   endtask
-endclass
+
 
 	// Drop objection if started as the root sequence
 	virtual task post_body ();
