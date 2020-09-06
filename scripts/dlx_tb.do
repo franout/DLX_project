@@ -29,6 +29,7 @@ add wave -noupdate -expand -group {Debug signal from CU} -expand -group {Execute
 add wave -noupdate -expand -group {Debug signal from CU} -expand -group {Execute stage} /tb_dlx/DEBUG_mul_exeception
 add wave -noupdate -expand -group {Debug signal from CU} -expand -group {Execute stage} /tb_dlx/DEBUG_sel_val_b
 add wave -noupdate -expand -group {Debug signal from CU} -expand -group {Execute stage} /tb_dlx/DEBUG_sel_val_a
+add wave -noupdate -expand -group {Debug signal from CU} -expand -group {Execute stage} /tb_dlx/DEBUG_alu_op_type
 add wave -noupdate -expand -group {Debug signal from CU} -expand -group {Memory stage} /tb_dlx/DEBUG_dram_ready_cu
 add wave -noupdate -expand -group {Debug signal from CU} -expand -group {Memory stage} /tb_dlx/DEBUG_update_pc_branch
 add wave -noupdate -expand -group {Debug signal from CU} -expand -group {Memory stage} /tb_dlx/DEBUG_dram_r_nw_cu

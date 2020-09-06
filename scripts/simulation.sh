@@ -96,6 +96,13 @@ vsim  -suppress 12110 -suppress 8664 -novopt work.tb_dlx -do ./scripts/dlx_tb.do
 ehco "Do you want to see the DLX'tb with the Universal Verification Methodology architecture? y/n"
 read answer
 if [ answer=="y" ] ; then
+vlog -incr ${path_to_file}test_bench/uvm_class_def/dlx_sequencer.sv
+vlog -incr ${path_to_file}test_bench/uvm_class_def/dlx_driver.sv
+vlog -incr ${path_to_file}test_bench/uvm_class_def/dlx_monitor.sv
+vlog -incr ${path_to_file}test_bench/uvm_class_def/dlx_scoreboard.sv
+vlog -incr ${path_to_file}test_bench/uvm_class_def/dlx_env.sv
+vlog -incr ${path_to_file}test_bench/uvm_class_def/dlx_test.sv
+vlog -incr ${path_to_file}test_bench/dlx_wrapper.sv
 vlog -incr ${path_to_file}test_bench/tb_dlx_uvm.sv
 vsim  -suppress 12110 -suppress 8664 -novopt work.tb_dlx_uvm -do ./scripts/dlx_uvm_tb.do  
 else
