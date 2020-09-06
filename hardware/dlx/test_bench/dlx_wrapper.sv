@@ -28,6 +28,7 @@ module dlx_wrapper (
 );
 
 		logic [$clog2(`CU_STATES)-1:0] curr_state_debug_i;
+        logic [3:0] DEBUG_alu_op_type;
 
 
 	//DLX top level entity
@@ -78,11 +79,13 @@ module dlx_wrapper (
     .DEBUG_sel_val_b(dbg_if.DEBUG_sel_val_b),
 	.DEBUG_update_pc_branch(dbg_if.DEBUG_update_pc_branch),
     .DEBUG_select_wb(dbg_if.DEBUG_select_wb),
+    .DEBUG_alu_op_type(DEBUG_alu_op_type),
     .DEBUG_dram_enable_cu(dbg_if.DEBUG_dram_enable_cu)
     //synthesis_translate on
   );
 
 	assign dbg_if.curr_state_debug=cu_state_t'(curr_state_debug_i);
+    assign dbg_if.alu_operation= TYPE_OP_ALU_sv'(DEBUG_alu_op_type);
 
 	//assign same reset signal to both interfaces
 	assign mif_rw.rst=rst;

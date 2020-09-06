@@ -158,8 +158,11 @@ module tb_dlx ();
 	logic [0:0]DEBUG_sel_val_a;
 	logic [0:0]DEBUG_sel_val_b;
 	logic [0:0]DEBUG_select_wb;
+	logic [3:0]DEBUG_alu_op_type_i;
+	TYPE_OP_ALU_sv DEBUG_alu_op_type;
 
 	assign curr_state_debug=cu_state_t'(curr_state_debug_i);
+	assign DEBUG_alu_op_type=TYPE_OP_ALU_sv'(DEBUG_alu_op_type_i);
 
 	initial begin
 		clk = '0;
@@ -291,6 +294,7 @@ module tb_dlx ();
     .DEBUG_sel_val_b(DEBUG_sel_val_b),
 	.DEBUG_update_pc_branch(DEBUG_update_pc_branch),
     .DEBUG_select_wb(DEBUG_select_wb),
+    .DEBUG_alu_op_type(DEBUG_alu_op_type_i),
     .DEBUG_dram_enable_cu(DEBUG_dram_enable_cu)
     //synthesis_translate on
   );

@@ -18,6 +18,9 @@
 `include "./004-implemented_instructions.svh"
 `include "./memories/005-memory_interfaces.svh"
 
+
+import uvm_pkg::*;
+
 // including uvm classes in a bottom up order
 `include "./uvm_class_def/dlx_sequencer.sv"
 `include "./uvm_class_def/dlx_driver.sv"
@@ -30,7 +33,6 @@ module tb_dlx_uvm ();
 	localparam clock_period= 10ns;
 	// it needs the absolute path
 
-	logic rst;
 	logic clk;
 
 	initial begin
@@ -64,14 +66,17 @@ module tb_dlx_uvm ();
 	DEBUG_interface dbg_if ();
 
 	dlx_wrapper uut (.clk(clk),
-					.rst   (rst) // active low
+					.rst   (dbg_if.rst) // active low
 					.mif_ro(mif_ro),// memory interface clocked by clk
 					.mif_rw(mif_rw),// memory interface clocked by clk
 					.dbg_if(dbg_if));
 
 
   initial begin
-    uvm_config_db#(virtual mem_if)::set(uvm_root::get(),"*","vif",intf);// TODO 
+  	// get interfaces
+    uvm_config_db#(virtual mem_interface)::set(uvm_root::get(),"*","dbg_if",dbg_if);
+    uvm_config_db#(virtual mem_interface)::set(uvm_root::get(),"*","iram_if",mif_ro);
+    uvm_config_db#(virtual DEBUG_interface)::set(uvm_root::get(),"*","dram_if",mif_rw);
     $dumpfile("dump.vcd"); $dumpvars;   //enabling the wave dump
   end
    

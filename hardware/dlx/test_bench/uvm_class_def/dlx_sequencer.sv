@@ -7,75 +7,162 @@
 // Author : Angione Francesco s262620@studenti.polito.it franout@Github.com
 // File   : dlx_sequencer.sv
 // Create : 2020-09-01 21:57:14
-// Revise : 2020-09-01 22:05:28
+// Revise : 2020-09-04 16:48:39
 // Editor : sublime text3, tab size (4)
-// Description :
+// Description : it contains the test program 
 // -----------------------------------------------------------------------------
 
 
 `ifndef __DLX_SEQUENCER_SV
 `define __DLX_SEQUENCER_SV
+`include "../003-global_defs.svh"
 
 
-class reg_item extends uvm_sequence_item;
-  rand bit [`ADDR_WIDTH-1:0]  	addr;
-  rand bit [`DATA_WIDTH-1:0] 	wdata;
-  rand bit 						wr;
-  bit [`DATA_WIDTH-1:0] 		rdata;
+
+
+
+
+
+class instruction_item extends uvm_sequence_item;
+  `uvm_object_utils(instruction_item)
+  bit[32-1:0]  signals ; 
+  bit [`IRAM_WORD_SIZE-1:0] current_instruction;
+  rand instructions_opcode current_opcode;
+  rand [5-1:0]bit rd;
+  rand [5-1:0]bit rs1;
+  rand [5-1:0]bit rs2;
+  rand [15:0]bit immediate;
+  rand  [25:0]bit jump_address;
+  rand instructions_regtype_opcode current_opcode_func;
+
+    constraint c1 { soft rd inside {[1:31]}; }
+    constraint c2 { soft rs1 inside {[0:30]}; }
+    constraint c3 { soft rs2 inside {[0:30]}; }
 
   // Use utility macros to implement standard functions
   // like print, copy, clone, etc
-  `uvm_object_utils_begin(reg_item)
-  	`uvm_field_int (addr, UVM_DEFAULT)
-  	`uvm_field_int (wdata, UVM_DEFAULT)
-  	`uvm_field_int (rdata, UVM_DEFAULT)
-  	`uvm_field_int (wr, UVM_DEFAULT)
+  `uvm_object_utils_begin(instruction_item)
+  	`uvm_field_int (rd, UVM_DEFAULT)
+  	`uvm_field_int (rs1, UVM_DEFAULT)
+  	`uvm_field_int (rs2, UVM_DEFAULT)
+  	`uvm_field_int (current_opcode, UVM_DEFAULT)
+  	`uvm_field_int (current_opcode_func, UVM_DEFAULT)
   `uvm_object_utils_end
+  function compose_instruction(); // it is actually the set curret instruction 
+  	if(this.current_opcode===i_regtype) begin 
+  		this.current_instruction= {current_opcode,rs1 ,rs2 ,rd, current_opcode_func};
+  	end else if (this.current_opcode===i_j || this.current_opcode===i_jal) begin 
+		this.current_instruction= {current_opcode,jump_address};
+  	end else begin  // immediate or benq or sw lw
+		this.current_instruction= {current_opcode,rs1 ,rd, immediate};
+  	end 
+  	endfunction
+  
+  function get_current_instruction();
+  	return this.current_instruction;
+  endfunction : get_current_instruction
 
-  virtual function string convert2str();
-    return $sformatf("addr=0x%0h wr=0x%0h wdata=0x%0h rdata=0x%0h", addr, wr, wdata, rdata);
-  endfunction
+  function get_opcode ();
+  	return this.current_opcode;
+  endfunction : get_opcode
 
-  function new(string name = "reg_item");
+  function get_opcode_func ();
+  	return this.current_opcode_func;
+  endfunction : 
+
+  function force_nop ();
+  	this.current_opcode={i_nop,'0};
+  endfunction : force_nop;
+
+  function new(string name = "instruction_item");
     super.new(name);
   endfunction
+
+
+   function convert2str (); 
+   	 if(this.current_opcode===i_regtype) begin 
+   	 	return $sformatf("%s %d,%d,%d",  enum_wrap_instruction#(instructions_regtype_opcode)::name(current_opcode_func) ,rs1,rs2,rd);
+  	end else if (this.current_opcode===i_j || this.current_opcode===i_jal) begin 
+  		return $sformatf("%s %h",  enum_wrap_instruction#(instructions_opcode)::name(current_opcode) ,jump_address);
+  	end else begin  // immediate or benq or sw lw
+		return $sformatf("%s %d %d %d",enum_wrap_instruction#(instructions_opcode)::name(current_opcode),rs1,rd,immediate);
+  	end 
+   endfunction : convert2str
+
+   function get_current_instruction_name();
+   	 if(this.current_opcode===i_regtype) begin 
+   		return enum_wrap_instruction#(instructions_regtype_opcode)::name(current_opcode_func);
+   	 end else begin 
+   	 	return enum_wrap_instruction#(instructions_opcode)::name(current_opcode);
+   	 end 
+   endfunction
+
+
+   function get_signals ();
+	return this.signals;
+endfunction : get_signals
+
+function get_carry_in ();
+	return this.signals[4];
+endfunction : 
+
+
+function get_alu_op ();
+	return this.signals[3:0];
+endfunction : 
+
+function set_signals (DEBUG_interface dbg_if,int cc_stage);
+	// depending on the current cc_state we sample different part of DEBUG interface
+	case (cc_state)
+		1:begin // fetch 
+			this.signals[31]=dbg_if.iram_ready_cu;
+		end 
+		2:begin // decode
+			this.signals[30]=dbg_if.enable_rf;
+			this.signals[29]=dbg_if.read_rf_p1;
+			this.signals[28]=dbg_if.read_rf_p2;
+			this.signals[27]=dbg_if.rtype_itypen;
+			this.signals[26]=dbg_if.compute_sext;
+			this.signals[25]=dbg_if.jump_sext;
+		end
+		3:begin // execute
+			this.signals[24:24]=dbg_if.sel_val_a[0];
+			this.signals[23:23]=dbg_if.sel_val_b[0];
+			this.signals[22]=dbg_if.evaluate_branch[1];
+			this.signals[21]=dbg_if.evaluate_branch[0];
+			this.signals[20]=dbg_if.signed_notsigned;
+			this.signals[4]=dbg_if.alu_cin;
+			this.signals[3:0]=dbg_if.alu_operation;
+		end
+		4:begin // memory 
+			this.signals[19]=dbg_if.dram_enable_cu;
+			this.signals[18]=dbg_if.dram_r_nw_cu;
+			this.signals[17]=dbg_if.update_pc_branch;
+		end
+		5:begin // write back
+			this.signals[16]=dbg_if.select_wb[0];
+			this.signals[15]=dbg_if.write_rf;
+		end
+		default : this.signals='0;
+	endcase
+	this.signals[14:7]= dbg_if.csr;
+	this.signals[6]= dbg_if.rst;
+endfunction : set_signals
+
+
 endclass
 
 
-class gen_item_seq extends uvm_sequence;
-  `uvm_object_utils(gen_item_seq)
-  function new(string name="gen_item_seq");
+class sequence extends uvm_sequence;
+  `uvm_object_utils(sequence)
+
+  const int length_instr=30; //  number of instruciton to be executed
+
+  function new(string name="sequence of instructions");
     super.new(name);
+    		// we may add the open of the file for the iram 
   endfunction
 
-  rand int num; 	// Config total number of items to be sent
-
-  constraint c1 { soft num inside {[2:5]}; }
-
-  virtual task body();
-    for (int i = 0; i < num; i ++) begin
-    	reg_item m_item = reg_item::type_id::create("m_item");
-    	start_item(m_item);
-    	m_item.randomize();
-    	`uvm_info("SEQ", $sformatf("Generate new item: "), UVM_LOW)
-    	m_item.print();
-      	finish_item(m_item);
-    end
-    `uvm_info("SEQ", $sformatf("Done generation of %0d items", num), UVM_LOW)
-  endtask
-endclass
-
-
-// sequencer
-class base_sequence extends uvm_sequence;
-	`uvm_object_utils (base_sequence)
-
-	my_data  data_obj;
-	int unsigned      n_times;
-
-	function new (string name = "base_sequence");
-		super.new (name);
-	endfunction
 
 	// Raise an objection if started as the root sequence
 	virtual task pre_body ();
@@ -84,40 +171,28 @@ class base_sequence extends uvm_sequence;
 	endtask
 
 
-	virtual task body ();
-		`uvm_info ("BASE_SEQ", $sformatf ("Starting body of %s", this.get_name()), UVM_MEDIUM)
-		data_obj = my_data::type_id::create ("data_obj");
-
-		repeat (n_times) begin
-			start_item (data_obj);
-			assert (data_obj.randomize ());
-			finish_item (data_obj);
-		end
-		`uvm_info (get_type_name (), $sformatf ("Sequence %s is over", this.get_name()), UVM_MEDIUM)
-	endtask
+  virtual task body();
+    for (int i = 0; i < num; i ++) begin
+    	instruction_item m_item = instruction_item::type_id::create("instruction");
+    	start_item(m_item);
+    	m_item.randomize();
+    	m_item.compose_instruction();
+    	`uvm_info("SEQ", $sformatf("Generate new item: "), UVM_LOW)
+    	m_item.print();
+      	// execute a nop and then restart
+      	m_item.force_nop();
+      	finish_item(m_item);
+    end
+    `uvm_info("SEQ", $sformatf("Done generation of %0d items", num), UVM_LOW)
+  endtask
+endclass
 
 	// Drop objection if started as the root sequence
 	virtual task post_body ();
 		if (starting_phase != null)
 			starting_phase.drop_objection (this);
 	endtask
-endclass
-
-
-
-class my_data extends uvm_sequence_item;
-	`uvm_object_utils (my_data)
-
-	rand bit [7:0]   data;
-	rand bit [7:0]   addr;
-
-	constraint c_addr { addr > 0; addr < 8;}
-
- 	virtual function void display ();
-		`uvm_info (get_type_name (), $sformatf ("addr = 0x%0h, data = 0x%0h", addr, data), UVM_MEDIUM);
-	endfunction
 
 endclass
-
 
 `endif

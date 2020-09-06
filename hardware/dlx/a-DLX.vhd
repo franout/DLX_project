@@ -6,7 +6,7 @@
 -- Author      : Francesco Angione <s262620@studenti.polito.it> franout@github.com
 -- Company     : Politecnico di Torino, Italy
 -- Created     : Wed Jul 22 22:58:15 2020
--- Last update : Sun Aug 30 22:58:05 2020
+-- Last update : Sat Sep  5 22:31:23 2020
 -- Platform    : Default Part Number
 -- Standard    : VHDL-2008 
 --------------------------------------------------------------------------------
@@ -74,6 +74,7 @@ entity DLX is
     DEBUG_sel_val_a        : out std_logic_vector(0 downto 0);
     DEBUG_sel_val_b        : out std_logic_vector(0 downto 0);
     DEBUG_select_wb        : out std_logic_vector(0 downto 0);
+    DEBUG_alu_op_type      : out std_logic_vector(3 downto 0);
     DEBUG_dram_enable_cu   : out std_logic
   --synopsys translate_on
   );
@@ -341,6 +342,7 @@ begin -- DLX
   DEBUG_sel_val_a        <= sel_val_a_i ;
   DEBUG_sel_val_b        <= sel_val_b_i ;
   DEBUG_select_wb        <= select_wb_i;
+  DEBUG_alu_op_type      <= alu_op_type_i; --TYPE_OP_ALU ; for compatibility with sv
 
   --synopsys translate_on
 

@@ -14,6 +14,8 @@
 `ifndef __implemented_instructions__svh
 `define __implemented_instructions__svh
 
+`define IMPLEMENTED_INSTR 28
+
 typedef bit[5:0] bit_instr;
 
 
