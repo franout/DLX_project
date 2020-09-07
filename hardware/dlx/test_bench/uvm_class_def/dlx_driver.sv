@@ -25,19 +25,22 @@ import uvm_pkg::*;
 
 class driver extends uvm_driver #(instruction_item);
   `uvm_component_utils(driver)
-  function new(string name = "driver", uvm_component parent=null);
-    super.new(name, parent);
-  endfunction
+
+
 
   virtual mem_interface  iram_if;
   virtual mem_interface  dram_if;
   instruction_sequence s0;
 
+  function new(string name = "driver", uvm_component parent=null);
+    super.new(name, parent);
+  endfunction
+
   virtual function void build_phase(uvm_phase phase);
     super.build_phase(phase);
     if (!uvm_config_db#(virtual mem_interface)::get(this, "", "iram_if", iram_if))
       `uvm_fatal("DRV", "Could not get iram_if")
-  endfunction
+  endfunction : build_phase
 
   virtual task run_phase(uvm_phase phase);
     super.run_phase(phase);
@@ -51,7 +54,7 @@ class driver extends uvm_driver #(instruction_item);
       end
       s0.item_done();
     end
-  endtask
+  endtask : run_phase
 
   virtual task drive_item(instruction_item m_item);
       @ (posedge iram_if.clk);
@@ -60,7 +63,7 @@ class driver extends uvm_driver #(instruction_item);
         @(posedge vif.clk);
       end
       iram_if.DATA=m_item.get_current_instruction();
-  endtask
+  endtask : drive_item
 
   virtual task drive_item_dram();
   	  @ (posedge dram_if.clk);
@@ -72,7 +75,7 @@ class driver extends uvm_driver #(instruction_item);
       	dram_if.INOUT_DATA=$urandom_range(0,2**10);
       end 
       // skip the write operation 
-  endtask
+  endtask : drive_item_dram
 
 endclass
 

@@ -76,9 +76,9 @@ module tb_dlx_uvm ();
 
   initial begin
   	// get interfaces
-    uvm_config_db#(virtual mem_interface)::set(uvm_root::get(),"*","dbg_if",dbg_if);
+    uvm_config_db#(virtual DEBUG_interface)::set(uvm_root::get(),"*","dbg_if",dbg_if);
     uvm_config_db#(virtual mem_interface)::set(uvm_root::get(),"*","iram_if",mif_ro);
-    uvm_config_db#(virtual DEBUG_interface)::set(uvm_root::get(),"*","dram_if",mif_rw);
+    uvm_config_db#(virtual mem_interface)::set(uvm_root::get(),"*","dram_if",mif_rw);
     $dumpfile("dump.vcd"); $dumpvars;   //enabling the wave dump
   end
    

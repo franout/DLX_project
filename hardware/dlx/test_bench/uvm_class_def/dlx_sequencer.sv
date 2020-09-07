@@ -34,6 +34,8 @@ class instruction_item extends uvm_sequence_item;
   rand bit[15:0] immediate;
   rand bit[25:0] jump_address;
   randc instructions_regtype_opcode current_opcode_func;
+
+	virtual  DEBUG_interface dbg_if;
   //`uvm_object_utils(instruction_item)
     constraint c1 { soft rd inside {[1:31]}; }
     constraint c2 { soft rs1 inside {[0:30]}; }
@@ -41,14 +43,11 @@ class instruction_item extends uvm_sequence_item;
 
   // Use utility macros to implement standard functions
   // like print, copy, clone, etc
-  `uvm_object_utils_begin(instruction_item)
-  	`uvm_field_int (rd, UVM_DEFAULT)
-  	`uvm_field_int (rs1, UVM_DEFAULT)
-  	`uvm_field_int (rs2, UVM_DEFAULT)
-  	`uvm_field_int (current_opcode, UVM_DEFAULT)
-  	`uvm_field_int (current_opcode_func, UVM_DEFAULT)
-  `uvm_object_utils_end
-  function compose_instruction(); // it is actually the set curret instruction 
+  `uvm_field_utils_begin(instruction_item)
+  	`uvm_field_enum (instructions_opcode,current_opcode, UVM_ALL_ON)
+  	`uvm_field_enum (instructions_regtype_opcode,current_opcode_func, UVM_ALL_ON)
+  `uvm_field_utils_end
+  function void compose_instruction(); // it is actually the set curret instruction 
   	if(this.current_opcode===i_regtype) begin 
   		this.current_instruction= {current_opcode,rs1 ,rs2 ,rd, current_opcode_func};
   	end else if (this.current_opcode===i_j || this.current_opcode===i_jal) begin 
@@ -58,28 +57,30 @@ class instruction_item extends uvm_sequence_item;
   	end 
   	endfunction
   
-  function get_current_instruction();
+  function   bit[`IRAM_WORD_SIZE-1:0] get_current_instruction();
   	return this.current_instruction;
   endfunction : get_current_instruction
 
-  function get_opcode ();
+  function instructions_opcode get_opcode ();
   	return this.current_opcode;
   endfunction : get_opcode
 
-  function get_opcode_func ();
+  function instructions_regtype_opcode get_opcode_func ();
   	return this.current_opcode_func;
   endfunction : get_opcode_func 
 
-  function force_nop ();
-  	this.current_opcode={i_nop,'0};
+  function void force_nop ();
+  	this.current_opcode=i_nop;
   endfunction : force_nop
 
   function new(string name = "instruction_item");
     super.new(name);
+	 if (!uvm_config_db#(virtual DEBUG_interface)::get(this, "", "dbg_if", dbg_if))
+      `uvm_fatal("sequence item", "Did not get dbg_if")
   endfunction
 
 
-   function convert2str (); 
+   function string convert2str (); 
    	 if(this.current_opcode===i_regtype) begin 
    	 	return $sformatf("%s %d,%d,%d",  enum_wrap_instruction#(instructions_regtype_opcode)::name(current_opcode_func) ,rs1,rs2,rd);
   	end else if (this.current_opcode===i_j || this.current_opcode===i_jal) begin 
@@ -89,7 +90,7 @@ class instruction_item extends uvm_sequence_item;
   	end 
    endfunction : convert2str
 
-   function get_current_instruction_name();
+   function string get_current_instruction_name();
    	 if(this.current_opcode===i_regtype) begin 
    		return enum_wrap_instruction#(instructions_regtype_opcode)::name(current_opcode_func);
    	 end else begin 
@@ -98,20 +99,20 @@ class instruction_item extends uvm_sequence_item;
    endfunction : get_current_instruction_name
 
 
-   function get_signals ();
+   function integer get_signals ();
 	return {this.signals[31:15], '0};
 endfunction : get_signals
 
-function get_carry_in ();
+function integer get_carry_in ();
 	return this.signals[4];
 endfunction : get_carry_in
 
 
-function get_alu_op ();
+function bit[3:0] get_alu_op ();
 	return this.signals[3:0];
 endfunction : get_alu_op
 
-function set_signals (DEBUG_interface dbg_if,int cc_stage);
+function void set_signals (int cc_stage);
 	// depending on the current cc_state we sample different part of DEBUG interface
 	case (cc_stage)
 		1:begin // fetch 
@@ -153,7 +154,8 @@ endfunction : set_signals
 endclass
 
 
-class instruction_sequence extends uvm_sequence;
+class instruction_sequence extends uvm_sequence#(instruction_item);
+
   `uvm_object_utils(instruction_sequence)
 
   const int length_instr=30; //  number of instruciton to be executed
@@ -175,7 +177,9 @@ class instruction_sequence extends uvm_sequence;
     for (int i = 0; i < length_instr; i ++) begin
     	instruction_item m_item = instruction_item::type_id::create("instruction");
     	start_item(m_item);
-    	m_item.randomize();
+   		if(!m_item.randomize()) begin 
+			`uvm_error(get_type_name(), "FAILTED TO RANDOMIZE")
+		end 
     	m_item.compose_instruction();
     	`uvm_info("SEQ", $sformatf("Generate new item: "), UVM_LOW)
     	m_item.print();

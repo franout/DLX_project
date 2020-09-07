@@ -58,8 +58,9 @@ class agent extends uvm_agent;
     super.connect_phase(phase);
     d0.seq_item_port.connect(s0.seq_item_export);
          // Assign interface handle in CFG bject to Driver and Monitor, if active
-      if (get_is_active()get_is_active() == UVM_ACTIVE)
+      if (get_is_active()== UVM_ACTIVE) begin 
          m_drv0.mem_if = m_cfg0.mem_if;
+	  end
       m_mon0.mem_if = m_cfg0.mem_if;
 
       // Connect Sequencer to Driver, if the agent is active

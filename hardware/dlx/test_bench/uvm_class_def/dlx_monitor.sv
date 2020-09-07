@@ -42,7 +42,7 @@ class monitor extends uvm_monitor;
   	if (!uvm_config_db#(virtual mem_interface)::get(this, "", "iram_if", dram_if))
       `uvm_fatal("MON", "Could not get dram_if")
 
- 	if (!uvm_config_db#(virtual DEBUG_interface)::get(this, "", "iram_if", dbg_if))
+ 	if (!uvm_config_db#(virtual DEBUG_interface)::get(this, "", "dbg_if", dbg_if))
       `uvm_fatal("MON", "Could not get debug_if")
     mon_analysis_port = new ("mon_analysis_port", this);
   endfunction
@@ -60,19 +60,19 @@ class monitor extends uvm_monitor;
        	//  mayve add a fork 
         cc=1;
         repeat (2) @ (posedge iram_if.clk);
-        item.set_signals(dbg_if, cc);
+        item.set_signals( cc);
         cc=2;
         repeat (2) @ (posedge iram_if.clk);
-        item.set_signals(dbg_if, cc);
+        item.set_signals(cc);
         cc=3;
         repeat (2) @ (posedge iram_if.clk);
-        item.set_signals(dbg_if, cc);
+        item.set_signals( cc);
         cc=4;
         repeat (2) @ (posedge iram_if.clk);
-        item.set_signals(dbg_if, cc);
+        item.set_signals( cc);
         cc=5;
         repeat (2) @ (posedge iram_if.clk);
-        item.set_signals(dbg_if, cc);
+        item.set_signals(cc);
         cc=0;
         mon_analysis_port.write(item); // pass the value to scoreboard
       end

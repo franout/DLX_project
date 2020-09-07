@@ -73,7 +73,7 @@ class test extends uvm_test;
   end
 
     phase.drop_objection(this);
-    phase.print_topology(this);
+    this.print_topology(this);
   endtask
 
   virtual task apply_reset();
@@ -89,7 +89,7 @@ class test extends uvm_test;
 
 // print topology of environment
  virtual function void end_of_elaboration_phase (uvm_phase phase);
-    uvm_top.print_topology ();
+    uvm_top.print_topology (this);
   endfunction
 
 endclass
