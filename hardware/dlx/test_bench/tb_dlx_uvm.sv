@@ -59,33 +59,36 @@ module tb_dlx_uvm ();
 	// instantiate the interface
 	mem_interface #(.ADDRESS_SIZE(`IRAM_ADDRESS_SIZE),
 		.WORD_SIZE(`IRAM_WORD_SIZE)) 
-	mif_ro (.clk(clk));
+	iram_if (.clk(clk));
 
 	mem_interface #(.ADDRESS_SIZE(`DRAM_ADDRESS_SIZE),
 			.WORD_SIZE(`DRAM_WORD_SIZE))
-	mif_rw (.clk(clk));
+	dram_if (.clk(clk));
 
 	DEBUG_interface dbg_if ();
 
-	dlx_wrapper uut (.clk(clk),
+	dlx_wrapper uut_uuv (.clk(clk),
 					.rst   (dbg_if.rst), // active low
-					.mif_ro(mif_ro),// memory interface clocked by clk
-					.mif_rw(mif_rw),// memory interface clocked by clk
+					.mif_ro(iram_if),// memory interface clocked by clk
+					.mif_rw(dram_if),// memory interface clocked by clk
 					.dbg_if(dbg_if));
 
-
+assign iram_if.DATA= iram_if.ENABLE ? iram_if.DATA_UVM : '0;
+assign dram_if.INOUT_DATA= dram_if.ENABLE ? dram_if.INOUT_DATA_UVM : 'z;
+	initial begin 
+	// set interfaces     
+	uvm_config_db#( virtual DEBUG_interface)::set(null,"*","dbg_if",dbg_if);
+    uvm_config_db#( virtual mem_interface #(.ADDRESS_SIZE(`IRAM_ADDRESS_SIZE),
+		.WORD_SIZE(`IRAM_WORD_SIZE)) )::set(null,"*","iram_if",iram_if);
+    uvm_config_db#( virtual mem_interface #(.ADDRESS_SIZE(`IRAM_ADDRESS_SIZE),
+		.WORD_SIZE(`IRAM_WORD_SIZE)) )::set(null,"*","dram_if",dram_if);
+  	$dumpfile("dump.vcd"); $dumpvars;   //enabling the wave dump
+	end 
   initial begin
-  	// get interfaces
-    uvm_config_db#(virtual DEBUG_interface)::set(uvm_root::get(),"*","dbg_if",dbg_if);
-    uvm_config_db#(virtual mem_interface)::set(uvm_root::get(),"*","iram_if",mif_ro);
-    uvm_config_db#(virtual mem_interface)::set(uvm_root::get(),"*","dram_if",mif_rw);
-    $dumpfile("dump.vcd"); $dumpvars;   //enabling the wave dump
-  end
-   
-  initial begin
-  	$display("Test is starting....",);
-    run_test(); // start the test
+	$display("Test is starting....",);
+    run_test("test"); // start the test
     $display("And finished! :D ",);
+   
   end
 
 endmodule

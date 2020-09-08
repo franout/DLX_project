@@ -60,7 +60,7 @@ class scoreboard extends uvm_scoreboard;
   instruction_info info_array_instr[string]; // associative array
   uvm_analysis_imp #(instruction_item, scoreboard) m_analysis_imp;
 
-  virtual function void build_phase(uvm_phase phase);
+   function void build_phase(uvm_phase phase);
     super.build_phase(phase);
     m_analysis_imp = new("m_analysis_imp", this);
   endfunction
@@ -282,12 +282,17 @@ class scoreboard extends uvm_scoreboard;
 
 function integer all_instruction_checked ();
 	int check=1;
-	instruction_info i;
-	i = info_array_instr.first;
-	for (; !info_array_instr.exists(i); i=info_array_instr.next) begin
-		if(i.executed_num<=0) begin 
+	string i;
+	if(! info_array_instr.first(i)) begin 
+		`uvm_error (get_type_name(),"ERROR instruction info array is empty")
+	end 
+	for (; !info_array_instr.exists(i);) begin
+		if(info_array_instr[i].executed_num<=0) begin 
 			check=0;
 		end 
+		 if(!info_array_instr.next(i)) begin 
+			`uvm_error( get_type_name(), "error instruction info array not found")
+		 end 
 	end
 	return check;
 endfunction : all_instruction_checked

@@ -30,20 +30,25 @@ class monitor extends uvm_monitor;
   endfunction
 
   uvm_analysis_port  #(instruction_item) mon_analysis_port;  // Open analysis port to pass data to scoreboard
-  virtual mem_interface iram_if;
-  virtual mem_interface dram_if;
+  virtual 	mem_interface #(.ADDRESS_SIZE(`DRAM_ADDRESS_SIZE),
+			.WORD_SIZE(`DRAM_WORD_SIZE)) iram_if;
+  virtual 	mem_interface #(.ADDRESS_SIZE(`DRAM_ADDRESS_SIZE),
+			.WORD_SIZE(`DRAM_WORD_SIZE)) dram_if;
   virtual DEBUG_interface dbg_if;
 
-  virtual function void build_phase(uvm_phase phase);
+ virtual  function void build_phase(uvm_phase phase);
     super.build_phase(phase);
-    if (!uvm_config_db#(virtual mem_interface)::get(this, "", "iram_if", iram_if))
+    if (!uvm_config_db#(virtual 	mem_interface #(.ADDRESS_SIZE(`DRAM_ADDRESS_SIZE),
+			.WORD_SIZE(`DRAM_WORD_SIZE)))::get(this, "", "iram_if", iram_if))
       `uvm_fatal("MON", "Could not get iram_if")
 
-  	if (!uvm_config_db#(virtual mem_interface)::get(this, "", "iram_if", dram_if))
+  	if (!uvm_config_db#(virtual 	mem_interface #(.ADDRESS_SIZE(`DRAM_ADDRESS_SIZE),
+			.WORD_SIZE(`DRAM_WORD_SIZE)))::get(this, "", "dram_if", dram_if))
       `uvm_fatal("MON", "Could not get dram_if")
 
  	if (!uvm_config_db#(virtual DEBUG_interface)::get(this, "", "dbg_if", dbg_if))
       `uvm_fatal("MON", "Could not get debug_if")
+
     mon_analysis_port = new ("mon_analysis_port", this);
   endfunction
 

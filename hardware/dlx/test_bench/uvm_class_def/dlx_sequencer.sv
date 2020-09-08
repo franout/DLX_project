@@ -17,6 +17,7 @@
 `define __DLX_SEQUENCER_SV
 `include "../003-global_defs.svh"
 `include "../004-implemented_instructions.svh"
+
 import uvm_pkg::*;
 
 `include <uvm_macros.svh>
@@ -24,6 +25,7 @@ import uvm_pkg::*;
 
 
 class instruction_item extends uvm_sequence_item;
+  `uvm_object_utils(instruction_item)
 
   bit[32-1:0] signals; 
   bit[`IRAM_WORD_SIZE-1:0] current_instruction;
@@ -36,17 +38,11 @@ class instruction_item extends uvm_sequence_item;
   randc instructions_regtype_opcode current_opcode_func;
 
 	virtual  DEBUG_interface dbg_if;
-  //`uvm_object_utils(instruction_item)
+
     constraint c1 { soft rd inside {[1:31]}; }
     constraint c2 { soft rs1 inside {[0:30]}; }
     constraint c3 { soft rs2 inside {[0:30]}; }
 
-  // Use utility macros to implement standard functions
-  // like print, copy, clone, etc
-  `uvm_field_utils_begin(instruction_item)
-  	`uvm_field_enum (instructions_opcode,current_opcode, UVM_ALL_ON)
-  	`uvm_field_enum (instructions_regtype_opcode,current_opcode_func, UVM_ALL_ON)
-  `uvm_field_utils_end
   function void compose_instruction(); // it is actually the set curret instruction 
   	if(this.current_opcode===i_regtype) begin 
   		this.current_instruction= {current_opcode,rs1 ,rs2 ,rd, current_opcode_func};
@@ -73,10 +69,12 @@ class instruction_item extends uvm_sequence_item;
   	this.current_opcode=i_nop;
   endfunction : force_nop
 
-  function new(string name = "instruction_item");
+
+  function new(string name = "instruction_item" );
     super.new(name);
-	 if (!uvm_config_db#(virtual DEBUG_interface)::get(this, "", "dbg_if", dbg_if))
-      `uvm_fatal("sequence item", "Did not get dbg_if")
+/*	if (!uvm_config_db#(virtual DEBUG_interface)::get(this, "", "dbg_if", dbg_if)) begin	
+      //`uvm_error("instruction_item", "Did not get dbg_if")
+	end*/
   endfunction
 
 
@@ -196,6 +194,18 @@ class instruction_sequence extends uvm_sequence#(instruction_item);
 		if (starting_phase != null)
 			starting_phase.drop_objection (this);
 	endtask
+
+endclass
+
+
+class instruction_sequencer extends uvm_sequencer#(instruction_item);
+  `uvm_object_utils(instruction_sequencer)
+
+
+  function new(string name="sequencer of instructions");
+    super.new(name);
+  endfunction
+
 
 endclass
 

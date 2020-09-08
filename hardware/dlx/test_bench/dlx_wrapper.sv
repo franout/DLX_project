@@ -27,9 +27,7 @@ module dlx_wrapper (
 	DEBUG_interface dbg_if
 );
 
-		logic [$clog2(`CU_STATES)-1:0] curr_state_debug_i;
-        logic [3:0] DEBUG_alu_op_type;
-
+	
 
 	//DLX top level entity
 	DLX #(
@@ -54,38 +52,36 @@ module dlx_wrapper (
     // simulation debug signals
     //synthesis_translate off
     ,
-    .STATE_CU			(curr_state_debug_i),
+    .STATE_CU			(dbg_if.curr_state_debug),
     .csr                (dbg_if.csr),    
     //all the control unit signals
     //used for system verilog verification 
-    .DEBUG_iram_ready_cu(dbg_if.DEBUG_iram_ready_cu),
-    .DEBUG_iram_enable_cu(dbg_if.DEBUG_iram_enable_cu),
-    .DEBUG_signed_notsigned(dbg_if.DEBUG_signed_notsigned),
-    .DEBUG_compute_sext(dbg_if.DEBUG_compute_sext),
-    .DEBUG_jump_sext(dbg_if.DEBUG_jump_sext),
-    .DEBUG_write_rf(dbg_if.DEBUG_write_rf),
-    .DEBUG_evaluate_branch(dbg_if.DEBUG_evaluate_branch),
-    .DEBUG_alu_cin(dbg_if.DEBUG_alu_cin),
-    .DEBUG_alu_overflow(dbg_if.DEBUG_alu_overflow),
-    .DEBUG_zero_mul_detect(dbg_if.DEBUG_zero_mul_detect),
-    .DEBUG_mul_exeception(dbg_if.DEBUG_mul_exeception),
-    .DEBUG_dram_ready_cu(dbg_if.DEBUG_dram_ready_cu),
-    .DEBUG_dram_r_nw_cu(dbg_if.DEBUG_dram_r_nw_cu),
-    .DEBUG_enable_rf(dbg_if.DEBUG_enable_rf),
-    .DEBUG_read_rf_p1(dbg_if.DEBUG_read_rf_p1),
-    .DEBUG_read_rf_p2(dbg_if.DEBUG_read_rf_p2),
-    .DEBUG_rtype_itypen(dbg_if.DEBUG_rtype_itypen),
-	.DEBUG_sel_val_a(dbg_if.DEBUG_sel_val_a),
-    .DEBUG_sel_val_b(dbg_if.DEBUG_sel_val_b),
-	.DEBUG_update_pc_branch(dbg_if.DEBUG_update_pc_branch),
-    .DEBUG_select_wb(dbg_if.DEBUG_select_wb),
-    .DEBUG_alu_op_type(DEBUG_alu_op_type),
-    .DEBUG_dram_enable_cu(dbg_if.DEBUG_dram_enable_cu)
+    .DEBUG_iram_ready_cu(dbg_if.iram_ready_cu),
+    .DEBUG_iram_enable_cu(dbg_if.iram_enable_cu),
+    .DEBUG_signed_notsigned(dbg_if.signed_notsigned),
+    .DEBUG_compute_sext(dbg_if.compute_sext),
+    .DEBUG_jump_sext(dbg_if.jump_sext),
+    .DEBUG_write_rf(dbg_if.write_rf),
+    .DEBUG_evaluate_branch(dbg_if.evaluate_branch),
+    .DEBUG_alu_cin(dbg_if.alu_cin),
+    .DEBUG_alu_overflow(dbg_if.alu_overflow),
+    .DEBUG_zero_mul_detect(dbg_if.zero_mul_detect),
+    .DEBUG_mul_exeception(dbg_if.mul_exeception),
+    .DEBUG_dram_ready_cu(dbg_if.dram_ready_cu),
+    .DEBUG_dram_r_nw_cu(dbg_if.dram_r_nw_cu),
+    .DEBUG_enable_rf(dbg_if.enable_rf),
+    .DEBUG_read_rf_p1(dbg_if.read_rf_p1),
+    .DEBUG_read_rf_p2(dbg_if.read_rf_p2),
+    .DEBUG_rtype_itypen(dbg_if.rtype_itypen),
+	.DEBUG_sel_val_a(dbg_if.sel_val_a),
+    .DEBUG_sel_val_b(dbg_if.sel_val_b),
+	.DEBUG_update_pc_branch(dbg_if.update_pc_branch),
+    .DEBUG_select_wb(dbg_if.select_wb),
+    .DEBUG_alu_op_type(dbg_if.alu_operation),
+    .DEBUG_dram_enable_cu(dbg_if.dram_enable_cu)
     //synthesis_translate on
   );
 
-	assign dbg_if.curr_state_debug=cu_state_t'(curr_state_debug_i);
-    assign dbg_if.alu_operation= TYPE_OP_ALU_sv'(DEBUG_alu_op_type);
 
 	//assign same reset signal to both interfaces
 	assign mif_rw.rst=rst;

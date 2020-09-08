@@ -87,8 +87,10 @@ interface DEBUG_interface ();
 	logic dram_enable_cu;
 	logic [7:0] csr;
 	logic rst;
-	TYPE_OP_ALU_sv alu_operation;
-	cu_state_t curr_state_debug;
+	logic [$clog2(`CU_STATES)-1:0]  curr_state_debug;
+    logic [3:0]alu_operation;
+
+
 endinterface
 
 `endif // __GLOBAL_DEFS__SVH

@@ -16,6 +16,12 @@ interface mem_interface
 	 logic  READNOTWRITE;
 	 wire  [WORD_SIZE-1:0] INOUT_DATA;
 
+
+	// for umv tb
+	logic [WORD_SIZE-1:0]DATA_UVM;
+	logic [WORD_SIZE-1:0]INOUT_DATA_UVM;
+
+
     clocking ram_interface @(posedge clk);
        input   #1  ADDRESS,ENABLE; // sampled after 1 time resoltuon see `timescale
        output  #1  DATA_READY,DATA;
