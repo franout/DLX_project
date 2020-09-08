@@ -51,6 +51,8 @@
 \usepackage{listings}
 \usepackage{booktabs}
 
+
+
 \newenvironment{listato}{\footnotesize}{\normalsize }
 
 %\pagestyle{empty}
@@ -86,10 +88,22 @@
 \usepackage{empheq}
 \usepackage{verbatim}
 \usepackage{fancyvrb}
+\usepackage{hyperref}
+
+\usepackage{xcolor}
+\colorlet{keyword}{blue!100!black!80}
+\colorlet{keyword2}{red!100!black!80}
+\colorlet{comment}{green!40!black!90}
+
 
 \lstdefinelanguage{VHDL}{morekeywords={library,use,all,entity,generic, is,port,in,out,end,architecture,of,begin,and,if,then,else,elsif,process},morecomment=[l]--}
 
 \lstdefinestyle{vhdl}{language = VHDL, basicstyle = \ttfamily, keywordstyle = \color{keyword}\bfseries, commentstyle = \color{comment}}
+
+\lstdefinestyle{sv}{language = Verilog, basicstyle = \ttfamily, keywordstyle = \color{keyword}\bfseries, commentstyle = \color{comment}}
+
+
+\lstdefinestyle{sh}{language = Bash, basicstyle = \ttfamily, keywordstyle = \color{keyword}\bfseries, commentstyle = \color{comment}}
 
 \titleformat{\chapter}[display]
 {\normalfont\Large\filcenter\sffamily}
@@ -135,40 +149,58 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % GROUP
 % Change the name of your group below
-%
-\centerline{\large Authors: group\_name}
+
+\centerline{\large Authors: group 50}
+%\centerline{ \href{https://github.com/franout/DLX_project}{GitHub Repository} }
+
 \bigskip
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % AUTHORS
 % Change the name of the Group participants here
 %
-\centerline{\large name1, name2}
+\centerline{\large Angione Francesco}
+\centerline{s262620}
+\vspace{0.5cm}
+\centerline { \href{https://github.com/franout/DLX_project}{ GitHub Repository }}
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\vspace{2cm}
+\vspace{1cm}
 \centerline{\large \today}
 \end{titlepage}
 
 \tableofcontents
-
 \mainmatter
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %    
 % HERE IS WHERE YOU INCLUDE YOUR CHAPTERS
 %
-\input{./chapters/chap1}
-% \input{./chapters/chap_name}
-% and so on
+\input{./chapters/introduction}
+\input{./chapters/functional_vt}
+\input{./chapters/architecture}
+\input{./chapters/synthesis}
+\input{./chapters/physical_design}
+
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %    
 % HERE IS WHERE YOU INCLUDE YOUR APPENDICES (IF ANY)
 %
 \appendix
-\input{./appendices/appendix1}
-% \input{./appendices/appendix2}
-% and so on
+\input{./appendices/appendix1} % tp
+\input{./appendices/appendix2} % mem interface
+\input{./appendices/appendix3} % global def
+\input{./appendices/appendix4} % implemented instruction
+\input{./appendices/appendix5} % property def
+\input{./appendices/appendix6} % uvm tb
+\input{./appendices/appendix7} % top dlx 
+\input{./appendices/appendix8} % globals
+\input{./appendices/appendix9} % global components from the labs
+\input{./appendices/appendix10} % simulation script
+\input{./appendices/appendix11} % synthesis script script
+\input{./appendices/appendix12} % physical design script
+\input{./appendices/appendix13} % regression test script
+
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 

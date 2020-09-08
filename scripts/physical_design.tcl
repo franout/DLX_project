@@ -20,11 +20,8 @@ set LIB_DIR /software/dk/nangate45/liberty
 set MyTimingLibNom ${LIB_DIR}/NangateOpenCellLibrary_typical_ecsm_nowlm.lib
 set MyTimingLibSlow ${LIB_DIR}/NangateOpenCellLibrary_slow_ecsm.lib
 set MyTimingLibFast ${LIB_DIR}/NangateOpenCellLibrary_fast_ecsm.lib
-
 set MycapTable $LEF_DIR/captables/NCSU_FreePDK_45nm.capTbl
-
 puts "Floorplanning Innovus"
-
 init_design
 getIoFlowFlag
 setIoFlowFlag 0
@@ -610,8 +607,6 @@ optDesign -postCTS
 optDesign -postCTS -hold
 getFillerMode -quiet
 addFiller -cell FILLCELL_X8 FILLCELL_X32 FILLCELL_X4 FILLCELL_X2 FILLCELL_X16 FILLCELL_X1 -prefix FILLER
-
-
 ## for gui run
 setDrawView  fplan
 fit
@@ -624,7 +619,6 @@ fit
 dumpToGIF ./images_1_minarea/DLX_IR_SIZE32_PC_SIZE32_1_minarea_place_prerouting
 
 puts "Signal routing  Innovus"
-
 setNanoRouteMode -quiet -timingEngine {}
 setNanoRouteMode -quiet -routeWithSiPostRouteFix 0
 setNanoRouteMode -quiet -drouteStartIteration default
@@ -667,7 +661,6 @@ get_verify_drc_mode -use_min_spacing_on_block_obs -quiet
 get_verify_drc_mode -limit -quiet
 set_verify_drc_mode -disable_rules {} -check_implant true -check_implant_across_rows false -check_ndr_spacing false -check_same_via_cell false -exclude_pg_net false -ignore_trial_route false -report DLX_IR_SIZE32_PC_SIZE32_1_minarea.drc.rpt -limit 1000
 verify_drc
-
 fit
 setDrawView  fplan
 dumpToGIF ./images_1_minarea/DLX_IR_SIZE32_PC_SIZE32_1_minarea_fplan
@@ -679,7 +672,6 @@ fit
 dumpToGIF ./images_1_minarea/DLX_IR_SIZE32_PC_SIZE32_1_minarea_place
 dumpPictures -dir ./images_nopt/ -prefix [dbGet top.name] -fullScreen
 saveFPlan ./DLX_IR_SIZE32_PC_SIZE32_1_minarea_floorplan
-
 dumpPictures -dir ./images_1_minarea/ -prefix [dbGet top.name] -fullScreen
 reportGateCount -level 5 -limit 100 -outfile DLX_IR_SIZE32_PC_SIZE32_1_minarea.gateCount
 saveFPlan ./DLX_IR_SIZE32_PC_SIZE32_1_minarea_floorplan
@@ -687,6 +679,4 @@ saveNetlist DLX_IR_SIZE32_PC_SIZE32_1_minarea.v
 all_hold_analysis_views 
 all_setup_analysis_views 
 write_sdf  -ideal_clock_network DLX_IR_SIZE32_PC_SIZE32_1_minarea.sdf
-
-
 exit
