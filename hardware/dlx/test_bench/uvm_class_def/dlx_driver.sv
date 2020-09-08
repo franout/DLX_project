@@ -32,7 +32,7 @@ class driver extends uvm_driver #(instruction_item);
 			.WORD_SIZE(`DRAM_WORD_SIZE))  iram_if;
   virtual 	mem_interface #(.ADDRESS_SIZE(`DRAM_ADDRESS_SIZE),
 			.WORD_SIZE(`DRAM_WORD_SIZE)) dram_if;
-  instruction_sequencer s0;
+//  instruction_sequencer s0;
 
   function new(string name = "driver", uvm_component parent=null);
     super.new(name, parent);
@@ -53,12 +53,12 @@ class driver extends uvm_driver #(instruction_item);
     forever begin
 	   instruction_item m_item;
       `uvm_info("DRV", $sformatf("Wait for item from sequencer"), UVM_LOW)
-      s0.get_next_item(m_item);
+      seq_item_port.get_next_item(m_item);
       drive_item(m_item);
       if(m_item.get_current_instruction()===i_lw || m_item.get_current_instruction()===i_sw) begin 
       	drive_item_dram();
       end
-      s0.item_done();
+      seq_item_port.item_done();
     end
   endtask : run_phase
 
@@ -68,6 +68,7 @@ class driver extends uvm_driver #(instruction_item);
         `uvm_info("DRV", "Wait until enable is high", UVM_LOW)
         @(posedge iram_if.clk);
       end
+		m_item.compose_instruction();
       iram_if.DATA_UVM=m_item.get_current_instruction();
 	   repeat(2) @(posedge iram_if.clk);
   endtask : drive_item

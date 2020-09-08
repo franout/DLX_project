@@ -105,7 +105,7 @@ vlog +incdir+/software/mentor/questa10.7c/questasim/uvm-"$UVM_VERSION"/../verilo
 vlog +incdir+/software/mentor/questa10.7c/questasim/uvm-"$UVM_VERSION"/../verilog_src/uvm-"$UVM_VERSION"/src -incr ${path_to_file}test_bench/uvm_class_def/dlx_test.sv
 vlog +incdir+/software/mentor/questa10.7c/questasim/uvm-"$UVM_VERSION"/../verilog_src/uvm-"$UVM_VERSION"/src -incr ${path_to_file}test_bench/dlx_wrapper.sv
 vlog +incdir+/software/mentor/questa10.7c/questasim/uvm-"$UVM_VERSION"/../verilog_src/uvm-"$UVM_VERSION"/src -incr ${path_to_file}test_bench/tb_dlx_uvm.sv
-vsim -c -sv_lib /software/mentor/questa10.7c/questasim/uvm-1.1d/linux_x86_64/uvm_dpi -suppress 12110 -suppress 8664 -novopt work.tb_dlx_uvm -do ./scripts/dlx_uvm_tb.do  
+vsim -c -sv_lib /software/mentor/questa10.7c/questasim/uvm-1.1d/linux_x86_64/uvm_dpi +UVM_STACKTRACE -suppress 12110 -suppress 8664 -novopt work.tb_dlx_uvm -do ./scripts/dlx_uvm_tb.do  
 else
 echo "Ok! you are missing a lot of fancy, amazing and astonishing things"
 fi

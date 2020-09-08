@@ -65,24 +65,65 @@ class monitor extends uvm_monitor;
        	//  mayve add a fork 
         cc=1;
         repeat (2) @ (posedge iram_if.clk);
-        item.set_signals( cc);
+        item.set_signals( sample_dbg(cc));
         cc=2;
         repeat (2) @ (posedge iram_if.clk);
-        item.set_signals(cc);
+        item.set_signals(sample_dbg(cc));
         cc=3;
         repeat (2) @ (posedge iram_if.clk);
-        item.set_signals( cc);
+        item.set_signals(sample_dbg(cc));
         cc=4;
         repeat (2) @ (posedge iram_if.clk);
-        item.set_signals( cc);
+        item.set_signals(sample_dbg(cc));
         cc=5;
         repeat (2) @ (posedge iram_if.clk);
-        item.set_signals(cc);
+        item.set_signals(sample_dbg(cc));
         cc=0;
         mon_analysis_port.write(item); // pass the value to scoreboard
       end
     end
   endtask
+
+	function integer sample_dbg(integer cc_stage);
+	  bit[32-1:0] signals; 
+			// depending on the current cc_state we sample different part of DEBUG interface
+	case (cc_stage)
+		1:begin // fetch 
+			signals[31]=dbg_if.iram_ready_cu;
+		end 
+		2:begin // decode
+			signals[30]=dbg_if.enable_rf;
+			signals[29]=dbg_if.read_rf_p1;
+			signals[28]=dbg_if.read_rf_p2;
+			signals[27]=dbg_if.rtype_itypen;
+			signals[26]=dbg_if.compute_sext;
+			signals[25]=dbg_if.jump_sext;
+		end
+		3:begin // execute
+			signals[24:24]=dbg_if.sel_val_a[0];
+			signals[23:23]=dbg_if.sel_val_b[0];
+			signals[22]=dbg_if.evaluate_branch[1];
+			signals[21]=dbg_if.evaluate_branch[0];
+			signals[20]=dbg_if.signed_notsigned;
+			signals[4]=dbg_if.alu_cin;
+			signals[3:0]=dbg_if.alu_operation;
+		end
+		4:begin // memory 
+			signals[19]=dbg_if.dram_enable_cu;
+			signals[18]=dbg_if.dram_r_nw_cu;
+			signals[17]=dbg_if.update_pc_branch;
+		end
+		5:begin // write back
+			signals[16]=dbg_if.select_wb[0];
+			signals[15]=dbg_if.write_rf;
+		end
+		default : signals='0;
+	endcase
+	signals[14:7]= dbg_if.csr;
+	signals[6]= dbg_if.rst;
+	return integer'(signals);
+	endfunction : sample_dbg
+
 endclass
 
 

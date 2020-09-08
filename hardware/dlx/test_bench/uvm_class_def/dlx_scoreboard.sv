@@ -58,6 +58,7 @@ class scoreboard extends uvm_scoreboard;
 
 
   instruction_info info_array_instr[string]; // associative array
+  instruction_item instr_queue[$];
   uvm_analysis_imp #(instruction_item, scoreboard) m_analysis_imp;
 
    function void build_phase(uvm_phase phase);
@@ -66,18 +67,33 @@ class scoreboard extends uvm_scoreboard;
   endfunction
 
   virtual function write(instruction_item item);
+
+	instr_queue.push_back(item);
+
+  endfunction : write
+
+
+virtual task run_phase(uvm_phase phase);
+		
+instruction_item item;
 	TYPE_OP_ALU_sv check_tmp;
 	instructions_opcode tmp;
 	instructions_regtype_opcode tmp_opcode;
+
+	forever begin 
+	wait ( info_array_instr.size() >0) 
+	item= instr_queue.pop_front();
+
   //called when something is transferred from monitor to scoreboard
     `uvm_info(get_type_name(), $sformatf("Current instruction: %s", item.convert2str()), UVM_LOW)
     // update the number of executed instruction to the related string 
-/*if exists otherwise allocate memory for it
-    if(info_array_instr[item.get_current_instruction_name()]===null) begin 
-    	info_array_instr[item.get_current_instruction_name()]= new;
-    end else begin */
+//if exists otherwise allocate memory for it
+    if(!info_array_instr.exists(item.get_current_instruction_name())) begin 
+    	info_array_instr= {item.get_current_instruction_name() :"no" };
+    end 
   	info_array_instr[item.get_current_instruction_name()].executed_num++; 
-//  	end 
+ 	
+
   	// check debug signals 
   	if(item.get_opcode()===i_regtype) begin 
   		// check the general signals 
@@ -176,6 +192,7 @@ class scoreboard extends uvm_scoreboard;
   		// check the specific alu operation
   		case (tmp)
   			i_addi : begin 
+
 		if(ADD!==check_tmp)begin 
         			`uvm_error (get_type_name(),$sformatf("FAILED instruction: %s , wrong alu opcode addi ! Actual : %d , Excpeted : %d",item.convert2str(),tmp , ADD))
         			info_array_instr[item.get_current_instruction_name()].pass="no";
@@ -278,8 +295,9 @@ class scoreboard extends uvm_scoreboard;
   		endcase
   	end 
 
-  endfunction : write
-
+	end 
+	 
+	endtask : run_phase
 function integer all_instruction_checked ();
 	int check=1;
 	string i;
