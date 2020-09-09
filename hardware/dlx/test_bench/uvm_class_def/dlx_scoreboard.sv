@@ -66,7 +66,7 @@ class scoreboard extends uvm_scoreboard;
     m_analysis_imp = new("m_analysis_imp", this);
   endfunction
 
-  virtual function write(instruction_item item);
+  virtual function void write(instruction_item item);
 
 	instr_queue.push_back(item);
 
@@ -89,7 +89,10 @@ instruction_item item;
     // update the number of executed instruction to the related string 
 //if exists otherwise allocate memory for it
     if(!info_array_instr.exists(item.get_current_instruction_name())) begin 
-    	info_array_instr= {item.get_current_instruction_name() :"no" };
+		instruction_info iitmp;
+		iitmp.pass="no";
+		iitmp.executed_num=0;
+    	info_array_instr[item.get_current_instruction_name()]= iitmp;
     end 
   	info_array_instr[item.get_current_instruction_name()].executed_num++; 
  	
@@ -301,6 +304,11 @@ instruction_item item;
 function integer all_instruction_checked ();
 	int check=1;
 	string i;
+		
+	if(info_array_instr.num()<=0) begin 
+	return 0;
+	end 
+
 	if(! info_array_instr.first(i)) begin 
 		`uvm_error (get_type_name(),"ERROR instruction info array is empty")
 	end 
@@ -309,7 +317,7 @@ function integer all_instruction_checked ();
 			check=0;
 		end 
 		 if(!info_array_instr.next(i)) begin 
-			`uvm_error( get_type_name(), "error instruction info array not found")
+			`uvm_error( get_type_name(), $sformatf("error instruction info array not found for %s",i))
 		 end 
 	end
 	return check;

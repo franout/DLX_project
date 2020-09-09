@@ -35,6 +35,10 @@ class instruction_item extends uvm_sequence_item;
   rand bit[15:0] immediate;
   rand bit[25:0] jump_address;
   randc instructions_regtype_opcode current_opcode_func;
+/*`uvm_object_utils_begin(instruction_item)
+	`uvm_field_enum(instructions_opcode,current_opcode,UVM_ALL_ON)
+	`uvm_field_enum(instructions_regtype_opcode,current_opcode_func,UVM_ALL_ON)
+`uvm_object_utils_end*/
 
     constraint c1 { soft rd inside {[1:31]}; }
     constraint c2 { soft rs1 inside {[0:30]}; }
@@ -70,6 +74,11 @@ class instruction_item extends uvm_sequence_item;
 
   function new(string name = "instruction_item" );
     super.new(name);
+	// deault instrunction is a nop
+	current_opcode=i_nop;
+	rs1=0;
+	rd=0;
+	immediate=0;
   endfunction
 
 
@@ -119,7 +128,7 @@ class instruction_sequencer extends uvm_sequencer#(instruction_item);
   `uvm_component_utils(instruction_sequencer)
 
 
-  function new(string name="sequencer for instructions", uvm_component parent);
+  function new(string name="sequencer for instructions" ,uvm_component parent=null);
     super.new(name,parent);
   endfunction
 
@@ -132,7 +141,7 @@ class instruction_sequence extends uvm_sequence#(instruction_item);
   `uvm_object_utils(instruction_sequence)
 
   const int length_instr=30; //  number of instruciton to be executed
-
+instruction_item m_itemins;
 `uvm_declare_p_sequencer(instruction_sequencer)
 
   function new(string name="instruction sequence");
@@ -141,37 +150,33 @@ class instruction_sequence extends uvm_sequence#(instruction_item);
   endfunction
 
 
-	// Raise an objection if started as the root sequence
-	virtual task pre_body ();
-		if (starting_phase != null)
-			starting_phase.raise_objection (this);
-	endtask
 
 
   virtual task body();
-    for (int i = 0; i < length_instr; i ++) begin
-		instruction_item m_item;
-		`uvm_create(m_item)
-   		if(!m_item.randomize()) begin 
+    /*for (int i = 0; i < length_instr; i ++) begin
+		m_itemins=instruction_item::type_id::create("m_itemins");
+		//`uvm_create(m_item)
+		wait_for_grant();
+		if(!m_itemins.randomize()) begin 
 			`uvm_error(get_type_name(), "FAILTED TO RANDOMIZE")
-		end 
+		end
 		`uvm_info(get_type_name(), "Randomized correctly",UVM_LOW)
-    	m_item.compose_instruction();
+    	m_itemins.compose_instruction();
     	`uvm_info("SEQ", $sformatf("Generate new item: "), UVM_LOW)
-    	m_item.print();
+		send_request(m_itemins);
+		wait_for_item_done();
       	// execute a nop and then restart
-      	m_item.force_nop();
-      	finish_item(m_item);
-    end
+      	m_itemins.force_nop();
+		send_request(m_itemins);
+		wait_for_item_done();
+      	finish_item(m_itemins);
+    end*/
+
+	`uvm_do(m_itemins)
     `uvm_info("SEQ", $sformatf("Done generation of %0d items", length_instr), UVM_LOW)
   endtask
 
 
-	// Drop objection if started as the root sequence
-	virtual task post_body ();
-		if (starting_phase != null)
-			starting_phase.drop_objection (this);
-	endtask
 
 endclass
 

@@ -51,11 +51,11 @@ class driver extends uvm_driver #(instruction_item);
   virtual task run_phase(uvm_phase phase);
     super.run_phase(phase);
     forever begin
-	   instruction_item m_item;
+		instruction_item m_itemins;
       `uvm_info("DRV", $sformatf("Wait for item from sequencer"), UVM_LOW)
-      seq_item_port.get_next_item(m_item);
-      drive_item(m_item);
-      if(m_item.get_current_instruction()===i_lw || m_item.get_current_instruction()===i_sw) begin 
+      seq_item_port.get_next_item(m_itemins);
+      drive_item(m_itemins);
+      if(m_itemins.get_current_instruction()===i_lw || m_itemins.get_current_instruction()===i_sw) begin 
       	drive_item_dram();
       end
       seq_item_port.item_done();
