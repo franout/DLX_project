@@ -24,6 +24,8 @@ import uvm_pkg::*;
 `include <uvm_pkg.sv>
 
 // including uvm classes in a bottom up order
+`include "./uvm_class_def/dlx_sequence_item.sv"
+`include "./uvm_class_def/dlx_sequence.sv"
 `include "./uvm_class_def/dlx_sequencer.sv"
 `include "./uvm_class_def/dlx_driver.sv"
 `include "./uvm_class_def/dlx_monitor.sv"

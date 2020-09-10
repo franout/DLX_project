@@ -59,6 +59,7 @@ class scoreboard extends uvm_scoreboard;
 
   instruction_info info_array_instr[string]; // associative array
   instruction_item instr_queue[$];
+// declaring port 
   uvm_analysis_imp #(instruction_item, scoreboard) m_analysis_imp;
 
    function void build_phase(uvm_phase phase);
@@ -66,24 +67,24 @@ class scoreboard extends uvm_scoreboard;
     m_analysis_imp = new("m_analysis_imp", this);
   endfunction
 
-  virtual function void write(instruction_item item);
 
+  virtual function void write(instruction_item item);
+    `uvm_info(get_type_name(), "Stored instruction item in scorebard", UVM_LOW)
 	instr_queue.push_back(item);
 
   endfunction : write
 
 
 virtual task run_phase(uvm_phase phase);
-		
-instruction_item item;
+
+	instruction_item item;
 	TYPE_OP_ALU_sv check_tmp;
 	instructions_opcode tmp;
 	instructions_regtype_opcode tmp_opcode;
-
 	forever begin 
-	wait ( info_array_instr.size() >0) 
-	item= instr_queue.pop_front();
+	wait ( instr_queue.size() >0) 
 
+	item = instr_queue.pop_front();
   //called when something is transferred from monitor to scoreboard
     `uvm_info(get_type_name(), $sformatf("Current instruction: %s", item.convert2str()), UVM_LOW)
     // update the number of executed instruction to the related string 
@@ -294,13 +295,22 @@ instruction_item item;
   					info_array_instr[item.get_current_instruction_name()].pass="yes";
   				end 
    			end 
-  			default : /* default */;
   		endcase
   	end 
-
 	end 
 	 
 	endtask : run_phase
+
+	virtual function void report_phase(uvm_phase phase);
+	super.report_phase(phase);
+	`uvm_info(get_type_name(), "Verbose prinf of instructions scoreboard",UVM_LOW)
+	foreach(info_array_instr[key_in])begin 
+	`uvm_info(get_type_name(), $sformatf("instruction %s, pass:%s , executed: %d times",key_in,info_array_instr[key_in].pass,info_array_instr[key_in].executed_num),UVM_LOW)
+	end 
+
+	endfunction : report_phase
+
+
 function integer all_instruction_checked ();
 	int check=1;
 	string i;

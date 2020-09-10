@@ -18,6 +18,7 @@
 `include "../003-global_defs.svh"
 `include "../memories/005-memory_interfaces.svh"
 `include "dlx_env.sv"
+`include "dlx_sequence.sv"
 
 import uvm_pkg::*;
 `include <uvm_macros.svh>
@@ -31,6 +32,7 @@ class test extends uvm_test;
   endfunction
 
   env e0;
+  instruction_sequence seq;
   virtual DEBUG_interface dbg_if;
   virtual 	mem_interface #(.ADDRESS_SIZE(`DRAM_ADDRESS_SIZE),
 			.WORD_SIZE(`DRAM_WORD_SIZE))  iram_if;
@@ -40,44 +42,46 @@ class test extends uvm_test;
   virtual function void build_phase(uvm_phase phase);
     super.build_phase(phase);
     e0 = env::type_id::create("e0", this);
-    if (!uvm_config_db#(virtual DEBUG_interface)::get(this, "", "dbg_if", dbg_if))
+    seq = instruction_sequence::type_id::create("seq", this);
+    if (!uvm_config_db#(virtual DEBUG_interface)::get(null, "", "dbg_if", dbg_if))
       `uvm_fatal("TEST", "Did not get dbg_if")
 
-      uvm_config_db#(virtual DEBUG_interface)::set(this, "e0.a0.*", "dbg_if", dbg_if);
+      //uvm_config_db#(virtual DEBUG_interface)::set(this, "e0.a0.*", "dbg_if", dbg_if);
 
       if (!uvm_config_db#(virtual 	mem_interface #(.ADDRESS_SIZE(`DRAM_ADDRESS_SIZE),
-			.WORD_SIZE(`DRAM_WORD_SIZE)))::get(this, "", "iram_if", iram_if))
+			.WORD_SIZE(`DRAM_WORD_SIZE)))::get(null, "", "iram_if", iram_if))
       `uvm_fatal("TEST", "Did not get iram")
 
-      uvm_config_db#(virtual 	mem_interface #(.ADDRESS_SIZE(`DRAM_ADDRESS_SIZE),
-			.WORD_SIZE(`DRAM_WORD_SIZE)))::set(this, "e0.a0.*", "iram_if", iram_if);
+     // uvm_config_db#(virtual 	mem_interface #(.ADDRESS_SIZE(`DRAM_ADDRESS_SIZE),.WORD_SIZE(`DRAM_WORD_SIZE)))::set(this, "e0.a0.*", "iram_if", iram_if);
 
       if (!uvm_config_db#(virtual 	mem_interface #(.ADDRESS_SIZE(`DRAM_ADDRESS_SIZE),
-			.WORD_SIZE(`DRAM_WORD_SIZE)))::get(this, "", "dram_if", dram_if))
+			.WORD_SIZE(`DRAM_WORD_SIZE)))::get(null, "", "dram_if", dram_if))
       `uvm_fatal("TEST", "Did not get dram")
 
-      uvm_config_db#(virtual 	mem_interface #(.ADDRESS_SIZE(`DRAM_ADDRESS_SIZE),
-			.WORD_SIZE(`DRAM_WORD_SIZE)))::set(this, "e0.a0.*", "dram_if", dram_if);
+    //  uvm_config_db#(virtual 	mem_interface #(.ADDRESS_SIZE(`DRAM_ADDRESS_SIZE),.WORD_SIZE(`DRAM_WORD_SIZE)))::set(this, "e0.a0.*", "dram_if", dram_if);
+
   endfunction
 
   virtual task run_phase(uvm_phase phase);
     instruction_sequence s0 = instruction_sequence::type_id::create("s0");
     phase.raise_objection(this);
     apply_reset();
+    `uvm_info(get_name(),"Done reset of DUT_DUV", UVM_LOW)
+	 seq.start(e0.a0.s0);
+		seq.randomize();
+	#1025;// 1 cc for each instruction ( it generates 30 instruction )
+    $display("UVM test is ended @ %d",$time());
 
-  // forever until all instruction have been checked at least once from the scoreboard
-  forever begin 
-    wait (e0.check_all_instruction())
-    if(e0.check_all_instruction()) begin 
-      $display("UVM test is ended @ %d",$time());
-      $finish();
-    end else begin 
-    s0.start(e0.a0.s0);
-//  s0.randomize();
-    #200; // execute 10 more cc
-    end 
-  end
+	// we may add a
+/*
 
+	forever begin 
+		wait (e0.check_all_instruction)
+		if(e0.check_all_instruction()
+			break();
+		else
+			continue
+*/
     phase.drop_objection(this);
   endtask
 
@@ -98,7 +102,7 @@ class test extends uvm_test;
   endfunction
 
 
-	function void report_phase (uvm_phase phase);
+	virtual function void report_phase (uvm_phase phase);
 		uvm_report_server svr;
 	    super.report_phase(phase);
         svr = uvm_report_server::get_server();

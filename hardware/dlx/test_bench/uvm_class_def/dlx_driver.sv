@@ -18,6 +18,7 @@
 `define __DLX_DRIVER_SV
 `include "../memories/005-memory_interfaces.svh"
 `include "./dlx_sequencer.sv"
+`include "./dlx_sequence_item.sv"
 import uvm_pkg::*;
 `include <uvm_macros.svh>
 `include <uvm_pkg.sv>
@@ -33,7 +34,7 @@ class driver extends uvm_driver #(instruction_item);
   virtual 	mem_interface #(.ADDRESS_SIZE(`DRAM_ADDRESS_SIZE),
 			.WORD_SIZE(`DRAM_WORD_SIZE)) dram_if;
 //  instruction_sequencer s0;
-
+		instruction_item m_itemins;
   function new(string name = "driver", uvm_component parent=null);
     super.new(name, parent);
   endfunction
@@ -41,19 +42,19 @@ class driver extends uvm_driver #(instruction_item);
  virtual  function void build_phase(uvm_phase phase);
     super.build_phase(phase);
     if (!uvm_config_db#(virtual 	mem_interface #(.ADDRESS_SIZE(`DRAM_ADDRESS_SIZE),
-			.WORD_SIZE(`DRAM_WORD_SIZE)))::get(this, "", "iram_if", iram_if))
+			.WORD_SIZE(`DRAM_WORD_SIZE)))::get(null, "", "iram_if", iram_if))
       `uvm_fatal("DRV", "Could not get iram_if")
 	if (!uvm_config_db#(virtual 	mem_interface #(.ADDRESS_SIZE(`DRAM_ADDRESS_SIZE),
-			.WORD_SIZE(`DRAM_WORD_SIZE)))::get(this, "", "dram_if", dram_if))
+			.WORD_SIZE(`DRAM_WORD_SIZE)))::get(null, "", "dram_if", dram_if))
       `uvm_fatal("DRV", "Could not get dram_if")
   endfunction : build_phase
 
   virtual task run_phase(uvm_phase phase);
     super.run_phase(phase);
     forever begin
-		instruction_item m_itemins;
+
       `uvm_info("DRV", $sformatf("Wait for item from sequencer"), UVM_LOW)
-      seq_item_port.get_next_item(m_itemins);
+		seq_item_port.get_next_item(m_itemins);
       drive_item(m_itemins);
       if(m_itemins.get_current_instruction()===i_lw || m_itemins.get_current_instruction()===i_sw) begin 
       	drive_item_dram();
@@ -81,10 +82,11 @@ class driver extends uvm_driver #(instruction_item);
       end
       if(dram_if.READNOTWRITE) begin 
       	dram_if.INOUT_DATA_UVM=$urandom_range(0,2**10);
+      `uvm_info("DRV", "read operation dram", UVM_LOW)
 	  end else begin 
-		dram_if.INOUT_DATA_UVM='z;
-      end 
       // skip the write operation 
+      `uvm_info("DRV", "write operation dram", UVM_LOW)
+      end 
 	   repeat(2) @(posedge dram_if.clk);
   endtask : drive_item_dram
 

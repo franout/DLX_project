@@ -37,13 +37,13 @@ class monitor extends uvm_monitor;
 
   function new(string name="monitor", uvm_component parent=null);
     super.new(name, parent);
-    mon_analysis_port = new ("mon_analysis_port", this);
-	collected_instr= new();
   endfunction
 
 
  virtual  function void build_phase(uvm_phase phase);
     super.build_phase(phase);
+    mon_analysis_port = new ("mon_analysis_port", this);
+	collected_instr= new();
     if (!uvm_config_db#(virtual 	mem_interface #(.ADDRESS_SIZE(`DRAM_ADDRESS_SIZE),
 			.WORD_SIZE(`DRAM_WORD_SIZE)))::get(this, "", "iram_if", iram_if))
       `uvm_fatal("MON", "Could not get iram_if")
@@ -61,13 +61,13 @@ class monitor extends uvm_monitor;
   virtual task run_phase(uvm_phase phase);
   	int cc=0;
     super.run_phase(phase);
-    forever begin
+  forever begin
       @ (posedge iram_if.clk);
       if (iram_if.ENABLE) begin
-        collected_instr.current_instruction=iram_if.DATA;
+        collected_instr.collect_instruction(iram_if.DATA_UVM);
         `uvm_info(get_type_name(), $sformatf("Monitor found instruction %s", collected_instr.convert2str()), UVM_LOW)
         // for the next 5 cc get the debug interface signals 
-       	//  mayve add a fork 
+		fork 
         cc=1;
         repeat (2) @ (posedge iram_if.clk);
         collected_instr.set_signals( sample_dbg(cc));
@@ -85,8 +85,9 @@ class monitor extends uvm_monitor;
         collected_instr.set_signals(sample_dbg(cc));
         cc=0;
         `uvm_info(get_type_name(),"Sampled debug signals", UVM_LOW)
-        mon_analysis_port.write(collected_instr); // pass the value to scoreboard
+		join
       end
+       mon_analysis_port.write(collected_instr); // pass the value to scoreboard
     end
   endtask
 
