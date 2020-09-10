@@ -40,13 +40,13 @@ class agent extends uvm_agent;
   driver 		d0; 		// Driver handle
   monitor 		m0; 		// Monitor handle
   /*the sequence does not need ot be dirivef from seqeunce class  it can be instantiated directly in the env usign the object uvm_sequencer*/
-  uvm_sequencer #(instruction_item)	s0; 		// Sequencer Handle
+  instruction_sequencer	s0; 		// Sequencer Handle
 
  virtual  function void build_phase(uvm_phase phase);
     super.build_phase(phase);
 // if agent is ACTIVE, then create monitor and sequencer, else create only monitor
       if (get_is_active() == UVM_ACTIVE) begin
-    	s0 = uvm_sequencer#(instruction_item)::type_id::create("s0", this);
+    	s0 = instruction_sequencer::type_id::create("s0", this);
     	d0 = driver::type_id::create("d0", this);
       end
     m0 = monitor::type_id::create("m0", this);
@@ -56,12 +56,7 @@ class agent extends uvm_agent;
 
   virtual function void connect_phase(uvm_phase phase);
     super.connect_phase(phase);
-    d0.seq_item_port.connect(s0.seq_item_export);
-         // Assign interface handle in CFG bject to Driver and Monitor, if active
-      if (get_is_active()== UVM_ACTIVE) begin 
-         m0.iram_if = d0.iram_if;
-	  end
-      m0.dram_if = d0.dram_if;
+
 
       // Connect Sequencer to Driver, if the agent is active
       if (get_is_active() == UVM_ACTIVE) begin
@@ -74,6 +69,7 @@ endclass
 
 class env extends uvm_env;
   `uvm_component_utils(env)
+
   function new(string name="env", uvm_component parent=null);
     super.new(name, parent);
   endfunction
@@ -85,7 +81,6 @@ class env extends uvm_env;
     super.build_phase(phase);
     a0 = agent::type_id::create("a0", this);
     sb0 = scoreboard::type_id::create("sb0", this);
-	$display("CALLLLLLL");
   endfunction
 
   virtual function void connect_phase(uvm_phase phase);

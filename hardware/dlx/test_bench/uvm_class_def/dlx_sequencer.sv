@@ -25,7 +25,6 @@ import uvm_pkg::*;
 
 
 class instruction_item extends uvm_sequence_item;
-  `uvm_object_utils(instruction_item)
 
   bit[32-1:0] signals; 
   bit[`IRAM_WORD_SIZE-1:0] current_instruction;
@@ -36,14 +35,17 @@ class instruction_item extends uvm_sequence_item;
   rand bit[15:0] immediate;
   rand bit[25:0] jump_address;
   randc instructions_regtype_opcode current_opcode_func;
-
-	virtual  DEBUG_interface dbg_if;
+/*`uvm_object_utils_begin(instruction_item)
+	`uvm_field_enum(instructions_opcode,current_opcode,UVM_ALL_ON)
+	`uvm_field_enum(instructions_regtype_opcode,current_opcode_func,UVM_ALL_ON)
+`uvm_object_utils_end*/
 
     constraint c1 { soft rd inside {[1:31]}; }
     constraint c2 { soft rs1 inside {[0:30]}; }
     constraint c3 { soft rs2 inside {[0:30]}; }
 
   function void compose_instruction(); // it is actually the set curret instruction 
+	`uvm_info(get_type_name(),$sformatf("Composing instruction: %h %d %d %d %h",this.current_opcode,this.rs1,this.rs2,this.rd,this.current_opcode_func),UVM_LOW)
   	if(this.current_opcode===i_regtype) begin 
   		this.current_instruction= {current_opcode,rs1 ,rs2 ,rd, current_opcode_func};
   	end else if (this.current_opcode===i_j || this.current_opcode===i_jal) begin 
@@ -72,9 +74,11 @@ class instruction_item extends uvm_sequence_item;
 
   function new(string name = "instruction_item" );
     super.new(name);
-/*	if (!uvm_config_db#(virtual DEBUG_interface)::get(this, "", "dbg_if", dbg_if)) begin	
-      //`uvm_error("instruction_item", "Did not get dbg_if")
-	end*/
+	// deault instrunction is a nop
+	current_opcode=i_nop;
+	rs1=0;
+	rd=0;
+	immediate=0;
   endfunction
 
 
@@ -110,46 +114,26 @@ function bit[3:0] get_alu_op ();
 	return this.signals[3:0];
 endfunction : get_alu_op
 
-function void set_signals (int cc_stage);
-	// depending on the current cc_state we sample different part of DEBUG interface
-	case (cc_stage)
-		1:begin // fetch 
-			this.signals[31]=dbg_if.iram_ready_cu;
-		end 
-		2:begin // decode
-			this.signals[30]=dbg_if.enable_rf;
-			this.signals[29]=dbg_if.read_rf_p1;
-			this.signals[28]=dbg_if.read_rf_p2;
-			this.signals[27]=dbg_if.rtype_itypen;
-			this.signals[26]=dbg_if.compute_sext;
-			this.signals[25]=dbg_if.jump_sext;
-		end
-		3:begin // execute
-			this.signals[24:24]=dbg_if.sel_val_a[0];
-			this.signals[23:23]=dbg_if.sel_val_b[0];
-			this.signals[22]=dbg_if.evaluate_branch[1];
-			this.signals[21]=dbg_if.evaluate_branch[0];
-			this.signals[20]=dbg_if.signed_notsigned;
-			this.signals[4]=dbg_if.alu_cin;
-			this.signals[3:0]=dbg_if.alu_operation;
-		end
-		4:begin // memory 
-			this.signals[19]=dbg_if.dram_enable_cu;
-			this.signals[18]=dbg_if.dram_r_nw_cu;
-			this.signals[17]=dbg_if.update_pc_branch;
-		end
-		5:begin // write back
-			this.signals[16]=dbg_if.select_wb[0];
-			this.signals[15]=dbg_if.write_rf;
-		end
-		default : this.signals='0;
-	endcase
-	this.signals[14:7]= dbg_if.csr;
-	this.signals[6]= dbg_if.rst;
+function void set_signals (int sample_val);
+	this.signals=sample_val;
 endfunction : set_signals
 
 
 endclass
+
+
+
+
+class instruction_sequencer extends uvm_sequencer#(instruction_item);
+  `uvm_component_utils(instruction_sequencer)
+
+
+  function new(string name="sequencer for instructions" ,uvm_component parent=null);
+    super.new(name,parent);
+  endfunction
+
+endclass
+
 
 
 class instruction_sequence extends uvm_sequence#(instruction_item);
@@ -157,54 +141,41 @@ class instruction_sequence extends uvm_sequence#(instruction_item);
   `uvm_object_utils(instruction_sequence)
 
   const int length_instr=30; //  number of instruciton to be executed
+instruction_item m_itemins;
+`uvm_declare_p_sequencer(instruction_sequencer)
 
-  function new(string name="sequence of instructions");
+  function new(string name="instruction sequence");
     super.new(name);
     		// we may add the open of the file for the iram 
   endfunction
 
 
-	// Raise an objection if started as the root sequence
-	virtual task pre_body ();
-		if (starting_phase != null)
-			starting_phase.raise_objection (this);
-	endtask
 
 
   virtual task body();
-    for (int i = 0; i < length_instr; i ++) begin
-    	instruction_item m_item = instruction_item::type_id::create("instruction");
-    	start_item(m_item);
-   		if(!m_item.randomize()) begin 
+    /*for (int i = 0; i < length_instr; i ++) begin
+		m_itemins=instruction_item::type_id::create("m_itemins");
+		//`uvm_create(m_item)
+		wait_for_grant();
+		if(!m_itemins.randomize()) begin 
 			`uvm_error(get_type_name(), "FAILTED TO RANDOMIZE")
-		end 
-    	m_item.compose_instruction();
+		end
+		`uvm_info(get_type_name(), "Randomized correctly",UVM_LOW)
+    	m_itemins.compose_instruction();
     	`uvm_info("SEQ", $sformatf("Generate new item: "), UVM_LOW)
-    	m_item.print();
+		send_request(m_itemins);
+		wait_for_item_done();
       	// execute a nop and then restart
-      	m_item.force_nop();
-      	finish_item(m_item);
-    end
+      	m_itemins.force_nop();
+		send_request(m_itemins);
+		wait_for_item_done();
+      	finish_item(m_itemins);
+    end*/
+
+	`uvm_do(m_itemins)
     `uvm_info("SEQ", $sformatf("Done generation of %0d items", length_instr), UVM_LOW)
   endtask
 
-
-	// Drop objection if started as the root sequence
-	virtual task post_body ();
-		if (starting_phase != null)
-			starting_phase.drop_objection (this);
-	endtask
-
-endclass
-
-
-class instruction_sequencer extends uvm_sequencer#(instruction_item);
-  `uvm_object_utils(instruction_sequencer)
-
-
-  function new(string name="sequencer of instructions");
-    super.new(name);
-  endfunction
 
 
 endclass

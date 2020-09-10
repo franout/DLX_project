@@ -61,7 +61,7 @@ class test extends uvm_test;
   endfunction
 
   virtual task run_phase(uvm_phase phase);
-    instruction_sequence seq = instruction_sequence::type_id::create("seq");
+    instruction_sequence s0 = instruction_sequence::type_id::create("s0");
     phase.raise_objection(this);
     apply_reset();
 
@@ -72,9 +72,9 @@ class test extends uvm_test;
       $display("UVM test is ended @ %d",$time());
       $finish();
     end else begin 
-    seq.randomize();
-    seq.start(e0.a0.s0);
-    #100; // execute 10 more cc
+    s0.start(e0.a0.s0);
+//  s0.randomize();
+    #200; // execute 10 more cc
     end 
   end
 
