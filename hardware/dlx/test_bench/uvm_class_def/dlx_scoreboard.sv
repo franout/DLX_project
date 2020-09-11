@@ -33,27 +33,27 @@ typedef struct {
 class scoreboard extends uvm_scoreboard;
   `uvm_component_utils(scoreboard)
 
-   const integer unsigned control_regtype;
-   const integer unsigned control_immediate;
-   const integer unsigned control_beqz;
-   const integer unsigned control_benz;
-   const integer unsigned control_j;
-   const integer unsigned control_jal;
-   const integer unsigned control_sw;
-   const integer unsigned control_lw;
+   const int unsigned control_regtype;
+   const int unsigned control_immediate;
+   const int unsigned control_beqz;
+   const int unsigned control_benz;
+   const int unsigned control_j;
+   const int unsigned control_jal;
+   const int unsigned control_sw;
+   const int unsigned control_lw;
 
 
   function new(string name="scoreboard", uvm_component parent=null);
     super.new(name, parent);
     // init signatures
-    control_regtype=32'd4161896448;
-	control_immediate=32'd3541139456;
-	control_beqz=32'd3819962368;
-	control_benz=32'd3822059520;
-	control_j=32'd2274492416;
-	control_jal=32'd2274590720;
-	control_sw=32'd4103602176;
-	control_lw=32'd3835527168;
+    control_regtype=32'h7dfb_8000;
+	control_immediate=32'h6491_8000;
+	control_beqz=32'h65b3_8000;
+	control_benz=32'h65f3_8000;
+	control_j=32'h7ffb_8000;
+	control_jal=32'h7ffb_8000;
+	control_sw=32'h75fb_8000;
+	control_lw=32'h7dff_8000;
   endfunction
 
 
@@ -89,6 +89,7 @@ virtual task run_phase(uvm_phase phase);
     `uvm_info(get_type_name(), $sformatf("Current instruction: %s", item.convert2str()), UVM_LOW)
     // update the number of executed instruction to the related string 
 //if exists otherwise allocate memory for it
+	if(item.get_current_instruction_name()!=="")begin 
     if(!info_array_instr.exists(item.get_current_instruction_name())) begin 
 		instruction_info iitmp;
 		iitmp.pass="no";
@@ -109,16 +110,113 @@ virtual task run_phase(uvm_phase phase);
 			info_array_instr[item.get_current_instruction_name()].pass="yes"; 
   		end 
 
-  		 tmp_opcode= item.get_opcode_func();
-	   check_tmp= TYPE_OP_ALU_sv'(item.get_alu_op());
-  		// check the specific alu operation
-		if(tmp_opcode!==check_tmp)begin 
-        			`uvm_error (get_type_name(),$sformatf("FAILED instruction: %s , wrong alu opcode ! Actual : %d , Excpeted : %d",item.convert2str(),tmp_opcode , i_add))
+  	   tmp_opcode= item.get_opcode_func();
+	   check_tmp=TYPE_OP_ALU_sv'(item.get_alu_op());
+  		// check the specific alu operation since internal alu op type is different than instruction code optype
+		case (tmp_opcode)
+		   i_add:
+			begin 
+				if(ADD!==check_tmp)begin 
+        			`uvm_error (get_type_name(),$sformatf("FAILED instruction: %s , wrong alu opcode ! Actual : %d , Excpeted : %d",item.convert2str(),check_tmp , ADD))
         			info_array_instr[item.get_current_instruction_name()].pass="no";
   				end else begin 
   					`uvm_info(get_type_name(),  $sformatf("PASSED instruction: %s , correct alu opcode !",item.convert2str()), UVM_LOW)
   					info_array_instr[item.get_current_instruction_name()].pass="yes";
   				end 
+			end
+		   i_and:begin 
+				if(BITAND!==check_tmp)begin 
+        			`uvm_error (get_type_name(),$sformatf("FAILED instruction: %s , wrong alu opcode ! Actual : %d , Excpeted : %d",item.convert2str(),check_tmp , BITAND))
+        			info_array_instr[item.get_current_instruction_name()].pass="no";
+  				end else begin 
+  					`uvm_info(get_type_name(),  $sformatf("PASSED instruction: %s , correct alu opcode !",item.convert2str()), UVM_LOW)
+  					info_array_instr[item.get_current_instruction_name()].pass="yes";
+  				end 
+			end
+		   i_or:begin 
+				if(BITOR!==check_tmp)begin 
+        			`uvm_error (get_type_name(),$sformatf("FAILED instruction: %s , wrong alu opcode ! Actual : %d , Excpeted : %d",item.convert2str(),check_tmp , BITOR))
+        			info_array_instr[item.get_current_instruction_name()].pass="no";
+  				end else begin 
+  					`uvm_info(get_type_name(),  $sformatf("PASSED instruction: %s , correct alu opcode !",item.convert2str()), UVM_LOW)
+  					info_array_instr[item.get_current_instruction_name()].pass="yes";
+  				end 
+			end
+		   i_sll:begin 
+				if(FUNCLSL!==check_tmp)begin 
+        			`uvm_error (get_type_name(),$sformatf("FAILED instruction: %s , wrong alu opcode ! Actual : %d , Excpeted : %d",item.convert2str(),check_tmp , FUNCLSL))
+        			info_array_instr[item.get_current_instruction_name()].pass="no";
+  				end else begin 
+  					`uvm_info(get_type_name(),  $sformatf("PASSED instruction: %s , correct alu opcode !",item.convert2str()), UVM_LOW)
+  					info_array_instr[item.get_current_instruction_name()].pass="yes";
+  				end 
+			end
+		   i_srl:begin 
+				if(FUNCLSR!==check_tmp)begin 
+        			`uvm_error (get_type_name(),$sformatf("FAILED instruction: %s , wrong alu opcode ! Actual : %d , Excpeted : %d",item.convert2str(),check_tmp , FUNCLSR))
+        			info_array_instr[item.get_current_instruction_name()].pass="no";
+  				end else begin 
+  					`uvm_info(get_type_name(),  $sformatf("PASSED instruction: %s , correct alu opcode !",item.convert2str()), UVM_LOW)
+  					info_array_instr[item.get_current_instruction_name()].pass="yes";
+  				end 
+			end
+		   i_sub:begin 
+				if(SUB!==check_tmp && item.get_carry_in()!==1)begin 
+        			`uvm_error (get_type_name(),$sformatf("FAILED instruction: %s , wrong alu opcode ! Actual : %d , Excpeted : %d",item.convert2str(),check_tmp , SUB))
+        			info_array_instr[item.get_current_instruction_name()].pass="no";
+  				end else begin 
+  					`uvm_info(get_type_name(),  $sformatf("PASSED instruction: %s , correct alu opcode !",item.convert2str()), UVM_LOW)
+  					info_array_instr[item.get_current_instruction_name()].pass="yes";
+  				end 
+			end
+		   i_xor:begin 
+				if(BITXOR!==check_tmp)begin 
+        			`uvm_error (get_type_name(),$sformatf("FAILED instruction: %s , wrong alu opcode ! Actual : %d , Excpeted : %d",item.convert2str(),check_tmp , BITXOR))
+        			info_array_instr[item.get_current_instruction_name()].pass="no";
+  				end else begin 
+  					`uvm_info(get_type_name(),  $sformatf("PASSED instruction: %s , correct alu opcode !",item.convert2str()), UVM_LOW)
+  					info_array_instr[item.get_current_instruction_name()].pass="yes";
+  				end 
+			end
+		   i_sne:begin 
+				if(NE!==check_tmp)begin 
+        			`uvm_error (get_type_name(),$sformatf("FAILED instruction: %s , wrong alu opcode ! Actual : %d , Excpeted : %d",item.convert2str(),check_tmp , NE))
+        			info_array_instr[item.get_current_instruction_name()].pass="no";
+  				end else begin 
+  					`uvm_info(get_type_name(),  $sformatf("PASSED instruction: %s , correct alu opcode !",item.convert2str()), UVM_LOW)
+  					info_array_instr[item.get_current_instruction_name()].pass="yes";
+  				end 
+			end
+		   i_sle:begin 
+				if(LE!==check_tmp)begin 
+        			`uvm_error (get_type_name(),$sformatf("FAILED instruction: %s , wrong alu opcode ! Actual : %d , Excpeted : %d",item.convert2str(),check_tmp , LE))
+        			info_array_instr[item.get_current_instruction_name()].pass="no";
+  				end else begin 
+  					`uvm_info(get_type_name(),  $sformatf("PASSED instruction: %s , correct alu opcode !",item.convert2str()), UVM_LOW)
+  					info_array_instr[item.get_current_instruction_name()].pass="yes";
+  				end 
+			end
+		   i_sge: begin 
+				if(GE!==check_tmp)begin 
+        			`uvm_error (get_type_name(),$sformatf("FAILED instruction: %s , wrong alu opcode ! Actual : %d , Excpeted : %d",item.convert2str(),check_tmp , GE))
+        			info_array_instr[item.get_current_instruction_name()].pass="no";
+  				end else begin 
+  					`uvm_info(get_type_name(),  $sformatf("PASSED instruction: %s , correct alu opcode !",item.convert2str()), UVM_LOW)
+  					info_array_instr[item.get_current_instruction_name()].pass="yes";
+  				end 
+			end
+		   i_mul: begin 
+				if(MULT!==check_tmp)begin 
+        			`uvm_error (get_type_name(),$sformatf("FAILED instruction: %s , wrong alu opcode ! Actual : %d , Excpeted : %d",item.convert2str(),check_tmp , MULT))
+        			info_array_instr[item.get_current_instruction_name()].pass="no";
+  				end else begin 
+  					`uvm_info(get_type_name(),  $sformatf("PASSED instruction: %s , correct alu opcode !",item.convert2str()), UVM_LOW)
+  					info_array_instr[item.get_current_instruction_name()].pass="yes";
+  				end 
+			end 
+		endcase
+
+
 
   	end else if (item.get_opcode()===i_beqz ) begin 
 
@@ -132,6 +230,7 @@ virtual task run_phase(uvm_phase phase);
   		end 
 
   	end else if( item.get_opcode()===i_benz) begin 
+
   			// check the general signals 
   		if(item.get_signals()!==control_benz ) begin  //compare with a signature 
   			`uvm_error(get_type_name(), $sformatf("FAILED instruction: %s!",item.convert2str()))
@@ -143,6 +242,7 @@ virtual task run_phase(uvm_phase phase);
 
   	end else if (item.get_opcode()===i_j) begin 
   			// check the general signals 
+		$display("%h %h----", item.get_signals(), control_j);
   		if(item.get_signals()!=control_j ) begin  //compare with a signature 
   			`uvm_error(get_type_name(), $sformatf("FAILED instruction: %s!",item.convert2str()))
   			info_array_instr[item.get_current_instruction_name()].pass="no"; 
@@ -153,6 +253,7 @@ virtual task run_phase(uvm_phase phase);
 
   	end else if(item.get_opcode()===i_jal) begin 
 	// check the general signals
+
   		if(item.get_signals()!==control_jal) begin  //compare with a signature 
   			`uvm_error(get_type_name(), $sformatf("FAILED instruction: %s!",item.convert2str()))
   			info_array_instr[item.get_current_instruction_name()].pass="no"; 
@@ -163,6 +264,7 @@ virtual task run_phase(uvm_phase phase);
 
     end else if (item.get_opcode()===i_sw ) begin
 	// check the general signals 
+
   		if(item.get_signals()!==control_sw ) begin  //compare with a signature 
   			`uvm_error(get_type_name(), $sformatf("FAILED instruction: %s!",item.convert2str()))
   			info_array_instr[item.get_current_instruction_name()].pass="no"; 
@@ -183,7 +285,8 @@ virtual task run_phase(uvm_phase phase);
 
   	end else begin  // immediate
 	// check the general signals 
-  		if(item.get_signals()!==control_immediate ) begin  //compare with a signature 
+		tmp= item.get_opcode();
+  		if(item.get_signals()!==control_immediate && tmp!==i_nop) begin  //compare with a signature 
   			`uvm_error(get_type_name(), $sformatf("FAILED instruction: %s!",item.convert2str()))
   			info_array_instr[item.get_current_instruction_name()].pass="no"; 
   		end else begin 	
@@ -191,14 +294,14 @@ virtual task run_phase(uvm_phase phase);
 			info_array_instr[item.get_current_instruction_name()].pass="yes"; 
   		end 
 
-  		tmp= item.get_opcode();
-  		check_tmp= TYPE_OP_ALU_sv'(item.get_signals()[3:0]);
+  		
+  		check_tmp= TYPE_OP_ALU_sv'(item.get_alu_op());
   		// check the specific alu operation
   		case (tmp)
   			i_addi : begin 
 
 		if(ADD!==check_tmp)begin 
-        			`uvm_error (get_type_name(),$sformatf("FAILED instruction: %s , wrong alu opcode addi ! Actual : %d , Excpeted : %d",item.convert2str(),tmp , ADD))
+        			`uvm_error (get_type_name(),$sformatf("FAILED instruction: %s , wrong alu opcode addi ! Actual : %d , Excpeted : %d",item.convert2str(),check_tmp , ADD))
         			info_array_instr[item.get_current_instruction_name()].pass="no";
   				end else begin 
   					`uvm_info(get_type_name(),  $sformatf("PASSED instruction: %s , correct alu opcode addi!",item.convert2str()), UVM_LOW)
@@ -207,7 +310,7 @@ virtual task run_phase(uvm_phase phase);
   			end 
    			i_andi : begin 
 		if(BITAND!==check_tmp)begin 
-        			`uvm_error (get_type_name(),$sformatf("FAILED instruction: %s , wrong alu opcode subi ! Actual : %d , Excpeted : %d",item.convert2str(),tmp , BITAND))
+        			`uvm_error (get_type_name(),$sformatf("FAILED instruction: %s , wrong alu opcode subi ! Actual : %d , Excpeted : %d",item.convert2str(),check_tmp , BITAND))
         			info_array_instr[item.get_current_instruction_name()].pass="no";
   				end else begin 
   					`uvm_info(get_type_name(),  $sformatf("PASSED instruction: %s , correct alu opcode subi!",item.convert2str()), UVM_LOW)
@@ -216,7 +319,7 @@ virtual task run_phase(uvm_phase phase);
    			end 
    			i_nop : begin 
 		if(ADD!==check_tmp)begin 
-        			`uvm_error (get_type_name(),$sformatf("FAILED instruction: %s , wrong alu opcode nop ! Actual : %d , Excpeted : %d",item.convert2str(),tmp , i_add))
+        			`uvm_error (get_type_name(),$sformatf("FAILED instruction: %s , wrong alu opcode nop ! Actual : %d , Excpeted : %d",item.convert2str(),check_tmp , ADD))
         			info_array_instr[item.get_current_instruction_name()].pass="no";
   				end else begin 
   					`uvm_info(get_type_name(),  $sformatf("PASSED instruction: %s , correct alu opcode nop!",item.convert2str()), UVM_LOW)
@@ -225,7 +328,7 @@ virtual task run_phase(uvm_phase phase);
    			end 
    			i_sgei : begin 
 		if(GE!==check_tmp)begin 
-        			`uvm_error (get_type_name(),$sformatf("FAILED instruction: %s , wrong alu opcode SGEI ! Actual : %d , Excpeted : %d",item.convert2str(),tmp , GE))
+        			`uvm_error (get_type_name(),$sformatf("FAILED instruction: %s , wrong alu opcode SGEI ! Actual : %d , Excpeted : %d",item.convert2str(),check_tmp , GE))
         			info_array_instr[item.get_current_instruction_name()].pass="no";
   				end else begin 
   					`uvm_info(get_type_name(),  $sformatf("PASSED instruction: %s , correct alu opcode SGEI!",item.convert2str()), UVM_LOW)
@@ -234,7 +337,7 @@ virtual task run_phase(uvm_phase phase);
    			end 
    			i_slei : begin 
 		if(LE!==check_tmp)begin 
-        			`uvm_error (get_type_name(),$sformatf("FAILED instruction: %s , wrong alu opcode SLEI ! Actual : %d , Excpeted : %d",item.convert2str(),tmp , LE))
+        			`uvm_error (get_type_name(),$sformatf("FAILED instruction: %s , wrong alu opcode SLEI ! Actual : %d , Excpeted : %d",item.convert2str(),check_tmp , LE))
         			info_array_instr[item.get_current_instruction_name()].pass="no";
   				end else begin 
   					`uvm_info(get_type_name(),  $sformatf("PASSED instruction: %s , correct alu opcode SLEI!",item.convert2str()), UVM_LOW)
@@ -243,7 +346,7 @@ virtual task run_phase(uvm_phase phase);
    			end 
    			i_slli : begin 
 		if(FUNCLSL!==check_tmp)begin 
-        			`uvm_error (get_type_name(),$sformatf("FAILED instruction: %s , wrong alu opcode SLLI ! Actual : %d , Excpeted : %d",item.convert2str(),tmp , FUNCLSL))
+        			`uvm_error (get_type_name(),$sformatf("FAILED instruction: %s , wrong alu opcode SLLI ! Actual : %d , Excpeted : %d",item.convert2str(),check_tmp , FUNCLSL))
         			info_array_instr[item.get_current_instruction_name()].pass="no";
   				end else begin 
   					`uvm_info(get_type_name(),  $sformatf("PASSED instruction: %s , correct alu opcode SLLI!",item.convert2str()), UVM_LOW)
@@ -252,7 +355,7 @@ virtual task run_phase(uvm_phase phase);
    			end 
    			i_snei : begin 
 		if(NE!==check_tmp)begin 
-        			`uvm_error (get_type_name(),$sformatf("FAILED instruction: %s , wrong alu opcode  SNEI ! Actual : %d , Excpeted : %d",item.convert2str(),tmp , NE))
+        			`uvm_error (get_type_name(),$sformatf("FAILED instruction: %s , wrong alu opcode  SNEI ! Actual : %d , Excpeted : %d",item.convert2str(),check_tmp , NE))
         			info_array_instr[item.get_current_instruction_name()].pass="no";
   				end else begin 
   					`uvm_info(get_type_name(),  $sformatf("PASSED instruction: %s , correct alu opcode SNEI !",item.convert2str()), UVM_LOW)
@@ -261,7 +364,7 @@ virtual task run_phase(uvm_phase phase);
    			end 
    			i_srli : begin 
 		if(FUNCLSR!==check_tmp)begin 
-        			`uvm_error (get_type_name(),$sformatf("FAILED instruction: %s , wrong alu opcode SRLI ! Actual : %d , Excpeted : %d",item.convert2str(),tmp , FUNCLSR))
+        			`uvm_error (get_type_name(),$sformatf("FAILED instruction: %s , wrong alu opcode SRLI ! Actual : %d , Excpeted : %d",item.convert2str(),check_tmp , FUNCLSR))
         			info_array_instr[item.get_current_instruction_name()].pass="no";
   				end else begin 
   					`uvm_info(get_type_name(),  $sformatf("PASSED instruction: %s , correct alu opcode SRLI!",item.convert2str()), UVM_LOW)
@@ -270,7 +373,7 @@ virtual task run_phase(uvm_phase phase);
    			end 
    			i_subi : begin 
 		if(SUB!==check_tmp && item.get_carry_in()!==1)begin 
-        			`uvm_error (get_type_name(),$sformatf("FAILED instruction: %s , wrong alu opcode SUBI ! Actual : %d , Excpeted : %d",item.convert2str(),tmp , SUB))
+        			`uvm_error (get_type_name(),$sformatf("FAILED instruction: %s , wrong alu opcode SUBI ! Actual : %d , Excpeted : %d",item.convert2str(),check_tmp , SUB))
         			info_array_instr[item.get_current_instruction_name()].pass="no";
   				end else begin 
   					`uvm_info(get_type_name(),  $sformatf("PASSED instruction: %s , correct alu opcode SUBI!",item.convert2str()), UVM_LOW)
@@ -279,7 +382,7 @@ virtual task run_phase(uvm_phase phase);
    			end 
    			i_ori : begin 
 		if(BITOR!==check_tmp)begin 
-        			`uvm_error (get_type_name(),$sformatf("FAILED instruction: %s , wrong alu opcode  ORI ! Actual : %d , Excpeted : %d",item.convert2str(),tmp , BITOR))
+        			`uvm_error (get_type_name(),$sformatf("FAILED instruction: %s , wrong alu opcode  ORI ! Actual : %d , Excpeted : %d",item.convert2str(),check_tmp , BITOR))
         			info_array_instr[item.get_current_instruction_name()].pass="no";
   				end else begin 
   					`uvm_info(get_type_name(),  $sformatf("PASSED instruction: %s , correct alu opcode ORI !",item.convert2str()), UVM_LOW)
@@ -288,7 +391,7 @@ virtual task run_phase(uvm_phase phase);
    			end 
    			i_xori : begin 
 		if(BITXOR!==check_tmp)begin 
-        			`uvm_error (get_type_name(),$sformatf("FAILED instruction: %s , wrong alu opcode XORI ! Actual : %d , Excpeted : %d",item.convert2str(),tmp , BITXOR))
+        			`uvm_error (get_type_name(),$sformatf("FAILED instruction: %s , wrong alu opcode XORI ! Actual : %d , Excpeted : %d",item.convert2str(),check_tmp , BITXOR))
         			info_array_instr[item.get_current_instruction_name()].pass="no";
   				end else begin 
   					`uvm_info(get_type_name(),  $sformatf("PASSED instruction: %s , correct alu opcode XORI!",item.convert2str()), UVM_LOW)
@@ -298,7 +401,7 @@ virtual task run_phase(uvm_phase phase);
   		endcase
   	end 
 	end 
-	 
+	end
 	endtask : run_phase
 
 	virtual function void report_phase(uvm_phase phase);
@@ -307,7 +410,7 @@ virtual task run_phase(uvm_phase phase);
 	foreach(info_array_instr[key_in])begin 
 	`uvm_info(get_type_name(), $sformatf("instruction %s, pass:%s , executed: %d times",key_in,info_array_instr[key_in].pass,info_array_instr[key_in].executed_num),UVM_LOW)
 	end 
-
+	
 	endfunction : report_phase
 
 

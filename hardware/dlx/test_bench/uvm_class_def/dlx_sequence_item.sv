@@ -104,7 +104,7 @@ class instruction_item extends uvm_sequence_item;
 
 
    function integer get_signals ();
-	return {this.signals[31:15], '0};
+	return {this.signals[31:15], 15'd0};
 endfunction : get_signals
 
 function integer get_carry_in ();
@@ -113,11 +113,45 @@ endfunction : get_carry_in
 
 
 function bit[3:0] get_alu_op ();
-	return this.signals[3:0];
+	//return this.signals[3:0];
+	bit[3:0] tmp;
+		if(current_opcode==i_regtype) begin 
+			case(current_opcode_func)
+			   i_and: tmp=BITAND;
+			   i_or: tmp=BITOR;
+			   i_sll: tmp=FUNCLSL;
+			   i_srl: tmp=FUNCLSR;
+   			   i_sub: tmp=SUB;
+			   i_xor: tmp=BITXOR;
+			   i_sne: tmp=NE;
+			   i_sle: tmp=LE;
+			   i_sge: tmp=GE;
+			   i_mul: tmp= MULT;
+			default  tmp=ADD;
+			endcase
+		end else begin 
+			case (current_opcode) 
+		 	  i_andi: tmp=BITAND;	
+			  i_sgei: tmp=GE;
+			  i_slei: tmp=LE;
+			  i_slli: tmp=FUNCLSL;
+			  i_snei: tmp=NE;
+			  i_srli: tmp=FUNCLSR;
+			  i_subi: tmp=SUB;
+		      i_ori:  tmp= BITOR;
+        	  i_xori:  tmp=BITXOR;
+			default  tmp=ADD; /*i_addi , i_nop, i_lw, i_jal, i_j, i_benz, i_beqz*/
+			endcase	
+		end
+	return tmp;
 endfunction : get_alu_op
 
-function void set_signals (int sample_val);
+function void set_signals (int sample_val,int cc);
+	if(cc==0) begin 
 	this.signals=sample_val;
+	end else begin 
+	this.signals= this.signals | sample_val;
+	end 
 endfunction : set_signals
 
 function void collect_instruction( bit [`IRAM_WORD_SIZE-1:0] val);
@@ -133,7 +167,7 @@ this.current_opcode=instructions_opcode'(val[`IRAM_WORD_SIZE-1:`IRAM_WORD_SIZE-`
   	end else begin  // immediate or benq or sw lw
 		this.rs1=int'(val[`IRAM_WORD_SIZE-`OP_CODE_SIZE-1:`IRAM_WORD_SIZE-`OP_CODE_SIZE-5]);
 		this.rd=int'(val[`IRAM_WORD_SIZE-`OP_CODE_SIZE-1-5:`IRAM_WORD_SIZE-`OP_CODE_SIZE-10]);
-		this.immediate=val[16:0];
+		this.immediate=val[15:0];
   	end 
 
 endfunction : collect_instruction
