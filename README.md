@@ -41,11 +41,10 @@ In this project Questa Sim 10.7 and Design Compiler have been used.
 
 The DLX is essentially a cleaned up (and modernized) simplified MIPS CPU. The DLX has a simple Big Endian 32-bit load/store pipelined architecture, somewhat unlike the modern MIPS CPU.
 
-- Test Bench General architecture
-  * Unit Under Test
-  
-  * DLX top level entity 
-  
+
+- DLX top level entity 
+   ![architecture](./report/chapters/figures/arch_top.png)
+ 
   
 - Customizable hardware parameters (pre-synthesis)
     * IR size, bitwidth of Instruction Register 
@@ -69,6 +68,10 @@ For exectuting the simulation of the DLX, it is necessary to execute:
   $ ./scripts/simulation.sh
   ```
   It will compile the needed files for executing the simulation. Moreover, there are two types of simulations, one with the Universal Verification Methodology architecture and the other one with the normal configuration (IRAM-DLX-DRAM).
+  
+  ![Simulation](https://www.chipverify.com/images/uvm/uvm-tb.gif)
+  
+  
 ## Synthesis 
 For executing the synthesis of the DLX:
 ```shell
@@ -81,6 +84,10 @@ For executing the physical design of the synthesized DLX:
   $ ./scripts/physical_design.sh gui/no_gui
   ```
 It will execute the physical desing of differt design point ( for different clock values and area).
+   
+<p align="center">
+  <img width="500" height="500" src="./project/physical_design/images_nopt/DLX_IR_SIZE32_PC_SIZE32_nopt_place_prerouting.gif">
+</p>
 
 ## Tests 
 For functionally verify the microprocessor refers to the testbench in System Verilog. 
@@ -88,6 +95,8 @@ They are divided for each stage and control unit for regression test
 ```shell
   $ ./scripts/regression_test.sh
   ```
+  
+
 ## Useful Link 
 
 Reach out to me at one of the following places!
