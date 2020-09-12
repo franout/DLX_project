@@ -1,7 +1,90 @@
 \chapter{Functional Verification Testing}
 \label{fvt}
+In Digital Design, functional verification testing is the task of verifying that the logic design is conformed to its specifications, it answers to the question \textit{Does it do what it is intended do?}. The answer to this question is a complex task and takes the majority of time in integrated circuit design.\\\\
+Thanks to the Moore's law \cite{paper:1} the complexity of integrated circuit has grow exponentially, putting more and more peripheral and modules in the same die's area it has leaded to the SoC area. This has lead to very complex circuits and it comes naturally that the old test benches architectures are no more suitable for checking the intended behaviour.\\
+
+The task of Functional verification testing can be done through different methods:
+\begin{itemize}
+\item Logic simulation, it simulates the logic before it is built.
+\item Simulation acceleration, itapplies special purpose hardware to the logic simulation problem.
+\item   Emulation, it builds a version of system using programmable logic. 
+\item Formal verification, it attempts to prove mathematically that certain requirements are met.
+\item  Intelligent verification, it uses automation to change testbenches at RTL level.
+\end{itemize}
+
+From now on, the logic simulation based functional verification will be used. In this approach the stimulus are provided by a testbench which emulates a meaningfull scenario in order to check that for a certain input, the related output is generated as the specifications indicates.\\
+A test bench can be divided in sevela componets, each one of them with a specific purpose:
+\begin{itemize}
+\item the generator, it generates stimulis according to specifications and the expected environment.
+Stimulus are manually generated. On the other hand, a modern solution may be to create random stimuli that are statistically driven in order to verify part of the unit under test. 
+\item the driver, it translates translate the stimuli produced by the generator into the actual inputs for the design under verification.
+\item the monitor, it stores the state and the outputs of the design into a database.
+\item the checker, it validates wrt to the specifications the stored values of the monitor.
+\item the arbitration manager, it manages all the above components together.
+\end{itemize}
 
 \section{Testbenches with System Verilog}
+The usage of System Verilog as preferred language for testbenches has become increased more and more in the last years. One of the motivation is its C-like features, and easyness of usage. Moreover, it offers a lot of randomization of values features, the OOP paradigm and the possibility of defining interfaces (which are also synthesizable construct).\\\
+It has been developed as language that encapsulates the HDL and the HDL. Therefore, the usage of System Verilog as language for verification testbenches has allowed to use a different architecture for functionally testing the DLX, the UVM approach.\\
+Another important aspect is the possibility of using assertions (SVA), they allow to specify the expected behavior of a design with temporal property on signals speeding up the developing process and the checking of correct behaviour(see Appendix \ref{appendix5} for properties definition related to the DLX top level entity). The usage of the SVAs has allowed the speed-up, in this particular case, of pipeline property  for each subunit of the DLX. This has been done in order to reduce the overhead of checking and fixing problems when integration comes.\\
+
+Following the previous mentioned ideas, the memories and their interfaces have been implemented in System Verilog (while the DLX has been described in VHDL). At the end, the testbench has been writtein in System Verilog with the following architecture: 
+\begin{figure}[!htbp]
+\centering
+\captionsetup{justification=centering}
+\includegraphics[scale=0.4,angle=0]{./chapters/figures/tb_dlx.png}
+\caption{Testbench architecture}
+\label{fig:tbdlx}
+\end{figure}
+
+In Figure \ref{fig:tbdlx} are missing the clock interconnections and the reset just for a matter of readability. In this case the:
+\begin{itemize}
+\item DLX, it is the microprocessor under test.
+\item IRAM: it is the instruction ram which loads the program (compiled offline) for the unit under test.
+\item DRAM: it is the data ram which loads at the begginning a file with random values and at every write operation it refresh the content of another file. 
+\item Memory interface: it is the interface connecting the memories with the microprocessor. It has been defined as a single interface for both the memories, the only difference is in the modport configuration, where it can be distringuished between a read-only memory and a read-write memory (see Appendix \ref{appendix2}).
+\item Debug interface: it is an interface that will be removed during the synthesis, its only purpose is to made visible the control signals of the CU in order to check if the instruction-dependent properties are covered (see Appendix \ref{appendix5}).
+\end{itemize}
+
+
 \subsection{Functional Coverage}
 
+Different coverage metrics are defined to assess that the design has been adequately exercised. These include functional coverage (has every functionality of the design been exercised?)
+
+\begin{figure}[!htbp]
+\centering
+\captionsetup{justification=centering}
+%\includegraphics[scale=0.4,angle=0]{./chapters/figures/tb_dlx_uvm.png}
+\caption{Functional coverage}
+\label{fig:dlxarch}
+\end{figure}
+
+program dependent 
+also memory are never fully tested (at least the address ) 
+
+\newpage
 \section{Universal Verification Methodology}
+The Universal Verification Methodology (UVM) is a standardized methodology for verifying integrated circuit designs. UVM is derived mainly from the OVM (Open Verification Methodology). The UVM class library brings much automation to the SystemVerilog language such as sequences and data automation features (packing, copy, compare), and unlike the previous methodologies it is developed independently by the simulator vendors.\\ 
+It exploits the OOP paradigm, therefore for each one of the entities that can be seen in Figure \ref{fig:tbuvm}, they represent a class with a specific function.
+
+\begin{figure}[!htbp]
+\centering
+\captionsetup{justification=centering}
+\includegraphics[scale=0.5,angle=0]{./chapters/figures/tb_dlx_uvm.png}
+\caption{UVM testbench architecture}
+\label{fig:tbuvm}
+\end{figure}
+
+Each class in Figure \ref{fig:tbuvm} inherits the functions and tasks of the relative UVM related class. For this specific case, the UVM classes function are:
+\begin{itemize}
+\item Instruction item, it is the basic instruction for the microprocessor plus some additional function, such as its conversion to string, the retrieve of the only opcode and/or the opcode ALU function. It is important to mention that it includes the random variables for the opcode, opcode alu function, r\textsubscript{d}, rs\textsubscript{1}, rs\textsubscript{2} , immediate and jump address(which are randomized when calling the relative function in instruction sequence) plus the constraint on the register, such as the one that the r\textsubscript{0} cannot be a destination register. Moreover, depening on the current opcode, it composes the instruction accordingly, i.e. the jump address is not needed when composing a add instruction and viceversa, even if all the variables are randomized everytime.
+\item Instruction sequence, it creates a given number of random instruction item.
+\item Instruction sequencer, it only gives the instruction item from the instruction sequence to the driver one by one.
+\item Driver, it retrieves the next instrction item from the sequencer and gives it to the DUT . It basically behaves as the IRAM of Figure \ref{fig:tbdlx}.
+\item Monitor, this class is only in charge of sampling the Debug signals from the DUV and its current instruction.
+\item Agent, since it is active it is in charge of creating the sequencer,driver and monitor classes and connects the driver port to the export port of the sequencer.
+\item Scoreboard, it stores for each executed instruction if it passes the test or not and how many time it has been executed. It also checks if the correct signals(sampled from the Debug interface) have been asserted for the specific instruction. For example, \textit{add r\textsubscript{1},r\textsubscript{3},r\textsubscript{4}}, it will access to both the port of register file and then it will compute the addition between the accessed values and as last step it will write back the value in the register file. The scoreboard stores the signals from when the instruction is given to the microprocessor up to the 5-th clock cycle and then it compares the signals with an internal signature.
+\item Environment, it instantias the agent and the scoreboard and connects the analysis port of the scoreboard to the output port of the agent.
+\item Test, it is only in charge of instantiate the environment class, it also applies a preliminary reset to all systems and then it creates the sequence of random instructions.
+\item tb\_dlx\_uvm, it is the top level module which is in charge of instantiating the DUV, the interfaces. It internconnects the interfaces with DUV and starts the test (see Appendix \ref{appendix6}).
+\end{itemize}

@@ -118,7 +118,7 @@
 {\titlerule
 \vspace{1pc}
 \Huge}
-
+\bibliography{./references.bib}
 \makeindex
 
 \begin{document}
@@ -175,6 +175,7 @@
 %    
 % HERE IS WHERE YOU INCLUDE YOUR CHAPTERS
 %
+
 \input{./chapters/introduction}
 \input{./chapters/functional_vt}
 \input{./chapters/architecture}
@@ -186,6 +187,7 @@
 %    
 % HERE IS WHERE YOU INCLUDE YOUR APPENDICES (IF ANY)
 %
+%\printbibliography
 \appendix
 \input{./appendices/appendix1} % tp
 \input{./appendices/appendix2} % mem interface
@@ -200,6 +202,8 @@
 \input{./appendices/appendix11} % synthesis script script
 \input{./appendices/appendix12} % physical design script
 \input{./appendices/appendix13} % regression test script
+
+
 
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

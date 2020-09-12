@@ -1,8 +1,7 @@
 \chapter{Introduction}
 \label{Introduction}
-The DeLeXe (aka DLX) is a RISC processor architecture designed by John L. Hennessy and David A. Patterson. It is a modernized and simplified  32-bit load/store big endian architecture of the MIPS CPU, primarly intended for teaching purposes.\\\\
-In the following pages the ASIC design flow has been applied.
-Starting from the basic requirements of DLX, it has been developed accordingly to the its basic features, i.e. the pipeline and the basic instruction set.
+The DeLuXe (aka DLX) is a RISC processor architecture designed by John L. Hennessy and David A. Patterson. It is a modernized and simplified  32-bit load/store big endian architecture of the MIPS CPU, primarly intended for teaching purposes.\\\\
+In the following pages the ASIC design flow has been applied starting from the basic requirements of DLX, it has been developed accordingly with basic features, i.e. the pipeline and the basic instruction set.
 As next step the integer multiplication has been added to the basic instruction set. For doing that, the Booth's multiplier studied during the course and developed during the laboratories has been pipelined in order to obtain a pipelined multiplier on eight clock cycles.\\
 An important aspect of Digal Desing, in the development step, is to verify the functional behaviour of the components. In order to do that, testbenches in System Verilog have been used (resorting to a mixed language simulation) in order to maximixe the efficiency and speeding up the development time, it has also allowed to removed bugs during the early functional testing of the stages composing the pipeline  by the mean of defining temporal properties on signals.
 Moreover, at the end, another testbench using the Universal Verification Methodology has been developed, which is a de facto standard in the Functional Verification Testing in the industry\footnote{\href{https://standards.ieee.org/standard/1800_2-2017.html}{1800.2-2017 - IEEE Standard for Universal Verification Methodology Language Reference Manual}}.\\\\

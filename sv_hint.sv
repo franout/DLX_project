@@ -198,3 +198,17 @@ bind to module  "bind_assertion" the property defined in the assertion_ip moduel
     information is saved at the end of a simulation run.
     $load_coverage_db(name) :loads from the given filename the cumulative coverage information for all coverage group types.
     $get_coverage() :returns as a real number in the range of 0 to 100 the overall coverage of all coverage group types. This number is computed as described abov
+
+
+
+// umv order of executio 
+    new()    The constructor
+2. build_phase()     Create components using new or the factory
+3. connect_phase()     Make port, export and implementation connections
+4. end_of_elaboration_phase()    After all connections have been hardened
+5. start_of_simulation_phase()     Just before simulation starts
+6. run_phase()     Runs simulation
+7. extract_phase()    Post processing 1
+8. check_phase()    Post processing 2
+9. report_phase()   Post processing 3
+10. final_phase()    Backstop
