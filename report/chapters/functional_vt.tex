@@ -32,7 +32,7 @@ Following the previous mentioned ideas, the memories and their interfaces have b
 \begin{figure}[!htbp]
 \centering
 \captionsetup{justification=centering}
-\includegraphics[scale=0.4,angle=0]{./chapters/figures/tb_dlx.png}
+\includegraphics[scale=0.35,angle=0]{./chapters/figures/tb_dlx.png}
 \caption{Testbench architecture}
 \label{fig:tbdlx}
 \end{figure}
@@ -48,23 +48,24 @@ In Figure \ref{fig:tbdlx} are missing the clock interconnections and the reset j
 
 
 \subsection{Functional Coverage}
-
-Different coverage metrics are defined to assess that the design has been adequately exercised. These include functional coverage (has every functionality of the design been exercised?)
+Functional coverage is a coverage metric defined to asses that the design has been adequately exercised\cite{paper:2}.
+Observation points can be inserted at every granularity and in different poitns, external to the design (on the interfaces), inside the design or both of them.\\
+As it can be seen in Figure \ref{fig:dlxtbcp} the observation point has been added on the interfaces and they observe the read and write operation on memory as the memory address range(see Appendix \ref{appendix2}).
 
 \begin{figure}[!htbp]
 \centering
 \captionsetup{justification=centering}
-%\includegraphics[scale=0.4,angle=0]{./chapters/figures/tb_dlx_uvm.png}
-\caption{Functional coverage}
-\label{fig:dlxarch}
+\includegraphics[scale=0.35,angle=0]{./chapters/figures/tb_dlx_cg.png}
+\caption{Testbench architecture with coverpoint(in red)}
+\label{fig:dlxtbcp}
 \end{figure}
 
-program dependent 
-also memory are never fully tested (at least the address ) 
+Instead of using covergroup, another approach is to reuse the property used for SVA. This approach has allowed to reuse the property defined for checking the correct behaviour of the control unit, moving them outside the DLX and checking if those property are covered by the Debug interface signals (which are the control signals from the control unit to the datapath). It is important to understand that the cover of those properties is program-dependet since they check the behaviour for each tipe of instruction (r-type,i-type and j-type). Therefore, a test program able to test the whole ISA has been developed.\\\\
+It is worth to mention that memories are never fully covered since their address range is very large and they are exercised with test programs that use only a narrow subset of the memory range.
 
 \newpage
 \section{Universal Verification Methodology}
-The Universal Verification Methodology (UVM) is a standardized methodology for verifying integrated circuit designs. UVM is derived mainly from the OVM (Open Verification Methodology). The UVM class library brings much automation to the SystemVerilog language such as sequences and data automation features (packing, copy, compare), and unlike the previous methodologies it is developed independently by the simulator vendors.\\ 
+The Universal Verification Methodology (UVM) is a standardized methodology for verifying integrated circuit designs\cite{paper:3}. UVM is derived mainly from the OVM (Open Verification Methodology). The UVM class library brings much automation to the SystemVerilog language such as sequences and data automation features (packing, copy, compare), and unlike the previous methodologies it is developed independently by the simulator vendors.\\ 
 It exploits the OOP paradigm, therefore for each one of the entities that can be seen in Figure \ref{fig:tbuvm}, they represent a class with a specific function.
 
 \begin{figure}[!htbp]
