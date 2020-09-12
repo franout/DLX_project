@@ -1,0 +1,176 @@
+COVERGROUP COVERAGE:
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Covergroup                                             Metric       Goal    Status                Persistent Memory   Transient Memory     Peak Transient    PeakTransMemory 
+                                                                                                                                                Memory              Time  
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+ TYPE /tb_dlx/iram_if/address_cov                      10.00%        100    Uncovered                         1.3KB              1.1KB              1.8KB               0 ps 
+    covered/total bins:                                     1         10                                   1.3KB              1.1KB              1.8KB               0 ps 
+    missing/total bins:                                     9         10                                   1.3KB              1.1KB              1.8KB               0 ps 
+    % Hit:                                             10.00%        100                                   1.3KB              1.1KB              1.8KB               0 ps 
+    Coverpoint address_cov::addr                       10.00%        100    Uncovered                          816B               888B               888B               0 ps 
+        covered/total bins:                                 1         10                                      na                 na                 na                 na 
+        missing/total bins:                                 9         10                                      na                 na                 na                 na 
+        % Hit:                                         10.00%        100                                      na                 na                 na                 na 
+ Covergroup instance \/tb_dlx/iram_if/cov_address      10.00%        100    Uncovered                         1.3KB              1.1KB              1.8KB               0 ps 
+    covered/total bins:                                     1         10                                   1.3KB              1.1KB              1.8KB               0 ps 
+    missing/total bins:                                     9         10                                   1.3KB              1.1KB              1.8KB               0 ps 
+    % Hit:                                             10.00%        100                                   1.3KB              1.1KB              1.8KB               0 ps 
+    Coverpoint addr                                    10.00%        100    Uncovered                          816B               888B               888B               0 ps 
+        covered/total bins:                                 1         10                                      na                 na                 na                 na 
+        missing/total bins:                                 9         10                                      na                 na                 na                 na 
+        % Hit:                                         10.00%        100                                      na                 na                 na                 na 
+        bin auto[0:429496728]                               1          1    Covered                              na                 na                 na                 na 
+        bin auto[429496729:858993457]                       0          1    ZERO                                 na                 na                 na                 na 
+        bin auto[858993458:1288490186]                      0          1    ZERO                                 na                 na                 na                 na 
+        bin auto[1288490187:1717986915]                     0          1    ZERO                                 na                 na                 na                 na 
+        bin auto[1717986916:2147483644]                     0          1    ZERO                                 na                 na                 na                 na 
+        bin auto[2147483645:2576980373]                     0          1    ZERO                                 na                 na                 na                 na 
+        bin auto[2576980374:3006477102]                     0          1    ZERO                                 na                 na                 na                 na 
+        bin auto[3006477103:3435973831]                     0          1    ZERO                                 na                 na                 na                 na 
+        bin auto[3435973832:3865470560]                     0          1    ZERO                                 na                 na                 na                 na 
+        bin auto[3865470561:4294967295]                     0          1    ZERO                                 na                 na                 na                 na 
+ TYPE /tb_dlx/iram_if/memory_rw                         0.00%        100    ZERO                               816B              1.1KB              1.1KB               0 ps 
+    covered/total bins:                                     0          2                                    816B              1.1KB              1.1KB               0 ps 
+    missing/total bins:                                     2          2                                    816B              1.1KB              1.1KB               0 ps 
+    % Hit:                                              0.00%        100                                    816B              1.1KB              1.1KB               0 ps 
+    Coverpoint memory_rw::read_write                    0.00%        100    ZERO                               288B               160B               160B               0 ps 
+        covered/total bins:                                 0          2                                      na                 na                 na                 na 
+        missing/total bins:                                 2          2                                      na                 na                 na                 na 
+        % Hit:                                          0.00%        100                                      na                 na                 na                 na 
+ Covergroup instance \/tb_dlx/iram_if/cov_rw            0.00%        100    ZERO                               816B              1.1KB              1.1KB               0 ps 
+    covered/total bins:                                     0          2                                    816B              1.1KB              1.1KB               0 ps 
+    missing/total bins:                                     2          2                                    816B              1.1KB              1.1KB               0 ps 
+    % Hit:                                              0.00%        100                                    816B              1.1KB              1.1KB               0 ps 
+    Coverpoint read_write                               0.00%        100    ZERO                               288B               160B               160B               0 ps 
+        covered/total bins:                                 0          2                                      na                 na                 na                 na 
+        missing/total bins:                                 2          2                                      na                 na                 na                 na 
+        % Hit:                                          0.00%        100                                      na                 na                 na                 na 
+        bin read                                            0          1    ZERO                                 na                 na                 na                 na 
+        bin write                                           0          1    ZERO                                 na                 na                 na                 na 
+ TYPE /tb_dlx/dram_if/address_cov                       0.00%        100    ZERO                              1.3KB              1.1KB              1.8KB               0 ps 
+    covered/total bins:                                     0         10                                   1.3KB              1.1KB              1.8KB               0 ps 
+    missing/total bins:                                    10         10                                   1.3KB              1.1KB              1.8KB               0 ps 
+    % Hit:                                              0.00%        100                                   1.3KB              1.1KB              1.8KB               0 ps 
+    Coverpoint address_cov::addr                        0.00%        100    ZERO                               816B               840B               840B               0 ps 
+        covered/total bins:                                 0         10                                      na                 na                 na                 na 
+        missing/total bins:                                10         10                                      na                 na                 na                 na 
+        % Hit:                                          0.00%        100                                      na                 na                 na                 na 
+ Covergroup instance \/tb_dlx/dram_if/cov_address       0.00%        100    ZERO                              1.3KB              1.1KB              1.8KB               0 ps 
+    covered/total bins:                                     0         10                                   1.3KB              1.1KB              1.8KB               0 ps 
+    missing/total bins:                                    10         10                                   1.3KB              1.1KB              1.8KB               0 ps 
+    % Hit:                                              0.00%        100                                   1.3KB              1.1KB              1.8KB               0 ps 
+    Coverpoint addr                                     0.00%        100    ZERO                               816B               840B               840B               0 ps 
+        covered/total bins:                                 0         10                                      na                 na                 na                 na 
+        missing/total bins:                                10         10                                      na                 na                 na                 na 
+        % Hit:                                          0.00%        100                                      na                 na                 na                 na 
+        bin auto[0:429496728]                               0          1    ZERO                                 na                 na                 na                 na 
+        bin auto[429496729:858993457]                       0          1    ZERO                                 na                 na                 na                 na 
+        bin auto[858993458:1288490186]                      0          1    ZERO                                 na                 na                 na                 na 
+        bin auto[1288490187:1717986915]                     0          1    ZERO                                 na                 na                 na                 na 
+        bin auto[1717986916:2147483644]                     0          1    ZERO                                 na                 na                 na                 na 
+        bin auto[2147483645:2576980373]                     0          1    ZERO                                 na                 na                 na                 na 
+        bin auto[2576980374:3006477102]                     0          1    ZERO                                 na                 na                 na                 na 
+        bin auto[3006477103:3435973831]                     0          1    ZERO                                 na                 na                 na                 na 
+        bin auto[3435973832:3865470560]                     0          1    ZERO                                 na                 na                 na                 na 
+        bin auto[3865470561:4294967295]                     0          1    ZERO                                 na                 na                 na                 na 
+ TYPE /tb_dlx/dram_if/memory_rw                       100.00%        100    Covered                            816B              1.2KB              1.2KB               0 ps 
+    covered/total bins:                                     2          2                                    816B              1.2KB              1.2KB               0 ps 
+    missing/total bins:                                     0          2                                    816B              1.2KB              1.2KB               0 ps 
+    % Hit:                                            100.00%        100                                    816B              1.2KB              1.2KB               0 ps 
+    Coverpoint memory_rw::read_write                  100.00%        100    Covered                            288B               208B               208B               0 ps 
+        covered/total bins:                                 2          2                                      na                 na                 na                 na 
+        missing/total bins:                                 0          2                                      na                 na                 na                 na 
+        % Hit:                                        100.00%        100                                      na                 na                 na                 na 
+ Covergroup instance \/tb_dlx/dram_if/cov_rw          100.00%        100    Covered                            816B              1.2KB              1.2KB               0 ps 
+    covered/total bins:                                     2          2                                    816B              1.2KB              1.2KB               0 ps 
+    missing/total bins:                                     0          2                                    816B              1.2KB              1.2KB               0 ps 
+    % Hit:                                            100.00%        100                                    816B              1.2KB              1.2KB               0 ps 
+    Coverpoint read_write                             100.00%        100    Covered                            288B               208B               208B               0 ps 
+        covered/total bins:                                 2          2                                      na                 na                 na                 na 
+        missing/total bins:                                 0          2                                      na                 na                 na                 na 
+        % Hit:                                        100.00%        100                                      na                 na                 na                 na 
+        bin read                                            8          1    Covered                              na                 na                 na                 na 
+        bin write                                           7          1    Covered                              na                 na                 na                 na 
+ TYPE /tb_dlx/test_prog/instruction_cover             100.00%        100    Covered                           5.0KB              1.9KB              7.9KB               0 ps 
+    covered/total bins:                                    29         29                                   5.0KB              1.9KB              7.9KB               0 ps 
+    missing/total bins:                                     0         29                                   5.0KB              1.9KB              7.9KB               0 ps 
+    % Hit:                                            100.00%        100                                   5.0KB              1.9KB              7.9KB               0 ps 
+    Coverpoint instruction_cover::instru_opcode       100.00%        100    Covered                           2.1KB              4.2KB              5.8KB        41105000 ps 
+        covered/total bins:                                18         18                                      na                 na                 na                 na 
+        missing/total bins:                                 0         18                                      na                 na                 na                 na 
+        % Hit:                                        100.00%        100                                      na                 na                 na                 na 
+    Coverpoint instruction_cover::instru_opcode_func 
+                                                      100.00%        100    Covered                           1.6KB              2.7KB              2.7KB         1455001 ps 
+        covered/total bins:                                11         11                                      na                 na                 na                 na 
+        missing/total bins:                                 0         11                                      na                 na                 na                 na 
+        % Hit:                                        100.00%        100                                      na                 na                 na                 na 
+ Covergroup instance instruction coverage group tb top dlx 
+                                                      100.00%        100    Covered                           5.0KB              1.9KB              7.9KB               0 ps 
+    covered/total bins:                                    29         29                                   5.0KB              1.9KB              7.9KB               0 ps 
+    missing/total bins:                                     0         29                                   5.0KB              1.9KB              7.9KB               0 ps 
+    % Hit:                                            100.00%        100                                   5.0KB              1.9KB              7.9KB               0 ps 
+    Coverpoint instru_opcode                          100.00%        100    Covered                           2.1KB              4.2KB              5.8KB        41105000 ps 
+        covered/total bins:                                18         18                                      na                 na                 na                 na 
+        missing/total bins:                                 0         18                                      na                 na                 na                 na 
+        % Hit:                                        100.00%        100                                      na                 na                 na                 na 
+        bin regtype                                       273          1    Covered                              na                 na                 na                 na 
+        bin immtype[i_addi]                                 1          1    Covered                              na                 na                 na                 na 
+        bin immtype[i_subi]                               257          1    Covered                              na                 na                 na                 na 
+        bin immtype[i_andi]                                 1          1    Covered                              na                 na                 na                 na 
+        bin immtype[i_ori]                                  1          1    Covered                              na                 na                 na                 na 
+        bin immtype[i_xori]                                 1          1    Covered                              na                 na                 na                 na 
+        bin immtype[i_slli]                                 1          1    Covered                              na                 na                 na                 na 
+        bin immtype[i_nop]                                551          1    Covered                              na                 na                 na                 na 
+        bin immtype[i_srli]                                 1          1    Covered                              na                 na                 na                 na 
+        bin immtype[i_snei]                                 1          1    Covered                              na                 na                 na                 na 
+        bin immtype[i_slei]                                 1          1    Covered                              na                 na                 na                 na 
+        bin immtype[i_sgei]                                 1          1    Covered                              na                 na                 na                 na 
+        bin immtype[i_lw]                                  12          1    Covered                              na                 na                 na                 na 
+        bin immtype[i_sw]                                  21          1    Covered                              na                 na                 na                 na 
+        bin jump[i_j]                                       1          1    Covered                              na                 na                 na                 na 
+        bin jump[i_jal]                                     1          1    Covered                              na                 na                 na                 na 
+        bin branch[i_beqz]                                  1          1    Covered                              na                 na                 na                 na 
+        bin branch[i_benz]                                256          1    Covered                              na                 na                 na                 na 
+    Coverpoint instru_opcode_func                     100.00%        100    Covered                           1.6KB              2.7KB              2.7KB         1455001 ps 
+        covered/total bins:                                11         11                                      na                 na                 na                 na 
+        missing/total bins:                                 0         11                                      na                 na                 na                 na 
+        % Hit:                                        100.00%        100                                      na                 na                 na                 na 
+        bin alu_add                                       261          1    Covered                              na                 na                 na                 na 
+        bin alu_and                                       258          1    Covered                              na                 na                 na                 na 
+        bin alu_or                                          1          1    Covered                              na                 na                 na                 na 
+        bin alu_sll                                         4          1    Covered                              na                 na                 na                 na 
+        bin alu_srl                                         2          1    Covered                              na                 na                 na                 na 
+        bin alu_sub                                         1          1    Covered                              na                 na                 na                 na 
+        bin alu_xor                                         1          1    Covered                              na                 na                 na                 na 
+        bin alu_sne                                         1          1    Covered                              na                 na                 na                 na 
+        bin alu_sle                                         1          1    Covered                              na                 na                 na                 na 
+        bin alu_sge                                         1          1    Covered                              na                 na                 na                 na 
+        bin alu_mul                                         1          1    Covered                              na                 na                 na                 na 
+
+TOTAL COVERGROUP COVERAGE: 42.00%  COVERGROUP TYPES: 5
+DIRECTIVE COVERAGE:
+-----------------------------------------------------------------------------------------------------------------------------------
+Name                                     Design Design   Lang File(Line)      Enabled  Log Count AtLeast     Limit Weight Status    
+                                         Unit   UnitType                                                                            
+-----------------------------------------------------------------------------------------------------------------------------------
+/tb_dlx/instruction_check_property_ireg  tb_dlx Verilog  SVA  ./hardware/dlx/test_bench/tb_dlx.sv(202)
+                                                                              Enabled  Off   537       1 Unlimited      1 Covered   
+/tb_dlx/instruction_check_property_i     tb_dlx Verilog  SVA  ./hardware/dlx/test_bench/tb_dlx.sv(204)
+                                                                              Enabled  Off   532       1 Unlimited      1 Covered   
+/tb_dlx/instruction_check_property_jump  tb_dlx Verilog  SVA  ./hardware/dlx/test_bench/tb_dlx.sv(206)
+                                                                              Enabled  Off     4       1 Unlimited      1 Covered   
+/tb_dlx/instruction_check_property_lw    tb_dlx Verilog  SVA  ./hardware/dlx/test_bench/tb_dlx.sv(208)
+                                                                              Enabled  Off    24       1 Unlimited      1 Covered   
+/tb_dlx/instruction_check_property_sw    tb_dlx Verilog  SVA  ./hardware/dlx/test_bench/tb_dlx.sv(210)
+                                                                              Enabled  Off    42       1 Unlimited      1 Covered   
+/tb_dlx/instruction_check_property_b     tb_dlx Verilog  SVA  ./hardware/dlx/test_bench/tb_dlx.sv(212)
+                                                                              Enabled  Off   514       1 Unlimited      1 Covered   
+/tb_dlx/multiplication_stall_check_property 
+                                         tb_dlx Verilog  SVA  ./hardware/dlx/test_bench/tb_dlx.sv(214)
+                                                                              Enabled  Off     1       1 Unlimited      1 Covered   
+
+TOTAL DIRECTIVE COVERAGE: 100.00%  COVERS: 7
+
+COVERGROUP MEMORY USAGE: Total 74.2KB, Peak 75.7KB at time 41105000 ps for total 6 coverpoints/crosses.
+ASSERT/COVER MEMORY USAGE: Total 880B Peak 1.3KB at time 1395000 ps for total 11 threads.
+DYNAMIC OBJECTS MEMORY USAGE: Total Memory 736B and Peak Memory 864B used at time 435001 ps for total 10 dynamic objects.
