@@ -8,7 +8,7 @@ Report : timing
         -max_paths 1
 Design : DLX_IR_SIZE32_PC_SIZE32
 Version: O-2018.06-SP4
-Date   : Mon Aug 31 21:30:10 2020
+Date   : Sun Sep 13 02:18:18 2020
 ****************************************
 
  # A fanout number of 1000 was used for high fanout net computations.
@@ -16,11 +16,11 @@ Date   : Mon Aug 31 21:30:10 2020
 Operating Conditions: typical   Library: NangateOpenCellLibrary
 Wire Load Model Mode: top
 
-  Startpoint: cu_i/curr_state_reg[0]
-              (rising edge-triggered flip-flop)
-  Endpoint: DRAM_DATA[31]
-            (output port clocked by clk)
-  Path Group: (none)
+  Startpoint: clk_r_REG13478_S6
+              (rising edge-triggered flip-flop clocked by clk)
+  Endpoint: datapath_i/execute_stage_dp/general_alu_i/clk_r_REG10516_S4
+            (rising edge-triggered flip-flop clocked by clk)
+  Path Group: clk
   Path Type: max
 
   Des/Clust/Port     Wire Load Model       Library
@@ -30,22 +30,67 @@ Wire Load Model Mode: top
 
   Point                                                   Incr       Path
   --------------------------------------------------------------------------
-  cu_i/curr_state_reg[0]/CK (DFFS_X1)                     0.00 #     0.00 r
-  cu_i/curr_state_reg[0]/Q (DFFS_X1)                      0.08       0.08 f
-  U3324/ZN (NOR2_X1)                                      0.10       0.18 r
-  U3332/ZN (NAND3_X1)                                     0.06       0.24 f
-  U3316/ZN (NOR4_X1)                                      0.16       0.40 r
-  U3336/ZN (INV_X1)                                       0.03       0.43 f
-  U3337/ZN (NOR2_X1)                                      0.06       0.50 r
-  U3338/ZN (OAI22_X1)                                     0.05       0.54 f
-  U3339/ZN (NAND2_X1)                                     0.12       0.66 r
-  U3340/Z (CLKBUF_X1)                                     0.16       0.82 r
-  datapath_i/memory_stage_dp/DRAM_DATA_tri[31]/Z (TBUF_X1)
-                                                          0.24       1.06 f
-  DRAM_DATA[31] (inout)                                   0.00       1.06 f
-  data arrival time                                                  1.06
+  clock clk (rise edge)                                   0.00       0.00
+  clock network delay (ideal)                             0.00       0.00
+  clk_r_REG13478_S6/CK (DFFS_X1)                          0.00 #     0.00 r
+  clk_r_REG13478_S6/Q (DFFS_X1)                           0.20       0.20 r
+  U3322/Z (CLKBUF_X1)                                     0.15       0.35 r
+  U3583/Z (MUX2_X1)                                       0.10       0.45 r
+  datapath_i/execute_stage_dp/general_alu_i/DATA2[5] (general_alu_N32)
+                                                          0.00       0.45 r
+  datapath_i/execute_stage_dp/general_alu_i/U59/ZN (INV_X1)
+                                                          0.05       0.50 f
+  datapath_i/execute_stage_dp/general_alu_i/U46/ZN (NAND2_X1)
+                                                          0.09       0.59 r
+  datapath_i/execute_stage_dp/general_alu_i/U269/ZN (NOR2_X1)
+                                                          0.05       0.64 f
+  datapath_i/execute_stage_dp/general_alu_i/U270/ZN (NAND2_X1)
+                                                          0.12       0.76 r
+  datapath_i/execute_stage_dp/general_alu_i/U271/ZN (INV_X1)
+                                                          0.09       0.86 f
+  datapath_i/execute_stage_dp/general_alu_i/U272/Z (CLKBUF_X1)
+                                                          0.13       0.99 f
+  datapath_i/execute_stage_dp/general_alu_i/U273/ZN (NAND2_X1)
+                                                          0.20       1.19 r
+  datapath_i/execute_stage_dp/general_alu_i/U320/ZN (INV_X1)
+                                                          0.11       1.30 f
+  datapath_i/execute_stage_dp/general_alu_i/U321/Z (CLKBUF_X1)
+                                                          0.14       1.43 f
+  datapath_i/execute_stage_dp/general_alu_i/U514/ZN (NAND2_X1)
+                                                          0.07       1.50 r
+  datapath_i/execute_stage_dp/general_alu_i/U639/ZN (OAI211_X1)
+                                                          0.05       1.55 f
+  datapath_i/execute_stage_dp/general_alu_i/U640/ZN (AOI211_X1)
+                                                          0.11       1.66 r
+  datapath_i/execute_stage_dp/general_alu_i/U641/ZN (OAI222_X1)
+                                                          0.09       1.75 f
+  datapath_i/execute_stage_dp/general_alu_i/U691/ZN (INV_X1)
+                                                          0.05       1.80 r
+  datapath_i/execute_stage_dp/general_alu_i/U692/ZN (OAI22_X1)
+                                                          0.04       1.84 f
+  datapath_i/execute_stage_dp/general_alu_i/U694/ZN (AOI211_X1)
+                                                          0.10       1.94 r
+  datapath_i/execute_stage_dp/general_alu_i/U1114/ZN (INV_X1)
+                                                          0.04       1.97 f
+  datapath_i/execute_stage_dp/general_alu_i/U1154/ZN (AOI22_X1)
+                                                          0.06       2.04 r
+  datapath_i/execute_stage_dp/general_alu_i/U1156/ZN (OAI211_X1)
+                                                          0.04       2.08 f
+  datapath_i/execute_stage_dp/general_alu_i/clk_r_REG10516_S4/D (DFFR_X1)
+                                                          0.01       2.09 f
+  data arrival time                                                  2.09
+
+  clock clk (rise edge)                                  18.15      18.15
+  clock network delay (ideal)                             0.00      18.15
+  datapath_i/execute_stage_dp/general_alu_i/clk_r_REG10516_S4/CK (DFFR_X1)
+                                                          0.00      18.15 r
+  library setup time                                     -0.05      18.10
+  data required time                                                18.10
   --------------------------------------------------------------------------
-  (Path is unconstrained)
+  data required time                                                18.10
+  data arrival time                                                 -2.09
+  --------------------------------------------------------------------------
+  slack (MET)                                                       16.02
 
 
 1

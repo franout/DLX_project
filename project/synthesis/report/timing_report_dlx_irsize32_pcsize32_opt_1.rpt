@@ -8,7 +8,7 @@ Report : timing
         -max_paths 1
 Design : DLX_IR_SIZE32_PC_SIZE32
 Version: O-2018.06-SP4
-Date   : Mon Aug 31 21:26:47 2020
+Date   : Sun Sep 13 02:12:16 2020
 ****************************************
 
  # A fanout number of 1000 was used for high fanout net computations.
@@ -16,11 +16,11 @@ Date   : Mon Aug 31 21:26:47 2020
 Operating Conditions: typical   Library: NangateOpenCellLibrary
 Wire Load Model Mode: top
 
-  Startpoint: cu_i/curr_state_reg[0]
-              (rising edge-triggered flip-flop)
-  Endpoint: DRAM_DATA[31]
-            (output port clocked by clk)
-  Path Group: (none)
+  Startpoint: clk_r_REG6661_S3
+              (rising edge-triggered flip-flop clocked by clk)
+  Endpoint: datapath_i/execute_stage_dp/general_alu_i/clk_r_REG3921_S4
+            (rising edge-triggered flip-flop clocked by clk)
+  Path Group: clk
   Path Type: max
 
   Des/Clust/Port     Wire Load Model       Library
@@ -30,22 +30,61 @@ Wire Load Model Mode: top
 
   Point                                                   Incr       Path
   --------------------------------------------------------------------------
-  cu_i/curr_state_reg[0]/CK (DFFS_X1)                     0.00 #     0.00 r
-  cu_i/curr_state_reg[0]/Q (DFFS_X1)                      0.08       0.08 f
-  U1962/ZN (NOR2_X1)                                      0.11       0.19 r
-  U1967/ZN (NAND4_X1)                                     0.06       0.25 f
-  U1966/ZN (NOR3_X1)                                      0.11       0.37 r
-  U1970/ZN (INV_X1)                                       0.03       0.40 f
-  U1971/ZN (NOR2_X1)                                      0.06       0.46 r
-  U1972/ZN (OAI22_X1)                                     0.05       0.51 f
-  U1973/ZN (NAND2_X1)                                     0.12       0.63 r
-  U1974/Z (CLKBUF_X1)                                     0.16       0.79 r
-  datapath_i/memory_stage_dp/DRAM_DATA_tri[31]/Z (TBUF_X1)
-                                                          0.24       1.03 f
-  DRAM_DATA[31] (inout)                                   0.00       1.03 f
-  data arrival time                                                  1.03
+  clock clk (rise edge)                                   0.00       0.00
+  clock network delay (ideal)                             0.00       0.00
+  clk_r_REG6661_S3/CK (DFFS_X1)                           0.00 #     0.00 r
+  clk_r_REG6661_S3/Q (DFFS_X1)                            0.20       0.20 r
+  U1961/Z (CLKBUF_X1)                                     0.15       0.35 r
+  U1964/Z (MUX2_X1)                                       0.11       0.45 f
+  datapath_i/execute_stage_dp/general_alu_i/DATA2[4] (general_alu_N32)
+                                                          0.00       0.45 f
+  datapath_i/execute_stage_dp/general_alu_i/U70/ZN (NOR2_X1)
+                                                          0.10       0.55 r
+  datapath_i/execute_stage_dp/general_alu_i/U73/ZN (INV_X1)
+                                                          0.06       0.61 f
+  datapath_i/execute_stage_dp/general_alu_i/U46/ZN (NOR2_X1)
+                                                          0.14       0.75 r
+  datapath_i/execute_stage_dp/general_alu_i/U47/ZN (NAND2_X1)
+                                                          0.13       0.88 f
+  datapath_i/execute_stage_dp/general_alu_i/U44/ZN (INV_X2)
+                                                          0.17       1.05 r
+  datapath_i/execute_stage_dp/general_alu_i/U370/ZN (NAND3_X1)
+                                                          0.22       1.27 f
+  datapath_i/execute_stage_dp/general_alu_i/U54/ZN (INV_X1)
+                                                          0.23       1.50 r
+  datapath_i/execute_stage_dp/general_alu_i/U573/ZN (NAND2_X1)
+                                                          0.06       1.56 f
+  datapath_i/execute_stage_dp/general_alu_i/U583/ZN (OAI211_X1)
+                                                          0.04       1.61 r
+  datapath_i/execute_stage_dp/general_alu_i/U584/ZN (AOI211_X1)
+                                                          0.04       1.65 f
+  datapath_i/execute_stage_dp/general_alu_i/U614/ZN (OAI222_X1)
+                                                          0.09       1.74 r
+  datapath_i/execute_stage_dp/general_alu_i/U615/ZN (INV_X1)
+                                                          0.04       1.78 f
+  datapath_i/execute_stage_dp/general_alu_i/U617/ZN (OAI22_X1)
+                                                          0.06       1.84 r
+  datapath_i/execute_stage_dp/general_alu_i/U618/ZN (AOI211_X1)
+                                                          0.04       1.88 f
+  datapath_i/execute_stage_dp/general_alu_i/U1019/ZN (INV_X1)
+                                                          0.04       1.91 r
+  datapath_i/execute_stage_dp/general_alu_i/U1020/ZN (AOI22_X1)
+                                                          0.03       1.94 f
+  datapath_i/execute_stage_dp/general_alu_i/clk_r_REG3921_S4/D (DFFS_X1)
+                                                          0.01       1.95 f
+  data arrival time                                                  1.95
+
+  clock clk (rise edge)                                  19.97      19.97
+  clock network delay (ideal)                             0.00      19.97
+  datapath_i/execute_stage_dp/general_alu_i/clk_r_REG3921_S4/CK (DFFS_X1)
+                                                          0.00      19.97 r
+  library setup time                                     -0.04      19.93
+  data required time                                                19.93
   --------------------------------------------------------------------------
-  (Path is unconstrained)
+  data required time                                                19.93
+  data arrival time                                                 -1.95
+  --------------------------------------------------------------------------
+  slack (MET)                                                       17.97
 
 
 1

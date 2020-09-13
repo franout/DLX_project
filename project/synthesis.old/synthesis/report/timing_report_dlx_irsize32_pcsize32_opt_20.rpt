@@ -1,5 +1,5 @@
 Information: Updating design information... (UID-85)
-Warning: Design 'DLX_IR_SIZE32_PC_SIZE32' contains 1 high-fanout nets. A fanout number of 1000 will be used for delay calculations involving these nets. (TIM-134)
+Warning: Design 'DLX_IR_SIZE32_PC_SIZE32' contains 2 high-fanout nets. A fanout number of 1000 will be used for delay calculations involving these nets. (TIM-134)
  
 ****************************************
 Report : timing
@@ -8,7 +8,7 @@ Report : timing
         -max_paths 1
 Design : DLX_IR_SIZE32_PC_SIZE32
 Version: O-2018.06-SP4
-Date   : Mon Aug 31 16:29:35 2020
+Date   : Sun Sep 13 01:51:37 2020
 ****************************************
 
  # A fanout number of 1000 was used for high fanout net computations.
@@ -16,11 +16,11 @@ Date   : Mon Aug 31 16:29:35 2020
 Operating Conditions: typical   Library: NangateOpenCellLibrary
 Wire Load Model Mode: top
 
-  Startpoint: datapath_i/fetch_stage_dp/instruction_reg/D_I_30/Q_reg
-              (rising edge-triggered flip-flop)
-  Endpoint: DRAM_DATA[31]
-            (output port clocked by clk)
-  Path Group: (none)
+  Startpoint: datapath_i/fetch_stage_dp/instruction_reg/D_I_28/Q_reg
+              (rising edge-triggered flip-flop clocked by clk)
+  Endpoint: datapath_i/execute_stage_dp/alu_reg_out/D_I_30/Q_reg
+            (rising edge-triggered flip-flop clocked by clk)
+  Path Group: clk
   Path Type: max
 
   Des/Clust/Port     Wire Load Model       Library
@@ -30,24 +30,99 @@ Wire Load Model Mode: top
 
   Point                                                   Incr       Path
   --------------------------------------------------------------------------
-  datapath_i/fetch_stage_dp/instruction_reg/D_I_30/Q_reg/CK (DFFR_X1)
+  clock clk (rise edge)                                   0.00       0.00
+  clock network delay (ideal)                             0.00       0.00
+  datapath_i/fetch_stage_dp/instruction_reg/D_I_28/Q_reg/CK (DFFR_X1)
                                                           0.00 #     0.00 r
-  datapath_i/fetch_stage_dp/instruction_reg/D_I_30/Q_reg/Q (DFFR_X1)
+  datapath_i/fetch_stage_dp/instruction_reg/D_I_28/Q_reg/Q (DFFR_X1)
                                                           0.10       0.10 f
-  U609/ZN (NOR2_X1)                                       0.07       0.17 r
-  U617/ZN (NAND2_X1)                                      0.04       0.21 f
-  U601/ZN (NOR4_X1)                                       0.15       0.36 r
-  U647/ZN (INV_X1)                                        0.03       0.39 f
-  U648/ZN (NOR2_X1)                                       0.06       0.46 r
-  U649/ZN (OAI22_X1)                                      0.04       0.50 f
-  U650/ZN (NAND2_X1)                                      0.12       0.62 r
-  U651/Z (CLKBUF_X1)                                      0.16       0.78 r
-  datapath_i/memory_stage_dp/DRAM_DATA_tri[31]/Z (TBUF_X1)
-                                                          0.24       1.02 f
-  DRAM_DATA[31] (inout)                                   0.00       1.02 f
-  data arrival time                                                  1.02
+  U663/ZN (NAND3_X1)                                      0.05       0.15 r
+  U671/ZN (NOR2_X1)                                       0.04       0.19 f
+  U675/ZN (OAI221_X1)                                     0.08       0.26 r
+  U678/ZN (OAI211_X1)                                     0.05       0.32 f
+  U679/ZN (AOI211_X1)                                     0.11       0.43 r
+  U683/ZN (NAND2_X1)                                      0.04       0.47 f
+  U685/ZN (NOR3_X1)                                       0.08       0.55 r
+  U687/ZN (NOR2_X1)                                       0.06       0.61 f
+  U688/Z (CLKBUF_X1)                                      0.14       0.75 f
+  U910/ZN (AOI22_X1)                                      0.20       0.95 r
+  U911/Z (CLKBUF_X1)                                      0.21       1.16 r
+  U1225/Z (MUX2_X1)                                       0.12       1.28 f
+  datapath_i/execute_stage_dp/general_alu_i/DATA2[4] (general_alu_N32)
+                                                          0.00       1.28 f
+  datapath_i/execute_stage_dp/general_alu_i/U119/ZN (INV_X1)
+                                                          0.09       1.37 r
+  datapath_i/execute_stage_dp/general_alu_i/U120/ZN (NAND2_X1)
+                                                          0.15       1.52 f
+  datapath_i/execute_stage_dp/general_alu_i/U121/ZN (INV_X1)
+                                                          0.18       1.70 r
+  datapath_i/execute_stage_dp/general_alu_i/U122/ZN (NAND2_X1)
+                                                          0.09       1.79 f
+  datapath_i/execute_stage_dp/general_alu_i/U168/ZN (INV_X1)
+                                                          0.04       1.83 r
+  datapath_i/execute_stage_dp/general_alu_i/U169/ZN (OAI21_X1)
+                                                          0.04       1.87 f
+  datapath_i/execute_stage_dp/general_alu_i/U4/ZN (INV_X2)
+                                                          0.11       1.98 r
+  datapath_i/execute_stage_dp/general_alu_i/U26/ZN (INV_X2)
+                                                          0.13       2.11 f
+  datapath_i/execute_stage_dp/general_alu_i/U205/ZN (OAI21_X1)
+                                                          0.11       2.21 r
+  datapath_i/execute_stage_dp/general_alu_i/U206/Z (CLKBUF_X1)
+                                                          0.17       2.38 r
+  datapath_i/execute_stage_dp/general_alu_i/U37/ZN (NOR2_X2)
+                                                          0.12       2.50 f
+  datapath_i/execute_stage_dp/general_alu_i/U248/ZN (INV_X1)
+                                                          0.14       2.64 r
+  datapath_i/execute_stage_dp/general_alu_i/U249/Z (CLKBUF_X1)
+                                                          0.13       2.77 r
+  datapath_i/execute_stage_dp/general_alu_i/U963/ZN (OAI22_X1)
+                                                          0.05       2.82 f
+  datapath_i/execute_stage_dp/general_alu_i/U964/ZN (AOI211_X1)
+                                                          0.15       2.97 r
+  datapath_i/execute_stage_dp/general_alu_i/U1034/ZN (OAI22_X1)
+                                                          0.05       3.02 f
+  datapath_i/execute_stage_dp/general_alu_i/U1036/ZN (AOI211_X1)
+                                                          0.09       3.11 r
+  datapath_i/execute_stage_dp/general_alu_i/U1037/ZN (INV_X1)
+                                                          0.03       3.14 f
+  datapath_i/execute_stage_dp/general_alu_i/U1079/ZN (AOI222_X1)
+                                                          0.17       3.31 r
+  datapath_i/execute_stage_dp/general_alu_i/U1094/ZN (OAI22_X1)
+                                                          0.05       3.36 f
+  datapath_i/execute_stage_dp/general_alu_i/U1096/ZN (AOI211_X1)
+                                                          0.15       3.52 r
+  datapath_i/execute_stage_dp/general_alu_i/U1097/ZN (OAI22_X1)
+                                                          0.05       3.57 f
+  datapath_i/execute_stage_dp/general_alu_i/U1099/ZN (AOI211_X1)
+                                                          0.12       3.69 r
+  datapath_i/execute_stage_dp/general_alu_i/U1268/ZN (OAI222_X1)
+                                                          0.09       3.78 f
+  datapath_i/execute_stage_dp/general_alu_i/U1269/ZN (AOI22_X1)
+                                                          0.07       3.85 r
+  datapath_i/execute_stage_dp/general_alu_i/U1270/ZN (OAI211_X1)
+                                                          0.05       3.89 f
+  datapath_i/execute_stage_dp/general_alu_i/U1282/ZN (AOI211_X1)
+                                                          0.06       3.96 r
+  datapath_i/execute_stage_dp/general_alu_i/U1284/ZN (OAI211_X1)
+                                                          0.05       4.00 f
+  datapath_i/execute_stage_dp/general_alu_i/OUTALU[30] (general_alu_N32)
+                                                          0.00       4.00 f
+  datapath_i/execute_stage_dp/alu_reg_out/D_I_30/Q_reg/D (DFFR_X1)
+                                                          0.01       4.01 f
+  data arrival time                                                  4.01
+
+  clock clk (rise edge)                                  16.14      16.14
+  clock network delay (ideal)                             0.00      16.14
+  datapath_i/execute_stage_dp/alu_reg_out/D_I_30/Q_reg/CK (DFFR_X1)
+                                                          0.00      16.14 r
+  library setup time                                     -0.04      16.09
+  data required time                                                16.09
   --------------------------------------------------------------------------
-  (Path is unconstrained)
+  data required time                                                16.09
+  data arrival time                                                 -4.01
+  --------------------------------------------------------------------------
+  slack (MET)                                                       12.08
 
 
 1

@@ -64,7 +64,7 @@ current_design "DLX_IR_SIZE32_PC_SIZE32"
 
 # define a clock name
 set clockName "clk"
-create_clock -name $clockName
+create_clock -name $clockName CLK
 
 ##########################################
 # first compilation, without constraints #
@@ -106,15 +106,18 @@ set REQUIRED_TIME [ expr $mp_l*0.80 ]
 #########################
 ### clock constraints ###
 #########################
-create_clock -name $clockName -period $REQUIRED_TIME
+create_clock -name $clockName -period $REQUIRED_TIME CLK
 set_max_delay $REQUIRED_TIME -from [all_inputs] -to [all_outputs]
 set_fix_hold $clockName
 
-set max_transition_time 0.08
+set max_transition_time 0.01
 set_max_transition $max_transition_time [all_outputs]
-set_min_delay 0.03 -from [all_inputs] -to [all_outputs]
-set_input_delay 0.07 -clock $clockName [all_inputs]
-set_output_delay 0.07 -clock $clockName [all_outputs]
+set_min_delay 0.20 -from [all_inputs] -to [all_outputs]
+set_input_delay 0.15 -clock $clockName [all_inputs]
+set_output_delay 0.15 -clock $clockName [all_outputs]
+
+optimize_registers -clock $clockName  -minimum_period_only
+set_fix_hold $clockName
 
 # optimize
 # enable the scan insetion and evaluation of impact
@@ -128,7 +131,7 @@ report_clock > ./report/report_clock_dlx_irsize32_pcsize32_opt_20.rpt
 write -hierarchy -format ddc -output ./output_netlist/dlx_irsize32_pcsize32_topt_20.ddc
 write -hierarchy -format vhdl -output ./output_netlist/dlx_irsize32_pcsize32_topt_20.vhdl
 write -hierarchy -format verilog -output ./output_netlist/dlx_irsize32_pcsize32_topt_20.v
-
+exit 
 #set a 10% lower required time( float )  than maxpath
 set REQUIRED_TIME [ expr $mp_l*0.90 ]
 #########################

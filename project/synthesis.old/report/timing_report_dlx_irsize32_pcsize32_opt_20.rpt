@@ -1,0 +1,53 @@
+Information: Updating design information... (UID-85)
+Warning: Design 'DLX_IR_SIZE32_PC_SIZE32' contains 1 high-fanout nets. A fanout number of 1000 will be used for delay calculations involving these nets. (TIM-134)
+ 
+****************************************
+Report : timing
+        -path full
+        -delay max
+        -max_paths 1
+Design : DLX_IR_SIZE32_PC_SIZE32
+Version: O-2018.06-SP4
+Date   : Mon Aug 31 21:23:24 2020
+****************************************
+
+ # A fanout number of 1000 was used for high fanout net computations.
+
+Operating Conditions: typical   Library: NangateOpenCellLibrary
+Wire Load Model Mode: top
+
+  Startpoint: datapath_i/fetch_stage_dp/instruction_reg/D_I_30/Q_reg
+              (rising edge-triggered flip-flop)
+  Endpoint: DRAM_DATA[31]
+            (output port clocked by clk)
+  Path Group: (none)
+  Path Type: max
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  DLX_IR_SIZE32_PC_SIZE32
+                     5K_hvratio_1_1        NangateOpenCellLibrary
+
+  Point                                                   Incr       Path
+  --------------------------------------------------------------------------
+  datapath_i/fetch_stage_dp/instruction_reg/D_I_30/Q_reg/CK (DFFR_X1)
+                                                          0.00 #     0.00 r
+  datapath_i/fetch_stage_dp/instruction_reg/D_I_30/Q_reg/Q (DFFR_X1)
+                                                          0.10       0.10 f
+  U609/ZN (NOR2_X1)                                       0.07       0.17 r
+  U617/ZN (NAND2_X1)                                      0.04       0.21 f
+  U601/ZN (NOR4_X1)                                       0.15       0.36 r
+  U647/ZN (INV_X1)                                        0.03       0.39 f
+  U648/ZN (NOR2_X1)                                       0.06       0.46 r
+  U649/ZN (OAI22_X1)                                      0.04       0.50 f
+  U650/ZN (NAND2_X1)                                      0.12       0.62 r
+  U651/Z (CLKBUF_X1)                                      0.16       0.78 r
+  datapath_i/memory_stage_dp/DRAM_DATA_tri[31]/Z (TBUF_X1)
+                                                          0.24       1.02 f
+  DRAM_DATA[31] (inout)                                   0.00       1.02 f
+  data arrival time                                                  1.02
+  --------------------------------------------------------------------------
+  (Path is unconstrained)
+
+
+1

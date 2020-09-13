@@ -4,7 +4,7 @@ Report : power
         -analysis_effort low
 Design : DLX_IR_SIZE32_PC_SIZE32
 Version: O-2018.06-SP4
-Date   : Mon Aug 31 21:28:28 2020
+Date   : Sun Sep 13 02:15:20 2020
 ****************************************
 
 
@@ -31,14 +31,13 @@ Power-specific unit information :
     Leakage Power Units = 1nW
 
 
-  Cell Internal Power  =  44.3771 uW   (74%)
-  Net Switching Power  =  15.8091 uW   (26%)
+  Cell Internal Power  =   1.4721 mW   (97%)
+  Net Switching Power  =  38.9055 uW    (3%)
                          ---------
-Total Dynamic Power    =  60.1862 uW  (100%)
+Total Dynamic Power    =   1.5110 mW  (100%)
 
-Cell Leakage Power     = 330.2268 uW
+Cell Leakage Power     = 470.6557 uW
 
-Information: report_power power group summary does not include estimated clock tree power. (PWR-789)
 
                  Internal         Switching           Leakage            Total
 Power Group      Power            Power               Power              Power   (   %    )  Attrs
@@ -46,10 +45,10 @@ Power Group      Power            Power               Power              Power  
 io_pad             0.0000            0.0000            0.0000            0.0000  (   0.00%)
 memory             0.0000            0.0000            0.0000            0.0000  (   0.00%)
 black_box          0.0000            0.0000            0.0000            0.0000  (   0.00%)
-clock_network      0.0000            0.0000            0.0000            0.0000  (   0.00%)
-register           0.0000            0.0000            0.0000            0.0000  (   0.00%)
-sequential        41.5212            0.6321        1.4951e+05          191.6628  (  49.09%)
-combinational      2.8562           15.1771        1.8072e+05          198.7500  (  50.91%)
+clock_network  4.2342e-02            0.4900           25.4596            0.5578  (   0.03%)
+register       1.4604e+03           12.0944        2.7204e+05        1.7446e+03  (  88.03%)
+sequential         1.9991            0.2757        5.4157e+03            7.6905  (   0.39%)
+combinational      9.6546           26.0452        1.9318e+05          228.8772  (  11.55%)
 --------------------------------------------------------------------------------------------------
-Total             44.3774 uW        15.8092 uW     3.3023e+05 nW       390.4128 uW
+Total          1.4721e+03 uW        38.9053 uW     4.7066e+05 nW     1.9817e+03 uW
 1

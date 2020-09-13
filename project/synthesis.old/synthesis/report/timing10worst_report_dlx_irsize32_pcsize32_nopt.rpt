@@ -9,7 +9,7 @@ Report : timing
         -max_paths 10
 Design : DLX_IR_SIZE32_PC_SIZE32
 Version: O-2018.06-SP4
-Date   : Mon Aug 31 16:25:06 2020
+Date   : Sun Sep 13 01:43:36 2020
 ****************************************
 
  # A fanout number of 1000 was used for high fanout net computations.
@@ -53,7 +53,7 @@ Wire Load Model Mode: top
   cu_i/U98/ZN (NOR2_X1)                                   0.03       0.36 f
   cu_i/U97/ZN (INV_X1)                                    0.04       0.40 r
   cu_i/U92/ZN (OAI21_X1)                                  0.04       0.44 f
-  cu_i/U42/Z (MUX2_X1)                                    0.08       0.52 f
+  cu_i/U44/Z (MUX2_X1)                                    0.08       0.52 f
   cu_i/dram_enable_cu (control_unit_PC_SIZE32_RF_REGS32_IR_SIZE32_CW_SIZE22)
                                                           0.00       0.52 f
   datapath_i/dram_enable_cu (DATAPATH_N32_RF_REGS32_IR_SIZE32_PC_SIZE32)
@@ -110,7 +110,7 @@ Wire Load Model Mode: top
   cu_i/U98/ZN (NOR2_X1)                                   0.03       0.36 f
   cu_i/U97/ZN (INV_X1)                                    0.04       0.40 r
   cu_i/U92/ZN (OAI21_X1)                                  0.04       0.44 f
-  cu_i/U42/Z (MUX2_X1)                                    0.08       0.52 f
+  cu_i/U44/Z (MUX2_X1)                                    0.08       0.52 f
   cu_i/dram_enable_cu (control_unit_PC_SIZE32_RF_REGS32_IR_SIZE32_CW_SIZE22)
                                                           0.00       0.52 f
   datapath_i/dram_enable_cu (DATAPATH_N32_RF_REGS32_IR_SIZE32_PC_SIZE32)
@@ -167,7 +167,7 @@ Wire Load Model Mode: top
   cu_i/U98/ZN (NOR2_X1)                                   0.03       0.36 f
   cu_i/U97/ZN (INV_X1)                                    0.04       0.40 r
   cu_i/U92/ZN (OAI21_X1)                                  0.04       0.44 f
-  cu_i/U42/Z (MUX2_X1)                                    0.08       0.52 f
+  cu_i/U44/Z (MUX2_X1)                                    0.08       0.52 f
   cu_i/dram_enable_cu (control_unit_PC_SIZE32_RF_REGS32_IR_SIZE32_CW_SIZE22)
                                                           0.00       0.52 f
   datapath_i/dram_enable_cu (DATAPATH_N32_RF_REGS32_IR_SIZE32_PC_SIZE32)
@@ -224,7 +224,7 @@ Wire Load Model Mode: top
   cu_i/U98/ZN (NOR2_X1)                                   0.03       0.36 f
   cu_i/U97/ZN (INV_X1)                                    0.04       0.40 r
   cu_i/U92/ZN (OAI21_X1)                                  0.04       0.44 f
-  cu_i/U42/Z (MUX2_X1)                                    0.08       0.52 f
+  cu_i/U44/Z (MUX2_X1)                                    0.08       0.52 f
   cu_i/dram_enable_cu (control_unit_PC_SIZE32_RF_REGS32_IR_SIZE32_CW_SIZE22)
                                                           0.00       0.52 f
   datapath_i/dram_enable_cu (DATAPATH_N32_RF_REGS32_IR_SIZE32_PC_SIZE32)
@@ -281,7 +281,7 @@ Wire Load Model Mode: top
   cu_i/U98/ZN (NOR2_X1)                                   0.03       0.36 f
   cu_i/U97/ZN (INV_X1)                                    0.04       0.40 r
   cu_i/U92/ZN (OAI21_X1)                                  0.04       0.44 f
-  cu_i/U42/Z (MUX2_X1)                                    0.08       0.52 f
+  cu_i/U44/Z (MUX2_X1)                                    0.08       0.52 f
   cu_i/dram_enable_cu (control_unit_PC_SIZE32_RF_REGS32_IR_SIZE32_CW_SIZE22)
                                                           0.00       0.52 f
   datapath_i/dram_enable_cu (DATAPATH_N32_RF_REGS32_IR_SIZE32_PC_SIZE32)
@@ -338,7 +338,7 @@ Wire Load Model Mode: top
   cu_i/U98/ZN (NOR2_X1)                                   0.03       0.36 f
   cu_i/U97/ZN (INV_X1)                                    0.04       0.40 r
   cu_i/U92/ZN (OAI21_X1)                                  0.04       0.44 f
-  cu_i/U42/Z (MUX2_X1)                                    0.08       0.52 f
+  cu_i/U44/Z (MUX2_X1)                                    0.08       0.52 f
   cu_i/dram_enable_cu (control_unit_PC_SIZE32_RF_REGS32_IR_SIZE32_CW_SIZE22)
                                                           0.00       0.52 f
   datapath_i/dram_enable_cu (DATAPATH_N32_RF_REGS32_IR_SIZE32_PC_SIZE32)
@@ -395,7 +395,7 @@ Wire Load Model Mode: top
   cu_i/U98/ZN (NOR2_X1)                                   0.03       0.36 f
   cu_i/U97/ZN (INV_X1)                                    0.04       0.40 r
   cu_i/U92/ZN (OAI21_X1)                                  0.04       0.44 f
-  cu_i/U42/Z (MUX2_X1)                                    0.08       0.52 f
+  cu_i/U44/Z (MUX2_X1)                                    0.08       0.52 f
   cu_i/dram_enable_cu (control_unit_PC_SIZE32_RF_REGS32_IR_SIZE32_CW_SIZE22)
                                                           0.00       0.52 f
   datapath_i/dram_enable_cu (DATAPATH_N32_RF_REGS32_IR_SIZE32_PC_SIZE32)
@@ -452,7 +452,7 @@ Wire Load Model Mode: top
   cu_i/U98/ZN (NOR2_X1)                                   0.03       0.36 f
   cu_i/U97/ZN (INV_X1)                                    0.04       0.40 r
   cu_i/U92/ZN (OAI21_X1)                                  0.04       0.44 f
-  cu_i/U42/Z (MUX2_X1)                                    0.08       0.52 f
+  cu_i/U44/Z (MUX2_X1)                                    0.08       0.52 f
   cu_i/dram_enable_cu (control_unit_PC_SIZE32_RF_REGS32_IR_SIZE32_CW_SIZE22)
                                                           0.00       0.52 f
   datapath_i/dram_enable_cu (DATAPATH_N32_RF_REGS32_IR_SIZE32_PC_SIZE32)
@@ -509,7 +509,7 @@ Wire Load Model Mode: top
   cu_i/U98/ZN (NOR2_X1)                                   0.03       0.36 f
   cu_i/U97/ZN (INV_X1)                                    0.04       0.40 r
   cu_i/U92/ZN (OAI21_X1)                                  0.04       0.44 f
-  cu_i/U42/Z (MUX2_X1)                                    0.08       0.52 f
+  cu_i/U44/Z (MUX2_X1)                                    0.08       0.52 f
   cu_i/dram_enable_cu (control_unit_PC_SIZE32_RF_REGS32_IR_SIZE32_CW_SIZE22)
                                                           0.00       0.52 f
   datapath_i/dram_enable_cu (DATAPATH_N32_RF_REGS32_IR_SIZE32_PC_SIZE32)
@@ -566,7 +566,7 @@ Wire Load Model Mode: top
   cu_i/U98/ZN (NOR2_X1)                                   0.03       0.36 f
   cu_i/U97/ZN (INV_X1)                                    0.04       0.40 r
   cu_i/U92/ZN (OAI21_X1)                                  0.04       0.44 f
-  cu_i/U42/Z (MUX2_X1)                                    0.08       0.52 f
+  cu_i/U44/Z (MUX2_X1)                                    0.08       0.52 f
   cu_i/dram_enable_cu (control_unit_PC_SIZE32_RF_REGS32_IR_SIZE32_CW_SIZE22)
                                                           0.00       0.52 f
   datapath_i/dram_enable_cu (DATAPATH_N32_RF_REGS32_IR_SIZE32_PC_SIZE32)

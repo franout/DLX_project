@@ -1,10 +1,10 @@
 Gate area 0.7980 um^2
-Level 0 Module DLX_IR_SIZE32_PC_SIZE32                  Gates=     35518 Cells=   10554 Area=   28343.9 um^2
-Level 1 Module cu_i                                     Gates=828        Cells=286      Area=     660.7 um^2
-Level 1 Module datapath_i                               Gates=34546      Cells=10166    Area=   27568.0 um^2
+Level 0 Module DLX_IR_SIZE32_PC_SIZE32                  Gates=     35520 Cells=   10561 Area=   28345.2 um^2
+Level 1 Module cu_i                                     Gates=828        Cells=286      Area=     661.3 um^2
+Level 1 Module datapath_i                               Gates=34565      Cells=10182    Area=   27582.9 um^2
 Level 2 Module datapath_i/fetch_stage_dp                Gates=986        Cells=279      Area=     786.8 um^2
-Level 2 Module datapath_i/decode_stage_dp               Gates=13093      Cells=4180     Area=   10448.5 um^2
-Level 3 Module datapath_i/decode_stage_dp/reg_file      Gates=11337      Cells=3793     Area=    9047.2 um^2
+Level 2 Module datapath_i/decode_stage_dp               Gates=13091      Cells=4182     Area=   10446.9 um^2
+Level 3 Module datapath_i/decode_stage_dp/reg_file      Gates=11336      Cells=3794     Area=    9046.7 um^2
 Level 3 Module datapath_i/decode_stage_dp/reg_a         Gates=213        Cells=32       Area=     170.2 um^2
 Level 3 Module datapath_i/decode_stage_dp/reg_b         Gates=213        Cells=32       Area=     170.2 um^2
 Level 3 Module datapath_i/decode_stage_dp/sign_extension_logic_immediate Gates=106        Cells=32       Area=      85.1 um^2
@@ -13,14 +13,14 @@ Level 3 Module datapath_i/decode_stage_dp/immediate_reg_mux Gates=181        Cel
 Level 3 Module datapath_i/decode_stage_dp/reg_immediate Gates=213        Cells=32       Area=     170.2 um^2
 Level 3 Module datapath_i/decode_stage_dp/pc_delay_reg1 Gates=220        Cells=33       Area=     175.6 um^2
 Level 3 Module datapath_i/decode_stage_dp/pc_delay_reg_2 Gates=220        Cells=33       Area=     176.1 um^2
-Level 2 Module datapath_i/execute_stage_dp              Gates=19460      Cells=5414     Area=   15529.1 um^2
+Level 2 Module datapath_i/execute_stage_dp              Gates=19465      Cells=5418     Area=   15533.1 um^2
 Level 3 Module datapath_i/execute_stage_dp/alu_opa      Gates=181        Cells=64       Area=     144.7 um^2
 Level 3 Module datapath_i/execute_stage_dp/alu_opb      Gates=181        Cells=64       Area=     144.7 um^2
-Level 3 Module datapath_i/execute_stage_dp/general_alu_i Gates=18630      Cells=5196     Area=   14867.0 um^2
+Level 3 Module datapath_i/execute_stage_dp/general_alu_i Gates=18636      Cells=5200     Area=   14871.5 um^2
 Level 4 Module datapath_i/execute_stage_dp/general_alu_i/p4_adder_lab Gates=696        Cells=453      Area=     555.9 um^2
 Level 5 Module datapath_i/execute_stage_dp/general_alu_i/p4_adder_lab/carry_select Gates=216        Cells=165      Area=     172.9 um^2
 Level 5 Module datapath_i/execute_stage_dp/general_alu_i/p4_adder_lab/sums Gates=480        Cells=288      Area=     383.0 um^2
-Level 4 Module datapath_i/execute_stage_dp/general_alu_i/boothmul_pipelined_i Gates=15455      Cells=3339     Area=   12333.4 um^2
+Level 4 Module datapath_i/execute_stage_dp/general_alu_i/boothmul_pipelined_i Gates=15460      Cells=3341     Area=   12337.1 um^2
 Level 5 Module datapath_i/execute_stage_dp/general_alu_i/boothmul_pipelined_i/MUX0_0 Gates=233        Cells=117      Area=     185.9 um^2
 Level 5 Module datapath_i/execute_stage_dp/general_alu_i/boothmul_pipelined_i/MUXi_1 Gates=261        Cells=127      Area=     208.3 um^2
 Level 5 Module datapath_i/execute_stage_dp/general_alu_i/boothmul_pipelined_i/ADD1_1 Gates=106        Cells=20       Area=      85.1 um^2
@@ -30,11 +30,11 @@ Level 5 Module datapath_i/execute_stage_dp/general_alu_i/boothmul_pipelined_i/MU
 Level 5 Module datapath_i/execute_stage_dp/general_alu_i/boothmul_pipelined_i/ADDi_2 Gates=117        Cells=22       Area=      93.6 um^2
 Level 5 Module datapath_i/execute_stage_dp/general_alu_i/boothmul_pipelined_i/pip_del_reg_addi_2 Gates=213        Cells=32       Area=     170.2 um^2
 Level 5 Module datapath_i/execute_stage_dp/general_alu_i/boothmul_pipelined_i/pip_del_reg_muxi_3 Gates=1660       Cells=249      Area=    1324.7 um^2
-Level 5 Module datapath_i/execute_stage_dp/general_alu_i/boothmul_pipelined_i/MUXi_3 Gates=292        Cells=158      Area=     233.5 um^2
+Level 5 Module datapath_i/execute_stage_dp/general_alu_i/boothmul_pipelined_i/MUXi_3 Gates=294        Cells=157      Area=     234.6 um^2
 Level 5 Module datapath_i/execute_stage_dp/general_alu_i/boothmul_pipelined_i/ADDi_3 Gates=128        Cells=24       Area=     102.1 um^2
 Level 5 Module datapath_i/execute_stage_dp/general_alu_i/boothmul_pipelined_i/pip_del_reg_addi_3 Gates=213        Cells=32       Area=     170.2 um^2
 Level 5 Module datapath_i/execute_stage_dp/general_alu_i/boothmul_pipelined_i/pip_del_reg_muxi_4 Gates=1660       Cells=249      Area=    1324.7 um^2
-Level 5 Module datapath_i/execute_stage_dp/general_alu_i/boothmul_pipelined_i/MUXi_4 Gates=317        Cells=170      Area=     253.2 um^2
+Level 5 Module datapath_i/execute_stage_dp/general_alu_i/boothmul_pipelined_i/MUXi_4 Gates=316        Cells=170      Area=     252.7 um^2
 Level 5 Module datapath_i/execute_stage_dp/general_alu_i/boothmul_pipelined_i/ADDi_4 Gates=138        Cells=26       Area=     110.7 um^2
 Level 5 Module datapath_i/execute_stage_dp/general_alu_i/boothmul_pipelined_i/pip_del_reg_addi_4 Gates=213        Cells=32       Area=     170.2 um^2
 Level 5 Module datapath_i/execute_stage_dp/general_alu_i/boothmul_pipelined_i/pip_del_reg_muxi_5 Gates=1660       Cells=249      Area=    1324.7 um^2
@@ -57,5 +57,5 @@ Level 5 Module datapath_i/execute_stage_dp/general_alu_i/boothmul_pipelined_i/pi
 Level 4 Module datapath_i/execute_stage_dp/general_alu_i/r323 Gates=197        Cells=184      Area=     157.2 um^2
 Level 3 Module datapath_i/execute_stage_dp/alu_reg_out  Gates=213        Cells=32       Area=     170.2 um^2
 Level 3 Module datapath_i/execute_stage_dp/reg_del_b    Gates=213        Cells=32       Area=     170.2 um^2
-Level 2 Module datapath_i/memory_stage_dp               Gates=818        Cells=224      Area=     653.3 um^2
+Level 2 Module datapath_i/memory_stage_dp               Gates=819        Cells=225      Area=     654.1 um^2
 Level 2 Module datapath_i/write_back_stage_dp           Gates=182        Cells=65       Area=     145.8 um^2

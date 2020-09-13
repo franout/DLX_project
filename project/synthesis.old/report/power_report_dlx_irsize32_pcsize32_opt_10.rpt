@@ -1,0 +1,55 @@
+ 
+****************************************
+Report : power
+        -analysis_effort low
+Design : DLX_IR_SIZE32_PC_SIZE32
+Version: O-2018.06-SP4
+Date   : Mon Aug 31 21:25:06 2020
+****************************************
+
+
+Library(s) Used:
+
+    NangateOpenCellLibrary (File: /home/mariagrazia.graziano/do/libnangate/NangateOpenCellLibrary_typical_ecsm.db)
+
+
+Operating Conditions: typical   Library: NangateOpenCellLibrary
+Wire Load Model Mode: top
+
+Design        Wire Load Model            Library
+------------------------------------------------
+DLX_IR_SIZE32_PC_SIZE32
+                       5K_hvratio_1_1    NangateOpenCellLibrary
+
+
+Global Operating Voltage = 1.1  
+Power-specific unit information :
+    Voltage Units = 1V
+    Capacitance Units = 1.000000ff
+    Time Units = 1ns
+    Dynamic Power Units = 1uW    (derived from V,C,T units)
+    Leakage Power Units = 1nW
+
+
+  Cell Internal Power  =  39.4852 uW   (74%)
+  Net Switching Power  =  14.1320 uW   (26%)
+                         ---------
+Total Dynamic Power    =  53.6172 uW  (100%)
+
+Cell Leakage Power     = 329.9668 uW
+
+Information: report_power power group summary does not include estimated clock tree power. (PWR-789)
+
+                 Internal         Switching           Leakage            Total
+Power Group      Power            Power               Power              Power   (   %    )  Attrs
+--------------------------------------------------------------------------------------------------
+io_pad             0.0000            0.0000            0.0000            0.0000  (   0.00%)
+memory             0.0000            0.0000            0.0000            0.0000  (   0.00%)
+black_box          0.0000            0.0000            0.0000            0.0000  (   0.00%)
+clock_network      0.0000            0.0000            0.0000            0.0000  (   0.00%)
+register           0.0000            0.0000            0.0000            0.0000  (   0.00%)
+sequential        36.9330            0.5850        1.4951e+05          187.0286  (  48.76%)
+combinational      2.5517           13.5472        1.8046e+05          196.5550  (  51.24%)
+--------------------------------------------------------------------------------------------------
+Total             39.4847 uW        14.1322 uW     3.2997e+05 nW       383.5836 uW
+1

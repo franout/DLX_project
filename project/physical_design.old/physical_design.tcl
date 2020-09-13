@@ -1,16 +1,16 @@
 puts "Configuring Innovus"
-setMultiCpuUsage -cpuAutoAdjust {true}
+setMultiCpuUsage -cpuAutoAdjust {true} -localCpu 6
 set_global _enable_mmmc_by_default_flow      $CTE::mmmc_default
 suppressMessage ENCEXT-2799
-#loadWorkspace -name Physical
+loadWorkspace -name Physical
 set defHierChar /
 set delaycal_input_transition_delay 0.1ps
 set fpIsMaxIoHeight 0
 set init_gnd_net {gnd}
-set init_mmmc_file Default_nopt.view
+set init_mmmc_file {Default_nopt.view}
 set init_oa_search_lib {}
 set init_pwr_net {vdd}
-set init_verilog "$env(path_to_file_synthesis)/output_netlist/dlx_irsize32_pcsize32_nopt.v" 
+set init_verilog "$env(path_to_file_synthesis)output_netlist/dlx_irsize32_pcsize32_nopt.v" 
 set init_lef_file /software/dk/nangate45/lef/NangateOpenCellLibrary.lef
 set lsgOCPGainMult 1.000000
 set LEF_DIR /software/dk/nangate45/lef
@@ -30,6 +30,10 @@ getIoFlowFlag
 setIoFlowFlag 0
 floorPlan -site FreePDK45_38x28_10R_NP_162NW_34O -r 1 0.6 5 5 5 5
 getIoFlowFlag
+## for gui run
+uiSetTool select
+getIoFlowFlag
+fit
 set sprCreateIeRingOffset 1.0
 set sprCreateIeRingThreshold 1.0
 set sprCreateIeRingJogDistance 1.0
@@ -80,6 +84,7 @@ setSrouteMode -viaConnectToShape { noshape }
 sroute -connect { blockPin padPin padRing corePin floatingStripe } -layerChangeRange { metal1(1) metal10(10) } -blockPinTarget { nearestTarget } -padPinPortConnect { allPort oneGeom } -padPinTarget { nearestTarget } -corePinTarget { firstAfterRowEnd } -floatingStripeTarget { blockring padring ring stripe ringpin blockpin followpin } -allowJogging 1 -crossoverViaLayerRange { metal1(1) metal10(10) } -nets { gnd vdd } -allowLayerChange 1 -blockPin useLef -targetViaLayerRange { metal1(1) metal10(10) }
 
 
+
 puts " Pin assignment "
 
 getPinAssignMode -pinEditInBatch -quiet
@@ -123,13 +128,23 @@ setPinAssignMode -pinEditInBatch false
 
 
 setPinAssignMode -pinEditInBatch true
-editPin -fixOverlap 1 -spreadDirection clockwise -side Top -layer 1 -spreadType side -pin {{DRAM_ADDRESS[0]} {DRAM_ADDRESS[1]} {DRAM_ADDRESS[2]} {DRAM_ADDRESS[3]} {DRAM_ADDRESS[4]} {DRAM_ADDRESS[5]} {DRAM_ADDRESS[6]} {DRAM_ADDRESS[7]} {DRAM_ADDRESS[8]} {DRAM_ADDRESS[9]} {DRAM_ADDRESS[10]} {DRAM_ADDRESS[11]} {DRAM_ADDRESS[12]} {DRAM_ADDRESS[13]} {DRAM_ADDRESS[14]} {DRAM_ADDRESS[15]} {DRAM_ADDRESS[16]} {DRAM_ADDRESS[17]} {DRAM_ADDRESS[18]} {DRAM_ADDRESS[19]} {DRAM_ADDRESS[20]} {DRAM_ADDRESS[21]} {DRAM_ADDRESS[22]} {DRAM_ADDRESS[23]} {DRAM_ADDRESS[24]} {DRAM_ADDRESS[25]} {DRAM_ADDRESS[26]} {DRAM_ADDRESS[27]} {DRAM_ADDRESS[28]} {DRAM_ADDRESS[29]} {DRAM_ADDRESS[30]} {DRAM_ADDRESS[31]}}
+editPin -fixOverlap 1 -spreadDirection clockwise -side Right -layer 1 -spreadType side -pin {{DRAM_ADDRESS[0]} {DRAM_ADDRESS[1]} {DRAM_ADDRESS[2]} {DRAM_ADDRESS[3]} {DRAM_ADDRESS[4]} {DRAM_ADDRESS[5]} {DRAM_ADDRESS[6]} {DRAM_ADDRESS[7]} {DRAM_ADDRESS[8]} {DRAM_ADDRESS[9]} {DRAM_ADDRESS[10]} {DRAM_ADDRESS[11]} {DRAM_ADDRESS[12]} {DRAM_ADDRESS[13]} {DRAM_ADDRESS[14]} {DRAM_ADDRESS[15]} {DRAM_ADDRESS[16]} {DRAM_ADDRESS[17]} {DRAM_ADDRESS[18]} {DRAM_ADDRESS[19]} {DRAM_ADDRESS[20]} {DRAM_ADDRESS[21]} {DRAM_ADDRESS[22]} {DRAM_ADDRESS[23]} {DRAM_ADDRESS[24]} {DRAM_ADDRESS[25]} {DRAM_ADDRESS[26]} {DRAM_ADDRESS[27]} {DRAM_ADDRESS[28]} {DRAM_ADDRESS[29]} {DRAM_ADDRESS[30]} {DRAM_ADDRESS[31]}}
 setPinAssignMode -pinEditInBatch false
 
 setPinAssignMode -pinEditInBatch true
-editPin -fixOverlap 1 -spreadDirection clockwise -side Top -layer 2 -spreadType side -pin {{DRAM_DATA[0]} {DRAM_DATA[1]} {DRAM_DATA[2]} {DRAM_DATA[3]} {DRAM_DATA[4]} {DRAM_DATA[5]} {DRAM_DATA[6]} {DRAM_DATA[7]} {DRAM_DATA[8]} {DRAM_DATA[9]} {DRAM_DATA[10]} {DRAM_DATA[11]} {DRAM_DATA[12]} {DRAM_DATA[13]} {DRAM_DATA[14]} {DRAM_DATA[15]} {DRAM_DATA[16]} {DRAM_DATA[17]} {DRAM_DATA[18]} {DRAM_DATA[19]} {DRAM_DATA[20]} {DRAM_DATA[21]} {DRAM_DATA[22]} {DRAM_DATA[23]} {DRAM_DATA[24]} {DRAM_DATA[25]} {DRAM_DATA[26]} {DRAM_DATA[27]} {DRAM_DATA[28]} {DRAM_DATA[29]} {DRAM_DATA[30]} {DRAM_DATA[31]}}
+editPin -fixOverlap 1 -spreadDirection clockwise -side Right -layer 2 -spreadType side -pin {{DRAM_DATA[0]} {DRAM_DATA[1]} {DRAM_DATA[2]} {DRAM_DATA[3]} {DRAM_DATA[4]} {DRAM_DATA[5]} {DRAM_DATA[6]} {DRAM_DATA[7]} {DRAM_DATA[8]} {DRAM_DATA[9]} {DRAM_DATA[10]} {DRAM_DATA[11]} {DRAM_DATA[12]} {DRAM_DATA[13]} {DRAM_DATA[14]} {DRAM_DATA[15]} {DRAM_DATA[16]} {DRAM_DATA[17]} {DRAM_DATA[18]} {DRAM_DATA[19]} {DRAM_DATA[20]} {DRAM_DATA[21]} {DRAM_DATA[22]} {DRAM_DATA[23]} {DRAM_DATA[24]} {DRAM_DATA[25]} {DRAM_DATA[26]} {DRAM_DATA[27]} {DRAM_DATA[28]} {DRAM_DATA[29]} {DRAM_DATA[30]} {DRAM_DATA[31]}}
 setPinAssignMode -pinEditInBatch false
 
+## for gui run
+setDrawView  fplan
+fit
+dumpToGIF ./images_nopt/DLX_IR_SIZE32_PC_SIZE32_nopt_fplan_postpin
+setDrawView  ameba
+fit
+dumpToGIF ./images_nopt/DLX_IR_SIZE32_PC_SIZE32_nopt_ameba_postpin
+setDrawView  place
+fit
+dumpToGIF ./images_nopt/DLX_IR_SIZE32_PC_SIZE32_nopt_place_postpin
 
 
 puts "Cell placing Innovus"
@@ -139,6 +154,17 @@ optDesign -postCTS
 optDesign -postCTS -hold
 getFillerMode -quiet
 addFiller -cell FILLCELL_X8 FILLCELL_X32 FILLCELL_X4 FILLCELL_X2 FILLCELL_X16 FILLCELL_X1 -prefix FILLER
+
+## for gui run
+setDrawView  fplan
+fit
+dumpToGIF ./images_nopt/DLX_IR_SIZE32_PC_SIZE32_nopt_fplan_prerouting
+setDrawView  ameba
+fit
+dumpToGIF ./images_nopt/DLX_IR_SIZE32_PC_SIZE32_nopt_ameba_prerouting
+setDrawView  place
+fit
+dumpToGIF ./images_nopt/DLX_IR_SIZE32_PC_SIZE32_nopt_place_prerouting
 
 puts "Signal routing  Innovus"
 
@@ -162,7 +188,7 @@ redirect -quiet {set honorDomain [getAnalysisMode -honorClockDomains]} > /dev/nu
 timeDesign -postRoute -pathReports -drvReports -slackReports -numPaths 50 -prefix DLX_IR_SIZE32_PC_SIZE32_nopt_postroute -outDir timingReports
 get_time_unit
 report_timing -machine_readable -max_paths 10000 -max_slack 0.75 -path_exceptions all > DLX_IR_SIZE32_PC_SIZE32_nopt.mtarpt
-load_timing_debug_report -name default_report DLX_IR_SIZE32_PC_SIZE32.mtarpt
+load_timing_debug_report -name default_report DLX_IR_SIZE32_PC_SIZE32_nopt.mtarpt
 
 puts "Verification"
 verifyConnectivity -type all -error 1000 -warning 50
@@ -185,7 +211,19 @@ get_verify_drc_mode -limit -quiet
 set_verify_drc_mode -disable_rules {} -check_implant true -check_implant_across_rows false -check_ndr_spacing false -check_same_via_cell false -exclude_pg_net false -ignore_trial_route false -report DLX_IR_SIZE32_PC_SIZE32_nopt.drc.rpt -limit 1000
 verify_drc
 
-
+## dump images of various stages * congestion * density  floor placement       route_all  * route_C4   * route_C5   * route_C6  * route_M1  * route_M2        route_M3  * specialroute   * violations
+## for gui run
+setDrawView  fplan
+fit
+dumpToGIF ./images_nopt/DLX_IR_SIZE32_PC_SIZE32_nopt_fplan
+setDrawView  ameba
+fit
+dumpToGIF ./images_nopt/DLX_IR_SIZE32_PC_SIZE32_nopt_ameba
+setDrawView  place
+fit
+dumpToGIF ./images_nopt/DLX_IR_SIZE32_PC_SIZE32_nopt_place
+dumpPictures -dir ./images_nopt/ -prefix [dbGet top.name] -fullScreen
+saveFPlan ./DLX_IR_SIZE32_PC_SIZE32_nopt_floorplan
 reportGateCount -level 5 -limit 100 -outfile DLX_IR_SIZE32_PC_SIZE32_nopt.gateCount
 saveNetlist DLX_IR_SIZE32_PC_SIZE32_nopt.v
 all_hold_analysis_views 
@@ -315,13 +353,24 @@ setPinAssignMode -pinEditInBatch false
 
 
 setPinAssignMode -pinEditInBatch true
-editPin -fixOverlap 1 -spreadDirection clockwise -side Top -layer 1 -spreadType side -pin {{DRAM_ADDRESS[0]} {DRAM_ADDRESS[1]} {DRAM_ADDRESS[2]} {DRAM_ADDRESS[3]} {DRAM_ADDRESS[4]} {DRAM_ADDRESS[5]} {DRAM_ADDRESS[6]} {DRAM_ADDRESS[7]} {DRAM_ADDRESS[8]} {DRAM_ADDRESS[9]} {DRAM_ADDRESS[10]} {DRAM_ADDRESS[11]} {DRAM_ADDRESS[12]} {DRAM_ADDRESS[13]} {DRAM_ADDRESS[14]} {DRAM_ADDRESS[15]} {DRAM_ADDRESS[16]} {DRAM_ADDRESS[17]} {DRAM_ADDRESS[18]} {DRAM_ADDRESS[19]} {DRAM_ADDRESS[20]} {DRAM_ADDRESS[21]} {DRAM_ADDRESS[22]} {DRAM_ADDRESS[23]} {DRAM_ADDRESS[24]} {DRAM_ADDRESS[25]} {DRAM_ADDRESS[26]} {DRAM_ADDRESS[27]} {DRAM_ADDRESS[28]} {DRAM_ADDRESS[29]} {DRAM_ADDRESS[30]} {DRAM_ADDRESS[31]}}
+editPin -fixOverlap 1 -spreadDirection clockwise -side Right -layer 1 -spreadType side -pin {{DRAM_ADDRESS[0]} {DRAM_ADDRESS[1]} {DRAM_ADDRESS[2]} {DRAM_ADDRESS[3]} {DRAM_ADDRESS[4]} {DRAM_ADDRESS[5]} {DRAM_ADDRESS[6]} {DRAM_ADDRESS[7]} {DRAM_ADDRESS[8]} {DRAM_ADDRESS[9]} {DRAM_ADDRESS[10]} {DRAM_ADDRESS[11]} {DRAM_ADDRESS[12]} {DRAM_ADDRESS[13]} {DRAM_ADDRESS[14]} {DRAM_ADDRESS[15]} {DRAM_ADDRESS[16]} {DRAM_ADDRESS[17]} {DRAM_ADDRESS[18]} {DRAM_ADDRESS[19]} {DRAM_ADDRESS[20]} {DRAM_ADDRESS[21]} {DRAM_ADDRESS[22]} {DRAM_ADDRESS[23]} {DRAM_ADDRESS[24]} {DRAM_ADDRESS[25]} {DRAM_ADDRESS[26]} {DRAM_ADDRESS[27]} {DRAM_ADDRESS[28]} {DRAM_ADDRESS[29]} {DRAM_ADDRESS[30]} {DRAM_ADDRESS[31]}}
 setPinAssignMode -pinEditInBatch false
 
 setPinAssignMode -pinEditInBatch true
-editPin -fixOverlap 1 -spreadDirection clockwise -side Top -layer 2 -spreadType side -pin {{DRAM_DATA[0]} {DRAM_DATA[1]} {DRAM_DATA[2]} {DRAM_DATA[3]} {DRAM_DATA[4]} {DRAM_DATA[5]} {DRAM_DATA[6]} {DRAM_DATA[7]} {DRAM_DATA[8]} {DRAM_DATA[9]} {DRAM_DATA[10]} {DRAM_DATA[11]} {DRAM_DATA[12]} {DRAM_DATA[13]} {DRAM_DATA[14]} {DRAM_DATA[15]} {DRAM_DATA[16]} {DRAM_DATA[17]} {DRAM_DATA[18]} {DRAM_DATA[19]} {DRAM_DATA[20]} {DRAM_DATA[21]} {DRAM_DATA[22]} {DRAM_DATA[23]} {DRAM_DATA[24]} {DRAM_DATA[25]} {DRAM_DATA[26]} {DRAM_DATA[27]} {DRAM_DATA[28]} {DRAM_DATA[29]} {DRAM_DATA[30]} {DRAM_DATA[31]}}
+editPin -fixOverlap 1 -spreadDirection clockwise -side Right -layer 2 -spreadType side -pin {{DRAM_DATA[0]} {DRAM_DATA[1]} {DRAM_DATA[2]} {DRAM_DATA[3]} {DRAM_DATA[4]} {DRAM_DATA[5]} {DRAM_DATA[6]} {DRAM_DATA[7]} {DRAM_DATA[8]} {DRAM_DATA[9]} {DRAM_DATA[10]} {DRAM_DATA[11]} {DRAM_DATA[12]} {DRAM_DATA[13]} {DRAM_DATA[14]} {DRAM_DATA[15]} {DRAM_DATA[16]} {DRAM_DATA[17]} {DRAM_DATA[18]} {DRAM_DATA[19]} {DRAM_DATA[20]} {DRAM_DATA[21]} {DRAM_DATA[22]} {DRAM_DATA[23]} {DRAM_DATA[24]} {DRAM_DATA[25]} {DRAM_DATA[26]} {DRAM_DATA[27]} {DRAM_DATA[28]} {DRAM_DATA[29]} {DRAM_DATA[30]} {DRAM_DATA[31]}}
 setPinAssignMode -pinEditInBatch false
 
+
+## for gui run
+setDrawView  fplan
+fit
+dumpToGIF ./images_10/DLX_IR_SIZE32_PC_SIZE32_10_fplan_postpin
+setDrawView  ameba
+fit
+dumpToGIF ./images_10/DLX_IR_SIZE32_PC_SIZE32_10_ameba_postpin
+setDrawView  place
+fit
+dumpToGIF ./images_10/DLX_IR_SIZE32_PC_SIZE32_10_place_postpin
 
 
 puts "Cell placing Innovus"
@@ -332,6 +381,17 @@ optDesign -postCTS -hold
 getFillerMode -quiet
 addFiller -cell FILLCELL_X8 FILLCELL_X32 FILLCELL_X4 FILLCELL_X2 FILLCELL_X16 FILLCELL_X1 -prefix FILLER
 
+
+## for gui run
+setDrawView  fplan
+fit
+dumpToGIF ./images_10/DLX_IR_SIZE32_PC_SIZE32_10_fplan_prerouting
+setDrawView  ameba
+fit
+dumpToGIF ./images_10/DLX_IR_SIZE32_PC_SIZE32_10_ameba_prerouting
+setDrawView  place
+fit
+dumpToGIF ./images_10/DLX_IR_SIZE32_PC_SIZE32_10_place_prerouting
 puts "Signal routing  Innovus"
 
 setNanoRouteMode -quiet -timingEngine {}
@@ -354,7 +414,7 @@ redirect -quiet {set honorDomain [getAnalysisMode -honorClockDomains]} > /dev/nu
 timeDesign -postRoute -pathReports -drvReports -slackReports -numPaths 50 -prefix DLX_IR_SIZE32_PC_SIZE32_10_postroute -outDir timingReports
 get_time_unit
 report_timing -machine_readable -max_paths 10000 -max_slack 0.75 -path_exceptions all > DLX_IR_SIZE32_PC_SIZE32_10.mtarpt
-load_timing_debug_report -name default_report DLX_IR_SIZE32_PC_SIZE32.mtarpt
+load_timing_debug_report -name default_report DLX_IR_SIZE32_PC_SIZE32_10.mtarpt
 
 puts "Verification"
 verifyConnectivity -type all -error 1000 -warning 50
@@ -378,7 +438,22 @@ set_verify_drc_mode -disable_rules {} -check_implant true -check_implant_across_
 verify_drc
 
 
+
+setDrawView  fplan
+fit
+dumpToGIF ./images_10/DLX_IR_SIZE32_PC_SIZE32_10_fplan
+setDrawView  ameba
+fit
+dumpToGIF ./images_10/DLX_IR_SIZE32_PC_SIZE32_10_ameba
+setDrawView  place
+fit
+dumpToGIF ./images_10/DLX_IR_SIZE32_PC_SIZE32_10_place
+dumpPictures -dir ./images_nopt/ -prefix [dbGet top.name] -fullScreen
+saveFPlan ./DLX_IR_SIZE32_PC_SIZE32_10_floorplan
+
+dumpPictures -dir ./images_10/ -prefix [dbGet top.name] -fullScreen
 reportGateCount -level 5 -limit 100 -outfile DLX_IR_SIZE32_PC_SIZE32_10.gateCount
+saveFPlan ./DLX_IR_SIZE32_PC_SIZE32_10_floorplan
 saveNetlist DLX_IR_SIZE32_PC_SIZE32_10.v
 all_hold_analysis_views 
 all_setup_analysis_views 
@@ -510,14 +585,23 @@ setPinAssignMode -pinEditInBatch false
 
 
 setPinAssignMode -pinEditInBatch true
-editPin -fixOverlap 1 -spreadDirection clockwise -side Top -layer 1 -spreadType side -pin {{DRAM_ADDRESS[0]} {DRAM_ADDRESS[1]} {DRAM_ADDRESS[2]} {DRAM_ADDRESS[3]} {DRAM_ADDRESS[4]} {DRAM_ADDRESS[5]} {DRAM_ADDRESS[6]} {DRAM_ADDRESS[7]} {DRAM_ADDRESS[8]} {DRAM_ADDRESS[9]} {DRAM_ADDRESS[10]} {DRAM_ADDRESS[11]} {DRAM_ADDRESS[12]} {DRAM_ADDRESS[13]} {DRAM_ADDRESS[14]} {DRAM_ADDRESS[15]} {DRAM_ADDRESS[16]} {DRAM_ADDRESS[17]} {DRAM_ADDRESS[18]} {DRAM_ADDRESS[19]} {DRAM_ADDRESS[20]} {DRAM_ADDRESS[21]} {DRAM_ADDRESS[22]} {DRAM_ADDRESS[23]} {DRAM_ADDRESS[24]} {DRAM_ADDRESS[25]} {DRAM_ADDRESS[26]} {DRAM_ADDRESS[27]} {DRAM_ADDRESS[28]} {DRAM_ADDRESS[29]} {DRAM_ADDRESS[30]} {DRAM_ADDRESS[31]}}
+editPin -fixOverlap 1 -spreadDirection clockwise -side Right -layer 1 -spreadType side -pin {{DRAM_ADDRESS[0]} {DRAM_ADDRESS[1]} {DRAM_ADDRESS[2]} {DRAM_ADDRESS[3]} {DRAM_ADDRESS[4]} {DRAM_ADDRESS[5]} {DRAM_ADDRESS[6]} {DRAM_ADDRESS[7]} {DRAM_ADDRESS[8]} {DRAM_ADDRESS[9]} {DRAM_ADDRESS[10]} {DRAM_ADDRESS[11]} {DRAM_ADDRESS[12]} {DRAM_ADDRESS[13]} {DRAM_ADDRESS[14]} {DRAM_ADDRESS[15]} {DRAM_ADDRESS[16]} {DRAM_ADDRESS[17]} {DRAM_ADDRESS[18]} {DRAM_ADDRESS[19]} {DRAM_ADDRESS[20]} {DRAM_ADDRESS[21]} {DRAM_ADDRESS[22]} {DRAM_ADDRESS[23]} {DRAM_ADDRESS[24]} {DRAM_ADDRESS[25]} {DRAM_ADDRESS[26]} {DRAM_ADDRESS[27]} {DRAM_ADDRESS[28]} {DRAM_ADDRESS[29]} {DRAM_ADDRESS[30]} {DRAM_ADDRESS[31]}}
 setPinAssignMode -pinEditInBatch false
 
 setPinAssignMode -pinEditInBatch true
-editPin -fixOverlap 1 -spreadDirection clockwise -side Top -layer 2 -spreadType side -pin {{DRAM_DATA[0]} {DRAM_DATA[1]} {DRAM_DATA[2]} {DRAM_DATA[3]} {DRAM_DATA[4]} {DRAM_DATA[5]} {DRAM_DATA[6]} {DRAM_DATA[7]} {DRAM_DATA[8]} {DRAM_DATA[9]} {DRAM_DATA[10]} {DRAM_DATA[11]} {DRAM_DATA[12]} {DRAM_DATA[13]} {DRAM_DATA[14]} {DRAM_DATA[15]} {DRAM_DATA[16]} {DRAM_DATA[17]} {DRAM_DATA[18]} {DRAM_DATA[19]} {DRAM_DATA[20]} {DRAM_DATA[21]} {DRAM_DATA[22]} {DRAM_DATA[23]} {DRAM_DATA[24]} {DRAM_DATA[25]} {DRAM_DATA[26]} {DRAM_DATA[27]} {DRAM_DATA[28]} {DRAM_DATA[29]} {DRAM_DATA[30]} {DRAM_DATA[31]}}
+editPin -fixOverlap 1 -spreadDirection clockwise -side Right -layer 2 -spreadType side -pin {{DRAM_DATA[0]} {DRAM_DATA[1]} {DRAM_DATA[2]} {DRAM_DATA[3]} {DRAM_DATA[4]} {DRAM_DATA[5]} {DRAM_DATA[6]} {DRAM_DATA[7]} {DRAM_DATA[8]} {DRAM_DATA[9]} {DRAM_DATA[10]} {DRAM_DATA[11]} {DRAM_DATA[12]} {DRAM_DATA[13]} {DRAM_DATA[14]} {DRAM_DATA[15]} {DRAM_DATA[16]} {DRAM_DATA[17]} {DRAM_DATA[18]} {DRAM_DATA[19]} {DRAM_DATA[20]} {DRAM_DATA[21]} {DRAM_DATA[22]} {DRAM_DATA[23]} {DRAM_DATA[24]} {DRAM_DATA[25]} {DRAM_DATA[26]} {DRAM_DATA[27]} {DRAM_DATA[28]} {DRAM_DATA[29]} {DRAM_DATA[30]} {DRAM_DATA[31]}}
 setPinAssignMode -pinEditInBatch false
 
-
+## for gui run
+setDrawView  fplan
+fit
+dumpToGIF ./images_1_minarea/DLX_IR_SIZE32_PC_SIZE32_1_minarea_fplan_postpin
+setDrawView  ameba
+fit
+dumpToGIF ./images_1_minarea/DLX_IR_SIZE32_PC_SIZE32_1_minarea_ameba_postpin
+setDrawView  place
+fit
+dumpToGIF ./images_1_minarea/DLX_IR_SIZE32_PC_SIZE32_1_minarea_place_postpin
 
 puts "Cell placing Innovus"
 placeDesign
@@ -526,6 +610,18 @@ optDesign -postCTS
 optDesign -postCTS -hold
 getFillerMode -quiet
 addFiller -cell FILLCELL_X8 FILLCELL_X32 FILLCELL_X4 FILLCELL_X2 FILLCELL_X16 FILLCELL_X1 -prefix FILLER
+
+
+## for gui run
+setDrawView  fplan
+fit
+dumpToGIF ./images_1_minarea/DLX_IR_SIZE32_PC_SIZE32_1_minarea_fplan_prerouting
+setDrawView  ameba
+fit
+dumpToGIF ./images_1_minarea/DLX_IR_SIZE32_PC_SIZE32_1_minarea_ameba_prerouting
+setDrawView  place
+fit
+dumpToGIF ./images_1_minarea/DLX_IR_SIZE32_PC_SIZE32_1_minarea_place_prerouting
 
 puts "Signal routing  Innovus"
 
@@ -572,8 +668,21 @@ get_verify_drc_mode -limit -quiet
 set_verify_drc_mode -disable_rules {} -check_implant true -check_implant_across_rows false -check_ndr_spacing false -check_same_via_cell false -exclude_pg_net false -ignore_trial_route false -report DLX_IR_SIZE32_PC_SIZE32_1_minarea.drc.rpt -limit 1000
 verify_drc
 
+fit
+setDrawView  fplan
+dumpToGIF ./images_1_minarea/DLX_IR_SIZE32_PC_SIZE32_1_minarea_fplan
+setDrawView  ameba
+fit
+dumpToGIF ./images_1_minarea/DLX_IR_SIZE32_PC_SIZE32_1_minarea_ameba
+setDrawView  place
+fit
+dumpToGIF ./images_1_minarea/DLX_IR_SIZE32_PC_SIZE32_1_minarea_place
+dumpPictures -dir ./images_nopt/ -prefix [dbGet top.name] -fullScreen
+saveFPlan ./DLX_IR_SIZE32_PC_SIZE32_1_minarea_floorplan
 
+dumpPictures -dir ./images_1_minarea/ -prefix [dbGet top.name] -fullScreen
 reportGateCount -level 5 -limit 100 -outfile DLX_IR_SIZE32_PC_SIZE32_1_minarea.gateCount
+saveFPlan ./DLX_IR_SIZE32_PC_SIZE32_1_minarea_floorplan
 saveNetlist DLX_IR_SIZE32_PC_SIZE32_1_minarea.v
 all_hold_analysis_views 
 all_setup_analysis_views 

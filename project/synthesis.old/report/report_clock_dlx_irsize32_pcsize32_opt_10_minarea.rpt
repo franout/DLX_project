@@ -1,0 +1,20 @@
+ 
+****************************************
+Report : clocks
+Design : DLX_IR_SIZE32_PC_SIZE32
+Version: O-2018.06-SP4
+Date   : Mon Aug 31 21:30:10 2020
+****************************************
+
+Attributes:
+    d - dont_touch_network
+    f - fix_hold
+    p - propagated_clock
+    G - generated_clock
+    g - lib_generated_clock
+
+Clock          Period   Waveform            Attrs     Sources
+--------------------------------------------------------------------------------
+clk             18.16   {0 9.07986}         f         {}
+--------------------------------------------------------------------------------
+1

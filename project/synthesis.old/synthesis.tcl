@@ -58,12 +58,17 @@ analyze -autoread -library WORK -format vhdl "$env(path_to_file)a-DLX.vhd "
 ###########################################################
 ################ elaborating the top entity ###############
 ###########################################################
-
 puts "Elaborating top level entity"
 elaborate -update dlx -architecture dlx_rtl -library WORK -parameters "IR_SIZE=32,PC_SIZE=32"
 current_design "DLX_IR_SIZE32_PC_SIZE32"
+
+# define a clock name
+set clockName "clk"
+create_clock -name $clockName
+
 ##########################################
 # first compilation, without constraints #
+##########################################
 puts "Synthesis without constraints"
 compile 
 # reporting riming and power after the first synthesis without constraints #
@@ -71,6 +76,7 @@ report_timing -nworst 10 > ./report/timing10worst_report_dlx_irsize32_pcsize32_n
 report_timing > ./report/timing_report_dlx_irsize32_pcsize32b_nopt.rpt
 report_area > ./report/area_report_dlx_irsize32_pcsize32_nopt.rpt
 report_power > ./report/power_report_dlx_irsize32_pcsize32_nopt.rpt
+report_clock > ./report/report_clock_dlx_irsize32_pcsize32_nopt.rpt
 
 write -hierarchy -format ddc -output ./output_netlist/dlx_irsize32_pcsize32_nopt.ddc
 write -hierarchy -format vhdl -output ./output_netlist/dlx_irsize32_pcsize32_nopt.vhdl
@@ -97,8 +103,19 @@ lappend mp_l $mpi
 
 # since the path is critical there is only one object into the list 
 set REQUIRED_TIME [ expr $mp_l*0.80 ]
-
+#########################
+### clock constraints ###
+#########################
+create_clock -name $clockName -period $REQUIRED_TIME
 set_max_delay $REQUIRED_TIME -from [all_inputs] -to [all_outputs]
+set_fix_hold $clockName
+
+set max_transition_time 0.08
+set_max_transition $max_transition_time [all_outputs]
+set_min_delay 0.03 -from [all_inputs] -to [all_outputs]
+set_input_delay 0.07 -clock $clockName [all_inputs]
+set_output_delay 0.07 -clock $clockName [all_outputs]
+
 # optimize
 # enable the scan insetion and evaluation of impact
 compile_ultra -scan 
@@ -106,7 +123,7 @@ compile_ultra -scan
 report_timing > ./report/timing_report_dlx_irsize32_pcsize32_opt_20.rpt
 report_area > ./report/area_report_dlx_irsize32_pcsize32_opt_20.rpt
 report_power > ./report/power_report_dlx_irsize32_pcsize32_opt_20.rpt
-
+report_clock > ./report/report_clock_dlx_irsize32_pcsize32_opt_20.rpt
 # saving files
 write -hierarchy -format ddc -output ./output_netlist/dlx_irsize32_pcsize32_topt_20.ddc
 write -hierarchy -format vhdl -output ./output_netlist/dlx_irsize32_pcsize32_topt_20.vhdl
@@ -114,14 +131,26 @@ write -hierarchy -format verilog -output ./output_netlist/dlx_irsize32_pcsize32_
 
 #set a 10% lower required time( float )  than maxpath
 set REQUIRED_TIME [ expr $mp_l*0.90 ]
-
+#########################
+### clock constraints ###
+#########################
+create_clock -name $clockName -period $REQUIRED_TIME
 set_max_delay $REQUIRED_TIME -from [all_inputs] -to [all_outputs]
+set_fix_hold $clockName
+
+set max_transition_time 0.08
+set_max_transition $max_transition_time [all_outputs]
+set_min_delay 0.03 -from [all_inputs] -to [all_outputs]
+set_input_delay 0.07 -clock $clockName [all_inputs]
+set_output_delay 0.07 -clock $clockName [all_outputs]
+
 # optimize
 compile_ultra -scan
 # save report
 report_timing > ./report/timing_report_dlx_irsize32_pcsize32_opt_10.rpt
 report_area > ./report/area_report_dlx_irsize32_pcsize32_opt_10.rpt
 report_power > ./report/power_report_dlx_irsize32_pcsize32_opt_10.rpt
+report_clock > ./report/report_clock_dlx_irsize32_pcsize32_opt_10.rpt
 
 # saving files
 write -hierarchy -format ddc -output ./output_netlist/dlx_irsize32_pcsize32_topt_10.ddc
@@ -132,14 +161,26 @@ write_sdc ./output_netlist/dlx_irsize32_pcsize32_10.sdc
 
 #set a 1% lower required time( float )  than maxpath
 set REQUIRED_TIME [ expr $mp_l*0.99 ]
-
+#########################
+### clock constraints ###
+#########################
+create_clock -name $clockName -period $REQUIRED_TIME
 set_max_delay $REQUIRED_TIME -from [all_inputs] -to [all_outputs]
+set_fix_hold $clockName
+
+set max_transition_time 0.08
+set_max_transition $max_transition_time [all_outputs]
+set_min_delay 0.03 -from [all_inputs] -to [all_outputs]
+set_input_delay 0.07 -clock $clockName [all_inputs]
+set_output_delay 0.07 -clock $clockName [all_outputs]
+
 # optimize
 compile_ultra -scan
 # save report
 report_timing > ./report/timing_report_dlx_irsize32_pcsize32_opt_1.rpt
 report_area > ./report/area_report_dlx_irsize32_pcsize32_opt_1.rpt
 report_power > ./report/power_report_dlx_irsize32_pcsize32_opt_1.rpt
+report_clock > ./report/report_clock_dlx_irsize32_pcsize32_opt_1.rpt
 
 # saving files
 write -hierarchy -format ddc -output ./output_netlist/dlx_irsize32_pcsize32_topt_1.ddc
@@ -155,13 +196,26 @@ puts "Synthesis push as much as possible the clock frequency i.e. until the slac
 # since the path is critical there is only one object into the list 
 set REQUIRED_TIME [ expr $mp_l*0.80 ]
 
+#########################
+### clock constraints ###
+#########################
+create_clock -name $clockName -period $REQUIRED_TIME
 set_max_delay $REQUIRED_TIME -from [all_inputs] -to [all_outputs]
+set_fix_hold $clockName
+
+set max_transition_time 0.08
+set_max_transition $max_transition_time [all_outputs]
+set_min_delay 0.03 -from [all_inputs] -to [all_outputs]
+set_input_delay 0.07 -clock $clockName [all_inputs]
+set_output_delay 0.07 -clock $clockName [all_outputs]
+
 # optimize
 compile_ultra -scan
 # save report
 report_timing > ./report/timing_report_dlx_irsize32_pcsize32_opt_20_minarea.rpt
 report_area > ./report/area_report_dlx_irsize32_pcsize32_opt_20_minarea.rpt
 report_power > ./report/power_report_dlx_irsize32_pcsize32_opt_20_minarea.rpt
+report_clock > ./report/report_clock_dlx_irsize32_pcsize32_opt_20_minarea.rpt
 
 # saving files
 write -hierarchy -format ddc -output ./output_netlist/dlx_irsize32_pcsize32_topt_20_minarea.ddc
@@ -171,13 +225,26 @@ write -hierarchy -format verilog -output ./output_netlist/dlx_irsize32_pcsize32_
 #set a 10% lower required time( float )  than maxpath
 set REQUIRED_TIME [ expr $mp_l*0.90 ]
 
+#########################
+### clock constraints ###
+#########################
+create_clock -name $clockName -period $REQUIRED_TIME
 set_max_delay $REQUIRED_TIME -from [all_inputs] -to [all_outputs]
+set_fix_hold $clockName
+
+set max_transition_time 0.08
+set_max_transition $max_transition_time [all_outputs]
+set_min_delay 0.03 -from [all_inputs] -to [all_outputs]
+set_input_delay 0.07 -clock $clockName [all_inputs]
+set_output_delay 0.07 -clock $clockName [all_outputs]
+
 # optimize
 compile_ultra -scan
 # save report
 report_timing > ./report/timing_report_dlx_irsize32_pcsize32_opt_10_minarea.rpt
 report_area > ./report/area_report_dlx_irsize32_pcsize32_opt_10_minarea.rpt
 report_power > ./report/power_report_dlx_irsize32_pcsize32_opt_10_minarea.rpt
+report_clock > ./report/report_clock_dlx_irsize32_pcsize32_opt_10_minarea.rpt
 
 # saving files
 write -hierarchy -format ddc -output ./output_netlist/dlx_irsize32_pcsize32_topt_10_minarea.ddc
@@ -188,13 +255,26 @@ write -hierarchy -format verilog -output ./output_netlist/dlx_irsize32_pcsize32_
 #set a 1% lower required time( float )  than maxpath
 set REQUIRED_TIME [ expr $mp_l*0.99 ]
 
+#########################
+### clock constraints ###
+#########################
+create_clock -name $clockName -period $REQUIRED_TIME
 set_max_delay $REQUIRED_TIME -from [all_inputs] -to [all_outputs]
+set_fix_hold $clockName
+
+set max_transition_time 0.08
+set_max_transition $max_transition_time [all_outputs]
+set_min_delay 0.03 -from [all_inputs] -to [all_outputs]
+set_input_delay 0.07 -clock $clockName [all_inputs]
+set_output_delay 0.07 -clock $clockName [all_outputs]
+
 # optimize
 compile_ultra -scan
 # save report
 report_timing > ./report/timing_report_dlx_irsize32_pcsize32_opt_1_minarea.rpt
 report_area > ./report/area_report_dlx_irsize32_pcsize32_opt_1_minarea.rpt
 report_power > ./report/power_report_dlx_irsize32_pcsize32_opt_1_minarea.rpt
+report_clock > ./report/report_clock_dlx_irsize32_pcsize32_opt_1_minarea.rpt
 
 # saving files
 write -hierarchy -format ddc -output ./output_netlist/dlx_irsize32_pcsize32_topt_1_minarea.ddc

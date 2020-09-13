@@ -1,1 +1,0 @@
-/home/ms20.50/Desktop/DLX_project/project/synthesis/output_netlist/dlx_irsize32_pcsize32_nopt.sdc
