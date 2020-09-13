@@ -89,6 +89,10 @@
 \usepackage{verbatim}
 \usepackage{fancyvrb}
 \usepackage{hyperref}
+\usepackage{caption}
+\usepackage{subcaption}
+%for bibliography
+\usepackage[backend=bibtex]{biblatex}
 
 \usepackage{xcolor}
 \colorlet{keyword}{blue!100!black!80}
@@ -118,9 +122,9 @@
 {\titlerule
 \vspace{1pc}
 \Huge}
-\bibliography{./references.bib}
-\makeindex
 
+\makeindex
+\bibliography{./references.bib}
 \begin{document}
 
 \frontmatter
@@ -141,7 +145,7 @@
 \bigskip
 \centerline{\Large Master degree in Computer Engineering}
 \vspace{4.5cm}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%T%%%%%%%%%
 %
 \centerline{\large Referents: Prof. Mariagrazia Graziano, Giovanna Turvani}
 \bigskip
@@ -186,8 +190,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %    
 % HERE IS WHERE YOU INCLUDE YOUR APPENDICES (IF ANY)
-%
-%\printbibliography
+\printbibliography
 \appendix
 \input{./appendices/appendix1} % tp
 \input{./appendices/appendix2} % mem interface
@@ -202,6 +205,7 @@
 \input{./appendices/appendix11} % synthesis script script
 \input{./appendices/appendix12} % physical design script
 \input{./appendices/appendix13} % regression test script
+
 
 
 
