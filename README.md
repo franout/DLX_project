@@ -43,7 +43,7 @@ The DLX is essentially a cleaned up (and modernized) simplified MIPS CPU. The DL
 
 
 - DLX top level entity 
-   ![architecture](./report/chapters/figures/arch_top.png)
+   ![architecture](./report/chapters/figures/dlx_top.png)
  
   
 - Customizable hardware parameters (pre-synthesis)
