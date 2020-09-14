@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (MiKTeX 2.9.7350 64-bit) (preloaded format=pdflatex 2020.3.24)  9 SEP 2020 12:59
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (MiKTeX 2.9.7350 64-bit) (preloaded format=pdflatex 2020.3.24)  13 SEP 2020 11:42
 entering extended mode
 **"D:/uni/2018-2019/Microelectronic systems/dlx_project/report/homebook.tex"
 ("D:/uni/2018-2019/Microelectronic systems/dlx_project/report/homebook.tex"
@@ -448,6 +448,244 @@ Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 2
 )
 \Hy@SectionHShift=\skip70
 )
+(D:\programmi\miktex\tex/latex/caption\subcaption.sty
+Package: subcaption 2020/01/22 v1.3d Sub-captions (AR)
+\c@subfigure=\count292
+\c@subtable=\count293
+)
+(D:\programmi\miktex\tex/latex/biblatex\biblatex.sty
+Package: biblatex 2019/12/01 v3.14 programmable bibliographies (PK/MW)
+
+(D:\programmi\miktex\tex/latex/etoolbox\etoolbox.sty
+Package: etoolbox 2019/09/21 v2.5h e-TeX tools for LaTeX (JAW)
+\etb@tempcnta=\count294
+)
+(D:\programmi\miktex\tex/latex/logreq\logreq.sty
+Package: logreq 2010/08/04 v1.0 xml request logger
+\lrq@indent=\count295
+
+(D:\programmi\miktex\tex/latex/logreq\logreq.def
+File: logreq.def 2010/08/04 v1.0 logreq spec v1.0
+))
+(D:\programmi\miktex\tex/latex/base\ifthen.sty
+Package: ifthen 2014/09/29 v1.1c Standard LaTeX ifthen package (DPC)
+)
+\c@tabx@nest=\count296
+\c@listtotal=\count297
+\c@listcount=\count298
+\c@liststart=\count299
+\c@liststop=\count300
+\c@citecount=\count301
+\c@citetotal=\count302
+\c@multicitecount=\count303
+\c@multicitetotal=\count304
+\c@instcount=\count305
+\c@maxnames=\count306
+\c@minnames=\count307
+\c@maxitems=\count308
+\c@minitems=\count309
+\c@citecounter=\count310
+\c@maxcitecounter=\count311
+\c@savedcitecounter=\count312
+\c@uniquelist=\count313
+\c@uniquename=\count314
+\c@refsection=\count315
+\c@refsegment=\count316
+\c@maxextratitle=\count317
+\c@maxextratitleyear=\count318
+\c@maxextraname=\count319
+\c@maxextradate=\count320
+\c@maxextraalpha=\count321
+\c@abbrvpenalty=\count322
+\c@highnamepenalty=\count323
+\c@lownamepenalty=\count324
+\c@maxparens=\count325
+\c@parenlevel=\count326
+\blx@tempcnta=\count327
+\blx@tempcntb=\count328
+\blx@tempcntc=\count329
+\blx@maxsection=\count330
+\blx@maxsegment@0=\count331
+\blx@notetype=\count332
+\blx@parenlevel@text=\count333
+\blx@parenlevel@foot=\count334
+\blx@sectionciteorder@0=\count335
+\blx@entrysetcounter=\count336
+\labelnumberwidth=\skip71
+\labelalphawidth=\skip72
+\biblabelsep=\skip73
+\bibitemsep=\skip74
+\bibnamesep=\skip75
+\bibinitsep=\skip76
+\bibparsep=\skip77
+\bibhang=\skip78
+\blx@bcfin=\read5
+\blx@bcfout=\write4
+\blx@langwohyphens=\language82
+\c@mincomprange=\count337
+\c@maxcomprange=\count338
+\c@mincompwidth=\count339
+Package biblatex Info: Trying to load biblatex default data model...
+Package biblatex Info: ... file 'blx-dm.def' found.
+
+(D:\programmi\miktex\tex/latex/biblatex\blx-dm.def
+File: blx-dm.def 2019/12/01 v3.14 biblatex localization (PK/MW)
+)
+Package biblatex Info: Trying to load biblatex custom data model...
+Package biblatex Info: ... file 'biblatex-dm.cfg' not found.
+\c@afterword=\count340
+\c@savedafterword=\count341
+\c@annotator=\count342
+\c@savedannotator=\count343
+\c@author=\count344
+\c@savedauthor=\count345
+\c@bookauthor=\count346
+\c@savedbookauthor=\count347
+\c@commentator=\count348
+\c@savedcommentator=\count349
+\c@editor=\count350
+\c@savededitor=\count351
+\c@editora=\count352
+\c@savededitora=\count353
+\c@editorb=\count354
+\c@savededitorb=\count355
+\c@editorc=\count356
+\c@savededitorc=\count357
+\c@foreword=\count358
+\c@savedforeword=\count359
+\c@holder=\count360
+\c@savedholder=\count361
+\c@introduction=\count362
+\c@savedintroduction=\count363
+\c@namea=\count364
+\c@savednamea=\count365
+\c@nameb=\count366
+\c@savednameb=\count367
+\c@namec=\count368
+\c@savednamec=\count369
+\c@translator=\count370
+\c@savedtranslator=\count371
+\c@shortauthor=\count372
+\c@savedshortauthor=\count373
+\c@shorteditor=\count374
+\c@savedshorteditor=\count375
+\c@labelname=\count376
+\c@savedlabelname=\count377
+\c@institution=\count378
+\c@savedinstitution=\count379
+\c@lista=\count380
+\c@savedlista=\count381
+\c@listb=\count382
+\c@savedlistb=\count383
+\c@listc=\count384
+\c@savedlistc=\count385
+\c@listd=\count386
+\c@savedlistd=\count387
+\c@liste=\count388
+\c@savedliste=\count389
+\c@listf=\count390
+\c@savedlistf=\count391
+\c@location=\count392
+\c@savedlocation=\count393
+\c@organization=\count394
+\c@savedorganization=\count395
+\c@origlocation=\count396
+\c@savedoriglocation=\count397
+\c@origpublisher=\count398
+\c@savedorigpublisher=\count399
+\c@publisher=\count400
+\c@savedpublisher=\count401
+\c@language=\count402
+\c@savedlanguage=\count403
+\c@origlanguage=\count404
+\c@savedoriglanguage=\count405
+\c@pageref=\count406
+\c@savedpageref=\count407
+\shorthandwidth=\skip79
+\shortjournalwidth=\skip80
+\shortserieswidth=\skip81
+\shorttitlewidth=\skip82
+\shortauthorwidth=\skip83
+\shorteditorwidth=\skip84
+\locallabelnumberwidth=\skip85
+\locallabelalphawidth=\skip86
+\localshorthandwidth=\skip87
+\localshortjournalwidth=\skip88
+\localshortserieswidth=\skip89
+\localshorttitlewidth=\skip90
+\localshortauthorwidth=\skip91
+\localshorteditorwidth=\skip92
+Package biblatex Info: Trying to load compatibility code...
+Package biblatex Info: ... file 'blx-compat.def' found.
+
+(D:\programmi\miktex\tex/latex/biblatex\blx-compat.def
+File: blx-compat.def 2019/12/01 v3.14 biblatex compatibility (PK/MW)
+)
+Package biblatex Info: Trying to load BibTeX backend compatibility...
+Package biblatex Info: ... file 'blx-bibtex.def' found.
+
+(D:\programmi\miktex\tex/latex/biblatex\blx-bibtex.def
+File: blx-bibtex.def 2019/12/01 v3.14 biblatex compatibility (PK/MW)
+
+
+Package biblatex Warning: Using fall-back BibTeX(8) backend:
+(biblatex)                functionality may be reduced/unavailable.
+
+)
+Package biblatex Info: Trying to load generic definitions...
+Package biblatex Info: ... file 'biblatex.def' found.
+ (D:\programmi\miktex\tex/latex/biblatex\biblatex.def
+File: biblatex.def 2019/12/01 v3.14 biblatex compatibility (PK/MW)
+\c@textcitecount=\count408
+\c@textcitetotal=\count409
+\c@textcitemaxnames=\count410
+\c@biburlbigbreakpenalty=\count411
+\c@biburlbreakpenalty=\count412
+\c@biburlnumpenalty=\count413
+\c@biburlucpenalty=\count414
+\c@biburllcpenalty=\count415
+\biburlbigskip=\muskip18
+\biburlnumskip=\muskip19
+\biburlucskip=\muskip20
+\biburllcskip=\muskip21
+\c@smartand=\count416
+)
+Package biblatex Info: Trying to load bibliography style 'numeric'...
+Package biblatex Info: ... file 'numeric.bbx' found.
+
+(D:\programmi\miktex\tex/latex/biblatex/bbx\numeric.bbx
+File: numeric.bbx 2019/12/01 v3.14 biblatex bibliography style (PK/MW)
+Package biblatex Info: Trying to load bibliography style 'standard'...
+Package biblatex Info: ... file 'standard.bbx' found.
+
+(D:\programmi\miktex\tex/latex/biblatex/bbx\standard.bbx
+File: standard.bbx 2019/12/01 v3.14 biblatex bibliography style (PK/MW)
+\c@bbx:relatedcount=\count417
+\c@bbx:relatedtotal=\count418
+))
+Package biblatex Info: Trying to load citation style 'numeric'...
+Package biblatex Info: ... file 'numeric.cbx' found.
+
+(D:\programmi\miktex\tex/latex/biblatex/cbx\numeric.cbx
+File: numeric.cbx 2019/12/01 v3.14 biblatex citation style (PK/MW)
+Package biblatex Info: Redefining '\cite'.
+Package biblatex Info: Redefining '\parencite'.
+Package biblatex Info: Redefining '\footcite'.
+Package biblatex Info: Redefining '\footcitetext'.
+Package biblatex Info: Redefining '\smartcite'.
+Package biblatex Info: Redefining '\supercite'.
+Package biblatex Info: Redefining '\textcite'.
+Package biblatex Info: Redefining '\textcites'.
+Package biblatex Info: Redefining '\cites'.
+Package biblatex Info: Redefining '\parencites'.
+Package biblatex Info: Redefining '\smartcites'.
+)
+Package biblatex Info: Trying to load configuration file...
+Package biblatex Info: ... file 'biblatex.cfg' found.
+
+(D:\programmi\miktex\tex/latex/biblatex\biblatex.cfg
+File: biblatex.cfg 
+))
 (D:\programmi\miktex\tex/latex/xcolor\xcolor.sty
 Package: xcolor 2016/05/11 v2.12 LaTeX color extensions (UK)
 
@@ -465,14 +703,20 @@ Package xcolor Info: Model `HSB' substituted by `hsb' on input line 1369.
 Package xcolor Info: Model `Gray' substituted by `gray' on input line 1370.
 Package xcolor Info: Model `wave' substituted by `hsb' on input line 1371.
 )
-\@indexfile=\write4
-\openout4 = `homebook.idx'.
+\@indexfile=\write5
+\openout5 = `homebook.idx'.
 
 
 Writing index file homebook.idx
+
+Package biblatex Warning: 'babel/polyglossia' detected but 'csquotes' missing.
+(biblatex)                Loading 'csquotes' recommended.
+
+\@quotelevel=\count419
+\@quotereset=\count420
 (D:\programmi\miktex\tex/latex/l3backend\l3backend-pdfmode.def
 File: l3backend-pdfmode.def 2020-03-12 L3 backend support: PDF mode
-\l__kernel_color_stack_int=\count292
+\l__kernel_color_stack_int=\count421
 \l__pdf_internal_box=\box55
 )
 
@@ -482,36 +726,36 @@ LaTeX Warning: Unused global option(s):
 ("D:/uni/2018-2019/Microelectronic systems/dlx_project/report\homebook.aux")
 \openout1 = `homebook.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 124.
-LaTeX Font Info:    ... okay on input line 124.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 124.
-LaTeX Font Info:    ... okay on input line 124.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 124.
-LaTeX Font Info:    ... okay on input line 124.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 124.
-LaTeX Font Info:    ... okay on input line 124.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 124.
-LaTeX Font Info:    ... okay on input line 124.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 124.
-LaTeX Font Info:    ... okay on input line 124.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 124.
-LaTeX Font Info:    ... okay on input line 124.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 124.
-LaTeX Font Info:    ... okay on input line 124.
-\c@lstlisting=\count293
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 128.
+LaTeX Font Info:    ... okay on input line 128.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 128.
+LaTeX Font Info:    ... okay on input line 128.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 128.
+LaTeX Font Info:    ... okay on input line 128.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 128.
+LaTeX Font Info:    ... okay on input line 128.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 128.
+LaTeX Font Info:    ... okay on input line 128.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 128.
+LaTeX Font Info:    ... okay on input line 128.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 128.
+LaTeX Font Info:    ... okay on input line 128.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 128.
+LaTeX Font Info:    ... okay on input line 128.
+\c@lstlisting=\count422
 
 (D:\programmi\miktex\tex/context/base/mkii\supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count294
+\scratchcounter=\count423
 \scratchdimen=\dimen198
 \scratchbox=\box56
-\nofMPsegments=\count295
-\nofMParguments=\count296
+\nofMPsegments=\count424
+\nofMParguments=\count425
 \everyMPshowfont=\toks33
-\MPscratchCnt=\count297
+\MPscratchCnt=\count426
 \MPscratchDim=\dimen199
-\MPnumerator=\count298
-\makeMPintoPDFobject=\count299
+\MPnumerator=\count427
+\makeMPintoPDFobject=\count428
 \everyMPtoPDFconversion=\toks34
 ) (D:\programmi\miktex\tex/latex/epstopdf-pkg\epstopdf-base.sty
 Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
@@ -523,7 +767,7 @@ Package caption Info: float package is loaded.
 Package caption Info: hyperref package is loaded.
 Package caption Info: End \AtBeginDocument code.
 \AtBeginShipoutBox=\box57
-Package hyperref Info: Link coloring OFF on input line 124.
+Package hyperref Info: Link coloring OFF on input line 128.
 
 (D:\programmi\miktex\tex/latex/hyperref\nameref.sty
 Package: nameref 2019/09/16 v2.46 Cross-referencing by name of section
@@ -534,20 +778,40 @@ Package: refcount 2019/12/15 v3.6 Data extraction from label references (HO)
 (D:\programmi\miktex\tex/generic/gettitlestring\gettitlestring.sty
 Package: gettitlestring 2019/12/15 v1.6 Cleanup title references (HO)
 )
-\c@section@level=\count300
+\c@section@level=\count429
 )
-LaTeX Info: Redefining \ref on input line 124.
-LaTeX Info: Redefining \pageref on input line 124.
-LaTeX Info: Redefining \nameref on input line 124.
-\@outlinefile=\write5
-\openout5 = `homebook.out'.
+LaTeX Info: Redefining \ref on input line 128.
+LaTeX Info: Redefining \pageref on input line 128.
+LaTeX Info: Redefining \nameref on input line 128.
+\@outlinefile=\write6
+\openout6 = `homebook.out'.
 
+Package biblatex Info: Trying to load language 'english'...
+Package biblatex Info: ... file 'english.lbx' found.
+
+(D:\programmi\miktex\tex/latex/biblatex/lbx\english.lbx
+File: english.lbx 2019/12/01 v3.14 biblatex localization (PK/MW)
+)
+Package biblatex Info: Input encoding 'utf8' detected.
+Package biblatex Info: Automatic encoding selection.
+(biblatex)             Assuming data encoding 'utf8'.
+Package biblatex Info: Input encoding 'utf8' specified.
+Package biblatex Info: Data encoding 'utf8' specified.
+(biblatex)             No need to reencode data.
+\openout4 = `homebook-blx.bib'.
+
+Package biblatex Info: Trying to load bibliographic data...
+Package biblatex Info: ... file 'homebook.bbl' not found.
+
+No file homebook.bbl.
+Package biblatex Info: Reference section=0 on input line 128.
+Package biblatex Info: Reference segment=0 on input line 128.
 <./logopoli.jpg, id=3, 573.8238pt x 565.1514pt>
 File: ./logopoli.jpg Graphic file (type jpg)
 <use ./logopoli.jpg>
-Package pdftex.def Info: ./logopoli.jpg  used on input line 130.
+Package pdftex.def Info: ./logopoli.jpg  used on input line 134.
 (pdftex.def)             Requested size: 85.35826pt x 84.06192pt.
- [1
+[1
 
 
 
@@ -556,29 +820,24 @@ Package pdftex.def Info: ./logopoli.jpg  used on input line 130.
 
 Package hyperref Warning: old toc file detected, not used; run LaTeX again.
 
-\tf@toc=\write6
-\openout6 = `homebook.toc'.
+\tf@toc=\write7
+\openout7 = `homebook.toc'.
 
 pdfTeX warning (ext4): destination with the same identifier (name{page.i}) has 
 been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.174 \mainmatter
+l.177 \mainmatter
                   [1
 
 ]
 ("D:/uni\2018-2019\Microelectronic systems\dlx_project\report\chapters\introduc
 tion.tex"
 Chapter 1.
-LaTeX Font Info:    Trying to load font information for U+msa on input line 8.
-(D:\programmi\miktex\tex/latex/amsfonts\umsa.fd
-File: umsa.fd 2013/01/14 v3.01 AMS symbols A
-)
-LaTeX Font Info:    Trying to load font information for U+msb on input line 8.
 
-(D:\programmi\miktex\tex/latex/amsfonts\umsb.fd
-File: umsb.fd 2013/01/14 v3.01 AMS symbols B
-))
+LaTeX Warning: Citation 'website:1' on page 1 undefined on input line 7.
+
+)
 ("D:/uni\2018-2019\Microelectronic systems\dlx_project\report\chapters\function
 al_vt.tex"
 Underfull \hbox (badness 10000) in paragraph at lines 3--1
@@ -595,20 +854,184 @@ Underfull \hbox (badness 10000) in paragraph at lines 3--1
 
 ]
 Chapter 2.
+
+LaTeX Warning: Citation 'paper:1' on page 2 undefined on input line 4.
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 3--5
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 3--5
+
+ []
+
+
+LaTeX Warning: Reference `appendix5' on page 2 undefined on input line 29.
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 27--30
+
+ []
+
+[2
+
+]
+<./chapters/figures/tb_dlx.png, id=31, 702.625pt x 697.60625pt>
+File: ./chapters/figures/tb_dlx.png Graphic file (type png)
+<use ./chapters/figures/tb_dlx.png>
+Package pdftex.def Info: ./chapters/figures/tb_dlx.png  used on input line 35.
+(pdftex.def)             Requested size: 245.92242pt x 244.16583pt.
+
+
+LaTeX Warning: Reference `fig:tbdlx' on page 3 undefined on input line 40.
+
+
+LaTeX Warning: Reference `appendix2' on page 3 undefined on input line 45.
+
+[3 <D:/uni/2018-2019/Microelectronic systems/dlx_project/report/chapters/figure
+s/tb_dlx.png (PNG copy)>]
+
+LaTeX Warning: Reference `appendix5' on page 4 undefined on input line 46.
+
+
+LaTeX Warning: Citation 'paper:2' on page 4 undefined on input line 51.
+
+
+LaTeX Warning: Reference `fig:dlxtbcp' on page 4 undefined on input line 53.
+
+
+LaTeX Warning: Reference `appendix2' on page 4 undefined on input line 53.
+
+
+Overfull \hbox (40.0383pt too wide) in paragraph at lines 51--54
+\OT1/cmr/m/n/10 Functional cov-er-age is a cov-er-age met-ric de-fined to asses
+ that the de-sign has been ad-e-quately exercised[[]].
+ []
+
+<./chapters/figures/tb_dlx_cg.png, id=39, 702.625pt x 697.60625pt>
+File: ./chapters/figures/tb_dlx_cg.png Graphic file (type png)
+<use ./chapters/figures/tb_dlx_cg.png>
+Package pdftex.def Info: ./chapters/figures/tb_dlx_cg.png  used on input line 5
+8.
+(pdftex.def)             Requested size: 245.92242pt x 244.16583pt.
+
+Underfull \hbox (badness 10000) in paragraph at lines 63--65
+
+ []
+
+[4 <D:/uni/2018-2019/Microelectronic systems/dlx_project/report/chapters/figure
+s/tb_dlx_cg.png (PNG copy)>]
+
+LaTeX Warning: Citation 'paper:3' on page 5 undefined on input line 68.
+
+
+LaTeX Warning: Reference `fig:tbuvm' on page 5 undefined on input line 69.
+
+<./chapters/figures/tb_dlx_uvm.png, id=46, 711.65875pt x 657.45625pt>
+File: ./chapters/figures/tb_dlx_uvm.png Graphic file (type png)
+<use ./chapters/figures/tb_dlx_uvm.png>
+Package pdftex.def Info: ./chapters/figures/tb_dlx_uvm.png  used on input line 
+74.
+(pdftex.def)             Requested size: 355.8285pt x 328.72733pt.
+
+LaTeX Warning: Reference `fig:tbuvm' on page 5 undefined on input line 79.
+
+LaTeX Font Info:    Trying to load font information for U+msa on input line 81.
+
+(D:\programmi\miktex\tex/latex/amsfonts\umsa.fd
+File: umsa.fd 2013/01/14 v3.01 AMS symbols A
+)
+LaTeX Font Info:    Trying to load font information for U+msb on input line 81.
+
+
+(D:\programmi\miktex\tex/latex/amsfonts\umsb.fd
+File: umsb.fd 2013/01/14 v3.01 AMS symbols B
+) [5 <D:/uni/2018-2019/Microelectronic systems/dlx_project/report/chapters/figu
+res/tb_dlx_uvm.png (PNG copy)>]
+
+LaTeX Warning: Reference `fig:tbdlx' on page 6 undefined on input line 84.
+
+
+LaTeX Warning: Reference `appendix6' on page 6 undefined on input line 90.
+
 )
 ("D:/uni\2018-2019\Microelectronic systems\dlx_project\report\chapters\architec
-ture.tex" [2
-
-]
+ture.tex" [6]
 Chapter 3.
+
+LaTeX Warning: Reference `fig:dlxarch' on page 7 undefined on input line 3.
+
+<./chapters/figures/dlx_top.png, id=60, 851.18pt x 502.87875pt>
+File: ./chapters/figures/dlx_top.png Graphic file (type png)
+<use ./chapters/figures/dlx_top.png>
+Package pdftex.def Info: ./chapters/figures/dlx_top.png  used on input line 12.
+
+(pdftex.def)             Requested size: 425.58894pt x 251.43875pt.
+
+LaTeX Warning: Reference `fig:dlxarch' on page 7 undefined on input line 17.
+
+[7
+
+ <D:/uni/2018-2019/Microelectronic systems/dlx_project/report/chapters/figures/
+dlx_top.png (PNG copy)>]
+Underfull \hbox (badness 10000) in paragraph at lines 21--24
+
+ []
+
+
+LaTeX Warning: Reference `fig:dp' on page 8 undefined on input line 27.
+
+<./chapters/figures/datapath.png, id=67, 1166.3575pt x 928.46875pt>
+File: ./chapters/figures/datapath.png Graphic file (type png)
+<use ./chapters/figures/datapath.png>
+Package pdftex.def Info: ./chapters/figures/datapath.png  used on input line 31
+.
+(pdftex.def)             Requested size: 408.23125pt x 324.96893pt.
+[8 <D:/uni/2018-2019/Microelectronic systems/dlx_project/report/chapters/figure
+s/datapath.png (PNG copy)>]
+Overfull \hbox (18.39972pt too wide) in paragraph at lines 38--39
+[]\OT1/cmr/m/n/10 Fetch Stage: it uses as ad-dress for in-struc-tion mem-ory th
+e value of the PC, while the data(instruction)
+ []
+
+
+LaTeX Warning: Reference `fig:dp' on page 9 undefined on input line 45.
+
+
+LaTeX Warning: Reference `fig:alumula' on page 9 undefined on input line 50.
+
+<./chapters/figures/mult.PNG, id=78, 663.07726pt x 398.08725pt>
+File: ./chapters/figures/mult.PNG Graphic file (type png)
+<use ./chapters/figures/mult.PNG>
+Package pdftex.def Info: ./chapters/figures/mult.PNG  used on input line 56.
+(pdftex.def)             Requested size: 331.53781pt x 199.04314pt.
+<./chapters/figures/mult_pip.PNG, id=80, 663.07726pt x 398.08725pt>
+File: ./chapters/figures/mult_pip.PNG Graphic file (type png)
+<use ./chapters/figures/mult_pip.PNG>
+Package pdftex.def Info: ./chapters/figures/mult_pip.PNG  used on input line 63
+.
+(pdftex.def)             Requested size: 331.53781pt x 199.04314pt.
+
+Overfull \hbox (2.2222pt too wide) in paragraph at lines 53--67
+[]$[]$ $[]$ 
+ []
+
+
+LaTeX Warning: Reference `fig:alumulb' on page 9 undefined on input line 71.
+
+
+LaTeX Warning: Reference `appendix8' on page 9 undefined on input line 72.
+
 )
 ("D:/uni\2018-2019\Microelectronic systems\dlx_project\report\chapters\synthesi
-s.tex" [3
-
-]
+s.tex" [9 <D:/uni/2018-2019/Microelectronic systems/dlx_project/report/chapters
+/figures/mult.PNG> <D:/uni/2018-2019/Microelectronic systems/dlx_project/report
+/chapters/figures/mult_pip.PNG>] [10]
 Chapter 4.
 
-LaTeX Warning: Reference `appendix11' on page 4 undefined on input line 3.
+LaTeX Warning: Reference `appendix11' on page 11 undefined on input line 3.
 
 
 Underfull \hbox (badness 10000) in paragraph at lines 3--6
@@ -616,7 +1039,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 3--6
  []
 
 
-LaTeX Warning: Reference `fig:lat_area' on page 4 undefined on input line 9.
+LaTeX Warning: Reference `fig:lat_area' on page 11 undefined on input line 9.
 
 
 Underfull \hbox (badness 10000) in paragraph at lines 19--20
@@ -629,17 +1052,17 @@ Underfull \hbox (badness 10000) in paragraph at lines 19--20
  []
 
 
-LaTeX Warning: Reference `fig:area_power_latency' on page 4 undefined on input 
-line 21.
+LaTeX Warning: Reference `fig:area_power_latency' on page 11 undefined on input
+ line 21.
 
 )
 ("D:/uni\2018-2019\Microelectronic systems\dlx_project\report\chapters\physical
-_design.tex" [4
+_design.tex" [11
 
 ]
 Chapter 5.
 
-LaTeX Warning: Reference `appendix12' on page 5 undefined on input line 3.
+LaTeX Warning: Reference `appendix12' on page 12 undefined on input line 3.
 
 
 Underfull \hbox (badness 10000) in paragraph at lines 3--5
@@ -651,17 +1074,8 @@ Underfull \hbox (badness 10000) in paragraph at lines 3--5
 
  []
 
-<../project/physical_design/images_nopt/DLX_IR_SIZE32_PC_SIZE32_nopt_ameba_prer
-outing.jpg, id=55, 408.77719pt x 412.54124pt>
-File: ../project/physical_design/images_nopt/DLX_IR_SIZE32_PC_SIZE32_nopt_ameba
-_prerouting.jpg Graphic file (type jpg)
-<use ../project/physical_design/images_nopt/DLX_IR_SIZE32_PC_SIZE32_nopt_ameba_
-prerouting.jpg>
-Package pdftex.def Info: ../project/physical_design/images_nopt/DLX_IR_SIZE32_P
-C_SIZE32_nopt_ameba_prerouting.jpg  used on input line 11.
-(pdftex.def)             Requested size: 143.07416pt x 144.39159pt.
 
 !pdfTeX error: pdflatex (file D:/uni/2018-2019/Microelectronic systems/dlx_proj
-ect/project/physical_design/images_nopt/DLX_IR_SIZE32_PC_SIZE32_nopt_place_prer
-outing.jpg): reading JPEG image failed (no JPEG header found)
+ect/project/physical_design/images_nopt/DLX_IR_SIZE32_PC_SIZE32_nopt_ameba_prer
+outing.png): libpng: internal error
  ==> Fatal error occurred, no output PDF file produced!
