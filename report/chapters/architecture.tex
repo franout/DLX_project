@@ -23,7 +23,7 @@ The control unit is based on the hardwired approach, meaning that for each one o
 The control unit is also in charge of selecting the proper operation for the ALU. During the execution of the integer multiplication, it stalls the pipeline for the whole duration of the operation in order to avoid hazards or it may restore the pipeline behavior in the case that one of the multiplication operands is zero and/or it is bigger than $2^{16}-1$, since the multiplication is between 16-bitwidth operands.
 
 \section{Datapath}
-The datapath of the DLX is composed by 5 stages, as in Figure \ref{fig:dp}:
+The datapath of the DLX is composed by 5 stages, as in Figure \ref{fig:dp} :
 \begin{figure}[!htbp]
 \centering
 \captionsetup{justification=centering}
