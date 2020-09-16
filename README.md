@@ -22,6 +22,7 @@ Microelectronic System course (MsC in Embedded Systems Engineering)  @ Polythecn
 - [Synthesis](#synthesis)
 - [Layout](#layout)
 - [Tests](#tests)
+- [Documentation](#documentation)
 - [License](#license)
 
 
@@ -96,6 +97,8 @@ They are divided for each stage and control unit for regression test
   $ ./scripts/regression_test.sh
   ```
   
+## Documentation
+For a more detailed information see Wiki's project. 
 
 ## Useful Link 
 
