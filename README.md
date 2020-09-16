@@ -98,7 +98,8 @@ They are divided for each stage and control unit for regression test
   ```
   
 ## Documentation
-For a more detailed information see Wiki's project. 
+For a more detailed information see <a href="https://github.com/franout/DLX_project/wiki" target="_blank">`Wiki's project`</a>.
+
 
 ## Useful Link 
 
