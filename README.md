@@ -22,6 +22,7 @@ Microelectronic System course (MsC in Embedded Systems Engineering)  @ Polythecn
 - [Synthesis](#synthesis)
 - [Layout](#layout)
 - [Tests](#tests)
+- [Documentation](#documentation)
 - [License](#license)
 
 
@@ -96,6 +97,9 @@ They are divided for each stage and control unit for regression test
   $ ./scripts/regression_test.sh
   ```
   
+## Documentation
+For a more detailed information see <a href="https://github.com/franout/DLX_project/wiki" target="_blank">`Wiki's project`</a>.
+
 
 ## Useful Link 
 
